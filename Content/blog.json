@@ -1,0 +1,111 @@
+{
+    "page": "Blog",
+    "meta": {
+        "title": "Logistics Blog | AWSoversea",
+        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global logistics from AWSoversea."
+    },
+    "hero": {
+        "badge": "Logistics Insights",
+        "title": "Knowledge That Moves Your Business Forward",
+        "subtitle": "Stay informed with expert articles, industry updates, shipping guides, and international trade insights designed to help businesses navigate global logistics with confidence.",
+        "primaryButton": "Explore Articles",
+        "secondaryButton": "Request a Quote"
+    },
+    "categories": {
+        "title": "Browse by Category",
+        "description": "Find articles based on your business needs and shipping requirements.",
+        "items": [
+            {
+                "title": "Air Freight",
+                "slug": "air-freight"
+            },
+            {
+                "title": "Sea Freight",
+                "slug": "sea-freight"
+            },
+            {
+                "title": "Import & Export",
+                "slug": "import-export"
+            },
+            {
+                "title": "Customs Clearance",
+                "slug": "customs-clearance"
+            },
+            {
+                "title": "Warehousing",
+                "slug": "warehousing"
+            },
+            {
+                "title": "Logistics Tips",
+                "slug": "logistics"
+            },
+            {
+                "title": "Shipping Guides",
+                "slug": "shipping-guides"
+            },
+            {
+                "title": "Industry News",
+                "slug": "industry-news"
+            }
+        ]
+    },
+    "featuredArticle": {
+        "title": "How to Choose the Right International Shipping Method for Your Business",
+        "category": "Shipping Guide",
+        "readTime": "8 min read",
+        "publishDate": "Latest Article",
+        "excerpt": "Discover the differences between Air Freight, Sea Freight, FCL, and LCL shipping to choose the most cost-effective and efficient solution for your business.",
+        "image": "/images/blog/featured.webp",
+        "button": "Read Article"
+    },
+    "blogGrid": {
+        "title": "Latest Articles",
+        "description": "Stay updated with the latest trends, regulations, and best practices in international logistics.",
+        "posts": [
+            {
+                "title": "Air Freight vs Sea Freight: Which One is Right for You?",
+                "category": "Air Freight",
+                "readTime": "6 min",
+                "image": "/images/blog/blog-1.webp"
+            },
+            {
+                "title": "Complete Guide to Customs Clearance",
+                "category": "Customs",
+                "readTime": "7 min",
+                "image": "/images/blog/blog-2.webp"
+            },
+            {
+                "title": "FCL vs LCL Shipping Explained",
+                "category": "Sea Freight",
+                "readTime": "5 min",
+                "image": "/images/blog/blog-3.webp"
+            },
+            {
+                "title": "Top 10 Documents Required for International Shipping",
+                "category": "Import & Export",
+                "readTime": "9 min",
+                "image": "/images/blog/blog-4.webp"
+            },
+            {
+                "title": "How Warehousing Improves Supply Chain Efficiency",
+                "category": "Warehousing",
+                "readTime": "6 min",
+                "image": "/images/blog/blog-5.webp"
+            },
+            {
+                "title": "Common Shipping Mistakes Businesses Should Avoid",
+                "category": "Logistics",
+                "readTime": "7 min",
+                "image": "/images/blog/blog-6.webp"
+            }
+        ]
+    },
+    "newsletter": {
+        "title": "Stay Ahead in Global Logistics",
+        "description": "Subscribe to our newsletter and receive the latest logistics insights, shipping updates, industry news, and international trade tips directly in your inbox.",
+        "placeholder": "Enter your email address",
+        "buttonText": "Subscribe",
+        "successMessage": "Thank you for subscribing to the AWSoversea newsletter!",
+        "privacyText": "We respect your privacy. Your email will never be shared with third parties."
+    }
+}

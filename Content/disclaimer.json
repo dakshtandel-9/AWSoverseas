@@ -1,0 +1,39 @@
+{
+    "page": "Disclaimer",
+    "meta": {
+        "title": "Disclaimer | AWSoversea",
+        "description": "Read the AWSoversea disclaimer regarding the use of our website, logistics information, and services."
+    },
+    "hero": {
+        "badge": "Legal",
+        "title": "Disclaimer",
+        "subtitle": "Please read this disclaimer before relying on the information provided on our website."
+    },
+    "lastUpdated": "01 July 2026",
+    "sections": [
+        {
+            "title": "General Information",
+            "content": "The information provided on this website is for general informational purposes only and may change without prior notice."
+        },
+        {
+            "title": "No Legal Advice",
+            "content": "Shipping regulations, customs requirements, and international trade rules vary by country. Customers should seek professional advice where necessary."
+        },
+        {
+            "title": "Third-Party Links",
+            "content": "Our website may contain links to third-party websites. AWSoversea is not responsible for their content or privacy practices."
+        },
+        {
+            "title": "Service Availability",
+            "content": "Certain logistics services may not be available in every country or region and may change without notice."
+        },
+        {
+            "title": "Limitation of Liability",
+            "content": "AWSoversea is not responsible for losses resulting from circumstances beyond our reasonable control, including customs delays, force majeure events, or government restrictions."
+        },
+        {
+            "title": "Contact",
+            "content": "For any questions regarding this disclaimer, please contact AWSoversea."
+        }
+    ]
+}

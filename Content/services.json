@@ -1,0 +1,104 @@
+{
+    "page": "Services",
+    "meta": {
+        "title": "Logistics Services | AWSoversea",
+        "description": "Explore AWSoversea's complete range of international logistics services including Air Freight, Sea Freight, Import & Export, Customs Clearance, Warehousing, and Door-to-Door Cargo Solutions."
+    },
+    "hero": {
+        "badge": "Our Services",
+        "title": "Complete International Logistics Solutions Under One Roof",
+        "subtitle": "From air freight and sea freight to customs clearance and warehousing, AWSoversea provides end-to-end logistics services that simplify global shipping for businesses and individuals.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Our Team"
+    },
+    "overview": {
+        "title": "Comprehensive Freight & Logistics Services",
+        "description": "AWSoversea delivers reliable, cost-effective, and technology-driven logistics solutions tailored to businesses of all sizes. Our experienced team manages every stage of the shipping journey, ensuring secure transportation, timely delivery, and complete customer satisfaction.",
+        "highlights": [
+            "International Freight Forwarding",
+            "Door-to-Door Delivery",
+            "Customs Clearance",
+            "Warehousing & Distribution",
+            "Cargo Consolidation",
+            "Real-Time Shipment Tracking"
+        ]
+    },
+    "airFreight": {
+        "title": "Air Freight",
+        "description": "Fast and reliable international air cargo solutions for urgent and high-value shipments. We partner with leading airlines to ensure secure and timely deliveries worldwide.",
+        "features": [
+            "Express International Shipping",
+            "Priority Cargo Handling",
+            "Airport-to-Airport Service",
+            "Door-to-Door Delivery",
+            "Real-Time Shipment Updates"
+        ],
+        "button": "Learn More"
+    },
+    "seaFreight": {
+        "title": "Sea Freight",
+        "description": "Affordable ocean freight solutions for commercial and bulk cargo with flexible Full Container Load (FCL) and Less than Container Load (LCL) options.",
+        "features": [
+            "FCL Shipping",
+            "LCL Shipping",
+            "Container Consolidation",
+            "Global Port Coverage",
+            "Cost-Effective Transportation"
+        ],
+        "button": "Learn More"
+    },
+    "importServices": {
+        "title": "Import Services",
+        "description": "Simplify international imports with expert logistics planning, customs documentation, cargo handling, and end-to-end shipment coordination.",
+        "features": [
+            "Import Documentation",
+            "Cargo Pickup",
+            "Customs Compliance",
+            "Freight Coordination",
+            "Delivery Management"
+        ],
+        "button": "Learn More"
+    },
+    "exportServices": {
+        "title": "Export Services",
+        "description": "Expand your business globally with seamless export logistics, documentation support, customs processing, and reliable international transportation.",
+        "features": [
+            "Export Documentation",
+            "Global Shipping",
+            "Cargo Packaging Support",
+            "International Distribution",
+            "Trade Compliance"
+        ],
+        "button": "Learn More"
+    },
+    "warehousing": {
+        "title": "Warehousing & Distribution",
+        "description": "Secure warehousing facilities with inventory management, cargo storage, packaging, consolidation, and distribution services.",
+        "features": [
+            "Secure Storage",
+            "Inventory Management",
+            "Order Fulfilment",
+            "Cargo Consolidation",
+            "Distribution Services"
+        ],
+        "button": "Learn More"
+    },
+    "customsClearance": {
+        "title": "Customs Clearance",
+        "description": "Efficient customs clearance services handled by experienced professionals to ensure faster approvals and regulatory compliance.",
+        "features": [
+            "Import Clearance",
+            "Export Clearance",
+            "Documentation Support",
+            "Duty & Tax Guidance",
+            "Compliance Management"
+        ],
+        "button": "Learn More"
+    },
+    "cta": {
+        "title": "Ready to Ship Across the Globe?",
+        "description": "Whether you're importing, exporting, or managing international cargo, AWSoversea is ready to provide reliable logistics solutions tailored to your business.",
+        "primaryButton": "Get a Free Quote",
+        "secondaryButton": "Talk to Our Experts"
+    }
+}

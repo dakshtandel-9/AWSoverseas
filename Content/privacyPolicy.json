@@ -1,0 +1,43 @@
+{
+    "page": "Privacy Policy",
+    "meta": {
+        "title": "Privacy Policy | AWSoversea",
+        "description": "Read the AWSoversea Privacy Policy to understand how we collect, use, and protect your personal information."
+    },
+    "hero": {
+        "badge": "Legal",
+        "title": "Privacy Policy",
+        "subtitle": "Your privacy is important to us. This policy explains how AWSoversea collects, uses, stores, and protects your personal information."
+    },
+    "lastUpdated": "01 July 2026",
+    "sections": [
+        {
+            "title": "Information We Collect",
+            "content": "We may collect personal information such as your name, company name, email address, phone number, shipping details, billing information, and documents required to provide logistics services."
+        },
+        {
+            "title": "How We Use Your Information",
+            "content": "Your information is used to process shipments, generate quotations, communicate with you, improve our services, and comply with legal obligations."
+        },
+        {
+            "title": "Data Security",
+            "content": "AWSoversea uses appropriate security measures to protect your information from unauthorized access, disclosure, alteration, or destruction."
+        },
+        {
+            "title": "Third-Party Services",
+            "content": "We may use trusted third-party services including payment gateways, email providers, analytics, and shipping partners to deliver our services."
+        },
+        {
+            "title": "Cookies",
+            "content": "Our website may use cookies to improve user experience, remember preferences, and analyze website traffic."
+        },
+        {
+            "title": "Your Rights",
+            "content": "You may request access, correction, or deletion of your personal information by contacting our support team."
+        },
+        {
+            "title": "Contact Us",
+            "content": "If you have any questions regarding this Privacy Policy, please contact AWSoversea."
+        }
+    ]
+}

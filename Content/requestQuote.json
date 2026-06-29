@@ -1,0 +1,150 @@
+{
+  "page": "Request Quote",
+
+  "meta": {
+    "title": "Request a Freight Quote | AWSoversea",
+    "description": "Get a fast and accurate quote for your international shipment. Request pricing for Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, FCL, and LCL services."
+  },
+
+  "hero": {
+    "badge": "Free Freight Quote",
+    "title": "Request Your International Shipping Quote",
+    "subtitle": "Tell us about your shipment and our logistics experts will provide a competitive quotation tailored to your requirements.",
+    "primaryButton": "Get Quote",
+    "secondaryButton": "Contact Us"
+  },
+
+  "quoteForm": {
+    "title": "Shipment Information",
+    "description": "Complete the form below and we'll get back to you with a customized quotation.",
+    "fields": [
+      {
+        "label": "Service Type",
+        "type": "select",
+        "options": [
+          "Air Freight",
+          "Sea Freight",
+          "Import Services",
+          "Export Services",
+          "FCL Shipping",
+          "LCL Shipping",
+          "Customs Clearance",
+          "Warehousing"
+        ],
+        "required": true
+      },
+      {
+        "label": "Shipment Type",
+        "type": "select",
+        "options": [
+          "Commercial Cargo",
+          "Personal Cargo",
+          "Documents",
+          "Machinery",
+          "Electronics",
+          "Others"
+        ],
+        "required": true
+      },
+      {
+        "label": "Origin Country",
+        "type": "text",
+        "placeholder": "Enter Origin Country",
+        "required": true
+      },
+      {
+        "label": "Destination Country",
+        "type": "text",
+        "placeholder": "Enter Destination Country",
+        "required": true
+      },
+      {
+        "label": "Estimated Shipment Date",
+        "type": "date",
+        "required": true
+      }
+    ]
+  },
+
+  "shipmentDetails": {
+    "title": "Shipment Details",
+    "fields": [
+      {
+        "label": "Weight (KG)",
+        "type": "number",
+        "placeholder": "Enter Weight"
+      },
+      {
+        "label": "Length (CM)",
+        "type": "number"
+      },
+      {
+        "label": "Width (CM)",
+        "type": "number"
+      },
+      {
+        "label": "Height (CM)",
+        "type": "number"
+      },
+      {
+        "label": "Number of Packages",
+        "type": "number"
+      },
+      {
+        "label": "Cargo Description",
+        "type": "textarea",
+        "placeholder": "Describe your shipment"
+      },
+      {
+        "label": "Special Requirements",
+        "type": "textarea",
+        "placeholder": "Fragile, Dangerous Goods, Temperature Controlled, etc."
+      }
+    ]
+  },
+
+  "contactDetails": {
+    "title": "Your Contact Information",
+    "fields": [
+      {
+        "label": "Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "label": "Company Name",
+        "type": "text"
+      },
+      {
+        "label": "Email Address",
+        "type": "email",
+        "required": true
+      },
+      {
+        "label": "Phone Number",
+        "type": "tel",
+        "required": true
+      },
+      {
+        "label": "WhatsApp Number",
+        "type": "tel"
+      },
+      {
+        "label": "Country",
+        "type": "text"
+      },
+      {
+        "label": "City",
+        "type": "text"
+      }
+    ]
+  },
+
+  "submit": {
+    "title": "Submit Your Quote Request",
+    "description": "Our logistics specialists will review your request and contact you with a customized quotation as soon as possible.",
+    "buttonText": "Request Free Quote",
+    "successMessage": "Thank you! Your quote request has been submitted successfully. Our team will contact you shortly.",
+    "privacyText": "By submitting this form, you agree to our Privacy Policy and Terms & Conditions."
+  }
+}

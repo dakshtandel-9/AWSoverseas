@@ -1,0 +1,988 @@
+{
+  "services": [
+    {
+      "slug": "air-freight",
+      "meta": {
+        "title": "Air Freight | AWSoversea",
+        "description": "Air Freight solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Fast & Reliable Air Freight Services",
+        "subtitle": "AWSoversea provides professional air freight solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Air Freight Overview",
+        "description": "Our air freight service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Air Freight?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "sea-freight",
+      "meta": {
+        "title": "Sea Freight | AWSoversea",
+        "description": "Sea Freight solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Global Sea Freight Solutions",
+        "subtitle": "AWSoversea provides professional sea freight solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Sea Freight Overview",
+        "description": "Our sea freight service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Sea Freight?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "import-services",
+      "meta": {
+        "title": "Import Services | AWSoversea",
+        "description": "Import Services solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Simplify Your Import Operations",
+        "subtitle": "AWSoversea provides professional import services solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Import Services Overview",
+        "description": "Our import services service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Import Services?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "export-services",
+      "meta": {
+        "title": "Export Services | AWSoversea",
+        "description": "Export Services solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Export Worldwide With Confidence",
+        "subtitle": "AWSoversea provides professional export services solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Export Services Overview",
+        "description": "Our export services service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Export Services?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "fcl-shipping",
+      "meta": {
+        "title": "FCL Shipping | AWSoversea",
+        "description": "FCL Shipping solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Full Container Load Shipping",
+        "subtitle": "AWSoversea provides professional fcl shipping solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "FCL Shipping Overview",
+        "description": "Our fcl shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in FCL Shipping?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "lcl-shipping",
+      "meta": {
+        "title": "LCL Shipping | AWSoversea",
+        "description": "LCL Shipping solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Less than Container Load Shipping",
+        "subtitle": "AWSoversea provides professional lcl shipping solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "LCL Shipping Overview",
+        "description": "Our lcl shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in LCL Shipping?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "customs-clearance",
+      "meta": {
+        "title": "Customs Clearance | AWSoversea",
+        "description": "Customs Clearance solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Professional Customs Clearance",
+        "subtitle": "AWSoversea provides professional customs clearance solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Customs Clearance Overview",
+        "description": "Our customs clearance service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Customs Clearance?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    },
+    {
+      "slug": "warehousing",
+      "meta": {
+        "title": "Warehousing | AWSoversea",
+        "description": "Warehousing solutions by AWSoversea for international logistics and freight forwarding."
+      },
+      "hero": {
+        "badge": "International Logistics",
+        "title": "Secure Warehousing & Distribution",
+        "subtitle": "AWSoversea provides professional warehousing solutions backed by global logistics expertise.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Warehousing Overview",
+        "description": "Our warehousing service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "features": [
+          "Global Network",
+          "Door-to-Door Delivery",
+          "Real-Time Tracking",
+          "Professional Documentation",
+          "Dedicated Support",
+          "Reliable Transit"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Reliable Service",
+            "description": "Consistent delivery backed by experienced logistics professionals."
+          },
+          {
+            "title": "Worldwide Reach",
+            "description": "Extensive international shipping network."
+          },
+          {
+            "title": "Competitive Pricing",
+            "description": "Transparent pricing with no hidden costs."
+          },
+          {
+            "title": "Secure Cargo",
+            "description": "Safe handling throughout the shipment lifecycle."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance from booking to delivery."
+          },
+          {
+            "title": "Fast Processing",
+            "description": "Efficient documentation and operations."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment details."
+          },
+          {
+            "step": "02",
+            "title": "Confirm Booking",
+            "description": "Approve quotation and schedule pickup."
+          },
+          {
+            "step": "03",
+            "title": "Documentation",
+            "description": "Complete required paperwork."
+          },
+          {
+            "step": "04",
+            "title": "Transit",
+            "description": "Cargo moves through our logistics network."
+          },
+          {
+            "step": "05",
+            "title": "Delivery",
+            "description": "Shipment reaches its destination safely."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why AWSoversea",
+        "items": [
+          "Experienced Logistics Team",
+          "Global Partner Network",
+          "End-to-End Solutions",
+          "Technology Driven Operations",
+          "Customer-Focused Support",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What is included in Warehousing?",
+            "answer": "End-to-end logistics planning, documentation assistance, shipment coordination, and customer support."
+          },
+          {
+            "question": "Can I track my shipment?",
+            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+          },
+          {
+            "question": "Do you offer door-to-door service?",
+            "answer": "Yes, where available based on origin and destination."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Ship Globally?",
+        "description": "Contact AWSoversea today for reliable international logistics solutions.",
+        "primaryButton": "Get Free Quote",
+        "secondaryButton": "Contact Us"
+      }
+    }
+  ]
+}

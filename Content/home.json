@@ -1,0 +1,193 @@
+{
+    "page": "Home",
+    "meta": {
+        "title": "AWSoversea | Global Logistics Beyond Borders",
+        "description": "International logistics and freight forwarding company providing Air Freight, Sea Freight, Customs Clearance, Warehousing, Import & Export Services, and Door-to-Door Cargo Solutions worldwide.",
+        "keywords": [
+            "International Shipping",
+            "Air Freight",
+            "Sea Freight",
+            "Import Export",
+            "Customs Clearance",
+            "Door to Door Cargo",
+            "Freight Forwarding",
+            "Logistics Company"
+        ]
+    },
+    "hero": {
+        "badge": "Trusted International Logistics Partner",
+        "title": "Global Logistics Beyond Borders",
+        "subtitle": "Fast, secure, and reliable international logistics solutions connecting businesses and individuals across the world. From air freight to sea freight, we deliver with confidence.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Download Mobile App",
+        "trackingPlaceholder": "Enter Tracking Number",
+        "trackingButton": "Track Shipment",
+        "stats": [
+            {
+                "number": "100+",
+                "label": "Countries Served"
+            },
+            {
+                "number": "24/7",
+                "label": "Customer Support"
+            },
+            {
+                "number": "1000+",
+                "label": "Shipments Delivered"
+            },
+            {
+                "number": "99%",
+                "label": "On-Time Delivery"
+            }
+        ]
+    },
+    "trustedPartners": {
+        "title": "Trusted by Businesses Worldwide",
+        "description": "Helping importers, exporters, manufacturers, traders, and eCommerce businesses manage international logistics efficiently."
+    },
+    "about": {
+        "title": "Your Trusted Global Logistics Partner",
+        "description": "AWSoversea provides complete freight forwarding and logistics solutions including Air Freight, Sea Freight, Import & Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door Delivery. Our mission is to simplify global shipping with transparent processes, competitive pricing, and dedicated customer support.",
+        "button": "Learn More"
+    },
+    "services": {
+        "title": "Our Logistics Services",
+        "subtitle": "Comprehensive logistics solutions tailored for businesses of every size.",
+        "items": [
+            {
+                "title": "Air Freight",
+                "description": "Fast international cargo transportation with reliable global airline partners."
+            },
+            {
+                "title": "Sea Freight",
+                "description": "Affordable FCL and LCL shipping for commercial and bulk cargo."
+            },
+            {
+                "title": "Import Services",
+                "description": "End-to-end import management with customs assistance."
+            },
+            {
+                "title": "Export Services",
+                "description": "Professional export documentation and worldwide shipping."
+            },
+            {
+                "title": "Customs Clearance",
+                "description": "Smooth customs processing with regulatory compliance."
+            },
+            {
+                "title": "Warehousing",
+                "description": "Secure storage, inventory handling, and distribution solutions."
+            }
+        ]
+    },
+    "whyChooseUs": {
+        "title": "Why Choose AWSoversea",
+        "items": [
+            {
+                "title": "Global Network",
+                "description": "Strong international logistics network across multiple countries."
+            },
+            {
+                "title": "Transparent Pricing",
+                "description": "Competitive pricing with no hidden charges."
+            },
+            {
+                "title": "Secure Shipping",
+                "description": "Every shipment is handled with maximum care and security."
+            },
+            {
+                "title": "Experienced Team",
+                "description": "Professional logistics experts with industry knowledge."
+            },
+            {
+                "title": "Real-Time Tracking",
+                "description": "Monitor shipment progress anytime using our mobile app."
+            },
+            {
+                "title": "24/7 Support",
+                "description": "Dedicated customer assistance whenever you need us."
+            }
+        ]
+    },
+    "industries": {
+        "title": "Industries We Serve",
+        "items": [
+            "Manufacturing",
+            "Import & Export",
+            "eCommerce",
+            "Retail",
+            "Automotive",
+            "Pharmaceutical",
+            "Electronics",
+            "Textile"
+        ]
+    },
+    "howItWorks": {
+        "title": "How It Works",
+        "steps": [
+            {
+                "step": "01",
+                "title": "Request a Quote",
+                "description": "Submit your shipment details online."
+            },
+            {
+                "step": "02",
+                "title": "Confirm Booking",
+                "description": "Approve the quotation and schedule pickup."
+            },
+            {
+                "step": "03",
+                "title": "Shipment in Transit",
+                "description": "We handle transportation and customs clearance."
+            },
+            {
+                "step": "04",
+                "title": "Delivered Successfully",
+                "description": "Track your shipment until it reaches its destination."
+            }
+        ]
+    },
+    "mobileApp": {
+        "title": "Manage Everything From Our Mobile App",
+        "description": "Book shipments, track cargo, upload documents, receive notifications, manage payments, and access shipment history directly from your smartphone.",
+        "features": [
+            "Book Shipments",
+            "Track Shipments",
+            "Upload Documents",
+            "Payment Management",
+            "Push Notifications",
+            "Shipment History"
+        ],
+        "playStoreButton": "Download for Android",
+        "appStoreButton": "Download for iPhone"
+    },
+    "tracking": {
+        "title": "Track Your Shipment",
+        "description": "Enter your tracking number to check the latest shipment status.",
+        "placeholder": "Tracking Number",
+        "button": "Track Now"
+    },
+    "testimonials": {
+        "title": "What Our Clients Say",
+        "description": "Businesses worldwide trust AWSoversea for reliable international logistics solutions."
+    },
+    "coverage": {
+        "title": "Worldwide Shipping Coverage",
+        "description": "Connecting businesses across Asia, Europe, North America, South America, Africa, and the Middle East with dependable freight solutions."
+    },
+    "blogs": {
+        "title": "Latest Logistics Insights",
+        "description": "Stay updated with shipping regulations, logistics trends, import-export guides, and industry news.",
+        "button": "View All Articles"
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "description": "Find answers to the most common questions about international shipping, customs, and freight forwarding."
+    },
+    "downloadApp": {
+        "title": "Download the AWSoversea Mobile App",
+        "description": "Manage your shipments anytime, anywhere. Book cargo, track deliveries, upload documents, receive instant notifications, and stay connected throughout the shipping journey.",
+        "playStoreButton": "Google Play",
+        "appStoreButton": "App Store"
+    }
+}

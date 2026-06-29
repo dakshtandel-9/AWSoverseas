@@ -1,0 +1,145 @@
+{
+  "page": "Industries We Serve",
+
+  "meta": {
+    "title": "Industries We Serve | AWSoversea",
+    "description": "AWSoversea provides international logistics and freight forwarding solutions for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
+  },
+
+  "hero": {
+    "badge": "Industries",
+    "title": "Logistics Solutions Built for Every Industry",
+    "subtitle": "Every industry has unique logistics challenges. AWSoversea delivers customized freight forwarding, customs clearance, warehousing, and global shipping solutions that keep your supply chain moving efficiently.",
+    "primaryButton": "Request a Quote",
+    "secondaryButton": "Contact Us"
+  },
+
+  "overview": {
+    "title": "Industries We Empower",
+    "description": "Our global logistics network enables businesses across diverse industries to transport goods safely, efficiently, and cost-effectively. Whether you are shipping raw materials, finished products, or specialized cargo, our experienced logistics team provides tailored solutions that meet your business needs.",
+    "stats": [
+      {
+        "number": "100+",
+        "label": "Countries Served"
+      },
+      {
+        "number": "1000+",
+        "label": "Successful Shipments"
+      },
+      {
+        "number": "24/7",
+        "label": "Customer Support"
+      },
+      {
+        "number": "99%",
+        "label": "On-Time Delivery"
+      }
+    ]
+  },
+
+  "industriesGrid": {
+    "title": "Industries We Serve",
+    "description": "Comprehensive logistics solutions designed for businesses across multiple sectors.",
+    "items": [
+      {
+        "title": "Manufacturing",
+        "icon": "factory"
+      },
+      {
+        "title": "eCommerce",
+        "icon": "shopping-cart"
+      },
+      {
+        "title": "Pharmaceutical",
+        "icon": "pill"
+      },
+      {
+        "title": "Textile",
+        "icon": "shirt"
+      },
+      {
+        "title": "Automotive",
+        "icon": "car"
+      },
+      {
+        "title": "Electronics",
+        "icon": "cpu"
+      },
+      {
+        "title": "Retail",
+        "icon": "store"
+      },
+      {
+        "title": "Import & Export",
+        "icon": "globe"
+      }
+    ]
+  },
+
+  "manufacturing": {
+    "title": "Manufacturing Industry",
+    "description": "Reliable transportation of raw materials, machinery, industrial equipment, and finished products through our global logistics network.",
+    "services": [
+      "Bulk Cargo",
+      "Industrial Equipment",
+      "Supply Chain Logistics",
+      "International Freight",
+      "Door-to-Door Delivery"
+    ]
+  },
+
+  "ecommerce": {
+    "title": "eCommerce Businesses",
+    "description": "Fast and scalable logistics solutions for online businesses, marketplaces, and international sellers.",
+    "services": [
+      "Cross-Border Shipping",
+      "Order Fulfilment",
+      "Warehousing",
+      "Express Delivery",
+      "Returns Management"
+    ]
+  },
+
+  "pharmaceutical": {
+    "title": "Pharmaceutical Industry",
+    "description": "Secure transportation of healthcare products with compliance-focused logistics and documentation support.",
+    "services": [
+      "Medical Equipment",
+      "Healthcare Logistics",
+      "Regulatory Documentation",
+      "Secure Transportation",
+      "Global Distribution"
+    ]
+  },
+
+  "textile": {
+    "title": "Textile & Apparel",
+    "description": "International logistics for fabrics, garments, fashion products, and textile exports with efficient supply chain management.",
+    "services": [
+      "Garment Export",
+      "Fabric Shipping",
+      "Bulk Cargo",
+      "Warehousing",
+      "Global Distribution"
+    ]
+  },
+
+  "automotive": {
+    "title": "Automotive Industry",
+    "description": "Reliable transportation of automotive components, spare parts, machinery, and finished vehicles worldwide.",
+    "services": [
+      "Auto Parts Shipping",
+      "Heavy Equipment",
+      "Container Shipping",
+      "Import & Export",
+      "Supply Chain Management"
+    ]
+  },
+
+  "cta": {
+    "title": "Looking for Industry-Specific Logistics Solutions?",
+    "description": "Our logistics experts are ready to create a customized shipping strategy that fits your business requirements and global supply chain.",
+    "primaryButton": "Get a Free Quote",
+    "secondaryButton": "Speak with an Expert"
+  }
+}

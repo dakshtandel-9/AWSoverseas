@@ -1,0 +1,125 @@
+{
+    "page": "Contact",
+    "meta": {
+        "title": "Contact AWSoversea | Get in Touch",
+        "description": "Contact AWSoversea for international logistics, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
+    },
+    "hero": {
+        "badge": "Contact Us",
+        "title": "Let's Move Your Business Beyond Borders",
+        "subtitle": "Have questions about international shipping? Need a freight quotation? Our logistics experts are ready to help you with reliable and cost-effective shipping solutions.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Call Now"
+    },
+    "contactForm": {
+        "title": "Send Us a Message",
+        "description": "Complete the form below and one of our logistics specialists will contact you shortly.",
+        "fields": [
+            {
+                "label": "Full Name",
+                "type": "text",
+                "placeholder": "Enter your full name",
+                "required": true
+            },
+            {
+                "label": "Company Name",
+                "type": "text",
+                "placeholder": "Enter your company name"
+            },
+            {
+                "label": "Email Address",
+                "type": "email",
+                "placeholder": "Enter your email address",
+                "required": true
+            },
+            {
+                "label": "Phone Number",
+                "type": "tel",
+                "placeholder": "Enter your phone number",
+                "required": true
+            },
+            {
+                "label": "Service Required",
+                "type": "select",
+                "options": [
+                    "Air Freight",
+                    "Sea Freight",
+                    "Import Services",
+                    "Export Services",
+                    "FCL Shipping",
+                    "LCL Shipping",
+                    "Customs Clearance",
+                    "Warehousing",
+                    "General Inquiry"
+                ],
+                "required": true
+            },
+            {
+                "label": "Message",
+                "type": "textarea",
+                "placeholder": "Tell us about your shipping requirements...",
+                "required": true
+            }
+        ],
+        "submitButton": "Send Message",
+        "successMessage": "Thank you! Your message has been received. Our team will contact you shortly."
+    },
+    "officeLocations": {
+        "title": "Our Office",
+        "description": "Visit our office or connect with our logistics team for expert assistance.",
+        "locations": [
+            {
+                "office": "Head Office",
+                "address": "Business Address To Be Provided",
+                "city": "City",
+                "country": "India"
+            }
+        ]
+    },
+    "googleMap": {
+        "title": "Find Us on Google Maps",
+        "description": "Use the map below to locate our office.",
+        "embedUrl": "https://maps.google.com/"
+    },
+    "contactInfo": {
+        "title": "Contact Information",
+        "items": [
+            {
+                "type": "Phone",
+                "value": "+91 XXXXXXXXXX"
+            },
+            {
+                "type": "Email",
+                "value": "info@awsoversea.com"
+            },
+            {
+                "type": "Support",
+                "value": "support@awsoversea.com"
+            }
+        ]
+    },
+    "whatsapp": {
+        "title": "Chat with Us on WhatsApp",
+        "description": "Need a quick response? Start a conversation with our logistics team on WhatsApp.",
+        "buttonText": "Chat on WhatsApp",
+        "link": "https://wa.me/91XXXXXXXXXX"
+    },
+    "businessHours": {
+        "title": "Business Hours",
+        "schedule": [
+            {
+                "day": "Monday - Friday",
+                "time": "09:00 AM - 06:00 PM"
+            },
+            {
+                "day": "Saturday",
+                "time": "09:00 AM - 02:00 PM"
+            },
+            {
+                "day": "Sunday",
+                "time": "Closed"
+            }
+        ],
+        "timezone": "IST (Indian Standard Time)"
+    }
+}

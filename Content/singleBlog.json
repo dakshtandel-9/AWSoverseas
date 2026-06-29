@@ -1,0 +1,104 @@
+{
+    "page": "Single Blog",
+    "meta": {
+        "title": "How to Choose the Right International Shipping Method | AWSoversea",
+        "description": "Learn how to choose between Air Freight, Sea Freight, FCL, and LCL shipping for your international business with this complete logistics guide."
+    },
+    "banner": {
+        "category": "Shipping Guide",
+        "title": "How to Choose the Right International Shipping Method for Your Business",
+        "excerpt": "Choosing the right shipping solution directly impacts your delivery time, transportation cost, and customer satisfaction. Learn when to use Air Freight, Sea Freight, FCL, and LCL shipping.",
+        "author": {
+            "name": "AWSoversea Logistics Team",
+            "avatar": "/images/authors/author.webp"
+        },
+        "publishDate": "15 June 2026",
+        "readTime": "8 min read",
+        "featuredImage": "/images/blog/featured-shipping-guide.webp"
+    },
+    "article": {
+        "tableOfContents": [
+            "Introduction",
+            "Understanding Air Freight",
+            "Understanding Sea Freight",
+            "FCL vs LCL Shipping",
+            "Factors to Consider",
+            "How AWSoversea Can Help",
+            "Conclusion"
+        ],
+        "sections": [
+            {
+                "heading": "Introduction",
+                "content": "International shipping is one of the most important parts of global trade. Selecting the right freight solution depends on delivery deadlines, cargo type, shipment volume, destination, and transportation budget."
+            },
+            {
+                "heading": "When Should You Choose Air Freight?",
+                "content": "Air Freight is the best option for urgent deliveries, high-value products, electronics, pharmaceuticals, documents, and lightweight cargo requiring the fastest possible transit time."
+            },
+            {
+                "heading": "When is Sea Freight the Better Choice?",
+                "content": "Sea Freight is ideal for heavy cargo, large shipments, machinery, industrial equipment, and businesses looking for the most economical transportation method."
+            },
+            {
+                "heading": "Understanding FCL & LCL Shipping",
+                "content": "FCL provides an entire shipping container for one customer, while LCL allows multiple customers to share container space, making it cost-effective for smaller shipments."
+            },
+            {
+                "heading": "How AWSoversea Supports Global Shipping",
+                "content": "AWSoversea provides end-to-end logistics services including freight forwarding, customs clearance, warehousing, documentation support, shipment tracking, and door-to-door delivery."
+            },
+            {
+                "heading": "Final Thoughts",
+                "content": "Choosing the right shipping method depends on your business priorities. Whether speed, cost, or flexibility matters most, AWSoversea helps you select the ideal logistics solution."
+            }
+        ],
+        "tags": [
+            "Air Freight",
+            "Sea Freight",
+            "Import",
+            "Export",
+            "International Shipping",
+            "Logistics",
+            "Freight Forwarding"
+        ],
+        "share": {
+            "title": "Share this article",
+            "platforms": [
+                "Facebook",
+                "LinkedIn",
+                "X",
+                "WhatsApp"
+            ]
+        }
+    },
+    "relatedPosts": {
+        "title": "Related Articles",
+        "description": "Continue exploring more logistics insights and international shipping guides.",
+        "posts": [
+            {
+                "title": "Air Freight vs Sea Freight: Complete Comparison",
+                "category": "Air Freight",
+                "image": "/images/blog/blog-1.webp",
+                "slug": "/blog/air-freight-vs-sea-freight"
+            },
+            {
+                "title": "Top 10 Documents Required for International Shipping",
+                "category": "Import & Export",
+                "image": "/images/blog/blog-2.webp",
+                "slug": "/blog/shipping-documents"
+            },
+            {
+                "title": "Understanding Customs Clearance Step by Step",
+                "category": "Customs",
+                "image": "/images/blog/blog-3.webp",
+                "slug": "/blog/customs-clearance-guide"
+            }
+        ]
+    },
+    "cta": {
+        "title": "Need Help with International Shipping?",
+        "description": "Whether you're importing, exporting, or managing global cargo, AWSoversea is ready to provide reliable and cost-effective logistics solutions.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Our Experts"
+    }
+}

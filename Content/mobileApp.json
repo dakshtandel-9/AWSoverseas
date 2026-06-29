@@ -1,0 +1,169 @@
+{
+    "page": "Mobile App",
+    "meta": {
+        "title": "AWSoversea Mobile App | Ship Smarter, Track Faster",
+        "description": "Download the AWSoversea mobile app to book shipments, track cargo, upload documents, make secure payments, receive real-time notifications, and manage your logistics from anywhere."
+    },
+    "hero": {
+        "badge": "Mobile Application",
+        "title": "Manage Your Global Shipments Anytime, Anywhere",
+        "subtitle": "Experience hassle-free international logistics with the AWSoversea Mobile App. Book shipments, track cargo, upload documents, make secure payments, and receive real-time updates—all from your smartphone.",
+        "primaryButton": "Download for Android",
+        "secondaryButton": "Download for iPhone"
+    },
+    "download": {
+        "title": "Available on Android & iOS",
+        "description": "Download the AWSoversea app and manage every shipment from your mobile device.",
+        "playStore": {
+            "title": "Google Play",
+            "button": "Download Now",
+            "link": "#"
+        },
+        "appStore": {
+            "title": "Apple App Store",
+            "button": "Download Now",
+            "link": "#"
+        }
+    },
+    "screenshots": {
+        "title": "Explore the App Experience",
+        "description": "Designed with a modern, intuitive interface that makes managing shipments simple and efficient.",
+        "items": [
+            {
+                "title": "Dashboard",
+                "image": "/images/app/dashboard.webp"
+            },
+            {
+                "title": "Shipment Tracking",
+                "image": "/images/app/tracking.webp"
+            },
+            {
+                "title": "Book Shipment",
+                "image": "/images/app/booking.webp"
+            },
+            {
+                "title": "Wallet & Payments",
+                "image": "/images/app/payment.webp"
+            }
+        ]
+    },
+    "shipmentTracking": {
+        "title": "Real-Time Shipment Tracking",
+        "description": "Track every shipment from pickup to delivery with live status updates and shipment history.",
+        "features": [
+            "Live Shipment Status",
+            "Estimated Delivery Updates",
+            "Shipment Timeline",
+            "Order History",
+            "Track Multiple Shipments"
+        ]
+    },
+    "bookShipment": {
+        "title": "Book Shipments in Minutes",
+        "description": "Create new shipment requests directly from the app without visiting the office.",
+        "features": [
+            "Instant Quote Request",
+            "Book Air Freight",
+            "Book Sea Freight",
+            "Import & Export Bookings",
+            "Saved Addresses"
+        ]
+    },
+    "uploadDocuments": {
+        "title": "Upload Documents Securely",
+        "description": "Upload invoices, shipping documents, customs paperwork, and other required files directly from your phone.",
+        "features": [
+            "Invoice Upload",
+            "Customs Documents",
+            "Multiple File Support",
+            "Secure Cloud Storage",
+            "Document History"
+        ]
+    },
+    "payments": {
+        "title": "Fast & Secure Payments",
+        "description": "Pay for your shipments securely using multiple payment methods with instant confirmation.",
+        "methods": [
+            "UPI",
+            "Credit Card",
+            "Debit Card",
+            "Net Banking",
+            "Wallet Payment"
+        ],
+        "features": [
+            "Instant Payment Confirmation",
+            "Invoice Download",
+            "Payment History",
+            "Refund Tracking"
+        ]
+    },
+    "notifications": {
+        "title": "Stay Updated with Every Shipment",
+        "description": "Receive instant notifications throughout your shipping journey so you're always informed.",
+        "items": [
+            "Quote Received",
+            "Booking Confirmed",
+            "Payment Received",
+            "Cargo Picked Up",
+            "Customs Clearance",
+            "Shipment In Transit",
+            "Arrived at Destination",
+            "Out for Delivery",
+            "Delivered Successfully"
+        ]
+    },
+    "referEarn": {
+        "title": "Refer & Earn Rewards",
+        "description": "Invite friends and business partners to AWSoversea and earn rewards when they complete their first shipment.",
+        "steps": [
+            {
+                "step": "01",
+                "title": "Share Your Referral Code"
+            },
+            {
+                "step": "02",
+                "title": "Friend Books a Shipment"
+            },
+            {
+                "step": "03",
+                "title": "Earn Reward Credits"
+            }
+        ],
+        "benefits": [
+            "Unique Referral Code",
+            "Referral Dashboard",
+            "Wallet Rewards",
+            "Referral History",
+            "Easy Sharing"
+        ]
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "question": "Is the AWSoversea app free to download?",
+                "answer": "Yes. The application is completely free on both Android and iOS."
+            },
+            {
+                "question": "Can I track shipments from the app?",
+                "answer": "Yes. You can monitor shipment status in real time from pickup to final delivery."
+            },
+            {
+                "question": "Can I upload shipping documents?",
+                "answer": "Yes. The app allows secure upload and management of shipment-related documents."
+            },
+            {
+                "question": "Which payment methods are supported?",
+                "answer": "UPI, Credit Cards, Debit Cards, Net Banking, and Wallet Payments."
+            },
+            {
+                "question": "Can I book a shipment using the app?",
+                "answer": "Yes. You can request quotes, create bookings, and manage shipments directly from the app."
+            },
+            {
+                "question": "How does Refer & Earn work?",
+                "answer": "Share your referral code, invite new customers, and earn rewards when they successfully complete eligible shipments."
+            }
+        ]
+    }
+}

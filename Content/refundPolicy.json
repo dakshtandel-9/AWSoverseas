@@ -1,0 +1,39 @@
+{
+    "page": "Refund Policy",
+    "meta": {
+        "title": "Refund Policy | AWSoversea",
+        "description": "Understand the refund process and eligibility for AWSoversea logistics services."
+    },
+    "hero": {
+        "badge": "Legal",
+        "title": "Refund Policy",
+        "subtitle": "Our refund policy explains when refunds may be issued and how they are processed."
+    },
+    "lastUpdated": "01 July 2026",
+    "sections": [
+        {
+            "title": "Eligibility",
+            "content": "Refund requests will be reviewed based on the service purchased and the stage of shipment processing."
+        },
+        {
+            "title": "Non-Refundable Charges",
+            "content": "Government taxes, customs duties, third-party charges, and completed logistics services are generally non-refundable."
+        },
+        {
+            "title": "Refund Processing",
+            "content": "Approved refunds will be processed using the original payment method or credited to the customer's wallet where applicable."
+        },
+        {
+            "title": "Processing Time",
+            "content": "Refunds are generally processed within 7–14 business days after approval."
+        },
+        {
+            "title": "Cancellation",
+            "content": "Shipment cancellations may be subject to administrative or operational charges depending on the shipment stage."
+        },
+        {
+            "title": "Support",
+            "content": "For refund-related questions, please contact our customer support team."
+        }
+    ]
+}

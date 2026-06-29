@@ -1,0 +1,117 @@
+{
+    "page": "About",
+    "meta": {
+        "title": "About AWSoversea | Global Logistics Beyond Borders",
+        "description": "Learn about AWSoversea, an international logistics and freight forwarding company delivering reliable Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, and Door-to-Door shipping solutions worldwide."
+    },
+    "hero": {
+        "badge": "About AWSoversea",
+        "title": "Connecting Businesses Across the World Through Reliable Logistics",
+        "subtitle": "AWSoversea is committed to simplifying international shipping with secure, transparent, and efficient logistics solutions that help businesses grow beyond borders.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Our Services"
+    },
+    "companyStory": {
+        "title": "Our Story",
+        "description": "AWSoversea was founded with a simple vision—to make global shipping easier, faster, and more transparent for businesses and individuals. We understand that international logistics can be complex, so we combine industry expertise, technology, and dedicated customer support to deliver seamless freight forwarding solutions. From small businesses shipping their first international order to large enterprises managing global supply chains, we help every customer move cargo with confidence."
+    },
+    "missionVision": {
+        "title": "Mission & Vision",
+        "mission": {
+            "title": "Our Mission",
+            "description": "To provide dependable, cost-effective, and technology-driven logistics solutions that simplify international trade while delivering exceptional customer experiences."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "description": "To become one of the world's most trusted logistics partners by connecting businesses globally through innovation, reliability, and operational excellence."
+        }
+    },
+    "values": {
+        "title": "Our Core Values",
+        "items": [
+            {
+                "title": "Customer First",
+                "description": "Every shipment begins with understanding our customer's unique requirements."
+            },
+            {
+                "title": "Integrity",
+                "description": "We believe in transparency, honesty, and long-term business relationships."
+            },
+            {
+                "title": "Reliability",
+                "description": "Delivering shipments safely and on time is our highest priority."
+            },
+            {
+                "title": "Innovation",
+                "description": "We leverage modern technology to improve logistics efficiency and customer experience."
+            },
+            {
+                "title": "Global Excellence",
+                "description": "We maintain international standards across every logistics operation."
+            },
+            {
+                "title": "Continuous Improvement",
+                "description": "We constantly improve our services to meet the evolving needs of global trade."
+            }
+        ]
+    },
+    "globalNetwork": {
+        "title": "Our Global Network",
+        "description": "Through an extensive worldwide logistics network, AWSoversea connects businesses across Asia, Europe, North America, South America, Africa, and the Middle East. Our partnerships with trusted carriers and logistics providers ensure secure and efficient international cargo movement.",
+        "highlights": [
+            "Worldwide Shipping Network",
+            "Air Freight Solutions",
+            "Sea Freight Solutions",
+            "Door-to-Door Delivery",
+            "Customs Clearance Support",
+            "Warehousing & Distribution"
+        ]
+    },
+    "certifications": {
+        "title": "Compliance & Certifications",
+        "description": "We are committed to maintaining industry standards and regulatory compliance for every shipment.",
+        "items": [
+            "GST Registered",
+            "IEC Certified",
+            "Company Registration",
+            "Industry Compliance",
+            "Secure Documentation",
+            "Global Shipping Standards"
+        ]
+    },
+    "whyChooseUs": {
+        "title": "Why Businesses Choose AWSoversea",
+        "items": [
+            {
+                "title": "Complete Logistics Solutions",
+                "description": "End-to-end freight forwarding services under one roof."
+            },
+            {
+                "title": "Experienced Professionals",
+                "description": "Dedicated logistics experts with extensive industry knowledge."
+            },
+            {
+                "title": "Competitive Pricing",
+                "description": "Transparent pricing with no hidden costs."
+            },
+            {
+                "title": "Technology Driven",
+                "description": "Modern digital tools for shipment management and communication."
+            },
+            {
+                "title": "Global Reach",
+                "description": "Reliable logistics solutions across international markets."
+            },
+            {
+                "title": "Dedicated Customer Support",
+                "description": "Professional assistance available throughout your shipping journey."
+            }
+        ]
+    },
+    "cta": {
+        "title": "Let's Move Your Business Beyond Borders",
+        "description": "Whether you're importing, exporting, or managing international cargo, AWSoversea is ready to simplify your logistics operations with reliable global shipping solutions.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+    }
+}

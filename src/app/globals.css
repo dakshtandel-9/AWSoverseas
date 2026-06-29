@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* =========================================================
+   AWSoversea — Design System Tokens (Tailwind v4 @theme)
+   Brand: Deep Navy + Sky Blue + White/Gray.
+   To rebrand from the real logo, change the --color-brand-*
+   and --color-accent-* values below in ONE place.
+   ========================================================= */
+@theme {
+  /* Brand — Royal Navy (from AWSoverseas logo "aws" = #033e8d) */
+  --color-brand-50: #eaf1fb;
+  --color-brand-100: #cdddf5;
+  --color-brand-200: #9bbcec;
+  --color-brand-300: #6394df;
+  --color-brand-400: #2f6cc9;
+  --color-brand-500: #1351a8;
+  --color-brand-600: #0a4596;
+  --color-brand-700: #033e8d;
+  --color-brand-800: #052f69;
+  --color-brand-900: #06234d;
+  --color-brand-950: #04162f;
+
+  /* Accent — Sky Cyan (from logo "OVERSEAS" = #0fade8) */
+  --color-accent-50: #e8f9ff;
+  --color-accent-100: #c5f0ff;
+  --color-accent-200: #93e4ff;
+  --color-accent-300: #57d3fb;
+  --color-accent-400: #25bff3;
+  --color-accent-500: #0fade8;
+  --color-accent-600: #0489c2;
+  --color-accent-700: #086d9c;
+  --color-accent-800: #0d5a80;
+  --color-accent-900: #104b6c;
+
+  /* Neutrals */
+  --color-ink: #06234d;
+  --color-ink-soft: #2a3a52;
+  --color-muted: #5b6b82;
+  --color-line: #e4e9f2;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f6f8fc;
+  --color-surface-tint: #eef3fb;
+
+  /* Typography */
+  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii */
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.5rem;
+
+  /* Shadows — soft, premium */
+  --shadow-soft: 0 1px 2px rgba(4, 22, 47, 0.04), 0 8px 24px -8px rgba(4, 22, 47, 0.12);
+  --shadow-card: 0 2px 4px rgba(4, 22, 47, 0.04), 0 18px 40px -16px rgba(4, 22, 47, 0.18);
+  --shadow-lift: 0 8px 16px rgba(4, 22, 47, 0.06), 0 30px 60px -20px rgba(4, 22, 47, 0.28);
+  --shadow-glow: 0 0 0 1px rgba(46, 194, 255, 0.18), 0 20px 60px -18px rgba(10, 165, 240, 0.45);
+
+  /* Amber — signal/runway accent (used for active/in-progress states) */
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-50: #fffbeb;
+
+  /* Layout */
+  --container-site: 1280px;
+  --container-wide: 1440px;
+  --spacing-18: 4.5rem;
+
+  /* Easings */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* ---------- Base ---------- */
+:root {
+  color-scheme: light;
+  --grid-line: rgba(4, 22, 47, 0.045);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-accent-400);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Reusable design utilities ---------- */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(120deg, var(--color-brand-700), var(--color-accent-500));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-mesh {
+    background:
+      radial-gradient(60% 50% at 12% 8%, rgba(46, 194, 255, 0.16), transparent 60%),
+      radial-gradient(50% 45% at 88% 0%, rgba(31, 73, 133, 0.18), transparent 60%),
+      radial-gradient(55% 60% at 80% 100%, rgba(10, 165, 240, 0.1), transparent 55%);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .glass-dark {
+    background: rgba(4, 22, 47, 0.55);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .ring-line {
+    box-shadow: inset 0 0 0 1px var(--color-line);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
+  }
+
+  /* Animated underline for nav links */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--color-accent-500), var(--color-brand-600));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out-expo);
+    border-radius: 2px;
+  }
+  .nav-underline:hover::after,
+  .nav-underline[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .marquee-track {
+    animation: marquee 32s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.animate-float {
+  animation: float-slow 7s ease-in-out infinite;
+}

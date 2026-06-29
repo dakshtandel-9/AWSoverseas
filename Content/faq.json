@@ -1,0 +1,115 @@
+{
+    "page": "FAQ",
+    "meta": {
+        "title": "Frequently Asked Questions | AWSoversea",
+        "description": "Find answers to common questions about international shipping, freight forwarding, customs clearance, shipment tracking, payments, and logistics services."
+    },
+    "hero": {
+        "badge": "Support Center",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Find quick answers to the most common questions about our international logistics and freight forwarding services.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Support"
+    },
+    "categories": {
+        "title": "Browse FAQ Categories",
+        "description": "Select a category to quickly find the answers you're looking for.",
+        "items": [
+            {
+                "title": "General"
+            },
+            {
+                "title": "Air Freight"
+            },
+            {
+                "title": "Sea Freight"
+            },
+            {
+                "title": "Import & Export"
+            },
+            {
+                "title": "Shipment Tracking"
+            },
+            {
+                "title": "Payments"
+            },
+            {
+                "title": "Customs Clearance"
+            },
+            {
+                "title": "Mobile App"
+            }
+        ]
+    },
+    "accordion": {
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "category": "General",
+                "question": "What services does AWSoversea provide?",
+                "answer": "We provide Air Freight, Sea Freight, Import Services, Export Services, Customs Clearance, Warehousing, FCL, LCL, Cargo Consolidation, and Door-to-Door international logistics solutions."
+            },
+            {
+                "category": "General",
+                "question": "Which countries do you ship to?",
+                "answer": "We provide international shipping solutions across multiple countries through our global logistics network."
+            },
+            {
+                "category": "Air Freight",
+                "question": "When should I choose Air Freight?",
+                "answer": "Air Freight is ideal for urgent, lightweight, or high-value shipments requiring faster delivery."
+            },
+            {
+                "category": "Sea Freight",
+                "question": "When should I choose Sea Freight?",
+                "answer": "Sea Freight is the best option for heavy, oversized, or bulk cargo where cost efficiency is a priority."
+            },
+            {
+                "category": "Import & Export",
+                "question": "Can AWSoversea handle import and export documentation?",
+                "answer": "Yes. Our team assists with documentation, customs procedures, and shipment coordination."
+            },
+            {
+                "category": "Shipment Tracking",
+                "question": "How can I track my shipment?",
+                "answer": "You can enter your tracking number on our website or use the AWSoversea Mobile App for real-time shipment updates and notifications."
+            },
+            {
+                "category": "Shipment Tracking",
+                "question": "Will I receive shipment updates?",
+                "answer": "Yes. Customers receive notifications at every important stage of the shipment journey through the mobile app."
+            },
+            {
+                "category": "Payments",
+                "question": "Which payment methods do you accept?",
+                "answer": "We support UPI, Credit Cards, Debit Cards, Net Banking, and Wallet Payments."
+            },
+            {
+                "category": "Payments",
+                "question": "Can I download my invoice?",
+                "answer": "Yes. Invoices are available for download after successful payment through the mobile application."
+            },
+            {
+                "category": "Customs Clearance",
+                "question": "Do you provide customs clearance services?",
+                "answer": "Yes. Our customs experts help ensure your shipment complies with import and export regulations."
+            },
+            {
+                "category": "Mobile App",
+                "question": "Is the AWSoversea Mobile App free?",
+                "answer": "Yes. The application is completely free to download for Android and iOS devices."
+            },
+            {
+                "category": "Mobile App",
+                "question": "What can I do with the mobile app?",
+                "answer": "You can request quotes, book shipments, track cargo, upload documents, make payments, receive notifications, and manage your shipment history."
+            }
+        ]
+    },
+    "contactCTA": {
+        "title": "Still Have Questions?",
+        "description": "Our logistics specialists are here to help you with your shipping requirements. Contact us today for expert guidance and personalized support.",
+        "primaryButton": "Contact Us",
+        "secondaryButton": "Request a Quote"
+    }
+}
