@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Apple, Play } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PhoneMockup } from "@/components/ui/phone-mockup";
 
@@ -91,26 +91,23 @@ export function AppHero({ data }: { data: Data }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease }}
           >
-            <a
-              href="#"
-              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#06234d] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
-            >
-              <Play className="size-6" />
-              <span className="flex flex-col text-left leading-tight">
-                <span className="text-[10px] opacity-60">Get it on</span>
-                <span className="text-sm font-bold">{data.primaryButton}</span>
-              </span>
+            <a href="#" aria-label={data.primaryButton} className="transition-transform hover:-translate-y-0.5">
+              <Image
+                src="/brand/google-play-real.png"
+                alt="Get it on Google Play"
+                width={200}
+                height={59}
+                className="h-14 w-auto"
+              />
             </a>
-            <a
-              href="#"
-              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-white transition-all hover:-translate-y-0.5"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
-            >
-              <Apple className="size-6" />
-              <span className="flex flex-col text-left leading-tight">
-                <span className="text-[10px] opacity-60">Download on the</span>
-                <span className="text-sm font-bold">{data.secondaryButton}</span>
-              </span>
+            <a href="#" aria-label={data.secondaryButton} className="transition-transform hover:-translate-y-0.5">
+              <Image
+                src="/brand/app-store-real.png"
+                alt="Download on the App Store"
+                width={200}
+                height={59}
+                className="h-14 w-auto"
+              />
             </a>
           </motion.div>
         </div>

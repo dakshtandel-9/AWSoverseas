@@ -6,7 +6,7 @@ import { SocialIcon, type SocialName } from "@/components/ui/social-icon";
 import { slugify } from "@/lib/cn";
 
 type ArticleSection = { heading: string; content: string };
-type Share = { title: string; publicPlatforms?: string[]; platforms: string[] };
+type Share = { title: string; platforms: string[] };
 type Article = { tableOfContents: string[]; sections: ArticleSection[]; tags: string[]; share: Share };
 
 const SHARE_ICON: Record<string, SocialName | "whatsapp"> = {
@@ -69,17 +69,15 @@ export function ArticleBody({ data }: { data: Article }) {
             <p className="text-sm font-semibold text-[#06234d]">{data.share.title}</p>
             <div className="flex items-center gap-2">
               {data.share.platforms.map((platform) => {
-                const kind = SHARE_ICON[platform] ?? "lucide";
+                const kind = SHARE_ICON[platform];
                 return (
                   <span
                     key={platform}
                     aria-label={platform}
                     className="grid size-9 place-items-center rounded-full bg-[#eef3fb] text-[#033e8d] transition-colors hover:bg-[#033e8d] hover:text-white"
                   >
-                    {kind === "lucide" ? (
+                    {kind === "whatsapp" || !kind ? (
                       <MessageCircle className="size-4" />
-                    ) : kind === "facebook" ? (
-                      <Facebook className="size-4" />
                     ) : (
                       <SocialIcon name={kind} className="size-4" />
                     )}

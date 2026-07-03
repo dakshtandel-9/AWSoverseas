@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Apple, Play, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { Section } from "@/components/ui/section";
 
 type Store = { title: string; button: string; link: string };
@@ -40,24 +41,29 @@ export function DownloadBand({ data }: { data: Data }) {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={data.playStore.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#06234d] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
+              aria-label={`${data.playStore.title} ${data.playStore.button}`}
+              className="transition-transform hover:-translate-y-0.5"
             >
-              <Play className="size-6" />
-              <span className="flex flex-col text-left leading-tight">
-                <span className="text-[10px] opacity-60">{data.playStore.title}</span>
-                <span className="text-sm font-bold">{data.playStore.button}</span>
-              </span>
+              <Image
+                src="/brand/google-play-real.png"
+                alt="Get it on Google Play"
+                width={200}
+                height={59}
+                className="h-14 w-auto"
+              />
             </a>
             <a
               href={data.appStore.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-white transition-all hover:-translate-y-0.5"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+              aria-label={`${data.appStore.title} ${data.appStore.button}`}
+              className="transition-transform hover:-translate-y-0.5"
             >
-              <Apple className="size-6" />
-              <span className="flex flex-col text-left leading-tight">
-                <span className="text-[10px] opacity-60">{data.appStore.title}</span>
-                <span className="text-sm font-bold">{data.appStore.button}</span>
-              </span>
+              <Image
+                src="/brand/app-store-real.png"
+                alt="Download on the App Store"
+                width={200}
+                height={59}
+                className="h-14 w-auto"
+              />
             </a>
           </div>
         </div>
