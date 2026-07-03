@@ -1,9 +1,10 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useActionState, useEffect, useId, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 
 type Field = {
   label: string;
@@ -110,13 +111,15 @@ function FormSection({ index, group }: { index: string; group: FieldGroup }) {
   );
 }
 
+const initialState: QuoteFormState = {};
+
 /**
  * Rendered as one continuous waybill document rather than three separate
  * cards — a real bill of lading groups consignor / cargo / routing under one
  * form, so the three JSON blocks (quoteForm, shipmentDetails, contactDetails)
  * become numbered document sections sharing a single submit at the bottom.
- * No backend wired (per project convention) — validates via native HTML5
- * required attributes and shows the JSON's own success message.
+ * Submits via submitQuoteAction to Supabase; field `name` attributes are
+ * derived from labels (lowercased, spaces to hyphens).
  */
 export function QuoteForm({
   quoteForm,
@@ -129,12 +132,13 @@ export function QuoteForm({
   contactDetails: FieldGroup;
   submit: Submit;
 }) {
-  const [done, setDone] = useState(false);
+  const [state, formAction, pending] = useActionState(submitQuoteAction, initialState);
+  const done = Boolean(state.success);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setDone(true);
-  }
+  useEffect(() => {
+    if (state.success) formRef.current?.reset();
+  }, [state.success]);
 
   return (
     <div
@@ -168,7 +172,8 @@ export function QuoteForm({
         ) : (
           <motion.form
             key="form"
-            onSubmit={onSubmit}
+            ref={formRef}
+            action={formAction}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -181,11 +186,22 @@ export function QuoteForm({
               <h3 className="text-base font-bold text-[#06234d]">{submit.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{submit.description}</p>
 
+              {state.error && (
+                <div
+                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+                  role="alert"
+                >
+                  <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                  {state.error}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
+                disabled={pending}
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
-                {submit.buttonText}
+                {pending ? "Submitting…" : submit.buttonText}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </button>
 

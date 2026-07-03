@@ -7,9 +7,9 @@ import { ArrowRight, Clock } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CategoryArt } from "./category-art";
-import { slugify, cn } from "@/lib/cn";
+import { cn } from "@/lib/cn";
 
-type Post = { title: string; category: string; readTime: string };
+type Post = { slug: string; title: string; category: string; readTime: string; imageUrl?: string };
 type CategoryItem = { title: string; slug: string };
 type Data = { title: string; description: string };
 
@@ -79,17 +79,17 @@ export function BlogGrid({
       >
         {filtered.map((post) => (
           <motion.div
-            key={post.title}
+            key={post.slug}
             variants={{
               hidden: { opacity: 0, y: 16 },
               show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
             }}
           >
             <Link
-              href={`/blog/${slugify(post.title)}`}
+              href={`/blog/${post.slug}`}
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-12px_rgba(4,22,47,0.22)]"
             >
-              <CategoryArt category={post.category} className="h-44" />
+              <CategoryArt category={post.category} imageUrl={post.imageUrl} className="h-44" />
               <div className="flex flex-1 flex-col p-5">
                 <span className="w-fit rounded-full bg-[#eef3fb] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#033e8d]">
                   {post.category}

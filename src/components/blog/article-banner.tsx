@@ -13,6 +13,7 @@ type Banner = {
   author: Author;
   publishDate: string;
   readTime: string;
+  imageUrl?: string;
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -78,7 +79,7 @@ export function ArticleBanner({ data }: { data: Banner }) {
       </Container>
 
       <Container className="relative mt-10 max-w-3xl">
-        <CategoryArt category={data.category} className="h-56 rounded-2xl sm:h-72" />
+        <CategoryArt category={data.category} imageUrl={data.imageUrl} className="h-56 rounded-2xl sm:h-72" />
       </Container>
     </section>
   );

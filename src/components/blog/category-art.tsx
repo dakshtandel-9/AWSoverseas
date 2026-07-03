@@ -1,11 +1,12 @@
+import Image from "next/image";
 import { iconFor } from "@/lib/icons";
 import { cn } from "@/lib/cn";
 
 /**
- * No real blog images exist in public/ (blogGrid.posts[].image paths point at
- * files that were never added), so article art is generated from the post's
- * category — a large icon over a category-tinted gradient — instead of a
- * broken <Image> or a generic stock-photo placeholder.
+ * Renders a post's real uploaded cover image when one exists (admin-uploaded
+ * via Cloudinary). Falls back to generated art — a large icon over a
+ * category-tinted gradient — for posts that don't have a cover image yet,
+ * rather than a broken <Image> or a generic stock-photo placeholder.
  */
 const PALETTE: Record<string, [string, string]> = {
   "Air Freight": ["#033e8d", "#0fade8"],
@@ -20,7 +21,23 @@ function paletteFor(category: string): [string, string] {
   return PALETTE[category] ?? ["#033e8d", "#0fade8"];
 }
 
-export function CategoryArt({ category, className }: { category: string; className?: string }) {
+export function CategoryArt({
+  category,
+  imageUrl,
+  className,
+}: {
+  category: string;
+  imageUrl?: string;
+  className?: string;
+}) {
+  if (imageUrl) {
+    return (
+      <div className={cn("relative overflow-hidden", className)}>
+        <Image src={imageUrl} alt="" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+      </div>
+    );
+  }
+
   const Icon = iconFor(category);
   const [from, to] = paletteFor(category);
 

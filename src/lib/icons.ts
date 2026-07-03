@@ -20,6 +20,15 @@ import {
   Cpu,
   Shirt,
   Store,
+  Wheat,
+  Footprints,
+  UtensilsCrossed,
+  Tractor,
+  Syringe,
+  FlaskConical,
+  Layers,
+  Leaf,
+  Armchair,
   type LucideIcon,
 } from "lucide-react";
 
@@ -54,5 +63,31 @@ export function iconFor(label: string): LucideIcon {
   if (k.includes("electron")) return Cpu;
   if (k.includes("textile") || k.includes("apparel") || k.includes("fashion")) return Shirt;
   if (k.includes("retail")) return Store;
+  // Product/commodity icons
+  if (k.includes("grain") || k.includes("wheat") || k.includes("rice")) return Wheat;
+  if (k.includes("garment") || k.includes("fabric") || k.includes("apparel")) return Shirt;
+  if (k.includes("footwear") || k.includes("shoe") || k.includes("leather")) return Footprints;
+  if (k.includes("utensil") || k.includes("steel") || k.includes("kitchenware")) return UtensilsCrossed;
+  if (k.includes("tractor") || k.includes("machinery") || k.includes("agricultural equipment")) return Tractor;
+  if (k.includes("syringe") || k.includes("medical equipment")) return Syringe;
+  if (k.includes("chemical") || k.includes("hazmat") || k.includes("hazardous")) return FlaskConical;
+  if (k.includes("activated carbon") || k.includes("carbon")) return Layers;
+  if (k.includes("spice")) return Leaf;
+  if (k.includes("furniture")) return Armchair;
   return Boxes;
 }
+
+/** Product-specific icon map, keyed to products.json's productsGrid.items[].icon. */
+export const PRODUCT_ICONS: Record<string, LucideIcon> = {
+  wheat: Wheat,
+  shirt: Shirt,
+  footprints: Footprints,
+  utensils: UtensilsCrossed,
+  tractor: Tractor,
+  pill: Pill,
+  syringe: Syringe,
+  "flask-conical": FlaskConical,
+  layers: Layers,
+  leaf: Leaf,
+  armchair: Armchair,
+};

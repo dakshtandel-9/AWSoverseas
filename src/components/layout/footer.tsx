@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { FOOTER_NAV, SERVICE_LINKS, SITE } from "@/lib/site";
-import { contact, blog } from "@/lib/content";
+import { blog } from "@/lib/content";
+import { getSiteSettings } from "@/lib/site-settings";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
@@ -14,10 +15,9 @@ const SOCIALS: { name: SocialName; label: string; href: string }[] = [
   { name: "instagram", label: "Instagram", href: "#" },
 ];
 
-export function Footer() {
-  const phone = contact.contactInfo?.items?.find((i: { type: string }) => i.type === "Phone")?.value;
-  const email = contact.contactInfo?.items?.find((i: { type: string }) => i.type === "Email")?.value;
-  const office = contact.officeLocations?.locations?.[0];
+export async function Footer() {
+  const settings = await getSiteSettings();
+  const { phone1, phone2, email, address } = settings;
   const newsletter = blog.newsletter;
   const year = new Date().getFullYear();
 
@@ -57,18 +57,22 @@ export function Footer() {
               businesses and individuals worldwide.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
-              {office && (
+              {address && (
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-accent-400" />
-                  <span>
-                    {office.address}, {office.city}, {office.country}
-                  </span>
+                  <span>{address}</span>
                 </li>
               )}
-              {phone && (
+              {phone1 && (
                 <li className="flex items-center gap-3">
                   <Phone className="size-4 shrink-0 text-accent-400" />
-                  <span>{phone}</span>
+                  <span>{phone1}</span>
+                </li>
+              )}
+              {phone2 && (
+                <li className="flex items-center gap-3">
+                  <Phone className="size-4 shrink-0 text-accent-400" />
+                  <span>{phone2}</span>
                 </li>
               )}
               {email && (

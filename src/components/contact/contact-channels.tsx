@@ -49,7 +49,7 @@ export function ContactChannels({
             const href =
               item.type === "Phone" ? `tel:${item.value.replace(/\s+/g, "")}` : `mailto:${item.value}`;
             return (
-              <li key={item.type}>
+              <li key={`${item.type}-${item.value}`}>
                 <a
                   href={href}
                   className="group flex items-center gap-4 rounded-2xl px-2 py-1 transition-colors hover:bg-[#f6f8fc]"

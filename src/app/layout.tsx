@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageLoader } from "@/components/layout/page-loader";
+import { ChromeGate } from "@/components/layout/chrome-gate";
 import { home } from "@/lib/content";
 
 const inter = Inter({
@@ -48,7 +49,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body className="min-h-dvh bg-surface text-ink antialiased">
+      <body className="min-h-dvh bg-surface text-ink antialiased" suppressHydrationWarning>
         <PageLoader />
         <a
           href="#main"
@@ -56,9 +57,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Navbar />
-        <main id="main">{children}</main>
-        <Footer />
+        <ChromeGate navbar={<Navbar />} footer={<Footer />}>
+          <main id="main">{children}</main>
+        </ChromeGate>
       </body>
     </html>
   );

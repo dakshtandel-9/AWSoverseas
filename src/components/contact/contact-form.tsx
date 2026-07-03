@@ -1,9 +1,10 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useActionState, useEffect, useId, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { submitContactAction, type ContactFormState } from "@/app/actions/contact";
 
 type Field = {
   label: string;
@@ -77,18 +78,21 @@ function FieldControl({ field }: { field: Field }) {
   );
 }
 
+const initialState: ContactFormState = {};
+
 /**
- * Full contact form driven entirely by contact.json's field list — no backend
- * wired (per project convention), so submit just validates via native HTML5
- * required attributes and shows the JSON's own success message.
+ * Full contact form driven by contact.json's field list, submitting via
+ * submitContactAction to Supabase. Field `name` attributes are derived from
+ * labels (lowercased, spaces to hyphens) and must match what the action reads.
  */
 export function ContactForm({ data }: { data: Data }) {
-  const [done, setDone] = useState(false);
+  const [state, formAction, pending] = useActionState(submitContactAction, initialState);
+  const done = Boolean(state.success);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setDone(true);
-  }
+  useEffect(() => {
+    if (state.success) formRef.current?.reset();
+  }, [state.success]);
 
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)] sm:p-10">
@@ -116,7 +120,8 @@ export function ContactForm({ data }: { data: Data }) {
         ) : (
           <motion.form
             key="form"
-            onSubmit={onSubmit}
+            ref={formRef}
+            action={formAction}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -138,12 +143,23 @@ export function ContactForm({ data }: { data: Data }) {
               </div>
             ))}
 
+            {state.error && (
+              <div
+                className="flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600 sm:col-span-2"
+                role="alert"
+              >
+                <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                {state.error}
+              </div>
+            )}
+
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
+                disabled={pending}
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
-                {data.submitButton}
+                {pending ? "Sending…" : data.submitButton}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </button>
             </div>

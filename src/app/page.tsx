@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { home, blog, faq, metaFrom } from "@/lib/content";
+import { home, faq, metaFrom } from "@/lib/content";
+import { getPublishedPosts } from "@/lib/blog-data";
 import { Hero } from "@/components/home/hero";
 import { TrustedPartners } from "@/components/home/trusted-partners";
 import { AboutPreview } from "@/components/home/about-preview";
@@ -24,7 +25,9 @@ const ORG_JSONLD = {
   areaServed: "Worldwide",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await getPublishedPosts();
+
   return (
     <>
       <script
@@ -40,7 +43,18 @@ export default function HomePage() {
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />
       <GlobalCoverage data={home.coverage} />
-      <BlogTeaser data={home.blogs} posts={blog.blogGrid.posts} eyebrow="Insights" />
+      <BlogTeaser
+        data={home.blogs}
+        posts={posts.map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          category: p.category,
+          readTime: p.read_time,
+          imageUrl: p.image_url,
+          excerpt: p.excerpt,
+        }))}
+        eyebrow="Insights"
+      />
       <FaqSection data={home.faq} items={faq.accordion.items} eyebrow="FAQ" />
       <DownloadCTA data={home.downloadApp} />
     </>

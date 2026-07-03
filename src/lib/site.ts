@@ -5,7 +5,6 @@ export const SITE = {
   name: "AWSoversea",
   tagline: "Global Logistics Beyond Borders",
   url: "https://awsoversea.com",
-  whatsapp: "https://wa.me/10000000000",
 };
 
 export type ServiceLink = { slug: string; title: string; description: string };
@@ -25,6 +24,7 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services", mega: true },
   { label: "Industries", href: "/industries" },
+  { label: "Products", href: "/products" },
   { label: "Tracking", href: "/tracking" },
   { label: "Mobile App", href: "/mobile-app" },
   { label: "Blog", href: "/blog" },
@@ -34,6 +34,7 @@ export const NAV_LINKS = [
 export const FOOTER_NAV = {
   Company: [
     { label: "About Us", href: "/about" },
+    { label: "Products", href: "/products" },
     { label: "Partner With Us", href: "/partner" },
     { label: "Contact", href: "/contact" },
     { label: "Request a Quote", href: "/quote" },

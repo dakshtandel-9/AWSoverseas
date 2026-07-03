@@ -165,7 +165,12 @@ export function Navbar() {
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
-            className="grid size-11 place-items-center rounded-xl text-ink ring-1 ring-line transition-colors hover:bg-brand-50 lg:hidden"
+            className={cn(
+              "grid size-11 place-items-center rounded-xl transition-colors lg:hidden",
+              scrolled
+                ? "text-ink ring-1 ring-line hover:bg-brand-50"
+                : "text-white ring-1 ring-white/30 hover:bg-white/10",
+            )}
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -185,31 +190,74 @@ export function Navbar() {
               className="flex h-[calc(100dvh-4.5rem)] flex-col gap-1 overflow-y-auto px-5 py-6"
               aria-label="Mobile"
             >
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
-                    isActive(link.href)
-                      ? "bg-brand-50 text-brand-900"
-                      : "text-ink-soft hover:bg-surface-soft",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl bg-surface-soft p-2">
-                {SERVICE_LINKS.map((s) => (
+              {NAV_LINKS.map((link) =>
+                "mega" in link && link.mega ? (
+                  <div key={link.href}>
+                    <div
+                      className={cn(
+                        "flex items-center justify-between rounded-2xl text-lg font-semibold transition-colors",
+                        isActive(link.href)
+                          ? "bg-brand-50 text-brand-900"
+                          : "text-ink-soft",
+                      )}
+                    >
+                      <Link href={link.href} className="flex-1 px-4 py-3.5">
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-label={megaOpen ? "Collapse services" : "Expand services"}
+                        aria-expanded={megaOpen}
+                        onClick={() => setMegaOpen((v) => !v)}
+                        className="grid size-11 shrink-0 place-items-center"
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "size-4 transition-transform duration-300",
+                            megaOpen && "rotate-180",
+                          )}
+                        />
+                      </button>
+                    </div>
+                    <AnimatePresence initial={false}>
+                      {megaOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-1 grid grid-cols-2 gap-2 rounded-2xl bg-surface-soft p-2">
+                            {SERVICE_LINKS.map((s) => (
+                              <Link
+                                key={s.slug}
+                                href={`/services/${s.slug}`}
+                                className="rounded-xl px-3 py-2 text-sm font-medium text-muted hover:bg-white hover:text-brand-900"
+                              >
+                                {s.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
                   <Link
-                    key={s.slug}
-                    href={`/services/${s.slug}`}
-                    className="rounded-xl px-3 py-2 text-sm font-medium text-muted hover:bg-white hover:text-brand-900"
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
+                      isActive(link.href)
+                        ? "bg-brand-50 text-brand-900"
+                        : "text-ink-soft hover:bg-surface-soft",
+                    )}
                   >
-                    {s.title}
+                    {link.label}
                   </Link>
-                ))}
-              </div>
+                ),
+              )}
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <Button href="/quote" variant="primary" size="lg" magnetic={false}>
                   Request a Quote <ArrowRight className="size-4" />

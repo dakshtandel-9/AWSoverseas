@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef, useId, memo } from "react";
 import "./dot-field.css";
 
 const TWO_PI = Math.PI * 2;
@@ -71,7 +71,8 @@ const DotField = memo(({
     baseDotColor, accentDotColor, accentRatio, dotOpacity,
   };
   const rebuildRef = useRef<(() => void) | null>(null);
-  const glowIdRef = useRef(`dot-field-glow-${Math.random().toString(36).slice(2, 9)}`);
+  const reactId = useId();
+  const glowIdRef = useRef(`dot-field-glow-${reactId.replace(/:/g, "")}`);
 
   useEffect(() => {
     const canvas = canvasRef.current;

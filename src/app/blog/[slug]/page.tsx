@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
-import { blog, singleBlog, metaFrom } from "@/lib/content";
-import { slugify } from "@/lib/cn";
+import { notFound } from "next/navigation";
+import { singleBlog, metaFrom } from "@/lib/content";
+import { getPublishedPosts, getPostBySlug, formatPublishDate } from "@/lib/blog-data";
 import { ArticleBanner } from "@/components/blog/article-banner";
 import { ArticleBody } from "@/components/blog/article-body";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { ArticleCta } from "@/components/blog/article-cta";
 
-type Post = { title: string; category?: string; readTime?: string; excerpt?: string };
+export const dynamicParams = true;
 
-const posts: Post[] = [
-  ...(blog.featuredArticle ? [blog.featuredArticle as Post] : []),
-  ...((blog.blogGrid?.posts ?? []) as Post[]),
-];
-
-const FULL_ARTICLE_SLUG = slugify(singleBlog.banner?.title ?? "");
-
-export function generateStaticParams() {
-  return posts.map((p) => ({ slug: slugify(p.title) }));
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -25,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => slugify(p.title) === slug);
+  const post = await getPostBySlug(slug);
   return metaFrom(
     {
       title: post?.title ?? singleBlog.meta?.title,
@@ -36,11 +31,9 @@ export async function generateMetadata({
 }
 
 /**
- * singleBlog.json only ships a full article body (sections/TOC/tags/share)
- * for ONE post — "How to Choose the Right International Shipping Method".
- * The other 6 slugs (from blog.json's featured + grid posts) render an
- * honest banner-only page with that post's real title/category/excerpt
- * instead of fabricating section content that doesn't exist in the JSON.
+ * Every post now has real stored slug/body content from Supabase — replaces
+ * the old JSON-only page that special-cased the one post with a full article
+ * (singleBlog.json) vs. six banner-only teasers.
  */
 export default async function SingleBlogPage({
   params,
@@ -48,27 +41,51 @@ export default async function SingleBlogPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = posts.find((p) => slugify(p.title) === slug);
-  const hasFullArticle = slug === FULL_ARTICLE_SLUG;
+  const post = await getPostBySlug(slug);
 
-  const banner = hasFullArticle
-    ? singleBlog.banner
-    : {
-        category: post?.category ?? "Article",
-        title: post?.title ?? singleBlog.banner.title,
-        excerpt:
-          post?.excerpt ??
-          "This article is being prepared. In the meantime, explore our other logistics guides below.",
-        author: singleBlog.banner.author,
-        publishDate: "Coming Soon",
-        readTime: post?.readTime ?? "—",
-      };
+  if (!post) notFound();
+
+  const posts = await getPublishedPosts();
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const hasBody = post.sections.length > 0;
+
+  const banner = {
+    category: post.category || "Article",
+    title: post.title,
+    excerpt:
+      post.excerpt ||
+      "This article is being prepared. In the meantime, explore our other logistics guides below.",
+    author: { name: post.author_name },
+    publishDate: formatPublishDate(post.published_at),
+    readTime: post.read_time || "—",
+    imageUrl: post.image_url,
+  };
 
   return (
     <>
       <ArticleBanner data={banner} />
-      {hasFullArticle && <ArticleBody data={singleBlog.article} />}
-      <RelatedPosts data={singleBlog.relatedPosts} />
+      {hasBody && (
+        <ArticleBody
+          data={{
+            tableOfContents: post.table_of_contents,
+            sections: post.sections,
+            tags: post.tags,
+            share: singleBlog.article?.share ?? {
+              title: "Share this article",
+              platforms: ["Facebook", "LinkedIn", "X", "WhatsApp"],
+            },
+          }}
+        />
+      )}
+      {related.length > 0 && (
+        <RelatedPosts
+          data={{
+            title: singleBlog.relatedPosts?.title ?? "Related Articles",
+            description: singleBlog.relatedPosts?.description ?? "",
+            posts: related.map((p) => ({ slug: p.slug, title: p.title, category: p.category, imageUrl: p.image_url })),
+          }}
+        />
+      )}
       <ArticleCta data={singleBlog.cta} />
     </>
   );

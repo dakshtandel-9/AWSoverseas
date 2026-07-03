@@ -5,19 +5,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { CategoryArt } from "./category-art";
-import { slugify } from "@/lib/cn";
 
 type Data = {
+  slug: string;
   title: string;
   category: string;
   readTime: string;
   publishDate: string;
   excerpt: string;
   button: string;
+  imageUrl?: string;
 };
 
 export function FeaturedArticle({ data }: { data: Data }) {
-  const href = `/blog/${slugify(data.title)}`;
+  const href = `/blog/${data.slug}`;
 
   return (
     <Section spacing="md" id="articles">
@@ -31,7 +32,7 @@ export function FeaturedArticle({ data }: { data: Data }) {
           href={href}
           className="group grid overflow-hidden rounded-3xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)] transition-shadow duration-300 hover:shadow-[0_10px_30px_-12px_rgba(4,22,47,0.24)] lg:grid-cols-2"
         >
-          <CategoryArt category={data.category} className="h-64 lg:h-auto" />
+          <CategoryArt category={data.category} imageUrl={data.imageUrl} className="h-64 lg:h-auto" />
           <div className="flex flex-col justify-center p-8 sm:p-10">
             <div className="flex items-center gap-3">
               <span className="rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#033e8d]">

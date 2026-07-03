@@ -100,7 +100,7 @@ function ShipmentCard() {
   return (
     <div className="flex flex-col items-center gap-0">
       {/* Stacked card stack wrapper */}
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full max-w-md mr-8 sm:mr-10 lg:mr-0">
         {/* Card back 4 — furthest */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
