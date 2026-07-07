@@ -1,53 +1,32 @@
 import type { Metadata } from "next";
 import { products, metaFrom } from "@/lib/content";
+import { getActiveProducts } from "@/lib/product-data";
 import { ProductsHero } from "@/components/products/products-hero";
 import { Overview } from "@/components/products/overview";
-import { ProductsDirectory } from "@/components/products/products-directory";
-import { ProductProfiles } from "@/components/products/product-profiles";
+import { ProductGrid } from "@/components/products/product-grid";
 import { ProductsCta } from "@/components/products/products-cta";
 
 export const metadata: Metadata = metaFrom(products.meta, "/products");
 
-const PROFILE_BLOCKS = [
-  products.foodGrains,
-  products.garments,
-  products.leatherFootwear,
-  products.steelUtensils,
-  products.tractors,
-  products.medicines,
-  products.medicalEquipment,
-  products.chemicals,
-  products.activatedCarbon,
-  products.spices,
-  products.furniture,
-].filter(Boolean);
+export default async function Page() {
+  const catalog = await getActiveProducts();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ICON_BY_TITLE: Record<string, string> = Object.fromEntries(
-  (products.productsGrid?.items ?? []).map((item: { title: string; icon: string }) => [
-    item.title,
-    item.icon,
-  ]),
-);
+  const stats = products.overview.stats.map((stat: { number: string; label: string }, i: number) =>
+    i === 0 ? { ...stat, number: String(catalog.length) } : stat,
+  );
 
-const PROFILES = PROFILE_BLOCKS.map((p) => ({
-  ...p,
-  icon: ICON_BY_TITLE[p.title],
-}));
+  const PRODUCTS_JSONLD = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: products.meta?.title,
+    description: products.meta?.description,
+    url: "https://awsoversea.com/products",
+    hasPart: catalog.map((item) => ({
+      "@type": "Product",
+      name: item.name,
+    })),
+  };
 
-const PRODUCTS_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: products.meta?.title,
-  description: products.meta?.description,
-  url: "https://awsoversea.com/products",
-  hasPart: products.productsGrid?.items?.map((item: { title: string }) => ({
-    "@type": "Thing",
-    name: item.title,
-  })),
-};
-
-export default function Page() {
   return (
     <>
       <script
@@ -55,10 +34,9 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PRODUCTS_JSONLD) }}
       />
 
-      <ProductsHero data={products.hero} stats={products.overview.stats} />
+      <ProductsHero data={products.hero} stats={stats} />
       <Overview data={products.overview} />
-      <ProductsDirectory data={products.productsGrid} />
-      <ProductProfiles profiles={PROFILES} />
+      <ProductGrid products={catalog} />
       <ProductsCta data={products.cta} />
     </>
   );

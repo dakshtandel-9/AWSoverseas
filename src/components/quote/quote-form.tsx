@@ -5,10 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
+import { CountrySelect } from "@/components/quote/country-select";
 
 type Field = {
   label: string;
-  type: "text" | "email" | "tel" | "date" | "number" | "select" | "textarea";
+  type: "text" | "email" | "tel" | "date" | "number" | "select" | "textarea" | "country-select";
   placeholder?: string;
   required?: boolean;
   options?: string[];
@@ -26,7 +27,7 @@ type Submit = {
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
 
-function FieldControl({ field }: { field: Field }) {
+function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: string }) {
   const id = useId();
   const name = field.label.toLowerCase().replace(/\s+/g, "-");
 
@@ -37,8 +38,20 @@ function FieldControl({ field }: { field: Field }) {
         name={name}
         required={field.required}
         placeholder={field.placeholder}
+        defaultValue={defaultValue}
         rows={4}
         className={cn(inputClasses, "resize-none")}
+      />
+    );
+  }
+
+  if (field.type === "country-select") {
+    return (
+      <CountrySelect
+        name={name}
+        required={field.required}
+        placeholder={field.placeholder}
+        defaultValue={defaultValue}
       />
     );
   }
@@ -79,7 +92,15 @@ function FieldControl({ field }: { field: Field }) {
   );
 }
 
-function FormSection({ index, group }: { index: string; group: FieldGroup }) {
+function FormSection({
+  index,
+  group,
+  fieldDefaults,
+}: {
+  index: string;
+  group: FieldGroup;
+  fieldDefaults?: Record<string, string>;
+}) {
   return (
     <div className="border-b border-[#e4e9f2] px-7 py-8 last:border-b-0 sm:px-10">
       <div className="flex items-baseline gap-3">
@@ -103,7 +124,7 @@ function FormSection({ index, group }: { index: string; group: FieldGroup }) {
               {field.label}
               {field.required && <span className="ml-1 text-[#0489c2]">*</span>}
             </label>
-            <FieldControl field={field} />
+            <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} />
           </div>
         ))}
       </div>
@@ -126,15 +147,20 @@ export function QuoteForm({
   shipmentDetails,
   contactDetails,
   submit,
+  product,
 }: {
   quoteForm: FieldGroup;
   shipmentDetails: FieldGroup;
   contactDetails: FieldGroup;
   submit: Submit;
+  product?: string;
 }) {
   const [state, formAction, pending] = useActionState(submitQuoteAction, initialState);
   const done = Boolean(state.success);
   const formRef = useRef<HTMLFormElement>(null);
+  const shipmentDefaults = product
+    ? { "Cargo Description": `Enquiry about: ${product}` }
+    : undefined;
 
   useEffect(() => {
     if (state.success) formRef.current?.reset();
@@ -143,11 +169,11 @@ export function QuoteForm({
   return (
     <div
       id="quote-form"
-      className="mx-auto max-w-3xl scroll-mt-28 overflow-hidden rounded-3xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]"
+      className="mx-auto max-w-3xl scroll-mt-28 rounded-3xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]"
     >
-      <div className="flex items-center justify-between border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
+      <div className="flex items-center justify-between rounded-t-3xl border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-          Shipment Waybill — Draft
+          {product ? `Product Enquiry — ${product}` : "Shipment Waybill — Draft"}
         </p>
         <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">
           3 sections
@@ -179,7 +205,7 @@ export function QuoteForm({
             exit={{ opacity: 0 }}
           >
             <FormSection index="01" group={quoteForm} />
-            <FormSection index="02" group={shipmentDetails} />
+            <FormSection index="02" group={shipmentDetails} fieldDefaults={shipmentDefaults} />
             <FormSection index="03" group={contactDetails} />
 
             <div className="px-7 py-8 sm:px-10">

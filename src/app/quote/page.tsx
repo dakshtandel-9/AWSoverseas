@@ -6,7 +6,13 @@ import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = metaFrom(requestQuote.meta, "/quote");
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const { product } = await searchParams;
+
   return (
     <>
       <QuoteHero data={requestQuote.hero} />
@@ -16,6 +22,7 @@ export default function Page() {
           shipmentDetails={requestQuote.shipmentDetails}
           contactDetails={requestQuote.contactDetails}
           submit={requestQuote.submit}
+          product={product}
         />
       </Section>
     </>

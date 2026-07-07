@@ -1,11 +1,9 @@
 {
   "page": "Request Quote",
-
   "meta": {
     "title": "Request a Freight Quote | AWSoversea",
     "description": "Get a fast and accurate quote for your international shipment. Request pricing for Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, FCL, and LCL services."
   },
-
   "hero": {
     "badge": "Free Freight Quote",
     "title": "Request Your International Shipping Quote",
@@ -13,7 +11,6 @@
     "primaryButton": "Get Quote",
     "secondaryButton": "Contact Us"
   },
-
   "quoteForm": {
     "title": "Shipment Information",
     "description": "Complete the form below and we'll get back to you with a customized quotation.",
@@ -48,14 +45,14 @@
       },
       {
         "label": "Origin Country",
-        "type": "text",
-        "placeholder": "Enter Origin Country",
+        "type": "country-select",
+        "placeholder": "Search origin country…",
         "required": true
       },
       {
         "label": "Destination Country",
-        "type": "text",
-        "placeholder": "Enter Destination Country",
+        "type": "country-select",
+        "placeholder": "Search destination country…",
         "required": true
       },
       {
@@ -65,7 +62,6 @@
       }
     ]
   },
-
   "shipmentDetails": {
     "title": "Shipment Details",
     "fields": [
@@ -102,7 +98,6 @@
       }
     ]
   },
-
   "contactDetails": {
     "title": "Your Contact Information",
     "fields": [
@@ -139,7 +134,6 @@
       }
     ]
   },
-
   "submit": {
     "title": "Submit Your Quote Request",
     "description": "Our logistics specialists will review your request and contact you with a customized quotation as soon as possible.",

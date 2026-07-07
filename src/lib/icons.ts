@@ -76,18 +76,3 @@ export function iconFor(label: string): LucideIcon {
   if (k.includes("furniture")) return Armchair;
   return Boxes;
 }
-
-/** Product-specific icon map, keyed to products.json's productsGrid.items[].icon. */
-export const PRODUCT_ICONS: Record<string, LucideIcon> = {
-  wheat: Wheat,
-  shirt: Shirt,
-  footprints: Footprints,
-  utensils: UtensilsCrossed,
-  tractor: Tractor,
-  pill: Pill,
-  syringe: Syringe,
-  "flask-conical": FlaskConical,
-  layers: Layers,
-  leaf: Leaf,
-  armchair: Armchair,
-};

@@ -1,180 +1,38 @@
 {
   "page": "Products We Export",
-
   "meta": {
     "title": "Products We Export | AWSoversea",
-    "description": "AWSoversea handles export logistics for food grains, fabrics and readymade garments, leather footwear, steel utensils, tractors, pharmaceuticals, medical equipment, industrial chemicals, activated carbon, spices, and furniture — sourced, packed, and shipped worldwide."
+    "description": "Browse the products AWSoversea exports and sources worldwide. No pricing listed online — send an enquiry on any item for availability and a quote."
   },
-
   "hero": {
-    "badge": "Export Commodities",
+    "badge": "Export Catalog",
     "title": "Products We Move Across Borders",
-    "subtitle": "From grain silos to garment floors, tanneries to tractor yards — AWSoversea handles export logistics for eleven commodity classes, each with its own packing, documentation, and compliance requirements. This is what we ship, and how we ship it.",
+    "subtitle": "From factory floor to your doorstep — every item in this catalog ships with its own packing, documentation, and compliance handled by our export desk. Browse what's available and send an enquiry; we don't list pricing online, so this is how you start a quote.",
     "primaryButton": "Request a Quote",
-    "secondaryButton": "Talk to a Commodity Specialist"
+    "secondaryButton": "Talk to Our Team"
   },
-
   "overview": {
-    "title": "Eleven Commodities, One Export Desk",
-    "description": "Every commodity class on this schedule carries different rules — cold-chain for medicines, fumigation certificates for grains, hazmat declarations for chemicals, HS codes that determine duty at the other end. Our commodity desk builds the shipping plan around the product, not the other way around.",
+    "title": "One Catalog, One Export Desk",
+    "description": "Every product on this list carries its own rules for packing, documentation, and compliance at the destination. Our export desk builds the shipping plan around the product, not the other way around — enquire on anything and we'll quote it.",
     "stats": [
-      { "number": "11", "label": "Commodity Classes" },
-      { "number": "60+", "label": "Countries Exported To" },
-      { "number": "100%", "label": "Documentation Handled" },
-      { "number": "24/7", "label": "Shipment Support" }
+      {
+        "number": "11",
+        "label": "Products Listed"
+      },
+      {
+        "number": "60+",
+        "label": "Countries Exported To"
+      },
+      {
+        "number": "100%",
+        "label": "Documentation Handled"
+      },
+      {
+        "number": "24/7",
+        "label": "Shipment Support"
+      }
     ]
   },
-
-  "productsGrid": {
-    "title": "Export Schedule",
-    "description": "Every commodity class we currently move, with handling notes for the ones that need them.",
-    "items": [
-      { "title": "Food Grains", "icon": "wheat" },
-      { "title": "Fabric & Readymade Garments", "icon": "shirt" },
-      { "title": "Leather Footwear", "icon": "footprints" },
-      { "title": "Steel & SS Utensils", "icon": "utensils" },
-      { "title": "Tractors", "icon": "tractor" },
-      { "title": "Medicines", "icon": "pill" },
-      { "title": "Syringes & Medical Equipment", "icon": "syringe" },
-      { "title": "Chemicals (Hazardous & Non-Hazardous)", "icon": "flask-conical" },
-      { "title": "Activated Carbon", "icon": "layers" },
-      { "title": "Spices", "icon": "leaf" },
-      { "title": "Furniture", "icon": "armchair" }
-    ]
-  },
-
-  "foodGrains": {
-    "title": "Food Grains",
-    "description": "Bulk and bagged export of rice, wheat, pulses, and other staple grains, moved in fumigated, moisture-controlled containers with full phytosanitary documentation so cargo clears agricultural inspection at the destination port without delay.",
-    "services": [
-      "Fumigation & Phytosanitary Certification",
-      "Bulk & Bagged Container Loading",
-      "Moisture-Controlled Packing",
-      "Food-Grade Container Sourcing",
-      "Port-Side Quality Inspection Coordination"
-    ]
-  },
-
-  "garments": {
-    "title": "Fabric & Readymade Garments",
-    "description": "End-to-end export handling for textile rolls and finished apparel — from carton and hanger-pack consolidation to labeling compliance for the destination market's retail and customs requirements.",
-    "services": [
-      "Hanger-Pack & Carton Consolidation",
-      "Retail Labeling & Country-of-Origin Compliance",
-      "Bulk Fabric Roll Handling",
-      "Garment-on-Hanger (GOH) Container Booking",
-      "Seasonal Shipment Scheduling"
-    ]
-  },
-
-  "leatherFootwear": {
-    "title": "Leather Footwear",
-    "description": "Export logistics for finished leather shoes and components, with humidity-controlled packing and the material declarations that leather goods require for customs clearance in regulated markets.",
-    "services": [
-      "Humidity-Controlled Container Packing",
-      "Leather Origin & Material Declarations",
-      "Carton & Case-Pack Export Cartoning",
-      "Multi-SKU Consolidation",
-      "Retail-Ready Palletizing"
-    ]
-  },
-
-  "steelUtensils": {
-    "title": "Steel & SS Utensils",
-    "description": "Bulk export of stainless steel and steel kitchenware and household utensils, palletized and shrink-wrapped to survive long transit without denting, scratching, or shifting inside the container.",
-    "services": [
-      "Anti-Corrosion Export Wrapping",
-      "Palletization & Shrink-Wrapping",
-      "Bulk Carton Consolidation",
-      "Weight-Optimized Container Loading",
-      "Breakage-Free Packing Standards"
-    ]
-  },
-
-  "tractors": {
-    "title": "Tractors",
-    "description": "Heavy machinery export for tractors and agricultural equipment, including RO-RO and flat-rack container booking, pre-shipment inspection coordination, and the certificates of conformity destination customs authorities require.",
-    "services": [
-      "RO-RO & Flat-Rack Container Booking",
-      "Pre-Shipment Inspection Coordination",
-      "Certificate of Conformity Documentation",
-      "Heavy-Lift Port Handling",
-      "Spare Parts Co-Loading"
-    ]
-  },
-
-  "medicines": {
-    "title": "Medicines",
-    "description": "Temperature-controlled pharmaceutical export with cold-chain monitoring from warehouse to destination, backed by the batch documentation and regulatory paperwork health authorities require to release the shipment.",
-    "services": [
-      "Cold-Chain & Temperature-Controlled Freight",
-      "Batch & Regulatory Documentation",
-      "GDP-Compliant Warehousing",
-      "Time-Critical Air Freight Priority",
-      "Import Permit Coordination"
-    ]
-  },
-
-  "medicalEquipment": {
-    "title": "Syringes & Medical Equipment",
-    "description": "Secure, sterile-integrity export packing for syringes, diagnostic devices, and medical equipment, with the CE/ISO conformity paperwork and fragile-handling protocols this category depends on.",
-    "services": [
-      "Sterile-Integrity Packing Protocols",
-      "CE / ISO Conformity Documentation",
-      "Fragile & Sensitive Cargo Handling",
-      "Consignment Traceability",
-      "Hospital & Distributor Direct Delivery"
-    ]
-  },
-
-  "chemicals": {
-    "title": "Chemicals (Hazardous & Non-Hazardous)",
-    "description": "IMDG-compliant export of hazardous and non-hazardous industrial chemicals, handled by our dangerous-goods desk from UN classification and MSDS paperwork through to segregation-compliant container stowage.",
-    "services": [
-      "IMDG / Dangerous Goods Classification",
-      "MSDS & UN Number Documentation",
-      "Segregation-Compliant Stowage",
-      "Hazmat-Certified Container Booking",
-      "Non-Hazardous Bulk Chemical Handling"
-    ]
-  },
-
-  "activatedCarbon": {
-    "title": "Activated Carbon",
-    "description": "Bulk export of activated carbon for water treatment, industrial, and filtration use, packed in moisture-sealed bags and liners to protect adsorption quality across long ocean transit.",
-    "services": [
-      "Moisture-Sealed Bulk Bag Packing",
-      "Container Liner Installation",
-      "Bulk & Big-Bag Loading",
-      "Quality-Retention Packing Standards",
-      "Industrial Buyer Direct Shipping"
-    ]
-  },
-
-  "spices": {
-    "title": "Spices",
-    "description": "Export of whole and processed spices under food-safety-compliant packing, with the fumigation, lab-testing, and phytosanitary certificates that spice shipments need to clear import food-safety checks.",
-    "services": [
-      "Food-Safety-Compliant Packing",
-      "Fumigation & Lab Testing Coordination",
-      "Phytosanitary Certification",
-      "Vacuum & Moisture-Barrier Packaging",
-      "Small-Lot & Bulk Consolidation"
-    ]
-  },
-
-  "furniture": {
-    "title": "Furniture",
-    "description": "Export packing and freight for wooden, metal, and upholstered furniture, using knock-down crating and ISPM-15 compliant wood treatment to keep volume and damage risk down over long-haul shipping.",
-    "services": [
-      "Knock-Down (KD) Export Crating",
-      "ISPM-15 Compliant Wood Treatment",
-      "Volume-Optimized Container Loading",
-      "Corner & Edge Protection Packing",
-      "White-Glove Destination Delivery"
-    ]
-  },
-
   "cta": {
     "title": "Exporting Something Not on This List?",
     "description": "This schedule covers what we ship most — but our commodity desk builds custom export plans for other product categories too. Tell us what you're moving and where, and we'll quote it.",

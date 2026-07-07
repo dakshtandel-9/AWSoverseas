@@ -1,28 +1,38 @@
 import Link from "next/link";
-import { Mail, FileText, Newspaper, ArrowRight } from "lucide-react";
+import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 
 async function getCounts() {
   const db = supabaseAdmin();
-  const [messages, quotes, posts] = await Promise.all([
+  const [messages, quotes, posts, enquiries] = await Promise.all([
     db.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("quote_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("blog_posts").select("id", { count: "exact", head: true }).eq("published", true),
+    db.from("product_enquiries").select("id", { count: "exact", head: true }).eq("is_read", false),
   ]);
   return {
     unreadMessages: messages.count ?? 0,
     unreadQuotes: quotes.count ?? 0,
     publishedPosts: posts.count ?? 0,
+    unreadEnquiries: enquiries.count ?? 0,
   };
 }
 
 export default async function AdminDashboardPage() {
   const configured = isSupabaseConfigured();
-  const counts = configured ? await getCounts() : { unreadMessages: 0, unreadQuotes: 0, publishedPosts: 0 };
+  const counts = configured
+    ? await getCounts()
+    : { unreadMessages: 0, unreadQuotes: 0, publishedPosts: 0, unreadEnquiries: 0 };
 
   const cards = [
+    {
+      href: "/admin/enquiries",
+      label: "Unread product enquiries",
+      value: counts.unreadEnquiries,
+      icon: MessageSquareText,
+    },
     {
       href: "/admin/messages",
       label: "Unread messages",
@@ -54,7 +64,7 @@ export default async function AdminDashboardPage() {
         </div>
       )}
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-3">
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map(({ href, label, value, icon: Icon }) => (
           <Link
             key={href}

@@ -28,6 +28,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
   const mid = Math.ceil(words.length * 0.5);
   const line1 = words.slice(0, mid).join(" ");
   const line2 = words.slice(mid).join(" ");
+  const productCount = stats[0]?.number ?? "";
 
   return (
     <section className="relative overflow-hidden bg-[#04162f] pb-20 pt-32 sm:pb-24 sm:pt-36">
@@ -53,7 +54,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
             {data.badge}
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
-            EXPORT&nbsp;SCHEDULE&nbsp;/&nbsp;11&nbsp;COMMODITY&nbsp;CLASSES
+            PRODUCT&nbsp;CATALOG&nbsp;/&nbsp;{productCount}&nbsp;LISTED
           </span>
         </motion.div>
 

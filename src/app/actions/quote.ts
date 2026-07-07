@@ -28,9 +28,11 @@ export async function submitQuoteAction(
 
   // Every submitted field, keyed by its form `name` — keeps the full payload
   // even though only a subset is promoted to typed columns for the admin list.
+  // Skip Next's internal "$ACTION_..." FormData entries (Server Action
+  // binding metadata, not real form fields).
   const raw: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
-    if (typeof value === "string") raw[key] = value;
+    if (typeof value === "string" && !key.startsWith("$ACTION")) raw[key] = value;
   }
 
   const db = supabaseAdmin();

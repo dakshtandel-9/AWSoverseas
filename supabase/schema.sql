@@ -104,12 +104,109 @@ create table if not exists quote_submissions (
 create index if not exists quote_submissions_created_idx on quote_submissions (created_at desc);
 
 -- ============================================================
+-- products — admin-managed catalog shown on /products (no pricing;
+-- visitors submit a product_enquiries row instead of checking out)
+-- ============================================================
+create table if not exists products (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  description text not null default '',
+  category text not null default '',
+  image_url text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists products_active_idx on products (is_active, sort_order, created_at desc);
+
+drop trigger if exists products_touch on products;
+create trigger products_touch
+before update on products
+for each row execute function set_updated_at();
+
+-- ============================================================
+-- product_enquiries
+-- Submitted from the Enquiry modal on a product card. product_name is a
+-- snapshot (kept even if the product is later renamed/deleted).
+-- ============================================================
+create table if not exists product_enquiries (
+  id uuid primary key default gen_random_uuid(),
+  product_id uuid references products(id) on delete set null,
+  product_name text not null,
+  full_name text not null,
+  email text not null,
+  phone text not null default '',
+  message text not null default '',
+  is_read boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists product_enquiries_created_idx on product_enquiries (created_at desc);
+
+-- ============================================================
+-- user_profiles — one row per Google-authenticated customer
+-- (auth.users). Created on first login with a generated referral
+-- code; the user then completes their details (status moves
+-- incomplete -> pending) and an admin approves or rejects them.
+-- Only approved users can submit quotes / product enquiries.
+-- ============================================================
+create table if not exists user_profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  email text not null default '',
+  first_name text not null default '',
+  last_name text not null default '',
+  username text unique,                  -- lowercase slug; null until profile setup
+  phone text not null default '',
+  company_name text not null default '',
+  passport_number text not null default '',
+  passport_front_url text not null default '',
+  passport_back_url text not null default '',
+  referral_code text not null unique,    -- e.g. "AWS-7K39QD", generated at first login
+  referred_by uuid references user_profiles(id) on delete set null,
+  status text not null default 'incomplete'
+    check (status in ('incomplete', 'pending', 'approved', 'rejected')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists user_profiles_status_idx on user_profiles (status, created_at desc);
+create index if not exists user_profiles_referred_by_idx on user_profiles (referred_by);
+
+drop trigger if exists user_profiles_touch on user_profiles;
+create trigger user_profiles_touch
+before update on user_profiles
+for each row execute function set_updated_at();
+
+-- Link submissions to the signed-in account that made them (both forms
+-- now require an approved account, but old rows keep user_id = null).
+alter table quote_submissions add column if not exists user_id uuid references auth.users(id) on delete set null;
+alter table product_enquiries add column if not exists user_id uuid references auth.users(id) on delete set null;
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
 alter table blog_posts enable row level security;
 alter table contact_submissions enable row level security;
 alter table quote_submissions enable row level security;
+alter table products enable row level security;
+alter table product_enquiries enable row level security;
+alter table user_profiles enable row level security;
+
+-- user_profiles: no public policies — all reads/writes go through the
+-- service-role client in Server Actions (passport data must never be
+-- readable with the anon key).
+
+-- products: public can read only active products (catalog page). All
+-- writes happen via the service-role client from Server Actions.
+drop policy if exists "public read active products" on products;
+create policy "public read active products" on products
+  for select using (is_active = true);
+
+-- product_enquiries: no public policies — inserts go through a Server
+-- Action using the service-role client (same pattern as quote_submissions).
 
 -- site_settings: public can read (footer/contact page need it), no public writes.
 drop policy if exists "public read site_settings" on site_settings;
