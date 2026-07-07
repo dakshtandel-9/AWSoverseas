@@ -1,9 +1,10 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, AlertCircle, Check, X } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, Clock3, ShieldAlert, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState } from "@/app/actions/product-enquiry";
 
@@ -12,14 +13,79 @@ const inputClasses =
 
 const initialState: EnquiryFormState = {};
 
+/** Auth snapshot computed server-side on the products page. */
+export type EnquiryAuth = {
+  state: "guest" | "setup" | "pending" | "rejected" | "approved";
+  fullName?: string;
+  email?: string;
+  phone?: string;
+};
+
+/** Sign-in / verification prompt shown in the modal body instead of the form. */
+function GateNotice({ auth }: { auth: EnquiryAuth }) {
+  const content = {
+    guest: {
+      icon: UserRound,
+      iconClasses: "bg-[#eef3fb] text-[#033e8d]",
+      title: "Sign in to send an enquiry",
+      body: "Product enquiries are available to registered customers — sign in with your email to continue.",
+      cta: { href: "/login?next=/products", label: "Sign in" },
+    },
+    setup: {
+      icon: UserRound,
+      iconClasses: "bg-[#eef3fb] text-[#033e8d]",
+      title: "Complete your profile",
+      body: "Finish your account details and verification first — it only takes a couple of minutes.",
+      cta: { href: "/profile/setup", label: "Complete profile" },
+    },
+    pending: {
+      icon: Clock3,
+      iconClasses: "bg-amber-50 text-amber-500",
+      title: "Verification pending",
+      body: "Our team is reviewing your account. Enquiries unlock as soon as you're approved.",
+      cta: { href: "/profile", label: "View your profile" },
+    },
+    rejected: {
+      icon: ShieldAlert,
+      iconClasses: "bg-red-50 text-red-500",
+      title: "Verification declined",
+      body: "We couldn't verify your details. Update your passport information and resubmit for review.",
+      cta: { href: "/profile/setup", label: "Update details" },
+    },
+  }[auth.state as Exclude<EnquiryAuth["state"], "approved">];
+
+  const Icon = content.icon;
+
+  return (
+    <div className="flex flex-col items-center gap-4 overflow-y-auto px-8 py-12 text-center">
+      <span className={cn("grid size-12 shrink-0 place-items-center rounded-full", content.iconClasses)}>
+        <Icon className="size-6" />
+      </span>
+      <div>
+        <p className="text-base font-bold text-[#06234d]">{content.title}</p>
+        <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">{content.body}</p>
+      </div>
+      <Link
+        href={content.cta.href}
+        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#033e8d] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+      >
+        {content.cta.label}
+        <ArrowRight className="size-4" />
+      </Link>
+    </div>
+  );
+}
+
 export function EnquiryModal({
   productId,
   productName,
+  auth,
   open,
   onClose,
 }: {
   productId: string;
   productName: string;
+  auth: EnquiryAuth;
   open: boolean;
   onClose: () => void;
 }) {
@@ -85,7 +151,9 @@ export function EnquiryModal({
             </div>
 
             <AnimatePresence mode="wait">
-              {done ? (
+              {auth.state !== "approved" ? (
+                <GateNotice auth={auth} />
+              ) : done ? (
                 <motion.div
                   key="success"
                   initial={{ opacity: 0, y: 8 }}
@@ -124,7 +192,13 @@ export function EnquiryModal({
                     <label className="text-sm font-semibold text-[#06234d]">
                       Your name <span className="text-[#0489c2]">*</span>
                     </label>
-                    <input name="full-name" required placeholder="Full name" className={inputClasses} />
+                    <input
+                      name="full-name"
+                      required
+                      placeholder="Full name"
+                      defaultValue={auth.fullName}
+                      className={inputClasses}
+                    />
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -137,12 +211,19 @@ export function EnquiryModal({
                         name="email"
                         required
                         placeholder="you@company.com"
+                        defaultValue={auth.email}
                         className={inputClasses}
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-semibold text-[#06234d]">Phone</label>
-                      <input type="tel" name="phone" placeholder="+91 98765 43210" className={inputClasses} />
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="+91 98765 43210"
+                        defaultValue={auth.phone}
+                        className={inputClasses}
+                      />
                     </div>
                   </div>
 

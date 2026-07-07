@@ -10,6 +10,7 @@ import { NAV_LINKS, SERVICE_LINKS } from "@/lib/site";
 import { iconFor } from "@/lib/icons";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
+import { NavbarUser } from "@/components/auth/navbar-user";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -145,6 +146,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <NavbarUser scrolled={scrolled} />
             <Button
               href="/mobile-app"
               variant={scrolled ? "ghost" : "outline"}
@@ -265,6 +267,7 @@ export function Navbar() {
                 <Button href="/mobile-app" variant="outline" size="lg" magnetic={false}>
                   <Smartphone className="size-4" /> Download App
                 </Button>
+                <NavbarUser mobile />
               </div>
             </nav>
           </motion.div>

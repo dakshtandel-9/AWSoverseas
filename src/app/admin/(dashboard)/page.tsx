@@ -1,22 +1,24 @@
 import Link from "next/link";
-import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText } from "lucide-react";
+import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText, Users } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 
 async function getCounts() {
   const db = supabaseAdmin();
-  const [messages, quotes, posts, enquiries] = await Promise.all([
+  const [messages, quotes, posts, enquiries, pendingUsers] = await Promise.all([
     db.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("quote_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("blog_posts").select("id", { count: "exact", head: true }).eq("published", true),
     db.from("product_enquiries").select("id", { count: "exact", head: true }).eq("is_read", false),
+    db.from("user_profiles").select("id", { count: "exact", head: true }).eq("status", "pending"),
   ]);
   return {
     unreadMessages: messages.count ?? 0,
     unreadQuotes: quotes.count ?? 0,
     publishedPosts: posts.count ?? 0,
     unreadEnquiries: enquiries.count ?? 0,
+    pendingUsers: pendingUsers.count ?? 0,
   };
 }
 
@@ -24,9 +26,15 @@ export default async function AdminDashboardPage() {
   const configured = isSupabaseConfigured();
   const counts = configured
     ? await getCounts()
-    : { unreadMessages: 0, unreadQuotes: 0, publishedPosts: 0, unreadEnquiries: 0 };
+    : { unreadMessages: 0, unreadQuotes: 0, publishedPosts: 0, unreadEnquiries: 0, pendingUsers: 0 };
 
   const cards = [
+    {
+      href: "/admin/users",
+      label: "Users awaiting approval",
+      value: counts.pendingUsers,
+      icon: Users,
+    },
     {
       href: "/admin/enquiries",
       label: "Unread product enquiries",

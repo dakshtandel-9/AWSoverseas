@@ -2,7 +2,7 @@ import { createBrowserClient } from "@supabase/ssr";
 
 /**
  * Cookie-session Supabase client (anon key) for Client Components — used
- * to start the Google OAuth redirect and to show the signed-in state in
+ * for email/password sign-in and sign-up, and to show the signed-in state in
  * the navbar. Returns null when Supabase env vars aren't set so public
  * pages keep rendering in an unconfigured checkout of the site.
  */

@@ -2,6 +2,7 @@
 
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { getAccount } from "@/lib/account";
 
 export type QuoteFormState = { success?: boolean; error?: string };
 
@@ -9,6 +10,15 @@ export async function submitQuoteAction(
   _prevState: QuoteFormState,
   formData: FormData,
 ): Promise<QuoteFormState> {
+  // The page already gates this form, but never trust the client.
+  const account = await getAccount();
+  if (!account) {
+    return { error: "Please sign in to request a quote." };
+  }
+  if (account.profile.status !== "approved") {
+    return { error: "Your account is still being verified — quoting unlocks once it's approved." };
+  }
+
   const serviceType = String(formData.get("service-type") ?? "").trim();
   const shipmentType = String(formData.get("shipment-type") ?? "").trim();
   const originCountry = String(formData.get("origin-country") ?? "").trim();
@@ -46,6 +56,7 @@ export async function submitQuoteAction(
     email,
     phone,
     raw,
+    user_id: account.user.id,
   });
 
   if (error) {

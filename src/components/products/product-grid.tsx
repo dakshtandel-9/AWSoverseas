@@ -1,9 +1,10 @@
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProductCard } from "@/components/products/product-card";
+import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 import type { PublicProduct } from "@/lib/product-data";
 
-export function ProductGrid({ products }: { products: PublicProduct[] }) {
+export function ProductGrid({ products, auth }: { products: PublicProduct[]; auth: EnquiryAuth }) {
   return (
     <Section spacing="lg" tone="soft">
       <SectionHeading
@@ -19,7 +20,7 @@ export function ProductGrid({ products }: { products: PublicProduct[] }) {
       ) : (
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard key={product.id} product={product} index={i} auth={auth} />
           ))}
         </div>
       )}

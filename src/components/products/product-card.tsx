@@ -4,10 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MessageSquareText, ImageOff } from "lucide-react";
-import { EnquiryModal } from "@/components/products/enquiry-modal";
+import { EnquiryModal, type EnquiryAuth } from "@/components/products/enquiry-modal";
 import type { PublicProduct } from "@/lib/product-data";
 
-export function ProductCard({ product, index }: { product: PublicProduct; index: number }) {
+export function ProductCard({
+  product,
+  index,
+  auth,
+}: {
+  product: PublicProduct;
+  index: number;
+  auth: EnquiryAuth;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -59,6 +67,7 @@ export function ProductCard({ product, index }: { product: PublicProduct; index:
       <EnquiryModal
         productId={product.id}
         productName={product.name}
+        auth={auth}
         open={open}
         onClose={() => setOpen(false)}
       />

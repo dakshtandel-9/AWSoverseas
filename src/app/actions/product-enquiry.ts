@@ -2,6 +2,7 @@
 
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { getAccount } from "@/lib/account";
 
 export type EnquiryFormState = { success?: boolean; error?: string };
 
@@ -9,6 +10,15 @@ export async function submitProductEnquiryAction(
   _prevState: EnquiryFormState,
   formData: FormData,
 ): Promise<EnquiryFormState> {
+  // The modal already gates this form, but never trust the client.
+  const account = await getAccount();
+  if (!account) {
+    return { error: "Please sign in to send an enquiry." };
+  }
+  if (account.profile.status !== "approved") {
+    return { error: "Your account is still being verified — enquiries unlock once it's approved." };
+  }
+
   const productId = String(formData.get("product-id") ?? "").trim();
   const productName = String(formData.get("product-name") ?? "").trim();
   const fullName = String(formData.get("full-name") ?? "").trim();
@@ -32,6 +42,7 @@ export async function submitProductEnquiryAction(
     email,
     phone,
     message,
+    user_id: account.user.id,
   });
 
   if (error) {

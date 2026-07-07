@@ -87,6 +87,7 @@ function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: st
       type={field.type}
       required={field.required}
       placeholder={field.placeholder}
+      defaultValue={defaultValue}
       className={cn(inputClasses, field.type === "date" && "text-[#5b6b82]")}
     />
   );
@@ -148,12 +149,15 @@ export function QuoteForm({
   contactDetails,
   submit,
   product,
+  contactDefaults,
 }: {
   quoteForm: FieldGroup;
   shipmentDetails: FieldGroup;
   contactDetails: FieldGroup;
   submit: Submit;
   product?: string;
+  /** Prefills keyed by field label — from the signed-in user's profile. */
+  contactDefaults?: Record<string, string>;
 }) {
   const [state, formAction, pending] = useActionState(submitQuoteAction, initialState);
   const done = Boolean(state.success);
@@ -206,7 +210,7 @@ export function QuoteForm({
           >
             <FormSection index="01" group={quoteForm} />
             <FormSection index="02" group={shipmentDetails} fieldDefaults={shipmentDefaults} />
-            <FormSection index="03" group={contactDetails} />
+            <FormSection index="03" group={contactDetails} fieldDefaults={contactDefaults} />
 
             <div className="px-7 py-8 sm:px-10">
               <h3 className="text-base font-bold text-[#06234d]">{submit.title}</h3>
