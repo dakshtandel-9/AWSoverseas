@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Copy, Gift } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check, Copy, Gift } from "lucide-react";
 
 export function ReferralCodeCard({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
@@ -41,9 +42,16 @@ export function ReferralCodeCard({ code }: { code: string }) {
       </div>
 
       <p className="mt-4 text-sm leading-relaxed text-white/60">
-        Share this code with other importers — anyone who signs up with it shows below in your
+        Share this code with other importers — anyone who signs up with it shows in your
         referrals.
       </p>
+
+      <Link
+        href="/profile/referrals"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#48b8f8] hover:text-white"
+      >
+        View your referrals <ArrowRight className="size-3.5" />
+      </Link>
     </div>
   );
 }

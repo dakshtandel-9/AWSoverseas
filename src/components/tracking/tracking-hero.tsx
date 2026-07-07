@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Loader2, PackageSearch } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -29,9 +29,21 @@ export function TrackingHero({
   button: ButtonData;
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentRef = searchParams.get("ref");
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // The hero stays mounted across the navigation (same route, only the
+  // `ref` query param changes) — once that param updates, the lookup below
+  // has resolved, so clear the loading state and hand off to it.
+  useEffect(() => {
+    setLoading(false);
+    if (currentRef) {
+      document.getElementById("tracking-result")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [currentRef]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -42,9 +54,7 @@ export function TrackingHero({
     }
     setError(false);
     setLoading(true);
-    setTimeout(() => {
-      router.push(`/tracking?ref=${encodeURIComponent(ref)}`);
-    }, 700);
+    router.push(`/tracking?ref=${encodeURIComponent(ref)}`);
   }
 
   return (

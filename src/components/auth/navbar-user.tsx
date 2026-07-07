@@ -7,9 +7,11 @@ import { cn } from "@/lib/cn";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 
 /**
- * Session-aware navbar link: "Sign in" for guests, "Account" once a
- * Supabase session cookie exists. Reads the session locally (no network)
- * and tracks auth changes so it flips immediately after login/logout.
+ * Session-aware navbar auth control. Signed-out visitors see "Sign in" and
+ * "Sign up" links (both routed to /login, which toggles mode via ?mode=);
+ * once a Supabase session cookie exists it collapses to a single "Account"
+ * link. Reads the session locally (no network) and tracks auth changes so
+ * it flips immediately after login/logout.
  */
 export function NavbarUser({ scrolled, mobile }: { scrolled?: boolean; mobile?: boolean }) {
   const [signedIn, setSignedIn] = useState(false);
@@ -25,31 +27,71 @@ export function NavbarUser({ scrolled, mobile }: { scrolled?: boolean; mobile?: 
     return () => subscription.unsubscribe();
   }, []);
 
-  const href = signedIn ? "/profile" : "/login";
-  const label = signedIn ? "Account" : "Sign in";
-
   if (mobile) {
+    if (signedIn) {
+      return (
+        <Link
+          href="/profile"
+          className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-line text-base font-medium text-ink transition-colors hover:bg-brand-50"
+        >
+          <UserRound className="size-4" />
+          Account
+        </Link>
+      );
+    }
+    return (
+      <div className="flex gap-3">
+        <Link
+          href="/login"
+          className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full border border-line text-base font-medium text-ink transition-colors hover:bg-brand-50"
+        >
+          Sign in
+        </Link>
+        <Link
+          href="/login?mode=sign-up"
+          className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full border border-line text-base font-medium text-ink transition-colors hover:bg-brand-50"
+        >
+          Sign up
+        </Link>
+      </div>
+    );
+  }
+
+  if (signedIn) {
     return (
       <Link
-        href={href}
-        className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-line text-base font-medium text-ink transition-colors hover:bg-brand-50"
+        href="/profile"
+        className={cn(
+          "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
+          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+        )}
       >
         <UserRound className="size-4" />
-        {label}
+        Account
       </Link>
     );
   }
 
   return (
-    <Link
-      href={href}
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-        scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
-      )}
-    >
-      <UserRound className="size-4" />
-      {label}
-    </Link>
+    <div className="flex items-center gap-1.5">
+      <Link
+        href="/login"
+        className={cn(
+          "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
+          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+        )}
+      >
+        Sign in
+      </Link>
+      <Link
+        href="/login?mode=sign-up"
+        className={cn(
+          "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
+          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+        )}
+      >
+        Sign up
+      </Link>
+    </div>
   );
 }

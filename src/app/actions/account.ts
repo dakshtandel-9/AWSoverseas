@@ -111,9 +111,15 @@ export async function completeProfileAction(
     referredBy = referrer.id;
   }
 
-  // Approved accounts keep their status on edits; new and rejected
-  // accounts go (back) into the admin verification queue.
-  const status = profile.status === "approved" ? "approved" : "pending";
+  // Approved accounts keep their status on edits, unless the passport
+  // details actually changed — identity verification must be re-reviewed
+  // any time the underlying documents change. New and rejected accounts
+  // always (re)enter the admin verification queue.
+  const passportChanged =
+    passportNumber !== profile.passport_number ||
+    passportFrontUrl !== profile.passport_front_url ||
+    passportBackUrl !== profile.passport_back_url;
+  const status = profile.status === "approved" && !passportChanged ? "approved" : "pending";
 
   const { error } = await db
     .from("user_profiles")

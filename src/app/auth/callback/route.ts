@@ -34,6 +34,13 @@ export async function GET(request: NextRequest) {
         : { error: new Error("missing verification params") };
 
     if (!error) {
+      // Password recovery always lands on the reset form, regardless of
+      // profile status — the account isn't set up further until the
+      // password is actually changed.
+      if (type === "recovery") {
+        return NextResponse.redirect(`${origin}${next || "/reset-password"}`);
+      }
+
       const account = await getAccount();
       if (account && account.profile.status === "incomplete") {
         return NextResponse.redirect(`${origin}/profile/setup`);

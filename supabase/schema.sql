@@ -145,6 +145,15 @@ create table if not exists product_enquiries (
 
 create index if not exists product_enquiries_created_idx on product_enquiries (created_at desc);
 
+-- Admin-entered quote for an enquiry (price/quantity/delivery date the
+-- customer sees back on their profile once the admin has priced it out).
+alter table product_enquiries add column if not exists quoted_price numeric;
+alter table product_enquiries add column if not exists quoted_quantity text not null default '';
+alter table product_enquiries add column if not exists quoted_weight_kg numeric;
+alter table product_enquiries add column if not exists delivery_date date;
+alter table product_enquiries add column if not exists quote_status text not null default 'awaiting_quote'
+  check (quote_status in ('awaiting_quote', 'quoted'));
+
 -- ============================================================
 -- user_profiles — one row per Google-authenticated customer
 -- (auth.users). Created on first login with a generated referral
@@ -185,6 +194,30 @@ alter table quote_submissions add column if not exists user_id uuid references a
 alter table product_enquiries add column if not exists user_id uuid references auth.users(id) on delete set null;
 
 -- ============================================================
+-- Shipment tracking — every quote request gets a tracking number at
+-- submission time, so anyone (no login) can look up shipment progress
+-- at /tracking?ref=... . shipment_status is the current stage shown at a
+-- glance; shipment_milestones is the timeline an admin builds up under it.
+-- ============================================================
+alter table quote_submissions add column if not exists tracking_number text unique;
+alter table quote_submissions add column if not exists shipment_status text not null default 'pending'
+  check (shipment_status in ('pending', 'collected', 'customs_cleared', 'in_transit', 'delivered'));
+
+create unique index if not exists quote_submissions_tracking_idx on quote_submissions (tracking_number);
+
+create table if not exists shipment_milestones (
+  id uuid primary key default gen_random_uuid(),
+  quote_id uuid not null references quote_submissions(id) on delete cascade,
+  status text not null
+    check (status in ('pending', 'collected', 'customs_cleared', 'in_transit', 'delivered')),
+  location text not null default '',
+  note text not null default '',
+  created_at timestamptz not null default now()
+);
+
+create index if not exists shipment_milestones_quote_idx on shipment_milestones (quote_id, created_at);
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
@@ -194,6 +227,7 @@ alter table quote_submissions enable row level security;
 alter table products enable row level security;
 alter table product_enquiries enable row level security;
 alter table user_profiles enable row level security;
+alter table shipment_milestones enable row level security;
 
 -- user_profiles: no public policies — all reads/writes go through the
 -- service-role client in Server Actions (passport data must never be
@@ -220,6 +254,9 @@ drop policy if exists "public read published posts" on blog_posts;
 create policy "public read published posts" on blog_posts
   for select using (published = true);
 
--- contact_submissions / quote_submissions: no public policies at all.
--- Inserts and admin reads both go through the service-role client
--- (Server Actions), which bypasses RLS — the anon key gets zero access.
+-- contact_submissions / quote_submissions / shipment_milestones: no public
+-- policies at all. Inserts, admin reads, and the public tracking lookup all
+-- go through the service-role client (Server Actions), which bypasses RLS —
+-- the anon key gets zero access. The tracking lookup is safe to expose
+-- without RLS because it's scoped to an exact tracking_number match, not a
+-- broad select.

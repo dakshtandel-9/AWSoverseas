@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X, ArrowRight, Smartphone } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { NAV_LINKS, SERVICE_LINKS } from "@/lib/site";
 import { iconFor } from "@/lib/icons";
@@ -147,15 +147,6 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <NavbarUser scrolled={scrolled} />
-            <Button
-              href="/mobile-app"
-              variant={scrolled ? "ghost" : "outline"}
-              size="sm"
-              magnetic={false}
-              className={!scrolled ? "border-white/25 bg-white/10 text-white hover:bg-white/18 hover:border-white/40" : ""}
-            >
-              <Smartphone className="size-4" /> Download App
-            </Button>
             <Button href="/quote" variant="primary" size="sm">
               Request Quote <ArrowRight className="size-4" />
             </Button>
@@ -263,9 +254,6 @@ export function Navbar() {
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <Button href="/quote" variant="primary" size="lg" magnetic={false}>
                   Request a Quote <ArrowRight className="size-4" />
-                </Button>
-                <Button href="/mobile-app" variant="outline" size="lg" magnetic={false}>
-                  <Smartphone className="size-4" /> Download App
                 </Button>
                 <NavbarUser mobile />
               </div>

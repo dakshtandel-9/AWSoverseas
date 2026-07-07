@@ -1,7 +1,9 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { AlertCircle, ArrowRight, Check, Gift, Loader2, X } from "lucide-react";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { AlertCircle, ArrowRight, Check, Gift, Loader2, ShieldAlert, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import {
   completeProfileAction,
@@ -18,6 +20,91 @@ const inputClasses =
 type UsernameStatus = "idle" | "checking" | "available" | "taken" | "invalid";
 
 const initialState: ProfileFormState = {};
+
+/** Danger confirmation shown before a passport change is submitted on an approved account. */
+function ConfirmPassportChangeModal({
+  open,
+  onCancel,
+  onConfirm,
+}: {
+  open: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onCancel();
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open, onCancel]);
+
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className="absolute inset-0 bg-[#04162f]/60 backdrop-blur-sm"
+            onClick={onCancel}
+            aria-hidden
+          />
+
+          <motion.div
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="passport-change-title"
+            className="relative flex w-full max-w-sm flex-col items-center gap-4 rounded-3xl border border-[#e4e9f2] bg-white p-8 text-center shadow-[0_32px_96px_-24px_rgba(4,22,47,0.5)]"
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-red-50 text-red-600">
+              <ShieldAlert className="size-6" />
+            </span>
+            <div>
+              <p id="passport-change-title" className="text-base font-bold text-[#06234d]">
+                Your account will go back for review
+              </p>
+              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
+                You&rsquo;ve changed your passport details. Since these are what we verify your identity
+                against, your account moves back to pending until our team reviews the change — you
+                won&rsquo;t be able to request quotes or send enquiries until then.
+              </p>
+            </div>
+            <div className="mt-2 flex w-full items-center gap-3">
+              <button
+                type="button"
+                onClick={onCancel}
+                className="flex-1 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#06234d] transition-colors hover:border-[#0fade8]"
+              >
+                Go back
+              </button>
+              <button
+                type="button"
+                onClick={onConfirm}
+                className="flex-1 rounded-full bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700"
+              >
+                Save anyway
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body,
+  );
+}
 
 export function ProfileSetupForm({
   profile,
@@ -38,6 +125,22 @@ export function ProfileSetupForm({
   const [usernameStatus, setUsernameStatus] = useState<UsernameStatus>("idle");
   const [frontUrl, setFrontUrl] = useState(profile.passport_front_url);
   const [backUrl, setBackUrl] = useState(profile.passport_back_url);
+  const [passportNumber, setPassportNumber] = useState(profile.passport_number);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const confirmedRef = useRef(false);
+
+  const passportChanged =
+    passportNumber !== profile.passport_number ||
+    frontUrl !== profile.passport_front_url ||
+    backUrl !== profile.passport_back_url;
+
+  function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (profile.status === "approved" && passportChanged && !confirmedRef.current) {
+      e.preventDefault();
+      setConfirmOpen(true);
+    }
+  }
 
   // Once the user touches the username we stop regenerating it from names.
   const usernameEdited = useRef(Boolean(profile.username));
@@ -104,7 +207,9 @@ export function ProfileSetupForm({
 
   return (
     <form
+      ref={formRef}
       action={formAction}
+      onSubmit={onFormSubmit}
       className="mx-auto max-w-3xl rounded-3xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]"
     >
       <div className="flex items-center justify-between rounded-t-3xl border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
@@ -214,7 +319,8 @@ export function ProfileSetupForm({
             <input
               name="passport-number"
               required
-              defaultValue={profile.passport_number}
+              value={passportNumber}
+              onChange={(e) => setPassportNumber(e.target.value)}
               placeholder="e.g. A1234567"
               autoComplete="off"
               className={inputClasses}
@@ -259,6 +365,16 @@ export function ProfileSetupForm({
       )}
 
       <div className="px-7 py-8 sm:px-10">
+        {profile.status === "approved" && passportChanged && (
+          <div
+            className="mb-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+            role="alert"
+          >
+            <ShieldAlert className="mt-0.5 size-4 shrink-0" />
+            You&rsquo;ve changed your passport details — saving will send your account back for review.
+          </div>
+        )}
+
         {state.error && (
           <div
             className="mb-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
@@ -285,6 +401,16 @@ export function ProfileSetupForm({
           </p>
         )}
       </div>
+
+      <ConfirmPassportChangeModal
+        open={confirmOpen}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => {
+          confirmedRef.current = true;
+          setConfirmOpen(false);
+          formRef.current?.requestSubmit();
+        }}
+      />
     </form>
   );
 }

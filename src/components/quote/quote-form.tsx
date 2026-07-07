@@ -1,8 +1,9 @@
 "use client";
 
 import { useActionState, useEffect, useId, useRef } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, ChevronDown, PackageSearch } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 import { CountrySelect } from "@/components/quote/country-select";
@@ -198,6 +199,24 @@ export function QuoteForm({
             <p className="max-w-sm text-base font-medium leading-relaxed text-[#0489c2]">
               {submit.successMessage}
             </p>
+
+            {state.trackingNumber && (
+              <div className="mt-2 flex flex-col items-center gap-3 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-6 py-5">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">
+                  Your tracking number
+                </p>
+                <p className="font-mono text-lg font-bold text-[#06234d]">{state.trackingNumber}</p>
+                <p className="max-w-xs text-xs leading-relaxed text-[#5b6b82]">
+                  Save this number — no account needed to check your shipment's progress.
+                </p>
+                <Link
+                  href={`/tracking?ref=${encodeURIComponent(state.trackingNumber)}`}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#033e8d] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+                >
+                  <PackageSearch className="size-4" /> Track this shipment
+                </Link>
+              </div>
+            )}
           </motion.div>
         ) : (
           <motion.form

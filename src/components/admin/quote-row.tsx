@@ -2,6 +2,7 @@
 
 import { markQuoteReadAction, deleteQuoteAction } from "@/app/admin/(dashboard)/quotes/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
 
 type Quote = {
   id: string;
@@ -16,7 +17,11 @@ type Quote = {
   raw: Record<string, string>;
   is_read: boolean;
   created_at: string;
+  tracking_number: string | null;
+  shipment_status: string;
 };
+
+type Milestone = { id: string; status: string; location: string; note: string; created_at: string };
 
 const PROMOTED_KEYS = new Set([
   "service-type",
@@ -33,7 +38,7 @@ function toLabel(key: string) {
   return key.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export function QuoteRow({ item }: { item: Quote }) {
+export function QuoteRow({ item, milestones }: { item: Quote; milestones: Milestone[] }) {
   const createdAt = new Date(item.created_at).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
@@ -82,6 +87,13 @@ export function QuoteRow({ item }: { item: Quote }) {
               ))}
             </div>
           )}
+
+          <ShipmentStatusPanel
+            quoteId={item.id}
+            trackingNumber={item.tracking_number}
+            currentStatus={item.shipment_status}
+            milestones={milestones}
+          />
         </div>
       }
     />

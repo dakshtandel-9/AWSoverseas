@@ -74,7 +74,7 @@ export default async function LoginPage({
             <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-[#94a3b8]">
               <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
               New accounts are verified by our team before quoting is enabled — you&rsquo;ll complete a
-              short profile after confirming your email.
+              short profile right after creating your account.
             </p>
           </div>
         </div>

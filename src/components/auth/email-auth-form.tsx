@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { AlertCircle, ArrowRight, Loader2, Mail } from "lucide-react";
+import Link from "next/link";
+import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import { passwordError } from "@/lib/password";
+import { PasswordChecklist } from "@/components/auth/password-checklist";
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
@@ -11,18 +14,20 @@ const inputClasses =
 type Mode = "sign-in" | "sign-up";
 
 /**
- * Email/password auth — one form, two modes. Sign-up sends Supabase's
- * confirmation email (project has "Confirm email" enabled) and shows a
- * "check your inbox" state instead of signing the user in immediately;
- * sign-in goes straight through and the caller navigates on success.
+ * Email/password auth — one form, two modes. Email confirmation is OFF
+ * for now (Supabase's "Confirm email" toggle is disabled — see
+ * awsoversea-customer-auth memory) because outbound email is unreliable
+ * pre-launch, so sign-up signs the user in immediately, same as sign-in.
+ * Re-enable the "check your inbox" step once email delivery is fixed and
+ * "Confirm email" is turned back on in Supabase.
  */
 export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: string }) {
   const [mode, setMode] = useState<Mode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
-  const [sentTo, setSentTo] = useState("");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,18 +37,22 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
       return;
     }
 
-    setPending(true);
     setError("");
 
     if (mode === "sign-up") {
-      const emailRedirectTo = `${window.location.origin}/auth/callback${
-        next ? `?next=${encodeURIComponent(next)}` : ""
-      }`;
-      const { error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo },
-      });
+      const strengthError = passwordError(password);
+      if (strengthError) {
+        setError(strengthError);
+        return;
+      }
+      if (password !== confirmPassword) {
+        setError("Passwords don't match.");
+        return;
+      }
+
+      setPending(true);
+      const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
+
       if (signUpError) {
         setError(
           signUpError.message.includes("already registered")
@@ -53,42 +62,34 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
         setPending(false);
         return;
       }
-      setSentTo(email);
-      setPending(false);
+
+      // Supabase doesn't error on a duplicate + already-confirmed email (to
+      // avoid leaking which emails are registered) — it silently returns a
+      // user with no identities instead. That's the only signal we get.
+      if (data.user && data.user.identities && data.user.identities.length === 0) {
+        setError("That email already has an account — try signing in instead.");
+        setPending(false);
+        return;
+      }
+
+      // With "Confirm email" off, signUp already returns a live session.
+      window.location.assign(next || "/profile");
       return;
     }
 
+    setPending(true);
     const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
     if (signInError) {
       setError(
         signInError.message.includes("Invalid login credentials")
           ? "Incorrect email or password."
-          : signInError.message.includes("Email not confirmed")
-            ? "Please confirm your email first — check your inbox for the link we sent."
-            : "Couldn't sign in. Please try again.",
+          : "Couldn't sign in. Please try again.",
       );
       setPending(false);
       return;
     }
 
     window.location.assign(next || "/profile");
-  }
-
-  if (sentTo) {
-    return (
-      <div className="flex flex-col items-center gap-4 py-4 text-center">
-        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#033e8d]">
-          <Mail className="size-6" />
-        </span>
-        <div>
-          <p className="text-base font-bold text-[#06234d]">Check your inbox</p>
-          <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
-            We&rsquo;ve sent a confirmation link to <span className="font-semibold">{sentTo}</span>. Click it to
-            activate your account, then come back and sign in.
-          </p>
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -101,6 +102,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
             onClick={() => {
               setMode(m);
               setError("");
+              setConfirmPassword("");
             }}
             className={cn(
               "rounded-lg py-2 text-sm font-semibold transition-colors",
@@ -127,18 +129,41 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-[#06234d]">Password</label>
+          <div className="flex items-baseline justify-between">
+            <label className="text-sm font-semibold text-[#06234d]">Password</label>
+            {mode === "sign-in" && (
+              <Link href="/forgot-password" className="text-xs font-semibold text-[#0489c2] hover:underline">
+                Forgot password?
+              </Link>
+            )}
+          </div>
           <input
             type="password"
             required
-            minLength={6}
+            minLength={mode === "sign-up" ? 8 : undefined}
             autoComplete={mode === "sign-up" ? "new-password" : "current-password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder={mode === "sign-up" ? "At least 6 characters" : "Your password"}
+            placeholder={mode === "sign-up" ? "Create a password" : "Your password"}
             className={inputClasses}
           />
+          {mode === "sign-up" && <PasswordChecklist password={password} />}
         </div>
+
+        {mode === "sign-up" && (
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-[#06234d]">Confirm password</label>
+            <input
+              type="password"
+              required
+              autoComplete="new-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Re-enter your password"
+              className={inputClasses}
+            />
+          </div>
+        )}
 
         {error && (
           <p className="flex items-start gap-2 text-sm font-medium text-red-600" role="alert">

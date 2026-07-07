@@ -25,9 +25,6 @@ export const NAV_LINKS = [
   { label: "Services", href: "/services", mega: true },
   { label: "Industries", href: "/industries" },
   { label: "Products", href: "/products" },
-  { label: "Tracking", href: "/tracking" },
-  { label: "Mobile App", href: "/mobile-app" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

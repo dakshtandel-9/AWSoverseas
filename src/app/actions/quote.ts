@@ -3,8 +3,9 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
+import { createTrackingNumber } from "@/lib/tracking";
 
-export type QuoteFormState = { success?: boolean; error?: string };
+export type QuoteFormState = { success?: boolean; error?: string; trackingNumber?: string };
 
 export async function submitQuoteAction(
   _prevState: QuoteFormState,
@@ -45,6 +46,8 @@ export async function submitQuoteAction(
     if (typeof value === "string" && !key.startsWith("$ACTION")) raw[key] = value;
   }
 
+  const trackingNumber = await createTrackingNumber();
+
   const db = supabaseAdmin();
   const { error } = await db.from("quote_submissions").insert({
     service_type: serviceType,
@@ -57,11 +60,12 @@ export async function submitQuoteAction(
     phone,
     raw,
     user_id: account.user.id,
+    tracking_number: trackingNumber,
   });
 
   if (error) {
     return { error: "Something went wrong submitting your request. Please try again." };
   }
 
-  return { success: true };
+  return { success: true, trackingNumber };
 }

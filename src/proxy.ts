@@ -62,5 +62,7 @@ export const config = {
     "/profile/:path*",
     "/quote",
     "/products",
+    "/forgot-password",
+    "/reset-password",
   ],
 };

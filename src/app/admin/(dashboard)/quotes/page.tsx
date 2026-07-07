@@ -9,6 +9,21 @@ export default async function AdminQuotesPage() {
     ? (await supabaseAdmin().from("quote_submissions").select("*").order("created_at", { ascending: false })).data ?? []
     : [];
 
+  const milestonesByQuote: Record<string, { id: string; status: string; location: string; note: string; created_at: string }[]> = {};
+  if (configured && items.length > 0) {
+    const { data: milestones } = await supabaseAdmin()
+      .from("shipment_milestones")
+      .select("id, quote_id, status, location, note, created_at")
+      .in(
+        "quote_id",
+        items.map((i) => i.id),
+      )
+      .order("created_at", { ascending: true });
+    for (const m of milestones ?? []) {
+      (milestonesByQuote[m.quote_id] ??= []).push(m);
+    }
+  }
+
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
@@ -28,7 +43,7 @@ export default async function AdminQuotesPage() {
           </p>
         )}
         {items.map((item) => (
-          <QuoteRow key={item.id} item={item} />
+          <QuoteRow key={item.id} item={item} milestones={milestonesByQuote[item.id] ?? []} />
         ))}
       </div>
     </div>

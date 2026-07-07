@@ -11,13 +11,13 @@ import {
   Pencil,
   Phone,
   ShieldAlert,
-  Users,
 } from "lucide-react";
 import { getAccount, type AccountStatus } from "@/lib/account";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { AccountHero } from "@/components/account/account-hero";
 import { ReferralCodeCard } from "@/components/account/referral-code-card";
 import { SignOutButton } from "@/components/account/sign-out-button";
+import { ActivityList, type ActivityItem } from "@/components/account/activity-list";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
@@ -62,11 +62,48 @@ export default async function ProfilePage() {
   const banner = STATUS_BANNER[profile.status as Exclude<AccountStatus, "incomplete">];
   const BannerIcon = banner.icon;
 
-  const { data: referrals } = await supabaseAdmin()
-    .from("user_profiles")
-    .select("id, first_name, last_name, username, created_at")
-    .eq("referred_by", profile.id)
-    .order("created_at", { ascending: false });
+  const db = supabaseAdmin();
+
+  const [{ data: quotes }, { data: enquiries }] = await Promise.all([
+    db
+      .from("quote_submissions")
+      .select("id, service_type, origin_country, destination_country, created_at")
+      .eq("user_id", account.user.id)
+      .order("created_at", { ascending: false }),
+    db
+      .from("product_enquiries")
+      .select(
+        "id, product_name, message, created_at, quote_status, quoted_price, quoted_quantity, quoted_weight_kg, delivery_date",
+      )
+      .eq("user_id", account.user.id)
+      .order("created_at", { ascending: false }),
+  ]);
+
+  const quoteItems: ActivityItem[] = (quotes ?? []).map((q) => ({
+    id: q.id,
+    title: q.service_type || "Shipping quote",
+    subtitle:
+      q.origin_country && q.destination_country ? `${q.origin_country} → ${q.destination_country}` : undefined,
+    createdAt: formatDate(q.created_at),
+  }));
+
+  const enquiryItems: ActivityItem[] = (enquiries ?? []).map((e) => ({
+    id: e.id,
+    title: e.product_name,
+    subtitle: e.message || undefined,
+    createdAt: formatDate(e.created_at),
+    badge:
+      e.quote_status === "quoted"
+        ? [
+            `₹${Number(e.quoted_price).toLocaleString("en-IN")}`,
+            e.quoted_quantity && `Qty ${e.quoted_quantity}`,
+            e.quoted_weight_kg != null && `${e.quoted_weight_kg} kg`,
+            e.delivery_date && `Delivery by ${formatDate(e.delivery_date)}`,
+          ]
+            .filter(Boolean)
+            .join(" · ")
+        : "Awaiting quote",
+  }));
 
   const details = [
     { icon: Mail, label: "Email", value: profile.email },
@@ -138,33 +175,22 @@ export default async function ProfilePage() {
               </dl>
             </div>
 
-            <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
-              <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#06234d]">
-                <Users className="size-4 text-[#0489c2]" />
-                Your referrals
-              </h2>
-              <p className="mt-1 text-sm text-[#5b6b82]">People who signed up with your code.</p>
+            <ActivityList
+              icon={FileText}
+              title="Your quote requests"
+              description="Shipping quotes you've requested."
+              emptyLabel="No quote requests yet."
+              items={quoteItems}
+            />
 
-              {!referrals || referrals.length === 0 ? (
-                <p className="mt-5 rounded-2xl border border-dashed border-[#e4e9f2] px-5 py-8 text-center text-sm text-[#94a3b8]">
-                  No referrals yet — share your code to get started.
-                </p>
-              ) : (
-                <ul className="mt-5 divide-y divide-[#eef3fb]">
-                  {referrals.map((r) => (
-                    <li key={r.id} className="flex items-center justify-between gap-3 py-3.5">
-                      <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-[#06234d]">
-                          {r.first_name} {r.last_name}
-                        </p>
-                        {r.username && <p className="truncate text-xs text-[#5b6b82]">@{r.username}</p>}
-                      </div>
-                      <span className="shrink-0 text-xs text-[#94a3b8]">Joined {formatDate(r.created_at)}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <ActivityList
+              icon={MessageSquareText}
+              title="Your product enquiries"
+              description="Enquiries you've sent from the catalog."
+              emptyLabel="No product enquiries yet."
+              items={enquiryItems}
+            />
+
           </div>
 
           <div className="flex flex-col gap-6">

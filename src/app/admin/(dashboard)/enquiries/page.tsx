@@ -6,7 +6,8 @@ import { EnquiryRow } from "@/components/admin/enquiry-row";
 export default async function AdminEnquiriesPage() {
   const configured = isSupabaseConfigured();
   const items = configured
-    ? (await supabaseAdmin().from("product_enquiries").select("*").order("created_at", { ascending: false })).data ?? []
+    ? (await supabaseAdmin().from("product_enquiries").select("*").order("created_at", { ascending: false }))
+        .data ?? []
     : [];
 
   return (
