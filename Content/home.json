@@ -175,6 +175,11 @@
         "title": "Worldwide Shipping Coverage",
         "description": "Connecting businesses across Asia, Europe, North America, South America, Africa, and the Middle East with dependable freight solutions."
     },
+    "products": {
+        "title": "Products We Export",
+        "description": "Browse a preview of what's moving through our export desk — send an enquiry on anything you don't see listed.",
+        "button": "View All Products"
+    },
     "blogs": {
         "title": "Latest Logistics Insights",
         "description": "Stay updated with shipping regulations, logistics trends, import-export guides, and industry news.",

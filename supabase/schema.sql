@@ -146,13 +146,18 @@ create table if not exists product_enquiries (
 create index if not exists product_enquiries_created_idx on product_enquiries (created_at desc);
 
 -- Admin-entered quote for an enquiry (price/quantity/delivery date the
--- customer sees back on their profile once the admin has priced it out).
+-- customer sees back on their profile once the admin has priced it out),
+-- plus the approve/reject decision on the enquiry itself.
 alter table product_enquiries add column if not exists quoted_price numeric;
 alter table product_enquiries add column if not exists quoted_quantity text not null default '';
 alter table product_enquiries add column if not exists quoted_weight_kg numeric;
 alter table product_enquiries add column if not exists delivery_date date;
-alter table product_enquiries add column if not exists quote_status text not null default 'awaiting_quote'
-  check (quote_status in ('awaiting_quote', 'quoted'));
+alter table product_enquiries add column if not exists quote_status text not null default 'awaiting_quote';
+alter table product_enquiries add column if not exists rejection_reason text not null default '';
+
+alter table product_enquiries drop constraint if exists product_enquiries_quote_status_check;
+alter table product_enquiries add constraint product_enquiries_quote_status_check
+  check (quote_status in ('awaiting_quote', 'quoted', 'rejected'));
 
 -- ============================================================
 -- user_profiles — one row per Google-authenticated customer

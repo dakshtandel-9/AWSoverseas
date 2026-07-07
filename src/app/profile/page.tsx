@@ -73,7 +73,7 @@ export default async function ProfilePage() {
     db
       .from("product_enquiries")
       .select(
-        "id, product_name, message, created_at, quote_status, quoted_price, quoted_quantity, quoted_weight_kg, delivery_date",
+        "id, product_name, message, created_at, quote_status, quoted_price, quoted_quantity, quoted_weight_kg, delivery_date, rejection_reason",
       )
       .eq("user_id", account.user.id)
       .order("created_at", { ascending: false }),
@@ -87,23 +87,43 @@ export default async function ProfilePage() {
     createdAt: formatDate(q.created_at),
   }));
 
-  const enquiryItems: ActivityItem[] = (enquiries ?? []).map((e) => ({
-    id: e.id,
-    title: e.product_name,
-    subtitle: e.message || undefined,
-    createdAt: formatDate(e.created_at),
-    badge:
-      e.quote_status === "quoted"
-        ? [
-            `₹${Number(e.quoted_price).toLocaleString("en-IN")}`,
-            e.quoted_quantity && `Qty ${e.quoted_quantity}`,
-            e.quoted_weight_kg != null && `${e.quoted_weight_kg} kg`,
-            e.delivery_date && `Delivery by ${formatDate(e.delivery_date)}`,
-          ]
-            .filter(Boolean)
-            .join(" · ")
-        : "Awaiting quote",
-  }));
+  const enquiryItems: ActivityItem[] = (enquiries ?? []).map((e) => {
+    if (e.quote_status === "quoted") {
+      return {
+        id: e.id,
+        title: e.product_name,
+        subtitle: e.message || undefined,
+        createdAt: formatDate(e.created_at),
+        badgeTone: "positive" as const,
+        badge: [
+          `₹${Number(e.quoted_price).toLocaleString("en-IN")}`,
+          e.quoted_quantity && `Qty ${e.quoted_quantity}`,
+          e.quoted_weight_kg != null && `${e.quoted_weight_kg} kg`,
+          e.delivery_date && `Delivery by ${formatDate(e.delivery_date)}`,
+        ]
+          .filter(Boolean)
+          .join(" · "),
+      };
+    }
+    if (e.quote_status === "rejected") {
+      return {
+        id: e.id,
+        title: e.product_name,
+        subtitle: e.message || undefined,
+        createdAt: formatDate(e.created_at),
+        badgeTone: "negative" as const,
+        badge: e.rejection_reason ? `Rejected — ${e.rejection_reason}` : "Rejected",
+      };
+    }
+    return {
+      id: e.id,
+      title: e.product_name,
+      subtitle: e.message || undefined,
+      createdAt: formatDate(e.created_at),
+      badgeTone: "neutral" as const,
+      badge: "Awaiting review",
+    };
+  });
 
   const details = [
     { icon: Mail, label: "Email", value: profile.email },

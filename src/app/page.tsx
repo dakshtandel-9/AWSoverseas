@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { home, faq, metaFrom } from "@/lib/content";
 import { getPublishedPosts } from "@/lib/blog-data";
+import { getActiveProducts } from "@/lib/product-data";
+import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { Hero } from "@/components/home/hero";
 import { TrustedPartners } from "@/components/home/trusted-partners";
 import { AboutPreview } from "@/components/home/about-preview";
@@ -9,6 +11,7 @@ import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
 import { GlobalCoverage } from "@/components/home/global-coverage";
+import { ProductsTeaser } from "@/components/home/products-teaser";
 import { BlogTeaser } from "@/components/home/blog-teaser";
 import { FaqSection } from "@/components/home/faq-section";
 import { DownloadCTA } from "@/components/home/download-cta";
@@ -26,7 +29,8 @@ const ORG_JSONLD = {
 };
 
 export default async function HomePage() {
-  const posts = await getPublishedPosts();
+  const [posts, catalog, account] = await Promise.all([getPublishedPosts(), getActiveProducts(), getAccount()]);
+  const auth = enquiryAuthFor(account);
 
   return (
     <>
@@ -43,6 +47,7 @@ export default async function HomePage() {
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />
       <GlobalCoverage data={home.coverage} />
+      <ProductsTeaser data={home.products} products={catalog} auth={auth} eyebrow="Catalog" />
       <BlogTeaser
         data={home.blogs}
         posts={posts.map((p) => ({

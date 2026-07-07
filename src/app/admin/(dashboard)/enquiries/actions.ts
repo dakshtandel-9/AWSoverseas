@@ -15,7 +15,7 @@ export async function deleteEnquiryAction(id: string) {
   revalidatePath("/admin/enquiries");
 }
 
-/** Admin prices out an enquiry — the customer then sees this on their profile. */
+/** Admin approves and prices out an enquiry — the customer then sees this on their profile. */
 export async function setEnquiryQuoteAction(
   id: string,
   price: number,
@@ -32,7 +32,28 @@ export async function setEnquiryQuoteAction(
       quoted_weight_kg: weightKg,
       delivery_date: deliveryDate || null,
       quote_status: "quoted",
+      rejection_reason: "",
     })
+    .eq("id", id);
+  revalidatePath("/admin/enquiries");
+}
+
+/** Admin declines an enquiry — the customer sees the decision (and reason) on their profile. */
+export async function rejectEnquiryAction(id: string, reason: string) {
+  const db = supabaseAdmin();
+  await db
+    .from("product_enquiries")
+    .update({ quote_status: "rejected", rejection_reason: reason })
+    .eq("id", id);
+  revalidatePath("/admin/enquiries");
+}
+
+/** Reverts an enquiry back to awaiting review — undoes an accidental approve/reject. */
+export async function resetEnquiryStatusAction(id: string) {
+  const db = supabaseAdmin();
+  await db
+    .from("product_enquiries")
+    .update({ quote_status: "awaiting_quote", rejection_reason: "" })
     .eq("id", id);
   revalidatePath("/admin/enquiries");
 }

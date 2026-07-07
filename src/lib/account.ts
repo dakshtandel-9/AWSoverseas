@@ -3,6 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 export type AccountStatus = "incomplete" | "pending" | "approved" | "rejected";
 
@@ -25,6 +26,19 @@ export type UserProfile = {
 };
 
 export type Account = { user: User; profile: UserProfile };
+
+/** Derives the product-enquiry gate state shown to the Enquiry modal from an account (or guest). */
+export function enquiryAuthFor(account: Account | null): EnquiryAuth {
+  if (!account) return { state: "guest" };
+  if (account.profile.status === "incomplete") return { state: "setup" };
+  if (account.profile.status !== "approved") return { state: account.profile.status };
+  return {
+    state: "approved",
+    fullName: `${account.profile.first_name} ${account.profile.last_name}`.trim(),
+    email: account.profile.email,
+    phone: account.profile.phone,
+  };
+}
 
 /** The signed-in auth user from the session cookie, or null. */
 export async function getAuthUser(): Promise<User | null> {

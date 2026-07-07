@@ -1,7 +1,13 @@
 "use client";
 
-import { useRef, useTransition } from "react";
-import { markEnquiryReadAction, deleteEnquiryAction, setEnquiryQuoteAction } from "@/app/admin/(dashboard)/enquiries/actions";
+import { useRef, useState, useTransition } from "react";
+import {
+  markEnquiryReadAction,
+  deleteEnquiryAction,
+  setEnquiryQuoteAction,
+  rejectEnquiryAction,
+  resetEnquiryStatusAction,
+} from "@/app/admin/(dashboard)/enquiries/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 
 type Enquiry = {
@@ -18,6 +24,19 @@ type Enquiry = {
   quoted_weight_kg: number | null;
   delivery_date: string | null;
   quote_status: string;
+  rejection_reason: string;
+};
+
+const STATUS_BADGE: Record<string, string> = {
+  awaiting_quote: "bg-[#eef3fb] text-[#033e8d]",
+  quoted: "bg-emerald-50 text-emerald-700",
+  rejected: "bg-red-50 text-red-600",
+};
+
+const STATUS_LABEL: Record<string, string> = {
+  awaiting_quote: "Awaiting review",
+  quoted: "Approved & quoted",
+  rejected: "Rejected",
 };
 
 function formatDate(iso: string) {
@@ -53,18 +72,10 @@ function QuoteForm({ item }: { item: Enquiry }) {
   }
 
   return (
-    <div className="mt-4 border-t border-[#e4e9f2] pt-4">
+    <div>
       <p className="text-sm font-semibold text-[#06234d]">
-        {item.quote_status === "quoted" ? "Update quote" : "Send a quote"}
+        {item.quote_status === "quoted" ? "Update quote" : "Approve & send a quote"}
       </p>
-      {item.quote_status === "quoted" && (
-        <p className="mt-1 text-xs text-[#5b6b82]">
-          Currently quoted: ₹{item.quoted_price?.toLocaleString("en-IN")}
-          {item.quoted_quantity && ` · Qty ${item.quoted_quantity}`}
-          {item.quoted_weight_kg != null && ` · ${item.quoted_weight_kg} kg`}
-          {item.delivery_date && ` · Delivery by ${formatDate(item.delivery_date)}`}
-        </p>
-      )}
       <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
         <div className="w-32">
           <Field label="Price (₹)">
@@ -113,9 +124,83 @@ function QuoteForm({ item }: { item: Enquiry }) {
           disabled={pending}
           className="rounded-lg bg-[#033e8d] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#052f69] disabled:opacity-50"
         >
-          {item.quote_status === "quoted" ? "Update quote" : "Send quote"}
+          {item.quote_status === "quoted" ? "Update quote" : "Approve & send"}
         </button>
       </form>
+    </div>
+  );
+}
+
+function RejectForm({ item }: { item: Enquiry }) {
+  const [pending, startTransition] = useTransition();
+  const [reason, setReason] = useState("");
+
+  return (
+    <div>
+      <p className="text-sm font-semibold text-[#06234d]">Reject this enquiry</p>
+      <div className="mt-3 flex flex-wrap items-end gap-2.5">
+        <div className="min-w-[220px] flex-1">
+          <Field label="Reason (optional)">
+            <input
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              placeholder="Out of stock, MOQ not met, etc."
+              className={fieldClasses}
+            />
+          </Field>
+        </div>
+        <button
+          type="button"
+          disabled={pending}
+          onClick={() => startTransition(() => rejectEnquiryAction(item.id, reason))}
+          className="rounded-lg border border-red-200 px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-50 disabled:opacity-50"
+        >
+          Reject enquiry
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DecisionPanel({ item }: { item: Enquiry }) {
+  const [pending, startTransition] = useTransition();
+
+  return (
+    <div className="mt-4 border-t border-[#e4e9f2] pt-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span
+          className={`inline-flex w-fit items-center rounded-full px-2.5 py-1 text-xs font-semibold ${STATUS_BADGE[item.quote_status] ?? STATUS_BADGE.awaiting_quote}`}
+        >
+          {STATUS_LABEL[item.quote_status] ?? "Awaiting review"}
+        </span>
+        {item.quote_status !== "awaiting_quote" && (
+          <button
+            type="button"
+            disabled={pending}
+            onClick={() => startTransition(() => resetEnquiryStatusAction(item.id))}
+            className="text-xs font-semibold text-[#5b6b82] underline-offset-2 hover:underline disabled:opacity-50"
+          >
+            Reset to awaiting review
+          </button>
+        )}
+      </div>
+
+      {item.quote_status === "quoted" && (
+        <p className="mt-2 text-xs text-[#5b6b82]">
+          Currently quoted: ₹{item.quoted_price?.toLocaleString("en-IN")}
+          {item.quoted_quantity && ` · Qty ${item.quoted_quantity}`}
+          {item.quoted_weight_kg != null && ` · ${item.quoted_weight_kg} kg`}
+          {item.delivery_date && ` · Delivery by ${formatDate(item.delivery_date)}`}
+        </p>
+      )}
+      {item.quote_status === "rejected" && item.rejection_reason && (
+        <p className="mt-2 text-xs text-[#5b6b82]">Reason: {item.rejection_reason}</p>
+      )}
+
+      <div className="mt-4 flex flex-col gap-5">
+        <QuoteForm item={item} />
+        <RejectForm item={item} />
+      </div>
     </div>
   );
 }
@@ -157,7 +242,7 @@ export function EnquiryRow({ item }: { item: Enquiry }) {
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}
-          <QuoteForm item={item} />
+          <DecisionPanel item={item} />
         </div>
       }
     />

@@ -6,6 +6,13 @@ export type ActivityItem = {
   subtitle?: string;
   createdAt: string;
   badge?: string;
+  badgeTone?: "neutral" | "positive" | "negative";
+};
+
+const BADGE_TONE: Record<NonNullable<ActivityItem["badgeTone"]>, string> = {
+  neutral: "bg-[#eef3fb] text-[#033e8d]",
+  positive: "bg-emerald-50 text-emerald-700",
+  negative: "bg-red-50 text-red-600",
 };
 
 /** Shared card shell for "Your quote requests" / "Your product enquiries" on the profile page. */
@@ -46,7 +53,9 @@ export function ActivityList({
                 <span className="shrink-0 text-xs text-[#94a3b8]">{item.createdAt}</span>
               </div>
               {item.badge && (
-                <p className="inline-flex w-fit items-center rounded-full bg-[#eef3fb] px-2.5 py-1 text-xs font-semibold text-[#033e8d]">
+                <p
+                  className={`inline-flex w-fit items-center rounded-full px-2.5 py-1 text-xs font-semibold ${BADGE_TONE[item.badgeTone ?? "neutral"]}`}
+                >
                   {item.badge}
                 </p>
               )}
