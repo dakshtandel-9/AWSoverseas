@@ -13,8 +13,9 @@ export function ChromeGate({
 }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
+  const isBareChrome = pathname === "/login";
 
-  if (isAdmin) return <>{children}</>;
+  if (isAdmin || isBareChrome) return <>{children}</>;
 
   return (
     <>

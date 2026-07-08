@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { FileText, MessageSquareText, Gift, ShieldCheck } from "lucide-react";
 import { getAccount } from "@/lib/account";
-import { AccountHero } from "@/components/account/account-hero";
 import { EmailAuthForm } from "@/components/auth/email-auth-form";
-import { Section } from "@/components/ui/section";
+import { Logo } from "@/components/ui/logo";
 
 export const metadata: Metadata = {
   title: "Sign in — AWSoversea",
@@ -36,49 +35,117 @@ export default async function LoginPage({
     redirect(account.profile.status === "incomplete" ? "/profile/setup" : nextPath || "/profile");
   }
 
+  const isSignUp = mode === "sign-up";
+
   return (
-    <>
-      <AccountHero
-        eyebrow="Account"
-        title="Sign in to AWSoversea"
-        subtitle="Sign in with your email to unlock quotes, product enquiries, and your personal referral code."
-        right="CUSTOMER ACCESS"
-      />
+    <div className="grid min-h-dvh lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+      {/* Stub side — the manifest ticket half */}
+      <aside className="relative isolate hidden overflow-hidden bg-[#04162f] px-12 py-14 lg:flex lg:flex-col xl:px-16">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(60% 50% at 12% 8%, rgba(15,173,232,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.5) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            backgroundSize: "auto, auto, 44px 44px, 44px 44px",
+          }}
+        />
 
-      <Section spacing="md" tone="soft">
-        <div className="mx-auto max-w-md">
-          <div className="rounded-3xl border border-[#e4e9f2] bg-white p-8 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]">
-            <ul className="flex flex-col gap-3.5">
-              {PERKS.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-[#5b6b82]">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#033e8d]">
-                    <Icon className="size-4" />
-                  </span>
-                  {text}
-                </li>
-              ))}
-            </ul>
+        <Logo tone="light" priority className="relative z-10" />
 
-            <div className="mt-7 border-t border-[#e4e9f2] pt-7">
-              {error === "auth" && (
-                <p
-                  className="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
-                  role="alert"
-                >
-                  That confirmation link didn&rsquo;t work — it may have expired. Please try again.
-                </p>
-              )}
-              <EmailAuthForm mode={mode === "sign-up" ? "sign-up" : "sign-in"} next={nextPath || undefined} />
-            </div>
-
-            <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-[#94a3b8]">
-              <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
-              New accounts are verified by our team before quoting is enabled — you&rsquo;ll complete a
-              short profile right after creating your account.
+        <div className="relative z-10 mt-auto flex flex-col gap-10">
+          <div>
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
+              <span className="size-1.5 rounded-full bg-[#0fade8]" />
+              Boarding pass — customer access
+            </span>
+            <h1
+              className="mt-6 max-w-md font-heading text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] xl:text-[2.75rem]"
+              style={{ color: "#ffffff" }}
+            >
+              One account clears every shipment.
+            </h1>
+            <p className="mt-4 max-w-sm text-base leading-relaxed text-white/60">
+              Sign in to move your cargo through quoting, enquiries, and referrals — no re-filing paperwork
+              at every gate.
             </p>
           </div>
+
+          {/* Route line — the signature element, styled as a boarding-pass itinerary */}
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-white/45">
+            <span className="text-white/85">Enquiry</span>
+            <span className="relative h-px flex-1 bg-white/15">
+              <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#0fade8]" />
+              <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#0fade8]" />
+            </span>
+            <span className="text-white/85">Cleared</span>
+          </div>
+
+          <ul className="flex flex-col gap-4 border-t border-white/12 pt-8">
+            {PERKS.map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-white/65">
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/8 text-[#48b8f8] ring-1 ring-white/10">
+                  <Icon className="size-4" />
+                </span>
+                {text}
+              </li>
+            ))}
+          </ul>
         </div>
-      </Section>
-    </>
+      </aside>
+
+      {/* Perforated divider, desktop only */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 lg:block"
+        style={{
+          backgroundImage: "linear-gradient(to bottom, rgba(4,22,47,0.16) 60%, transparent 0%)",
+          backgroundSize: "1px 14px",
+          backgroundRepeat: "repeat-y",
+        }}
+      />
+
+      {/* Form side — the stub you keep */}
+      <main className="flex items-center justify-center bg-[#f6f8fc] px-5 py-14 sm:px-8">
+        <div className="w-full max-w-md">
+          <div className="mb-8 flex items-center justify-between lg:hidden">
+            <Logo tone="dark" priority />
+          </div>
+
+          <div className="mb-7">
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0489c2]">
+              <span className="size-1.5 rounded-full bg-[#0fade8]" />
+              Customer access
+            </span>
+            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#06234d] sm:text-[1.75rem]">
+              {isSignUp ? "Create your account" : "Sign in to AWSoversea"}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
+              {isSignUp
+                ? "Set up access in under a minute — verification happens right after."
+                : "Enter your details to continue to your account."}
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)] sm:p-8">
+            {error === "auth" && (
+              <p
+                className="mb-5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+                role="alert"
+              >
+                That confirmation link didn&rsquo;t work — it may have expired. Please try again.
+              </p>
+            )}
+            <EmailAuthForm mode={isSignUp ? "sign-up" : "sign-in"} next={nextPath || undefined} />
+          </div>
+
+          <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-[#94a3b8]">
+            <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
+            New accounts are verified by our team before quoting is enabled — you&rsquo;ll complete a short
+            profile right after creating your account.
+          </p>
+        </div>
+      </main>
+    </div>
   );
 }
