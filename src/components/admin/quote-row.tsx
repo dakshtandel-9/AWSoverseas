@@ -1,8 +1,9 @@
 "use client";
 
-import { markQuoteReadAction, deleteQuoteAction } from "@/app/admin/(dashboard)/quotes/actions";
+import { markQuoteReadAction, deleteQuoteAction, creditQuoteReferrerAction } from "@/app/admin/(dashboard)/quotes/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
+import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
 
 type Quote = {
   id: string;
@@ -38,7 +39,17 @@ function toLabel(key: string) {
   return key.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export function QuoteRow({ item, milestones }: { item: Quote; milestones: Milestone[] }) {
+export function QuoteRow({
+  item,
+  milestones,
+  referrerName,
+  alreadyCredited,
+}: {
+  item: Quote;
+  milestones: Milestone[];
+  referrerName: string | null;
+  alreadyCredited: { amount: number } | null;
+}) {
   const createdAt = new Date(item.created_at).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
@@ -93,6 +104,12 @@ export function QuoteRow({ item, milestones }: { item: Quote; milestones: Milest
             trackingNumber={item.tracking_number}
             currentStatus={item.shipment_status}
             milestones={milestones}
+          />
+
+          <CreditWalletForm
+            referrerName={referrerName}
+            alreadyCredited={alreadyCredited}
+            onCredit={(amount, reason) => creditQuoteReferrerAction(item.id, amount, reason)}
           />
         </div>
       }

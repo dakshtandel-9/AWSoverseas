@@ -223,6 +223,27 @@ create table if not exists shipment_milestones (
 create index if not exists shipment_milestones_quote_idx on shipment_milestones (quote_id, created_at);
 
 -- ============================================================
+-- wallet_transactions — referral reward ledger. Admin grants a credit to
+-- a referrer when a customer they referred gets a quote/enquiry approved.
+-- Balance is derived by summing this table (no separate balance column,
+-- so it can never drift from the history). source_type + source_id is
+-- unique so the same booking can't be credited twice.
+-- ============================================================
+create table if not exists wallet_transactions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references user_profiles(id) on delete cascade,
+  amount numeric not null check (amount > 0),
+  reason text not null default '',
+  source_type text not null check (source_type in ('quote', 'enquiry')),
+  source_id uuid not null,
+  referred_user_id uuid references user_profiles(id) on delete set null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists wallet_transactions_user_idx on wallet_transactions (user_id, created_at desc);
+create unique index if not exists wallet_transactions_source_idx on wallet_transactions (source_type, source_id);
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
@@ -233,6 +254,7 @@ alter table products enable row level security;
 alter table product_enquiries enable row level security;
 alter table user_profiles enable row level security;
 alter table shipment_milestones enable row level security;
+alter table wallet_transactions enable row level security;
 
 -- user_profiles: no public policies — all reads/writes go through the
 -- service-role client in Server Actions (passport data must never be
@@ -265,3 +287,7 @@ create policy "public read published posts" on blog_posts
 -- the anon key gets zero access. The tracking lookup is safe to expose
 -- without RLS because it's scoped to an exact tracking_number match, not a
 -- broad select.
+
+-- wallet_transactions: no public policies — admin grants credits and the
+-- customer's own balance/history are both read via the service-role client
+-- (same pattern as user_profiles).

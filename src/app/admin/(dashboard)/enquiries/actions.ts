@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import { creditReferrerForSource } from "@/lib/wallet";
 
 export async function markEnquiryReadAction(id: string, isRead: boolean) {
   const db = supabaseAdmin();
@@ -56,4 +57,11 @@ export async function resetEnquiryStatusAction(id: string) {
     .update({ quote_status: "awaiting_quote", rejection_reason: "" })
     .eq("id", id);
   revalidatePath("/admin/enquiries");
+}
+
+/** Grants the referrer of this enquiry's submitter a wallet credit. */
+export async function creditEnquiryReferrerAction(enquiryId: string, amount: number, reason: string) {
+  const result = await creditReferrerForSource("enquiry", enquiryId, amount, reason);
+  revalidatePath("/admin/enquiries");
+  return result;
 }

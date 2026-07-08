@@ -37,10 +37,10 @@ export function PageLoader() {
     >
       <div className="page-loader__inner">
         <Image
-          src="/brand/logo-mark.png"
+          src="/brand/logo-mark-light.png"
           alt=""
-          width={56}
-          height={56}
+          width={112}
+          height={62}
           priority
           className="page-loader__logo"
         />

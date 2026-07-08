@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { getReferrerInfoForUsers, getWalletCreditsForSources } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { QuoteRow } from "@/components/admin/quote-row";
 
@@ -24,6 +25,14 @@ export default async function AdminQuotesPage() {
     }
   }
 
+  const [referrerByUserId, creditBySourceId] = await Promise.all([
+    getReferrerInfoForUsers(items.map((i) => i.user_id).filter((id): id is string => Boolean(id))),
+    getWalletCreditsForSources(
+      "quote",
+      items.map((i) => i.id),
+    ),
+  ]);
+
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
@@ -43,7 +52,13 @@ export default async function AdminQuotesPage() {
           </p>
         )}
         {items.map((item) => (
-          <QuoteRow key={item.id} item={item} milestones={milestonesByQuote[item.id] ?? []} />
+          <QuoteRow
+            key={item.id}
+            item={item}
+            milestones={milestonesByQuote[item.id] ?? []}
+            referrerName={item.user_id ? referrerByUserId[item.user_id] ?? null : null}
+            alreadyCredited={creditBySourceId[item.id] ?? null}
+          />
         ))}
       </div>
     </div>

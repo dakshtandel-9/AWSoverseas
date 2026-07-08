@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { getReferrerInfoForUsers, getWalletCreditsForSources } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { EnquiryRow } from "@/components/admin/enquiry-row";
 
@@ -9,6 +10,14 @@ export default async function AdminEnquiriesPage() {
     ? (await supabaseAdmin().from("product_enquiries").select("*").order("created_at", { ascending: false }))
         .data ?? []
     : [];
+
+  const [referrerByUserId, creditBySourceId] = await Promise.all([
+    getReferrerInfoForUsers(items.map((i) => i.user_id).filter((id): id is string => Boolean(id))),
+    getWalletCreditsForSources(
+      "enquiry",
+      items.map((i) => i.id),
+    ),
+  ]);
 
   return (
     <div>
@@ -29,7 +38,12 @@ export default async function AdminEnquiriesPage() {
           </p>
         )}
         {items.map((item) => (
-          <EnquiryRow key={item.id} item={item} />
+          <EnquiryRow
+            key={item.id}
+            item={item}
+            referrerName={item.user_id ? referrerByUserId[item.user_id] ?? null : null}
+            alreadyCredited={creditBySourceId[item.id] ?? null}
+          />
         ))}
       </div>
     </div>

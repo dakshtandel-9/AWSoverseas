@@ -7,8 +7,10 @@ import {
   setEnquiryQuoteAction,
   rejectEnquiryAction,
   resetEnquiryStatusAction,
+  creditEnquiryReferrerAction,
 } from "@/app/admin/(dashboard)/enquiries/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
 
 type Enquiry = {
   id: string;
@@ -205,7 +207,15 @@ function DecisionPanel({ item }: { item: Enquiry }) {
   );
 }
 
-export function EnquiryRow({ item }: { item: Enquiry }) {
+export function EnquiryRow({
+  item,
+  referrerName,
+  alreadyCredited,
+}: {
+  item: Enquiry;
+  referrerName: string | null;
+  alreadyCredited: { amount: number } | null;
+}) {
   const createdAt = formatDate(item.created_at);
 
   return (
@@ -243,6 +253,12 @@ export function EnquiryRow({ item }: { item: Enquiry }) {
             </div>
           )}
           <DecisionPanel item={item} />
+
+          <CreditWalletForm
+            referrerName={referrerName}
+            alreadyCredited={alreadyCredited}
+            onCredit={(amount, reason) => creditEnquiryReferrerAction(item.id, amount, reason)}
+          />
         </div>
       }
     />

@@ -5,9 +5,9 @@ import logoDark from "../../../public/brand/logo-nav.png";
 import logoLight from "../../../public/brand/logo-nav-light.png";
 
 /**
- * Official AWSoverseas brand mark. The source logo ships with a cream
- * background; we serve a background-removed transparent PNG (navy/cyan on
- * light surfaces) and a recolored light variant for dark surfaces.
+ * Official AWSoverseas brand mark: a transparent-background wordmark in
+ * navy/maroon for light surfaces, and a recolored white/cyan variant for
+ * dark surfaces (e.g. the navbar over the hero).
  */
 export function Logo({
   className,
