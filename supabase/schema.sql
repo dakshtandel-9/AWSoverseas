@@ -226,8 +226,9 @@ create index if not exists shipment_milestones_quote_idx on shipment_milestones 
 -- wallet_transactions — referral reward ledger. Admin grants a credit to
 -- a referrer when a customer they referred gets a quote/enquiry approved.
 -- Balance is derived by summing this table (no separate balance column,
--- so it can never drift from the history). source_type + source_id is
--- unique so the same booking can't be credited twice.
+-- so it can never drift from the history). A booking can be credited more
+-- than once (e.g. a top-up bonus) — source_type + source_id is indexed
+-- for lookups but not unique.
 -- ============================================================
 create table if not exists wallet_transactions (
   id uuid primary key default gen_random_uuid(),
@@ -241,7 +242,41 @@ create table if not exists wallet_transactions (
 );
 
 create index if not exists wallet_transactions_user_idx on wallet_transactions (user_id, created_at desc);
-create unique index if not exists wallet_transactions_source_idx on wallet_transactions (source_type, source_id);
+drop index if exists wallet_transactions_source_idx;
+create index if not exists wallet_transactions_source_lookup_idx on wallet_transactions (source_type, source_id);
+
+-- Bank details for wallet withdrawals — same pattern as passport fields:
+-- plain columns on user_profiles, editable any time from the wallet page.
+alter table user_profiles add column if not exists bank_account_number text not null default '';
+alter table user_profiles add column if not exists bank_account_holder text not null default '';
+alter table user_profiles add column if not exists bank_name text not null default '';
+alter table user_profiles add column if not exists bank_ifsc text not null default '';
+
+-- ============================================================
+-- wallet_withdrawals — a payout request against wallet_transactions credit.
+-- Bank fields are snapshotted at request time (like product_enquiries'
+-- product_name snapshot) so a later bank-detail edit never changes a
+-- pending/historical request. Pending amounts are locked out of the
+-- spendable balance (see getWalletSummary in src/lib/wallet.ts); paid
+-- permanently deducts, rejected releases the lock back to available.
+-- ============================================================
+create table if not exists wallet_withdrawals (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references user_profiles(id) on delete cascade,
+  amount numeric not null check (amount > 0),
+  status text not null default 'pending'
+    check (status in ('pending', 'paid', 'rejected')),
+  bank_account_number text not null default '',
+  bank_account_holder text not null default '',
+  bank_name text not null default '',
+  bank_ifsc text not null default '',
+  rejection_reason text not null default '',
+  created_at timestamptz not null default now(),
+  decided_at timestamptz
+);
+
+create index if not exists wallet_withdrawals_user_idx on wallet_withdrawals (user_id, created_at desc);
+create index if not exists wallet_withdrawals_status_idx on wallet_withdrawals (status, created_at desc);
 
 -- ============================================================
 -- Row Level Security
@@ -255,6 +290,7 @@ alter table product_enquiries enable row level security;
 alter table user_profiles enable row level security;
 alter table shipment_milestones enable row level security;
 alter table wallet_transactions enable row level security;
+alter table wallet_withdrawals enable row level security;
 
 -- user_profiles: no public policies — all reads/writes go through the
 -- service-role client in Server Actions (passport data must never be
@@ -288,6 +324,7 @@ create policy "public read published posts" on blog_posts
 -- without RLS because it's scoped to an exact tracking_number match, not a
 -- broad select.
 
--- wallet_transactions: no public policies — admin grants credits and the
--- customer's own balance/history are both read via the service-role client
+-- wallet_transactions / wallet_withdrawals: no public policies — admin
+-- grants credits and reviews payouts, and the customer's own balance/
+-- history/requests are all read or written via the service-role client
 -- (same pattern as user_profiles).

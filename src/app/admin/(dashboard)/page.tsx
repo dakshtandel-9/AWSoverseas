@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText, Users } from "lucide-react";
+import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText, Users, Wallet } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 
 async function getCounts() {
   const db = supabaseAdmin();
-  const [messages, quotes, posts, enquiries, pendingUsers] = await Promise.all([
+  const [messages, quotes, posts, enquiries, pendingUsers, pendingWithdrawals] = await Promise.all([
     db.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("quote_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("blog_posts").select("id", { count: "exact", head: true }).eq("published", true),
     db.from("product_enquiries").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("user_profiles").select("id", { count: "exact", head: true }).eq("status", "pending"),
+    db.from("wallet_withdrawals").select("id", { count: "exact", head: true }).eq("status", "pending"),
   ]);
   return {
     unreadMessages: messages.count ?? 0,
@@ -19,6 +20,7 @@ async function getCounts() {
     publishedPosts: posts.count ?? 0,
     unreadEnquiries: enquiries.count ?? 0,
     pendingUsers: pendingUsers.count ?? 0,
+    pendingWithdrawals: pendingWithdrawals.count ?? 0,
   };
 }
 
@@ -26,7 +28,14 @@ export default async function AdminDashboardPage() {
   const configured = isSupabaseConfigured();
   const counts = configured
     ? await getCounts()
-    : { unreadMessages: 0, unreadQuotes: 0, publishedPosts: 0, unreadEnquiries: 0, pendingUsers: 0 };
+    : {
+        unreadMessages: 0,
+        unreadQuotes: 0,
+        publishedPosts: 0,
+        unreadEnquiries: 0,
+        pendingUsers: 0,
+        pendingWithdrawals: 0,
+      };
 
   const cards = [
     {
@@ -52,6 +61,12 @@ export default async function AdminDashboardPage() {
       label: "Unread quote requests",
       value: counts.unreadQuotes,
       icon: FileText,
+    },
+    {
+      href: "/admin/withdrawals",
+      label: "Pending withdrawals",
+      value: counts.pendingWithdrawals,
+      icon: Wallet,
     },
     {
       href: "/admin/blog",

@@ -4,6 +4,7 @@ import { markQuoteReadAction, deleteQuoteAction, creditQuoteReferrerAction } fro
 import { SubmissionRow } from "@/components/admin/submission-row";
 import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
 import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
+import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
 
 type Quote = {
   id: string;
@@ -44,11 +45,13 @@ export function QuoteRow({
   milestones,
   referrerName,
   alreadyCredited,
+  profile,
 }: {
   item: Quote;
   milestones: Milestone[];
   referrerName: string | null;
-  alreadyCredited: { amount: number } | null;
+  alreadyCredited: { amount: number; count: number } | null;
+  profile: AdminUserProfile | null;
 }) {
   const createdAt = new Date(item.created_at).toLocaleDateString("en-IN", {
     day: "2-digit",
@@ -69,6 +72,11 @@ export function QuoteRow({
       onDelete={() => deleteQuoteAction(item.id)}
       detail={
         <div className="grid gap-2">
+          {profile && (
+            <div className="flex justify-end">
+              <ViewProfileButton profile={profile} />
+            </div>
+          )}
           {item.company_name && (
             <p>
               <span className="font-semibold">Company:</span> {item.company_name}

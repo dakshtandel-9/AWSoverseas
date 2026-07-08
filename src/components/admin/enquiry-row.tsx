@@ -11,6 +11,7 @@ import {
 } from "@/app/admin/(dashboard)/enquiries/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
+import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
 
 type Enquiry = {
   id: string;
@@ -211,10 +212,12 @@ export function EnquiryRow({
   item,
   referrerName,
   alreadyCredited,
+  profile,
 }: {
   item: Enquiry;
   referrerName: string | null;
-  alreadyCredited: { amount: number } | null;
+  alreadyCredited: { amount: number; count: number } | null;
+  profile: AdminUserProfile | null;
 }) {
   const createdAt = formatDate(item.created_at);
 
@@ -229,6 +232,11 @@ export function EnquiryRow({
       onDelete={() => deleteEnquiryAction(item.id)}
       detail={
         <div className="grid gap-2">
+          {profile && (
+            <div className="flex justify-end">
+              <ViewProfileButton profile={profile} />
+            </div>
+          )}
           <p>
             <span className="font-semibold">Product:</span> {item.product_name}
           </p>

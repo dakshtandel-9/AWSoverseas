@@ -21,6 +21,10 @@ export type UserProfile = {
   referral_code: string;
   referred_by: string | null;
   status: AccountStatus;
+  bank_account_number: string;
+  bank_account_holder: string;
+  bank_name: string;
+  bank_ifsc: string;
   created_at: string;
   updated_at: string;
 };

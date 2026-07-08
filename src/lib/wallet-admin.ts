@@ -1,5 +1,6 @@
 import "server-only";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import type { AdminUserProfile } from "@/components/admin/user-profile-modal";
 
 /**
  * Batch-resolves each auth user id to their referrer's display name (if
@@ -26,11 +27,35 @@ export async function getReferrerInfoForUsers(userIds: string[]): Promise<Record
   return result;
 }
 
-/** Batch-resolves which of the given quote/enquiry ids already have a wallet credit granted. */
+const PROFILE_COLUMNS =
+  "id, email, first_name, last_name, username, phone, company_name, passport_number, passport_front_url, passport_back_url, referral_code, status, created_at";
+
+/**
+ * Batch-fetches full profiles (for the "View profile" popup on quote/
+ * enquiry/withdrawal rows) keyed by user_id, so each admin list page can
+ * look one up per row without a query per row.
+ */
+export async function getProfilesForUsers(userIds: string[]): Promise<Record<string, AdminUserProfile>> {
+  const uniqueIds = [...new Set(userIds)];
+  if (uniqueIds.length === 0) return {};
+
+  const db = supabaseAdmin();
+  const { data } = await db.from("user_profiles").select(PROFILE_COLUMNS).in("id", uniqueIds);
+
+  const result: Record<string, AdminUserProfile> = {};
+  for (const row of (data as AdminUserProfile[] | null) ?? []) result[row.id] = row;
+  return result;
+}
+
+/**
+ * Batch-resolves total credit already granted per source (a booking can be
+ * credited more than once, e.g. a top-up bonus, so this sums all rows and
+ * also reports how many separate credits make up that total).
+ */
 export async function getWalletCreditsForSources(
   sourceType: "quote" | "enquiry",
   sourceIds: string[],
-): Promise<Record<string, { amount: number }>> {
+): Promise<Record<string, { amount: number; count: number }>> {
   if (sourceIds.length === 0) return {};
 
   const db = supabaseAdmin();
@@ -40,7 +65,12 @@ export async function getWalletCreditsForSources(
     .eq("source_type", sourceType)
     .in("source_id", sourceIds);
 
-  const result: Record<string, { amount: number }> = {};
-  for (const row of data ?? []) result[row.source_id] = { amount: Number(row.amount) };
+  const result: Record<string, { amount: number; count: number }> = {};
+  for (const row of data ?? []) {
+    const existing = result[row.source_id] ?? { amount: 0, count: 0 };
+    existing.amount += Number(row.amount);
+    existing.count += 1;
+    result[row.source_id] = existing;
+  }
   return result;
 }

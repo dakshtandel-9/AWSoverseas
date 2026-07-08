@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { getAccount, type AccountStatus } from "@/lib/account";
 import { supabaseAdmin } from "@/lib/supabase/server";
-import { getWalletBalance, getWalletHistory } from "@/lib/wallet";
+import { getWalletSummary } from "@/lib/wallet";
 import { AccountHero } from "@/components/account/account-hero";
 import { ReferralCodeCard } from "@/components/account/referral-code-card";
 import { WalletCard } from "@/components/account/wallet-card";
@@ -66,7 +66,7 @@ export default async function ProfilePage() {
 
   const db = supabaseAdmin();
 
-  const [{ data: quotes }, { data: enquiries }, walletBalance, walletHistory] = await Promise.all([
+  const [{ data: quotes }, { data: enquiries }, walletSummary] = await Promise.all([
     db
       .from("quote_submissions")
       .select("id, service_type, origin_country, destination_country, created_at")
@@ -79,8 +79,7 @@ export default async function ProfilePage() {
       )
       .eq("user_id", account.user.id)
       .order("created_at", { ascending: false }),
-    getWalletBalance(profile.id),
-    getWalletHistory(profile.id),
+    getWalletSummary(profile.id),
   ]);
 
   const quoteItems: ActivityItem[] = (quotes ?? []).map((q) => ({
@@ -218,7 +217,7 @@ export default async function ProfilePage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <WalletCard balance={walletBalance} history={walletHistory} />
+            <WalletCard summary={walletSummary} />
             <ReferralCodeCard code={profile.referral_code} />
             <div className="flex justify-start">
               <SignOutButton />

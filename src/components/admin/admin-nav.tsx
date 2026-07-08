@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Newspaper, Settings, LogOut, Boxes, MessageSquareText, Users } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Newspaper, Settings, LogOut, Boxes, MessageSquareText, Users, Wallet } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
@@ -15,6 +15,7 @@ const LINKS = [
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },
+  { href: "/admin/withdrawals", label: "Withdrawals", icon: Wallet },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },
 ];
 

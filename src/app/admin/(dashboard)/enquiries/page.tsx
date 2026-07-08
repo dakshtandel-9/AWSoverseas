@@ -1,6 +1,6 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
-import { getReferrerInfoForUsers, getWalletCreditsForSources } from "@/lib/wallet-admin";
+import { getReferrerInfoForUsers, getWalletCreditsForSources, getProfilesForUsers } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { EnquiryRow } from "@/components/admin/enquiry-row";
 
@@ -11,12 +11,14 @@ export default async function AdminEnquiriesPage() {
         .data ?? []
     : [];
 
-  const [referrerByUserId, creditBySourceId] = await Promise.all([
-    getReferrerInfoForUsers(items.map((i) => i.user_id).filter((id): id is string => Boolean(id))),
+  const userIds = items.map((i) => i.user_id).filter((id): id is string => Boolean(id));
+  const [referrerByUserId, creditBySourceId, profileByUserId] = await Promise.all([
+    getReferrerInfoForUsers(userIds),
     getWalletCreditsForSources(
       "enquiry",
       items.map((i) => i.id),
     ),
+    getProfilesForUsers(userIds),
   ]);
 
   return (
@@ -43,6 +45,7 @@ export default async function AdminEnquiriesPage() {
             item={item}
             referrerName={item.user_id ? referrerByUserId[item.user_id] ?? null : null}
             alreadyCredited={creditBySourceId[item.id] ?? null}
+            profile={item.user_id ? profileByUserId[item.user_id] ?? null : null}
           />
         ))}
       </div>
