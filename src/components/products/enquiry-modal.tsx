@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, Clock3, ShieldAlert, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { submitProductEnquiryAction, type EnquiryFormState } from "@/app/actions/product-enquiry";
+import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
@@ -16,19 +16,23 @@ const initialState: EnquiryFormState = {};
 /** Auth snapshot computed server-side on the products page. */
 export type EnquiryAuth = {
   state: "guest" | "setup" | "pending" | "rejected" | "approved";
-  fullName?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   phone?: string;
 };
 
-/** Sign-in / verification prompt shown in the modal body instead of the form. */
+/**
+ * Sign-in / verification prompt shown in the modal body instead of the form.
+ * Only reached for the "order" flow — open enquiries never gate.
+ */
 function GateNotice({ auth }: { auth: EnquiryAuth }) {
   const content = {
     guest: {
       icon: UserRound,
       iconClasses: "bg-[#eef3fb] text-[#033e8d]",
-      title: "Sign in to send an enquiry",
-      body: "Product enquiries are available to registered customers — sign in with your email to continue.",
+      title: "Sign in to place an order",
+      body: "Orders are available to registered customers — sign in with your email to continue.",
       cta: { href: "/login?next=/products", label: "Sign in" },
     },
     setup: {
@@ -42,7 +46,7 @@ function GateNotice({ auth }: { auth: EnquiryAuth }) {
       icon: Clock3,
       iconClasses: "bg-amber-50 text-amber-500",
       title: "Verification pending",
-      body: "Our team is reviewing your account. Enquiries unlock as soon as you're approved.",
+      body: "Our team is reviewing your account. Ordering unlocks as soon as you're approved.",
       cta: { href: "/profile", label: "View your profile" },
     },
     rejected: {
@@ -82,16 +86,35 @@ export function EnquiryModal({
   auth,
   open,
   onClose,
+  requestType = "enquiry",
 }: {
   productId: string;
   productName: string;
   auth: EnquiryAuth;
   open: boolean;
   onClose: () => void;
+  requestType?: RequestType;
 }) {
   const [state, formAction, pending] = useActionState(submitProductEnquiryAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const done = Boolean(state.success);
+
+  const isOrder = requestType === "order";
+  // Orders gate on account state; open enquiries never gate.
+  const gated = isOrder && auth.state !== "approved";
+  const copy = isOrder
+    ? {
+        eyebrow: "Place an Order",
+        successVerb: "order",
+        button: "Place order",
+        buttonPending: "Placing…",
+      }
+    : {
+        eyebrow: "Product Enquiry",
+        successVerb: "enquiry",
+        button: "Send enquiry",
+        buttonPending: "Sending…",
+      };
 
   useEffect(() => {
     if (!open) return;
@@ -134,7 +157,7 @@ export function EnquiryModal({
             <div className="flex shrink-0 items-center justify-between border-b border-[#e4e9f2] bg-[#f6f8fc] px-6 py-5">
               <div className="min-w-0">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-                  Product Enquiry
+                  {copy.eyebrow}
                 </p>
                 <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#06234d]">
                   {productName}
@@ -151,7 +174,7 @@ export function EnquiryModal({
             </div>
 
             <AnimatePresence mode="wait">
-              {auth.state !== "approved" ? (
+              {gated ? (
                 <GateNotice auth={auth} />
               ) : done ? (
                 <motion.div
@@ -164,8 +187,8 @@ export function EnquiryModal({
                     <Check className="size-6" />
                   </span>
                   <p className="max-w-xs text-sm font-medium leading-relaxed text-[#0489c2]">
-                    Thanks — we&rsquo;ve received your enquiry about {productName} and will get back to you
-                    shortly.
+                    Thanks — we&rsquo;ve received your {copy.successVerb} about {productName} and will get back
+                    to you shortly.
                   </p>
                   <button
                     type="button"
@@ -185,20 +208,35 @@ export function EnquiryModal({
                   exit={{ opacity: 0 }}
                   className="flex flex-col gap-4 overflow-y-auto px-6 py-6"
                 >
+                  <input type="hidden" name="request-type" value={requestType} />
                   <input type="hidden" name="product-id" value={productId} />
                   <input type="hidden" name="product-name" value={productName} />
 
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#06234d]">
-                      Your name <span className="text-[#0489c2]">*</span>
-                    </label>
-                    <input
-                      name="full-name"
-                      required
-                      placeholder="Full name"
-                      defaultValue={auth.fullName}
-                      className={inputClasses}
-                    />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm font-semibold text-[#06234d]">
+                        First name <span className="text-[#0489c2]">*</span>
+                      </label>
+                      <input
+                        name="first-name"
+                        required
+                        placeholder="First name"
+                        defaultValue={auth.firstName}
+                        className={inputClasses}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm font-semibold text-[#06234d]">
+                        Last name <span className="text-[#0489c2]">*</span>
+                      </label>
+                      <input
+                        name="last-name"
+                        required
+                        placeholder="Last name"
+                        defaultValue={auth.lastName}
+                        className={inputClasses}
+                      />
+                    </div>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -216,10 +254,13 @@ export function EnquiryModal({
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#06234d]">Phone</label>
+                      <label className="text-sm font-semibold text-[#06234d]">
+                        Phone number <span className="text-[#0489c2]">*</span>
+                      </label>
                       <input
                         type="tel"
                         name="phone"
+                        required
                         placeholder="+91 98765 43210"
                         defaultValue={auth.phone}
                         className={inputClasses}
@@ -252,7 +293,7 @@ export function EnquiryModal({
                     disabled={pending}
                     className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#033e8d] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
-                    {pending ? "Sending…" : "Send enquiry"}
+                    {pending ? copy.buttonPending : copy.button}
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
 

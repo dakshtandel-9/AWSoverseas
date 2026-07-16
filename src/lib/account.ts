@@ -15,6 +15,7 @@ export type UserProfile = {
   username: string | null;
   phone: string;
   company_name: string;
+  country: string;
   passport_number: string;
   passport_front_url: string;
   passport_back_url: string;
@@ -38,7 +39,8 @@ export function enquiryAuthFor(account: Account | null): EnquiryAuth {
   if (account.profile.status !== "approved") return { state: account.profile.status };
   return {
     state: "approved",
-    fullName: `${account.profile.first_name} ${account.profile.last_name}`.trim(),
+    firstName: account.profile.first_name,
+    lastName: account.profile.last_name,
     email: account.profile.email,
     phone: account.profile.phone,
   };

@@ -1,40 +1,44 @@
 "use client";
 
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Smartphone, Plane, Ship, CheckCircle2, Clock, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  PackageSearch,
+  Wheat,
+  Shirt,
+  Footprints,
+  UtensilsCrossed,
+  Tractor,
+  Beaker,
+  FlaskConical,
+  BadgeCheck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { TrackingInput } from "@/components/forms/tracking-input";
 import DotField from "@/components/ui/dot-field";
 
-type HeroData = {
+type Commodity = { name: string; hsGroup: string; unit: string };
+
+type ExportHeroData = {
   badge: string;
   title: string;
   subtitle: string;
   primaryButton: string;
   secondaryButton: string;
-  trackingPlaceholder: string;
-  trackingButton: string;
+  manifestLabel: string;
+  manifestOrigin: string;
+  manifestFooterLabel: string;
+  manifestFooterValue: string;
+  commodities: Commodity[];
   stats: { number: string; label: string }[];
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const SHIPMENT_STEPS = [
-  { id: 0, label: "Collected", location: "Shanghai, CN", done: true },
-  { id: 1, label: "Customs cleared", location: "Port of Shanghai", done: true },
-  { id: 2, label: "In transit", location: "Pacific Route · ETA 3 days", done: false, active: true },
-  { id: 3, label: "Destination", location: "Los Angeles, US", done: false },
-];
+const ICONS = [Wheat, Shirt, Footprints, UtensilsCrossed, Tractor, Beaker, FlaskConical];
 
-const MODES = [
-  { Icon: Plane, label: "Air Freight" },
-  { Icon: Ship, label: "Sea Freight" },
-];
-
-// Animated count-up hook
-function useCountUp(target: number, duration = 1800) {
+function useCountUp(target: number, duration = 1600) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
@@ -45,7 +49,6 @@ function useCountUp(target: number, duration = 1800) {
     const step = (ts: number) => {
       if (!start) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      // ease-out-expo
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       setCount(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(step);
@@ -57,19 +60,15 @@ function useCountUp(target: number, duration = 1800) {
 }
 
 function AnimatedStat({ number, label }: { number: string; label: string }) {
-  // Parse numeric prefix and suffix (e.g. "100+" → 100, "+")
   const match = number.match(/^(\d+)(.*)$/);
   const numericPart = match ? parseInt(match[1], 10) : 0;
   const suffix = match ? match[2] : number;
-  const { count, ref } = useCountUp(numericPart, 1600);
+  const { count, ref } = useCountUp(numericPart, 1400);
 
   return (
     <div className="flex flex-col">
       <dt className="sr-only">{label}</dt>
-      <dd
-        ref={ref as React.RefObject<HTMLElement>}
-        className="font-heading text-3xl font-extrabold text-white"
-      >
+      <dd ref={ref as React.RefObject<HTMLElement>} className="font-heading text-3xl font-extrabold text-white">
         {count}
         {suffix}
       </dd>
@@ -78,30 +77,20 @@ function AnimatedStat({ number, label }: { number: string; label: string }) {
   );
 }
 
-
-function ShipmentCard() {
-  const [modeIdx, setModeIdx] = useState(0);
-  const [tick, setTick] = useState(0);
+function ManifestCard({ data }: { data: ExportHeroData }) {
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setModeIdx((i) => (i + 1) % MODES.length);
-    }, 3200);
+      setActiveIdx((i) => (i + 1) % data.commodities.length);
+    }, 2200);
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => setTick((n) => n + 1), 1800);
-    return () => clearInterval(t);
-  }, []);
-
-  const Mode = MODES[modeIdx];
+  }, [data.commodities.length]);
 
   return (
     <div className="flex flex-col items-center gap-0">
-      {/* Stacked card stack wrapper */}
-      <div className="relative w-full max-w-md mr-8 sm:mr-10 lg:mr-0">
-        {/* Card back 4 — furthest */}
+      <div className="relative w-full max-w-[360px] mr-8 sm:mr-10 lg:mr-0">
+        {/* Stacked back cards — mirrors the tracker card's stack language */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
           style={{
@@ -110,7 +99,6 @@ function ShipmentCard() {
             boxShadow: "0 4px 12px -4px rgba(4,22,47,0.10)",
           }}
         />
-        {/* Card back 3 */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
           style={{
@@ -119,7 +107,6 @@ function ShipmentCard() {
             boxShadow: "0 4px 14px -4px rgba(4,22,47,0.12)",
           }}
         />
-        {/* Card back 2 */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
           style={{
@@ -128,7 +115,6 @@ function ShipmentCard() {
             boxShadow: "0 4px 16px -4px rgba(4,22,47,0.14)",
           }}
         />
-        {/* Card back 1 — closest */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
           style={{
@@ -137,112 +123,89 @@ function ShipmentCard() {
             boxShadow: "0 4px 20px -6px rgba(4,22,47,0.16)",
           }}
         />
-        {/* Glow halo + main card */}
         <div
           className="relative"
           style={{
             filter: "drop-shadow(0 0 28px rgba(15,173,232,0.22)) drop-shadow(0 0 60px rgba(3,62,141,0.18))",
           }}
         >
-        <motion.div
-          className="relative w-full rounded-3xl bg-white p-8 ring-1 ring-[#e4e9f2]"
-          style={{
-            boxShadow:
-              "0 8px 32px -8px rgba(4,22,47,0.22), 0 2px 8px rgba(4,22,47,0.06), inset 0 1px 0 rgba(255,255,255,0.9)",
-          }}
-          initial={{ opacity: 0, y: 32, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.35, ease }}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#5b6b82]">Shipment</p>
-              <p className="mt-0.5 font-mono text-sm font-bold tracking-wider text-[#06234d]">AWO-2847-SH</p>
+          <motion.div
+            className="relative w-full rounded-3xl bg-white p-6 ring-1 ring-[#e4e9f2]"
+            style={{
+              boxShadow:
+                "0 8px 32px -8px rgba(4,22,47,0.22), 0 2px 8px rgba(4,22,47,0.06), inset 0 1px 0 rgba(255,255,255,0.9)",
+            }}
+            initial={{ opacity: 0, y: 32, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.35, ease }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#5b6b82]">
+                  {data.manifestLabel}
+                </p>
+                <p className="mt-0.5 font-mono text-[13px] font-bold tracking-wider text-[#06234d]">
+                  {data.manifestOrigin}
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-2.5 py-1 text-[11px] font-semibold text-[#033e8d]">
+                <BadgeCheck className="size-3" />
+                Verified
+              </div>
             </div>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={modeIdx}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#033e8d]"
-              >
-                <Mode.Icon className="size-3.5" />
-                {Mode.label}
-              </motion.div>
-            </AnimatePresence>
-          </div>
 
-          {/* Route bar */}
-          <div className="mt-5 flex items-center gap-2.5 rounded-2xl bg-[#f6f8fc] px-4 py-3">
-            <MapPin className="size-4 shrink-0 text-[#0fade8]" />
-            <span className="text-sm font-semibold text-[#06234d]">Shanghai</span>
-            <div className="flex flex-1 items-center gap-1">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <span
-                  key={i}
-                  className="h-px flex-1 rounded-full"
-                  style={{ background: i < 3 ? "#0fade8" : "#e4e9f2" }}
-                />
-              ))}
+            {/* Commodity rows */}
+            <ol className="mt-4 space-y-1.5">
+              {data.commodities.map((item, i) => {
+                const Icon = ICONS[i % ICONS.length];
+                const isActive = i === activeIdx;
+                return (
+                  <li key={item.name}>
+                    <motion.div
+                      className="flex items-center gap-2.5 rounded-xl px-2 py-1.5"
+                      animate={{
+                        backgroundColor: isActive ? "#f6f8fc" : "rgba(246,248,252,0)",
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <span
+                        className="grid size-7 shrink-0 place-items-center rounded-lg transition-colors duration-300"
+                        style={{
+                          background: isActive ? "#0fade8" : "#eef3fb",
+                          color: isActive ? "#ffffff" : "#033e8d",
+                        }}
+                      >
+                        <Icon className="size-3.5" />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-[11.5px] font-semibold text-[#06234d]">{item.name}</p>
+                        <p className="text-[10px] text-[#5b6b82]">{item.unit}</p>
+                      </div>
+                      <span className="shrink-0 font-mono text-[9px] font-medium text-[#5b6b82]">
+                        {item.hsGroup}
+                      </span>
+                    </motion.div>
+                  </li>
+                );
+              })}
+            </ol>
+
+            {/* Footer */}
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-[#06234d] px-3.5 py-2.5">
+              <PackageSearch className="size-3.5 shrink-0 text-[#0fade8]" />
+              <p className="text-[11px] font-medium text-white/80">
+                {data.manifestFooterLabel}: <span className="font-bold text-white">{data.manifestFooterValue}</span>
+              </p>
             </div>
-            <span className="text-sm font-semibold text-[#06234d]">Los Angeles</span>
-            <MapPin className="size-4 shrink-0 text-[#5b6b82]" />
-          </div>
-
-          {/* Steps */}
-          <ol className="mt-5 space-y-3.5">
-            {SHIPMENT_STEPS.map((step) => (
-              <li key={step.id} className="flex items-start gap-3">
-                {step.done ? (
-                  <CheckCircle2 className="mt-0.5 size-4.5 shrink-0 text-[#0fade8]" />
-                ) : step.active ? (
-                  <motion.span
-                    className="mt-1 size-3.5 shrink-0 rounded-full bg-[#f59e0b]"
-                    animate={{ scale: tick % 2 === 0 ? 1 : 1.3, opacity: tick % 2 === 0 ? 1 : 0.65 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  />
-                ) : (
-                  <span className="mt-1 size-3.5 shrink-0 rounded-full border-2 border-[#e4e9f2]" />
-                )}
-                <div className="min-w-0">
-                  <p
-                    className="text-sm font-semibold"
-                    style={{ color: step.active ? "#f59e0b" : step.done ? "#06234d" : "#5b6b82" }}
-                  >
-                    {step.label}
-                  </p>
-                  <p className="mt-0.5 text-xs text-[#5b6b82]">{step.location}</p>
-                </div>
-                {step.active && (
-                  <span className="ml-auto shrink-0 rounded-full bg-[#fffbeb] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#d97706]">
-                    Live
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-
-          {/* ETA footer */}
-          <div className="mt-5 flex items-center gap-2 rounded-xl bg-[#06234d] px-4 py-3">
-            <Clock className="size-4 shrink-0 text-[#0fade8]" />
-            <p className="text-xs font-medium text-white/80">
-              Estimated delivery: <span className="font-bold text-white">Jul 3, 2026</span>
-            </p>
-          </div>
-        </motion.div>
-        </div>{/* /glow wrapper */}
-      </div>{/* /stack wrapper */}
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
 
-// Subtle world-map SVG pattern (landmark dots at major ports/cities)
-
-export function Hero({ data, active = true }: { data: HeroData; active?: boolean }) {
-  // Split title into two lines at first space after halfway point
+export function ExportHero({ data, active }: { data: ExportHeroData; active: boolean }) {
   const words = data.title.split(" ");
   const mid = Math.ceil(words.length / 2);
   const line1 = words.slice(0, mid).join(" ");
@@ -250,7 +213,6 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
 
   return (
     <div className="relative min-h-[100svh] overflow-hidden bg-[#061A38]">
-      {/* Interactive dot field */}
       <div className="absolute inset-0" aria-hidden>
         <DotField
           dotRadius={4}
@@ -273,9 +235,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
       </div>
 
       <Container className="relative flex min-h-[100svh] flex-col justify-center pb-16 pt-28 lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
-        {/* Left — headline + actions */}
         <div className="max-w-[600px]">
-          {/* Eyebrow */}
           <motion.div
             className="inline-flex items-center gap-2 rounded-full border border-[#0fade8]/30 bg-[#0fade8]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#48b8f8]"
             initial={{ opacity: 0, y: 12 }}
@@ -286,16 +246,13 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
             {data.badge}
           </motion.div>
 
-          {/* Display headline — two-line with accent second line */}
           <motion.h1
             className="mt-7 font-heading font-extrabold leading-[1.0] tracking-[-0.03em]"
             initial={{ opacity: 0, y: 28 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl text-white sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
-              {line1}
-            </span>
+            <span className="block text-5xl text-white sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">{line1}</span>
             <span
               className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
               style={{
@@ -318,30 +275,28 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
             {data.subtitle}
           </motion.p>
 
-          {/* CTA row */}
           <motion.div
             className="mt-9 flex flex-wrap items-center gap-3"
             initial={{ opacity: 0, y: 24 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.26, ease }}
           >
-            <Button href="/quote" size="lg" variant="secondary">
+            <Button href="/products" size="lg" variant="secondary">
               {data.primaryButton} <ArrowRight className="size-4" />
             </Button>
-            {/* Glass-effect white button */}
             <a
-              href="/mobile-app"
+              href="/products"
               className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium transition-all duration-300"
               style={{
                 background: "rgba(255,255,255,0.08)",
                 border: "1px solid rgba(255,255,255,0.18)",
                 color: "rgba(255,255,255,0.92)",
                 backdropFilter: "blur(12px)",
-                boxShadow: "0 0 0 0 rgba(15,173,232,0)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 1px rgba(15,173,232,0.4), 0 4px 20px rgba(15,173,232,0.15)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 0 0 1px rgba(15,173,232,0.4), 0 4px 20px rgba(15,173,232,0.15)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
@@ -350,26 +305,11 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >
-              <Smartphone className="size-4" />
+              <PackageSearch className="size-4" />
               {data.secondaryButton}
             </a>
           </motion.div>
 
-          {/* Tracking input */}
-          <motion.div
-            className="mt-8 max-w-[480px]"
-            initial={{ opacity: 0, y: 24 }}
-            animate={active ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.34, ease }}
-          >
-            <TrackingInput
-              placeholder={data.trackingPlaceholder}
-              buttonText={data.trackingButton}
-              tone="dark"
-            />
-          </motion.div>
-
-          {/* Stats row — animated count-up */}
           <motion.dl
             className="mt-12 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4 sm:gap-x-0 sm:divide-x sm:divide-white/10"
             initial={{ opacity: 0 }}
@@ -384,14 +324,13 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
           </motion.dl>
         </div>
 
-        {/* Right — Shipment Status card with route viz */}
         <motion.div
           className="mt-16 flex justify-center lg:mt-0 lg:justify-start lg:-ml-8"
           initial={{ opacity: 0, x: 24 }}
           animate={active ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.85, delay: 0.2, ease }}
         >
-          <ShipmentCard />
+          <ManifestCard data={data} />
         </motion.div>
       </Container>
     </div>

@@ -13,7 +13,7 @@ import { SubmissionRow } from "@/components/admin/submission-row";
 import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
 import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
 
-type Enquiry = {
+export type AdminOrder = {
   id: string;
   product_name: string;
   full_name: string;
@@ -29,6 +29,9 @@ type Enquiry = {
   quote_status: string;
   rejection_reason: string;
 };
+
+// Kept as a local alias so the many `item: Enquiry` annotations below read fine.
+type Enquiry = AdminOrder;
 
 const STATUS_BADGE: Record<string, string> = {
   awaiting_quote: "bg-[#eef3fb] text-[#033e8d]",
@@ -140,7 +143,7 @@ function RejectForm({ item }: { item: Enquiry }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-[#06234d]">Reject this enquiry</p>
+      <p className="text-sm font-semibold text-[#06234d]">Reject this order</p>
       <div className="mt-3 flex flex-wrap items-end gap-2.5">
         <div className="min-w-[220px] flex-1">
           <Field label="Reason (optional)">
@@ -158,7 +161,7 @@ function RejectForm({ item }: { item: Enquiry }) {
           onClick={() => startTransition(() => rejectEnquiryAction(item.id, reason))}
           className="rounded-lg border border-red-200 px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-50 disabled:opacity-50"
         >
-          Reject enquiry
+          Reject order
         </button>
       </div>
     </div>
@@ -205,6 +208,32 @@ function DecisionPanel({ item }: { item: Enquiry }) {
         <RejectForm item={item} />
       </div>
     </div>
+  );
+}
+
+/**
+ * The status badge + Approve-&-send / Reject / Reset quote controls plus the
+ * referral credit form for one order. Shared by the admin Orders row and the
+ * "create order" modal so both edit an order the same way.
+ */
+export function OrderDecisionSection({
+  item,
+  referrerName,
+  alreadyCredited,
+}: {
+  item: Enquiry;
+  referrerName: string | null;
+  alreadyCredited: { amount: number; count: number } | null;
+}) {
+  return (
+    <>
+      <DecisionPanel item={item} />
+      <CreditWalletForm
+        referrerName={referrerName}
+        alreadyCredited={alreadyCredited}
+        onCredit={(amount, reason) => creditEnquiryReferrerAction(item.id, amount, reason)}
+      />
+    </>
   );
 }
 
@@ -260,12 +289,10 @@ export function EnquiryRow({
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}
-          <DecisionPanel item={item} />
-
-          <CreditWalletForm
+          <OrderDecisionSection
+            item={item}
             referrerName={referrerName}
             alreadyCredited={alreadyCredited}
-            onCredit={(amount, reason) => creditEnquiryReferrerAction(item.id, amount, reason)}
           />
         </div>
       }

@@ -1,0 +1,110 @@
+{
+  "page": "Referral Rewards",
+
+  "meta": {
+    "title": "Referral Rewards — Earn $25 Per Referral | AWSoversea",
+    "description": "Refer someone to AWSoversea. When they ship, buy, or book any service, you earn $25 — paid straight to your wallet. No limit on how many times you can earn."
+  },
+
+  "hero": {
+    "badge": "Referral Rewards",
+    "title": "Send a shipment their way. We'll send $25 your way.",
+    "subtitle": "Every person you bring to AWSoversea who completes a shipment, purchase, or booking puts $25 in your wallet. Simple as that — no tiers, no caps, no waiting.",
+    "primaryButton": "Get my referral code",
+    "secondaryButton": "See how it works",
+    "stat": { "value": "$25", "label": "per completed referral" }
+  },
+
+  "howItWorks": {
+    "title": "How the payout works",
+    "description": "Three steps between sharing your code and seeing $25 land in your wallet.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Share your code",
+        "description": "Every AWSoversea account has a unique referral code. Send it to anyone shipping cargo, importing goods, or booking freight services."
+      },
+      {
+        "step": "02",
+        "title": "They complete anything, once",
+        "description": "A shipment, a product order, or any paid service booked under your code — the first one qualifies. It doesn't have to be a shipment specifically."
+      },
+      {
+        "step": "03",
+        "title": "$25 hits your wallet",
+        "description": "Once their order is confirmed and paid, we credit your AWSoversea wallet automatically. Track it from your referrals dashboard."
+      }
+    ]
+  },
+
+  "rules": {
+    "title": "What counts, in plain terms",
+    "items": [
+      {
+        "title": "Any paid order qualifies",
+        "description": "A freight shipment, a marketplace product, or a booked service — if money changes hands, it counts toward your $25."
+      },
+      {
+        "title": "One reward per new customer",
+        "description": "You earn $25 the first time someone you referred completes an order. It's about bringing new business in, not repeat purchases."
+      },
+      {
+        "title": "No cap on referrals",
+        "description": "Refer 1 person or 100 — every one of them that converts pays out $25. There's no monthly limit."
+      },
+      {
+        "title": "Paid to your wallet",
+        "description": "Rewards land in your AWSoversea wallet, usable toward future shipments or withdrawable per your account settings."
+      }
+    ]
+  },
+
+  "cta": {
+    "title": "Your code is already waiting in your account",
+    "description": "Sign in to grab your referral code and start sharing — it takes less than a minute.",
+    "primaryButton": "Get my referral code",
+    "secondaryButton": "Talk to us"
+  },
+
+  "faq": {
+    "title": "Referral questions, answered",
+    "items": [
+      {
+        "question": "How much do I earn per referral?",
+        "answer": "$25 for every person you refer who completes a paid shipment, product purchase, or service booking with AWSoversea."
+      },
+      {
+        "question": "Does it have to be a shipment specifically?",
+        "answer": "No. Any completed purchase counts — a freight shipment, a product order from our catalog, or any paid service. The first qualifying order from your referral is what triggers the reward."
+      },
+      {
+        "question": "Is there a limit to how much I can earn?",
+        "answer": "No cap. Refer as many people as you want — each one who completes a qualifying order earns you another $25."
+      },
+      {
+        "question": "Where do I find my referral code?",
+        "answer": "Sign in and open your profile — your unique code and referral activity are on your account dashboard."
+      },
+      {
+        "question": "When does the reward get credited?",
+        "answer": "As soon as your referral's order is confirmed and paid, $25 is credited to your AWSoversea wallet automatically."
+      },
+      {
+        "question": "Can I use my own referral code?",
+        "answer": "No — referral rewards are for bringing new customers to AWSoversea, not for orders on your own account."
+      }
+    ]
+  },
+
+  "homeSection": {
+    "badge": "Referral Rewards",
+    "title": "Refer a shipper. Earn $25.",
+    "description": "Know someone who imports, exports, or ships freight? Send them your code. The moment they complete their first order, $25 is yours.",
+    "button": "Learn how it works",
+    "highlights": [
+      { "label": "Per completed referral", "value": "$25" },
+      { "label": "Referral cap", "value": "None" },
+      { "label": "Payout", "value": "Straight to your wallet" }
+    ]
+  }
+}

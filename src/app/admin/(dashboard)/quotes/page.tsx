@@ -3,16 +3,29 @@ import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getReferrerInfoForUsers, getWalletCreditsForSources, getProfilesForUsers } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { QuoteRow } from "@/components/admin/quote-row";
+import { CreateQuoteButton, type QuoteUserOption } from "@/components/admin/create-quote-form";
 
 export default async function AdminQuotesPage() {
   const configured = isSupabaseConfigured();
-  const items = configured
-    ? (await supabaseAdmin().from("quote_submissions").select("*").order("created_at", { ascending: false })).data ?? []
-    : [];
+  const db = supabaseAdmin();
+
+  const [itemsRes, usersRes] = configured
+    ? await Promise.all([
+        db.from("quote_submissions").select("*").order("created_at", { ascending: false }),
+        db
+          .from("user_profiles")
+          .select("id, first_name, last_name, username, email, status")
+          .neq("status", "incomplete")
+          .order("first_name", { ascending: true }),
+      ])
+    : [{ data: [] }, { data: [] }];
+
+  const items = itemsRes.data ?? [];
+  const users = (usersRes.data as QuoteUserOption[] | null) ?? [];
 
   const milestonesByQuote: Record<string, { id: string; status: string; location: string; note: string; created_at: string }[]> = {};
   if (configured && items.length > 0) {
-    const { data: milestones } = await supabaseAdmin()
+    const { data: milestones } = await db
       .from("shipment_milestones")
       .select("id, quote_id, status, location, note, created_at")
       .in(
@@ -37,9 +50,16 @@ export default async function AdminQuotesPage() {
 
   return (
     <div>
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#06234d] sm:text-3xl">Quote requests</h1>
-      <p className="mt-2 text-sm text-[#5b6b82]">Submissions from the Request a Quote form.</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
+          <h1 className="mt-2 text-2xl font-bold text-[#06234d] sm:text-3xl">Quote requests</h1>
+          <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
+            Submissions from the Request a Quote form — or created here for a customer.
+          </p>
+        </div>
+        {configured && <CreateQuoteButton users={users} />}
+      </div>
 
       {!configured && (
         <div className="mt-6">

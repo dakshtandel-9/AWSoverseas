@@ -12,6 +12,9 @@ import {
   type ProfileFormState,
 } from "@/app/actions/account";
 import { PassportUploadField } from "@/components/account/passport-upload-field";
+import { PhoneInput } from "@/components/account/phone-input";
+import { CountrySelect } from "@/components/quote/country-select";
+import { SignOutButton } from "@/components/account/sign-out-button";
 import type { UserProfile } from "@/lib/account";
 
 const inputClasses =
@@ -216,9 +219,12 @@ export function ProfileSetupForm({
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           {firstTime ? "Account Verification — New" : "Account Details"}
         </p>
-        <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">
-          {firstTime ? "3 sections" : "2 sections"}
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">
+            {firstTime ? "3 sections" : "2 sections"}
+          </span>
+          {firstTime && <SignOutButton />}
+        </div>
       </div>
 
       {/* 01 — Personal details */}
@@ -284,7 +290,19 @@ export function ProfileSetupForm({
             <label className="text-sm font-semibold text-[#06234d]">
               Phone number <span className="text-[#0489c2]">*</span>
             </label>
-            <input name="phone" type="tel" required defaultValue={profile.phone} placeholder="+91 98765 43210" className={inputClasses} />
+            <PhoneInput name="phone" required defaultValue={profile.phone} />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-[#06234d]">
+              Country <span className="text-[#0489c2]">*</span>
+            </label>
+            <CountrySelect
+              name="country"
+              required
+              placeholder="Search countries…"
+              defaultValue={profile.country}
+            />
           </div>
 
           <div className="flex flex-col gap-2">
@@ -292,7 +310,7 @@ export function ProfileSetupForm({
             <input name="company-name" defaultValue={profile.company_name} placeholder="Your company (optional)" className={inputClasses} />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 sm:col-span-2">
             <label className="text-sm font-semibold text-[#06234d]">Email</label>
             <input value={profile.email} disabled className={cn(inputClasses, "bg-[#f6f8fc] text-[#5b6b82]")} />
             <p className="text-xs text-[#94a3b8]">Your account email — used to sign in.</p>

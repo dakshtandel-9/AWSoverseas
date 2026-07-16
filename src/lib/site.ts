@@ -33,6 +33,7 @@ export const FOOTER_NAV = {
     { label: "About Us", href: "/about" },
     { label: "Products", href: "/products" },
     { label: "Partner With Us", href: "/partner" },
+    { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },
     { label: "Request a Quote", href: "/quote" },
   ],

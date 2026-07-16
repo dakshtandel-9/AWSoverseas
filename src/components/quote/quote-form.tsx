@@ -1,12 +1,14 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ChevronDown, PackageSearch } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 import { CountrySelect } from "@/components/quote/country-select";
+import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 type Field = {
   label: string;
@@ -28,16 +30,26 @@ type Submit = {
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
 
-function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: string }) {
+function FieldControl({
+  field,
+  defaultValue,
+  gated,
+}: {
+  field: Field;
+  defaultValue?: string;
+  /** True while the submitter isn't approved yet — native `required` is dropped so an empty submit still redirects to sign-in instead of getting stuck on browser validation. */
+  gated?: boolean;
+}) {
   const id = useId();
   const name = field.label.toLowerCase().replace(/\s+/g, "-");
+  const required = field.required && !gated;
 
   if (field.type === "textarea") {
     return (
       <textarea
         id={id}
         name={name}
-        required={field.required}
+        required={required}
         placeholder={field.placeholder}
         defaultValue={defaultValue}
         rows={4}
@@ -50,7 +62,7 @@ function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: st
     return (
       <CountrySelect
         name={name}
-        required={field.required}
+        required={required}
         placeholder={field.placeholder}
         defaultValue={defaultValue}
       />
@@ -63,7 +75,7 @@ function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: st
         <select
           id={id}
           name={name}
-          required={field.required}
+          required={required}
           defaultValue=""
           className={cn(inputClasses, "appearance-none pr-10")}
         >
@@ -86,7 +98,7 @@ function FieldControl({ field, defaultValue }: { field: Field; defaultValue?: st
       id={id}
       name={name}
       type={field.type}
-      required={field.required}
+      required={required}
       placeholder={field.placeholder}
       defaultValue={defaultValue}
       className={cn(inputClasses, field.type === "date" && "text-[#5b6b82]")}
@@ -98,10 +110,12 @@ function FormSection({
   index,
   group,
   fieldDefaults,
+  gated,
 }: {
   index: string;
   group: FieldGroup;
   fieldDefaults?: Record<string, string>;
+  gated?: boolean;
 }) {
   return (
     <div className="border-b border-[#e4e9f2] px-7 py-8 last:border-b-0 sm:px-10">
@@ -126,7 +140,7 @@ function FormSection({
               {field.label}
               {field.required && <span className="ml-1 text-[#0489c2]">*</span>}
             </label>
-            <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} />
+            <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} gated={gated} />
           </div>
         ))}
       </div>
@@ -135,6 +149,29 @@ function FormSection({
 }
 
 const initialState: QuoteFormState = {};
+
+/** Where an unapproved submitter should land, per auth state. */
+function gateHrefFor(auth: EnquiryAuth, next: string): string | null {
+  switch (auth.state) {
+    case "guest":
+      return `/login?next=${encodeURIComponent(next)}`;
+    case "setup":
+      return "/profile/setup";
+    case "pending":
+    case "rejected":
+      return "/profile";
+    default:
+      return null;
+  }
+}
+
+/** Submit-button copy for an unapproved submitter, per auth state. */
+const GATE_BUTTON_TEXT: Record<Exclude<EnquiryAuth["state"], "approved">, string> = {
+  guest: "Sign in to submit",
+  setup: "Complete your profile to submit",
+  pending: "Verification pending",
+  rejected: "Update details to submit",
+};
 
 /**
  * Rendered as one continuous waybill document rather than three separate
@@ -151,6 +188,7 @@ export function QuoteForm({
   submit,
   product,
   contactDefaults,
+  auth,
 }: {
   quoteForm: FieldGroup;
   shipmentDetails: FieldGroup;
@@ -159,10 +197,14 @@ export function QuoteForm({
   product?: string;
   /** Prefills keyed by field label — from the signed-in user's profile. */
   contactDefaults?: Record<string, string>;
+  /** Auth snapshot computed server-side — the form stays visible to guests, and only gates on submit. */
+  auth: EnquiryAuth;
 }) {
   const [state, formAction, pending] = useActionState(submitQuoteAction, initialState);
   const done = Boolean(state.success);
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
+  const [redirecting, setRedirecting] = useState(false);
   const shipmentDefaults = product
     ? { "Cargo Description": `Enquiry about: ${product}` }
     : undefined;
@@ -170,6 +212,17 @@ export function QuoteForm({
   useEffect(() => {
     if (state.success) formRef.current?.reset();
   }, [state.success]);
+
+  const next = product ? `/quote?product=${product}` : "/quote";
+  const gateHref = gateHrefFor(auth, next);
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (gateHref) {
+      e.preventDefault();
+      setRedirecting(true);
+      router.push(gateHref);
+    }
+  }
 
   return (
     <div
@@ -223,17 +276,45 @@ export function QuoteForm({
             key="form"
             ref={formRef}
             action={formAction}
+            onSubmit={onSubmit}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FormSection index="01" group={quoteForm} />
-            <FormSection index="02" group={shipmentDetails} fieldDefaults={shipmentDefaults} />
-            <FormSection index="03" group={contactDetails} fieldDefaults={contactDefaults} />
+            <FormSection index="01" group={quoteForm} gated={Boolean(gateHref)} />
+            <FormSection
+              index="02"
+              group={shipmentDetails}
+              fieldDefaults={shipmentDefaults}
+              gated={Boolean(gateHref)}
+            />
+            <FormSection
+              index="03"
+              group={contactDetails}
+              fieldDefaults={contactDefaults}
+              gated={Boolean(gateHref)}
+            />
 
             <div className="px-7 py-8 sm:px-10">
               <h3 className="text-base font-bold text-[#06234d]">{submit.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{submit.description}</p>
+
+              {gateHref && (
+                <div
+                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-[#eef3fb] px-4 py-3 text-sm font-medium text-[#033e8d]"
+                  role="status"
+                >
+                  <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                  {auth.state === "guest" &&
+                    "Fill in your shipment details — we'll ask you to sign in before submitting."}
+                  {auth.state === "setup" &&
+                    "Almost there — finish your profile details before submitting."}
+                  {auth.state === "pending" &&
+                    "Our team is reviewing your account. You can prepare this request now; submitting unlocks once you're approved."}
+                  {auth.state === "rejected" &&
+                    "We couldn't verify your account. Update your passport details before submitting."}
+                </div>
+              )}
 
               {state.error && (
                 <div
@@ -247,10 +328,16 @@ export function QuoteForm({
 
               <button
                 type="submit"
-                disabled={pending}
+                disabled={pending || redirecting}
                 className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
-                {pending ? "Submitting…" : submit.buttonText}
+                {redirecting
+                  ? "Redirecting…"
+                  : pending
+                    ? "Submitting…"
+                    : gateHref
+                      ? GATE_BUTTON_TEXT[auth.state as Exclude<EnquiryAuth["state"], "approved">]
+                      : submit.buttonText}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </button>
 

@@ -28,7 +28,7 @@ export async function getReferrerInfoForUsers(userIds: string[]): Promise<Record
 }
 
 const PROFILE_COLUMNS =
-  "id, email, first_name, last_name, username, phone, company_name, passport_number, passport_front_url, passport_back_url, referral_code, status, created_at";
+  "id, email, first_name, last_name, username, phone, company_name, country, passport_number, passport_front_url, passport_back_url, referral_code, status, created_at";
 
 /**
  * Batch-fetches full profiles (for the "View profile" popup on quote/

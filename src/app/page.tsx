@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { home, faq, metaFrom } from "@/lib/content";
+import { home, faq, referralRewards, metaFrom } from "@/lib/content";
 import { getPublishedPosts } from "@/lib/blog-data";
 import { getActiveProducts } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
-import { Hero } from "@/components/home/hero";
+import { HeroSlider } from "@/components/home/hero-slider";
 import { TrustedPartners } from "@/components/home/trusted-partners";
 import { AboutPreview } from "@/components/home/about-preview";
 import { ServicesGrid } from "@/components/home/services-grid";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
+import { ReferralTeaser } from "@/components/home/referral-teaser";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
 import { GlobalCoverage } from "@/components/home/global-coverage";
@@ -39,11 +40,12 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
       />
 
-      <Hero data={home.hero} />
+      <HeroSlider hero={home.hero} exportHero={home.exportHero} />
       <TrustedPartners data={home.trustedPartners} partners={home.industries.items} />
       <AboutPreview data={home.about} stats={home.hero.stats} />
       <ServicesGrid data={home.services} />
       <WhyChooseUs data={home.whyChooseUs} />
+      <ReferralTeaser data={referralRewards.homeSection} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />
       <GlobalCoverage data={home.coverage} />

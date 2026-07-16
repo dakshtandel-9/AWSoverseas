@@ -14,6 +14,7 @@ export type AdminUserProfile = {
   username: string | null;
   phone: string;
   company_name: string;
+  country: string;
   passport_number: string;
   passport_front_url: string;
   passport_back_url: string;
@@ -130,6 +131,9 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
                 <a href={`mailto:${profile.email}`} className="text-[#0489c2] hover:underline">
                   {profile.email}
                 </a>
+              </p>
+              <p>
+                <span className="font-semibold">Country:</span> {profile.country || "—"}
               </p>
               <p>
                 <span className="font-semibold">Company:</span> {profile.company_name || "—"}

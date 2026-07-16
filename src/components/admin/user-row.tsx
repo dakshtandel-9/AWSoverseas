@@ -14,6 +14,7 @@ export type AdminUser = {
   username: string | null;
   phone: string;
   company_name: string;
+  country: string;
   passport_number: string;
   passport_front_url: string;
   passport_back_url: string;
@@ -96,6 +97,9 @@ export function UserRow({ user }: { user: AdminUser }) {
               ) : (
                 "—"
               )}
+            </p>
+            <p>
+              <span className="font-semibold">Country:</span> {user.country || "—"}
             </p>
             <p>
               <span className="font-semibold">Company:</span> {user.company_name || "—"}

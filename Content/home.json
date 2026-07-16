@@ -41,6 +41,32 @@
             }
         ]
     },
+    "exportHero": {
+        "badge": "Sourced & Exported from India",
+        "title": "India's Goods, Delivered to Your Docks",
+        "subtitle": "We export our own catalog of Indian-made goods directly to buyers worldwide — sourced, quality-checked, documented, and shipped under one roof, with no middlemen to slow you down.",
+        "primaryButton": "Enquire About Exports",
+        "secondaryButton": "View Full Catalog",
+        "manifestLabel": "Export Manifest",
+        "manifestOrigin": "Origin: India",
+        "manifestFooterLabel": "Ready to ship",
+        "manifestFooterValue": "HS-classified & export-cleared",
+        "commodities": [
+            { "name": "Basmati & Non-Basmati Rice", "hsGroup": "HS 1006", "unit": "Bulk / 25kg bags" },
+            { "name": "Cotton & Textile Fabric", "hsGroup": "HS 5208", "unit": "Rolls / containers" },
+            { "name": "Leather & Casual Footwear", "hsGroup": "HS 6403", "unit": "Cartons" },
+            { "name": "Stainless Steel Utensils", "hsGroup": "HS 7323", "unit": "Pallets" },
+            { "name": "Agricultural Tractors", "hsGroup": "HS 8701", "unit": "Units / RORO" },
+            { "name": "Activated Carbon", "hsGroup": "HS 3802", "unit": "Bulk / drums" },
+            { "name": "Industrial Chemicals", "hsGroup": "HS 2801-38", "unit": "IBC / drums" }
+        ],
+        "stats": [
+            { "number": "7+", "label": "Export Categories" },
+            { "number": "100%", "label": "Quality Checked" },
+            { "number": "0", "label": "Middlemen" },
+            { "number": "24/7", "label": "Export Support" }
+        ]
+    },
     "trustedPartners": {
         "title": "Trusted by Businesses Worldwide",
         "description": "Helping importers, exporters, manufacturers, traders, and eCommerce businesses manage international logistics efficiently."

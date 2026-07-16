@@ -147,7 +147,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
             placeholder={mode === "sign-up" ? "Create a password" : "Your password"}
             className={inputClasses}
           />
-          {mode === "sign-up" && <PasswordChecklist password={password} />}
+          {mode === "sign-up" && password && <PasswordChecklist password={password} />}
         </div>
 
         {mode === "sign-up" && (

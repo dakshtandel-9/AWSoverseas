@@ -73,6 +73,7 @@ export async function completeProfileAction(
   const username = String(formData.get("username") ?? "").trim().toLowerCase();
   const phone = String(formData.get("phone") ?? "").trim();
   const companyName = String(formData.get("company-name") ?? "").trim();
+  const country = String(formData.get("country") ?? "").trim();
   const passportNumber = String(formData.get("passport-number") ?? "").trim();
   const passportFrontUrl = String(formData.get("passport-front-url") ?? "").trim();
   const passportBackUrl = String(formData.get("passport-back-url") ?? "").trim();
@@ -83,6 +84,7 @@ export async function completeProfileAction(
     return { error: "Usernames are 3–30 characters: lowercase letters, numbers, dots, dashes or underscores." };
   }
   if (!phone) return { error: "Please enter your phone number." };
+  if (!country) return { error: "Please select your country." };
   if (!passportNumber) return { error: "Please enter your passport number." };
   if (!passportFrontUrl || !passportBackUrl) {
     return { error: "Please upload both sides of your passport." };
@@ -129,6 +131,7 @@ export async function completeProfileAction(
       username,
       phone,
       company_name: companyName,
+      country,
       passport_number: passportNumber,
       passport_front_url: passportFrontUrl,
       passport_back_url: passportBackUrl,

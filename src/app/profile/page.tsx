@@ -6,6 +6,7 @@ import {
   Building2,
   Clock3,
   FileText,
+  Globe,
   Mail,
   MessageSquareText,
   Pencil,
@@ -131,6 +132,7 @@ export default async function ProfilePage() {
   const details = [
     { icon: Mail, label: "Email", value: profile.email },
     { icon: Phone, label: "Phone", value: profile.phone },
+    { icon: Globe, label: "Country", value: profile.country || "—" },
     { icon: Building2, label: "Company", value: profile.company_name || "—" },
     { icon: FileText, label: "Passport number", value: profile.passport_number },
   ];

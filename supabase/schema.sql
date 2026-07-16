@@ -159,6 +159,19 @@ alter table product_enquiries drop constraint if exists product_enquiries_quote_
 alter table product_enquiries add constraint product_enquiries_quote_status_check
   check (quote_status in ('awaiting_quote', 'quoted', 'rejected'));
 
+-- request_type distinguishes an open "Enquiry" (anyone, no login) from an
+-- "Order" (requires a signed-in, approved account). full_name is kept as a
+-- snapshot but is now derived from the split first/last name fields.
+alter table product_enquiries add column if not exists request_type text not null default 'enquiry';
+alter table product_enquiries add column if not exists first_name text not null default '';
+alter table product_enquiries add column if not exists last_name text not null default '';
+
+alter table product_enquiries drop constraint if exists product_enquiries_request_type_check;
+alter table product_enquiries add constraint product_enquiries_request_type_check
+  check (request_type in ('enquiry', 'order'));
+
+create index if not exists product_enquiries_request_type_idx on product_enquiries (request_type, created_at desc);
+
 -- ============================================================
 -- user_profiles — one row per Google-authenticated customer
 -- (auth.users). Created on first login with a generated referral
@@ -174,6 +187,7 @@ create table if not exists user_profiles (
   username text unique,                  -- lowercase slug; null until profile setup
   phone text not null default '',
   company_name text not null default '',
+  country text not null default '',      -- customer's country, from profile setup
   passport_number text not null default '',
   passport_front_url text not null default '',
   passport_back_url text not null default '',
@@ -184,6 +198,9 @@ create table if not exists user_profiles (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- country added after the table existed on some deployments.
+alter table user_profiles add column if not exists country text not null default '';
 
 create index if not exists user_profiles_status_idx on user_profiles (status, created_at desc);
 create index if not exists user_profiles_referred_by_idx on user_profiles (referred_by);
