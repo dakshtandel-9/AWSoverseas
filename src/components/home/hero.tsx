@@ -249,7 +249,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <div className="relative min-h-[100svh] overflow-hidden bg-[#000c1a]">
+    <div className="relative min-h-[100svh] h-auto lg:h-[100svh] overflow-hidden bg-[#000c1a]">
       {/* Interactive dot field */}
       <div className="absolute inset-0" aria-hidden>
         <DotField
@@ -272,7 +272,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
         />
       </div>
 
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-16 pt-28 lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
+      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         {/* Left — headline + actions */}
         <div className="max-w-[600px]">
           {/* Eyebrow */}
@@ -386,7 +386,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
 
         {/* Right — Shipment Status card with route viz */}
         <motion.div
-          className="mt-16 flex justify-center lg:mt-0 lg:justify-start lg:-ml-8"
+          className="mt-10 flex justify-center sm:mt-16 lg:mt-0 lg:justify-start lg:-ml-8"
           initial={{ opacity: 0, x: 24 }}
           animate={active ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.85, delay: 0.2, ease }}
