@@ -89,7 +89,7 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
 
   return (
     <div className="flex flex-col items-center gap-0">
-      <div className="relative w-full max-w-[360px] mr-8 sm:mr-10 lg:mr-0">
+      <div className="relative w-full max-w-[360px] scale-[0.82] sm:scale-90 sm:mr-10 lg:mr-0 lg:scale-100">
         {/* Stacked back cards — mirrors the tracker card's stack language */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
@@ -237,7 +237,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
       <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         <div className="max-w-[600px]">
           <motion.div
-            className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}

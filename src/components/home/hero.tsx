@@ -100,7 +100,7 @@ function ShipmentCard() {
   return (
     <div className="flex flex-col items-center gap-0">
       {/* Stacked card stack wrapper */}
-      <div className="relative w-full max-w-md mr-8 sm:mr-10 lg:mr-0">
+      <div className="relative w-full max-w-md scale-[0.82] sm:scale-90 sm:mr-10 lg:mr-0 lg:scale-100">
         {/* Card back 4 — furthest */}
         <div
           className="absolute inset-0 rounded-3xl bg-white ring-1 ring-[#e4e9f2]"
@@ -277,7 +277,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
         <div className="max-w-[600px]">
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}

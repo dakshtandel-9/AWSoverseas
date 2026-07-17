@@ -156,8 +156,11 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
         </button>
       </div>
 
-      {/* Mobile — dots only, bottom-center, matches the dark hero surface */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 flex justify-center md:hidden">
+      {/* Mobile — dots only, matches the dark hero surface. Sticky (not absolute) since
+          the section's own height now grows past one viewport on mobile — an
+          absolute bottom-5 would land wherever the section happens to end, not
+          near the visible fold. */}
+      <div className="pointer-events-none sticky bottom-5 inset-x-0 z-10 -mt-14 flex justify-center md:hidden">
         <div className="pointer-events-auto flex items-center gap-2">
           {Array.from({ length: slideCount }).map((_, i) => (
             <button
