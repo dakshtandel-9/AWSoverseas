@@ -45,11 +45,11 @@ export function PartnerRoster({ data }: { data: Data }) {
               <span className="hidden font-mono text-xs font-semibold text-[#94a3b8] sm:block">
                 {code}
               </span>
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#033e8d] transition-colors duration-300 group-hover:bg-[#033e8d] group-hover:text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] transition-colors duration-300 group-hover:bg-[#01214a] group-hover:text-white">
                 <Icon className="size-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-base font-bold text-[#06234d]">{item.title}</p>
+                <p className="text-base font-bold text-[#01214a]">{item.title}</p>
                 <p className="mt-0.5 truncate text-sm text-[#5b6b82]">{item.description}</p>
               </div>
               <Globe2 className="hidden size-4 shrink-0 text-[#c3cede] sm:block" aria-hidden />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Logo } from "@/components/ui/logo";
 import { LoginForm } from "@/components/admin/login-form";
 
-export const metadata: Metadata = { title: "Admin Login | AWSoversea", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Admin Login | AWSOverseas", robots: { index: false, follow: false } };
 
 export default function AdminLoginPage() {
   return (
@@ -12,7 +12,7 @@ export default function AdminLoginPage() {
         <p className="mt-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           Admin Access
         </p>
-        <h1 className="mt-2 text-2xl font-bold text-[#06234d]">Sign in to the dashboard</h1>
+        <h1 className="mt-2 text-2xl font-bold text-[#01214a]">Sign in to the dashboard</h1>
         <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
           Enter the admin password to manage site content, messages, and settings.
         </p>

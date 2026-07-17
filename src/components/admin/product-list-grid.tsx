@@ -48,7 +48,7 @@ export function ProductListGrid({ products }: { products: Product[] }) {
               onClick={() => startTransition(() => toggleProductActiveAction(product.id, !product.is_active))}
               className={cn(
                 "absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-semibold shadow-sm transition-colors disabled:opacity-50",
-                product.is_active ? "bg-[#e8f9ff] text-[#0489c2]" : "bg-white text-[#94a3b8]",
+                product.is_active ? "bg-[#fcf0f2] text-[#8e1b2e]" : "bg-white text-[#94a3b8]",
               )}
             >
               {product.is_active ? "Visible" : "Hidden"}
@@ -57,7 +57,7 @@ export function ProductListGrid({ products }: { products: Product[] }) {
 
           <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-bold text-[#06234d]">{product.name}</p>
+              <p className="truncate text-sm font-bold text-[#01214a]">{product.name}</p>
               {product.category && <p className="truncate text-xs text-[#94a3b8]">{product.category}</p>}
             </div>
 

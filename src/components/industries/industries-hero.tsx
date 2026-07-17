@@ -31,13 +31,13 @@ export function IndustriesHero({ data, stats }: { data: Data; stats: Stat[] }) {
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(15,173,232,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -49,8 +49,8 @@ export function IndustriesHero({ data, stats }: { data: Data; stats: Stat[] }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#0fade8]" />
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+            <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
             {data.badge}
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
@@ -69,7 +69,7 @@ export function IndustriesHero({ data, stats }: { data: Data; stats: Stat[] }) {
             {line1}{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #48b8f8 0%, #0fade8 55%, #7dd8ff 100%)",
+                background: "linear-gradient(110deg, #e05c72 0%, #d72846 55%, #e88797 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -108,7 +108,7 @@ export function IndustriesHero({ data, stats }: { data: Data; stats: Stat[] }) {
               onMouseEnter={(e) => {
                 const el = e.currentTarget;
                 el.style.background = "rgba(255,255,255,0.14)";
-                el.style.boxShadow = "0 0 0 1px rgba(15,173,232,0.4), 0 4px 20px rgba(15,173,232,0.15)";
+                el.style.boxShadow = "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget;
@@ -130,7 +130,7 @@ export function IndustriesHero({ data, stats }: { data: Data; stats: Stat[] }) {
           transition={{ duration: 0.75, delay: 0.36, ease }}
         >
           {stats.map((s) => (
-            <div key={s.label} className="bg-[#04162f] px-6 py-5">
+            <div key={s.label} className="bg-[#000c1a] px-6 py-5">
               <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
                 {s.label}
               </dt>

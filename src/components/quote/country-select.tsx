@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { COUNTRIES } from "@/lib/countries";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 /**
  * Searchable country dropdown — native <select> can't be typed into to
@@ -122,8 +122,8 @@ export function CountrySelect({
                 }}
                 onMouseEnter={() => setActiveIndex(i)}
                 className={cn(
-                  "cursor-pointer px-4 py-2.5 text-sm text-[#06234d] transition-colors",
-                  i === activeIndex ? "bg-[#eef8fd] text-[#0489c2]" : "hover:bg-[#f6f8fc]",
+                  "cursor-pointer px-4 py-2.5 text-sm text-[#01214a] transition-colors",
+                  i === activeIndex ? "bg-[#eef8fd] text-[#8e1b2e]" : "hover:bg-[#f6f8fc]",
                 )}
               >
                 {country}

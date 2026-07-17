@@ -7,6 +7,7 @@ import { HeroSlider } from "@/components/home/hero-slider";
 import { TrustedPartners } from "@/components/home/trusted-partners";
 import { AboutPreview } from "@/components/home/about-preview";
 import { ServicesGrid } from "@/components/home/services-grid";
+import { ProductsWeExport } from "@/components/home/products-we-export";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { ReferralTeaser } from "@/components/home/referral-teaser";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -22,9 +23,9 @@ export const metadata: Metadata = metaFrom(home.meta, "/");
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "AWSoversea",
+  name: "AWSOverseas",
   description: home.meta?.description,
-  url: "https://awsoversea.com",
+  url: "https://awsoverseas.com",
   slogan: home.hero?.title,
   areaServed: "Worldwide",
 };
@@ -44,6 +45,7 @@ export default async function HomePage() {
       <TrustedPartners data={home.trustedPartners} partners={home.industries.items} />
       <AboutPreview data={home.about} stats={home.hero.stats} />
       <ServicesGrid data={home.services} />
+      <ProductsWeExport />
       <WhyChooseUs data={home.whyChooseUs} />
       <ReferralTeaser data={referralRewards.homeSection} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />

@@ -52,9 +52,9 @@ export const referralRewards = referralRewardsJson as Content;
 
 /** Build a Next.js Metadata object from a page's `meta` block. */
 export function metaFrom(meta: Content | undefined, path = "/") {
-  const title = meta?.title ?? "AWSoversea";
+  const title = meta?.title ?? "AWSOverseas";
   const description = meta?.description ?? "";
-  const url = `https://awsoversea.com${path}`;
+  const url = `https://awsoverseas.com${path}`;
   return {
     title,
     description,
@@ -64,7 +64,7 @@ export function metaFrom(meta: Content | undefined, path = "/") {
       title,
       description,
       url,
-      siteName: "AWSoversea",
+      siteName: "AWSOverseas",
       type: "website",
     },
     twitter: {

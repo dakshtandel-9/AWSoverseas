@@ -1,8 +1,8 @@
 {
   "page": "Products We Export",
   "meta": {
-    "title": "Products We Export | AWSoversea",
-    "description": "Browse the products AWSoversea exports and sources worldwide. No pricing listed online — send an enquiry on any item for availability and a quote."
+    "title": "Products We Export | AWSOverseas",
+    "description": "Browse the products AWSOverseas exports and sources worldwide. No pricing listed online — send an enquiry on any item for availability and a quote."
   },
   "hero": {
     "badge": "Export Catalog",
@@ -36,7 +36,7 @@
   "cta": {
     "title": "Exporting Something Not on This List?",
     "description": "This schedule covers what we ship most — but our commodity desk builds custom export plans for other product categories too. Tell us what you're moving and where, and we'll quote it.",
-    "primaryButton": "Get a Free Quote",
+    "primaryButton": "Request a Quote",
     "secondaryButton": "Speak with an Expert"
   }
 }

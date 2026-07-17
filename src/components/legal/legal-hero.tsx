@@ -18,13 +18,13 @@ const ease = [0.16, 1, 0.3, 1] as const;
  */
 export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: string }) {
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-14 pt-32 sm:pb-16 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-14 pt-32 sm:pb-16 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(50% 45% at 88% 0%, rgba(15,173,232,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(50% 45% at 88% 0%, rgba(172,32,56,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
@@ -36,8 +36,8 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
-            <span className="size-1.5 rounded-full bg-[#0fade8]" />
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+            <span className="size-1.5 rounded-full bg-[#d72846]" />
             {data.badge}
           </span>
           <span className="font-mono text-[11px] tracking-[0.18em] text-white/35">

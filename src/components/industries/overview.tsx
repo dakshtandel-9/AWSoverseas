@@ -13,7 +13,7 @@ export function Overview({ data }: { data: Data }) {
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             Sector Coverage
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-[#06234d] sm:text-4xl lg:text-[2.5rem]">
+          <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem]">
             {data.title}
           </h2>
           <p className="mt-5 text-base leading-relaxed text-[#5b6b82]">

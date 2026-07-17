@@ -35,19 +35,19 @@ export function FeaturedArticle({ data }: { data: Data }) {
           <CategoryArt category={data.category} imageUrl={data.imageUrl} className="h-64 lg:h-auto" />
           <div className="flex flex-col justify-center p-8 sm:p-10">
             <div className="flex items-center gap-3">
-              <span className="rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#033e8d]">
+              <span className="rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#01214a]">
                 {data.category}
               </span>
               <span className="font-mono text-[11px] uppercase tracking-wide text-[#94a3b8]">
                 {data.publishDate}
               </span>
             </div>
-            <h2 className="mt-4 text-2xl font-bold leading-snug text-[#06234d] transition-colors group-hover:text-[#033e8d] sm:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold leading-snug text-[#01214a] transition-colors group-hover:text-[#01214a] sm:text-3xl">
               {data.title}
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-[#5b6b82]">{data.excerpt}</p>
             <div className="mt-6 flex items-center gap-5">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#033e8d]">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#01214a]">
                 {data.button}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </span>

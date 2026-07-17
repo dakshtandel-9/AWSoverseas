@@ -17,7 +17,7 @@ export type ProductRecord = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 const initialState: ProductFormState = {};
 
@@ -31,7 +31,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
       {/* Rendered outside the product-save <form> — same isolation reason as
           the blog cover-image field: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">Product photo</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Product photo</h2>
         <div className="mt-5">
           <ProductImageUploadField value={imageUrl} onUploaded={setImageUrl} />
         </div>
@@ -41,14 +41,14 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
         <input type="hidden" name="image_url" value={imageUrl} />
 
         <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">Product details</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Product details</h2>
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#06234d]">Name *</label>
+              <label className="text-sm font-semibold text-[#01214a]">Name *</label>
               <input name="name" required defaultValue={product?.name ?? ""} className={inputClasses} />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#06234d]">Category</label>
+              <label className="text-sm font-semibold text-[#01214a]">Category</label>
               <input
                 name="category"
                 defaultValue={product?.category ?? ""}
@@ -57,7 +57,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#06234d]">Sort order</label>
+              <label className="text-sm font-semibold text-[#01214a]">Sort order</label>
               <input
                 type="number"
                 name="sort_order"
@@ -66,7 +66,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
               />
             </div>
             <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#06234d]">Description</label>
+              <label className="text-sm font-semibold text-[#01214a]">Description</label>
               <textarea
                 name="description"
                 defaultValue={product?.description ?? ""}
@@ -78,13 +78,13 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-6 border-t border-[#e4e9f2] pt-5">
-            <label className="flex items-center gap-2 text-sm font-medium text-[#06234d]">
+            <label className="flex items-center gap-2 text-sm font-medium text-[#01214a]">
               <input
                 type="checkbox"
                 name="is_active"
                 value="true"
                 defaultChecked={product?.is_active ?? true}
-                className="size-4 accent-[#033e8d]"
+                className="size-4 accent-[#01214a]"
               />
               Visible on site
             </label>
@@ -97,7 +97,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           </p>
         )}
         {state.success && (
-          <p className="flex items-center gap-2 rounded-lg bg-[#e8f9ff] px-3 py-2 text-sm font-medium text-[#0489c2]" role="status">
+          <p className="flex items-center gap-2 rounded-lg bg-[#fcf0f2] px-3 py-2 text-sm font-medium text-[#8e1b2e]" role="status">
             <Check className="size-4" />
             Saved.
           </p>
@@ -107,7 +107,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           <button
             type="submit"
             disabled={pending}
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[#033e8d] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-[#01214a] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {pending ? "Saving…" : product ? "Save changes" : "Create product"}
           </button>

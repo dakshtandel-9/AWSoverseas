@@ -11,7 +11,7 @@ const JSONLD = {
   "@type": "WebPage",
   name: disclaimer.meta?.title,
   description: disclaimer.meta?.description,
-  url: "https://awsoversea.com/disclaimer",
+  url: "https://awsoverseas.com/disclaimer",
 };
 
 export default function Page() {

@@ -79,7 +79,7 @@ export function AboutPreview({
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(10,165,240,0.07) 0%, transparent 70%), linear-gradient(to right, rgba(4,22,47,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.035) 1px, transparent 1px)",
+            "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(215,40,70,0.07) 0%, transparent 70%), linear-gradient(to right, rgba(4,22,47,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, 48px 48px, 48px 48px",
         }}
       />
@@ -87,7 +87,7 @@ export function AboutPreview({
       {/* Eyebrow */}
       <div className="relative mx-auto mb-16 flex max-w-[1280px] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <div className="h-px flex-1 bg-[#e4e9f2]" />
-        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About AWSoversea</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About AWSOverseas</span>
         <div className="h-px flex-1 bg-[#e4e9f2]" />
       </div>
 
@@ -110,16 +110,16 @@ export function AboutPreview({
                   key={s.label}
                   custom={i}
                   variants={cardVariants}
-                  className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white p-5 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0fade8]/40 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)]"
+                  className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white p-5 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d72846]/40 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)]"
                 >
                   {/* Left accent stripe */}
-                  <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#033e8d] to-[#0fade8] transition-transform duration-300 group-hover:scale-y-100" />
+                  <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#01214a] to-[#d72846] transition-transform duration-300 group-hover:scale-y-100" />
                   {/* Icon */}
-                  <span className="grid size-10 place-items-center rounded-xl bg-[#eaf1fb] text-[#033e8d] transition-colors duration-200 group-hover:bg-[#033e8d] group-hover:text-white">
+                  <span className="grid size-10 place-items-center rounded-xl bg-[#edf5ff] text-[#01214a] transition-colors duration-200 group-hover:bg-[#01214a] group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
                   {/* Count */}
-                  <span className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#033e8d] sm:text-4xl">
+                  <span className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#01214a] sm:text-4xl">
                     <CountUp target={value} suffix={suffix} />
                   </span>
                   {/* Label */}
@@ -158,7 +158,7 @@ export function AboutPreview({
                   key={y}
                   cx="1" cy={y} r="5"
                   fill="white"
-                  stroke={i === 1 || i === 2 ? "#0fade8" : "#033e8d"}
+                  stroke={i === 1 || i === 2 ? "#d72846" : "#01214a"}
                   strokeWidth="2"
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -168,8 +168,8 @@ export function AboutPreview({
               ))}
               <defs>
                 <linearGradient id="routeGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#033e8d" />
-                  <stop offset="100%" stopColor="#0fade8" />
+                  <stop offset="0%" stopColor="#01214a" />
+                  <stop offset="100%" stopColor="#d72846" />
                 </linearGradient>
               </defs>
             </svg>
@@ -185,7 +185,7 @@ export function AboutPreview({
           >
             <motion.h2
               variants={copyItem}
-              className="font-heading text-3xl font-bold leading-snug text-balance text-[#06234d] sm:text-4xl lg:text-[2.5rem]"
+              className="font-heading text-3xl font-bold leading-snug text-balance text-[#01214a] sm:text-4xl lg:text-[2.5rem]"
             >
               {data.title}
             </motion.h2>
@@ -198,7 +198,7 @@ export function AboutPreview({
             <motion.div variants={copyItem} className="mt-10">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#01214a] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] hover:shadow-[0_0_0_4px_rgba(172,32,56,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
               >
                 {data.button}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

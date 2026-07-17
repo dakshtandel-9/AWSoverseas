@@ -19,14 +19,14 @@ export function ReferralCta({ data }: { data: Data }) {
             className="pointer-events-none absolute inset-0 opacity-[0.07]"
             aria-hidden
             style={{
-              backgroundImage: "radial-gradient(circle, #48b8f8 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(circle, #e05c72 1px, transparent 1px)",
               backgroundSize: "32px 32px",
             }}
           />
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
             aria-hidden
-            style={{ background: "rgba(10,165,240,0.22)" }}
+            style={{ background: "rgba(215,40,70,0.22)" }}
           />
 
           <div className="relative mx-auto max-w-xl">

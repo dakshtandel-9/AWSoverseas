@@ -27,7 +27,7 @@ export default async function AdminEditBlogPostPage({ params }: { params: Promis
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Content</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#06234d] sm:text-3xl">Edit blog post</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Edit blog post</h1>
       <BlogPostForm post={post} />
     </div>
   );

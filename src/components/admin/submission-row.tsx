@@ -33,9 +33,9 @@ export function SubmissionRow({
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center gap-4 px-5 py-4 text-left"
       >
-        {!isRead && <span className="size-2 shrink-0 rounded-full bg-[#0fade8]" aria-hidden />}
+        {!isRead && <span className="size-2 shrink-0 rounded-full bg-[#d72846]" aria-hidden />}
         <div className="min-w-0 flex-1">
-          <p className={cn("truncate text-sm", isRead ? "font-medium text-[#5b6b82]" : "font-bold text-[#06234d]")}>
+          <p className={cn("truncate text-sm", isRead ? "font-medium text-[#5b6b82]" : "font-bold text-[#01214a]")}>
             {title}
           </p>
           <p className="truncate text-xs text-[#94a3b8]">{subtitle}</p>
@@ -47,13 +47,13 @@ export function SubmissionRow({
 
       {open && (
         <div className="border-t border-[#e4e9f2] px-5 py-4">
-          <div className="text-sm leading-relaxed text-[#06234d]">{detail}</div>
+          <div className="text-sm leading-relaxed text-[#01214a]">{detail}</div>
           <div className="mt-4 flex items-center gap-2">
             <button
               type="button"
               disabled={pending}
               onClick={() => startTransition(onToggleRead)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3.5 py-1.5 text-xs font-semibold text-[#5b6b82] transition-colors hover:border-[#0fade8] hover:text-[#0489c2] disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3.5 py-1.5 text-xs font-semibold text-[#5b6b82] transition-colors hover:border-[#d72846] hover:text-[#8e1b2e] disabled:opacity-50"
             >
               {isRead ? <Mail className="size-3.5" /> : <MailOpen className="size-3.5" />}
               Mark as {isRead ? "unread" : "read"}

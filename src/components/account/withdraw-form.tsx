@@ -34,8 +34,8 @@ export function WithdrawForm({ available, hasBankDetails }: { available: number;
 
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
-      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#06234d]">
-        <ArrowDownToLine className="size-4 text-[#0489c2]" />
+      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#01214a]">
+        <ArrowDownToLine className="size-4 text-[#8e1b2e]" />
         Request a withdrawal
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">
@@ -46,7 +46,7 @@ export function WithdrawForm({ available, hasBankDetails }: { available: number;
 
       <form onSubmit={onSubmit} className="mt-6 flex flex-wrap items-end gap-3">
         <div className="w-40">
-          <label className="text-sm font-semibold text-[#06234d]">Amount (₹)</label>
+          <label className="text-sm font-semibold text-[#01214a]">Amount (₹)</label>
           <input
             name="amount"
             type="number"
@@ -56,13 +56,13 @@ export function WithdrawForm({ available, hasBankDetails }: { available: number;
             required
             disabled={disabled}
             placeholder={String(MIN_WITHDRAWAL_AMOUNT)}
-            className="mt-2 w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20 disabled:bg-[#f6f8fc] disabled:text-[#94a3b8]"
+            className="mt-2 w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20 disabled:bg-[#f6f8fc] disabled:text-[#94a3b8]"
           />
         </div>
         <button
           type="submit"
           disabled={disabled || pending}
-          className="rounded-full bg-[#033e8d] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full bg-[#01214a] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {pending ? "Submitting…" : "Request withdrawal"}
         </button>

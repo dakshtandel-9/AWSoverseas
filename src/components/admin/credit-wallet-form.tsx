@@ -4,7 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { Plus, Wallet } from "lucide-react";
 
 const fieldClasses =
-  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#06234d] placeholder:text-[#94a3b8]";
+  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -78,7 +78,7 @@ export function CreditWalletForm({
             <button
               type="button"
               onClick={() => setFormOpen(true)}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#0489c2] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e1b2e] hover:underline"
             >
               <Plus className="size-3.5" /> Add more
             </button>
@@ -89,8 +89,8 @@ export function CreditWalletForm({
       {formOpen && (
         <>
           {!alreadyCredited && (
-            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#06234d]">
-              <Wallet className="size-3.5 text-[#0489c2]" /> Credit {referrerName}&apos;s wallet for this referral
+            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#01214a]">
+              <Wallet className="size-3.5 text-[#8e1b2e]" /> Credit {referrerName}&apos;s wallet for this referral
             </p>
           )}
           <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
@@ -107,7 +107,7 @@ export function CreditWalletForm({
             <button
               type="submit"
               disabled={pending}
-              className="rounded-lg bg-[#033e8d] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#052f69] disabled:opacity-50"
+              className="rounded-lg bg-[#01214a] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
             >
               Credit wallet
             </button>

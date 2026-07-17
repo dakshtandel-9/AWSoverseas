@@ -16,10 +16,10 @@ const ABOUT_JSONLD = {
   "@type": "AboutPage",
   name: about.meta?.title,
   description: about.meta?.description,
-  url: "https://awsoversea.com/about",
+  url: "https://awsoverseas.com/about",
   mainEntity: {
     "@type": "Organization",
-    name: "AWSoversea",
+    name: "AWSOverseas",
     description: about.companyStory?.description,
     areaServed: "Worldwide",
   },

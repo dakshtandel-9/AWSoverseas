@@ -65,13 +65,13 @@ export function AppShowcase({
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[70px]"
             aria-hidden
-            style={{ background: "rgba(15,173,232,0.16)" }}
+            style={{ background: "rgba(172,32,56,0.16)" }}
           />
-          <div className="relative aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#04162f] p-2.5 shadow-[0_30px_60px_-20px_rgba(4,22,47,0.5)] ring-1 ring-white/10">
+          <div className="relative aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#000c1a] p-2.5 shadow-[0_30px_60px_-20px_rgba(4,22,47,0.5)] ring-1 ring-white/10">
             <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/60" />
             <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-gradient-to-b from-[#f6f8fc] to-white">
-              <div className="bg-[#033e8d] px-5 pb-5 pt-9 text-white">
-                <p className="text-[11px] text-white/60">AWSoversea</p>
+              <div className="bg-[#01214a] px-5 pb-5 pt-9 text-white">
+                <p className="text-[11px] text-white/60">AWSOverseas</p>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={current.key}
@@ -98,9 +98,9 @@ export function AppShowcase({
                     {current.items.slice(0, 5).map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2.5 rounded-xl bg-[#f6f8fc] px-3.5 py-2.5 text-[11px] font-semibold text-[#06234d] ring-1 ring-[#e4e9f2]"
+                        className="flex items-center gap-2.5 rounded-xl bg-[#f6f8fc] px-3.5 py-2.5 text-[11px] font-semibold text-[#01214a] ring-1 ring-[#e4e9f2]"
                       >
-                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#e8f9ff] text-[#0489c2]">
+                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#fcf0f2] text-[#8e1b2e]">
                           <Check className="size-3" />
                         </span>
                         <span className="truncate">{item}</span>
@@ -109,7 +109,7 @@ export function AppShowcase({
                   </motion.ul>
                 </AnimatePresence>
               </div>
-              <div className="absolute inset-x-4 bottom-4 rounded-xl bg-[#033e8d] py-2.5 text-center text-xs font-semibold text-white">
+              <div className="absolute inset-x-4 bottom-4 rounded-xl bg-[#01214a] py-2.5 text-center text-xs font-semibold text-white">
                 Open in App
               </div>
             </div>
@@ -128,14 +128,14 @@ export function AppShowcase({
                 className={cn(
                   "group flex items-start gap-4 rounded-2xl border px-5 py-4 text-left transition-all duration-300",
                   isActive
-                    ? "border-[#0fade8]/40 bg-[#eef3fb] shadow-[0_4px_16px_-6px_rgba(3,62,141,0.2)]"
+                    ? "border-[#d72846]/40 bg-[#eef3fb] shadow-[0_4px_16px_-6px_rgba(3,62,141,0.2)]"
                     : "border-[#e4e9f2] bg-white hover:border-[#c8d5e8] hover:bg-[#f6f8fc]",
                 )}
               >
                 <span
                   className={cn(
                     "grid size-11 shrink-0 place-items-center rounded-xl transition-colors duration-300",
-                    isActive ? "bg-[#033e8d] text-white" : "bg-[#eef3fb] text-[#033e8d]",
+                    isActive ? "bg-[#01214a] text-white" : "bg-[#eef3fb] text-[#01214a]",
                   )}
                 >
                   <f.icon className="size-5" />
@@ -144,7 +144,7 @@ export function AppShowcase({
                   <h3
                     className={cn(
                       "text-base font-bold transition-colors",
-                      isActive ? "text-[#033e8d]" : "text-[#06234d]",
+                      isActive ? "text-[#01214a]" : "text-[#01214a]",
                     )}
                   >
                     {f.title}

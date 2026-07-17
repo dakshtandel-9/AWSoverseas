@@ -22,7 +22,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
         <Reveal direction="up">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Process</p>
-            <h2 className="mt-3 text-3xl font-bold text-[#06234d] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
+            <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
             </h2>
             <p className="mt-5 text-base leading-relaxed text-[#5b6b82]">
@@ -34,7 +34,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
             {/* Mini legend */}
             <div className="mt-10 flex flex-col gap-3">
               <div className="flex items-center gap-3 text-sm text-[#5b6b82]">
-                <CheckCircle2 className="size-4 text-[#0fade8]" />
+                <CheckCircle2 className="size-4 text-[#d72846]" />
                 Completed
               </div>
               <div className="flex items-center gap-3 text-sm text-[#d97706]">
@@ -55,7 +55,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
           <div className="absolute left-[22px] top-0 h-full w-0.5 bg-[#e4e9f2]" aria-hidden />
           {/* Filled line — up to and including the active step */}
           <motion.div
-            className="absolute left-[22px] top-0 w-0.5 origin-top bg-gradient-to-b from-[#0fade8] to-[#f59e0b]"
+            className="absolute left-[22px] top-0 w-0.5 origin-top bg-gradient-to-b from-[#d72846] to-[#f59e0b]"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -78,7 +78,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
                 {/* Node */}
                 <div className="relative z-10 mt-0.5 shrink-0">
                   {isDone ? (
-                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-[#0fade8] shadow-[0_0_0_4px_#f6f8fc]" />
+                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-[#d72846] shadow-[0_0_0_4px_#f6f8fc]" />
                   ) : isActive ? (
                     <div className="relative">
                       <motion.span
@@ -107,7 +107,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
                   )}
                   <h3
                     className="text-lg font-bold"
-                    style={{ color: isActive ? "#d97706" : isDone ? "#06234d" : "#2a3a52" }}
+                    style={{ color: isActive ? "#d97706" : isDone ? "#01214a" : "#2a3a52" }}
                   >
                     {s.title}
                   </h3>

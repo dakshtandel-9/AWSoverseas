@@ -14,7 +14,7 @@ const BLOG_JSONLD = {
   "@type": "Blog",
   name: blog.meta?.title,
   description: blog.meta?.description,
-  url: "https://awsoversea.com/blog",
+  url: "https://awsoverseas.com/blog",
 };
 
 export default async function Page() {

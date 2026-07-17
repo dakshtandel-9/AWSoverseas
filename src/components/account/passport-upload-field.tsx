@@ -37,8 +37,8 @@ export function PassportUploadField({
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm font-semibold text-[#06234d]">
-        {label} <span className="text-[#0489c2]">*</span>
+      <span className="text-sm font-semibold text-[#01214a]">
+        {label} <span className="text-[#8e1b2e]">*</span>
       </span>
 
       {value ? (
@@ -54,9 +54,9 @@ export function PassportUploadField({
           </button>
         </div>
       ) : (
-        <label className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-8 text-center transition-colors hover:border-[#0fade8]">
+        <label className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-8 text-center transition-colors hover:border-[#d72846]">
           {pending ? (
-            <Loader2 className="size-6 animate-spin text-[#0489c2]" />
+            <Loader2 className="size-6 animate-spin text-[#8e1b2e]" />
           ) : (
             <ImagePlus className="size-6 text-[#94a3b8]" />
           )}

@@ -3,13 +3,13 @@
     {
       "slug": "air-freight",
       "meta": {
-        "title": "Air Freight | AWSoversea",
-        "description": "Air Freight solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Air Freight | AWSOverseas",
+        "description": "Air Freight solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Fast & Reliable Air Freight Services",
-        "subtitle": "AWSoversea provides professional air freight solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional air freight solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
@@ -85,7 +85,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -104,7 +104,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -118,21 +118,21 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "sea-freight",
       "meta": {
-        "title": "Sea Freight | AWSoversea",
-        "description": "Sea Freight solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Sea Freight | AWSOverseas",
+        "description": "Sea Freight solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Global Sea Freight Solutions",
-        "subtitle": "AWSoversea provides professional sea freight solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional sea freight solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
@@ -208,7 +208,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -227,7 +227,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -241,27 +241,27 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "import-services",
       "meta": {
-        "title": "Import Services | AWSoversea",
-        "description": "Import Services solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Import Services | AWSOverseas",
+        "description": "Import Services solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Simplify Your Import Operations",
-        "subtitle": "AWSoversea provides professional import services solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional import services solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
       "overview": {
         "title": "Import Services Overview",
-        "description": "Our import services service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "description": "Our import services are designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
         "features": [
           "Global Network",
           "Door-to-Door Delivery",
@@ -331,7 +331,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -350,7 +350,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -364,27 +364,27 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "export-services",
       "meta": {
-        "title": "Export Services | AWSoversea",
-        "description": "Export Services solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Export Services | AWSOverseas",
+        "description": "Export Services solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Export Worldwide With Confidence",
-        "subtitle": "AWSoversea provides professional export services solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional export services solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
       "overview": {
         "title": "Export Services Overview",
-        "description": "Our export services service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "description": "Our export services are designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
         "features": [
           "Global Network",
           "Door-to-Door Delivery",
@@ -454,7 +454,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -473,7 +473,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -487,27 +487,27 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "fcl-shipping",
       "meta": {
-        "title": "FCL Shipping | AWSoversea",
-        "description": "FCL Shipping solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "FCL Shipping | AWSOverseas",
+        "description": "FCL Shipping solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Full Container Load Shipping",
-        "subtitle": "AWSoversea provides professional fcl shipping solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional FCL shipping solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
       "overview": {
         "title": "FCL Shipping Overview",
-        "description": "Our fcl shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "description": "Our FCL shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
         "features": [
           "Global Network",
           "Door-to-Door Delivery",
@@ -577,7 +577,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -596,7 +596,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -610,27 +610,27 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "lcl-shipping",
       "meta": {
-        "title": "LCL Shipping | AWSoversea",
-        "description": "LCL Shipping solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "LCL Shipping | AWSOverseas",
+        "description": "LCL Shipping solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Less than Container Load Shipping",
-        "subtitle": "AWSoversea provides professional lcl shipping solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional LCL shipping solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
       "overview": {
         "title": "LCL Shipping Overview",
-        "description": "Our lcl shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
+        "description": "Our LCL shipping service is designed to provide secure, efficient and cost-effective logistics solutions for businesses and individuals worldwide.",
         "features": [
           "Global Network",
           "Door-to-Door Delivery",
@@ -700,7 +700,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -719,7 +719,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -733,21 +733,21 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "customs-clearance",
       "meta": {
-        "title": "Customs Clearance | AWSoversea",
-        "description": "Customs Clearance solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Customs Clearance | AWSOverseas",
+        "description": "Customs Clearance solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Professional Customs Clearance",
-        "subtitle": "AWSoversea provides professional customs clearance solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional customs clearance solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
@@ -823,7 +823,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -842,7 +842,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -856,21 +856,21 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "warehousing",
       "meta": {
-        "title": "Warehousing | AWSoversea",
-        "description": "Warehousing solutions by AWSoversea for international logistics and freight forwarding."
+        "title": "Warehousing | AWSOverseas",
+        "description": "Warehousing solutions by AWSOverseas for international logistics and freight forwarding."
       },
       "hero": {
         "badge": "International Logistics",
         "title": "Secure Warehousing & Distribution",
-        "subtitle": "AWSoversea provides professional warehousing solutions backed by global logistics expertise.",
+        "subtitle": "AWSOverseas provides professional warehousing solutions backed by global logistics expertise.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       },
@@ -946,7 +946,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why AWSoversea",
+        "title": "Why AWSOverseas",
         "items": [
           "Experienced Logistics Team",
           "Global Partner Network",
@@ -965,7 +965,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the AWSoversea mobile application."
+            "answer": "Yes, shipment tracking is available through the AWSOverseas mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -979,8 +979,8 @@
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact AWSoversea today for reliable international logistics solutions.",
-        "primaryButton": "Get Free Quote",
+        "description": "Contact AWSOverseas today for reliable international logistics solutions.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
     }

@@ -72,7 +72,7 @@ export function UserRow({ user }: { user: AdminUser }) {
         className="flex w-full items-center gap-4 px-5 py-4 text-left"
       >
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-[#06234d]">{name}</p>
+          <p className="truncate text-sm font-bold text-[#01214a]">{name}</p>
           <p className="truncate text-xs text-[#94a3b8]">
             {user.username ? `@${user.username} · ` : ""}
             {user.email}
@@ -87,11 +87,11 @@ export function UserRow({ user }: { user: AdminUser }) {
 
       {open && (
         <div className="border-t border-[#e4e9f2] px-5 py-5">
-          <div className="grid gap-x-8 gap-y-2 text-sm text-[#06234d] sm:grid-cols-2">
+          <div className="grid gap-x-8 gap-y-2 text-sm text-[#01214a] sm:grid-cols-2">
             <p>
               <span className="font-semibold">Phone:</span>{" "}
               {user.phone ? (
-                <a href={`tel:${user.phone.replace(/\s+/g, "")}`} className="text-[#0489c2] hover:underline">
+                <a href={`tel:${user.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
                   {user.phone}
                 </a>
               ) : (
@@ -113,7 +113,7 @@ export function UserRow({ user }: { user: AdminUser }) {
             </p>
             {user.referrer && (
               <p className="sm:col-span-2">
-                <Gift className="mr-1.5 inline size-3.5 text-[#0489c2]" />
+                <Gift className="mr-1.5 inline size-3.5 text-[#8e1b2e]" />
                 <span className="font-semibold">Referred by:</span> {user.referrer.first_name}{" "}
                 {user.referrer.last_name}
                 {user.referrer.username ? ` (@${user.referrer.username})` : ""}

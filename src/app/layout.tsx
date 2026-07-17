@@ -20,16 +20,16 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://awsoversea.com"),
+  metadataBase: new URL("https://awsoverseas.com"),
   title: {
-    default: home.meta?.title ?? "AWSoversea | Global Logistics Beyond Borders",
-    template: "%s | AWSoversea",
+    default: home.meta?.title ?? "AWSOverseas | Global Logistics Beyond Borders",
+    template: "%s | AWSOverseas",
   },
   description: home.meta?.description,
   keywords: home.meta?.keywords,
   openGraph: {
     type: "website",
-    siteName: "AWSoversea",
+    siteName: "AWSOverseas",
     title: home.meta?.title,
     description: home.meta?.description,
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04162f",
+  themeColor: "#000c1a",
   width: "device-width",
   initialScale: 1,
 };

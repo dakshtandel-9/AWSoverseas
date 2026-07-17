@@ -12,7 +12,7 @@ export function DownloadBand({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
       <motion.div
-        className="relative overflow-hidden rounded-[2rem] bg-[#04162f] px-8 py-14 text-center sm:px-14 sm:py-16"
+        className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-14 text-center sm:px-14 sm:py-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -23,7 +23,7 @@ export function DownloadBand({ data }: { data: Data }) {
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(50% 60% at 50% -10%, rgba(15,173,232,0.22) 0%, transparent 60%)",
+              "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.22) 0%, transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-xl">

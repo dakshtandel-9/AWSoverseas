@@ -23,7 +23,7 @@ type Data = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 function FieldControl({ field }: { field: Field }) {
   const id = useId();
@@ -97,7 +97,7 @@ export function PartnerApplyForm({ data }: { data: Data }) {
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           Application Form
         </p>
-        <h2 className="mt-3 text-2xl font-bold text-[#06234d] sm:text-3xl">{data.title}</h2>
+        <h2 className="mt-3 text-2xl font-bold text-[#01214a] sm:text-3xl">{data.title}</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-[#5b6b82]">{data.description}</p>
 
         <AnimatePresence mode="wait">
@@ -106,12 +106,12 @@ export function PartnerApplyForm({ data }: { data: Data }) {
               key="success"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 flex items-start gap-3 rounded-2xl bg-[#e8f9ff] px-5 py-5 ring-1 ring-[#0fade8]/25"
+              className="mt-8 flex items-start gap-3 rounded-2xl bg-[#fcf0f2] px-5 py-5 ring-1 ring-[#d72846]/25"
             >
-              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#0fade8] text-white">
+              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#d72846] text-white">
                 <Check className="size-4" />
               </span>
-              <p className="text-sm font-medium leading-relaxed text-[#0489c2]">
+              <p className="text-sm font-medium leading-relaxed text-[#8e1b2e]">
                 {data.successMessage}
               </p>
             </motion.div>
@@ -132,9 +132,9 @@ export function PartnerApplyForm({ data }: { data: Data }) {
                     (field.type === "textarea" || field.type === "select") && "sm:col-span-2",
                   )}
                 >
-                  <label className="text-sm font-semibold text-[#06234d]">
+                  <label className="text-sm font-semibold text-[#01214a]">
                     {field.label}
-                    {field.required && <span className="ml-1 text-[#0489c2]">*</span>}
+                    {field.required && <span className="ml-1 text-[#8e1b2e]">*</span>}
                   </label>
                   <FieldControl field={field} />
                 </div>
@@ -143,7 +143,7 @@ export function PartnerApplyForm({ data }: { data: Data }) {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] hover:shadow-[0_0_0_4px_rgba(15,173,232,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#01214a] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] hover:shadow-[0_0_0_4px_rgba(172,32,56,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
                 >
                   {data.submitButton}
                   <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

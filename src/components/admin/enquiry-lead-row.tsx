@@ -39,21 +39,21 @@ export function EnquiryLeadRow({ item }: { item: EnquiryLead }) {
           </p>
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#0489c2] hover:underline">
+            <a href={`mailto:${item.email}`} className="text-[#8e1b2e] hover:underline">
               {item.email}
             </a>
           </p>
           {item.phone && (
             <p>
               <span className="font-semibold">Phone:</span>{" "}
-              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#0489c2] hover:underline">
+              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
                 {item.phone}
               </a>
             </p>
           )}
           {item.message && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#06234d]">Message:</p>
+              <p className="font-semibold text-[#01214a]">Message:</p>
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}

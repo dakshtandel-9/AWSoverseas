@@ -7,12 +7,12 @@ type Data = { title: string; description: string; primaryButton: string; seconda
 export function ArticleCta({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
-      <div className="relative overflow-hidden rounded-[2rem] bg-[#04162f] px-8 py-14 text-center sm:px-14 sm:py-16">
+      <div className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-14 text-center sm:px-14 sm:py-16">
         <div
           className="pointer-events-none absolute inset-0"
           aria-hidden
           style={{
-            backgroundImage: "radial-gradient(50% 60% at 50% -10%, rgba(15,173,232,0.22) 0%, transparent 60%)",
+            backgroundImage: "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.22) 0%, transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-xl">

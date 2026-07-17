@@ -54,14 +54,14 @@ export function ContactChannels({
                   href={href}
                   className="group flex items-center gap-4 rounded-2xl px-2 py-1 transition-colors hover:bg-[#f6f8fc]"
                 >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#033e8d] transition-colors group-hover:bg-[#033e8d] group-hover:text-white">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] transition-colors group-hover:bg-[#01214a] group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                       {item.type}
                     </p>
-                    <p className="truncate text-sm font-semibold text-[#06234d]">{item.value}</p>
+                    <p className="truncate text-sm font-semibold text-[#01214a]">{item.value}</p>
                   </div>
                 </a>
               </li>
@@ -69,14 +69,14 @@ export function ContactChannels({
           })}
           {location && (
             <li className="flex items-start gap-4 px-2 py-1">
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#033e8d]">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a]">
                 <MapPin className="size-5" />
               </span>
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                   {location.office}
                 </p>
-                <p className="text-sm font-semibold leading-snug text-[#06234d]">
+                <p className="text-sm font-semibold leading-snug text-[#01214a]">
                   {location.address}, {location.city}, {location.country}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export function ContactChannels({
         href={whatsapp.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-[#04162f] p-6 transition-transform duration-300 hover:-translate-y-0.5"
+        className="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-[#000c1a] p-6 transition-transform duration-300 hover:-translate-y-0.5"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -99,16 +99,16 @@ export function ContactChannels({
         <div
           className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full blur-[60px]"
           aria-hidden
-          style={{ background: "rgba(15,173,232,0.3)" }}
+          style={{ background: "rgba(172,32,56,0.3)" }}
         />
-        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#0fade8]/15 text-[#48b8f8]">
+        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#d72846]/15 text-[#e05c72]">
           <MessageCircle className="size-6" />
         </span>
         <div className="relative min-w-0 flex-1">
           <p className="text-sm font-bold text-white">{whatsapp.title}</p>
           <p className="mt-0.5 text-xs leading-snug text-white/55">{whatsapp.description}</p>
         </div>
-        <ArrowUpRight className="relative size-4 shrink-0 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#48b8f8]" />
+        <ArrowUpRight className="relative size-4 shrink-0 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#e05c72]" />
       </motion.a>
 
       {/* Business hours */}
@@ -120,7 +120,7 @@ export function ContactChannels({
         transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center gap-2.5">
-          <Clock className="size-4 text-[#0489c2]" />
+          <Clock className="size-4 text-[#8e1b2e]" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             {businessHours.title}
           </p>
@@ -132,7 +132,7 @@ export function ContactChannels({
               <span
                 className={cn(
                   "font-semibold",
-                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#06234d]",
+                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#01214a]",
                 )}
               >
                 {s.time}

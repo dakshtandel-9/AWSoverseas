@@ -1,8 +1,8 @@
 {
     "page": "Contact",
     "meta": {
-        "title": "Contact AWSoversea | Get in Touch",
-        "description": "Contact AWSoversea for international logistics, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
+        "title": "Contact AWSOverseas | Get in Touch",
+        "description": "Contact AWSOverseas for international logistics, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
     },
     "hero": {
         "badge": "Contact Us",
@@ -90,11 +90,11 @@
             },
             {
                 "type": "Email",
-                "value": "info@awsoversea.com"
+                "value": "info@awsoverseas.com"
             },
             {
                 "type": "Support",
-                "value": "support@awsoversea.com"
+                "value": "support@awsoverseas.com"
             }
         ]
     },

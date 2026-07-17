@@ -1,7 +1,7 @@
 {
     "page": "Home",
     "meta": {
-        "title": "AWSoversea | Global Logistics Beyond Borders",
+        "title": "AWSOverseas | Global Logistics Beyond Borders",
         "description": "International logistics and freight forwarding company providing Air Freight, Sea Freight, Customs Clearance, Warehousing, Import & Export Services, and Door-to-Door Cargo Solutions worldwide.",
         "keywords": [
             "International Shipping",
@@ -73,7 +73,7 @@
     },
     "about": {
         "title": "Your Trusted Global Logistics Partner",
-        "description": "AWSoversea provides complete freight forwarding and logistics solutions including Air Freight, Sea Freight, Import & Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door Delivery. Our mission is to simplify global shipping with transparent processes, competitive pricing, and dedicated customer support.",
+        "description": "AWSOverseas provides complete freight forwarding and logistics solutions including Air Freight, Sea Freight, Import & Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door Delivery. Our mission is to simplify global shipping with transparent processes, competitive pricing, and dedicated customer support.",
         "button": "Learn More"
     },
     "services": {
@@ -107,7 +107,7 @@
         ]
     },
     "whyChooseUs": {
-        "title": "Why Choose AWSoversea",
+        "title": "Why Choose AWSOverseas",
         "items": [
             {
                 "title": "Global Network",
@@ -195,7 +195,7 @@
     },
     "testimonials": {
         "title": "What Our Clients Say",
-        "description": "Businesses worldwide trust AWSoversea for reliable international logistics solutions."
+        "description": "Businesses worldwide trust AWSOverseas for reliable international logistics solutions."
     },
     "coverage": {
         "title": "Worldwide Shipping Coverage",
@@ -216,7 +216,7 @@
         "description": "Find answers to the most common questions about international shipping, customs, and freight forwarding."
     },
     "downloadApp": {
-        "title": "Download the AWSoversea Mobile App",
+        "title": "Download the AWSOverseas Mobile App",
         "description": "Manage your shipments anytime, anywhere. Book cargo, track deliveries, upload documents, receive instant notifications, and stay connected throughout the shipping journey.",
         "playStoreButton": "Google Play",
         "appStoreButton": "App Store"

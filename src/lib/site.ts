@@ -2,9 +2,9 @@
 import { individualService } from "@/lib/content";
 
 export const SITE = {
-  name: "AWSoversea",
+  name: "AWSOverseas",
   tagline: "Global Logistics Beyond Borders",
-  url: "https://awsoversea.com",
+  url: "https://awsoverseas.com",
 };
 
 export type ServiceLink = { slug: string; title: string; description: string };

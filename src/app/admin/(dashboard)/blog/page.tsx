@@ -21,11 +21,11 @@ export default async function AdminBlogPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Content</p>
-          <h1 className="mt-2 text-2xl font-bold text-[#06234d] sm:text-3xl">Blog posts</h1>
+          <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Blog posts</h1>
         </div>
         <Link
           href="/admin/blog/new"
-          className="inline-flex items-center gap-2 rounded-full bg-[#033e8d] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+          className="inline-flex items-center gap-2 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
         >
           <Plus className="size-4" />
           New post

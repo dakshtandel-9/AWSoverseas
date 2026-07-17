@@ -39,10 +39,10 @@ export default async function ServiceDetailPage({
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: svc.hero?.title,
-    provider: { "@type": "Organization", name: "AWSoversea" },
+    provider: { "@type": "Organization", name: "AWSOverseas" },
     areaServed: "Worldwide",
     description: svc.overview?.description,
-    url: `https://awsoversea.com/services/${slug}`,
+    url: `https://awsoverseas.com/services/${slug}`,
   };
 
   return (

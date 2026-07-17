@@ -23,13 +23,13 @@ const REDIRECTS = [
  */
 export function VoidManifest() {
   return (
-    <section className="relative overflow-hidden bg-[#04162f] py-28 sm:py-36">
+    <section className="relative overflow-hidden bg-[#000c1a] py-28 sm:py-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 0%, rgba(15,173,232,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 85% 0%, rgba(172,32,56,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
@@ -49,7 +49,7 @@ export function VoidManifest() {
             STATUS: NO&nbsp;RECORD
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
-            AWSOVERSEA&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
+            AWSOVERSEAS&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
           </span>
         </motion.div>
 
@@ -85,7 +85,7 @@ export function VoidManifest() {
                 ))}
               </div>
               <motion.div
-                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#0fade8]/80 to-transparent"
+                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#d72846]/80 to-transparent"
                 initial={{ x: "-2rem" }}
                 animate={{ x: "280px" }}
                 transition={{ duration: 1.1, delay: 0.6, ease: "easeInOut" }}
@@ -148,7 +148,7 @@ export function VoidManifest() {
                           {r.note}
                         </span>
                         <span
-                          className="text-[#0fade8] transition-transform duration-300 group-hover:translate-x-1"
+                          className="text-[#d72846] transition-transform duration-300 group-hover:translate-x-1"
                           aria-hidden
                         >
                           &rarr;

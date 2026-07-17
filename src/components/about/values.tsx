@@ -47,11 +47,11 @@ export function Values({ data }: { data: Data }) {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="mt-0.5 grid size-11 shrink-0 place-items-center rounded-xl bg-white text-[#033e8d] shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_20px_-10px_rgba(4,22,47,0.2)] ring-1 ring-[#e4e9f2] transition-colors duration-300 group-hover:bg-[#033e8d] group-hover:text-white">
+              <span className="mt-0.5 grid size-11 shrink-0 place-items-center rounded-xl bg-white text-[#01214a] shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_20px_-10px_rgba(4,22,47,0.2)] ring-1 ring-[#e4e9f2] transition-colors duration-300 group-hover:bg-[#01214a] group-hover:text-white">
                 <Icon className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="text-base font-bold text-[#06234d]">{item.title}</h3>
+                <h3 className="text-base font-bold text-[#01214a]">{item.title}</h3>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-[#5b6b82]">
                   {item.description}
                 </p>

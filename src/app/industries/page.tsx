@@ -21,7 +21,7 @@ const INDUSTRIES_JSONLD = {
   "@type": "CollectionPage",
   name: industries.meta?.title,
   description: industries.meta?.description,
-  url: "https://awsoversea.com/industries",
+  url: "https://awsoverseas.com/industries",
   hasPart: industries.industriesGrid?.items?.map((item: { title: string }) => ({
     "@type": "Thing",
     name: item.title,

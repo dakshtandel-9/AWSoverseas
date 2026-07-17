@@ -8,7 +8,7 @@ import type { SiteSettings } from "@/lib/site-settings";
 const initialState: SettingsState = {};
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
   const [state, formAction, pending] = useActionState(updateSettingsAction, initialState);
@@ -20,7 +20,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <Field label="Secondary phone number" name="phone_2" defaultValue={settings.phone2} placeholder="Optional" />
       </div>
 
-      <Field label="Email address" name="email" type="email" defaultValue={settings.email} required placeholder="info@awsoversea.com" />
+      <Field label="Email address" name="email" type="email" defaultValue={settings.email} required placeholder="info@awsoverseas.com" />
 
       <Field
         label="WhatsApp number"
@@ -30,7 +30,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       />
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="address" className="text-sm font-semibold text-[#06234d]">
+        <label htmlFor="address" className="text-sm font-semibold text-[#01214a]">
           Office address
         </label>
         <textarea
@@ -49,7 +49,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </p>
       )}
       {state.success && (
-        <p className="flex items-center gap-2 rounded-lg bg-[#e8f9ff] px-3 py-2 text-sm font-medium text-[#0489c2]" role="status">
+        <p className="flex items-center gap-2 rounded-lg bg-[#fcf0f2] px-3 py-2 text-sm font-medium text-[#8e1b2e]" role="status">
           <Check className="size-4" />
           Settings saved — live on the site now.
         </p>
@@ -59,7 +59,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center justify-center rounded-full bg-[#033e8d] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-[#01214a] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {pending ? "Saving…" : "Save changes"}
         </button>
@@ -85,9 +85,9 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-sm font-semibold text-[#06234d]">
+      <label htmlFor={name} className="text-sm font-semibold text-[#01214a]">
         {label}
-        {required && <span className="ml-1 text-[#0489c2]">*</span>}
+        {required && <span className="ml-1 text-[#8e1b2e]">*</span>}
       </label>
       <input
         id={name}

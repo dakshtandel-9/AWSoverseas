@@ -1,7 +1,7 @@
 {
     "page": "FAQ",
     "meta": {
-        "title": "Frequently Asked Questions | AWSoversea",
+        "title": "Frequently Asked Questions | AWSOverseas",
         "description": "Find answers to common questions about international shipping, freight forwarding, customs clearance, shipment tracking, payments, and logistics services."
     },
     "hero": {
@@ -46,7 +46,7 @@
         "items": [
             {
                 "category": "General",
-                "question": "What services does AWSoversea provide?",
+                "question": "What services does AWSOverseas provide?",
                 "answer": "We provide Air Freight, Sea Freight, Import Services, Export Services, Customs Clearance, Warehousing, FCL, LCL, Cargo Consolidation, and Door-to-Door international logistics solutions."
             },
             {
@@ -66,13 +66,13 @@
             },
             {
                 "category": "Import & Export",
-                "question": "Can AWSoversea handle import and export documentation?",
+                "question": "Can AWSOverseas handle import and export documentation?",
                 "answer": "Yes. Our team assists with documentation, customs procedures, and shipment coordination."
             },
             {
                 "category": "Shipment Tracking",
                 "question": "How can I track my shipment?",
-                "answer": "You can enter your tracking number on our website or use the AWSoversea Mobile App for real-time shipment updates and notifications."
+                "answer": "You can enter your tracking number on our website or use the AWSOverseas Mobile App for real-time shipment updates and notifications."
             },
             {
                 "category": "Shipment Tracking",
@@ -96,7 +96,7 @@
             },
             {
                 "category": "Mobile App",
-                "question": "Is the AWSoversea Mobile App free?",
+                "question": "Is the AWSOverseas Mobile App free?",
                 "answer": "Yes. The application is completely free to download for Android and iOS devices."
             },
             {

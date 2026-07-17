@@ -25,7 +25,7 @@ const SERVICES_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Service",
   serviceType: "Freight Forwarding & Logistics",
-  provider: { "@type": "Organization", name: "AWSoversea" },
+  provider: { "@type": "Organization", name: "AWSOverseas" },
   areaServed: "Worldwide",
   name: services.meta?.title,
   description: services.meta?.description,

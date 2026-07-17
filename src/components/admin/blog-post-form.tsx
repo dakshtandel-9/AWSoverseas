@@ -26,7 +26,7 @@ export type BlogPostRecord = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 const initialState: BlogFormState = {};
 
@@ -54,7 +54,7 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
       {/* Rendered outside the post-save <form> — HTML forbids nested <form>
           elements, and this upload has its own independent server action. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">Cover image</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Cover image</h2>
         <div className="mt-5">
           <ImageUploadField value={imageUrl} onUploaded={setImageUrl} />
         </div>
@@ -63,10 +63,10 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
       <form action={formAction} className="flex flex-col gap-8">
         <input type="hidden" name="image_url" value={imageUrl} />
         <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">Post details</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Post details</h2>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#06234d]">Title *</label>
+            <label className="text-sm font-semibold text-[#01214a]">Title *</label>
             <input
               name="title"
               required
@@ -76,7 +76,7 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
             />
           </div>
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#06234d]">Slug *</label>
+            <label className="text-sm font-semibold text-[#01214a]">Slug *</label>
             <input
               name="slug"
               required
@@ -89,23 +89,23 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#06234d]">Category</label>
+            <label className="text-sm font-semibold text-[#01214a]">Category</label>
             <input name="category" defaultValue={post?.category ?? ""} className={inputClasses} />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#06234d]">Read time</label>
+            <label className="text-sm font-semibold text-[#01214a]">Read time</label>
             <input name="read_time" defaultValue={post?.read_time ?? ""} placeholder="6 min" className={inputClasses} />
           </div>
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#06234d]">Author name</label>
+            <label className="text-sm font-semibold text-[#01214a]">Author name</label>
             <input
               name="author_name"
-              defaultValue={post?.author_name ?? "AWSoversea Team"}
+              defaultValue={post?.author_name ?? "AWSOverseas Team"}
               className={inputClasses}
             />
           </div>
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#06234d]">Excerpt</label>
+            <label className="text-sm font-semibold text-[#01214a]">Excerpt</label>
             <textarea
               name="excerpt"
               defaultValue={post?.excerpt ?? ""}
@@ -116,12 +116,12 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
         </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-6 border-t border-[#e4e9f2] pt-5">
-          <label className="flex items-center gap-2 text-sm font-medium text-[#06234d]">
-            <input type="checkbox" name="published" value="true" defaultChecked={post?.published ?? true} className="size-4 accent-[#033e8d]" />
+          <label className="flex items-center gap-2 text-sm font-medium text-[#01214a]">
+            <input type="checkbox" name="published" value="true" defaultChecked={post?.published ?? true} className="size-4 accent-[#01214a]" />
             Published
           </label>
-          <label className="flex items-center gap-2 text-sm font-medium text-[#06234d]">
-            <input type="checkbox" name="is_featured" value="true" defaultChecked={post?.is_featured ?? false} className="size-4 accent-[#033e8d]" />
+          <label className="flex items-center gap-2 text-sm font-medium text-[#01214a]">
+            <input type="checkbox" name="is_featured" value="true" defaultChecked={post?.is_featured ?? false} className="size-4 accent-[#01214a]" />
             Featured article (only one at a time)
           </label>
         </div>
@@ -137,11 +137,11 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
 
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">Article body</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Article body</h2>
           <button
             type="button"
             onClick={() => setSections((s) => [...s, { heading: "", content: "" }])}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3 py-1.5 text-xs font-semibold text-[#0489c2] hover:border-[#0fade8]"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3 py-1.5 text-xs font-semibold text-[#8e1b2e] hover:border-[#d72846]"
           >
             <Plus className="size-3.5" /> Add section
           </button>
@@ -194,7 +194,7 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
         </p>
       )}
       {state.success && (
-        <p className="flex items-center gap-2 rounded-lg bg-[#e8f9ff] px-3 py-2 text-sm font-medium text-[#0489c2]" role="status">
+        <p className="flex items-center gap-2 rounded-lg bg-[#fcf0f2] px-3 py-2 text-sm font-medium text-[#8e1b2e]" role="status">
           <Check className="size-4" />
           Saved.
         </p>
@@ -204,7 +204,7 @@ export function BlogPostForm({ post }: { post?: BlogPostRecord }) {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center justify-center rounded-full bg-[#033e8d] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-[#01214a] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {pending ? "Saving…" : post ? "Save changes" : "Create post"}
         </button>
@@ -230,11 +230,11 @@ function RepeatableList({
   return (
     <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#06234d]">{title}</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">{title}</h2>
         <button
           type="button"
           onClick={() => onChange([...values, ""])}
-          className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3 py-1.5 text-xs font-semibold text-[#0489c2] hover:border-[#0fade8]"
+          className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3 py-1.5 text-xs font-semibold text-[#8e1b2e] hover:border-[#d72846]"
         >
           <Plus className="size-3.5" /> Add
         </button>

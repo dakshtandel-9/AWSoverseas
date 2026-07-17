@@ -13,13 +13,13 @@ type Data = {
 };
 
 const FLOATING_CARDS = [
-  { label: "Shipment Cleared", sub: "AWS-9X42-118", dot: "#22d3ee" },
-  { label: "ETA Updated", sub: "Rotterdam · 3 days", dot: "#60a5fa" },
+  { label: "Shipment Cleared", sub: "AWS-9X42-118", dot: "#e57688" },
+  { label: "ETA Updated", sub: "Rotterdam · 3 days", dot: "#f59e0b" },
   { label: "Payment Received", sub: "$4,280 confirmed", dot: "#34d399" },
 ];
 
 export function DownloadCTA({ data }: { data: Data }) {
-  const titleParts = data.title.split(/(AWSoversea)/i);
+  const titleParts = data.title.split(/(AWSOverseas)/i);
 
   return (
     <Section spacing="lg">
@@ -30,7 +30,7 @@ export function DownloadCTA({ data }: { data: Data }) {
             className="pointer-events-none absolute inset-0 opacity-[0.07]"
             aria-hidden
             style={{
-              backgroundImage: "radial-gradient(circle, #48b8f8 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(circle, #e05c72 1px, transparent 1px)",
               backgroundSize: "32px 32px",
             }}
           />
@@ -39,33 +39,33 @@ export function DownloadCTA({ data }: { data: Data }) {
           <div
             className="pointer-events-none absolute -left-32 top-1/2 size-[600px] -translate-y-1/2 rounded-full blur-[100px]"
             aria-hidden
-            style={{ background: "rgba(10,165,240,0.22)" }}
+            style={{ background: "rgba(215,40,70,0.22)" }}
           />
 
           {/* Right / phone glow */}
           <div
             className="pointer-events-none absolute -right-16 top-1/2 size-[520px] -translate-y-1/2 rounded-full blur-[90px]"
             aria-hidden
-            style={{ background: "rgba(14,120,210,0.28)" }}
+            style={{ background: "rgba(172,32,56,0.28)" }}
           />
 
           <div className="relative grid items-center gap-14 lg:grid-cols-[1fr_auto]">
             {/* ── Left column ─────────────────────────────── */}
             <div className="max-w-xl">
               {/* Eyebrow */}
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#0fade8]/30 bg-[#0fade8]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#48b8f8]">
-                <span className="size-1.5 animate-pulse rounded-full bg-[#0fade8]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
+                <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
                 Mobile App
               </span>
 
               {/* Heading */}
               <h2 className="mt-6 text-balance text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-[3.25rem]">
                 {titleParts.map((part, i) =>
-                  /AWSoversea/i.test(part) ? (
+                  /AWSOverseas/i.test(part) ? (
                     <span
                       key={i}
                       style={{
-                        background: "linear-gradient(120deg, #48b8f8 0%, #0fade8 50%, #60a5fa 100%)",
+                        background: "linear-gradient(120deg, #e05c72 0%, #d72846 50%, #023f8d 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
@@ -123,7 +123,7 @@ export function DownloadCTA({ data }: { data: Data }) {
               <div
                 className="pointer-events-none absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[72px]"
                 aria-hidden
-                style={{ background: "rgba(10,165,240,0.32)" }}
+                style={{ background: "rgba(215,40,70,0.32)" }}
               />
 
               {/* Floating notification cards */}

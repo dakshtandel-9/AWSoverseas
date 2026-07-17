@@ -1,4 +1,4 @@
-# AWSoversea — Website Documentation
+# AWSOverseas — Website Documentation
 
 This document explains, in plain language, how your website is built, how to log in to the admin panel, and how to do every common task: changing the company name, uploading products, managing blog posts, handling orders and enquiries, approving customers, and more.
 
@@ -32,7 +32,7 @@ Keep this file safe — it contains your admin password and other sensitive setu
 
 ## 1. What This Website Is
 
-AWSoversea is a logistics/freight-forwarding company website with two parts:
+AWSOverseas is a logistics/freight-forwarding company website with two parts:
 
 - **The public website** — the marketing site your visitors see: Home, About, Services, Industries, Products, Blog, Contact, FAQ, Partner, legal pages, shipment tracking, and a quote request system.
 - **The admin panel** (`/admin`) — a private, password-protected control panel where you (the site owner/staff) manage everything: site content that changes often, the product catalog, blog posts, customer orders/enquiries, quote requests, contact messages, customer account approvals, and wallet/referral payouts.
@@ -58,7 +58,7 @@ Everything the public sees is either:
 
 ### How these fit together (in order, when someone visits your site)
 
-1. A visitor's browser requests a page (e.g. `awsoversea.com/products`).
+1. A visitor's browser requests a page (e.g. `awsoverseas.com/products`).
 2. Next.js runs on the server, fetches whatever data that page needs (e.g. the product list from Supabase), and builds the HTML.
 3. The finished page is sent to the visitor's browser, styled with Tailwind CSS, and comes alive with React/Framer Motion for interactivity and animation.
 4. If the visitor submits a form (quote request, contact form, product enquiry), that data is saved straight into Supabase.
@@ -131,14 +131,14 @@ Once logged in, the left-hand sidebar has these sections:
 
 ## 6. How to Change the Company Name / Branding
 
-The company name **"AWSoversea"** is not stored in the database — it's written directly into the website's code in a few specific places, because it needs to appear in page titles, browser tabs, and navigation, which are set when the site is built. To change it, a developer needs to update it in these files:
+The company name **"AWSOverseas"** is not stored in the database — it's written directly into the website's code in a few specific places, because it needs to appear in page titles, browser tabs, and navigation, which are set when the site is built. To change it, a developer needs to update it in these files:
 
 1. **`src/lib/site.ts`** — the master site name/tagline/URL:
    ```
    export const SITE = {
-     name: "AWSoversea",
+     name: "AWSOverseas",
      tagline: "Global Logistics Beyond Borders",
-     url: "https://awsoversea.com",
+     url: "https://awsoverseas.com",
    };
    ```
 2. **`src/app/layout.tsx`** — the browser tab title, SEO description, and social-share preview text.

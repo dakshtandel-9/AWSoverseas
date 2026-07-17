@@ -8,7 +8,7 @@ import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Reset your password — AWSoversea",
+  title: "Reset your password — AWSOverseas",
   robots: { index: false },
 };
 
@@ -32,7 +32,7 @@ export default async function ForgotPasswordPage() {
 
             <Link
               href="/login"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0489c2] hover:underline"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e] hover:underline"
             >
               <ArrowLeft className="size-3.5" />
               Back to sign in

@@ -9,11 +9,11 @@ import { ArrowRight } from "lucide-react";
 type Data = { title: string; description: string };
 
 const REGIONS = [
-  { name: "Asia Pacific",   hubs: ["Shanghai", "Singapore", "Dubai"],          countries: 32, ports: 80,  accent: "#0fade8" },
+  { name: "Asia Pacific",   hubs: ["Shanghai", "Singapore", "Dubai"],          countries: 32, ports: 80,  accent: "#d72846" },
   { name: "Europe",         hubs: ["Rotterdam", "Hamburg", "London"],           countries: 45, ports: 120, accent: "#f59e0b" },
-  { name: "North America",  hubs: ["Los Angeles", "New York", "Toronto"],       countries: 8,  ports: 40,  accent: "#0fade8" },
+  { name: "North America",  hubs: ["Los Angeles", "New York", "Toronto"],       countries: 8,  ports: 40,  accent: "#d72846" },
   { name: "South America",  hubs: ["São Paulo", "Buenos Aires"],                countries: 12, ports: 28,  accent: "#f59e0b" },
-  { name: "Africa",         hubs: ["Lagos", "Nairobi", "Johannesburg"],         countries: 22, ports: 35,  accent: "#0fade8" },
+  { name: "Africa",         hubs: ["Lagos", "Nairobi", "Johannesburg"],         countries: 22, ports: 35,  accent: "#d72846" },
   { name: "Middle East",    hubs: ["Dubai", "Riyadh", "Abu Dhabi"],             countries: 14, ports: 30,  accent: "#f59e0b" },
 ];
 
@@ -42,7 +42,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
         aria-hidden
         style={{
           background:
-            "radial-gradient(60% 50% at 10% 10%, rgba(10,165,240,0.18) 0%, transparent 60%), radial-gradient(50% 40% at 90% 90%, rgba(3,62,141,0.35) 0%, transparent 55%)",
+            "radial-gradient(60% 50% at 10% 10%, rgba(215,40,70,0.18) 0%, transparent 60%), radial-gradient(50% 40% at 90% 90%, rgba(3,62,141,0.35) 0%, transparent 55%)",
         }}
       />
       {/* Dot-grid world map watermark */}
@@ -60,7 +60,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
         {/* ── Left: copy + stats + button ── */}
         <div className="flex flex-col justify-center">
           <Reveal direction="up">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#48b8f8]/70">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#e05c72]/70">
               Global Network
             </p>
             <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#ffffff" }}>

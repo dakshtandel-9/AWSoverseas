@@ -34,9 +34,9 @@ export function BlogListTable({ posts }: { posts: Post[] }) {
           key={post.id}
           className="flex flex-wrap items-center gap-4 rounded-2xl border border-[#e4e9f2] bg-white px-5 py-4"
         >
-          {post.is_featured && <Star className="size-4 shrink-0 fill-[#0fade8] text-[#0fade8]" />}
+          {post.is_featured && <Star className="size-4 shrink-0 fill-[#d72846] text-[#d72846]" />}
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-bold text-[#06234d]">{post.title}</p>
+            <p className="truncate text-sm font-bold text-[#01214a]">{post.title}</p>
             <p className="truncate text-xs text-[#94a3b8]">
               /{post.slug} {post.category && `· ${post.category}`}
             </p>
@@ -48,7 +48,7 @@ export function BlogListTable({ posts }: { posts: Post[] }) {
             onClick={() => startTransition(() => togglePublishAction(post.id, post.slug, !post.published))}
             className={cn(
               "shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-50",
-              post.published ? "bg-[#e8f9ff] text-[#0489c2]" : "bg-[#f6f8fc] text-[#94a3b8]",
+              post.published ? "bg-[#fcf0f2] text-[#8e1b2e]" : "bg-[#f6f8fc] text-[#94a3b8]",
             )}
           >
             {post.published ? "Published" : "Draft"}

@@ -9,7 +9,7 @@ import { passwordError } from "@/lib/password";
 import { PasswordChecklist } from "@/components/auth/password-checklist";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 type Mode = "sign-in" | "sign-up";
 
@@ -106,7 +106,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
             }}
             className={cn(
               "rounded-lg py-2 text-sm font-semibold transition-colors",
-              mode === m ? "bg-white text-[#06234d] shadow-[0_1px_2px_rgba(4,22,47,0.08)]" : "text-[#5b6b82]",
+              mode === m ? "bg-white text-[#01214a] shadow-[0_1px_2px_rgba(4,22,47,0.08)]" : "text-[#5b6b82]",
             )}
           >
             {m === "sign-in" ? "Sign in" : "Create account"}
@@ -116,7 +116,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
       <form onSubmit={submit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-[#06234d]">Email</label>
+          <label className="text-sm font-semibold text-[#01214a]">Email</label>
           <input
             type="email"
             required
@@ -130,9 +130,9 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
         <div className="flex flex-col gap-2">
           <div className="flex items-baseline justify-between">
-            <label className="text-sm font-semibold text-[#06234d]">Password</label>
+            <label className="text-sm font-semibold text-[#01214a]">Password</label>
             {mode === "sign-in" && (
-              <Link href="/forgot-password" className="text-xs font-semibold text-[#0489c2] hover:underline">
+              <Link href="/forgot-password" className="text-xs font-semibold text-[#8e1b2e] hover:underline">
                 Forgot password?
               </Link>
             )}
@@ -152,7 +152,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
         {mode === "sign-up" && (
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#06234d]">Confirm password</label>
+            <label className="text-sm font-semibold text-[#01214a]">Confirm password</label>
             <input
               type="password"
               required
@@ -175,7 +175,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
         <button
           type="submit"
           disabled={pending}
-          className="group mt-1 inline-flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[#033e8d] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="group mt-1 inline-flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[#01214a] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {pending ? (
             <Loader2 className="size-4 animate-spin" />

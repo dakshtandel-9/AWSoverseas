@@ -21,7 +21,7 @@ export function FaqCta({ data }: { data: Data }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 60% at 85% 20%, rgba(15,173,232,0.18) 0%, transparent 60%)",
+            "radial-gradient(55% 60% at 85% 20%, rgba(172,32,56,0.18) 0%, transparent 60%)",
         }}
       />
       <motion.div

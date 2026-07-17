@@ -20,9 +20,9 @@ export function WhyChoose({ data }: { data: Data }) {
         <Reveal direction="up">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-              The Case for AWSoversea
+              The Case for AWSOverseas
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-[#06234d] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
+            <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-[#5b6b82]">
@@ -50,17 +50,17 @@ export function WhyChoose({ data }: { data: Data }) {
                   show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
               >
-                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white text-[#033e8d] shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_20px_-10px_rgba(4,22,47,0.18)] ring-1 ring-[#e4e9f2] transition-all duration-300 group-hover:bg-[#033e8d] group-hover:text-white">
+                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white text-[#01214a] shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_20px_-10px_rgba(4,22,47,0.18)] ring-1 ring-[#e4e9f2] transition-all duration-300 group-hover:bg-[#01214a] group-hover:text-white">
                   <Icon className="size-5" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-bold text-[#06234d]">{item.title}</h3>
+                  <h3 className="text-base font-bold text-[#01214a]">{item.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-[#5b6b82]">
                     {item.description}
                   </p>
                 </div>
                 <span
-                  className="hidden h-8 w-px shrink-0 bg-[#dfe6f1] transition-colors duration-300 group-hover:bg-[#0fade8] sm:block"
+                  className="hidden h-8 w-px shrink-0 bg-[#dfe6f1] transition-colors duration-300 group-hover:bg-[#d72846] sm:block"
                   aria-hidden
                 />
               </motion.div>

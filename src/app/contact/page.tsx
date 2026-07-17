@@ -14,7 +14,7 @@ const CONTACT_JSONLD = {
   "@type": "ContactPage",
   name: contact.meta?.title,
   description: contact.meta?.description,
-  url: "https://awsoversea.com/contact",
+  url: "https://awsoverseas.com/contact",
 };
 
 export default async function Page() {

@@ -21,7 +21,7 @@ export function ServiceWhy({ data }: { data: Data }) {
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             Credentials
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-[#06234d] sm:text-4xl lg:text-[2.5rem]">
+          <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem]">
             {data.title}
           </h2>
         </div>
@@ -37,13 +37,13 @@ export function ServiceWhy({ data }: { data: Data }) {
         {data.items.map((item) => (
           <motion.span
             key={item}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-[#06234d] shadow-[0_1px_2px_rgba(4,22,47,0.04)] ring-1 ring-[#e4e9f2]"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-[#01214a] shadow-[0_1px_2px_rgba(4,22,47,0.04)] ring-1 ring-[#e4e9f2]"
             variants={{
               hidden: { opacity: 0, scale: 0.92 },
               show: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
             }}
           >
-            <ShieldCheck className="size-4 text-[#0fade8]" />
+            <ShieldCheck className="size-4 text-[#d72846]" />
             {item}
           </motion.span>
         ))}

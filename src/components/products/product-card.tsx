@@ -31,7 +31,7 @@ export function ProductCard({
   return (
     <>
       <motion.div
-        className="group flex flex-col overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white transition-colors duration-300 hover:border-[#0fade8]/50"
+        className="group flex flex-col overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white transition-colors duration-300 hover:border-[#d72846]/50"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -60,14 +60,14 @@ export function ProductCard({
                 {product.category}
               </p>
             )}
-            <h3 className="mt-1 truncate text-base font-bold text-[#06234d]">{product.name}</h3>
+            <h3 className="mt-1 truncate text-base font-bold text-[#01214a]">{product.name}</h3>
           </div>
 
           <div className="mt-auto flex gap-2">
             <button
               type="button"
               onClick={() => openModal("enquiry")}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#033e8d] px-3 py-2.5 text-sm font-semibold text-[#033e8d] transition-colors duration-200 hover:bg-[#eef3fb]"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#01214a] px-3 py-2.5 text-sm font-semibold text-[#01214a] transition-colors duration-200 hover:bg-[#eef3fb]"
             >
               <MessageSquareText className="size-4" />
               Enquiry
@@ -75,7 +75,7 @@ export function ProductCard({
             <button
               type="button"
               onClick={() => openModal("order")}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#033e8d] px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#052f69]"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#01214a] px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#011938]"
             >
               <ShoppingBag className="size-4" />
               Order

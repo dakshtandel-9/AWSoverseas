@@ -24,7 +24,7 @@ import { ActivityList, type ActivityItem } from "@/components/account/activity-l
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your profile — AWSoversea",
+  title: "Your profile — AWSOverseas",
   robots: { index: false },
 };
 
@@ -161,13 +161,13 @@ export default async function ProfilePage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/quote"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#033e8d] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
                 >
                   <FileText className="size-4" /> Request a quote
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#06234d] transition-colors hover:border-[#0fade8]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:border-[#d72846]"
                 >
                   <MessageSquareText className="size-4" /> Browse products
                 </Link>
@@ -176,10 +176,10 @@ export default async function ProfilePage() {
 
             <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-bold text-[#06234d]">Your details</h2>
+                <h2 className="text-base font-bold text-[#01214a]">Your details</h2>
                 <Link
                   href="/profile/setup"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0489c2] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e] hover:underline"
                 >
                   <Pencil className="size-3.5" /> Edit
                 </Link>
@@ -188,12 +188,12 @@ export default async function ProfilePage() {
               <dl className="mt-5 grid gap-4 sm:grid-cols-2">
                 {details.map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-start gap-3">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#033e8d]">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#01214a]">
                       <Icon className="size-4" />
                     </span>
                     <div className="min-w-0">
                       <dt className="text-xs font-medium uppercase tracking-wide text-[#94a3b8]">{label}</dt>
-                      <dd className="mt-0.5 truncate text-sm font-semibold text-[#06234d]">{value}</dd>
+                      <dd className="mt-0.5 truncate text-sm font-semibold text-[#01214a]">{value}</dd>
                     </div>
                   </div>
                 ))}

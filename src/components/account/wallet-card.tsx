@@ -4,8 +4,8 @@ import type { WalletSummary } from "@/lib/wallet";
 
 export function WalletCard({ summary }: { summary: WalletSummary }) {
   return (
-    <div className="rounded-3xl border border-[#e4e9f2] bg-[#04162f] p-7 text-white">
-      <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
+    <div className="rounded-3xl border border-[#e4e9f2] bg-[#000c1a] p-7 text-white">
+      <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
         <Wallet className="size-3.5" />
         Your wallet
       </p>
@@ -19,7 +19,7 @@ export function WalletCard({ summary }: { summary: WalletSummary }) {
 
       <Link
         href="/profile/wallet"
-        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#48b8f8] hover:text-white"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#e05c72] hover:text-white"
       >
         View wallet & withdraw <ArrowRight className="size-3.5" />
       </Link>

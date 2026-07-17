@@ -1,8 +1,8 @@
 {
     "page": "Disclaimer",
     "meta": {
-        "title": "Disclaimer | AWSoversea",
-        "description": "Read the AWSoversea disclaimer regarding the use of our website, logistics information, and services."
+        "title": "Disclaimer | AWSOverseas",
+        "description": "Read the AWSOverseas disclaimer regarding the use of our website, logistics information, and services."
     },
     "hero": {
         "badge": "Legal",
@@ -21,7 +21,7 @@
         },
         {
             "title": "Third-Party Links",
-            "content": "Our website may contain links to third-party websites. AWSoversea is not responsible for their content or privacy practices."
+            "content": "Our website may contain links to third-party websites. AWSOverseas is not responsible for their content or privacy practices."
         },
         {
             "title": "Service Availability",
@@ -29,11 +29,11 @@
         },
         {
             "title": "Limitation of Liability",
-            "content": "AWSoversea is not responsible for losses resulting from circumstances beyond our reasonable control, including customs delays, force majeure events, or government restrictions."
+            "content": "AWSOverseas is not responsible for losses resulting from circumstances beyond our reasonable control, including customs delays, force majeure events, or government restrictions."
         },
         {
             "title": "Contact",
-            "content": "For any questions regarding this disclaimer, please contact AWSoversea."
+            "content": "For any questions regarding this disclaimer, please contact AWSOverseas."
         }
     ]
 }

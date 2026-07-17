@@ -1,19 +1,19 @@
 {
     "page": "Services",
     "meta": {
-        "title": "Logistics Services | AWSoversea",
-        "description": "Explore AWSoversea's complete range of international logistics services including Air Freight, Sea Freight, Import & Export, Customs Clearance, Warehousing, and Door-to-Door Cargo Solutions."
+        "title": "Logistics Services | AWSOverseas",
+        "description": "Explore AWSOverseas's complete range of international logistics services including Air Freight, Sea Freight, Import & Export, Customs Clearance, Warehousing, and Door-to-Door Cargo Solutions."
     },
     "hero": {
         "badge": "Our Services",
         "title": "Complete International Logistics Solutions Under One Roof",
-        "subtitle": "From air freight and sea freight to customs clearance and warehousing, AWSoversea provides end-to-end logistics services that simplify global shipping for businesses and individuals.",
+        "subtitle": "From air freight and sea freight to customs clearance and warehousing, AWSOverseas provides end-to-end logistics services that simplify global shipping for businesses and individuals.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Our Team"
     },
     "overview": {
         "title": "Comprehensive Freight & Logistics Services",
-        "description": "AWSoversea delivers reliable, cost-effective, and technology-driven logistics solutions tailored to businesses of all sizes. Our experienced team manages every stage of the shipping journey, ensuring secure transportation, timely delivery, and complete customer satisfaction.",
+        "description": "AWSOverseas delivers reliable, cost-effective, and technology-driven logistics solutions tailored to businesses of all sizes. Our experienced team manages every stage of the shipping journey, ensuring secure transportation, timely delivery, and complete customer satisfaction.",
         "highlights": [
             "International Freight Forwarding",
             "Door-to-Door Delivery",
@@ -97,8 +97,8 @@
     },
     "cta": {
         "title": "Ready to Ship Across the Globe?",
-        "description": "Whether you're importing, exporting, or managing international cargo, AWSoversea is ready to provide reliable logistics solutions tailored to your business.",
-        "primaryButton": "Get a Free Quote",
+        "description": "Whether you're importing, exporting, or managing international cargo, AWSOverseas is ready to provide reliable logistics solutions tailored to your business.",
+        "primaryButton": "Request a Quote",
         "secondaryButton": "Talk to Our Experts"
     }
 }

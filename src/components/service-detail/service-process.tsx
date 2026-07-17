@@ -34,10 +34,10 @@ export function ServiceProcess({ data }: { data: Data }) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.08, ease }}
           >
-            <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-[#033e8d] font-mono text-sm font-bold text-white ring-4 ring-[#f6f8fc]">
+            <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-[#01214a] font-mono text-sm font-bold text-white ring-4 ring-[#f6f8fc]">
               {s.step}
             </span>
-            <h3 className="mt-4 text-base font-bold text-[#06234d]">{s.title}</h3>
+            <h3 className="mt-4 text-base font-bold text-[#01214a]">{s.title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{s.description}</p>
           </motion.li>
         ))}

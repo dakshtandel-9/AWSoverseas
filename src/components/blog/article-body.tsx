@@ -33,7 +33,7 @@ export function ArticleBody({ data }: { data: Article }) {
               <a
                 key={item}
                 href={`#${slugify(item)}`}
-                className="rounded-lg px-3 py-2 text-sm text-[#5b6b82] transition-colors hover:bg-[#f6f8fc] hover:text-[#033e8d]"
+                className="rounded-lg px-3 py-2 text-sm text-[#5b6b82] transition-colors hover:bg-[#f6f8fc] hover:text-[#01214a]"
               >
                 {item}
               </a>
@@ -46,7 +46,7 @@ export function ArticleBody({ data }: { data: Article }) {
           <article className="prose-none flex flex-col gap-10">
             {data.sections.map((s) => (
               <div key={s.heading} id={slugify(s.heading)} className="scroll-mt-28">
-                <h2 className="text-2xl font-bold text-[#06234d]">{s.heading}</h2>
+                <h2 className="text-2xl font-bold text-[#01214a]">{s.heading}</h2>
                 <p className="mt-3 text-[15px] leading-[1.85] text-[#5b6b82]">{s.content}</p>
               </div>
             ))}
@@ -57,7 +57,7 @@ export function ArticleBody({ data }: { data: Article }) {
             {data.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#033e8d]"
+                className="rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#01214a]"
               >
                 #{tag.replace(/\s+/g, "")}
               </span>
@@ -66,7 +66,7 @@ export function ArticleBody({ data }: { data: Article }) {
 
           {/* Share */}
           <div className="mt-8 flex items-center gap-4">
-            <p className="text-sm font-semibold text-[#06234d]">{data.share.title}</p>
+            <p className="text-sm font-semibold text-[#01214a]">{data.share.title}</p>
             <div className="flex items-center gap-2">
               {data.share.platforms.map((platform) => {
                 const kind = SHARE_ICON[platform];
@@ -74,7 +74,7 @@ export function ArticleBody({ data }: { data: Article }) {
                   <span
                     key={platform}
                     aria-label={platform}
-                    className="grid size-9 place-items-center rounded-full bg-[#eef3fb] text-[#033e8d] transition-colors hover:bg-[#033e8d] hover:text-white"
+                    className="grid size-9 place-items-center rounded-full bg-[#eef3fb] text-[#01214a] transition-colors hover:bg-[#01214a] hover:text-white"
                   >
                     {kind === "whatsapp" || !kind ? (
                       <MessageCircle className="size-4" />

@@ -11,7 +11,7 @@ import { WalletActivityList } from "@/components/account/wallet-activity-list";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your wallet — AWSoversea",
+  title: "Your wallet — AWSOverseas",
   robots: { index: false },
 };
 
@@ -43,7 +43,7 @@ export default async function WalletPage() {
         <div className="mx-auto max-w-3xl">
           <Link
             href="/profile"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0489c2] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e] hover:underline"
           >
             <ArrowLeft className="size-3.5" /> Back to profile
           </Link>
@@ -51,17 +51,17 @@ export default async function WalletPage() {
           <div className="mt-5 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-[#e4e9f2] bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">Available</p>
-              <p className="mt-1.5 text-2xl font-bold text-[#06234d]">₹{summary.available.toLocaleString("en-IN")}</p>
+              <p className="mt-1.5 text-2xl font-bold text-[#01214a]">₹{summary.available.toLocaleString("en-IN")}</p>
             </div>
             <div className="rounded-2xl border border-[#e4e9f2] bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">Pending withdrawal</p>
-              <p className="mt-1.5 text-2xl font-bold text-[#06234d]">
+              <p className="mt-1.5 text-2xl font-bold text-[#01214a]">
                 ₹{summary.pendingWithdrawals.toLocaleString("en-IN")}
               </p>
             </div>
             <div className="rounded-2xl border border-[#e4e9f2] bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">Lifetime earned</p>
-              <p className="mt-1.5 text-2xl font-bold text-[#06234d]">₹{summary.earned.toLocaleString("en-IN")}</p>
+              <p className="mt-1.5 text-2xl font-bold text-[#01214a]">₹{summary.earned.toLocaleString("en-IN")}</p>
             </div>
           </div>
 

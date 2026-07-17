@@ -4,7 +4,7 @@ import { ResetPasswordForm } from "@/components/auth/reset-password-form";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Set a new password — AWSoversea",
+  title: "Set a new password — AWSOverseas",
   robots: { index: false },
 };
 

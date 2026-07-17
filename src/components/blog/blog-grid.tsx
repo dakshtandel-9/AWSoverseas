@@ -46,7 +46,7 @@ export function BlogGrid({
           className={cn(
             "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
             active === null
-              ? "bg-[#033e8d] text-white"
+              ? "bg-[#01214a] text-white"
               : "bg-white text-[#5b6b82] ring-1 ring-[#e4e9f2] hover:bg-[#eef3fb]",
           )}
         >
@@ -60,7 +60,7 @@ export function BlogGrid({
             className={cn(
               "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
               active === c.title
-                ? "bg-[#033e8d] text-white"
+                ? "bg-[#01214a] text-white"
                 : "bg-white text-[#5b6b82] ring-1 ring-[#e4e9f2] hover:bg-[#eef3fb]",
             )}
           >
@@ -91,10 +91,10 @@ export function BlogGrid({
             >
               <CategoryArt category={post.category} imageUrl={post.imageUrl} className="h-44" />
               <div className="flex flex-1 flex-col p-5">
-                <span className="w-fit rounded-full bg-[#eef3fb] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#033e8d]">
+                <span className="w-fit rounded-full bg-[#eef3fb] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#01214a]">
                   {post.category}
                 </span>
-                <h3 className="mt-3 flex-1 text-base font-bold leading-snug text-[#06234d] transition-colors group-hover:text-[#033e8d]">
+                <h3 className="mt-3 flex-1 text-base font-bold leading-snug text-[#01214a] transition-colors group-hover:text-[#01214a]">
                   {post.title}
                 </h3>
                 <div className="mt-4 flex items-center justify-between">
@@ -102,7 +102,7 @@ export function BlogGrid({
                     <Clock className="size-3.5" />
                     {post.readTime}
                   </span>
-                  <ArrowRight className="size-4 text-[#94a3b8] transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#033e8d]" />
+                  <ArrowRight className="size-4 text-[#94a3b8] transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#01214a]" />
                 </div>
               </div>
             </Link>

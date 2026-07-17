@@ -40,13 +40,13 @@ export function MessageRow({ item }: { item: Message }) {
           )}
           <p>
             <span className="font-semibold">Phone:</span>{" "}
-            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#0489c2] hover:underline">
+            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
               {item.phone}
             </a>
           </p>
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#0489c2] hover:underline">
+            <a href={`mailto:${item.email}`} className="text-[#8e1b2e] hover:underline">
               {item.email}
             </a>
           </p>

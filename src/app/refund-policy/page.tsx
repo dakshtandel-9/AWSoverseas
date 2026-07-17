@@ -11,7 +11,7 @@ const JSONLD = {
   "@type": "WebPage",
   name: refundPolicy.meta?.title,
   description: refundPolicy.meta?.description,
-  url: "https://awsoversea.com/refund-policy",
+  url: "https://awsoverseas.com/refund-policy",
 };
 
 export default function Page() {

@@ -42,7 +42,7 @@ const SHIPMENT_TYPES = [
 ];
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#06234d] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#0fade8] focus:ring-2 focus:ring-[#0fade8]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 const initialState: CreateQuoteState = {};
 
@@ -109,7 +109,7 @@ function UserCombobox({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name, username, or email…"
-              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#06234d] outline-none placeholder:text-[#94a3b8]"
+              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#01214a] outline-none placeholder:text-[#94a3b8]"
             />
           </div>
           <ul className="max-h-56 overflow-y-auto py-1.5">
@@ -128,8 +128,8 @@ function UserCombobox({
                     setQuery("");
                   }}
                   className={cn(
-                    "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#06234d] transition-colors hover:bg-[#f6f8fc]",
-                    u.id === value?.id && "bg-[#eef8fd] text-[#0489c2]",
+                    "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#01214a] transition-colors hover:bg-[#f6f8fc]",
+                    u.id === value?.id && "bg-[#eef8fd] text-[#8e1b2e]",
                   )}
                 >
                   <span className="flex items-center gap-2">
@@ -172,7 +172,7 @@ function Select({ name, options, placeholder }: { name: string; options: string[
 function Labelled({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-[#06234d]">{label}</label>
+      <label className="text-sm font-semibold text-[#01214a]">{label}</label>
       {children}
     </div>
   );
@@ -203,7 +203,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="absolute inset-0 bg-[#04162f]/60 backdrop-blur-sm" onClick={onClose} aria-hidden />
+      <div className="absolute inset-0 bg-[#000c1a]/60 backdrop-blur-sm" onClick={onClose} aria-hidden />
 
       <motion.div
         role="dialog"
@@ -220,7 +220,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               New Quote Request
             </p>
-            <h2 id="create-quote-title" className="mt-1 text-base font-bold text-[#06234d]">
+            <h2 id="create-quote-title" className="mt-1 text-base font-bold text-[#01214a]">
               For a customer
             </h2>
           </div>
@@ -228,7 +228,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#06234d]"
+            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#01214a]"
           >
             <X className="size-4" />
           </button>
@@ -236,20 +236,20 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
 
         {done ? (
           <div className="flex flex-col items-center gap-4 px-8 py-14 text-center">
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#0fade8] text-white">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d72846] text-white">
               <Check className="size-6" />
             </span>
-            <p className="max-w-xs text-sm font-medium leading-relaxed text-[#0489c2]">
+            <p className="max-w-xs text-sm font-medium leading-relaxed text-[#8e1b2e]">
               Quote created — it now shows on this customer&rsquo;s profile and in the list below, ready to
               track.
             </p>
             {state.trackingNumber && (
               <div className="flex flex-col items-center gap-2 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-6 py-4">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#94a3b8]">Tracking</p>
-                <p className="font-mono text-base font-bold text-[#06234d]">{state.trackingNumber}</p>
+                <p className="font-mono text-base font-bold text-[#01214a]">{state.trackingNumber}</p>
                 <Link
                   href={`/tracking?ref=${encodeURIComponent(state.trackingNumber)}`}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#033e8d] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#052f69]"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#01214a] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#011938]"
                 >
                   <PackageSearch className="size-3.5" /> Track this shipment
                 </Link>
@@ -258,7 +258,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#06234d] hover:border-[#0fade8]"
+              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#01214a] hover:border-[#d72846]"
             >
               Done
             </button>
@@ -268,8 +268,8 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <input type="hidden" name="user-id" value={user?.id ?? ""} />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#06234d]">
-                Customer <span className="text-[#0489c2]">*</span>
+              <label className="text-sm font-semibold text-[#01214a]">
+                Customer <span className="text-[#8e1b2e]">*</span>
               </label>
               <UserCombobox users={users} value={user} onChange={setUser} />
             </div>
@@ -315,7 +315,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <button
               type="submit"
               disabled={pending}
-              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#033e8d] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#052f69] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#01214a] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {pending ? "Creating…" : "Create quote"}
             </button>
@@ -335,7 +335,7 @@ export function CreateQuoteButton({ users }: { users: QuoteUserOption[] }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-full bg-[#033e8d] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+        className="inline-flex items-center gap-2 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
       >
         <Plus className="size-4" />
         New quote

@@ -77,7 +77,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
       <div className="mb-14 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Our Services</p>
-          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#06234d] sm:text-4xl lg:text-[2.6rem]">
+          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
             End-to-End Logistics<br className="hidden sm:block" /> Solutions
           </h2>
         </div>
@@ -112,7 +112,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
           >
             <Link
               href={slugFor(featured.title)}
-              className="group relative flex h-full min-h-[274px] flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-[#033e8d] via-[#054ba8] to-[#0a3580] p-8 text-white shadow-[0_12px_48px_-12px_rgba(3,62,141,0.55)] lg:min-h-[323px] lg:p-10"
+              className="group relative flex h-full min-h-[274px] flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-[#01214a] via-[#054ba8] to-[#0a3580] p-8 text-white shadow-[0_12px_48px_-12px_rgba(3,62,141,0.55)] lg:min-h-[323px] lg:p-10"
             >
               {/* Dot-grid texture */}
               <div
@@ -124,13 +124,13 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
                 aria-hidden
               />
               {/* Top-right radial glow */}
-              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#0fade8]/30 blur-3xl" aria-hidden />
+              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#d72846]/30 blur-3xl" aria-hidden />
               {/* Bottom-left secondary glow */}
-              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#0fade8]/15 blur-2xl" aria-hidden />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#d72846]/15 blur-2xl" aria-hidden />
 
               {/* Icon */}
               <span className="relative grid size-16 place-items-center rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-                <FeaturedIcon className="size-8 text-[#48b8f8]" />
+                <FeaturedIcon className="size-8 text-[#e05c72]" />
               </span>
 
               {/* Animated route — sits between icon and content, fills available space */}
@@ -141,12 +141,12 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
               {/* Content */}
               <div className="relative">
                 {/* Stat badge */}
-                <span className="mb-4 inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-[#48b8f8] ring-1 ring-white/15">
+                <span className="mb-4 inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-[#e05c72] ring-1 ring-white/15">
                   24–72 hr delivery · Global airline network
                 </span>
                 <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#ffffff" }}>{featured.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-white/70">{featured.description}</p>
-                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#48b8f8]">
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#e05c72]">
                   Explore service
                   <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
@@ -212,24 +212,24 @@ function CompactCard({
     >
       <Link
         href={href}
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#0fade8]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(15,173,232,0.2)]"
+        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#d72846]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(172,32,56,0.2)]"
       >
         {/* Left accent stripe on hover */}
-        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#033e8d] to-[#0fade8] transition-transform duration-300 group-hover:scale-y-100" />
+        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#01214a] to-[#d72846] transition-transform duration-300 group-hover:scale-y-100" />
 
         <div className="flex items-start justify-between">
-          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#033e8d] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#033e8d] group-hover:text-white group-hover:scale-110">
+          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#01214a] group-hover:text-white group-hover:scale-110">
             <Icon className="size-6" />
           </span>
-          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#033e8d] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#01214a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
-        <h3 className="mt-4 text-base font-bold text-[#06234d]">{item.title}</h3>
+        <h3 className="mt-4 text-base font-bold text-[#01214a]">{item.title}</h3>
         <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
 
         {stat && (
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#0fade8]">
-            <span className="size-1.5 rounded-full bg-[#0fade8]" />
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#d72846]">
+            <span className="size-1.5 rounded-full bg-[#d72846]" />
             {stat}
           </span>
         )}

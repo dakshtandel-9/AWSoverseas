@@ -26,7 +26,7 @@ export function OfficeMap({
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           {data.title}
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-[#06234d] sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl">
           {location ? `${location.city}, ${location.country}` : "Our Office"}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-[#5b6b82]">{data.description}</p>
@@ -49,11 +49,11 @@ export function OfficeMap({
           }}
         >
           <div className="flex flex-col items-center gap-3">
-            <span className="grid size-14 place-items-center rounded-full bg-[#033e8d] text-white shadow-[0_8px_24px_-6px_rgba(3,62,141,0.5)]">
+            <span className="grid size-14 place-items-center rounded-full bg-[#01214a] text-white shadow-[0_8px_24px_-6px_rgba(3,62,141,0.5)]">
               <MapPin className="size-6" />
             </span>
             {location && (
-              <p className="text-sm font-semibold text-[#06234d]">
+              <p className="text-sm font-semibold text-[#01214a]">
                 {location.office} · {location.city}, {location.country}
               </p>
             )}
@@ -70,7 +70,7 @@ export function OfficeMap({
             href={data.embedUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#033e8d] transition-colors hover:bg-[#033e8d] hover:text-white"
+            className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:bg-[#01214a] hover:text-white"
           >
             Open in Google Maps
             <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

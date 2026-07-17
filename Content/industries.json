@@ -2,14 +2,14 @@
   "page": "Industries We Serve",
 
   "meta": {
-    "title": "Industries We Serve | AWSoversea",
-    "description": "AWSoversea provides international logistics and freight forwarding solutions for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
+    "title": "Industries We Serve | AWSOverseas",
+    "description": "AWSOverseas provides international logistics and freight forwarding solutions for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
   },
 
   "hero": {
     "badge": "Industries",
     "title": "Logistics Solutions Built for Every Industry",
-    "subtitle": "Every industry has unique logistics challenges. AWSoversea delivers customized freight forwarding, customs clearance, warehousing, and global shipping solutions that keep your supply chain moving efficiently.",
+    "subtitle": "Every industry has unique logistics challenges. AWSOverseas delivers customized freight forwarding, customs clearance, warehousing, and global shipping solutions that keep your supply chain moving efficiently.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Contact Us"
   },
@@ -139,7 +139,7 @@
   "cta": {
     "title": "Looking for Industry-Specific Logistics Solutions?",
     "description": "Our logistics experts are ready to create a customized shipping strategy that fits your business requirements and global supply chain.",
-    "primaryButton": "Get a Free Quote",
+    "primaryButton": "Request a Quote",
     "secondaryButton": "Speak with an Expert"
   }
 }

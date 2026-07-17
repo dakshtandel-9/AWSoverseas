@@ -44,7 +44,7 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                 <span
                   className={cn(
                     "grid size-12 shrink-0 place-items-center rounded-xl transition-colors duration-300",
-                    isOpen ? "bg-[#033e8d] text-white" : "bg-[#eef3fb] text-[#033e8d]",
+                    isOpen ? "bg-[#01214a] text-white" : "bg-[#eef3fb] text-[#01214a]",
                   )}
                 >
                   <Icon className="size-5" />
@@ -53,12 +53,12 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#94a3b8]">
                     Profile {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-0.5 text-lg font-bold text-[#06234d]">{p.title}</h3>
+                  <h3 className="mt-0.5 text-lg font-bold text-[#01214a]">{p.title}</h3>
                 </div>
                 <span
                   className={cn(
-                    "grid size-9 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#033e8d] transition-transform duration-300",
-                    isOpen && "rotate-45 bg-[#033e8d] text-white",
+                    "grid size-9 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#01214a] transition-transform duration-300",
+                    isOpen && "rotate-45 bg-[#01214a] text-white",
                   )}
                 >
                   <Plus className="size-4" />
@@ -81,7 +81,7 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                       <ul className="grid gap-2.5 sm:grid-cols-1">
                         {p.services.map((s) => (
                           <li key={s} className="flex items-center gap-2.5 text-sm text-[#2a3a52]">
-                            <Check className="size-4 shrink-0 text-[#0fade8]" />
+                            <Check className="size-4 shrink-0 text-[#d72846]" />
                             <span className="font-medium">{s}</span>
                           </li>
                         ))}

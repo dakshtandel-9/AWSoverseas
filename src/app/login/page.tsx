@@ -6,7 +6,7 @@ import { EmailAuthForm } from "@/components/auth/email-auth-form";
 import { Logo } from "@/components/ui/logo";
 
 export const metadata: Metadata = {
-  title: "Sign in — AWSoversea",
+  title: "Sign in — AWSOverseas",
   description: "Sign in with your email to request quotes, send product enquiries, and share your referral code.",
   robots: { index: false },
 };
@@ -40,13 +40,13 @@ export default async function LoginPage({
   return (
     <div className="grid min-h-dvh lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
       {/* Stub side — the manifest ticket half */}
-      <aside className="relative isolate hidden overflow-hidden bg-[#04162f] px-12 py-14 lg:flex lg:flex-col xl:px-16">
+      <aside className="relative isolate hidden overflow-hidden bg-[#000c1a] px-12 py-14 lg:flex lg:flex-col xl:px-16">
         <div
           className="pointer-events-none absolute inset-0"
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(60% 50% at 12% 8%, rgba(15,173,232,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.5) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+              "radial-gradient(60% 50% at 12% 8%, rgba(172,32,56,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.5) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
             backgroundSize: "auto, auto, 44px 44px, 44px 44px",
           }}
         />
@@ -55,8 +55,8 @@ export default async function LoginPage({
 
         <div className="relative z-10 mt-auto flex flex-col gap-10">
           <div>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
-              <span className="size-1.5 rounded-full bg-[#0fade8]" />
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+              <span className="size-1.5 rounded-full bg-[#d72846]" />
               Boarding pass — customer access
             </span>
             <h1
@@ -75,8 +75,8 @@ export default async function LoginPage({
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-white/45">
             <span className="text-white/85">Enquiry</span>
             <span className="relative h-px flex-1 bg-white/15">
-              <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#0fade8]" />
-              <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#0fade8]" />
+              <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
+              <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
             </span>
             <span className="text-white/85">Cleared</span>
           </div>
@@ -84,7 +84,7 @@ export default async function LoginPage({
           <ul className="flex flex-col gap-4 border-t border-white/12 pt-8">
             {PERKS.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-white/65">
-                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/8 text-[#48b8f8] ring-1 ring-white/10">
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/8 text-[#e05c72] ring-1 ring-white/10">
                   <Icon className="size-4" />
                 </span>
                 {text}
@@ -113,12 +113,12 @@ export default async function LoginPage({
           </div>
 
           <div className="mb-7">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0489c2]">
-              <span className="size-1.5 rounded-full bg-[#0fade8]" />
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8e1b2e]">
+              <span className="size-1.5 rounded-full bg-[#d72846]" />
               Customer access
             </span>
-            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#06234d] sm:text-[1.75rem]">
-              {isSignUp ? "Create your account" : "Sign in to AWSoversea"}
+            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#01214a] sm:text-[1.75rem]">
+              {isSignUp ? "Create your account" : "Sign in to AWSOverseas"}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
               {isSignUp

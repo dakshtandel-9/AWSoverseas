@@ -17,21 +17,21 @@ export function AccountHero({
   right?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-12 pt-32 sm:pb-14 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-12 pt-32 sm:pb-14 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 88% 0%, rgba(15,173,232,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 88% 0%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative">
         <div className="flex items-center gap-4 border-b border-white/12 pb-4">
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]">
-            <span className="size-1.5 rounded-full bg-[#0fade8]" />
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+            <span className="size-1.5 rounded-full bg-[#d72846]" />
             {eyebrow}
           </span>
           {right && (

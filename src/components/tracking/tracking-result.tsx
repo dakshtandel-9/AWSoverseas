@@ -10,12 +10,12 @@ function formatDate(iso: string) {
 function NotFound({ reference }: { reference: string }) {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-4 rounded-3xl border border-[#e4e9f2] bg-white p-8 text-center shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]">
-      <span className="grid size-12 place-items-center rounded-full bg-[#eef3fb] text-[#033e8d]">
+      <span className="grid size-12 place-items-center rounded-full bg-[#eef3fb] text-[#01214a]">
         <PackageSearch className="size-6" />
       </span>
       <div>
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Tracking Number</p>
-        <p className="mt-1 font-mono text-lg font-bold text-[#06234d]">{reference}</p>
+        <p className="mt-1 font-mono text-lg font-bold text-[#01214a]">{reference}</p>
       </div>
       <p className="max-w-sm text-sm leading-relaxed text-[#5b6b82]">
         We couldn't find a shipment with that tracking number. Double-check it against your quote
@@ -23,7 +23,7 @@ function NotFound({ reference }: { reference: string }) {
       </p>
       <Link
         href="/contact"
-        className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#033e8d] transition-colors hover:bg-[#e2ebf9]"
+        className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:bg-[#e2ebf9]"
       >
         Contact Support
       </Link>
@@ -50,12 +50,12 @@ export async function TrackingResult({ reference }: { reference: string }) {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e4e9f2] pb-5">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Tracking Number</p>
-            <p className="mt-1 font-mono text-lg font-bold text-[#06234d]">{shipment.tracking_number}</p>
+            <p className="mt-1 font-mono text-lg font-bold text-[#01214a]">{shipment.tracking_number}</p>
           </div>
           <div className="text-right">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Route</p>
-            <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#06234d]">
-              <MapPin className="size-3.5 text-[#0489c2]" />
+            <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#01214a]">
+              <MapPin className="size-3.5 text-[#8e1b2e]" />
               {shipment.origin_country} → {shipment.destination_country}
             </p>
           </div>
@@ -70,13 +70,13 @@ export async function TrackingResult({ reference }: { reference: string }) {
               <li key={stage.value} className="flex items-start gap-3.5">
                 <span
                   className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-full ${
-                    done ? "bg-[#033e8d] text-white" : "bg-[#eef3fb] text-[#94a3b8]"
+                    done ? "bg-[#01214a] text-white" : "bg-[#eef3fb] text-[#94a3b8]"
                   }`}
                 >
                   <StageIcon className="size-4" />
                 </span>
                 <div className="min-w-0">
-                  <p className={`text-sm font-semibold ${done ? "text-[#06234d]" : "text-[#94a3b8]"}`}>
+                  <p className={`text-sm font-semibold ${done ? "text-[#01214a]" : "text-[#94a3b8]"}`}>
                     {stage.label}
                     {i === currentIndex && (
                       <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
@@ -100,13 +100,13 @@ export async function TrackingResult({ reference }: { reference: string }) {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3 border-t border-[#e4e9f2] pt-6">
           <Link
             href="/mobile-app"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#033e8d] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#052f69]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
           >
             Open in App <ArrowRight className="size-3.5" />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#033e8d] transition-colors hover:bg-[#e2ebf9]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:bg-[#e2ebf9]"
           >
             Contact Support
           </Link>

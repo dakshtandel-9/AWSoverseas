@@ -23,7 +23,7 @@ export default async function Page() {
     "@type": "CollectionPage",
     name: products.meta?.title,
     description: products.meta?.description,
-    url: "https://awsoversea.com/products",
+    url: "https://awsoverseas.com/products",
     hasPart: catalog.map((item) => ({
       "@type": "Product",
       name: item.name,

@@ -84,13 +84,13 @@ export function QuoteRow({
           )}
           <p>
             <span className="font-semibold">Phone:</span>{" "}
-            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#0489c2] hover:underline">
+            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
               {item.phone}
             </a>
           </p>
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#0489c2] hover:underline">
+            <a href={`mailto:${item.email}`} className="text-[#8e1b2e] hover:underline">
               {item.email}
             </a>
           </p>
@@ -101,7 +101,7 @@ export function QuoteRow({
             <div className="mt-2 grid gap-1.5 border-t border-[#e4e9f2] pt-3">
               {extraFields.map(([key, value]) => (
                 <p key={key} className="text-[#5b6b82]">
-                  <span className="font-semibold text-[#06234d]">{toLabel(key)}:</span> {value}
+                  <span className="font-semibold text-[#01214a]">{toLabel(key)}:</span> {value}
                 </p>
               ))}
             </div>

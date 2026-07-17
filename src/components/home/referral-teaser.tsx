@@ -22,20 +22,20 @@ export function ReferralTeaser({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#04162f] px-8 py-14 shadow-[0_32px_96px_-24px_rgba(5,32,58,0.6)] sm:px-14 sm:py-16">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-14 shadow-[0_32px_96px_-24px_rgba(5,32,58,0.6)] sm:px-14 sm:py-16">
           <div
             className="pointer-events-none absolute inset-0"
             aria-hidden
             style={{
               backgroundImage:
-                "radial-gradient(55% 60% at 90% 10%, rgba(15,173,232,0.16) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+                "radial-gradient(55% 60% at 90% 10%, rgba(172,32,56,0.16) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
               backgroundSize: "auto, 44px 44px, 44px 44px",
             }}
           />
 
           <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_auto]">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#0fade8]/30 bg-[#0fade8]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#48b8f8]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
                 <Gift className="size-3.5" />
                 {data.badge}
               </span>
@@ -69,7 +69,7 @@ export function ReferralTeaser({ data }: { data: Data }) {
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                 >
                   <span className="text-xs text-white/55">{h.label}</span>
-                  <span className="font-mono text-sm font-bold text-[#48b8f8]">{h.value}</span>
+                  <span className="font-mono text-sm font-bold text-[#e05c72]">{h.value}</span>
                 </motion.div>
               ))}
             </div>

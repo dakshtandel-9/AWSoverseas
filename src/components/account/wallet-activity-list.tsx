@@ -41,8 +41,8 @@ export function WalletActivityList({
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#06234d]">
-          <ListFilter className="size-4 text-[#0489c2]" />
+        <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#01214a]">
+          <ListFilter className="size-4 text-[#8e1b2e]" />
           Wallet activity
         </h2>
 
@@ -54,7 +54,7 @@ export function WalletActivityList({
               onClick={() => setFilter(value)}
               className={cn(
                 "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
-                filter === value ? "bg-[#033e8d] text-white" : "text-[#5b6b82] hover:text-[#06234d]",
+                filter === value ? "bg-[#01214a] text-white" : "text-[#5b6b82] hover:text-[#01214a]",
               )}
             >
               {label}
@@ -77,9 +77,9 @@ export function WalletActivityList({
             entry.kind === "credit" ? (
               <li key={`credit-${entry.id}`} className="flex items-start justify-between gap-3 py-4 text-sm">
                 <div className="flex min-w-0 items-start gap-2.5">
-                  <Gift className="mt-0.5 size-3.5 shrink-0 text-[#0489c2]" />
+                  <Gift className="mt-0.5 size-3.5 shrink-0 text-[#8e1b2e]" />
                   <div className="min-w-0">
-                    <p className="font-semibold text-[#06234d]">{entry.data.reason || "Referral reward"}</p>
+                    <p className="font-semibold text-[#01214a]">{entry.data.reason || "Referral reward"}</p>
                     <p className="mt-0.5 text-xs text-[#5b6b82]">
                       {entry.data.referredName
                         ? `From ${entry.data.referredName}'s ${entry.data.source_type}`
@@ -99,7 +99,7 @@ export function WalletActivityList({
                 className="flex flex-col gap-2 py-4 text-sm sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="min-w-0">
-                  <p className="font-semibold text-[#06234d]">Withdrawal · ₹{entry.data.amount.toLocaleString("en-IN")}</p>
+                  <p className="font-semibold text-[#01214a]">Withdrawal · ₹{entry.data.amount.toLocaleString("en-IN")}</p>
                   <p className="mt-0.5 text-xs text-[#5b6b82]">
                     {entry.data.bank_name} · {formatDate(entry.data.created_at)}
                   </p>

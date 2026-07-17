@@ -30,13 +30,13 @@ export function GlobalNetwork({ data }: { data: Data }) {
         aria-hidden
         style={{
           background:
-            "radial-gradient(55% 45% at 15% 0%, rgba(10,165,240,0.16) 0%, transparent 60%), radial-gradient(50% 45% at 95% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
+            "radial-gradient(55% 45% at 15% 0%, rgba(215,40,70,0.16) 0%, transparent 60%), radial-gradient(50% 45% at 95% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
         }}
       />
 
       <div className="relative">
         <Reveal direction="up">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#48b8f8]/70">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#e05c72]/70">
             Our Global Network
           </p>
           <h2
@@ -59,7 +59,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
             <div className="relative mt-6">
               <div className="absolute left-0 right-0 top-[7px] h-px bg-white/10" aria-hidden />
               <motion.div
-                className="absolute left-0 top-[7px] h-px origin-left bg-gradient-to-r from-[#0fade8] to-[#48b8f8]"
+                className="absolute left-0 top-[7px] h-px origin-left bg-gradient-to-r from-[#d72846] to-[#e05c72]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -77,7 +77,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.45, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#04162f] bg-[#0fade8] shadow-[0_0_0_3px_rgba(15,173,232,0.25)]" />
+                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#000c1a] bg-[#d72846] shadow-[0_0_0_3px_rgba(172,32,56,0.25)]" />
                     <span className="text-sm font-semibold text-white">{region}</span>
                   </motion.li>
                 ))}
@@ -105,11 +105,11 @@ export function GlobalNetwork({ data }: { data: Data }) {
                   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
               >
-                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-white/8 text-[#48b8f8]">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-white/8 text-[#e05c72]">
                   <Icon className="size-4.5" />
                 </span>
                 <span className="text-sm font-medium text-white/85">{h}</span>
-                <ArrowUpRight className="ml-auto size-4 text-white/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#48b8f8]" />
+                <ArrowUpRight className="ml-auto size-4 text-white/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#e05c72]" />
               </motion.li>
             );
           })}

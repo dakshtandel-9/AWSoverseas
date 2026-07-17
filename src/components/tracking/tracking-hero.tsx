@@ -58,20 +58,20 @@ export function TrackingHero({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 50% 0%, rgba(15,173,232,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 50% 0%, rgba(172,32,56,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative flex flex-col items-center text-center">
         <motion.span
-          className="inline-flex items-center gap-2 rounded-full border border-[#0fade8]/30 bg-[#0fade8]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#48b8f8]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
@@ -125,13 +125,13 @@ export function TrackingHero({
                   if (error) setError(false);
                 }}
                 placeholder={form.placeholder}
-                className="w-full rounded-2xl border border-white/15 bg-white/5 py-4 pl-11 pr-4 text-sm font-medium text-white placeholder:text-white/35 outline-none focus:border-[#0fade8]/50 focus:ring-2 focus:ring-[#0fade8]/25"
+                className="w-full rounded-2xl border border-white/15 bg-white/5 py-4 pl-11 pr-4 text-sm font-medium text-white placeholder:text-white/35 outline-none focus:border-[#d72846]/50 focus:ring-2 focus:ring-[#d72846]/25"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#0fade8] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#0489c2] disabled:opacity-70"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#d72846] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#8e1b2e] disabled:opacity-70"
             >
               {loading ? (
                 <>

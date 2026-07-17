@@ -11,7 +11,7 @@ const JSONLD = {
   "@type": "WebPage",
   name: privacyPolicy.meta?.title,
   description: privacyPolicy.meta?.description,
-  url: "https://awsoversea.com/privacy-policy",
+  url: "https://awsoverseas.com/privacy-policy",
 };
 
 export default function Page() {

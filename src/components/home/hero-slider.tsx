@@ -73,7 +73,7 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
 
   return (
     <section
-      className="relative min-h-[100svh] overflow-hidden bg-[#061A38]"
+      className="relative min-h-[100svh] overflow-hidden bg-[#000c1a]"
       aria-roledescription="carousel"
       aria-label="Featured highlights"
       onMouseEnter={() => setPaused(true)}
@@ -124,7 +124,7 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
           type="button"
           onClick={() => goTo(index - 1)}
           aria-label="Previous slide"
-          className="grid size-9 place-items-center rounded-full border border-white/15 bg-white/[0.06] text-white/70 backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.12] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0fade8]"
+          className="grid size-9 place-items-center rounded-full border border-white/15 bg-white/[0.06] text-white/70 backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.12] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d72846]"
         >
           <ChevronUp className="size-4" />
         </button>
@@ -137,8 +137,8 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
               onClick={() => goTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === index}
-              className="group relative w-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0fade8]"
-              style={{ height: i === index ? 24 : 8, background: i === index ? "#0fade8" : "rgba(255,255,255,0.25)" }}
+              className="group relative w-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d72846]"
+              style={{ height: i === index ? 24 : 8, background: i === index ? "#d72846" : "rgba(255,255,255,0.25)" }}
             />
           ))}
         </div>
@@ -147,7 +147,7 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
           type="button"
           onClick={() => goTo(index + 1)}
           aria-label="Next slide"
-          className="grid size-9 place-items-center rounded-full border border-white/15 bg-white/[0.06] text-white/70 backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.12] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0fade8]"
+          className="grid size-9 place-items-center rounded-full border border-white/15 bg-white/[0.06] text-white/70 backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.12] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d72846]"
         >
           <ChevronDown className="size-4" />
         </button>
@@ -163,8 +163,8 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
               onClick={() => goTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === index}
-              className="group relative h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0fade8]"
-              style={{ width: i === index ? 24 : 8, background: i === index ? "#0fade8" : "rgba(255,255,255,0.25)" }}
+              className="group relative h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d72846]"
+              style={{ width: i === index ? 24 : 8, background: i === index ? "#d72846" : "rgba(255,255,255,0.25)" }}
             />
           ))}
         </div>

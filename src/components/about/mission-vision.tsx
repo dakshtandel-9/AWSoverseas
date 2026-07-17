@@ -55,7 +55,7 @@ export function MissionVision({ data }: { data: Data }) {
               <div
                 className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full blur-[70px]"
                 aria-hidden
-                style={{ background: "rgba(15,173,232,0.28)" }}
+                style={{ background: "rgba(172,32,56,0.28)" }}
               />
             )}
 
@@ -63,15 +63,15 @@ export function MissionVision({ data }: { data: Data }) {
               <span
                 className={`grid size-13 place-items-center rounded-2xl ${
                   c.dark
-                    ? "bg-white/10 text-[#48b8f8]"
-                    : "bg-[#eef3fb] text-[#033e8d]"
+                    ? "bg-white/10 text-[#e05c72]"
+                    : "bg-[#eef3fb] text-[#01214a]"
                 }`}
               >
                 <c.Icon className="size-6" />
               </span>
               <span
                 className={`font-mono text-[11px] font-bold uppercase tracking-[0.2em] ${
-                  c.dark ? "text-[#48b8f8]/80" : "text-[#5b6b82]"
+                  c.dark ? "text-[#e05c72]/80" : "text-[#5b6b82]"
                 }`}
               >
                 {c.eyebrow}
@@ -80,7 +80,7 @@ export function MissionVision({ data }: { data: Data }) {
 
             <h3
               className="relative mt-7 text-xl font-bold sm:text-2xl"
-              style={{ color: c.dark ? "#ffffff" : "#06234d" }}
+              style={{ color: c.dark ? "#ffffff" : "#01214a" }}
             >
               {c.block.title}
             </h3>

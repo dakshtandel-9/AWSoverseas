@@ -63,7 +63,7 @@ function readPostFields(formData: FormData) {
     excerpt: String(formData.get("excerpt") ?? "").trim(),
     read_time: String(formData.get("read_time") ?? "").trim(),
     image_url: String(formData.get("image_url") ?? "").trim(),
-    author_name: String(formData.get("author_name") ?? "").trim() || "AWSoversea Team",
+    author_name: String(formData.get("author_name") ?? "").trim() || "AWSOverseas Team",
     table_of_contents: readIndexedList(formData, "table_of_contents"),
     sections: readSections(formData),
     tags: readIndexedList(formData, "tags"),

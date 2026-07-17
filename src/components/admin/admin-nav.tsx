@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Newspaper, Settings, LogOut, Boxes, MessageSquareText, ShoppingBag, Users, Wallet } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Newspaper, Settings, LogOut, Boxes, MessageSquareText, ShoppingBag, Users, Wallet, BookOpen } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
@@ -20,6 +20,7 @@ const LINKS = [
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },
   { href: "/admin/withdrawals", label: "Withdrawals", icon: Wallet },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },
+  { href: "/admin/docs", label: "Documentation", icon: BookOpen },
 ];
 
 export function AdminNav() {
@@ -38,8 +39,8 @@ export function AdminNav() {
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                   active
-                    ? "bg-[#033e8d] text-white"
-                    : "text-[#5b6b82] hover:bg-[#eef3fb] hover:text-[#06234d]",
+                    ? "bg-[#01214a] text-white"
+                    : "text-[#5b6b82] hover:bg-[#eef3fb] hover:text-[#01214a]",
                 )}
               >
                 <Icon className="size-4 shrink-0" />

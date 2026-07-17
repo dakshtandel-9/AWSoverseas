@@ -20,18 +20,18 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function ArticleBanner({ data }: { data: Banner }) {
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-14 pt-32 sm:pb-16 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-14 pt-32 sm:pb-16 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 10%, rgba(15,173,232,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.42) 0%, transparent 60%)",
+            "radial-gradient(55% 50% at 85% 10%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.42) 0%, transparent 60%)",
         }}
       />
       <Container className="relative max-w-3xl">
         <motion.span
-          className="inline-flex items-center gap-2 rounded-full bg-[#0fade8]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#48b8f8] ring-1 ring-[#0fade8]/25"
+          className="inline-flex items-center gap-2 rounded-full bg-[#d72846]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72] ring-1 ring-[#d72846]/25"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}

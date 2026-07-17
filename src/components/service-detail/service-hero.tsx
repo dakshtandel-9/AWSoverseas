@@ -28,13 +28,13 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
   const Icon = iconFor(data.title);
 
   return (
-    <section className="relative overflow-hidden bg-[#04162f] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(15,173,232,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -48,7 +48,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
         >
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50 transition-colors hover:text-[#48b8f8]"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50 transition-colors hover:text-[#e05c72]"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
             All Services
@@ -60,7 +60,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
 
         <div className="mt-10 flex max-w-3xl items-start gap-5">
           <motion.span
-            className="mt-1.5 hidden shrink-0 grid size-14 place-items-center rounded-2xl bg-white/10 text-[#48b8f8] ring-1 ring-white/15 backdrop-blur-sm sm:grid"
+            className="mt-1.5 hidden shrink-0 grid size-14 place-items-center rounded-2xl bg-white/10 text-[#e05c72] ring-1 ring-white/15 backdrop-blur-sm sm:grid"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.05, ease }}
@@ -70,12 +70,12 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
 
           <div>
             <motion.span
-              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#48b8f8]"
+              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
             >
-              <span className="size-1.5 animate-pulse rounded-full bg-[#0fade8]" />
+              <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
               {data.badge}
             </motion.span>
 
@@ -118,7 +118,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.background = "rgba(255,255,255,0.14)";
-                  el.style.boxShadow = "0 0 0 1px rgba(15,173,232,0.4), 0 4px 20px rgba(15,173,232,0.15)";
+                  el.style.boxShadow = "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;

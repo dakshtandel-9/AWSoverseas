@@ -1,19 +1,19 @@
 {
     "page": "Mobile App",
     "meta": {
-        "title": "AWSoversea Mobile App | Ship Smarter, Track Faster",
-        "description": "Download the AWSoversea mobile app to book shipments, track cargo, upload documents, make secure payments, receive real-time notifications, and manage your logistics from anywhere."
+        "title": "AWSOverseas Mobile App | Ship Smarter, Track Faster",
+        "description": "Download the AWSOverseas mobile app to book shipments, track cargo, upload documents, make secure payments, receive real-time notifications, and manage your logistics from anywhere."
     },
     "hero": {
         "badge": "Mobile Application",
         "title": "Manage Your Global Shipments Anytime, Anywhere",
-        "subtitle": "Experience hassle-free international logistics with the AWSoversea Mobile App. Book shipments, track cargo, upload documents, make secure payments, and receive real-time updates—all from your smartphone.",
+        "subtitle": "Experience hassle-free international logistics with the AWSOverseas Mobile App. Book shipments, track cargo, upload documents, make secure payments, and receive real-time updates—all from your smartphone.",
         "primaryButton": "Download for Android",
         "secondaryButton": "Download for iPhone"
     },
     "download": {
         "title": "Available on Android & iOS",
-        "description": "Download the AWSoversea app and manage every shipment from your mobile device.",
+        "description": "Download the AWSOverseas app and manage every shipment from your mobile device.",
         "playStore": {
             "title": "Google Play",
             "button": "Download Now",
@@ -114,7 +114,7 @@
     },
     "referEarn": {
         "title": "Refer & Earn Rewards",
-        "description": "Invite friends and business partners to AWSoversea and earn rewards when they complete their first shipment.",
+        "description": "Invite friends and business partners to AWSOverseas and earn rewards when they complete their first shipment.",
         "steps": [
             {
                 "step": "01",
@@ -141,7 +141,7 @@
         "title": "Frequently Asked Questions",
         "items": [
             {
-                "question": "Is the AWSoversea app free to download?",
+                "question": "Is the AWSOverseas app free to download?",
                 "answer": "Yes. The application is completely free on both Android and iOS."
             },
             {

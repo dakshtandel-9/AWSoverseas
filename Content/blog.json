@@ -1,8 +1,8 @@
 {
     "page": "Blog",
     "meta": {
-        "title": "Logistics Blog | AWSoversea",
-        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global logistics from AWSoversea."
+        "title": "Logistics Blog | AWSOverseas",
+        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global logistics from AWSOverseas."
     },
     "hero": {
         "badge": "Logistics Insights",
@@ -105,7 +105,7 @@
         "description": "Subscribe to our newsletter and receive the latest logistics insights, shipping updates, industry news, and international trade tips directly in your inbox.",
         "placeholder": "Enter your email address",
         "buttonText": "Subscribe",
-        "successMessage": "Thank you for subscribing to the AWSoversea newsletter!",
+        "successMessage": "Thank you for subscribing to the AWSOverseas newsletter!",
         "privacyText": "We respect your privacy. Your email will never be shared with third parties."
     }
 }

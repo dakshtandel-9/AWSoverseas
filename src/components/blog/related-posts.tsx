@@ -20,13 +20,13 @@ export function RelatedPosts({ data }: { data: Data }) {
           >
             <CategoryArt category={post.category} imageUrl={post.imageUrl} className="h-36" />
             <div className="flex flex-1 flex-col p-5">
-              <span className="w-fit rounded-full bg-[#eef3fb] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#033e8d]">
+              <span className="w-fit rounded-full bg-[#eef3fb] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#01214a]">
                 {post.category}
               </span>
-              <h3 className="mt-3 flex-1 text-sm font-bold leading-snug text-[#06234d] transition-colors group-hover:text-[#033e8d]">
+              <h3 className="mt-3 flex-1 text-sm font-bold leading-snug text-[#01214a] transition-colors group-hover:text-[#01214a]">
                 {post.title}
               </h3>
-              <ArrowRight className="mt-4 size-4 self-end text-[#94a3b8] transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#033e8d]" />
+              <ArrowRight className="mt-4 size-4 self-end text-[#94a3b8] transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#01214a]" />
             </div>
           </Link>
         ))}
