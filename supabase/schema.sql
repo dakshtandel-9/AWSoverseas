@@ -79,6 +79,18 @@ create table if not exists contact_submissions (
 create index if not exists contact_submissions_created_idx on contact_submissions (created_at desc);
 
 -- ============================================================
+-- newsletter_subscribers
+-- Captures emails from the footer newsletter form.
+-- ============================================================
+create table if not exists newsletter_subscribers (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists newsletter_subscribers_created_idx on newsletter_subscribers (created_at desc);
+
+-- ============================================================
 -- quote_submissions
 -- Field set mirrors requestQuote.json's 3 field groups (quoteForm +
 -- shipmentDetails + contactDetails). Promoted columns cover what the admin
@@ -301,6 +313,7 @@ create index if not exists wallet_withdrawals_status_idx on wallet_withdrawals (
 alter table site_settings enable row level security;
 alter table blog_posts enable row level security;
 alter table contact_submissions enable row level security;
+alter table newsletter_subscribers enable row level security;
 alter table quote_submissions enable row level security;
 alter table products enable row level security;
 alter table product_enquiries enable row level security;
@@ -334,8 +347,8 @@ drop policy if exists "public read published posts" on blog_posts;
 create policy "public read published posts" on blog_posts
   for select using (published = true);
 
--- contact_submissions / quote_submissions / shipment_milestones: no public
--- policies at all. Inserts, admin reads, and the public tracking lookup all
+-- contact_submissions / newsletter_subscribers / quote_submissions /
+-- shipment_milestones: no public policies at all. Inserts, admin reads, and the public tracking lookup all
 -- go through the service-role client (Server Actions), which bypasses RLS —
 -- the anon key gets zero access. The tracking lookup is safe to expose
 -- without RLS because it's scoped to an exact tracking_number match, not a

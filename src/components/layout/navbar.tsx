@@ -14,16 +14,8 @@ import { NavbarUser } from "@/components/auth/navbar-user";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Close menus on route change.
   useEffect(() => {
@@ -44,16 +36,9 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div
-        className={cn(
-          "transition-all duration-500",
-          scrolled
-            ? "bg-white border-b border-line shadow-soft"
-            : "bg-transparent",
-        )}
-      >
+      <div className="bg-white border-b border-line shadow-soft">
         <div className="mx-auto flex h-18 max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
-          <Logo tone={scrolled ? "dark" : "light"} priority />
+          <Logo tone="dark" priority />
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -68,12 +53,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     data-active={isActive(link.href)}
-                    className={cn(
-                      "nav-underline flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-                      scrolled
-                        ? "text-ink-soft hover:text-brand-900"
-                        : "text-white/85 hover:text-white",
-                    )}
+                    className="nav-underline flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
                   >
                     {link.label}
                     <ChevronDown
@@ -132,12 +112,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   data-active={isActive(link.href)}
-                  className={cn(
-                    "nav-underline rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-                    scrolled
-                      ? "text-ink-soft hover:text-brand-900"
-                      : "text-white/85 hover:text-white",
-                  )}
+                  className="nav-underline rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
                 >
                   {link.label}
                 </Link>
@@ -146,7 +121,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <NavbarUser scrolled={scrolled} />
+            <NavbarUser scrolled />
             <Button href="/quote" variant="primary" size="sm">
               Request Quote <ArrowRight className="size-4" />
             </Button>
@@ -158,12 +133,7 @@ export function Navbar() {
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
-            className={cn(
-              "grid size-11 place-items-center rounded-xl transition-colors lg:hidden",
-              scrolled
-                ? "text-ink ring-1 ring-line hover:bg-brand-50"
-                : "text-white ring-1 ring-white/30 hover:bg-white/10",
-            )}
+            className="grid size-11 place-items-center rounded-xl text-ink ring-1 ring-line transition-colors hover:bg-brand-50 lg:hidden"
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

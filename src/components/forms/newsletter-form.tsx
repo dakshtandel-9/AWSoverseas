@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { useActionState, useEffect, useId, useRef } from "react";
+import { AlertCircle, ArrowRight, Check } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { subscribeNewsletterAction, type NewsletterFormState } from "@/app/actions/newsletter";
 
-/** Client-only newsletter capture with a success state (no backend wired). */
+const initialState: NewsletterFormState = {};
+
 export function NewsletterForm({
   placeholder,
   buttonText,
@@ -16,19 +18,18 @@ export function NewsletterForm({
   successText: string;
   privacyText?: string;
 }) {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
+  const [state, formAction, pending] = useActionState(subscribeNewsletterAction, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
+  const id = useId();
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setDone(true);
-  }
+  useEffect(() => {
+    if (state.success) formRef.current?.reset();
+  }, [state.success]);
 
   return (
     <div className="w-full max-w-md">
       <AnimatePresence mode="wait">
-        {done ? (
+        {state.success ? (
           <motion.p
             key="done"
             initial={{ opacity: 0, y: 8 }}
@@ -40,35 +41,41 @@ export function NewsletterForm({
         ) : (
           <motion.form
             key="form"
-            onSubmit={onSubmit}
+            ref={formRef}
+            action={formAction}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="flex items-center gap-2 rounded-full bg-white/10 p-1.5 ring-1 ring-white/15 focus-within:ring-accent-400"
           >
-            <label htmlFor="newsletter-email" className="sr-only">
+            <label htmlFor={id} className="sr-only">
               Email address
             </label>
             <input
-              id="newsletter-email"
+              id={id}
+              name="email"
               type="email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               placeholder={placeholder}
               className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-brand-100/50 focus:outline-none"
             />
             <button
               type="submit"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-400"
+              disabled={pending}
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-400 disabled:opacity-60"
             >
-              {buttonText}
+              {pending ? "Subscribing…" : buttonText}
               <ArrowRight className="size-4" />
             </button>
           </motion.form>
         )}
       </AnimatePresence>
-      {privacyText && !done && (
+      {state.error && (
+        <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-red-300">
+          <AlertCircle className="size-3.5" /> {state.error}
+        </p>
+      )}
+      {privacyText && !state.success && !state.error && (
         <p className="mt-3 text-xs text-brand-100/50">{privacyText}</p>
       )}
     </div>

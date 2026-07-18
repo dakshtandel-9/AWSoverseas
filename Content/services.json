@@ -95,6 +95,18 @@
         ],
         "button": "Learn More"
     },
+    "sourcingAgent": {
+        "title": "Sourcing Agent",
+        "description": "AWSOverseas works as your local partner in India, sourcing and verifying manufacturers so you get the right product, at the right quality, before it ever ships.",
+        "features": [
+            "Supplier Identification & Verification",
+            "Quality Inspection",
+            "Price Negotiation",
+            "Sample Coordination",
+            "On-Ground Presence in India"
+        ],
+        "button": "Learn More"
+    },
     "cta": {
         "title": "Ready to Ship Across the Globe?",
         "description": "Whether you're importing, exporting, or managing international cargo, AWSOverseas is ready to provide reliable logistics solutions tailored to your business.",

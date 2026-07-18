@@ -14,23 +14,24 @@ type ServiceBlock = {
   button: string;
 };
 
-type Item = ServiceBlock & { slug: string; code: string };
+type Item = ServiceBlock & { href: string; code: string };
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
- * The 6 service lines rendered as tariff-schedule cards — each gets a 2-digit
+ * The service lines rendered as tariff-schedule cards — each gets a 2-digit
  * line code (not a 01/02/03 narrative sequence, but a genuine schedule-item
  * number, same device Industries used for its directory rows). Deliberately
  * a card grid rather than Industries' accordion, since these link out to
- * full detail pages (/services/[slug]) instead of expanding inline.
+ * full detail pages instead of expanding inline. Most link to /services/[slug];
+ * Sourcing Agent links to its own top-level page instead (/sourcing-agent).
  */
 export function ServicesSchedule({ items }: { items: Item[] }) {
   return (
     <Section spacing="lg" tone="soft">
       <SectionHeading
         eyebrow="Service Lines"
-        title="Six Ways We Move Your Cargo"
+        title="Every Stage, One Partner"
         subtitle="Each line item below is a full service in its own right — open one for scope, features, and how to book it."
         align="left"
       />
@@ -71,7 +72,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
               </ul>
 
               <Link
-                href={`/services/${item.slug}`}
+                href={item.href}
                 className="mt-6 inline-flex items-center gap-1.5 border-t border-[#e4e9f2] pt-5 text-sm font-bold text-[#01214a] transition-colors group-hover:text-[#8e1b2e]"
               >
                 {item.button}

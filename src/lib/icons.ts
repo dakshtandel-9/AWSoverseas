@@ -29,6 +29,7 @@ import {
   Layers,
   Leaf,
   Armchair,
+  Search,
   type LucideIcon,
 } from "lucide-react";
 
@@ -55,6 +56,7 @@ export function iconFor(label: string): LucideIcon {
     return Radar;
   if (k.includes("support") || k.includes("24")) return Clock;
   if (k.includes("door") || k.includes("delivery")) return Truck;
+  if (k.includes("sourcing") || k.includes("supplier") || k.includes("procurement")) return Search;
   // Industry-specific icons
   if (k.includes("manufactur")) return Factory;
   if (k.includes("ecommerce") || k.includes("e-commerce")) return ShoppingCart;

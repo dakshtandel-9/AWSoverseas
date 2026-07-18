@@ -1,0 +1,78 @@
+{
+    "page": "Sourcing Agent",
+    "meta": {
+        "title": "Sourcing Agent in India | AWSOverseas",
+        "description": "AWSOverseas is your trusted sourcing agent in India — we source, verify, and inspect products from vetted Indian manufacturers so you can import with confidence."
+    },
+    "hero": {
+        "badge": "Professional Sourcing Services",
+        "title": "Your Trusted Sourcing Agent",
+        "titleHighlight": "in India",
+        "subtitle": "AWSOverseas works as your local partner to source the best quality products from India as per your requirements and specifications. Let us handle the complexity while you focus on growing your business.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Talk to Us"
+    },
+    "process": {
+        "eyebrow": "Our Process",
+        "title": "How We Work",
+        "subtitle": "As a sourcing agent based in India, AWSOverseas are experts in fulfillment of your logistic and delivery needs with uncompromising quality at every stage.",
+        "steps": [
+            {
+                "step": "01",
+                "title": "Tell Us Your Requirements",
+                "description": "Share your product specifications and requirements with us."
+            },
+            {
+                "step": "02",
+                "title": "We Source & Verify",
+                "description": "We identify and verify the best manufacturers for your needs."
+            },
+            {
+                "step": "03",
+                "title": "Quality Inspection",
+                "description": "Thorough quality checks ensure you get the best products."
+            },
+            {
+                "step": "04",
+                "title": "Smooth Logistics",
+                "description": "We handle all logistics and ensure timely delivery."
+            },
+            {
+                "step": "05",
+                "title": "Complete Support",
+                "description": "We stay with you throughout the entire process and beyond."
+            }
+        ]
+    },
+    "benefits": {
+        "eyebrow": "Why Choose Us",
+        "title": "What Is Your Benefit",
+        "subtitle": "Partnering with AWSOverseas means getting access to India's best manufacturers and products with complete support and transparency.",
+        "items": [
+            {
+                "title": "Cost Savings",
+                "description": "We cut out the middlemen to bring you competitive market prices."
+            },
+            {
+                "title": "Quality Products & Services",
+                "description": "We source from vetted and reliable suppliers, ensuring top quality products & services."
+            },
+            {
+                "title": "Save Time",
+                "description": "We do all the leg work and give you a detailed list of potential suppliers and manufacturers with the best price and quality."
+            },
+            {
+                "title": "Reduced Risks",
+                "description": "Based in India, we give you physical presence in key locations of manufacturing."
+            },
+            {
+                "title": "Reliable Services",
+                "description": "In-depth knowledge of the product, language, and culture of the market that helps maintain quality."
+            },
+            {
+                "title": "Expert Guidance",
+                "description": "You get a reliable trading partner of your choice in the industry."
+            }
+        ]
+    }
+}

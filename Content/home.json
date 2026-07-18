@@ -71,6 +71,79 @@
         "title": "Trusted by Businesses Worldwide",
         "description": "Helping importers, exporters, manufacturers, traders, and eCommerce businesses manage international logistics efficiently."
     },
+    "certifications": {
+        "badge": "Verified & Trusted",
+        "title": "Certified Excellence in Global Trade",
+        "description": "Recognized by leading authorities and regulatory bodies across the globe, ensuring the highest standards in quality, compliance, and ethical business practices.",
+        "items": [
+            {
+                "name": "Udyog Aadhaar",
+                "issuer": "Ministry of MSME, Government of India",
+                "code": "UDYOG-AADHAAR",
+                "logo": "/certifications/udyogaadhaar.png.webp"
+            },
+            {
+                "name": "APEDA",
+                "issuer": "Agricultural & Processed Food Products Export Development Authority",
+                "code": "APEDA",
+                "logo": "/certifications/logo5.png.webp"
+            },
+            {
+                "name": "FDA Registered",
+                "issuer": "U.S. Food and Drug Administration",
+                "code": "FDA",
+                "logo": "/certifications/fda.png.webp"
+            },
+            {
+                "name": "DGFT / IEC",
+                "issuer": "Director General of Foreign Trade",
+                "code": "DGFT",
+                "logo": "/certifications/dgft.jpg.webp"
+            },
+            {
+                "name": "Spices Board India",
+                "issuer": "Ministry of Commerce & Industry",
+                "code": "SPICES-BOARD",
+                "logo": "/certifications/spice.png.webp"
+            },
+            {
+                "name": "FICCI Member",
+                "issuer": "Federation of Indian Chambers of Commerce & Industry",
+                "code": "FICCI",
+                "logo": "/certifications/ficci.jpg.webp"
+            },
+            {
+                "name": "FIEO Member",
+                "issuer": "Federation of Indian Export Organisations",
+                "code": "FIEO",
+                "logo": "/certifications/fieo.jpg.webp"
+            },
+            {
+                "name": "GCCI Member",
+                "issuer": "Gujarat Chamber of Commerce & Industry",
+                "code": "GCCI",
+                "logo": "/certifications/gcci.png.webp"
+            },
+            {
+                "name": "GMP Certified",
+                "issuer": "Good Manufacturing Practice",
+                "code": "GMP",
+                "logo": "/certifications/gmp.png.webp"
+            },
+            {
+                "name": "GSTC Registered",
+                "issuer": "Goods and Services Tax Council",
+                "code": "GSTC",
+                "logo": "/certifications/logo3.jpg.webp"
+            },
+            {
+                "name": "MSME Registered",
+                "issuer": "Ministry of Micro, Small & Medium Enterprises",
+                "code": "MSME",
+                "logo": "/certifications/msme.png.webp"
+            }
+        ]
+    },
     "about": {
         "title": "Your Trusted Global Logistics Partner",
         "description": "AWSOverseas provides complete freight forwarding and logistics solutions including Air Freight, Sea Freight, Import & Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door Delivery. Our mission is to simplify global shipping with transparent processes, competitive pricing, and dedicated customer support.",

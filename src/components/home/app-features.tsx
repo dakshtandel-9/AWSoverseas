@@ -24,7 +24,7 @@ export function AppFeatures({ data, eyebrow }: { data: Data; eyebrow: string }) 
             <Badge tone="light">{eyebrow}</Badge>
           </Reveal>
           <Reveal direction="up" delay={0.05}>
-            <h2 className="mt-5 text-3xl font-bold text-white text-balance sm:text-4xl">
+            <h2 className="mt-5 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#ffffff" }}>
               {data.title}
             </h2>
           </Reveal>
@@ -48,7 +48,6 @@ export function AppFeatures({ data, eyebrow }: { data: Data; eyebrow: string }) 
           <Reveal direction="up" delay={0.2}>
             <StoreButtons
               className="mt-9"
-              tone="light"
               playLabel={data.playStoreButton}
               appLabel={data.appStoreButton}
             />

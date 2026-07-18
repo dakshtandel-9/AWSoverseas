@@ -13,12 +13,16 @@ export const metadata: Metadata = metaFrom(services.meta, "/services");
  * so it links to the sea-freight detail page rather than a third card.
  */
 const SCHEDULE = [
-  { ...services.airFreight, slug: "air-freight", code: "01" },
-  { ...services.seaFreight, slug: "sea-freight", code: "02" },
-  { ...services.importServices, slug: "import-services", code: "03" },
-  { ...services.exportServices, slug: "export-services", code: "04" },
-  { ...services.warehousing, slug: "warehousing", code: "05" },
-  { ...services.customsClearance, slug: "customs-clearance", code: "06" },
+  { ...services.airFreight, href: "/services/air-freight", code: "01" },
+  { ...services.seaFreight, href: "/services/sea-freight", code: "02" },
+  { ...services.importServices, href: "/services/import-services", code: "03" },
+  { ...services.exportServices, href: "/services/export-services", code: "04" },
+  { ...services.warehousing, href: "/services/warehousing", code: "05" },
+  { ...services.customsClearance, href: "/services/customs-clearance", code: "06" },
+  // Sourcing happens before freight, and already has its own full page
+  // (/sourcing-agent) — link there instead of forking the content into a
+  // second /services/[slug] detail page.
+  { ...services.sourcingAgent, href: "/sourcing-agent", code: "07" },
 ].filter((item) => item.title);
 
 const SERVICES_JSONLD = {

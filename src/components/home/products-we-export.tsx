@@ -94,60 +94,66 @@ function ProductCard({
       <motion.div
         whileHover={{ y: -8 }}
         transition={{ type: "spring", stiffness: 280, damping: 22 }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-shadow duration-300 hover:shadow-[0_16px_48px_-12px_rgba(4,22,47,0.22)]"
+        className="h-full"
       >
-        {/* Red gradient border wash — fades in on hover */}
-        <span
-          className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            padding: 1,
-            background: "linear-gradient(135deg, rgba(215,40,70,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
-            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-          }}
-          aria-hidden
-        />
+        <Link
+          href="/products"
+          aria-label={`View ${title} in the export catalog`}
+          className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-shadow duration-300 hover:shadow-[0_16px_48px_-12px_rgba(4,22,47,0.22)]"
+        >
+          {/* Red gradient border wash — fades in on hover */}
+          <span
+            className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{
+              padding: 1,
+              background: "linear-gradient(135deg, rgba(215,40,70,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
+              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+            }}
+            aria-hidden
+          />
 
-        {/* Image */}
-        <div className="relative h-[190px] w-full shrink-0 overflow-hidden sm:h-[210px]">
-          {image ? (
-            <Image
-              src={image}
-              alt={`${title} — ${subtitle}`}
-              fill
-              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center bg-[#eef3fb]">
-              <Icon className="size-10 text-[#01214a]/30" />
-            </div>
-          )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
+          {/* Image */}
+          <div className="relative h-[190px] w-full shrink-0 overflow-hidden sm:h-[210px]">
+            {image ? (
+              <Image
+                src={image}
+                alt={`${title} — ${subtitle}`}
+                fill
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-[#eef3fb]">
+                <Icon className="size-10 text-[#01214a]/30" />
+              </div>
+            )}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
 
-          {/* Top-right arrow button */}
-          <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-            <ArrowUpRight className="size-4" aria-hidden />
-          </span>
+            {/* Top-right arrow button */}
+            <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <ArrowUpRight className="size-4" aria-hidden />
+            </span>
 
-          {/* Category icon chip */}
-          <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
-            <Icon className="size-4" aria-hidden />
-          </span>
-        </div>
+            {/* Category icon chip */}
+            <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
+              <Icon className="size-4" aria-hidden />
+            </span>
+          </div>
 
-        {/* Content */}
-        <div className="flex flex-1 flex-col gap-2 p-5">
-          <h3 className="text-base font-bold text-[#01214a]">{title}</h3>
-          <p className="text-sm leading-relaxed text-[#5b6b82]">{subtitle}</p>
+          {/* Content */}
+          <div className="flex flex-1 flex-col gap-2 p-5">
+            <h3 className="text-base font-bold text-[#01214a]">{title}</h3>
+            <p className="text-sm leading-relaxed text-[#5b6b82]">{subtitle}</p>
 
-          <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#01214a]">
-            <span className="size-1.5 rounded-full bg-[#d72846]" aria-hidden />
-            <BadgeCheck className="size-3" aria-hidden />
-            {badge}
-          </span>
-        </div>
+            <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#01214a]">
+              <span className="size-1.5 rounded-full bg-[#d72846]" aria-hidden />
+              <BadgeCheck className="size-3" aria-hidden />
+              {badge}
+            </span>
+          </div>
+        </Link>
       </motion.div>
     </StaggerItem>
   );
