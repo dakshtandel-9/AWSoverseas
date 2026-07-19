@@ -54,7 +54,7 @@ export default async function SingleBlogPage({
     title: post.title,
     excerpt:
       post.excerpt ||
-      "This article is being prepared. In the meantime, explore our other logistics guides below.",
+      "This article is being prepared. In the meantime, explore our other shipping guides below.",
     author: { name: post.author_name },
     publishDate: formatPublishDate(post.published_at),
     readTime: post.read_time || "—",

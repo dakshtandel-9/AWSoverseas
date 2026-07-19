@@ -1,13 +1,13 @@
 {
     "page": "Blog",
     "meta": {
-        "title": "Logistics Blog | AWSOverseas",
-        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global logistics from AWSOverseas."
+        "title": "Shipping Blog | AWSOverseas",
+        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global shipping from AWSOverseas."
     },
     "hero": {
         "badge": "Global Trade & Sourcing Insights",
         "title": "Knowledge That Moves Your Business Forward",
-        "subtitle": "Stay informed with expert articles, supplier sourcing guides, export documentation tips, and international trade insights designed to help businesses navigate sourcing and logistics with confidence.",
+        "subtitle": "Stay informed with expert articles, supplier sourcing guides, export documentation tips, and international trade insights designed to help businesses navigate sourcing and shipping with confidence.",
         "primaryButton": "Explore Articles",
         "secondaryButton": "Request a Quote"
     },
@@ -36,7 +36,7 @@
                 "slug": "warehousing"
             },
             {
-                "title": "Logistics Tips",
+                "title": "Shipping Tips",
                 "slug": "logistics"
             },
             {
@@ -60,7 +60,7 @@
     },
     "blogGrid": {
         "title": "Latest Articles",
-        "description": "Stay updated with the latest trends, regulations, and best practices in international logistics.",
+        "description": "Stay updated with the latest trends, regulations, and best practices in international shipping.",
         "posts": [
             {
                 "title": "Air Freight vs Sea Freight: Which One is Right for You?",
@@ -94,7 +94,7 @@
             },
             {
                 "title": "Common Shipping Mistakes Businesses Should Avoid",
-                "category": "Logistics",
+                "category": "Shipping",
                 "readTime": "7 min",
                 "image": "/images/blog/blog-6.webp"
             }
@@ -102,7 +102,7 @@
     },
     "newsletter": {
         "title": "Stay Ahead in Global Trade",
-        "description": "Receive sourcing updates, export opportunities, logistics insights and international trade news.",
+        "description": "Receive sourcing updates, export opportunities, shipping insights and international trade news.",
         "placeholder": "Enter your email address",
         "buttonText": "Subscribe",
         "successMessage": "Thank you for subscribing to the AWSOverseas newsletter!",

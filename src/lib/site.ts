@@ -3,7 +3,7 @@ import { individualService } from "@/lib/content";
 
 export const SITE = {
   name: "AWSOverseas",
-  tagline: "Global Logistics Beyond Borders",
+  tagline: "Global Shipping Beyond Borders",
   url: "https://awsoverseas.com",
 };
 

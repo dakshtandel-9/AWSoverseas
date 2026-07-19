@@ -2,12 +2,12 @@
     "page": "Mobile App",
     "meta": {
         "title": "AWSOverseas Mobile App | Ship Smarter, Track Faster",
-        "description": "Download the AWSOverseas mobile app to book shipments, track cargo, upload documents, make secure payments, receive real-time notifications, and manage your logistics from anywhere."
+        "description": "Download the AWSOverseas mobile app to book shipments, track cargo, upload documents, make secure payments, receive real-time notifications, and manage your shipping from anywhere."
     },
     "hero": {
         "badge": "Mobile Application",
         "title": "Manage Your Global Shipments Anytime, Anywhere",
-        "subtitle": "Experience hassle-free international logistics with the AWSOverseas Mobile App. Book shipments, track cargo, upload documents, make secure payments, and receive real-time updates—all from your smartphone.",
+        "subtitle": "Experience hassle-free international shipping with the AWSOverseas Mobile App. Book shipments, track cargo, upload documents, make secure payments, and receive real-time updates—all from your smartphone.",
         "primaryButton": "Download for Android",
         "secondaryButton": "Download for iPhone"
     },

@@ -37,7 +37,7 @@ const SERVICES_JSONLD = {
   description: services.meta?.description,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Logistics Services",
+    name: "Shipping Services",
     itemListElement: SCHEDULE.map((item) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: item.title, description: item.description },

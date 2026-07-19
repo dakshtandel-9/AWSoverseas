@@ -2,14 +2,14 @@
     "page": "Single Blog",
     "meta": {
         "title": "How to Choose the Right International Shipping Method | AWSOverseas",
-        "description": "Learn how to choose between Air Freight, Sea Freight, FCL, and LCL shipping for your international business with this complete logistics guide."
+        "description": "Learn how to choose between Air Freight, Sea Freight, FCL, and LCL shipping for your international business with this complete shipping guide."
     },
     "banner": {
         "category": "Shipping Guide",
         "title": "How to Choose the Right International Shipping Method for Your Business",
         "excerpt": "Choosing the right shipping solution directly impacts your delivery time, transportation cost, and customer satisfaction. Learn when to use Air Freight, Sea Freight, FCL, and LCL shipping.",
         "author": {
-            "name": "AWSOverseas Logistics Team",
+            "name": "AWSOverseas Shipping Team",
             "avatar": "/images/authors/author.webp"
         },
         "publishDate": "15 June 2026",
@@ -45,11 +45,11 @@
             },
             {
                 "heading": "How AWSOverseas Supports Global Shipping",
-                "content": "AWSOverseas provides end-to-end logistics services including freight forwarding, customs clearance, warehousing, documentation support, shipment tracking, and door-to-door delivery."
+                "content": "AWSOverseas provides end-to-end shipping services including freight forwarding, customs clearance, warehousing, documentation support, shipment tracking, and door-to-door delivery."
             },
             {
                 "heading": "Final Thoughts",
-                "content": "Choosing the right shipping method depends on your business priorities. Whether speed, cost, or flexibility matters most, AWSOverseas helps you select the ideal logistics solution."
+                "content": "Choosing the right shipping method depends on your business priorities. Whether speed, cost, or flexibility matters most, AWSOverseas helps you select the ideal shipping solution."
             }
         ],
         "tags": [
@@ -58,7 +58,7 @@
             "Import",
             "Export",
             "International Shipping",
-            "Logistics",
+            "Shipping",
             "Freight Forwarding"
         ],
         "share": {
@@ -73,7 +73,7 @@
     },
     "relatedPosts": {
         "title": "Related Articles",
-        "description": "Continue exploring more logistics insights and international shipping guides.",
+        "description": "Continue exploring more trade insights and international shipping guides.",
         "posts": [
             {
                 "title": "Air Freight vs Sea Freight: Complete Comparison",
@@ -97,7 +97,7 @@
     },
     "cta": {
         "title": "Need Help with International Shipping?",
-        "description": "Whether you're importing, exporting, or managing global cargo, AWSOverseas is ready to provide reliable and cost-effective logistics solutions.",
+        "description": "Whether you're importing, exporting, or managing global cargo, AWSOverseas is ready to provide reliable and cost-effective shipping solutions.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Our Experts"
     }

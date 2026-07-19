@@ -2,7 +2,7 @@
     "page": "Disclaimer",
     "meta": {
         "title": "Disclaimer | AWSOverseas",
-        "description": "Read the AWSOverseas disclaimer regarding the use of our website, logistics information, and services."
+        "description": "Read the AWSOverseas disclaimer regarding the use of our website, shipping information, and services."
     },
     "hero": {
         "badge": "Legal",
@@ -25,7 +25,7 @@
         },
         {
             "title": "Service Availability",
-            "content": "Certain logistics services may not be available in every country or region and may change without notice."
+            "content": "Certain shipping services may not be available in every country or region and may change without notice."
         },
         {
             "title": "Limitation of Liability",

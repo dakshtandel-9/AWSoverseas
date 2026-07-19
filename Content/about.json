@@ -2,7 +2,7 @@
     "page": "About",
     "meta": {
         "title": "About AWSOverseas | Sourcing & Export Partner in India",
-        "description": "AWSOverseas connects global buyers with trusted Indian manufacturers — verifying suppliers, inspecting quality, and managing export logistics so you can source from India with confidence."
+        "description": "AWSOverseas connects global buyers with trusted Indian manufacturers — verifying suppliers, inspecting quality, and managing export shipping so you can source from India with confidence."
     },
     "hero": {
         "badge": "About AWSOverseas",
@@ -13,7 +13,7 @@
     },
     "companyStory": {
         "title": "Our Story",
-        "description": "AWSOverseas was founded on a simple observation: global buyers wanted to source from India, but the distance, language, and unfamiliar processes made it risky to go it alone. We started by building real relationships with manufacturers across India's production hubs — visiting factories, vetting capabilities, and earning the kind of trust that can't be arranged over email. Over time, we layered in the export knowledge and logistics expertise those relationships needed to matter: quality assurance before goods ever leave the factory, documentation done right the first time, and shipping handled by people who understand both ends of the trade. Today, that combination — supplier relationships, sourcing know-how, and logistics execution — is what lets a buyer anywhere in the world source from India with the same confidence as buying down the street."
+        "description": "AWSOverseas was founded on a simple observation: global buyers wanted to source from India, but the distance, language, and unfamiliar processes made it risky to go it alone. We started by building real relationships with manufacturers across India's production hubs — visiting factories, vetting capabilities, and earning the kind of trust that can't be arranged over email. Over time, we layered in the export knowledge and shipping expertise those relationships needed to matter: quality assurance before goods ever leave the factory, documentation done right the first time, and freight handled by people who understand both ends of the trade. Today, that combination — supplier relationships, sourcing know-how, and shipping execution — is what lets a buyer anywhere in the world source from India with the same confidence as buying down the street."
     },
     "missionVision": {
         "title": "Mission & Vision",
@@ -57,7 +57,7 @@
     },
     "globalNetwork": {
         "title": "A Sourcing Network Built for Global Buyers",
-        "description": "Our sourcing partners across India's manufacturing regions, combined with our logistics network, enable seamless exports to buyers worldwide — one relationship for finding the right supplier and getting their product to your door.",
+        "description": "Our sourcing partners across India's manufacturing regions, combined with our shipping network, enable seamless exports to buyers worldwide — one relationship for finding the right supplier and getting their product to your door.",
         "highlights": [
             "Verified Supplier Network",
             "On-Ground Sourcing Teams",
@@ -88,7 +88,7 @@
             },
             {
                 "title": "Sourcing and Export Under One Roof",
-                "description": "One team handles supplier selection, quality assurance, and export logistics — no handoff between disconnected vendors."
+                "description": "One team handles supplier selection, quality assurance, and export shipping — no handoff between disconnected vendors."
             },
             {
                 "title": "Quality Assurance at the Source",

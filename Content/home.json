@@ -1,7 +1,7 @@
 {
     "page": "Home",
     "meta": {
-        "title": "AWSOverseas | Product Sourcing & International Logistics from India",
+        "title": "AWSOverseas | Product Sourcing & International Shipping from India",
         "description": "AWSOverseas sources, verifies, and exports products from India, then moves them worldwide through Air Freight, Sea Freight, Customs Clearance, and Door-to-Door delivery — one export partner from factory floor to your dock.",
         "keywords": [
             "Product Sourcing India",
@@ -16,9 +16,9 @@
         ]
     },
     "hero": {
-        "badge": "Your Complete Product Sourcing & Logistics Partner",
+        "badge": "Your Complete Product Sourcing & Shipping Partner",
         "title": "Source. Verify. Export. Deliver.",
-        "subtitle": "We source products from verified Indian manufacturers, inspect every order for quality, prepare export documentation, and manage worldwide shipping and logistics — one partner for the entire journey from factory to your door.",
+        "subtitle": "We source products from verified Indian manufacturers, inspect every order for quality, prepare export documentation, and manage worldwide shipping and delivery — one partner for the entire journey from factory to your door.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Download Mobile App",
         "trackingPlaceholder": "Enter Tracking Number",
@@ -70,7 +70,7 @@
     },
     "trustedPartners": {
         "title": "Trusted by Businesses Worldwide",
-        "description": "Helping businesses source and export products across multiple industries from verified Indian manufacturers, then move them worldwide with dependable logistics."
+        "description": "Helping businesses source and export products across multiple industries from verified Indian manufacturers, then move them worldwide with dependable shipping."
     },
     "certifications": {
         "badge": "Verified & Trusted",
@@ -151,7 +151,7 @@
         "button": "Learn More"
     },
     "services": {
-        "title": "Sourcing and Logistics, Under One Desk",
+        "title": "Sourcing and Shipping, Under One Desk",
         "subtitle": "From finding the right manufacturer in India to delivering at your door — services that cover both sides of an export order.",
         "items": [
             {
@@ -204,7 +204,7 @@
                 "description": "Certificates, HS codes, and customs paperwork prepared by people who file them daily."
             },
             {
-                "title": "International Logistics",
+                "title": "International Shipping",
                 "description": "Air and sea freight, customs clearance, and door-to-door delivery managed under one roof."
             },
             {

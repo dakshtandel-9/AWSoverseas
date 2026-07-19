@@ -22,7 +22,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL("https://awsoverseas.com"),
   title: {
-    default: home.meta?.title ?? "AWSOverseas | Global Logistics Beyond Borders",
+    default: home.meta?.title ?? "AWSOverseas | Global Shipping Beyond Borders",
     template: "%s | AWSOverseas",
   },
   description: home.meta?.description,

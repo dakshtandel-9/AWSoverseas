@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   Trophy,
   Link2,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";

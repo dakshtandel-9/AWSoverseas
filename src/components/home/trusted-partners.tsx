@@ -14,7 +14,7 @@ const INDUSTRY_BLURBS: Record<string, string> = {
   Retail:            "Stock replenishment and seasonal inventory moved on schedule.",
   Automotive:        "OEM parts, assemblies and finished vehicles shipped securely.",
   Pharmaceutical:    "Temperature-controlled, compliant handling for sensitive cargo.",
-  Electronics:       "Anti-static, insured logistics for high-value electronic goods.",
+  Electronics:       "Anti-static, insured shipping for high-value electronic goods.",
   Textile:           "Fabric, garments and accessories from factory to shelf.",
 };
 
@@ -61,7 +61,7 @@ export function TrustedPartners({
         >
           {partners.map((name) => {
             const Icon = iconFor(name);
-            const blurb = INDUSTRY_BLURBS[name] ?? "Reliable logistics solutions tailored to your sector.";
+            const blurb = INDUSTRY_BLURBS[name] ?? "Reliable shipping solutions tailored to your sector.";
             return (
               <motion.div key={name} variants={item}>
                 <Link

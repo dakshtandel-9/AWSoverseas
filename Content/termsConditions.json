@@ -2,12 +2,12 @@
     "page": "Terms & Conditions",
     "meta": {
         "title": "Terms & Conditions | AWSOverseas",
-        "description": "Read the terms and conditions governing the use of AWSOverseas's website and logistics services."
+        "description": "Read the terms and conditions governing the use of AWSOverseas's website and shipping services."
     },
     "hero": {
         "badge": "Legal",
         "title": "Terms & Conditions",
-        "subtitle": "Please read these terms carefully before using our website or logistics services."
+        "subtitle": "Please read these terms carefully before using our website or shipping services."
     },
     "lastUpdated": "01 July 2026",
     "sections": [
@@ -17,7 +17,7 @@
         },
         {
             "title": "Services",
-            "content": "AWSOverseas provides international logistics, freight forwarding, customs clearance, warehousing, and related shipping services."
+            "content": "AWSOverseas provides international shipping, freight forwarding, customs clearance, warehousing, and related supply chain services."
         },
         {
             "title": "Customer Responsibilities",

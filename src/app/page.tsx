@@ -4,6 +4,7 @@ import { getPublishedPosts } from "@/lib/blog-data";
 import { getActiveProducts } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { HeroSlider } from "@/components/home/hero-slider";
+import { ImageHeroSlider } from "@/components/home/image-hero-slider";
 import { TrustedPartners } from "@/components/home/trusted-partners";
 import { Certifications } from "@/components/home/certifications";
 import { StatsStrip } from "@/components/home/stats-strip";
@@ -41,7 +42,35 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
       />
 
-      <HeroSlider hero={home.hero} exportHero={home.exportHero} />
+      {/* <HeroSlider hero={home.hero} exportHero={home.exportHero} /> */}
+      <ImageHeroSlider
+        slides={[
+          {
+            image: "/hero-slider/slide-1-ship.jpg",
+            imageAlt: "Container ship loaded with cargo at sea",
+            badge: home.hero.badge,
+            title: home.hero.title,
+            subtitle: home.hero.subtitle,
+            primaryButton: home.hero.primaryButton,
+            primaryButtonHref: "/quote",
+            secondaryButton: home.hero.secondaryButton,
+            secondaryButtonHref: "/mobile-app",
+            stats: home.hero.stats,
+          },
+          {
+            image: "/hero-slider/slide-2-warehouse.jpg",
+            imageAlt: "Warehouse aisle stacked with export-ready goods",
+            badge: home.exportHero.badge,
+            title: home.exportHero.title,
+            subtitle: home.exportHero.subtitle,
+            primaryButton: home.exportHero.primaryButton,
+            primaryButtonHref: "/products",
+            secondaryButton: home.exportHero.secondaryButton,
+            secondaryButtonHref: "/products",
+            stats: home.exportHero.stats,
+          },
+        ]}
+      />
       <TrustedPartners data={home.trustedPartners} partners={home.industries.items} />
       <Certifications data={home.certifications} />
       <StatsStrip stats={home.hero.stats} />

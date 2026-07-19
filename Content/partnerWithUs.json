@@ -3,13 +3,13 @@
 
   "meta": {
     "title": "Partner With AWSOverseas | Grow Together",
-    "description": "Join the AWSOverseas global logistics network. Partner with us as a freight forwarder, customs broker, transport provider, warehouse partner, or business associate."
+    "description": "Join the AWSOverseas global shipping network. Partner with us as a freight forwarder, customs broker, transport provider, warehouse partner, or business associate."
   },
 
   "hero": {
     "badge": "Business Partnership",
-    "title": "Let's Build a Stronger Global Logistics Network Together",
-    "subtitle": "Become an AWSOverseas partner and expand your business with international logistics opportunities, reliable support, and long-term collaboration.",
+    "title": "Let's Build a Stronger Global Shipping Network Together",
+    "subtitle": "Become an AWSOverseas partner and expand your business with international shipping opportunities, reliable support, and long-term collaboration.",
     "primaryButton": "Apply Now",
     "secondaryButton": "Contact Partnership Team"
   },
@@ -20,7 +20,7 @@
     "items": [
       {
         "title": "Global Business Network",
-        "description": "Expand your reach through our growing international logistics network."
+        "description": "Expand your reach through our growing international shipping network."
       },
       {
         "title": "Business Growth",
@@ -28,7 +28,7 @@
       },
       {
         "title": "Dedicated Support",
-        "description": "Work closely with our experienced logistics team for seamless operations."
+        "description": "Work closely with our experienced shipping team for seamless operations."
       },
       {
         "title": "Reliable Collaboration",
@@ -40,14 +40,14 @@
       },
       {
         "title": "Mutual Success",
-        "description": "Grow together by delivering exceptional logistics solutions to customers worldwide."
+        "description": "Grow together by delivering exceptional shipping solutions to customers worldwide."
       }
     ]
   },
 
   "partnershipTypes": {
     "title": "Who Can Partner With Us?",
-    "description": "We welcome partnerships from businesses across the logistics and supply chain ecosystem.",
+    "description": "We welcome partnerships from businesses across the shipping and supply chain ecosystem.",
     "items": [
       {
         "title": "Freight Forwarders",
@@ -164,7 +164,7 @@
     "items": [
       {
         "question": "Who can become an AWSOverseas partner?",
-        "answer": "We welcome freight forwarders, customs brokers, transport companies, warehouse providers, shipping agents, and other logistics-related businesses."
+        "answer": "We welcome freight forwarders, customs brokers, transport companies, warehouse providers, shipping agents, and other shipping-related businesses."
       },
       {
         "question": "Is there a partnership fee?",

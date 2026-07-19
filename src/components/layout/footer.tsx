@@ -18,7 +18,7 @@ const SOCIALS: { name: SocialName; label: string; href: string }[] = [
 const FOOTER_SERVICES = [
   { label: "Product Sourcing", href: "/sourcing-agent" },
   { label: "Supplier Verification", href: "/sourcing-agent" },
-  { label: "International Logistics", href: "/services" },
+  { label: "International Shipping", href: "/services" },
   { label: "Export Documentation", href: "/services/export-services" },
   { label: "Customs Clearance", href: "/services/customs-clearance" },
   { label: "Warehousing", href: "/services/warehousing" },
@@ -70,7 +70,7 @@ export async function Footer() {
             <Logo tone="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-100/65">
               AWSOverseas is your trusted partner for product sourcing, supplier verification,
-              export management and international logistics. We help businesses worldwide source
+              export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>
             <ul className="mt-6 space-y-3 text-sm">

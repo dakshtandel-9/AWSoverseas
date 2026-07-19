@@ -14,7 +14,7 @@ const PALETTE: Record<string, [string, string]> = {
   Customs: ["#6c1423", "#8e1b2e"],
   "Import & Export": ["#000c1a", "#01214a"],
   Warehousing: ["#01214a", "#6c1423"],
-  Logistics: ["#011938", "#d72846"],
+  Shipping: ["#011938", "#d72846"],
 };
 
 function paletteFor(category: string): [string, string] {

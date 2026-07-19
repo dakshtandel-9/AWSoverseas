@@ -2,12 +2,12 @@
     "page": "FAQ",
     "meta": {
         "title": "Frequently Asked Questions | AWSOverseas",
-        "description": "Find answers to common questions about international shipping, freight forwarding, customs clearance, shipment tracking, payments, and logistics services."
+        "description": "Find answers to common questions about international shipping, freight forwarding, customs clearance, shipment tracking, payments, and shipping services."
     },
     "hero": {
         "badge": "Support Center",
         "title": "Frequently Asked Questions",
-        "subtitle": "Find quick answers to the most common questions about product sourcing, supplier verification, and international logistics.",
+        "subtitle": "Find quick answers to the most common questions about product sourcing, supplier verification, and international shipping.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Support"
     },
@@ -65,7 +65,7 @@
             {
                 "category": "General",
                 "question": "Which countries do you ship to?",
-                "answer": "We provide international shipping solutions across multiple countries through our global logistics network."
+                "answer": "We provide international shipping solutions across multiple countries through our global shipping network."
             },
             {
                 "category": "Air Freight",
@@ -121,7 +121,7 @@
     },
     "contactCTA": {
         "title": "Still Have Questions?",
-        "description": "Our logistics specialists are here to help you with your shipping requirements. Contact us today for expert guidance and personalized support.",
+        "description": "Our shipping specialists are here to help you with your requirements. Contact us today for expert guidance and personalized support.",
         "primaryButton": "Contact Us",
         "secondaryButton": "Request a Quote"
     }

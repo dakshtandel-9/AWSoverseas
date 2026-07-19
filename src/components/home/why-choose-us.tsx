@@ -16,7 +16,7 @@ const METRICS: Record<string, string> = {
   "Competitive Product Pricing":  "No hidden fees, ever",
   "Quality Assurance":            "Inspected before dispatch",
   "Export Expertise":             "Documentation filed daily",
-  "International Logistics":      "99% on-time delivery",
+  "International Shipping":       "99% on-time delivery",
   "Single Point of Contact":      "One team, start to finish",
 };
 
@@ -43,7 +43,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
             {data.title}
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
-            Trusted by businesses worldwide for reliable, secure, and transparent logistics solutions.
+            Trusted by businesses worldwide for reliable, secure, and transparent shipping solutions.
           </p>
         </div>
       </Reveal>

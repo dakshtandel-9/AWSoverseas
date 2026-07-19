@@ -86,7 +86,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
           <Reveal direction="up" delay={0.2}>
             <div className="mt-10">
               <Button href="/services" variant="white" size="lg">
-                Explore Sourcing & Logistics <ArrowRight className="size-4" />
+                Explore Sourcing & Shipping <ArrowRight className="size-4" />
               </Button>
             </div>
           </Reveal>

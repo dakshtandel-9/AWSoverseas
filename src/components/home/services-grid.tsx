@@ -86,7 +86,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Our Services</p>
           <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
-            Sourcing & Logistics,<br className="hidden sm:block" /> End to End
+            Sourcing & Shipping,<br className="hidden sm:block" /> End to End
           </h2>
         </div>
         <p className="max-w-xs text-sm leading-relaxed text-[#5b6b82] lg:text-right">{data.subtitle}</p>

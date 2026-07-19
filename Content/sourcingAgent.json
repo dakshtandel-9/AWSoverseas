@@ -15,7 +15,7 @@
     "process": {
         "eyebrow": "Our Process",
         "title": "How We Work",
-        "subtitle": "As a sourcing agent based in India, AWSOverseas are experts in fulfillment of your logistic and delivery needs with uncompromising quality at every stage.",
+        "subtitle": "As a sourcing agent based in India, AWSOverseas are experts in fulfillment of your shipping and delivery needs with uncompromising quality at every stage.",
         "steps": [
             {
                 "step": "01",
@@ -34,8 +34,8 @@
             },
             {
                 "step": "04",
-                "title": "Smooth Logistics",
-                "description": "We handle all logistics and ensure timely delivery."
+                "title": "Smooth Shipping",
+                "description": "We handle all shipping and ensure timely delivery."
             },
             {
                 "step": "05",

@@ -3,12 +3,12 @@
 
   "meta": {
     "title": "Industries We Serve | AWSOverseas",
-    "description": "AWSOverseas sources verified manufacturers and provides international logistics for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
+    "description": "AWSOverseas sources verified manufacturers and provides international shipping for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
   },
 
   "hero": {
     "badge": "Industries",
-    "title": "Sourcing and Logistics Built for Every Industry",
+    "title": "Sourcing and Shipping Built for Every Industry",
     "subtitle": "Every industry sources differently and ships differently. AWSOverseas pairs verified manufacturers and quality inspection with freight forwarding, customs clearance, and global shipping — matched to how your industry actually operates.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Contact Us"
@@ -16,7 +16,7 @@
 
   "overview": {
     "title": "Industries We Empower",
-    "description": "Our supplier network and logistics operation work together to get businesses across diverse industries the right product, verified and shipped safely and cost-effectively. Whether you are sourcing raw materials, finished products, or specialized cargo, our team provides tailored sourcing and shipping solutions that meet your business needs.",
+    "description": "Our supplier network and shipping operation work together to get businesses across diverse industries the right product, verified and shipped safely and cost-effectively. Whether you are sourcing raw materials, finished products, or specialized cargo, our team provides tailored sourcing and shipping solutions that meet your business needs.",
     "stats": [
       {
         "number": "100+",
@@ -39,7 +39,7 @@
 
   "industriesGrid": {
     "title": "Industries We Serve",
-    "description": "Comprehensive logistics solutions designed for businesses across multiple sectors.",
+    "description": "Comprehensive shipping solutions designed for businesses across multiple sectors.",
     "items": [
       {
         "title": "Manufacturing",
@@ -78,7 +78,7 @@
 
   "manufacturing": {
     "title": "Manufacturing Industry",
-    "description": "We source raw materials, components, and industrial equipment from verified Indian manufacturers, then move them through our global logistics network.",
+    "description": "We source raw materials, components, and industrial equipment from verified Indian manufacturers, then move them through our global shipping network.",
     "services": [
       "Manufacturer Sourcing",
       "Bulk Cargo",
@@ -90,7 +90,7 @@
 
   "ecommerce": {
     "title": "eCommerce Businesses",
-    "description": "We source private-label and catalog products from Indian suppliers and provide fast, scalable logistics for online businesses, marketplaces, and international sellers.",
+    "description": "We source private-label and catalog products from Indian suppliers and provide fast, scalable shipping for online businesses, marketplaces, and international sellers.",
     "services": [
       "Product Sourcing",
       "Cross-Border Shipping",
@@ -137,7 +137,7 @@
   },
 
   "cta": {
-    "title": "Looking for Industry-Specific Sourcing or Logistics?",
+    "title": "Looking for Industry-Specific Sourcing or Shipping?",
     "description": "Our team is ready to source verified suppliers and build a customized shipping strategy that fits your industry and global supply chain.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Speak with an Expert"

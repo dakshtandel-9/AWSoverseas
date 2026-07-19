@@ -2,18 +2,18 @@
     "page": "Contact",
     "meta": {
         "title": "Contact AWSOverseas | Get in Touch",
-        "description": "Contact AWSOverseas for international logistics, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
+        "description": "Contact AWSOverseas for international shipping, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
     },
     "hero": {
         "badge": "Contact Us",
         "title": "Let's Move Your Business Beyond Borders",
-        "subtitle": "Have questions about international shipping? Need a freight quotation? Our logistics experts are ready to help you with reliable and cost-effective shipping solutions.",
+        "subtitle": "Have questions about international shipping? Need a freight quotation? Our shipping experts are ready to help you with reliable and cost-effective delivery solutions.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Call Now"
     },
     "contactForm": {
         "title": "Send Us a Message",
-        "description": "Complete the form below and one of our logistics specialists will contact you shortly.",
+        "description": "Complete the form below and one of our shipping specialists will contact you shortly.",
         "fields": [
             {
                 "label": "Full Name",
@@ -66,7 +66,7 @@
     },
     "officeLocations": {
         "title": "Our Office",
-        "description": "Visit our office or connect with our logistics team for expert assistance.",
+        "description": "Visit our office or connect with our shipping team for expert assistance.",
         "locations": [
             {
                 "office": "Head Office",
@@ -100,7 +100,7 @@
     },
     "whatsapp": {
         "title": "Chat with Us on WhatsApp",
-        "description": "Need a quick response? Start a conversation with our logistics team on WhatsApp.",
+        "description": "Need a quick response? Start a conversation with our shipping team on WhatsApp.",
         "buttonText": "Chat on WhatsApp",
         "link": "https://wa.me/91XXXXXXXXXX"
     },

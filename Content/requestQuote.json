@@ -7,7 +7,7 @@
   "hero": {
     "badge": "Free Freight Quote",
     "title": "Request Your International Shipping Quote",
-    "subtitle": "Tell us about your shipment and our logistics experts will provide a competitive quotation tailored to your requirements.",
+    "subtitle": "Tell us about your shipment and our shipping experts will provide a competitive quotation tailored to your requirements.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Contact Us"
   },
@@ -136,7 +136,7 @@
   },
   "submit": {
     "title": "Submit Your Quote Request",
-    "description": "Our logistics specialists will review your request and contact you with a customized quotation as soon as possible.",
+    "description": "Our shipping specialists will review your request and contact you with a customized quotation as soon as possible.",
     "buttonText": "Request Free Quote",
     "successMessage": "Thank you! Your quote request has been submitted successfully. Our team will contact you shortly.",
     "privacyText": "By submitting this form, you agree to our Privacy Policy and Terms & Conditions."
