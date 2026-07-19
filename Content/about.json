@@ -1,116 +1,116 @@
 {
     "page": "About",
     "meta": {
-        "title": "About AWSOverseas | Global Logistics Beyond Borders",
-        "description": "Learn about AWSOverseas, an international logistics and freight forwarding company delivering reliable Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, and Door-to-Door shipping solutions worldwide."
+        "title": "About AWSOverseas | Sourcing & Export Partner in India",
+        "description": "AWSOverseas connects global buyers with trusted Indian manufacturers — verifying suppliers, inspecting quality, and managing export logistics so you can source from India with confidence."
     },
     "hero": {
         "badge": "About AWSOverseas",
-        "title": "Connecting Businesses Across the World Through Reliable Logistics",
-        "subtitle": "AWSOverseas is committed to simplifying international shipping with secure, transparent, and efficient logistics solutions that help businesses grow beyond borders.",
+        "title": "Your Trusted Bridge to Indian Manufacturing",
+        "subtitle": "We connect global buyers with verified Indian manufacturers — vetting suppliers, safeguarding quality, and handling the export process end to end, so sourcing from India feels like working with a partner on the ground.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Our Services"
     },
     "companyStory": {
         "title": "Our Story",
-        "description": "AWSOverseas was founded with a simple vision—to make global shipping easier, faster, and more transparent for businesses and individuals. We understand that international logistics can be complex, so we combine industry expertise, technology, and dedicated customer support to deliver seamless freight forwarding solutions. From small businesses shipping their first international order to large enterprises managing global supply chains, we help every customer move cargo with confidence."
+        "description": "AWSOverseas was founded on a simple observation: global buyers wanted to source from India, but the distance, language, and unfamiliar processes made it risky to go it alone. We started by building real relationships with manufacturers across India's production hubs — visiting factories, vetting capabilities, and earning the kind of trust that can't be arranged over email. Over time, we layered in the export knowledge and logistics expertise those relationships needed to matter: quality assurance before goods ever leave the factory, documentation done right the first time, and shipping handled by people who understand both ends of the trade. Today, that combination — supplier relationships, sourcing know-how, and logistics execution — is what lets a buyer anywhere in the world source from India with the same confidence as buying down the street."
     },
     "missionVision": {
         "title": "Mission & Vision",
         "mission": {
-            "title": "Our Mission",
-            "description": "To provide dependable, cost-effective, and technology-driven logistics solutions that simplify international trade while delivering exceptional customer experiences."
+            "title": "Connect global buyers with trusted Indian manufacturers.",
+            "description": "We exist to make sourcing from India straightforward for buyers everywhere — pairing every order with a verified manufacturer and standing behind the quality and delivery of what they produce."
         },
         "vision": {
-            "title": "Our Vision",
-            "description": "To become one of the world's most trusted logistics partners by connecting businesses globally through innovation, reliability, and operational excellence."
+            "title": "Become the preferred sourcing and export partner for businesses worldwide.",
+            "description": "We're building toward a future where 'sourcing from India' and 'working with AWSOverseas' mean the same thing to buyers worldwide — the first call for anyone who wants a trusted supplier, not just a shipment."
         }
     },
     "values": {
         "title": "Our Core Values",
         "items": [
             {
-                "title": "Customer First",
-                "description": "Every shipment begins with understanding our customer's unique requirements."
+                "title": "Transparency",
+                "description": "Clear pricing, honest supplier information, and straight answers at every stage of sourcing and shipping."
             },
             {
-                "title": "Integrity",
-                "description": "We believe in transparency, honesty, and long-term business relationships."
+                "title": "Quality",
+                "description": "Every order is inspected against agreed standards before it leaves the factory, not discovered on arrival."
             },
             {
-                "title": "Reliability",
-                "description": "Delivering shipments safely and on time is our highest priority."
+                "title": "Supplier Trust",
+                "description": "We vet manufacturers on the ground and maintain the relationships that keep them accountable to our buyers."
             },
             {
-                "title": "Innovation",
-                "description": "We leverage modern technology to improve logistics efficiency and customer experience."
+                "title": "Compliance",
+                "description": "Export documentation and regulatory requirements handled correctly, so shipments move without surprises."
             },
             {
-                "title": "Global Excellence",
-                "description": "We maintain international standards across every logistics operation."
+                "title": "Customer Success",
+                "description": "We measure ourselves by whether our buyers reorder — not by whether a single shipment cleared."
             },
             {
-                "title": "Continuous Improvement",
-                "description": "We constantly improve our services to meet the evolving needs of global trade."
+                "title": "Long-Term Partnership",
+                "description": "We invest in relationships built to outlast a single order, with both buyers and suppliers."
             }
         ]
     },
     "globalNetwork": {
-        "title": "Our Global Network",
-        "description": "Through an extensive worldwide logistics network, AWSOverseas connects businesses across Asia, Europe, North America, South America, Africa, and the Middle East. Our partnerships with trusted carriers and logistics providers ensure secure and efficient international cargo movement.",
+        "title": "A Sourcing Network Built for Global Buyers",
+        "description": "Our sourcing partners across India's manufacturing regions, combined with our logistics network, enable seamless exports to buyers worldwide — one relationship for finding the right supplier and getting their product to your door.",
         "highlights": [
-            "Worldwide Shipping Network",
-            "Air Freight Solutions",
-            "Sea Freight Solutions",
-            "Door-to-Door Delivery",
-            "Customs Clearance Support",
-            "Warehousing & Distribution"
+            "Verified Supplier Network",
+            "On-Ground Sourcing Teams",
+            "Pre-Shipment Quality Inspection",
+            "Export Documentation Support",
+            "Customs & Compliance Guidance",
+            "Worldwide Delivery"
         ]
     },
     "certifications": {
-        "title": "Compliance & Certifications",
-        "description": "We are committed to maintaining industry standards and regulatory compliance for every shipment.",
+        "title": "Compliance & Verification",
+        "description": "Trust with AWSOverseas isn't a single certificate — it's a process we run on every order, from the factory floor to the paperwork that clears customs.",
         "items": [
-            "GST Registered",
-            "IEC Certified",
-            "Company Registration",
-            "Industry Compliance",
-            "Secure Documentation",
-            "Global Shipping Standards"
+            "Supplier Verification",
+            "Export Compliance",
+            "Quality Inspections",
+            "International Documentation",
+            "GST & IEC Registered",
+            "Regulatory Standards Compliance"
         ]
     },
     "whyChooseUs": {
-        "title": "Why Businesses Choose AWSOverseas",
+        "title": "Why Global Buyers Choose AWSOverseas",
         "items": [
             {
-                "title": "Complete Logistics Solutions",
-                "description": "End-to-end freight forwarding services under one roof."
+                "title": "Verified Supplier Relationships",
+                "description": "We know our manufacturers personally — their capacity, their quality, and their reliability — before we ever recommend them."
             },
             {
-                "title": "Experienced Professionals",
-                "description": "Dedicated logistics experts with extensive industry knowledge."
+                "title": "Sourcing and Export Under One Roof",
+                "description": "One team handles supplier selection, quality assurance, and export logistics — no handoff between disconnected vendors."
             },
             {
-                "title": "Competitive Pricing",
-                "description": "Transparent pricing with no hidden costs."
+                "title": "Quality Assurance at the Source",
+                "description": "Goods are inspected before they leave India, catching issues while they're still cheap and easy to fix."
             },
             {
-                "title": "Technology Driven",
-                "description": "Modern digital tools for shipment management and communication."
+                "title": "Export Knowledge That Prevents Delays",
+                "description": "Correct documentation and compliance handling from the start, so shipments don't stall at customs."
             },
             {
-                "title": "Global Reach",
-                "description": "Reliable logistics solutions across international markets."
+                "title": "Transparent Pricing",
+                "description": "Sourcing costs, freight, and duties quoted upfront, with no hidden markups along the way."
             },
             {
-                "title": "Dedicated Customer Support",
-                "description": "Professional assistance available throughout your shipping journey."
+                "title": "A Partner, Not a Vendor",
+                "description": "Dedicated support from first enquiry through delivery — and every reorder after that."
             }
         ]
     },
     "cta": {
-        "title": "Let's Move Your Business Beyond Borders",
-        "description": "Whether you're importing, exporting, or managing international cargo, AWSOverseas is ready to simplify your logistics operations with reliable global shipping solutions.",
+        "title": "Let's Find Your Next Supplier in India",
+        "description": "Whether you need a manufacturer sourced and verified, an existing supplier relationship managed, or your next order shipped and cleared, AWSOverseas handles it as one connected partnership.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
     }

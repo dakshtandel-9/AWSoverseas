@@ -13,9 +13,9 @@ type Data = {
 };
 
 const FLOATING_CARDS = [
-  { label: "Shipment Cleared", sub: "AWS-9X42-118", dot: "#e57688" },
-  { label: "ETA Updated", sub: "Rotterdam · 3 days", dot: "#f59e0b" },
-  { label: "Payment Received", sub: "$4,280 confirmed", dot: "#34d399" },
+  { label: "Inspection Passed", sub: "Supplier: SR Textiles", dot: "#e57688" },
+  { label: "Shipment Cleared", sub: "AWS-9X42-118", dot: "#f59e0b" },
+  { label: "Quotation Ready", sub: "$4,280 confirmed", dot: "#34d399" },
 ];
 
 export function DownloadCTA({ data }: { data: Data }) {

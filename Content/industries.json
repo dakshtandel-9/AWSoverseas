@@ -3,20 +3,20 @@
 
   "meta": {
     "title": "Industries We Serve | AWSOverseas",
-    "description": "AWSOverseas provides international logistics and freight forwarding solutions for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
+    "description": "AWSOverseas sources verified manufacturers and provides international logistics for manufacturing, eCommerce, pharmaceutical, textile, automotive, and other industries worldwide."
   },
 
   "hero": {
     "badge": "Industries",
-    "title": "Logistics Solutions Built for Every Industry",
-    "subtitle": "Every industry has unique logistics challenges. AWSOverseas delivers customized freight forwarding, customs clearance, warehousing, and global shipping solutions that keep your supply chain moving efficiently.",
+    "title": "Sourcing and Logistics Built for Every Industry",
+    "subtitle": "Every industry sources differently and ships differently. AWSOverseas pairs verified manufacturers and quality inspection with freight forwarding, customs clearance, and global shipping — matched to how your industry actually operates.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Contact Us"
   },
 
   "overview": {
     "title": "Industries We Empower",
-    "description": "Our global logistics network enables businesses across diverse industries to transport goods safely, efficiently, and cost-effectively. Whether you are shipping raw materials, finished products, or specialized cargo, our experienced logistics team provides tailored solutions that meet your business needs.",
+    "description": "Our supplier network and logistics operation work together to get businesses across diverse industries the right product, verified and shipped safely and cost-effectively. Whether you are sourcing raw materials, finished products, or specialized cargo, our team provides tailored sourcing and shipping solutions that meet your business needs.",
     "stats": [
       {
         "number": "100+",
@@ -78,11 +78,11 @@
 
   "manufacturing": {
     "title": "Manufacturing Industry",
-    "description": "Reliable transportation of raw materials, machinery, industrial equipment, and finished products through our global logistics network.",
+    "description": "We source raw materials, components, and industrial equipment from verified Indian manufacturers, then move them through our global logistics network.",
     "services": [
+      "Manufacturer Sourcing",
       "Bulk Cargo",
       "Industrial Equipment",
-      "Supply Chain Logistics",
       "International Freight",
       "Door-to-Door Delivery"
     ]
@@ -90,22 +90,22 @@
 
   "ecommerce": {
     "title": "eCommerce Businesses",
-    "description": "Fast and scalable logistics solutions for online businesses, marketplaces, and international sellers.",
+    "description": "We source private-label and catalog products from Indian suppliers and provide fast, scalable logistics for online businesses, marketplaces, and international sellers.",
     "services": [
+      "Product Sourcing",
       "Cross-Border Shipping",
       "Order Fulfilment",
       "Warehousing",
-      "Express Delivery",
       "Returns Management"
     ]
   },
 
   "pharmaceutical": {
     "title": "Pharmaceutical Industry",
-    "description": "Secure transportation of healthcare products with compliance-focused logistics and documentation support.",
+    "description": "We identify and verify compliant manufacturers for healthcare products, then handle secure transportation with regulatory documentation support.",
     "services": [
-      "Medical Equipment",
-      "Healthcare Logistics",
+      "Manufacturer Verification",
+      "Medical Equipment Sourcing",
       "Regulatory Documentation",
       "Secure Transportation",
       "Global Distribution"
@@ -114,31 +114,31 @@
 
   "textile": {
     "title": "Textile & Apparel",
-    "description": "International logistics for fabrics, garments, fashion products, and textile exports with efficient supply chain management.",
+    "description": "We source fabrics and garments from verified mills and manufacturers, with quality inspection before export and efficient supply chain management to destination.",
     "services": [
+      "Fabric & Garment Sourcing",
+      "Quality Inspection",
       "Garment Export",
-      "Fabric Shipping",
       "Bulk Cargo",
-      "Warehousing",
       "Global Distribution"
     ]
   },
 
   "automotive": {
     "title": "Automotive Industry",
-    "description": "Reliable transportation of automotive components, spare parts, machinery, and finished vehicles worldwide.",
+    "description": "We source automotive components and spare parts from verified Indian manufacturers and manage reliable transportation of parts, machinery, and finished vehicles worldwide.",
     "services": [
+      "Component Sourcing",
       "Auto Parts Shipping",
       "Heavy Equipment",
       "Container Shipping",
-      "Import & Export",
       "Supply Chain Management"
     ]
   },
 
   "cta": {
-    "title": "Looking for Industry-Specific Logistics Solutions?",
-    "description": "Our logistics experts are ready to create a customized shipping strategy that fits your business requirements and global supply chain.",
+    "title": "Looking for Industry-Specific Sourcing or Logistics?",
+    "description": "Our team is ready to source verified suppliers and build a customized shipping strategy that fits your industry and global supply chain.",
     "primaryButton": "Request a Quote",
     "secondaryButton": "Speak with an Expert"
   }

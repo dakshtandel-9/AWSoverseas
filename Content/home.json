@@ -1,23 +1,24 @@
 {
     "page": "Home",
     "meta": {
-        "title": "AWSOverseas | Global Logistics Beyond Borders",
-        "description": "International logistics and freight forwarding company providing Air Freight, Sea Freight, Customs Clearance, Warehousing, Import & Export Services, and Door-to-Door Cargo Solutions worldwide.",
+        "title": "AWSOverseas | Product Sourcing & International Logistics from India",
+        "description": "AWSOverseas sources, verifies, and exports products from India, then moves them worldwide through Air Freight, Sea Freight, Customs Clearance, and Door-to-Door delivery — one export partner from factory floor to your dock.",
         "keywords": [
+            "Product Sourcing India",
+            "Supplier Verification",
+            "Export from India",
             "International Shipping",
             "Air Freight",
             "Sea Freight",
             "Import Export",
             "Customs Clearance",
-            "Door to Door Cargo",
-            "Freight Forwarding",
-            "Logistics Company"
+            "Freight Forwarding"
         ]
     },
     "hero": {
-        "badge": "Trusted International Logistics Partner",
-        "title": "Global Logistics Beyond Borders",
-        "subtitle": "Fast, secure, and reliable international logistics solutions connecting businesses and individuals across the world. From air freight to sea freight, we deliver with confidence.",
+        "badge": "Your Complete Product Sourcing & Logistics Partner",
+        "title": "Source. Verify. Export. Deliver.",
+        "subtitle": "We source products from verified Indian manufacturers, inspect every order for quality, prepare export documentation, and manage worldwide shipping and logistics — one partner for the entire journey from factory to your door.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Download Mobile App",
         "trackingPlaceholder": "Enter Tracking Number",
@@ -28,8 +29,8 @@
                 "label": "Countries Served"
             },
             {
-                "number": "24/7",
-                "label": "Customer Support"
+                "number": "500+",
+                "label": "Verified Suppliers"
             },
             {
                 "number": "1000+",
@@ -43,8 +44,8 @@
     },
     "exportHero": {
         "badge": "Sourced & Exported from India",
-        "title": "India's Goods, Delivered to Your Docks",
-        "subtitle": "We export our own catalog of Indian-made goods directly to buyers worldwide — sourced, quality-checked, documented, and shipped under one roof, with no middlemen to slow you down.",
+        "title": "From India's Manufacturers to Your Market",
+        "subtitle": "Browse our catalog of Indian-made goods, sourced directly from verified manufacturers, quality-checked, documented, and shipped under one roof — with no middlemen to slow you down.",
         "primaryButton": "Enquire About Exports",
         "secondaryButton": "View Full Catalog",
         "manifestLabel": "Export Manifest",
@@ -69,12 +70,12 @@
     },
     "trustedPartners": {
         "title": "Trusted by Businesses Worldwide",
-        "description": "Helping importers, exporters, manufacturers, traders, and eCommerce businesses manage international logistics efficiently."
+        "description": "Helping businesses source and export products across multiple industries from verified Indian manufacturers, then move them worldwide with dependable logistics."
     },
     "certifications": {
         "badge": "Verified & Trusted",
         "title": "Certified Excellence in Global Trade",
-        "description": "Recognized by leading authorities and regulatory bodies across the globe, ensuring the highest standards in quality, compliance, and ethical business practices.",
+        "description": "Recognized by leading Indian and international authorities, our sourcing and export operations meet international sourcing standards, export compliance requirements, quality assurance protocols, and global trade regulations.",
         "items": [
             {
                 "name": "Udyog Aadhaar",
@@ -145,37 +146,41 @@
         ]
     },
     "about": {
-        "title": "Your Trusted Global Logistics Partner",
-        "description": "AWSOverseas provides complete freight forwarding and logistics solutions including Air Freight, Sea Freight, Import & Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door Delivery. Our mission is to simplify global shipping with transparent processes, competitive pricing, and dedicated customer support.",
+        "title": "One Partner for Sourcing and Shipping",
+        "description": "AWSOverseas operates as both your sourcing desk in India and your freight forwarder to the world. We identify and verify manufacturers, inspect goods before dispatch, prepare export documentation, and manage Air Freight, Sea Freight, Customs Clearance, Warehousing, and Door-to-Door Delivery — so a single conversation with us covers product to port to dock.",
         "button": "Learn More"
     },
     "services": {
-        "title": "Our Logistics Services",
-        "subtitle": "Comprehensive logistics solutions tailored for businesses of every size.",
+        "title": "Sourcing and Logistics, Under One Desk",
+        "subtitle": "From finding the right manufacturer in India to delivering at your door — services that cover both sides of an export order.",
         "items": [
             {
-                "title": "Air Freight",
-                "description": "Fast international cargo transportation with reliable global airline partners."
+                "title": "Product Sourcing",
+                "description": "We identify and shortlist manufacturers in India matched to your specifications and order volume."
             },
             {
-                "title": "Sea Freight",
-                "description": "Affordable FCL and LCL shipping for commercial and bulk cargo."
+                "title": "Supplier Verification",
+                "description": "On-ground checks confirm a manufacturer's capacity, compliance, and production standards before you commit."
             },
             {
-                "title": "Import Services",
-                "description": "End-to-end import management with customs assistance."
+                "title": "Quality Inspection",
+                "description": "Pre-shipment inspection catches defects and spec mismatches before goods leave the factory."
             },
             {
-                "title": "Export Services",
-                "description": "Professional export documentation and worldwide shipping."
+                "title": "Export Documentation",
+                "description": "Commercial invoices, packing lists, certificates of origin, and HS classification prepared and filed correctly."
             },
             {
-                "title": "Customs Clearance",
-                "description": "Smooth customs processing with regulatory compliance."
+                "title": "Freight Forwarding",
+                "description": "Air and sea freight booked through carrier partners, with FCL and LCL options for bulk cargo."
             },
             {
-                "title": "Warehousing",
-                "description": "Secure storage, inventory handling, and distribution solutions."
+                "title": "Door Delivery",
+                "description": "Customs clearance and final-mile delivery handled end-to-end, right to your destination."
+            },
+            {
+                "title": "Cargo Tracking",
+                "description": "Monitor sourcing status and shipment location in real time from a single dashboard."
             }
         ]
     },
@@ -183,33 +188,33 @@
         "title": "Why Choose AWSOverseas",
         "items": [
             {
-                "title": "Global Network",
-                "description": "Strong international logistics network across multiple countries."
+                "title": "Verified Manufacturers",
+                "description": "Direct access to vetted suppliers across major Indian production regions, not a reseller's markup."
             },
             {
-                "title": "Transparent Pricing",
-                "description": "Competitive pricing with no hidden charges."
+                "title": "Competitive Product Pricing",
+                "description": "Factory-direct sourcing keeps product cost, freight, and duties transparent and quoted upfront."
             },
             {
-                "title": "Secure Shipping",
-                "description": "Every shipment is handled with maximum care and security."
+                "title": "Quality Assurance",
+                "description": "Every order is inspected against your specification before it leaves the factory floor."
             },
             {
-                "title": "Experienced Team",
-                "description": "Professional logistics experts with industry knowledge."
+                "title": "Export Expertise",
+                "description": "Certificates, HS codes, and customs paperwork prepared by people who file them daily."
             },
             {
-                "title": "Real-Time Tracking",
-                "description": "Monitor shipment progress anytime using our mobile app."
+                "title": "International Logistics",
+                "description": "Air and sea freight, customs clearance, and door-to-door delivery managed under one roof."
             },
             {
-                "title": "24/7 Support",
-                "description": "Dedicated customer assistance whenever you need us."
+                "title": "Single Point of Contact",
+                "description": "The same team manages your order from supplier search through final delivery."
             }
         ]
     },
     "industries": {
-        "title": "Industries We Serve",
+        "title": "Industries We Source & Ship For",
         "items": [
             "Manufacturing",
             "Import & Export",
@@ -226,35 +231,50 @@
         "steps": [
             {
                 "step": "01",
-                "title": "Request a Quote",
-                "description": "Submit your shipment details online."
+                "title": "Share Requirements",
+                "description": "Tell us the product, specification, and quantity you need sourced or exported."
             },
             {
                 "step": "02",
-                "title": "Confirm Booking",
-                "description": "Approve the quotation and schedule pickup."
+                "title": "Supplier Selection",
+                "description": "We shortlist verified manufacturers in India matched to your requirement and confirm pricing."
             },
             {
                 "step": "03",
-                "title": "Shipment in Transit",
-                "description": "We handle transportation and customs clearance."
+                "title": "Product Sampling",
+                "description": "Request samples before committing to a full production run, so specifications are confirmed upfront."
             },
             {
                 "step": "04",
-                "title": "Delivered Successfully",
-                "description": "Track your shipment until it reaches its destination."
+                "title": "Quality Inspection",
+                "description": "Every order is inspected against your specification before it leaves the factory floor."
+            },
+            {
+                "step": "05",
+                "title": "Export Documentation",
+                "description": "Commercial invoices, packing lists, certificates of origin, and HS classification prepared and filed."
+            },
+            {
+                "step": "06",
+                "title": "International Shipping",
+                "description": "Goods move by air or sea with customs clearance handled by our team at both ends."
+            },
+            {
+                "step": "07",
+                "title": "Delivery",
+                "description": "Track your shipment door-to-door until it reaches its destination."
             }
         ]
     },
     "mobileApp": {
-        "title": "Manage Everything From Our Mobile App",
-        "description": "Book shipments, track cargo, upload documents, receive notifications, manage payments, and access shipment history directly from your smartphone.",
+        "title": "Manage Sourcing and Shipping From Our Mobile App",
+        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments — all from your smartphone, from first enquiry to final delivery.",
         "features": [
-            "Book Shipments",
+            "Manage Sourcing Requests",
+            "Monitor Inspections",
             "Track Shipments",
+            "Receive Quotations",
             "Upload Documents",
-            "Payment Management",
-            "Push Notifications",
             "Shipment History"
         ],
         "playStoreButton": "Download for Android",
@@ -268,29 +288,29 @@
     },
     "testimonials": {
         "title": "What Our Clients Say",
-        "description": "Businesses worldwide trust AWSOverseas for reliable international logistics solutions."
+        "description": "Businesses worldwide work with AWSOverseas to source verified products from India, backed by quality inspection, supplier support, and dependable delivery."
     },
     "coverage": {
-        "title": "Worldwide Shipping Coverage",
-        "description": "Connecting businesses across Asia, Europe, North America, South America, Africa, and the Middle East with dependable freight solutions."
+        "title": "Global Sourcing & Delivery Network",
+        "description": "Supplier to port, port to destination — we manage the full route across Asia, Europe, North America, South America, Africa, and the Middle East as one connected, end-to-end process."
     },
     "products": {
-        "title": "Products We Export",
-        "description": "Browse a preview of what's moving through our export desk — send an enquiry on anything you don't see listed.",
+        "title": "Products We Source & Export",
+        "description": "We source products directly from trusted Indian manufacturers and export them worldwide — browse a preview below, or send an enquiry on anything you don't see listed.",
         "button": "View All Products"
     },
     "blogs": {
-        "title": "Latest Logistics Insights",
-        "description": "Stay updated with shipping regulations, logistics trends, import-export guides, and industry news.",
+        "title": "Global Trade & Product Sourcing Insights",
+        "description": "Stay updated with supplier sourcing guides, export documentation, shipping regulations, and trade news.",
         "button": "View All Articles"
     },
     "faq": {
         "title": "Frequently Asked Questions",
-        "description": "Find answers to the most common questions about international shipping, customs, and freight forwarding."
+        "description": "Find answers to the most common questions about product sourcing, supplier verification, and international shipping."
     },
     "downloadApp": {
         "title": "Download the AWSOverseas Mobile App",
-        "description": "Manage your shipments anytime, anywhere. Book cargo, track deliveries, upload documents, receive instant notifications, and stay connected throughout the shipping journey.",
+        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments anytime, anywhere — stay connected from first enquiry through final delivery.",
         "playStoreButton": "Google Play",
         "appStoreButton": "App Store"
     }

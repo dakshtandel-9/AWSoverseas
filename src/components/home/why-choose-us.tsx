@@ -12,12 +12,12 @@ type Data = { title: string; items: Item[] };
 
 // Supporting metric per feature
 const METRICS: Record<string, string> = {
-  "Global Network":       "100+ countries served",
-  "Transparent Pricing":  "No hidden fees, ever",
-  "Secure Shipping":      "99% on-time delivery",
-  "Experienced Team":     "10+ years of expertise",
-  "Real-Time Tracking":   "Live shipment updates",
-  "24/7 Support":         "Always available",
+  "Verified Manufacturers":       "500+ suppliers vetted",
+  "Competitive Product Pricing":  "No hidden fees, ever",
+  "Quality Assurance":            "Inspected before dispatch",
+  "Export Expertise":             "Documentation filed daily",
+  "International Logistics":      "99% on-time delivery",
+  "Single Point of Contact":      "One team, start to finish",
 };
 
 

@@ -57,6 +57,9 @@ export function iconFor(label: string): LucideIcon {
   if (k.includes("support") || k.includes("24")) return Clock;
   if (k.includes("door") || k.includes("delivery")) return Truck;
   if (k.includes("sourcing") || k.includes("supplier") || k.includes("procurement")) return Search;
+  if (k.includes("verif") || k.includes("inspect") || k.includes("quality")) return ShieldCheck;
+  if (k.includes("document")) return PackageCheck;
+  if (k.includes("freight forward")) return Ship;
   // Industry-specific icons
   if (k.includes("manufactur")) return Factory;
   if (k.includes("ecommerce") || k.includes("e-commerce")) return ShoppingCart;

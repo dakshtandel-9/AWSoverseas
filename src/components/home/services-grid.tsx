@@ -13,14 +13,22 @@ type Data = { title: string; subtitle: string; items: Item[] };
 
 // Per-service supporting stat shown on compact cards
 const SERVICE_STATS: Record<string, string> = {
-  "Sea Freight": "100+ ports worldwide",
-  "Import Services": "End-to-end customs covered",
-  "Export Services": "Door-to-door worldwide",
-  "Customs Clearance": "Compliant in 50+ countries",
-  "Warehousing": "24/7 secure storage",
+  "Product Sourcing": "500+ verified manufacturers",
+  "Supplier Verification": "On-ground checks in India",
+  "Quality Inspection": "Pre-shipment, every order",
+  "Export Documentation": "Filed by our own team",
+  "Freight Forwarding": "100+ ports worldwide",
+  "Door Delivery": "Door-to-door worldwide",
+  "Cargo Tracking": "Live via mobile app",
 };
 
+// Sourcing-side cards route to /sourcing-agent — they have no matching
+// slug in individualService.json (that file only covers freight services).
+const SOURCING_TITLES = ["sourcing", "supplier", "verification", "inspection", "quality"];
+
 function slugFor(title: string) {
+  const key = title.toLowerCase();
+  if (SOURCING_TITLES.some((t) => key.includes(t))) return "/sourcing-agent";
   const found = SERVICE_LINKS.find((s) =>
     s.title.toLowerCase().includes(title.toLowerCase().split(" ")[0]),
   );
@@ -78,7 +86,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Our Services</p>
           <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
-            End-to-End Logistics<br className="hidden sm:block" /> Solutions
+            Sourcing & Logistics,<br className="hidden sm:block" /> End to End
           </h2>
         </div>
         <p className="max-w-xs text-sm leading-relaxed text-[#5b6b82] lg:text-right">{data.subtitle}</p>
@@ -142,7 +150,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
               <div className="relative">
                 {/* Stat badge */}
                 <span className="mb-4 inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-[#e05c72] ring-1 ring-white/15">
-                  24–72 hr delivery · Global airline network
+                  {SERVICE_STATS[featured.title] ?? "500+ verified manufacturers"}
                 </span>
                 <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#ffffff" }}>{featured.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-white/70">{featured.description}</p>

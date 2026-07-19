@@ -25,7 +25,7 @@ export const NAV_LINKS = [
   { label: "Services", href: "/services", mega: true },
   { label: "Industries", href: "/industries" },
   { label: "Products", href: "/products" },
-  { label: "Sourcing Agent", href: "/sourcing-agent" },
+  { label: "Sourcing Partner", href: "/sourcing-agent" },
   { label: "Referral Rewards", href: "/referral-rewards" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -34,7 +34,7 @@ export const FOOTER_NAV = {
   Company: [
     { label: "About Us", href: "/about" },
     { label: "Products", href: "/products" },
-    { label: "Sourcing Agent", href: "/sourcing-agent" },
+    { label: "Sourcing Partner", href: "/sourcing-agent" },
     { label: "Partner With Us", href: "/partner" },
     { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },

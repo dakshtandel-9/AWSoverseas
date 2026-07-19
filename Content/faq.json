@@ -7,7 +7,7 @@
     "hero": {
         "badge": "Support Center",
         "title": "Frequently Asked Questions",
-        "subtitle": "Find quick answers to the most common questions about our international logistics and freight forwarding services.",
+        "subtitle": "Find quick answers to the most common questions about product sourcing, supplier verification, and international logistics.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Support"
     },
@@ -17,6 +17,9 @@
         "items": [
             {
                 "title": "General"
+            },
+            {
+                "title": "Product Sourcing"
             },
             {
                 "title": "Air Freight"
@@ -47,7 +50,17 @@
             {
                 "category": "General",
                 "question": "What services does AWSOverseas provide?",
-                "answer": "We provide Air Freight, Sea Freight, Import Services, Export Services, Customs Clearance, Warehousing, FCL, LCL, Cargo Consolidation, and Door-to-Door international logistics solutions."
+                "answer": "We source and verify manufacturers in India, inspect goods before dispatch, and manage Air Freight, Sea Freight, Import Services, Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door delivery."
+            },
+            {
+                "category": "Product Sourcing",
+                "question": "How does AWSOverseas find and verify suppliers?",
+                "answer": "We shortlist manufacturers matched to your specifications, then run on-ground checks to confirm their capacity, compliance, and production standards before you commit to an order."
+            },
+            {
+                "category": "Product Sourcing",
+                "question": "Do you inspect products before they ship?",
+                "answer": "Yes. Every order goes through pre-shipment quality inspection against your specification, so defects and mismatches are caught before goods leave the factory."
             },
             {
                 "category": "General",

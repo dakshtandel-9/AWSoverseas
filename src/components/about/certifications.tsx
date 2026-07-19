@@ -8,11 +8,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 type Data = { title: string; description: string; items: string[] };
 
 /**
- * Compliance & certifications rendered as stamped document credentials —
- * the one place the manifest metaphor is literally true, since these ARE
- * registrations and codes. Each item gets a mono reference tag.
+ * Compliance & verification rendered as stamped credential cards — the one
+ * place a document metaphor is literally true, since these ARE checks we run
+ * on every order. Each item gets a mono reference tag from the verification
+ * trail (VER) rather than a generic freight registration code.
  */
-const REFS = ["REG-01", "REG-02", "REG-03", "STD-01", "STD-02", "STD-03"];
+const REFS = ["VER-01", "VER-02", "VER-03", "VER-04", "REG-01", "REG-02"];
 
 export function Certifications({ data }: { data: Data }) {
   return (

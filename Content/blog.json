@@ -5,9 +5,9 @@
         "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global logistics from AWSOverseas."
     },
     "hero": {
-        "badge": "Logistics Insights",
+        "badge": "Global Trade & Sourcing Insights",
         "title": "Knowledge That Moves Your Business Forward",
-        "subtitle": "Stay informed with expert articles, industry updates, shipping guides, and international trade insights designed to help businesses navigate global logistics with confidence.",
+        "subtitle": "Stay informed with expert articles, supplier sourcing guides, export documentation tips, and international trade insights designed to help businesses navigate sourcing and logistics with confidence.",
         "primaryButton": "Explore Articles",
         "secondaryButton": "Request a Quote"
     },
@@ -101,8 +101,8 @@
         ]
     },
     "newsletter": {
-        "title": "Stay Ahead in Global Logistics",
-        "description": "Subscribe to our newsletter and receive the latest logistics insights, shipping updates, industry news, and international trade tips directly in your inbox.",
+        "title": "Stay Ahead in Global Trade",
+        "description": "Receive sourcing updates, export opportunities, logistics insights and international trade news.",
         "placeholder": "Enter your email address",
         "buttonText": "Subscribe",
         "successMessage": "Thank you for subscribing to the AWSOverseas newsletter!",

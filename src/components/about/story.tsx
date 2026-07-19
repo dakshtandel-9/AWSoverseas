@@ -7,27 +7,27 @@ import { Reveal } from "@/components/ui/reveal";
 type Data = { title: string; description: string };
 
 /**
- * Company story. The narrative genuinely describes a progression (a vision →
- * a founded company → serving enterprises at scale), so a light typed rail of
- * stages is honest here — order carries meaning. Every other section on the
- * page deliberately avoids numbered markers because those lists are not
- * sequences.
+ * Company story. The narrative genuinely describes a progression (a buyer's
+ * order moves from sourcing to verification to delivery), so a light typed
+ * rail of stages is honest here — order carries meaning. Every other section
+ * on the page deliberately avoids numbered markers because those lists are
+ * not sequences.
  */
 const STAGES = [
   {
-    marker: "Origin",
-    title: "A simpler way to ship",
-    body: "One vision: make global shipping easier, faster, and more transparent — for a first-time exporter and a global supply chain alike.",
+    marker: "Sourcing",
+    title: "The right manufacturer, found",
+    body: "We match your requirement against a supplier network built on real factory relationships across India's manufacturing hubs — not a directory listing.",
   },
   {
-    marker: "Method",
-    title: "Expertise meets technology",
-    body: "Industry know-how, digital tooling, and dedicated support combined into seamless freight forwarding across every mode.",
+    marker: "Verification",
+    title: "Quality confirmed before it ships",
+    body: "Every order is inspected against agreed standards at the source, with export documentation prepared correctly the first time.",
   },
   {
-    marker: "Today",
-    title: "Cargo moved with confidence",
-    body: "From a first international order to enterprise-scale logistics, every customer moves cargo across borders with certainty.",
+    marker: "Delivery",
+    title: "A partnership, not a transaction",
+    body: "From a first sourcing enquiry to recurring export orders, buyers work with the same team — and the same trusted suppliers — every time.",
   },
 ];
 

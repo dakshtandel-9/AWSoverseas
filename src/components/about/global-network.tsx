@@ -19,8 +19,8 @@ const REGIONS = [
 
 /**
  * Global network. Deliberately NOT the home page's region-card treatment.
- * Here the six regions run as a single continental route line (a manifest of
- * where we reach), and the highlights are the capabilities carried on it.
+ * Here the six regions run as a single continental route line (where
+ * sourced goods reach), and the highlights are the capabilities behind it.
  */
 export function GlobalNetwork({ data }: { data: Data }) {
   return (
@@ -54,7 +54,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
         <Reveal direction="up" delay={0.1}>
           <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 sm:px-9">
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
-              Route of reach · 6 regions
+              Where sourced goods reach · 6 regions
             </span>
             <div className="relative mt-6">
               <div className="absolute left-0 right-0 top-[7px] h-px bg-white/10" aria-hidden />

@@ -14,8 +14,8 @@ type Data = {
 };
 
 /**
- * Closing CTA — bookends the manifest hero. A "cleared for departure" stamp
- * ties the page's document metaphor together at the exit.
+ * Closing CTA — bookends the verification-dossier hero. A "verified & ready"
+ * stamp ties the page's trust metaphor together at the exit.
  */
 export function AboutCta({ data }: { data: Data }) {
   return (
@@ -43,7 +43,7 @@ export function AboutCta({ data }: { data: Data }) {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
-              Cleared for departure
+              Verified & ready to source
             </motion.span>
 
             <h2

@@ -1,33 +1,33 @@
 {
     "page": "Services",
     "meta": {
-        "title": "Logistics Services | AWSOverseas",
-        "description": "Explore AWSOverseas's complete range of international logistics services including Air Freight, Sea Freight, Import & Export, Customs Clearance, Warehousing, and Door-to-Door Cargo Solutions."
+        "title": "Sourcing & Logistics Services | AWSOverseas",
+        "description": "Explore AWSOverseas's full range of services — Product Sourcing, Supplier Verification, and Quality Inspection in India, paired with Air Freight, Sea Freight, Import & Export, Customs Clearance, and Door-to-Door delivery."
     },
     "hero": {
         "badge": "Our Services",
-        "title": "Complete International Logistics Solutions Under One Roof",
-        "subtitle": "From air freight and sea freight to customs clearance and warehousing, AWSOverseas provides end-to-end logistics services that simplify global shipping for businesses and individuals.",
+        "title": "From Finding a Manufacturer to Clearing Customs — One Service Line",
+        "subtitle": "AWSOverseas sources and verifies manufacturers in India, inspects goods before dispatch, and manages the air freight, sea freight, and customs clearance that gets them to your door. Sourcing and shipping, run as one process.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Our Team"
     },
     "overview": {
-        "title": "Comprehensive Freight & Logistics Services",
-        "description": "AWSOverseas delivers reliable, cost-effective, and technology-driven logistics solutions tailored to businesses of all sizes. Our experienced team manages every stage of the shipping journey, ensuring secure transportation, timely delivery, and complete customer satisfaction.",
+        "title": "Sourcing and Freight, Scoped to Your Order",
+        "description": "AWSOverseas manages both halves of an export order: finding and verifying the right manufacturer in India, and moving the finished goods to your destination. Our team inspects before dispatch, files the export documentation, and coordinates freight and customs clearance, so nothing falls between a sourcing agent and a freight forwarder.",
         "highlights": [
+            "Manufacturer Verification",
+            "Quality Inspection",
+            "Export Documentation",
             "International Freight Forwarding",
-            "Door-to-Door Delivery",
             "Customs Clearance",
-            "Warehousing & Distribution",
-            "Cargo Consolidation",
-            "Real-Time Shipment Tracking"
+            "Door-to-Door Delivery"
         ]
     },
     "airFreight": {
         "title": "Air Freight",
-        "description": "Fast and reliable international air cargo solutions for urgent and high-value shipments. We partner with leading airlines to ensure secure and timely deliveries worldwide.",
+        "description": "For businesses that can't wait on a shipping schedule, we get product out of India and into your market fast — so you can hit a launch date, restock before you sell out, or fill an order your customer needs now.",
         "features": [
-            "Express International Shipping",
+            "Fast Global Product Exports",
             "Priority Cargo Handling",
             "Airport-to-Airport Service",
             "Door-to-Door Delivery",
@@ -37,22 +37,22 @@
     },
     "seaFreight": {
         "title": "Sea Freight",
-        "description": "Affordable ocean freight solutions for commercial and bulk cargo with flexible Full Container Load (FCL) and Less than Container Load (LCL) options.",
+        "description": "For orders where margin matters more than speed, we move product in volume at the lowest landed cost — planned, containerized, and timed so your inventory lands exactly when your business needs it.",
         "features": [
-            "FCL Shipping",
-            "LCL Shipping",
+            "Cost-Efficient International Shipments",
+            "FCL & LCL Container Options",
             "Container Consolidation",
             "Global Port Coverage",
-            "Cost-Effective Transportation"
+            "Predictable Transit Planning"
         ],
         "button": "Learn More"
     },
     "importServices": {
         "title": "Import Services",
-        "description": "Simplify international imports with expert logistics planning, customs documentation, cargo handling, and end-to-end shipment coordination.",
+        "description": "We help businesses source and import from India without opening a local office to do it — finding the right product, moving it through customs, and getting it into your hands ready to sell.",
         "features": [
+            "Sourcing Support From India",
             "Import Documentation",
-            "Cargo Pickup",
             "Customs Compliance",
             "Freight Coordination",
             "Delivery Management"
@@ -61,55 +61,59 @@
     },
     "exportServices": {
         "title": "Export Services",
-        "description": "Expand your business globally with seamless export logistics, documentation support, customs processing, and reliable international transportation.",
+        "description": "We take an order from factory floor to foreign port: coordinating with your manufacturer, filing the paperwork that clears customs, checking quality before it ships, and getting it moving.",
         "features": [
+            "Manufacturer Coordination",
             "Export Documentation",
-            "Global Shipping",
-            "Cargo Packaging Support",
-            "International Distribution",
+            "Pre-Shipment Quality Checks",
+            "Shipping & Transportation",
             "Trade Compliance"
         ],
         "button": "Learn More"
     },
     "warehousing": {
         "title": "Warehousing & Distribution",
-        "description": "Secure warehousing facilities with inventory management, cargo storage, packaging, consolidation, and distribution services.",
+        "description": "When your order comes from more than one supplier, we hold and manage the inventory in India — consolidating shipments from multiple factories into one packed, labeled, ready-to-ship load instead of several.",
         "features": [
-            "Secure Storage",
-            "Inventory Management",
-            "Order Fulfilment",
-            "Cargo Consolidation",
-            "Distribution Services"
+            "Inventory Handling",
+            "Multi-Supplier Consolidation",
+            "Export-Grade Packing",
+            "Labeling & Documentation",
+            "Order Fulfilment"
         ],
         "button": "Learn More"
     },
     "customsClearance": {
-        "title": "Customs Clearance",
-        "description": "Efficient customs clearance services handled by experienced professionals to ensure faster approvals and regulatory compliance.",
+        "title": "Custom Clearance",
+        "description": "Customs holds are the most common reason an export order stalls. We prepare the export documentation, classify goods under the correct HS codes, and manage compliance so your shipment clears without delay.",
         "features": [
-            "Import Clearance",
-            "Export Clearance",
-            "Documentation Support",
+            "Export Documentation",
+            "HS Code Classification",
+            "Regulatory Compliance",
             "Duty & Tax Guidance",
-            "Compliance Management"
+            "Faster Approvals"
         ],
         "button": "Learn More"
     },
     "sourcingAgent": {
-        "title": "Sourcing Agent",
-        "description": "AWSOverseas works as your local partner in India, sourcing and verifying manufacturers so you get the right product, at the right quality, before it ever ships.",
+        "title": "Sourcing Partner",
+        "description": "This is where an export order actually begins. AWSOverseas works as your on-ground partner in India, running every step between an idea and a shipped, export-ready product — so you get the right supplier, the right price, and the right quality, without ever setting foot in the country.",
         "features": [
-            "Supplier Identification & Verification",
-            "Quality Inspection",
+            "Supplier Identification",
+            "Factory Verification",
             "Price Negotiation",
-            "Sample Coordination",
-            "On-Ground Presence in India"
+            "Sample Collection",
+            "Product Inspection",
+            "Production Monitoring",
+            "Vendor Coordination",
+            "Export Readiness",
+            "International Shipping"
         ],
         "button": "Learn More"
     },
     "cta": {
-        "title": "Ready to Ship Across the Globe?",
-        "description": "Whether you're importing, exporting, or managing international cargo, AWSOverseas is ready to provide reliable logistics solutions tailored to your business.",
+        "title": "Ready to Source & Export from India?",
+        "description": "Whether you need a manufacturer sourced and verified in India, or cargo moved and cleared through customs, AWSOverseas scopes it as one export plan.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Talk to Our Experts"
     }

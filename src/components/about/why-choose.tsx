@@ -9,7 +9,7 @@ type Item = { title: string; description: string };
 type Data = { title: string; items: Item[] };
 
 /**
- * "Why businesses choose us" as a sticky-heading + capability rows layout —
+ * "Why buyers choose us" as a sticky-heading + capability rows layout —
  * intentionally different from the home page's 3-column metric cards so the two
  * pages don't read as duplicates. Rows, not a numbered sequence.
  */
@@ -26,8 +26,8 @@ export function WhyChoose({ data }: { data: Data }) {
               {data.title}
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-[#5b6b82]">
-              Six reasons enterprises and first-time shippers alike hand us their
-              cargo — and keep coming back.
+              Six reasons global buyers trust us to find, verify, and deliver
+              their next supplier in India — and keep coming back.
             </p>
           </div>
         </Reveal>

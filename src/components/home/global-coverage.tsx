@@ -61,7 +61,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
         <div className="flex flex-col justify-center">
           <Reveal direction="up">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#e05c72]/70">
-              Global Network
+              Sourcing & Delivery Network
             </p>
             <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#ffffff" }}>
               {data.title}
@@ -86,7 +86,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
           <Reveal direction="up" delay={0.2}>
             <div className="mt-10">
               <Button href="/services" variant="white" size="lg">
-                Explore Global Network <ArrowRight className="size-4" />
+                Explore Sourcing & Logistics <ArrowRight className="size-4" />
               </Button>
             </div>
           </Reveal>

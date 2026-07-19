@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { FOOTER_NAV, SERVICE_LINKS, SITE } from "@/lib/site";
+import { FOOTER_NAV, SITE } from "@/lib/site";
 import { blog } from "@/lib/content";
 import { getSiteSettings } from "@/lib/site-settings";
 import { Logo } from "@/components/ui/logo";
@@ -13,6 +13,22 @@ const SOCIALS: { name: SocialName; label: string; href: string }[] = [
   { name: "twitter", label: "Twitter", href: "#" },
   { name: "facebook", label: "Facebook", href: "#" },
   { name: "instagram", label: "Instagram", href: "#" },
+];
+
+const FOOTER_SERVICES = [
+  { label: "Product Sourcing", href: "/sourcing-agent" },
+  { label: "Supplier Verification", href: "/sourcing-agent" },
+  { label: "International Logistics", href: "/services" },
+  { label: "Export Documentation", href: "/services/export-services" },
+  { label: "Customs Clearance", href: "/services/customs-clearance" },
+  { label: "Warehousing", href: "/services/warehousing" },
+];
+
+const FOOTER_RESOURCES = [
+  { label: "Export Guide", href: "/blog" },
+  { label: "Product Catalog", href: "/products" },
+  { label: "Industry Insights", href: "/blog" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export async function Footer() {
@@ -31,11 +47,11 @@ export async function Footer() {
         <div className="grid gap-8 border-b border-white/10 py-14 lg:grid-cols-2 lg:items-center">
           <div>
             <h3 className="text-2xl font-bold !text-white sm:text-3xl">
-              {newsletter?.title ?? "Stay ahead of global logistics"}
+              {newsletter?.title ?? "Stay Updated on Global Trade, Product Sourcing & Export Opportunities"}
             </h3>
             <p className="mt-3 max-w-md text-brand-100/70">
               {newsletter?.description ??
-                "Shipping insights, trade updates and product news — straight to your inbox."}
+                "Supplier sourcing guides, export tips and shipping updates — straight to your inbox."}
             </p>
           </div>
           <div className="lg:justify-self-end">
@@ -53,8 +69,9 @@ export async function Footer() {
           <div className="lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-100/65">
-              {SITE.tagline}. Fast, secure and reliable international freight forwarding for
-              businesses and individuals worldwide.
+              AWSOverseas is your trusted partner for product sourcing, supplier verification,
+              export management and international logistics. We help businesses worldwide source
+              quality products from India and deliver them safely across global markets.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               {address && (
@@ -85,22 +102,32 @@ export async function Footer() {
           </div>
 
           <FooterColumn title="Services" className="lg:col-span-3">
-            {SERVICE_LINKS.slice(0, 6).map((s) => (
-              <FooterLink key={s.slug} href={`/services/${s.slug}`}>
-                {s.title.split(" ").slice(0, 3).join(" ")}
+            {FOOTER_SERVICES.map((s) => (
+              <FooterLink key={s.label} href={s.href}>
+                {s.label}
               </FooterLink>
             ))}
           </FooterColumn>
 
-          {Object.entries(FOOTER_NAV).map(([title, links]) => (
-            <FooterColumn key={title} title={title} className="lg:col-span-2">
-              {links.map((l) => (
-                <FooterLink key={l.href} href={l.href}>
-                  {l.label}
-                </FooterLink>
-              ))}
-            </FooterColumn>
-          ))}
+          <FooterColumn title="Resources" className="lg:col-span-2">
+            {FOOTER_RESOURCES.map((r) => (
+              <FooterLink key={r.label} href={r.href}>
+                {r.label}
+              </FooterLink>
+            ))}
+          </FooterColumn>
+
+          {Object.entries(FOOTER_NAV)
+            .filter(([title]) => title !== "Resources")
+            .map(([title, links]) => (
+              <FooterColumn key={title} title={title} className="lg:col-span-2">
+                {links.map((l) => (
+                  <FooterLink key={l.href} href={l.href}>
+                    {l.label}
+                  </FooterLink>
+                ))}
+              </FooterColumn>
+            ))}
         </div>
 
         {/* Bottom bar */}

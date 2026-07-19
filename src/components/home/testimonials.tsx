@@ -16,7 +16,7 @@ const REVIEWS = [
     color: "#01214a",
     rating: 5,
     quote:
-      "AWSOverseas handled our entire sea freight corridor from Shanghai to Rotterdam without a single delay. Customs clearance was seamless — their team knew exactly what documentation was needed.",
+      "AWSOverseas found and verified three manufacturers for us in under two weeks, then caught a spec mismatch during pre-shipment inspection that would have cost us the whole order. That's the kind of sourcing support we couldn't get from a regular forwarder.",
   },
   {
     name: "Priya Mehta",
@@ -26,7 +26,7 @@ const REVIEWS = [
     color: "#0a6ab5",
     rating: 5,
     quote:
-      "We switched from our previous forwarder after constant shipment delays. AWSOverseas delivered our textile cargo 3 days ahead of schedule and the live tracking kept us informed every step of the way.",
+      "We switched from our previous forwarder after constant shipment delays. AWSOverseas delivered our textile cargo 3 days ahead of schedule, and the live tracking kept us informed every step of the way.",
   },
   {
     name: "David Okonkwo",
@@ -36,7 +36,7 @@ const REVIEWS = [
     color: "#054ba8",
     rating: 5,
     quote:
-      "The best logistics partner we've worked with. Transparent pricing, zero hidden fees, and a 24/7 support team that actually picks up the phone. Our repeat business speaks for itself.",
+      "Having one team handle supplier verification, quality inspection, and freight meant we stopped managing two separate vendors. Transparent pricing at every stage, and our repeat orders speak for themselves.",
   },
 ];
 

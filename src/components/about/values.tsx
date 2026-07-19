@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import {
-  Heart,
+  Eye,
+  BadgeCheck,
+  HeartHandshake,
   ShieldCheck,
-  Timer,
-  Sparkles,
-  Globe2,
-  TrendingUp,
+  Trophy,
+  Link2,
   type LucideIcon,
 } from "lucide-react";
 import { Section } from "@/components/ui/section";
@@ -22,12 +22,12 @@ type Data = { title: string; items: Item[] };
  * codified list with hairline dividers. Icons chosen per value.
  */
 const ICONS: Record<string, LucideIcon> = {
-  "Customer First": Heart,
-  Integrity: ShieldCheck,
-  Reliability: Timer,
-  Innovation: Sparkles,
-  "Global Excellence": Globe2,
-  "Continuous Improvement": TrendingUp,
+  Transparency: Eye,
+  Quality: BadgeCheck,
+  "Supplier Trust": HeartHandshake,
+  Compliance: ShieldCheck,
+  "Customer Success": Trophy,
+  "Long-Term Partnership": Link2,
 };
 
 export function Values({ data }: { data: Data }) {

@@ -16,17 +16,17 @@ type Data = {
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Signature "manifest" hero — the company is introduced the way a forwarder's
- * own paperwork introduces a consignment: a document header, a consignee line
- * (the headline), and a strip of boxed reference fields. Encodes something true
- * about the subject (a freight forwarder IS its paper trail) rather than
- * decorating with a generic centered headline.
+ * Signature "verification dossier" hero — the company is introduced the way
+ * its own sourcing desk introduces a partner: a document header, a headline,
+ * and a strip of boxed credential fields. Encodes something true about the
+ * subject (trust, verified on the ground, is the product) rather than
+ * decorating with a generic centered headline or freight waybill framing.
  */
 const FIELDS = [
-  { k: "Established", v: "Global freight forwarder" },
-  { k: "Continents served", v: "06" },
+  { k: "Focus", v: "India sourcing & export" },
+  { k: "Manufacturing hubs", v: "Nationwide" },
   { k: "Registered", v: "GST · IEC" },
-  { k: "Ref", v: "AWO / ABOUT" },
+  { k: "Ref", v: "AWO / PARTNER" },
 ];
 
 export function AboutHero({ data }: { data: Data }) {
@@ -61,12 +61,12 @@ export function AboutHero({ data }: { data: Data }) {
             {data.badge}
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
-            CONSIGNMENT&nbsp;RECORD&nbsp;/&nbsp;WORLDWIDE
+            VERIFICATION&nbsp;DOSSIER&nbsp;/&nbsp;INDIA
           </span>
         </motion.div>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:items-end lg:gap-16">
-          {/* Consignee line = headline */}
+          {/* Partner line = headline */}
           <div>
             <motion.p
               className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40"
@@ -74,7 +74,7 @@ export function AboutHero({ data }: { data: Data }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
-              Consignee
+              Your sourcing partner
             </motion.p>
             <motion.h1
               className="mt-3 font-heading text-4xl font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
