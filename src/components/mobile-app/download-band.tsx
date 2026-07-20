@@ -12,7 +12,7 @@ export function DownloadBand({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
       <motion.div
-        className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-14 text-center sm:px-14 sm:py-16"
+        className="relative overflow-hidden rounded-[2rem] bg-[#CFE8FF] px-8 py-14 text-center sm:px-14 sm:py-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -23,18 +23,18 @@ export function DownloadBand({ data }: { data: Data }) {
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.22) 0%, transparent 60%)",
+              "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.14) 0%, transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-xl">
-          <div className="mx-auto flex w-fit items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-white/15">
+          <div className="mx-auto flex w-fit items-center gap-1 rounded-full bg-ink/8 px-3 py-1 text-xs font-semibold text-ink/80 ring-1 ring-ink/15">
             <Star className="size-3.5 fill-current text-[#f59e0b]" />
             Free on Android &amp; iOS
           </div>
-          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#ffffff" }}>
+          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#01214a" }}>
             {data.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/60">
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-ink/60">
             {data.description}
           </p>
 

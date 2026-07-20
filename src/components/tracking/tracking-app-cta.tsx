@@ -24,7 +24,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
         <div>
           <motion.h2
             className="text-3xl font-bold sm:text-4xl"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#01214a" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -33,7 +33,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
             {data.title}
           </motion.h2>
           <motion.p
-            className="mt-5 max-w-md text-base leading-relaxed text-white/60"
+            className="mt-5 max-w-md text-base leading-relaxed text-ink/60"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -50,7 +50,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
             transition={{ duration: 0.6, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
           >
             {data.features.map((f) => (
-              <li key={f} className="flex items-center gap-3 text-white/85">
+              <li key={f} className="flex items-center gap-3 text-ink/85">
                 <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d72846]/20 text-[#e05c72]">
                   <Check className="size-3.5" />
                 </span>
@@ -75,8 +75,8 @@ export function TrackingAppCta({ data }: { data: Data }) {
             </a>
             <a
               href={data.appStoreButton.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-white transition-all hover:-translate-y-0.5"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[#01214a] transition-all hover:-translate-y-0.5"
+              style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(1,33,74,0.18)" }}
             >
               <Apple className="size-6" />
               <span className="text-sm font-bold">{data.appStoreButton.text}</span>

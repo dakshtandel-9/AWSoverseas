@@ -22,13 +22,13 @@ export function ReferralTeaser({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-14 shadow-[0_32px_96px_-24px_rgba(5,32,58,0.6)] sm:px-14 sm:py-16">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#CFE8FF] px-8 py-14 shadow-[0_32px_96px_-24px_rgba(5,32,58,0.25)] sm:px-14 sm:py-16">
           <div
             className="pointer-events-none absolute inset-0"
             aria-hidden
             style={{
               backgroundImage:
-                "radial-gradient(55% 60% at 90% 10%, rgba(172,32,56,0.16) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+                "radial-gradient(55% 60% at 90% 10%, rgba(172,32,56,0.12) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
               backgroundSize: "auto, 44px 44px, 44px 44px",
             }}
           />
@@ -42,12 +42,12 @@ export function ReferralTeaser({ data }: { data: Data }) {
 
               <h2
                 className="mt-6 text-balance text-3xl font-bold leading-[1.1] sm:text-4xl"
-                style={{ color: "#ffffff" }}
+                style={{ color: "#01214a" }}
               >
                 {data.title}
               </h2>
 
-              <p className="mt-4 max-w-md text-base leading-relaxed text-white/60">
+              <p className="mt-4 max-w-md text-base leading-relaxed text-ink/60">
                 {data.description}
               </p>
 
@@ -62,13 +62,13 @@ export function ReferralTeaser({ data }: { data: Data }) {
               {data.highlights.map((h, i) => (
                 <motion.div
                   key={h.label}
-                  className="flex min-w-[220px] items-center justify-between gap-6 rounded-xl bg-white/5 px-5 py-3.5 ring-1 ring-white/10"
+                  className="flex min-w-[220px] items-center justify-between gap-6 rounded-xl bg-ink/5 px-5 py-3.5 ring-1 ring-ink/10"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                 >
-                  <span className="text-xs text-white/55">{h.label}</span>
+                  <span className="text-xs text-ink/55">{h.label}</span>
                   <span className="font-mono text-sm font-bold text-[#e05c72]">{h.value}</span>
                 </motion.div>
               ))}

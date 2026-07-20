@@ -50,7 +50,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         aria-hidden
         style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(1,33,74,0.9) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -63,10 +63,10 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#e05c72]/70">
               Sourcing & Delivery Network
             </p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#ffffff" }}>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#01214a" }}>
               {data.title}
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-white/60">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-ink/60">
               {data.description}
             </p>
           </Reveal>
@@ -75,9 +75,9 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
           <Reveal direction="up" delay={0.12}>
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
               {STATS.map((s) => (
-                <div key={s.label} className="flex flex-col gap-0.5 rounded-2xl bg-white/5 px-5 py-4 ring-1 ring-white/8">
-                  <span className="font-heading text-2xl font-extrabold text-white">{s.number}</span>
-                  <span className="text-[12px] font-medium text-white/50">{s.label}</span>
+                <div key={s.label} className="flex flex-col gap-0.5 rounded-2xl bg-white/60 px-5 py-4 ring-1 ring-ink/8">
+                  <span className="font-heading text-2xl font-extrabold text-ink">{s.number}</span>
+                  <span className="text-[12px] font-medium text-ink/50">{s.label}</span>
                 </div>
               ))}
             </div>
@@ -105,7 +105,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
               key={region.name}
               custom={i}
               variants={cardVariants}
-              className="group overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/8 transition-all duration-300 hover:bg-white/10 hover:ring-white/15"
+              className="group overflow-hidden rounded-2xl bg-white/60 ring-1 ring-ink/8 transition-all duration-300 hover:bg-white/80 hover:ring-ink/15"
               whileHover={{ x: 4, transition: { type: "spring", stiffness: 300, damping: 24 } }}
             >
               <div className="flex items-center gap-4 px-5 py-4">
@@ -121,10 +121,10 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
                   />
                 </span>
 
-                <span className="font-semibold text-white">{region.name}</span>
+                <span className="font-semibold text-ink">{region.name}</span>
 
                 {/* Country + port count — visible on hover */}
-                <span className="ml-1 hidden text-[11px] text-white/40 transition-all duration-200 group-hover:text-white/70 sm:block">
+                <span className="ml-1 hidden text-[11px] text-ink/40 transition-all duration-200 group-hover:text-ink/70 sm:block">
                   {region.countries} countries · {region.ports}+ ports
                 </span>
 
@@ -133,7 +133,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
                   {region.hubs.map((hub) => (
                     <span
                       key={hub}
-                      className="rounded-md bg-white/8 px-2 py-0.5 text-[11px] font-medium text-white/50 transition-colors duration-200 group-hover:bg-white/14 group-hover:text-white/80"
+                      className="rounded-md bg-ink/8 px-2 py-0.5 text-[11px] font-medium text-ink/50 transition-colors duration-200 group-hover:bg-ink/14 group-hover:text-ink/80"
                     >
                       {hub}
                     </span>

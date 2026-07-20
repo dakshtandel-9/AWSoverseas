@@ -40,18 +40,18 @@ export default async function LoginPage({
   return (
     <div className="grid min-h-dvh lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
       {/* Stub side — the manifest ticket half */}
-      <aside className="relative isolate hidden overflow-hidden bg-[#000c1a] px-12 py-14 lg:flex lg:flex-col xl:px-16">
+      <aside className="relative isolate hidden overflow-hidden bg-[#CFE8FF] px-12 py-14 lg:flex lg:flex-col xl:px-16">
         <div
           className="pointer-events-none absolute inset-0"
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(60% 50% at 12% 8%, rgba(172,32,56,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.5) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+              "radial-gradient(60% 50% at 12% 8%, rgba(172,32,56,0.14) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.22) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
             backgroundSize: "auto, auto, 44px 44px, 44px 44px",
           }}
         />
 
-        <Logo tone="light" priority className="relative z-10" />
+        <Logo tone="dark" priority className="relative z-10" />
 
         <div className="relative z-10 mt-auto flex flex-col gap-10">
           <div>
@@ -61,30 +61,30 @@ export default async function LoginPage({
             </span>
             <h1
               className="mt-6 max-w-md font-heading text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] xl:text-[2.75rem]"
-              style={{ color: "#ffffff" }}
+              style={{ color: "#01214a" }}
             >
               One account clears every shipment.
             </h1>
-            <p className="mt-4 max-w-sm text-base leading-relaxed text-white/60">
+            <p className="mt-4 max-w-sm text-base leading-relaxed text-ink/60">
               Sign in to move your cargo through quoting, enquiries, and referrals — no re-filing paperwork
               at every gate.
             </p>
           </div>
 
           {/* Route line — the signature element, styled as a boarding-pass itinerary */}
-          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-white/45">
-            <span className="text-white/85">Enquiry</span>
-            <span className="relative h-px flex-1 bg-white/15">
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-ink/45">
+            <span className="text-ink/85">Enquiry</span>
+            <span className="relative h-px flex-1 bg-ink/15">
               <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
               <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
             </span>
-            <span className="text-white/85">Cleared</span>
+            <span className="text-ink/85">Cleared</span>
           </div>
 
-          <ul className="flex flex-col gap-4 border-t border-white/12 pt-8">
+          <ul className="flex flex-col gap-4 border-t border-ink/12 pt-8">
             {PERKS.map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-white/65">
-                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/8 text-[#e05c72] ring-1 ring-white/10">
+              <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-ink/65">
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-ink/8 text-[#e05c72] ring-1 ring-ink/10">
                   <Icon className="size-4" />
                 </span>
                 {text}

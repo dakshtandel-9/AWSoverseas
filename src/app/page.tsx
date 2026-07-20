@@ -3,14 +3,11 @@ import { home, faq, metaFrom } from "@/lib/content";
 import { getPublishedPosts } from "@/lib/blog-data";
 import { getActiveProducts } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
-import { HeroSlider } from "@/components/home/hero-slider";
 import { ImageHeroSlider } from "@/components/home/image-hero-slider";
-import { TrustedPartners } from "@/components/home/trusted-partners";
 import { Certifications } from "@/components/home/certifications";
 import { StatsStrip } from "@/components/home/stats-strip";
 import { ServicesGrid } from "@/components/home/services-grid";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
-import { IndustriesStrip } from "@/components/home/industries-strip";
 import { ProductsTeaser } from "@/components/home/products-teaser";
 import { GlobalCoverage } from "@/components/home/global-coverage";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -79,7 +76,7 @@ export default async function HomePage() {
             primaryButton: "Request Shipping Quote",
             primaryButtonHref: "/quote",
             secondaryButton: "Explore Logistics Services",
-            secondaryButtonHref: "/industries",
+            secondaryButtonHref: "/services",
             stats: [
               { number: "100+", label: "Countries Served" },
               { number: "24/7", label: "Shipment Tracking" },
@@ -105,14 +102,30 @@ export default async function HomePage() {
               { number: "1", label: "Dedicated Partner" },
             ],
           },
+          {
+            image: "/hero-slider/Manufacturing.jpeg",
+            imageAlt: "Textile manufacturing facility with industrial production lines",
+            badge: "TRUSTED MANUFACTURING NETWORK",
+            title: "Sourced and Manufactured to Your Exact Standard",
+            subtitle:
+              "We vet factories, audit production lines, and oversee manufacturing at the source, so every order leaves the facility meeting the specification, quality, and timeline you agreed to.",
+            primaryButton: "Get a Sourcing Quote",
+            primaryButtonHref: "/quote",
+            secondaryButton: "Meet Our Sourcing Agents",
+            secondaryButtonHref: "/sourcing-agent",
+            stats: [
+              { number: "500+", label: "Vetted Factories" },
+              { number: "100%", label: "Production Audits" },
+              { number: "40+", label: "Product Categories" },
+              { number: "99%", label: "On-Spec Delivery" },
+            ],
+          },
         ]}
       />
-      <TrustedPartners data={home.trustedPartners} partners={home.industries.items} />
       <Certifications data={home.certifications} />
       <StatsStrip stats={home.hero.stats} />
       <ServicesGrid data={home.services} />
       <WhyChooseUs data={home.whyChooseUs} />
-      <IndustriesStrip data={home.industries} eyebrow="Industries" />
       <ProductsTeaser data={home.products} products={catalog} auth={auth} eyebrow="Catalog" />
       <GlobalCoverage data={home.coverage} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />

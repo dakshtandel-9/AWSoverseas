@@ -32,15 +32,15 @@ export function ReferEarn({ data }: { data: Data }) {
           </span>
           <h2
             className="mt-5 text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.5rem]"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#01214a" }}
           >
             {data.title}
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-white/60">{data.description}</p>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-ink/60">{data.description}</p>
 
           <ul className="mt-8 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {data.benefits.map((b) => (
-              <li key={b} className="flex items-center gap-2.5 text-sm text-white/85">
+              <li key={b} className="flex items-center gap-2.5 text-sm text-ink/85">
                 <Check className="size-4 shrink-0 text-[#e05c72]" />
                 {b}
               </li>
@@ -52,7 +52,7 @@ export function ReferEarn({ data }: { data: Data }) {
           {data.steps.map((s, i) => (
             <motion.li
               key={s.step}
-              className="relative flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-5"
+              className="relative flex items-center gap-5 rounded-2xl border border-ink/10 bg-white/60 px-6 py-5"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -61,7 +61,7 @@ export function ReferEarn({ data }: { data: Data }) {
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#d72846]/15 font-heading text-base font-extrabold text-[#e05c72]">
                 {s.step}
               </span>
-              <span className="text-[15px] font-semibold text-white">{s.title}</span>
+              <span className="text-[15px] font-semibold text-ink">{s.title}</span>
             </motion.li>
           ))}
         </ol>

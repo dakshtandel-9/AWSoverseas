@@ -2,14 +2,14 @@
   "page": "Referral Rewards",
 
   "meta": {
-    "title": "Referral Rewards — Earn $25 Per Referral | AWSOverseas",
-    "description": "Refer someone to AWSOverseas. When they ship, buy, or book any service, you earn $25 — paid straight to your wallet. No limit on how many times you can earn."
+    "title": "Referral Rewards — Earn $25 Per Referral | AWS Overseas",
+    "description": "Refer someone to AWS Overseas. When they ship, buy, or book any service, you earn $25 — paid straight to your wallet. No limit on how many times you can earn."
   },
 
   "hero": {
     "badge": "Referral Rewards",
     "title": "Send a shipment their way. We'll send $25 your way.",
-    "subtitle": "Every person you bring to AWSOverseas who completes a shipment, purchase, or booking puts $25 in your wallet. Simple as that — no tiers, no caps, no waiting.",
+    "subtitle": "Every person you bring to AWS Overseas who completes a shipment, purchase, or booking puts $25 in your wallet. Simple as that — no tiers, no caps, no waiting.",
     "primaryButton": "Get my referral code",
     "secondaryButton": "See how it works",
     "stat": { "value": "$25", "label": "per completed referral" }
@@ -22,7 +22,7 @@
       {
         "step": "01",
         "title": "Share your code",
-        "description": "Every AWSOverseas account has a unique referral code. Send it to anyone shipping cargo, importing goods, or booking freight services."
+        "description": "Every AWS Overseas account has a unique referral code. Send it to anyone shipping cargo, importing goods, or booking freight services."
       },
       {
         "step": "02",
@@ -32,7 +32,7 @@
       {
         "step": "03",
         "title": "$25 hits your wallet",
-        "description": "Once their order is confirmed and paid, we credit your AWSOverseas wallet automatically. Track it from your referrals dashboard."
+        "description": "Once their order is confirmed and paid, we credit your AWS Overseas wallet automatically. Track it from your referrals dashboard."
       }
     ]
   },
@@ -54,7 +54,7 @@
       },
       {
         "title": "Paid to your wallet",
-        "description": "Rewards land in your AWSOverseas wallet, usable toward future shipments or withdrawable per your account settings."
+        "description": "Rewards land in your AWS Overseas wallet, usable toward future shipments or withdrawable per your account settings."
       }
     ]
   },
@@ -71,7 +71,7 @@
     "items": [
       {
         "question": "How much do I earn per referral?",
-        "answer": "$25 for every person you refer who completes a paid shipment, product purchase, or service booking with AWSOverseas."
+        "answer": "$25 for every person you refer who completes a paid shipment, product purchase, or service booking with AWS Overseas."
       },
       {
         "question": "Does it have to be a shipment specifically?",
@@ -87,11 +87,11 @@
       },
       {
         "question": "When does the reward get credited?",
-        "answer": "As soon as your referral's order is confirmed and paid, $25 is credited to your AWSOverseas wallet automatically."
+        "answer": "As soon as your referral's order is confirmed and paid, $25 is credited to your AWS Overseas wallet automatically."
       },
       {
         "question": "Can I use my own referral code?",
-        "answer": "No — referral rewards are for bringing new customers to AWSOverseas, not for orders on your own account."
+        "answer": "No — referral rewards are for bringing new customers to AWS Overseas, not for orders on your own account."
       }
     ]
   },

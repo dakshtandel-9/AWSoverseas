@@ -17,13 +17,13 @@ export function IndustriesCta({ data }: { data: Data }) {
   return (
     <Section spacing="lg">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#000c1a] px-8 py-16 text-center shadow-[0_32px_96px_-24px_rgba(4,22,47,0.6)] sm:px-14 sm:py-20">
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#CFE8FF] px-8 py-16 text-center shadow-[0_32px_96px_-24px_rgba(4,22,47,0.25)] sm:px-14 sm:py-20">
           <div
             className="pointer-events-none absolute inset-0"
             aria-hidden
             style={{
               backgroundImage:
-                "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.22) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+                "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
               backgroundSize: "auto, 44px 44px, 44px 44px",
             }}
           />
@@ -42,11 +42,11 @@ export function IndustriesCta({ data }: { data: Data }) {
 
             <h2
               className="mt-7 text-balance text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-[3rem]"
-              style={{ color: "#ffffff" }}
+              style={{ color: "#01214a" }}
             >
               {data.title}
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/60">
               {data.description}
             </p>
 

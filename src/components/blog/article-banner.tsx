@@ -20,13 +20,13 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function ArticleBanner({ data }: { data: Banner }) {
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-14 pt-32 sm:pb-16 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#CFE8FF] pb-14 pt-32 sm:pb-16 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 10%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.42) 0%, transparent 60%)",
+            "radial-gradient(55% 50% at 85% 10%, rgba(172,32,56,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.2) 0%, transparent 60%)",
         }}
       />
       <Container className="relative max-w-3xl">
@@ -41,7 +41,7 @@ export function ArticleBanner({ data }: { data: Banner }) {
 
         <motion.h1
           className="mt-5 text-3xl font-extrabold leading-[1.15] tracking-[-0.02em] sm:text-4xl lg:text-[2.75rem]"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#01214a" }}
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.08, ease }}
@@ -50,7 +50,7 @@ export function ArticleBanner({ data }: { data: Banner }) {
         </motion.h1>
 
         <motion.p
-          className="mt-5 text-base leading-relaxed text-white/60 sm:text-lg"
+          className="mt-5 text-base leading-relaxed text-ink/60 sm:text-lg"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.16, ease }}
@@ -59,13 +59,13 @@ export function ArticleBanner({ data }: { data: Banner }) {
         </motion.p>
 
         <motion.div
-          className="mt-7 flex flex-wrap items-center gap-5 border-t border-white/10 pt-6 text-sm text-white/50"
+          className="mt-7 flex flex-wrap items-center gap-5 border-t border-ink/10 pt-6 text-sm text-ink/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.24 }}
         >
           <span className="inline-flex items-center gap-2">
-            <span className="grid size-7 place-items-center rounded-full bg-white/10">
+            <span className="grid size-7 place-items-center rounded-full bg-ink/10">
               <User className="size-3.5" />
             </span>
             {data.author.name}

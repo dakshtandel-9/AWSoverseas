@@ -67,11 +67,11 @@ export function AppShowcase({
             aria-hidden
             style={{ background: "rgba(172,32,56,0.16)" }}
           />
-          <div className="relative aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#000c1a] p-2.5 shadow-[0_30px_60px_-20px_rgba(4,22,47,0.5)] ring-1 ring-white/10">
+          <div className="relative aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#CFE8FF] p-2.5 shadow-[0_30px_60px_-20px_rgba(4,22,47,0.25)] ring-1 ring-ink/10">
             <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/60" />
             <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-gradient-to-b from-[#f6f8fc] to-white">
-              <div className="bg-[#01214a] px-5 pb-5 pt-9 text-white">
-                <p className="text-[11px] text-white/60">AWSOverseas</p>
+              <div className="bg-[#CFE8FF] px-5 pb-5 pt-9 text-ink">
+                <p className="text-[11px] text-ink/70">AWSOverseas</p>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={current.key}

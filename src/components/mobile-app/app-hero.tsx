@@ -34,13 +34,13 @@ export function AppHero({ data }: { data: Data }) {
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#CFE8FF] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 15%, rgba(172,32,56,0.18) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.42) 0%, transparent 60%)",
+            "radial-gradient(55% 50% at 85% 15%, rgba(172,32,56,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.2) 0%, transparent 60%)",
         }}
       />
 
@@ -58,7 +58,7 @@ export function AppHero({ data }: { data: Data }) {
 
           <motion.h1
             className="mt-6 font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.25rem]"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#01214a" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -77,7 +77,7 @@ export function AppHero({ data }: { data: Data }) {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-lg text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-lg text-base leading-relaxed text-ink/60 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -129,13 +129,13 @@ export function AppHero({ data }: { data: Data }) {
           {FLOATING_CARDS.map((c, i) => (
             <div
               key={c.label}
-              className="absolute z-[1] hidden items-center gap-2.5 rounded-xl bg-white/10 px-3.5 py-2.5 text-white backdrop-blur-md ring-1 ring-white/15 shadow-lg sm:flex"
+              className="absolute z-[1] hidden items-center gap-2.5 rounded-xl bg-white/70 px-3.5 py-2.5 text-ink backdrop-blur-md ring-1 ring-ink/10 shadow-lg sm:flex"
               style={{ top: c.top, left: c.left, animationDelay: `${i * 0.7}s` }}
             >
               <span className="size-2 shrink-0 rounded-full" style={{ background: c.dot }} />
               <div className="leading-tight">
                 <p className="text-xs font-semibold">{c.label}</p>
-                <p className="text-[10px] opacity-55">{c.sub}</p>
+                <p className="text-[10px] opacity-70">{c.sub}</p>
               </div>
             </div>
           ))}

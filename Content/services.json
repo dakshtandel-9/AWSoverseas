@@ -1,19 +1,19 @@
 {
     "page": "Services",
     "meta": {
-        "title": "Sourcing & Shipping Services | AWSOverseas",
-        "description": "Explore AWSOverseas's full range of services — Product Sourcing, Supplier Verification, and Quality Inspection in India, paired with Air Freight, Sea Freight, Import & Export, Customs Clearance, and Door-to-Door delivery."
+        "title": "Sourcing & Shipping Services | AWS Overseas",
+        "description": "Explore AWS Overseas's full range of services — Product Sourcing, Supplier Verification, and Quality Inspection in India, paired with Air Freight, Sea Freight, Import & Export, Customs Clearance, and Door-to-Door delivery."
     },
     "hero": {
         "badge": "Our Services",
         "title": "From Finding a Manufacturer to Clearing Customs — One Service Line",
-        "subtitle": "AWSOverseas sources and verifies manufacturers in India, inspects goods before dispatch, and manages the air freight, sea freight, and customs clearance that gets them to your door. Sourcing and shipping, run as one process.",
+        "subtitle": "AWS Overseas sources and verifies manufacturers in India, inspects goods before dispatch, and manages the air freight, sea freight, and customs clearance that gets them to your door. Sourcing and shipping, run as one process.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Our Team"
     },
     "overview": {
         "title": "Sourcing and Freight, Scoped to Your Order",
-        "description": "AWSOverseas manages both halves of an export order: finding and verifying the right manufacturer in India, and moving the finished goods to your destination. Our team inspects before dispatch, files the export documentation, and coordinates freight and customs clearance, so nothing falls between a sourcing agent and a freight forwarder.",
+        "description": "AWS Overseas manages both halves of an export order: finding and verifying the right manufacturer in India, and moving the finished goods to your destination. Our team inspects before dispatch, files the export documentation, and coordinates freight and customs clearance, so nothing falls between a sourcing agent and a freight forwarder.",
         "highlights": [
             "Manufacturer Verification",
             "Quality Inspection",
@@ -97,7 +97,7 @@
     },
     "sourcingAgent": {
         "title": "Sourcing Partner",
-        "description": "This is where an export order actually begins. AWSOverseas works as your on-ground partner in India, running every step between an idea and a shipped, export-ready product — so you get the right supplier, the right price, and the right quality, without ever setting foot in the country.",
+        "description": "This is where an export order actually begins. AWS Overseas works as your on-ground partner in India, running every step between an idea and a shipped, export-ready product — so you get the right supplier, the right price, and the right quality, without ever setting foot in the country.",
         "features": [
             "Supplier Identification",
             "Factory Verification",
@@ -113,7 +113,7 @@
     },
     "cta": {
         "title": "Ready to Source & Export from India?",
-        "description": "Whether you need a manufacturer sourced and verified in India, or cargo moved and cleared through customs, AWSOverseas scopes it as one export plan.",
+        "description": "Whether you need a manufacturer sourced and verified in India, or cargo moved and cleared through customs, AWS Overseas scopes it as one export plan.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Talk to Our Experts"
     }

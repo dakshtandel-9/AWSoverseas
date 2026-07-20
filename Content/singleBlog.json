@@ -1,7 +1,7 @@
 {
     "page": "Single Blog",
     "meta": {
-        "title": "How to Choose the Right International Shipping Method | AWSOverseas",
+        "title": "How to Choose the Right International Shipping Method | AWS Overseas",
         "description": "Learn how to choose between Air Freight, Sea Freight, FCL, and LCL shipping for your international business with this complete shipping guide."
     },
     "banner": {
@@ -9,7 +9,7 @@
         "title": "How to Choose the Right International Shipping Method for Your Business",
         "excerpt": "Choosing the right shipping solution directly impacts your delivery time, transportation cost, and customer satisfaction. Learn when to use Air Freight, Sea Freight, FCL, and LCL shipping.",
         "author": {
-            "name": "AWSOverseas Shipping Team",
+            "name": "AWS Overseas Shipping Team",
             "avatar": "/images/authors/author.webp"
         },
         "publishDate": "15 June 2026",
@@ -23,7 +23,7 @@
             "Understanding Sea Freight",
             "FCL vs LCL Shipping",
             "Factors to Consider",
-            "How AWSOverseas Can Help",
+            "How AWS Overseas Can Help",
             "Conclusion"
         ],
         "sections": [
@@ -44,12 +44,12 @@
                 "content": "FCL provides an entire shipping container for one customer, while LCL allows multiple customers to share container space, making it cost-effective for smaller shipments."
             },
             {
-                "heading": "How AWSOverseas Supports Global Shipping",
-                "content": "AWSOverseas provides end-to-end shipping services including freight forwarding, customs clearance, warehousing, documentation support, shipment tracking, and door-to-door delivery."
+                "heading": "How AWS Overseas Supports Global Shipping",
+                "content": "AWS Overseas provides end-to-end shipping services including freight forwarding, customs clearance, warehousing, documentation support, shipment tracking, and door-to-door delivery."
             },
             {
                 "heading": "Final Thoughts",
-                "content": "Choosing the right shipping method depends on your business priorities. Whether speed, cost, or flexibility matters most, AWSOverseas helps you select the ideal shipping solution."
+                "content": "Choosing the right shipping method depends on your business priorities. Whether speed, cost, or flexibility matters most, AWS Overseas helps you select the ideal shipping solution."
             }
         ],
         "tags": [
@@ -97,7 +97,7 @@
     },
     "cta": {
         "title": "Need Help with International Shipping?",
-        "description": "Whether you're importing, exporting, or managing global cargo, AWSOverseas is ready to provide reliable and cost-effective shipping solutions.",
+        "description": "Whether you're importing, exporting, or managing global cargo, AWS Overseas is ready to provide reliable and cost-effective shipping solutions.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Our Experts"
     }

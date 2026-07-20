@@ -18,20 +18,20 @@ const ease = [0.16, 1, 0.3, 1] as const;
  */
 export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: string }) {
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-14 pt-32 sm:pb-16 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#CFE8FF] pb-14 pt-32 sm:pb-16 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(50% 45% at 88% 0%, rgba(172,32,56,0.14) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(50% 45% at 88% 0%, rgba(172,32,56,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative">
         <motion.div
-          className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-white/12 pb-4"
+          className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-ink/12 pb-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
@@ -40,17 +40,17 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
             <span className="size-1.5 rounded-full bg-[#d72846]" />
             {data.badge}
           </span>
-          <span className="font-mono text-[11px] tracking-[0.18em] text-white/35">
+          <span className="font-mono text-[11px] tracking-[0.18em] text-ink/35">
             REV.&nbsp;{lastUpdated}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
             DOCUMENT&nbsp;/&nbsp;WORLDWIDE
           </span>
         </motion.div>
 
         <motion.h1
           className="mt-8 font-heading text-4xl font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-5xl"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#01214a" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease }}
@@ -59,7 +59,7 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
         </motion.h1>
 
         <motion.p
-          className="mt-5 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg"
+          className="mt-5 max-w-2xl text-base leading-relaxed text-ink/60 sm:text-lg"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.18, ease }}

@@ -38,18 +38,18 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-brand-950 text-brand-100/80">
+    <footer className="relative overflow-hidden bg-[#CFE8FF] text-ink/80">
       <div className="pointer-events-none absolute inset-0 bg-mesh opacity-60" aria-hidden />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.15]" aria-hidden />
 
       <Container className="relative">
         {/* Newsletter band */}
-        <div className="grid gap-8 border-b border-white/10 py-14 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-8 border-b border-ink/10 py-14 lg:grid-cols-2 lg:items-center">
           <div>
-            <h3 className="text-2xl font-bold !text-white sm:text-3xl">
+            <h3 className="text-2xl font-bold !text-ink sm:text-3xl">
               {newsletter?.title ?? "Stay Updated on Global Trade, Product Sourcing & Export Opportunities"}
             </h3>
-            <p className="mt-3 max-w-md text-brand-100/70">
+            <p className="mt-3 max-w-md text-ink/70">
               {newsletter?.description ??
                 "Supplier sourcing guides, export tips and shipping updates — straight to your inbox."}
             </p>
@@ -67,8 +67,8 @@ export async function Footer() {
         {/* Link columns */}
         <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo tone="light" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-100/65">
+            <Logo tone="dark" />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
               AWSOverseas is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
@@ -131,8 +131,8 @@ export async function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-6 border-t border-white/10 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-brand-100/60">
+        <div className="flex flex-col gap-6 border-t border-ink/10 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-ink/60">
             © {year} {SITE.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
@@ -141,7 +141,7 @@ export async function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="grid size-10 place-items-center rounded-full bg-white/5 text-brand-100/80 ring-1 ring-white/10 transition-colors hover:bg-accent-500 hover:text-white"
+                className="grid size-10 place-items-center rounded-full bg-ink/5 text-ink/80 ring-1 ring-ink/10 transition-colors hover:bg-accent-500 hover:text-white"
               >
                 <SocialIcon name={name} className="size-4" />
               </a>
@@ -164,7 +164,7 @@ function FooterColumn({
 }) {
   return (
     <div className={className}>
-      <h4 className="text-sm font-semibold uppercase tracking-wider !text-white">{title}</h4>
+      <h4 className="text-sm font-semibold uppercase tracking-wider !text-ink">{title}</h4>
       <ul className="mt-5 space-y-3">{children}</ul>
     </div>
   );
@@ -175,7 +175,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <Link
         href={href}
-        className="group inline-flex items-center gap-1.5 text-sm text-brand-100/70 transition-colors hover:text-white"
+        className="group inline-flex items-center gap-1.5 text-sm text-ink/70 transition-colors hover:text-ink"
       >
         <ArrowRight className="size-3 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
         {children}

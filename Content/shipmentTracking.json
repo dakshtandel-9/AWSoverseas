@@ -1,18 +1,18 @@
 {
     "page": "Shipment Tracking",
     "meta": {
-        "title": "Track Your Shipment | AWSOverseas",
-        "description": "Track your international shipment using your tracking number. Download the AWSOverseas mobile app for real-time shipment updates, notifications, and complete shipment history."
+        "title": "Track Your Shipment | AWS Overseas",
+        "description": "Track your international shipment using your tracking number. Download the AWS Overseas mobile app for real-time shipment updates, notifications, and complete shipment history."
     },
     "hero": {
         "badge": "Shipment Tracking",
         "title": "Track Your Shipment in Real Time",
-        "subtitle": "Stay informed throughout your shipping journey. Enter your tracking number below to begin tracking your cargo or continue with the AWSOverseas mobile app for a complete tracking experience.",
+        "subtitle": "Stay informed throughout your shipping journey. Enter your tracking number below to begin tracking your cargo or continue with the AWS Overseas mobile app for a complete tracking experience.",
         "backgroundImage": "/images/tracking/hero.webp"
     },
     "trackingForm": {
         "title": "Enter Tracking Number",
-        "description": "Input the shipment tracking number provided by AWSOverseas.",
+        "description": "Input the shipment tracking number provided by AWS Overseas.",
         "placeholder": "Example: AWS123456789",
         "button": "Track Shipment",
         "validationMessage": "Please enter a valid tracking number."
@@ -25,7 +25,7 @@
     },
     "appCTA": {
         "title": "Get the Complete Tracking Experience",
-        "description": "Download the AWSOverseas Mobile App to receive live shipment updates, push notifications, shipment history, document access, and payment management—all in one place.",
+        "description": "Download the AWS Overseas Mobile App to receive live shipment updates, push notifications, shipment history, document access, and payment management—all in one place.",
         "features": [
             "Live Shipment Tracking",
             "Push Notifications",

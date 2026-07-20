@@ -23,32 +23,32 @@ export function ReferralCodeCard({ code }: { code: string }) {
   }
 
   return (
-    <div className="rounded-3xl border border-[#e4e9f2] bg-[#000c1a] p-7 text-white">
+    <div className="rounded-3xl border border-[#e4e9f2] bg-[#CFE8FF] p-7 text-ink">
       <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
         <Gift className="size-3.5" />
         Your referral code
       </p>
 
-      <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-4">
+      <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-ink/15 bg-ink/5 px-5 py-4">
         <span className="font-mono text-xl font-bold tracking-[0.12em]">{code}</span>
         <button
           type="button"
           onClick={copy}
-          className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-[#d72846] hover:text-white"
+          className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/20 text-ink/80 transition-colors hover:border-[#d72846] hover:text-ink"
           aria-label={copied ? "Copied" : "Copy referral code"}
         >
           {copied ? <Check className="size-4 text-[#d72846]" /> : <Copy className="size-4" />}
         </button>
       </div>
 
-      <p className="mt-4 text-sm leading-relaxed text-white/60">
+      <p className="mt-4 text-sm leading-relaxed text-ink/60">
         Share this code with other importers — anyone who signs up with it shows in your
         referrals.
       </p>
 
       <Link
         href="/profile/referrals"
-        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#e05c72] hover:text-white"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#e05c72] hover:text-ink"
       >
         View your referrals <ArrowRight className="size-3.5" />
       </Link>

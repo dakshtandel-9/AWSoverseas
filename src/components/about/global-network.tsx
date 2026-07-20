@@ -41,23 +41,23 @@ export function GlobalNetwork({ data }: { data: Data }) {
           </p>
           <h2
             className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#01214a" }}
           >
             {data.title}
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/60">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink/60">
             {data.description}
           </p>
         </Reveal>
 
         {/* Continental route line */}
         <Reveal direction="up" delay={0.1}>
-          <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-8 sm:px-9">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
+          <div className="mt-12 rounded-2xl border border-ink/10 bg-white/50 px-6 py-8 sm:px-9">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/35">
               Where sourced goods reach · 6 regions
             </span>
             <div className="relative mt-6">
-              <div className="absolute left-0 right-0 top-[7px] h-px bg-white/10" aria-hidden />
+              <div className="absolute left-0 right-0 top-[7px] h-px bg-ink/10" aria-hidden />
               <motion.div
                 className="absolute left-0 top-[7px] h-px origin-left bg-gradient-to-r from-[#d72846] to-[#e05c72]"
                 initial={{ scaleX: 0 }}
@@ -77,8 +77,8 @@ export function GlobalNetwork({ data }: { data: Data }) {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.45, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#000c1a] bg-[#d72846] shadow-[0_0_0_3px_rgba(172,32,56,0.25)]" />
-                    <span className="text-sm font-semibold text-white">{region}</span>
+                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#CFE8FF] bg-[#d72846] shadow-[0_0_0_3px_rgba(172,32,56,0.25)]" />
+                    <span className="text-sm font-semibold text-ink">{region}</span>
                   </motion.li>
                 ))}
               </ol>
@@ -99,17 +99,17 @@ export function GlobalNetwork({ data }: { data: Data }) {
             return (
               <motion.li
                 key={h}
-                className="group flex items-center gap-3.5 rounded-2xl border border-white/8 bg-white/[0.04] px-5 py-4 transition-colors duration-300 hover:border-white/16 hover:bg-white/[0.08]"
+                className="group flex items-center gap-3.5 rounded-2xl border border-ink/8 bg-white/60 px-5 py-4 transition-colors duration-300 hover:border-ink/16 hover:bg-white/80"
                 variants={{
                   hidden: { opacity: 0, y: 14 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
               >
-                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-white/8 text-[#e05c72]">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-ink/8 text-[#e05c72]">
                   <Icon className="size-4.5" />
                 </span>
-                <span className="text-sm font-medium text-white/85">{h}</span>
-                <ArrowUpRight className="ml-auto size-4 text-white/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#e05c72]" />
+                <span className="text-sm font-medium text-ink/85">{h}</span>
+                <ArrowUpRight className="ml-auto size-4 text-ink/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#e05c72]" />
               </motion.li>
             );
           })}

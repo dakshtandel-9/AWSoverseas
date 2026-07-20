@@ -68,11 +68,11 @@ function AnimatedStat({ number, label }: { number: string; label: string }) {
   return (
     <div className="flex flex-col">
       <dt className="sr-only">{label}</dt>
-      <dd ref={ref as React.RefObject<HTMLElement>} className="font-heading text-3xl font-extrabold text-white">
+      <dd ref={ref as React.RefObject<HTMLElement>} className="font-heading text-3xl font-extrabold text-ink">
         {count}
         {suffix}
       </dd>
-      <p className="mt-1 text-xs font-medium text-white/50">{label}</p>
+      <p className="mt-1 text-xs font-medium text-ink/50">{label}</p>
     </div>
   );
 }
@@ -212,7 +212,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <div className="relative min-h-[100svh] h-auto lg:h-[100svh] overflow-hidden bg-[#000c1a]">
+    <div className="relative min-h-[100svh] h-auto lg:h-[100svh] overflow-hidden bg-[#CFE8FF]">
       <div className="absolute inset-0" aria-hidden>
         <DotField
           dotRadius={4}
@@ -227,10 +227,10 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
           gradientFrom="#ac2038"
           gradientTo="#023f8d"
           glowColor="transparent"
-          baseDotColor="#012d65"
+          baseDotColor="#7fb3e0"
           accentDotColor="#d72846"
           accentRatio={0.1}
-          dotOpacity={0.25}
+          dotOpacity={0.35}
         />
       </div>
 
@@ -252,7 +252,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl text-white sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">{line1}</span>
+            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#01214a" }}>{line1}</span>
             <span
               className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
               style={{
@@ -267,7 +267,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-[480px] text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-[480px] text-base leading-relaxed text-ink/60 sm:text-lg"
             initial={{ opacity: 0, y: 24 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.18, ease }}
@@ -288,19 +288,19 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
               href="/products"
               className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium transition-all duration-300"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.18)",
-                color: "rgba(255,255,255,0.92)",
+                background: "rgba(1,33,74,0.06)",
+                border: "1px solid rgba(1,33,74,0.16)",
+                color: "rgba(1,33,74,0.92)",
                 backdropFilter: "blur(12px)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.1)";
                 (e.currentTarget as HTMLElement).style.boxShadow =
                   "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.06)";
                 (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(172,32,56,0)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
@@ -311,7 +311,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
           </motion.div>
 
           <motion.dl
-            className="mt-12 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4 sm:gap-x-0 sm:divide-x sm:divide-white/10"
+            className="mt-12 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4 sm:gap-x-0 sm:divide-x sm:divide-ink/10"
             initial={{ opacity: 0 }}
             animate={active ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.5, ease }}

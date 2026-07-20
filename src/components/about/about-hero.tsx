@@ -36,14 +36,14 @@ export function AboutHero({ data }: { data: Data }) {
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#CFE8FF] pb-20 pt-32 sm:pb-24 sm:pt-36">
       {/* Blueprint grid + ambient glow */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -51,7 +51,7 @@ export function AboutHero({ data }: { data: Data }) {
       <Container className="relative">
         {/* Document header rule */}
         <motion.div
-          className="flex items-center gap-4 border-b border-white/12 pb-4"
+          className="flex items-center gap-4 border-b border-ink/12 pb-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
@@ -60,7 +60,7 @@ export function AboutHero({ data }: { data: Data }) {
             <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
             VERIFICATION&nbsp;DOSSIER&nbsp;/&nbsp;INDIA
           </span>
         </motion.div>
@@ -69,7 +69,7 @@ export function AboutHero({ data }: { data: Data }) {
           {/* Partner line = headline */}
           <div>
             <motion.p
-              className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40"
+              className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1, ease }}
@@ -78,7 +78,7 @@ export function AboutHero({ data }: { data: Data }) {
             </motion.p>
             <motion.h1
               className="mt-3 font-heading text-4xl font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-              style={{ color: "#ffffff" }}
+              style={{ color: "#01214a" }}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.14, ease }}
@@ -98,7 +98,7 @@ export function AboutHero({ data }: { data: Data }) {
             </motion.h1>
 
             <motion.p
-              className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-ink/60 sm:text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.22, ease }}
@@ -117,21 +117,21 @@ export function AboutHero({ data }: { data: Data }) {
               </Button>
               <a
                 href="/services"
-                className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-white/90 transition-all duration-300"
+                className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-ink/90 transition-all duration-300"
                 style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.18)",
+                  background: "rgba(1,33,74,0.06)",
+                  border: "1px solid rgba(1,33,74,0.16)",
                   backdropFilter: "blur(12px)",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
-                  el.style.background = "rgba(255,255,255,0.14)";
+                  el.style.background = "rgba(1,33,74,0.1)";
                   el.style.boxShadow =
                     "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
-                  el.style.background = "rgba(255,255,255,0.08)";
+                  el.style.background = "rgba(1,33,74,0.06)";
                   el.style.boxShadow = "none";
                 }}
               >
@@ -143,7 +143,7 @@ export function AboutHero({ data }: { data: Data }) {
 
           {/* Boxed reference fields — the waybill metadata block */}
           <motion.dl
-            className="grid grid-cols-2 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] backdrop-blur-sm"
+            className="grid grid-cols-2 overflow-hidden rounded-2xl border border-ink/12 bg-white/50 backdrop-blur-sm"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.34, ease }}
@@ -151,14 +151,14 @@ export function AboutHero({ data }: { data: Data }) {
             {FIELDS.map((f, i) => (
               <div
                 key={f.k}
-                className={`px-5 py-5 ${i % 2 === 0 ? "border-r border-white/10" : ""} ${
-                  i < 2 ? "border-b border-white/10" : ""
+                className={`px-5 py-5 ${i % 2 === 0 ? "border-r border-ink/10" : ""} ${
+                  i < 2 ? "border-b border-ink/10" : ""
                 }`}
               >
-                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink/40">
                   {f.k}
                 </dt>
-                <dd className="mt-2 font-mono text-sm font-semibold text-white">
+                <dd className="mt-2 font-mono text-sm font-semibold text-ink">
                   {f.v}
                 </dd>
               </div>

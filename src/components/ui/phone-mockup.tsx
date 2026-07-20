@@ -5,7 +5,7 @@ export function PhoneMockup({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative mx-auto aspect-[9/19] w-[260px] rounded-[2.6rem] bg-brand-950 p-2.5 shadow-lift ring-1 ring-white/10",
+        "relative mx-auto aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#CFE8FF] p-2.5 shadow-lift ring-1 ring-ink/10",
         className,
       )}
     >
@@ -14,10 +14,10 @@ export function PhoneMockup({ className }: { className?: string }) {
       {/* Screen */}
       <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-gradient-to-b from-surface-soft to-white">
         {/* App header */}
-        <div className="bg-brand-900 px-5 pb-5 pt-9 text-white">
-          <p className="text-xs text-brand-100/70">Tracking</p>
+        <div className="bg-[#CFE8FF] px-5 pb-5 pt-9 text-ink">
+          <p className="text-xs text-ink/70">Tracking</p>
           <p className="mt-1 font-heading text-lg font-bold">AWS-9X42-118</p>
-          <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs">
+          <div className="mt-3 flex items-center gap-2 rounded-xl bg-ink/10 px-3 py-2 text-xs">
             <span className="size-2 rounded-full bg-accent-400" />
             In Transit · Singapore Hub
           </div>

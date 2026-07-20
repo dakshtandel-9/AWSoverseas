@@ -22,13 +22,13 @@ export function BlogHero({ data }: { data: Data }) {
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-16 pt-32 sm:pb-20 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#CFE8FF] pb-16 pt-32 sm:pb-20 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 10%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 85% 10%, rgba(172,32,56,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -46,7 +46,7 @@ export function BlogHero({ data }: { data: Data }) {
 
         <motion.h1
           className="mt-6 max-w-3xl font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.25rem]"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#01214a" }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -65,7 +65,7 @@ export function BlogHero({ data }: { data: Data }) {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+          className="mt-6 max-w-xl text-base leading-relaxed text-ink/60 sm:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -86,7 +86,7 @@ export function BlogHero({ data }: { data: Data }) {
             {data.primaryButton}
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </a>
-          <Button href="/quote" size="lg" variant="outline" className="border-white/20 bg-white/8 text-white hover:bg-white/14">
+          <Button href="/quote" size="lg" variant="outline" className="border-ink/20 bg-ink/8 text-ink hover:bg-ink/14">
             {data.secondaryButton}
           </Button>
         </motion.div>

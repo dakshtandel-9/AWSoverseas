@@ -24,19 +24,19 @@ export function AppFeatures({ data, eyebrow }: { data: Data; eyebrow: string }) 
             <Badge tone="light">{eyebrow}</Badge>
           </Reveal>
           <Reveal direction="up" delay={0.05}>
-            <h2 className="mt-5 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#ffffff" }}>
+            <h2 className="mt-5 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#01214a" }}>
               {data.title}
             </h2>
           </Reveal>
           <Reveal direction="up" delay={0.1}>
-            <p className="mt-5 text-lg leading-relaxed text-brand-100/75 text-pretty">
+            <p className="mt-5 text-lg leading-relaxed text-ink/75 text-pretty">
               {data.description}
             </p>
           </Reveal>
           <Reveal direction="up" delay={0.15}>
             <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {data.features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-brand-100/90">
+                <li key={f} className="flex items-center gap-3 text-ink/90">
                   <span className="grid size-6 shrink-0 place-items-center rounded-full bg-accent-500/20 text-accent-300">
                     <Check className="size-3.5" />
                   </span>

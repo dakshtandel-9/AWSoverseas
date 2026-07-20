@@ -90,7 +90,7 @@ export function ContactChannels({
         href={whatsapp.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-[#000c1a] p-6 transition-transform duration-300 hover:-translate-y-0.5"
+        className="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-[#CFE8FF] p-6 transition-transform duration-300 hover:-translate-y-0.5"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -99,16 +99,16 @@ export function ContactChannels({
         <div
           className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full blur-[60px]"
           aria-hidden
-          style={{ background: "rgba(172,32,56,0.3)" }}
+          style={{ background: "rgba(172,32,56,0.22)" }}
         />
         <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#d72846]/15 text-[#e05c72]">
           <MessageCircle className="size-6" />
         </span>
         <div className="relative min-w-0 flex-1">
-          <p className="text-sm font-bold text-white">{whatsapp.title}</p>
-          <p className="mt-0.5 text-xs leading-snug text-white/55">{whatsapp.description}</p>
+          <p className="text-sm font-bold text-ink">{whatsapp.title}</p>
+          <p className="mt-0.5 text-xs leading-snug text-ink/55">{whatsapp.description}</p>
         </div>
-        <ArrowUpRight className="relative size-4 shrink-0 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#e05c72]" />
+        <ArrowUpRight className="relative size-4 shrink-0 text-ink/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#e05c72]" />
       </motion.a>
 
       {/* Business hours */}

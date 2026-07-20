@@ -31,15 +31,15 @@ export function FaqCta({ data }: { data: Data }) {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#ffffff" }}>
+        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#01214a" }}>
           {data.title}
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-white/60 sm:text-lg">{data.description}</p>
+        <p className="mt-4 text-base leading-relaxed text-ink/60 sm:text-lg">{data.description}</p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href="/contact" size="lg" variant="secondary">
             {data.primaryButton} <ArrowRight className="size-4" />
           </Button>
-          <Button href="/quote" size="lg" variant="ghost" className="text-white hover:bg-white/10">
+          <Button href="/quote" size="lg" variant="ghost">
             {data.secondaryButton}
           </Button>
         </div>

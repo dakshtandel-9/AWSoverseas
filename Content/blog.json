@@ -1,8 +1,8 @@
 {
     "page": "Blog",
     "meta": {
-        "title": "Shipping Blog | AWSOverseas",
-        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global shipping from AWSOverseas."
+        "title": "Shipping Blog | AWS Overseas",
+        "description": "Explore the latest insights on international shipping, freight forwarding, customs clearance, import & export, warehousing, and global shipping from AWS Overseas."
     },
     "hero": {
         "badge": "Global Trade & Sourcing Insights",
@@ -105,7 +105,7 @@
         "description": "Receive sourcing updates, export opportunities, shipping insights and international trade news.",
         "placeholder": "Enter your email address",
         "buttonText": "Subscribe",
-        "successMessage": "Thank you for subscribing to the AWSOverseas newsletter!",
+        "successMessage": "Thank you for subscribing to the AWS Overseas newsletter!",
         "privacyText": "We respect your privacy. Your email will never be shared with third parties."
     }
 }

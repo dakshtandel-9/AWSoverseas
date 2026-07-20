@@ -22,7 +22,7 @@ const TONE = {
   default: "bg-surface",
   soft: "bg-surface-soft",
   tint: "bg-surface-tint",
-  ink: "bg-brand-950 text-white",
+  ink: "bg-[#CFE8FF] text-ink",
 };
 
 /** A full-bleed section band with an inner Container. */

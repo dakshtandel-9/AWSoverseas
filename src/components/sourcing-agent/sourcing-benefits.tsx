@@ -48,13 +48,13 @@ export function SourcingBenefits({ data }: { data: Data }) {
           <Reveal direction="up" delay={0.05}>
             <h2
               className="text-balance text-3xl font-bold sm:text-4xl lg:text-[2.75rem]"
-              style={{ color: "#ffffff" }}
+              style={{ color: "#01214a" }}
             >
               {data.title}
             </h2>
           </Reveal>
           <Reveal direction="up" delay={0.1}>
-            <p className="text-pretty text-base leading-relaxed text-white/60 sm:text-lg">
+            <p className="text-pretty text-base leading-relaxed text-ink/60 sm:text-lg">
               {data.subtitle}
             </p>
           </Reveal>
@@ -70,8 +70,8 @@ export function SourcingBenefits({ data }: { data: Data }) {
                 key={item.title}
                 className="rounded-2xl border p-7"
                 style={{
-                  background: isLast ? "rgba(15,173,232,0.08)" : "rgba(255,255,255,0.03)",
-                  borderColor: isLast ? "rgba(15,173,232,0.35)" : "rgba(255,255,255,0.1)",
+                  background: isLast ? "rgba(15,173,232,0.12)" : "rgba(255,255,255,0.55)",
+                  borderColor: isLast ? "rgba(15,173,232,0.35)" : "rgba(1,33,74,0.1)",
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -81,19 +81,19 @@ export function SourcingBenefits({ data }: { data: Data }) {
                 <span
                   className="grid size-12 place-items-center rounded-xl"
                   style={{
-                    background: "rgba(15,173,232,0.12)",
-                    border: "1px solid rgba(15,173,232,0.25)",
+                    background: "rgba(15,173,232,0.14)",
+                    border: "1px solid rgba(15,173,232,0.3)",
                   }}
                 >
-                  <Icon className="size-5 text-[#5fd4f0]" strokeWidth={1.6} />
+                  <Icon className="size-5 text-[#0891b2]" strokeWidth={1.6} />
                 </span>
                 <h3
                   className="mt-5 text-base font-bold"
-                  style={{ color: isLast ? "#5fd4f0" : "#ffffff" }}
+                  style={{ color: isLast ? "#0891b2" : "#01214a" }}
                 >
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{item.description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink/60">{item.description}</p>
               </motion.div>
             );
           })}
