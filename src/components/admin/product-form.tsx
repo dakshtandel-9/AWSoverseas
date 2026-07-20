@@ -28,8 +28,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
 
   return (
     <div className="mt-8 flex flex-col gap-8">
-      {/* Rendered outside the product-save <form> — same isolation reason as
-          the blog cover-image field: independent server action, no nested forms. */}
+      {/* Rendered outside the product-save <form>: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
         <h2 className="text-sm font-bold uppercase tracking-wide text-[#01214a]">Product photo</h2>
         <div className="mt-5">

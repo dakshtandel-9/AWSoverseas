@@ -10,7 +10,7 @@ const initialState: ImageUploadState = {};
 /**
  * Standalone upload form (not nested inside the product form) so its own
  * useActionState dispatch can never collide with the product-save action on
- * the same page — mirrors src/components/admin/image-upload-field.tsx (blog).
+ * the same page.
  */
 export function ProductImageUploadField({
   value,

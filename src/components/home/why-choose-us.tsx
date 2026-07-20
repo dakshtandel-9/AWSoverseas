@@ -38,7 +38,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
       {/* Heading */}
       <Reveal direction="up">
         <div className="relative max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Why AWSOverseas</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Why AWS Overseas</p>
           <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem]">
             {data.title}
           </h2>

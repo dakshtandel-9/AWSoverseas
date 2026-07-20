@@ -16,7 +16,7 @@ const REVIEWS = [
     color: "#01214a",
     rating: 5,
     quote:
-      "AWSOverseas found and verified three manufacturers for us in under two weeks, then caught a spec mismatch during pre-shipment inspection that would have cost us the whole order. That's the kind of sourcing support we couldn't get from a regular forwarder.",
+      "AWS Overseas found and verified three manufacturers for us in under two weeks, then caught a spec mismatch during pre-shipment inspection that would have cost us the whole order. That's the kind of sourcing support we couldn't get from a regular forwarder.",
   },
   {
     name: "Priya Mehta",
@@ -26,7 +26,7 @@ const REVIEWS = [
     color: "#0a6ab5",
     rating: 5,
     quote:
-      "We switched from our previous forwarder after constant shipment delays. AWSOverseas delivered our textile cargo 3 days ahead of schedule, and the live tracking kept us informed every step of the way.",
+      "We switched from our previous forwarder after constant shipment delays. AWS Overseas delivered our textile cargo 3 days ahead of schedule, and the live tracking kept us informed every step of the way.",
   },
   {
     name: "David Okonkwo",

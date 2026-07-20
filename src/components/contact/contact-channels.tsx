@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 
 type InfoItem = { type: string; value: string };
 type Schedule = { day: string; time: string };
-type Location = { office: string; address: string; city: string; country: string };
+type Location = { office: string; address: string; city?: string; country?: string };
 
 const INFO_ICONS: Record<string, typeof Phone> = {
   Phone,
@@ -77,7 +77,7 @@ export function ContactChannels({
                   {location.office}
                 </p>
                 <p className="text-sm font-semibold leading-snug text-[#01214a]">
-                  {location.address}, {location.city}, {location.country}
+                  {[location.address, location.city, location.country].filter(Boolean).join(", ")}
                 </p>
               </div>
             </li>

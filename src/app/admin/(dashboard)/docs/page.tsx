@@ -5,7 +5,6 @@ import {
   Boxes,
   ShoppingBag,
   MessageSquareText,
-  Newspaper,
   Mail,
   FileText,
   Wallet,
@@ -16,7 +15,7 @@ import {
 import { DocsToc, type DocSection } from "@/components/admin/docs-toc";
 import { DocSection as Section, Callout, StepList, FieldTable, Badge, Kbd } from "@/components/admin/docs-kit";
 
-export const metadata: Metadata = { title: "Documentation | Admin | AWSOverseas", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Documentation | Admin | AWS Overseas", robots: { index: false, follow: false } };
 
 const SECTIONS: DocSection[] = [
   { id: "overview", label: "Overview" },
@@ -27,7 +26,6 @@ const SECTIONS: DocSection[] = [
   { id: "enquiries", label: "Enquiries" },
   { id: "quotes", label: "Quote requests & tracking" },
   { id: "wallet", label: "Referral wallet & withdrawals" },
-  { id: "blog", label: "Blog" },
   { id: "messages", label: "Messages" },
   { id: "settings", label: "Site settings" },
   { id: "accounts", label: "Accounts & access" },
@@ -42,7 +40,7 @@ export default function AdminDocsPage() {
       <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Documentation</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
         Everything this admin panel does and how to run it day to day — written for whoever is operating
-        AWSoverseas, not for a developer. Every page in the sidebar has a matching section below.
+        AWS Overseas, not for a developer. Every page in the sidebar has a matching section below.
       </p>
 
       <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
@@ -55,11 +53,11 @@ export default function AdminDocsPage() {
             id="overview"
             eyebrow="Start here"
             title="What this panel is for"
-            intro="This is the control room for the AWSoverseas website. Everything a visitor sees or submits on the public site — the product catalog, blog posts, contact details, quote and enquiry forms — is managed from here. Nothing on the public site is hardcoded; it all reads from what's entered in this panel."
+            intro="This is the control room for the AWS Overseas website. Everything a visitor sees or submits on the public site — the product catalog, contact details, quote and enquiry forms — is managed from here. Nothing on the public site is hardcoded; it all reads from what's entered in this panel."
           >
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                { icon: Boxes, title: "Catalog & content", detail: "Products and blog posts shown on the public site are created and edited here." },
+                { icon: Boxes, title: "Catalog & content", detail: "Products shown on the public site are created and edited here." },
                 { icon: MessageSquareText, title: "Customer requests", detail: "Orders, enquiries, quote requests and contact messages all land in an inbox here to action." },
                 { icon: Users, title: "Customer accounts", detail: "New sign-ups wait for approval before they can place an order or request a quote." },
                 { icon: Wallet, title: "Referral payouts", detail: "Customers earn wallet credit for referrals; payout requests are approved here." },
@@ -91,7 +89,7 @@ export default function AdminDocsPage() {
             id="dashboard"
             eyebrow="/admin"
             title="Dashboard"
-            intro="The landing page after login. Seven tiles, each a live count pulled straight from the database — nothing here is cached or delayed."
+            intro="The landing page after login. Six tiles, each a live count pulled straight from the database — nothing here is cached or delayed."
           >
             <FieldTable
               columns={["Tile", "What it counts"]}
@@ -102,7 +100,6 @@ export default function AdminDocsPage() {
                 ["Unread messages", "Contact form submissions not yet opened — see Messages."],
                 ["Unread quote requests", "Quote form submissions not yet opened — see Quote requests."],
                 ["Pending withdrawals", "Wallet payout requests awaiting a decision — see Referral wallet."],
-                ["Published blog posts", "Posts currently live on the public /blog page."],
               ]}
             />
             <p className="text-sm leading-relaxed text-[#5b6b82]">
@@ -280,35 +277,6 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
-            id="blog"
-            eyebrow="/admin/blog"
-            title="Blog"
-            intro="Powers the public /blog page and each article's own page. Posts are structured, not free-form HTML: a title, category, excerpt, cover image, a table of contents, a list of tagged sections, and tags."
-          >
-            <StepList
-              steps={[
-                { title: "Click “New post”", detail: "Fill in title, category, excerpt (the summary shown on the blog list), read time, author, and tags." },
-                {
-                  title: "Upload the cover image first",
-                  detail: "Same rule as products — the image uploader is separate from the main form; wait for the thumbnail before saving.",
-                },
-                {
-                  title: "Add sections",
-                  detail: "Each section is a heading + body of content — these become both the article body and the auto-generated table of contents.",
-                },
-                {
-                  title: "Featured post",
-                  detail: "Only one post can be featured at a time — marking a new post as featured automatically un-features the previous one. The featured post gets the prominent slot on the blog listing page.",
-                },
-                {
-                  title: "Published toggle",
-                  detail: "Unpublished posts are saved as drafts and never appear on the public site or count toward the dashboard's “Published blog posts” tile.",
-                },
-              ]}
-            />
-          </Section>
-
-          <Section
             id="messages"
             eyebrow="/admin/messages"
             title="Messages"
@@ -382,7 +350,6 @@ export default function AdminDocsPage() {
                 { icon: Mail, text: "Contact page form (anyone) → Messages inbox." },
                 { icon: Users, text: "Public sign-up + profile → Users, gated pending → approved before Orders/Quotes unlock." },
                 { icon: Wallet, text: "Approved Order/Quote from a referred customer → credit the referrer's wallet → they request a Withdrawal." },
-                { icon: Newspaper, text: "A published post in Blog appears on the public /blog page and its own article page." },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
                   <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#01214a]">
@@ -397,7 +364,7 @@ export default function AdminDocsPage() {
                 <ImageIcon className="size-4" />
               </span>
               <p className="text-sm leading-relaxed text-[#5b6b82]">
-                Product photos, blog cover images, and customer passport uploads are all stored with the same image
+                Product photos and customer passport uploads are all stored with the same image
                 hosting service, separate from the main database — which is why an image upload always finishes
                 (and shows a thumbnail) as its own step before the rest of a form can be saved.
               </p>

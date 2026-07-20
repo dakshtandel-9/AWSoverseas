@@ -177,10 +177,6 @@
             {
                 "title": "Door Delivery",
                 "description": "Customs clearance and final-mile delivery handled end-to-end, right to your destination."
-            },
-            {
-                "title": "Cargo Tracking",
-                "description": "Monitor sourcing status and shipment location in real time from a single dashboard."
             }
         ]
     },
@@ -298,11 +294,6 @@
         "title": "Products We Source & Export",
         "description": "We source products directly from trusted Indian manufacturers and export them worldwide — browse a preview below, or send an enquiry on anything you don't see listed.",
         "button": "View All Products"
-    },
-    "blogs": {
-        "title": "Global Trade & Product Sourcing Insights",
-        "description": "Stay updated with supplier sourcing guides, export documentation, shipping regulations, and trade news.",
-        "button": "View All Articles"
     },
     "faq": {
         "title": "Frequently Asked Questions",

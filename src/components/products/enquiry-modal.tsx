@@ -1,10 +1,10 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, AlertCircle, Check, Clock3, ShieldAlert, UserRound, X } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, Clock3, Paperclip, ShieldAlert, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
 
@@ -97,6 +97,7 @@ export function EnquiryModal({
 }) {
   const [state, formAction, pending] = useActionState(submitProductEnquiryAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
+  const [attachmentName, setAttachmentName] = useState("");
   const done = Boolean(state.success);
 
   const isOrder = requestType === "order";
@@ -212,31 +213,17 @@ export function EnquiryModal({
                   <input type="hidden" name="product-id" value={productId} />
                   <input type="hidden" name="product-name" value={productName} />
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#01214a]">
-                        First name <span className="text-[#8e1b2e]">*</span>
-                      </label>
-                      <input
-                        name="first-name"
-                        required
-                        placeholder="First name"
-                        defaultValue={auth.firstName}
-                        className={inputClasses}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#01214a]">
-                        Last name <span className="text-[#8e1b2e]">*</span>
-                      </label>
-                      <input
-                        name="last-name"
-                        required
-                        placeholder="Last name"
-                        defaultValue={auth.lastName}
-                        className={inputClasses}
-                      />
-                    </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-sm font-semibold text-[#01214a]">
+                      Name <span className="text-[#8e1b2e]">*</span>
+                    </label>
+                    <input
+                      name="name"
+                      required
+                      placeholder="Your name"
+                      defaultValue={[auth.firstName, auth.lastName].filter(Boolean).join(" ")}
+                      className={inputClasses}
+                    />
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -275,6 +262,28 @@ export function EnquiryModal({
                       rows={3}
                       placeholder={`Quantity, specs, or anything else about ${productName}…`}
                       className={cn(inputClasses, "resize-none")}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-sm font-semibold text-[#01214a]">
+                      Attach an image{" "}
+                      <span className="font-normal text-[#94a3b8]">(optional)</span>
+                    </label>
+                    <label
+                      htmlFor="attachment"
+                      className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3 text-sm text-[#5b6b82] transition-colors hover:border-[#d72846]"
+                    >
+                      <Paperclip className="size-4 shrink-0 text-[#94a3b8]" />
+                      <span className="truncate">{attachmentName || "Choose a photo…"}</span>
+                    </label>
+                    <input
+                      id="attachment"
+                      type="file"
+                      name="attachment"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => setAttachmentName(e.target.files?.[0]?.name ?? "")}
                     />
                   </div>
 

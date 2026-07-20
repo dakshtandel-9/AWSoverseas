@@ -4,22 +4,19 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { NAV_LINKS, SERVICE_LINKS } from "@/lib/site";
-import { iconFor } from "@/lib/icons";
+import { NAV_LINKS } from "@/lib/site";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { NavbarUser } from "@/components/auth/navbar-user";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Close menus on route change.
   useEffect(() => {
-    setMegaOpen(false);
     setMobileOpen(false);
   }, [pathname]);
 
@@ -42,82 +39,16 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-            {NAV_LINKS.map((link) =>
-              "mega" in link && link.mega ? (
-                <div
-                  key={link.href}
-                  className="relative"
-                  onMouseEnter={() => setMegaOpen(true)}
-                  onMouseLeave={() => setMegaOpen(false)}
-                >
-                  <Link
-                    href={link.href}
-                    data-active={isActive(link.href)}
-                    className="nav-underline flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
-                  >
-                    {link.label}
-                    <ChevronDown
-                      className={cn(
-                        "size-4 transition-transform duration-300",
-                        megaOpen && "rotate-180",
-                      )}
-                    />
-                  </Link>
-                  <AnimatePresence>
-                    {megaOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-4"
-                      >
-                        <div className="bg-white grid grid-cols-2 gap-1 rounded-3xl border border-line p-3 shadow-lift">
-                          {SERVICE_LINKS.map((s) => {
-                            const Icon = iconFor(s.title);
-                            return (
-                              <Link
-                                key={s.slug}
-                                href={`/services/${s.slug}`}
-                                className="group flex items-start gap-3 rounded-2xl p-3 transition-colors hover:bg-brand-50"
-                              >
-                                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700 ring-1 ring-brand-100 transition-colors group-hover:bg-brand-900 group-hover:text-white">
-                                  <Icon className="size-5" />
-                                </span>
-                                <span className="min-w-0">
-                                  <span className="block text-sm font-semibold text-ink">
-                                    {s.title}
-                                  </span>
-                                  <span className="line-clamp-2 block text-xs leading-relaxed text-muted">
-                                    {s.description}
-                                  </span>
-                                </span>
-                              </Link>
-                            );
-                          })}
-                          <Link
-                            href="/services"
-                            className="col-span-2 mt-1 flex items-center justify-between rounded-2xl bg-brand-900 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
-                          >
-                            View all services
-                            <ArrowRight className="size-4" />
-                          </Link>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  data-active={isActive(link.href)}
-                  className="nav-underline rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
-                >
-                  {link.label}
-                </Link>
-              ),
-            )}
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                data-active={isActive(link.href)}
+                className="nav-underline rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
@@ -153,74 +84,20 @@ export function Navbar() {
               className="flex h-[calc(100dvh-88px)] flex-col gap-1 overflow-y-auto px-5 py-6"
               aria-label="Mobile"
             >
-              {NAV_LINKS.map((link) =>
-                "mega" in link && link.mega ? (
-                  <div key={link.href}>
-                    <div
-                      className={cn(
-                        "flex items-center justify-between rounded-2xl text-lg font-semibold transition-colors",
-                        isActive(link.href)
-                          ? "bg-brand-50 text-brand-900"
-                          : "text-ink-soft",
-                      )}
-                    >
-                      <Link href={link.href} className="flex-1 px-4 py-3.5">
-                        {link.label}
-                      </Link>
-                      <button
-                        type="button"
-                        aria-label={megaOpen ? "Collapse services" : "Expand services"}
-                        aria-expanded={megaOpen}
-                        onClick={() => setMegaOpen((v) => !v)}
-                        className="grid size-11 shrink-0 place-items-center"
-                      >
-                        <ChevronDown
-                          className={cn(
-                            "size-4 transition-transform duration-300",
-                            megaOpen && "rotate-180",
-                          )}
-                        />
-                      </button>
-                    </div>
-                    <AnimatePresence initial={false}>
-                      {megaOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="mt-1 grid grid-cols-2 gap-2 rounded-2xl bg-surface-soft p-2">
-                            {SERVICE_LINKS.map((s) => (
-                              <Link
-                                key={s.slug}
-                                href={`/services/${s.slug}`}
-                                className="rounded-xl px-3 py-2 text-sm font-medium text-muted hover:bg-white hover:text-brand-900"
-                              >
-                                {s.title}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
-                      isActive(link.href)
-                        ? "bg-brand-50 text-brand-900"
-                        : "text-ink-soft hover:bg-surface-soft",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
+                    isActive(link.href)
+                      ? "bg-brand-50 text-brand-900"
+                      : "text-ink-soft hover:bg-surface-soft",
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <Button href="/quote" variant="primary" size="lg" magnetic={false}>
                   Request a Quote <ArrowRight className="size-4" />

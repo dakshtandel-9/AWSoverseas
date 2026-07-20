@@ -20,7 +20,7 @@ const CONTACT_JSONLD = {
 export default async function Page() {
   const settings = await getSiteSettings();
   const location = settings.address
-    ? { office: contact.officeLocations?.locations?.[0]?.office ?? "Head Office", address: settings.address, city: "", country: "" }
+    ? { office: contact.officeLocations?.locations?.[0]?.office ?? "Head Office", address: settings.address }
     : contact.officeLocations?.locations?.[0];
 
   const contactInfoItems = [

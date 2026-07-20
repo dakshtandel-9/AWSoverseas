@@ -49,7 +49,7 @@ export function VoidManifest() {
             STATUS: NO&nbsp;RECORD
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
-            AWSOVERSEAS&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
+            AWS OVERSEAS&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
           </span>
         </motion.div>
 

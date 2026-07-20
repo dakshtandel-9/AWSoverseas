@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FOOTER_NAV, SITE } from "@/lib/site";
-import { blog } from "@/lib/content";
 import { getSiteSettings } from "@/lib/site-settings";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
@@ -25,16 +24,22 @@ const FOOTER_SERVICES = [
 ];
 
 const FOOTER_RESOURCES = [
-  { label: "Export Guide", href: "/blog" },
   { label: "Product Catalog", href: "/products" },
-  { label: "Industry Insights", href: "/blog" },
   { label: "FAQ", href: "/faq" },
 ];
+
+const NEWSLETTER = {
+  title: "Stay Updated on Global Trade, Product Sourcing & Export Opportunities",
+  description: "Supplier sourcing guides, export tips and shipping updates — straight to your inbox.",
+  placeholder: "Enter your email address",
+  buttonText: "Subscribe",
+  successMessage: "Thank you for subscribing to the AWS Overseas newsletter!",
+  privacyText: "We respect your privacy. Your email will never be shared with third parties.",
+};
 
 export async function Footer() {
   const settings = await getSiteSettings();
   const { phone1, phone2, email, address } = settings;
-  const newsletter = blog.newsletter;
   const year = new Date().getFullYear();
 
   return (
@@ -46,20 +51,15 @@ export async function Footer() {
         {/* Newsletter band */}
         <div className="grid gap-8 border-b border-ink/10 py-14 lg:grid-cols-2 lg:items-center">
           <div>
-            <h3 className="text-2xl font-bold !text-ink sm:text-3xl">
-              {newsletter?.title ?? "Stay Updated on Global Trade, Product Sourcing & Export Opportunities"}
-            </h3>
-            <p className="mt-3 max-w-md text-ink/70">
-              {newsletter?.description ??
-                "Supplier sourcing guides, export tips and shipping updates — straight to your inbox."}
-            </p>
+            <h3 className="text-2xl font-bold !text-ink sm:text-3xl">{NEWSLETTER.title}</h3>
+            <p className="mt-3 max-w-md text-ink/70">{NEWSLETTER.description}</p>
           </div>
           <div className="lg:justify-self-end">
             <NewsletterForm
-              placeholder={newsletter?.placeholder ?? "Enter your email"}
-              buttonText={newsletter?.buttonText ?? "Subscribe"}
-              successText={newsletter?.successMessage ?? "You're subscribed. Welcome aboard!"}
-              privacyText={newsletter?.privacyText}
+              placeholder={NEWSLETTER.placeholder}
+              buttonText={NEWSLETTER.buttonText}
+              successText={NEWSLETTER.successMessage}
+              privacyText={NEWSLETTER.privacyText}
             />
           </div>
         </div>
@@ -69,7 +69,7 @@ export async function Footer() {
           <div className="lg:col-span-4">
             <Logo tone="dark" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
-              AWSOverseas is your trusted partner for product sourcing, supplier verification,
+              AWS Overseas is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>
@@ -101,7 +101,7 @@ export async function Footer() {
             </ul>
           </div>
 
-          <FooterColumn title="Services" className="lg:col-span-3">
+          <FooterColumn title="Services" className="lg:col-span-2">
             {FOOTER_SERVICES.map((s) => (
               <FooterLink key={s.label} href={s.href}>
                 {s.label}
@@ -165,7 +165,7 @@ function FooterColumn({
   return (
     <div className={className}>
       <h4 className="text-sm font-semibold uppercase tracking-wider !text-ink">{title}</h4>
-      <ul className="mt-5 space-y-3">{children}</ul>
+      <ul className="mt-3 space-y-3">{children}</ul>
     </div>
   );
 }
@@ -175,9 +175,8 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <Link
         href={href}
-        className="group inline-flex items-center gap-1.5 text-sm text-ink/70 transition-colors hover:text-ink"
+        className="inline-flex items-center text-sm text-ink/70 transition-colors hover:text-ink"
       >
-        <ArrowRight className="size-3 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
         {children}
       </Link>
     </li>

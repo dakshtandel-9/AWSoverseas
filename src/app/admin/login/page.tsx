@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Logo } from "@/components/ui/logo";
 import { LoginForm } from "@/components/admin/login-form";
 
-export const metadata: Metadata = { title: "Admin Login | AWSOverseas", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Admin Login | AWS Overseas", robots: { index: false, follow: false } };
 
 export default function AdminLoginPage() {
   return (

@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/** URL-safe slug from a title (blog posts ship without slugs in JSON). */
+/** URL-safe slug from a title. */
 export function slugify(input: string) {
   return input
     .toLowerCase()

@@ -366,7 +366,7 @@ export function ProfileSetupForm({
           <div className="mt-6 max-w-xs">
             <input
               name="referral-code"
-              placeholder="AWS-XXXXXX (optional)"
+              placeholder="XXXXXX (optional)"
               autoComplete="off"
               spellCheck={false}
               className={cn(inputClasses, "font-mono uppercase placeholder:normal-case placeholder:font-sans")}

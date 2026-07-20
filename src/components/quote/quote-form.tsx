@@ -8,11 +8,21 @@ import { ArrowRight, AlertCircle, Check, ChevronDown, PackageSearch } from "luci
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 import { CountrySelect } from "@/components/quote/country-select";
+import { INDIA_STATES } from "@/lib/india-states";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 type Field = {
   label: string;
-  type: "text" | "email" | "tel" | "date" | "number" | "select" | "textarea" | "country-select";
+  type:
+    | "text"
+    | "email"
+    | "tel"
+    | "date"
+    | "number"
+    | "select"
+    | "textarea"
+    | "country-select"
+    | "state-select";
   placeholder?: string;
   required?: boolean;
   options?: string[];
@@ -65,6 +75,19 @@ function FieldControl({
         required={required}
         placeholder={field.placeholder}
         defaultValue={defaultValue}
+      />
+    );
+  }
+
+  if (field.type === "state-select") {
+    return (
+      <CountrySelect
+        name={name}
+        required={required}
+        placeholder={field.placeholder}
+        defaultValue={defaultValue}
+        options={INDIA_STATES}
+        noResultsLabel="states"
       />
     );
   }

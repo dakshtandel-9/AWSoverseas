@@ -1,9 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 
 /**
- * Anon-key Supabase client for public reads (RLS-scoped: published blog
- * posts + site_settings only). Safe to use from Server Components that
- * render public pages.
+ * Anon-key Supabase client for public reads (RLS-scoped: active products +
+ * site_settings only). Safe to use from Server Components that render
+ * public pages.
  */
 export function supabasePublic() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;

@@ -34,7 +34,7 @@ export function NewsletterForm({
             key="done"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-4 text-sm font-medium text-white ring-1 ring-white/15"
+            className="flex items-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-medium text-ink ring-1 ring-ink/10"
           >
             <Check className="size-4 text-accent-400" /> {successText}
           </motion.p>
@@ -46,7 +46,7 @@ export function NewsletterForm({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex items-center gap-2 rounded-full bg-white/10 p-1.5 ring-1 ring-white/15 focus-within:ring-accent-400"
+            className="flex items-center gap-2 rounded-full bg-white p-1.5 ring-1 ring-ink/15 focus-within:ring-accent-400"
           >
             <label htmlFor={id} className="sr-only">
               Email address
@@ -57,7 +57,7 @@ export function NewsletterForm({
               type="email"
               required
               placeholder={placeholder}
-              className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-brand-100/50 focus:outline-none"
+              className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:outline-none"
             />
             <button
               type="submit"
@@ -76,7 +76,7 @@ export function NewsletterForm({
         </p>
       )}
       {privacyText && !state.success && !state.error && (
-        <p className="mt-3 text-xs text-brand-100/50">{privacyText}</p>
+        <p className="mt-3 text-xs text-ink/50">{privacyText}</p>
       )}
     </div>
   );

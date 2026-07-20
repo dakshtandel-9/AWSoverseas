@@ -22,14 +22,14 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL("https://awsoverseas.com"),
   title: {
-    default: home.meta?.title ?? "AWSOverseas | Global Shipping Beyond Borders",
-    template: "%s | AWSOverseas",
+    default: home.meta?.title ?? "AWS Overseas | Global Shipping Beyond Borders",
+    template: "%s | AWS Overseas",
   },
   description: home.meta?.description,
   keywords: home.meta?.keywords,
   openGraph: {
     type: "website",
-    siteName: "AWSOverseas",
+    siteName: "AWS Overseas",
     title: home.meta?.title,
     description: home.meta?.description,
   },

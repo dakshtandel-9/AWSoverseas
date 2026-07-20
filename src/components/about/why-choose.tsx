@@ -20,7 +20,7 @@ export function WhyChoose({ data }: { data: Data }) {
         <Reveal direction="up">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-              The Case for AWSOverseas
+              The Case for AWS Overseas
             </p>
             <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}

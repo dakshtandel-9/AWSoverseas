@@ -39,22 +39,6 @@
                 "required": true
             },
             {
-                "label": "Service Required",
-                "type": "select",
-                "options": [
-                    "Air Freight",
-                    "Sea Freight",
-                    "Import Services",
-                    "Export Services",
-                    "FCL Shipping",
-                    "LCL Shipping",
-                    "Customs Clearance",
-                    "Warehousing",
-                    "General Inquiry"
-                ],
-                "required": true
-            },
-            {
                 "label": "Message",
                 "type": "textarea",
                 "placeholder": "Tell us about your shipping requirements...",

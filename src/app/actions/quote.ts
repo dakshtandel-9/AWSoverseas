@@ -22,7 +22,7 @@ export async function submitQuoteAction(
 
   const serviceType = String(formData.get("service-type") ?? "").trim();
   const shipmentType = String(formData.get("shipment-type") ?? "").trim();
-  const originCountry = String(formData.get("origin-country") ?? "").trim();
+  const originCountry = String(formData.get("origin-state") ?? "").trim();
   const destinationCountry = String(formData.get("destination-country") ?? "").trim();
   const fullName = String(formData.get("full-name") ?? "").trim();
   const companyName = String(formData.get("company-name") ?? "").trim();

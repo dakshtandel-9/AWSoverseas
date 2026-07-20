@@ -3,6 +3,7 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
+import { uploadEnquiryAttachment } from "@/lib/cloudinary";
 
 export type RequestType = "enquiry" | "order";
 
@@ -29,13 +30,13 @@ export async function submitProductEnquiryAction(
 
   const productId = String(formData.get("product-id") ?? "").trim();
   const productName = String(formData.get("product-name") ?? "").trim();
-  const firstName = String(formData.get("first-name") ?? "").trim();
-  const lastName = String(formData.get("last-name") ?? "").trim();
+  const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const attachment = formData.get("attachment");
 
-  if (!productName || !firstName || !lastName || !email || !phone) {
+  if (!productName || !name || !email || !phone) {
     return { error: "Please fill in all required fields." };
   }
 
@@ -43,17 +44,27 @@ export async function submitProductEnquiryAction(
     return { error: "This form isn't connected yet. Please try again later." };
   }
 
+  let attachmentUrl = "";
+  if (attachment instanceof File && attachment.size > 0) {
+    try {
+      attachmentUrl = await uploadEnquiryAttachment(attachment);
+    } catch {
+      return { error: "Something went wrong uploading your image. Please try again." };
+    }
+  }
+
   const db = supabaseAdmin();
   const { error } = await db.from("product_enquiries").insert({
     request_type: requestType,
     product_id: productId || null,
     product_name: productName,
-    first_name: firstName,
-    last_name: lastName,
-    full_name: `${firstName} ${lastName}`.trim(),
+    first_name: name,
+    last_name: "",
+    full_name: name,
     email,
     phone,
     message,
+    attachment_url: attachmentUrl,
     user_id: account?.user.id ?? null,
   });
 

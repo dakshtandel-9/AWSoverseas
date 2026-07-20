@@ -77,14 +77,43 @@ export async function getAccount(): Promise<Account | null> {
   return profile ? { user, profile } : null;
 }
 
-/** Unambiguous alphabet (no 0/O, 1/I/L) so codes survive being read aloud. */
-const CODE_ALPHABET = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+/** Unambiguous alphabets (no 0/O, 1/I/L) so codes survive being read aloud. */
+const CODE_LETTERS = "ABCDEFGHJKMNPQRSTUVWXYZ";
+const CODE_DIGITS = "23456789";
 
-function generateReferralCode(): string {
-  let code = "";
-  const bytes = crypto.getRandomValues(new Uint8Array(6));
-  for (const b of bytes) code += CODE_ALPHABET[b % CODE_ALPHABET.length];
-  return `AWS-${code}`;
+/** ASCII letters from name/email, uppercased, ambiguous chars (O/I/L) folded to nearby unambiguous ones. */
+function nameLetters(...sources: string[]): string {
+  const fold: Record<string, string> = { O: "Q", I: "J", L: "K" };
+  return sources
+    .join("")
+    .toUpperCase()
+    .normalize("NFKD")
+    .replace(/[^A-Z]/g, "")
+    .split("")
+    .map((c) => fold[c] ?? c)
+    .join("");
+}
+
+/**
+ * 6-char code: 4 letters + 2 digits, e.g. "DKSH47". The letters are drawn
+ * from the user's name (falling back to their email) so the code reads as
+ * personal; the 2 random digits provide enough entropy that collisions are
+ * rare, and `createProfileForUser` re-rolls on the (still possible)
+ * collision so every stored code stays unique.
+ */
+function generateReferralCode(firstName: string, lastName: string, email: string): string {
+  const base = nameLetters(firstName, lastName) || nameLetters(email.split("@")[0] ?? "");
+  let letters = base.slice(0, 4);
+  if (letters.length < 4) {
+    const bytes = crypto.getRandomValues(new Uint8Array(4 - letters.length));
+    for (const b of bytes) letters += CODE_LETTERS[b % CODE_LETTERS.length];
+  }
+
+  let digits = "";
+  const digitBytes = crypto.getRandomValues(new Uint8Array(2));
+  for (const b of digitBytes) digits += CODE_DIGITS[b % CODE_DIGITS.length];
+
+  return `${letters}${digits}`;
 }
 
 /** Insert the initial profile row, retrying on referral-code collisions. */
@@ -103,7 +132,7 @@ async function createProfileForUser(user: User): Promise<UserProfile | null> {
         email: user.email ?? "",
         first_name: firstName,
         last_name: lastName,
-        referral_code: generateReferralCode(),
+        referral_code: generateReferralCode(firstName, lastName, user.email ?? ""),
       })
       .select("*")
       .single();

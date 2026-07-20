@@ -2,7 +2,7 @@
 import { individualService } from "@/lib/content";
 
 export const SITE = {
-  name: "AWSOverseas",
+  name: "AWS Overseas",
   tagline: "Global Shipping Beyond Borders",
   url: "https://awsoverseas.com",
 };
@@ -22,7 +22,7 @@ export const SERVICE_LINKS: ServiceLink[] = (individualService.services ?? []).m
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services", mega: true },
+  { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Sourcing Partner", href: "/sourcing-agent" },
   { label: "Referral Rewards", href: "/referral-rewards" },
@@ -40,7 +40,6 @@ export const FOOTER_NAV = {
     { label: "Request a Quote", href: "/quote" },
   ],
   Resources: [
-    { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
     { label: "Track Shipment", href: "/tracking" },
     { label: "Mobile App", href: "/mobile-app" },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Logo } from "@/components/ui/logo";
 import { AdminNav } from "@/components/admin/admin-nav";
 
-export const metadata: Metadata = { title: "Admin | AWSOverseas", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Admin | AWS Overseas", robots: { index: false, follow: false } };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (

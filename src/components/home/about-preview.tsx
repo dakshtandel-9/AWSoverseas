@@ -87,7 +87,7 @@ export function AboutPreview({
       {/* Eyebrow */}
       <div className="relative mx-auto mb-16 flex max-w-[1280px] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <div className="h-px flex-1 bg-[#e4e9f2]" />
-        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About AWSOverseas</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About AWS Overseas</span>
         <div className="h-px flex-1 bg-[#e4e9f2]" />
       </div>
 

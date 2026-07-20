@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState, useTransition } from "react";
 import {
   markEnquiryReadAction,
@@ -20,6 +21,7 @@ export type AdminOrder = {
   email: string;
   phone: string;
   message: string;
+  attachment_url?: string;
   is_read: boolean;
   created_at: string;
   quoted_price: number | null;
@@ -287,6 +289,25 @@ export function EnquiryRow({
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
               <p className="font-semibold text-[#01214a]">Message:</p>
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
+            </div>
+          )}
+          {item.attachment_url && (
+            <div className="mt-2 border-t border-[#e4e9f2] pt-3">
+              <p className="font-semibold text-[#01214a]">Attachment:</p>
+              <a
+                href={item.attachment_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block"
+              >
+                <Image
+                  src={item.attachment_url}
+                  alt="Enquiry attachment"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 rounded-lg border border-[#e4e9f2] object-cover"
+                />
+              </a>
             </div>
           )}
           <OrderDecisionSection

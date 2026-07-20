@@ -71,7 +71,7 @@ export function AppShowcase({
             <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/60" />
             <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-gradient-to-b from-[#f6f8fc] to-white">
               <div className="bg-[#CFE8FF] px-5 pb-5 pt-9 text-ink">
-                <p className="text-[11px] text-ink/70">AWSOverseas</p>
+                <p className="text-[11px] text-ink/70">AWS Overseas</p>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={current.key}

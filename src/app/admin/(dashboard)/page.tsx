@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { Mail, FileText, Newspaper, ArrowRight, MessageSquareText, ShoppingBag, Users, Wallet } from "lucide-react";
+import { Mail, FileText, ArrowRight, MessageSquareText, ShoppingBag, Users, Wallet } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 
 async function getCounts() {
   const db = supabaseAdmin();
-  const [messages, quotes, posts, orders, enquiries, pendingUsers, pendingWithdrawals] = await Promise.all([
+  const [messages, quotes, orders, enquiries, pendingUsers, pendingWithdrawals] = await Promise.all([
     db.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("quote_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
-    db.from("blog_posts").select("id", { count: "exact", head: true }).eq("published", true),
     db
       .from("product_enquiries")
       .select("id", { count: "exact", head: true })
@@ -26,7 +25,6 @@ async function getCounts() {
   return {
     unreadMessages: messages.count ?? 0,
     unreadQuotes: quotes.count ?? 0,
-    publishedPosts: posts.count ?? 0,
     unreadOrders: orders.count ?? 0,
     unreadEnquiries: enquiries.count ?? 0,
     pendingUsers: pendingUsers.count ?? 0,
@@ -41,7 +39,6 @@ export default async function AdminDashboardPage() {
     : {
         unreadMessages: 0,
         unreadQuotes: 0,
-        publishedPosts: 0,
         unreadOrders: 0,
         unreadEnquiries: 0,
         pendingUsers: 0,
@@ -84,12 +81,6 @@ export default async function AdminDashboardPage() {
       label: "Pending withdrawals",
       value: counts.pendingWithdrawals,
       icon: Wallet,
-    },
-    {
-      href: "/admin/blog",
-      label: "Published blog posts",
-      value: counts.publishedPosts,
-      icon: Newspaper,
     },
   ];
 

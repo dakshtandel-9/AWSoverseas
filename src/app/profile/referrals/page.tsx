@@ -9,7 +9,7 @@ import { ReferralStatusBadge } from "@/components/account/referral-status-badge"
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your referrals — AWSOverseas",
+  title: "Your referrals — AWS Overseas",
   robots: { index: false },
 };
 

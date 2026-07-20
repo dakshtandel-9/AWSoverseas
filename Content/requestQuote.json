@@ -35,8 +35,6 @@
         "type": "select",
         "options": [
           "Commercial Cargo",
-          "Personal Cargo",
-          "Documents",
           "Machinery",
           "Electronics",
           "Others"
@@ -44,9 +42,9 @@
         "required": true
       },
       {
-        "label": "Origin Country",
-        "type": "country-select",
-        "placeholder": "Search origin country…",
+        "label": "Origin State",
+        "type": "state-select",
+        "placeholder": "Search origin state…",
         "required": true
       },
       {

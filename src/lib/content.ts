@@ -16,8 +16,6 @@ import productsJson from "@/content/products.json";
 import mobileAppJson from "@/content/mobileApp.json";
 import shipmentTrackingJson from "@/content/shipmentTracking.json";
 import requestQuoteJson from "@/content/requestQuote.json";
-import blogJson from "@/content/blog.json";
-import singleBlogJson from "@/content/singleBlog.json";
 import faqJson from "@/content/faq.json";
 import contactJson from "@/content/contact.json";
 import partnerWithUsJson from "@/content/partnerWithUs.json";
@@ -40,8 +38,6 @@ export const products = productsJson as Content;
 export const mobileApp = mobileAppJson as Content;
 export const shipmentTracking = shipmentTrackingJson as Content;
 export const requestQuote = requestQuoteJson as Content;
-export const blog = blogJson as Content;
-export const singleBlog = singleBlogJson as Content;
 export const faq = faqJson as Content;
 export const contact = contactJson as Content;
 export const partnerWithUs = partnerWithUsJson as Content;
@@ -54,7 +50,7 @@ export const sourcingAgent = sourcingAgentJson as Content;
 
 /** Build a Next.js Metadata object from a page's `meta` block. */
 export function metaFrom(meta: Content | undefined, path = "/") {
-  const title = meta?.title ?? "AWSOverseas";
+  const title = meta?.title ?? "AWS Overseas";
   const description = meta?.description ?? "";
   const url = `https://awsoverseas.com${path}`;
   return {
@@ -66,7 +62,7 @@ export function metaFrom(meta: Content | undefined, path = "/") {
       title,
       description,
       url,
-      siteName: "AWSOverseas",
+      siteName: "AWS Overseas",
       type: "website",
     },
     twitter: {

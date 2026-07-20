@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Newspaper, Settings, LogOut, Boxes, MessageSquareText, ShoppingBag, Users, Wallet, BookOpen, Send } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Settings, LogOut, Boxes, MessageSquareText, ShoppingBag, Users, Wallet, BookOpen, Send } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
@@ -15,7 +15,6 @@ const LINKS = [
   // exactly or both would highlight on the open-enquiries page.
   { href: "/admin/enquiries", label: "Orders", icon: ShoppingBag, exact: true },
   { href: "/admin/enquiries-open", label: "Enquiries", icon: MessageSquareText },
-  { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/newsletter", label: "Newsletter", icon: Send },
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },

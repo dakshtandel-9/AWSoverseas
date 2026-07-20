@@ -32,36 +32,6 @@ before update on site_settings
 for each row execute function set_updated_at();
 
 -- ============================================================
--- blog_posts
--- ============================================================
-create table if not exists blog_posts (
-  id uuid primary key default gen_random_uuid(),
-  slug text not null unique,
-  title text not null,
-  category text not null default '',
-  excerpt text not null default '',
-  read_time text not null default '',
-  image_url text not null default '',
-  author_name text not null default 'AWSoversea Team',
-  table_of_contents jsonb not null default '[]',   -- string[]
-  sections jsonb not null default '[]',              -- {heading: string, content: string}[]
-  tags jsonb not null default '[]',                  -- string[]
-  is_featured boolean not null default false,
-  published boolean not null default true,
-  published_at timestamptz not null default now(),
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
-);
-
-create index if not exists blog_posts_published_idx on blog_posts (published, published_at desc);
-create unique index if not exists blog_posts_one_featured on blog_posts (is_featured) where is_featured = true;
-
-drop trigger if exists blog_posts_touch on blog_posts;
-create trigger blog_posts_touch
-before update on blog_posts
-for each row execute function set_updated_at();
-
--- ============================================================
 -- contact_submissions
 -- ============================================================
 create table if not exists contact_submissions (
@@ -184,6 +154,9 @@ alter table product_enquiries add constraint product_enquiries_request_type_chec
 
 create index if not exists product_enquiries_request_type_idx on product_enquiries (request_type, created_at desc);
 
+-- Optional image attachment (e.g. a reference photo) uploaded with the enquiry.
+alter table product_enquiries add column if not exists attachment_url text not null default '';
+
 -- ============================================================
 -- user_profiles — one row per Google-authenticated customer
 -- (auth.users). Created on first login with a generated referral
@@ -203,7 +176,7 @@ create table if not exists user_profiles (
   passport_number text not null default '',
   passport_front_url text not null default '',
   passport_back_url text not null default '',
-  referral_code text not null unique,    -- e.g. "AWS-7K39QD", generated at first login
+  referral_code text not null unique,    -- e.g. "DKSH47", generated at first login
   referred_by uuid references user_profiles(id) on delete set null,
   status text not null default 'incomplete'
     check (status in ('incomplete', 'pending', 'approved', 'rejected')),
@@ -311,7 +284,6 @@ create index if not exists wallet_withdrawals_status_idx on wallet_withdrawals (
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
-alter table blog_posts enable row level security;
 alter table contact_submissions enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table quote_submissions enable row level security;
@@ -339,13 +311,6 @@ create policy "public read active products" on products
 drop policy if exists "public read site_settings" on site_settings;
 create policy "public read site_settings" on site_settings
   for select using (true);
-
--- blog_posts: public can read only published posts. All writes happen via the
--- service-role client from Server Actions, which bypasses RLS entirely, so no
--- insert/update/delete policy is defined for anon/authenticated roles here.
-drop policy if exists "public read published posts" on blog_posts;
-create policy "public read published posts" on blog_posts
-  for select using (published = true);
 
 -- contact_submissions / newsletter_subscribers / quote_submissions /
 -- shipment_milestones: no public policies at all. Inserts, admin reads, and the public tracking lookup all

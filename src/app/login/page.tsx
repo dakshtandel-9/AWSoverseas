@@ -6,7 +6,7 @@ import { EmailAuthForm } from "@/components/auth/email-auth-form";
 import { Logo } from "@/components/ui/logo";
 
 export const metadata: Metadata = {
-  title: "Sign in — AWSOverseas",
+  title: "Sign in — AWS Overseas",
   description: "Sign in with your email to request quotes, send product enquiries, and share your referral code.",
   robots: { index: false },
 };
@@ -118,7 +118,7 @@ export default async function LoginPage({
               Customer access
             </span>
             <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#01214a] sm:text-[1.75rem]">
-              {isSignUp ? "Create your account" : "Sign in to AWSOverseas"}
+              {isSignUp ? "Create your account" : "Sign in to AWS Overseas"}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
               {isSignUp

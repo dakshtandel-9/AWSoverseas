@@ -9,20 +9,26 @@ const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
 
 /**
- * Searchable country dropdown — native <select> can't be typed into to
- * filter, so this pairs a hidden input (carries the actual form value/name)
- * with a text input + filtered listbox for the combobox UI.
+ * Searchable dropdown (countries by default) — native <select> can't be
+ * typed into to filter, so this pairs a hidden input (carries the actual
+ * form value/name) with a text input + filtered listbox for the combobox UI.
  */
 export function CountrySelect({
   name,
   required,
   placeholder = "Search countries…",
   defaultValue = "",
+  options = COUNTRIES,
+  noResultsLabel = "countries",
 }: {
   name: string;
   required?: boolean;
   placeholder?: string;
   defaultValue?: string;
+  /** Defaults to the full country list; pass a different list (e.g. Indian states) to repurpose this combobox. */
+  options?: string[];
+  /** Noun used in the "No X match" empty state, to match whatever `options` represents. */
+  noResultsLabel?: string;
 }) {
   const [value, setValue] = useState(defaultValue);
   const [query, setQuery] = useState(defaultValue);
@@ -33,9 +39,9 @@ export function CountrySelect({
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return COUNTRIES;
-    return COUNTRIES.filter((c) => c.toLowerCase().includes(q));
-  }, [query]);
+    if (!q) return options;
+    return options.filter((c) => c.toLowerCase().includes(q));
+  }, [query, options]);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -109,7 +115,9 @@ export function CountrySelect({
           className="absolute z-20 mt-1.5 max-h-56 w-full overflow-y-auto rounded-xl border border-[#e4e9f2] bg-white py-1.5 shadow-[0_18px_40px_-16px_rgba(4,22,47,0.24)]"
         >
           {results.length === 0 ? (
-            <li className="px-4 py-2.5 text-sm text-[#94a3b8]">No countries match &ldquo;{query}&rdquo;</li>
+            <li className="px-4 py-2.5 text-sm text-[#94a3b8]">
+              No {noResultsLabel} match &ldquo;{query}&rdquo;
+            </li>
           ) : (
             results.map((country, i) => (
               <li

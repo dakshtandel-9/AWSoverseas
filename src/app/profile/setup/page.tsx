@@ -7,7 +7,7 @@ import { ProfileSetupForm } from "@/components/account/profile-setup-form";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Complete your profile — AWSOverseas",
+  title: "Complete your profile — AWS Overseas",
   robots: { index: false },
 };
 

@@ -11,7 +11,7 @@ import { WalletActivityList } from "@/components/account/wallet-activity-list";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your wallet — AWSOverseas",
+  title: "Your wallet — AWS Overseas",
   robots: { index: false },
 };
 
