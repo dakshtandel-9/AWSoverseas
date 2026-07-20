@@ -30,7 +30,7 @@ export function Logo({
         alt="AWSoverseas — Global Trade Solutions"
         priority={priority}
         sizes="(max-width: 768px) 120px, 140px"
-        className="h-12 w-auto sm:h-14"
+        className="h-[72px] w-auto sm:h-[84px]"
       />
     </Link>
   );

@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="bg-white border-b border-line shadow-soft">
-        <div className="mx-auto flex h-18 max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
+        <div className="mx-auto flex h-[88px] max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 sm:h-[100px] lg:px-10">
           <Logo tone="dark" priority />
 
           {/* Desktop nav */}
@@ -147,10 +147,10 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-18 z-40 bg-surface lg:hidden"
+            className="fixed inset-0 top-[88px] z-40 bg-surface sm:top-[100px] lg:hidden"
           >
             <nav
-              className="flex h-[calc(100dvh-4.5rem)] flex-col gap-1 overflow-y-auto px-5 py-6"
+              className="flex h-[calc(100dvh-88px)] flex-col gap-1 overflow-y-auto px-5 py-6"
               aria-label="Mobile"
             >
               {NAV_LINKS.map((link) =>

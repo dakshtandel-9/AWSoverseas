@@ -69,6 +69,42 @@ export default async function HomePage() {
             secondaryButtonHref: "/products",
             stats: home.exportHero.stats,
           },
+          {
+            image: "/hero-slider/slide-3-port.jpg",
+            imageAlt: "Aerial view of a container port with cranes and cargo ships",
+            badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
+            title: "Move Cargo Anywhere in the World",
+            subtitle:
+              "From air freight and sea freight to customs clearance, warehousing, and door-to-door delivery, AWSOverseas manages every stage of international logistics with complete visibility and reliable execution.",
+            primaryButton: "Request Shipping Quote",
+            primaryButtonHref: "/quote",
+            secondaryButton: "Explore Logistics Services",
+            secondaryButtonHref: "/industries",
+            stats: [
+              { number: "100+", label: "Countries Served" },
+              { number: "24/7", label: "Shipment Tracking" },
+              { number: "1000+", label: "Successful Shipments" },
+              { number: "99%", label: "On-Time Delivery" },
+            ],
+          },
+          {
+            image: "/hero-slider/slide-4-export-warehouse.jpg",
+            imageAlt: "Export warehouse with packaged goods, pallets, and loading docks",
+            badge: "END-TO-END EXPORT MANAGEMENT",
+            title: "Your Export Partner From Factory to Destination",
+            subtitle:
+              "We don't just ship products—we identify trusted suppliers, negotiate pricing, inspect product quality, prepare export documentation, coordinate freight, and deliver globally through one dedicated partner.",
+            primaryButton: "Start Export Journey",
+            primaryButtonHref: "/quote",
+            secondaryButton: "Talk to an Expert",
+            secondaryButtonHref: "/contact",
+            stats: [
+              { number: "500+", label: "Verified Suppliers" },
+              { number: "100%", label: "Quality Inspection" },
+              { number: "40+", label: "Product Categories" },
+              { number: "1", label: "Dedicated Partner" },
+            ],
+          },
         ]}
       />
       <TrustedPartners data={home.trustedPartners} partners={home.industries.items} />
