@@ -63,7 +63,7 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   }
 
   const classes = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-full font-medium",
+    "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium",
     "transition-[background,box-shadow,color] duration-300 will-change-transform",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2",
     VARIANTS[variant],

@@ -2,42 +2,103 @@ import { NextRequest, NextResponse } from "next/server";
 
 const GOOGLE_ENDPOINT = "https://translate.googleapis.com/translate_a/single";
 const MAX_BATCH = 100;
-// Google's endpoint returns one result segment per newline in the input, so
-// batching many strings into one request (joined by \n) avoids one round
-// trip per string — critical since a page can have 200+ text nodes.
+// Google's endpoint returns roughly one result segment per newline in the
+// input, so batching many strings into one request (joined by \n) avoids one
+// round trip per string — critical since a page can have 200+ text nodes.
 const UPSTREAM_CHUNK_SIZE = 40;
 
-async function translateChunk(texts: string[], target: string): Promise<string[]> {
-  const nonEmpty = texts.map((t, i) => ({ i, t })).filter(({ t }) => t.trim());
-  if (nonEmpty.length === 0) return texts;
+// A string containing a sentence boundary (. ! ?) followed by more text on
+// the same line gets split into multiple output segments by Google's
+// endpoint, desyncing the "one line in, one segment out" assumption the
+// newline-batch trick depends on (e.g. "Source. Verify." comes back as two
+// segments). Strings like this must be translated individually instead.
+const MID_STRING_SENTENCE_BOUNDARY = /[.!?]\s+\S/;
 
-  const q = nonEmpty.map(({ t }) => t).join("\n");
+async function translateSingle(text: string, target: string): Promise<string> {
+  if (!text.trim()) return text;
   const params = new URLSearchParams({
     client: "gtx",
     sl: "en",
     tl: target,
     dt: "t",
-    q,
+    q: text,
   });
-
   const res = await fetch(`${GOOGLE_ENDPOINT}?${params.toString()}`, {
     headers: { "User-Agent": "Mozilla/5.0" },
   });
-
   if (!res.ok) throw new Error(`Translate upstream ${res.status}`);
-
   const data = await res.json();
   const segments: string[] = (data?.[0] ?? []).map(
     (segment: unknown[]) => (segment?.[0] as string) ?? "",
   );
+  return segments.join("");
+}
 
+async function translateChunk(texts: string[], target: string): Promise<string[]> {
   const results = [...texts];
-  // Segments come back newline-terminated and 1:1 with input lines as long
-  // as none of the source strings themselves contain a newline.
-  nonEmpty.forEach(({ i }, j) => {
-    const segment = segments[j];
-    results[i] = segment !== undefined ? segment.replace(/\n$/, "") : texts[i];
+
+  const risky: { i: number; t: string }[] = [];
+  const batchable: { i: number; t: string }[] = [];
+  texts.forEach((t, i) => {
+    if (!t.trim()) return;
+    (MID_STRING_SENTENCE_BOUNDARY.test(t) ? risky : batchable).push({ i, t });
   });
+
+  const jobs: Promise<void>[] = [];
+
+  if (batchable.length > 0) {
+    jobs.push(
+      (async () => {
+        const q = batchable.map(({ t }) => t).join("\n");
+        const params = new URLSearchParams({
+          client: "gtx",
+          sl: "en",
+          tl: target,
+          dt: "t",
+          q,
+        });
+        const res = await fetch(`${GOOGLE_ENDPOINT}?${params.toString()}`, {
+          headers: { "User-Agent": "Mozilla/5.0" },
+        });
+        if (!res.ok) throw new Error(`Translate upstream ${res.status}`);
+        const data = await res.json();
+        const segments: string[] = (data?.[0] ?? []).map(
+          (segment: unknown[]) => (segment?.[0] as string) ?? "",
+        );
+
+        if (segments.length !== batchable.length) {
+          // Segmentation still didn't line up 1:1 (e.g. an edge case the
+          // regex missed) — fall back to translating this group one at a
+          // time rather than risk writing a segment into the wrong slot.
+          await Promise.all(
+            batchable.map(async ({ i, t }) => {
+              results[i] = await translateSingle(t, target).catch(() => t);
+            }),
+          );
+          return;
+        }
+
+        batchable.forEach(({ i }, j) => {
+          const segment = segments[j];
+          results[i] = segment !== undefined ? segment.replace(/\n$/, "") : texts[i];
+        });
+      })(),
+    );
+  }
+
+  risky.forEach(({ i, t }) => {
+    jobs.push(
+      translateSingle(t, target)
+        .then((translated) => {
+          results[i] = translated;
+        })
+        .catch(() => {
+          results[i] = t;
+        }),
+    );
+  });
+
+  await Promise.all(jobs);
   return results;
 }
 

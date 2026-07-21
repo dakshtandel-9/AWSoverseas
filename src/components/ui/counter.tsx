@@ -36,7 +36,7 @@ export function Counter({ value, className }: { value: string; className?: strin
   }
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} data-no-translate className={className}>
       <motion.span>{rounded}</motion.span>
       {suffix}
     </span>

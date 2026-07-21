@@ -119,7 +119,10 @@ export function AboutPreview({
                     <Icon className="size-5" />
                   </span>
                   {/* Count */}
-                  <span className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#002144] sm:text-4xl">
+                  <span
+                    data-no-translate
+                    className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#002144] sm:text-4xl"
+                  >
                     <CountUp target={value} suffix={suffix} />
                   </span>
                   {/* Label */}

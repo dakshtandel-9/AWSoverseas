@@ -55,7 +55,11 @@ function AnimatedStat({ number, label, active }: { number: string; label: string
   return (
     <div className="flex flex-col">
       <dt className="sr-only">{label}</dt>
-      <dd ref={ref as React.RefObject<HTMLElement>} className="font-heading text-3xl font-extrabold text-white">
+      <dd
+        ref={ref as React.RefObject<HTMLElement>}
+        data-no-translate
+        className="font-heading text-3xl font-extrabold text-white"
+      >
         {count}
         {suffix}
       </dd>

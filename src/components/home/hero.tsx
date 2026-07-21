@@ -68,6 +68,7 @@ function AnimatedStat({ number, label }: { number: string; label: string }) {
       <dt className="sr-only">{label}</dt>
       <dd
         ref={ref as React.RefObject<HTMLElement>}
+        data-no-translate
         className="font-heading text-3xl font-extrabold text-ink"
       >
         {count}

@@ -35,33 +35,36 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="bg-white border-b border-line shadow-soft">
-        <div className="mx-auto flex h-[88px] max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 sm:h-[100px] lg:px-10">
-          <Logo tone="dark" priority />
+        <div className="mx-auto flex min-h-[88px] max-w-[1440px] items-center justify-between gap-4 px-5 py-3 sm:min-h-[100px] sm:px-8 lg:px-10">
+          <Logo tone="dark" priority className="shrink-0" />
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <nav
+            className="hidden min-w-0 shrink items-center gap-0.5 overflow-x-auto xl:gap-1 lg:flex"
+            aria-label="Primary"
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 data-active={isActive(link.href)}
-                className="nav-underline rounded-full px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
+                className="nav-underline shrink-0 whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900 xl:px-3.5"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
             <LanguageSwitcher />
             <NavbarUser scrolled />
             <Button
               href="/quote"
               variant="primary"
               size="sm"
-              className="bg-[#022248] hover:bg-[#011530]"
+              className="shrink-0 bg-[#022248] hover:bg-[#011530]"
             >
-              Request Quote <ArrowRight className="size-4" />
+              Request Quote <ArrowRight className="size-4 shrink-0" />
             </Button>
           </div>
 
