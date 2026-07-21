@@ -33,14 +33,14 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <div className="flex items-center justify-between">
         <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-          <Landmark className="size-4 text-[#861b28]" />
+          <Landmark className="size-4 text-maroon-admin" />
           Bank details
         </h2>
         {hasSavedDetails && !editing && (
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:underline"
           >
             <Pencil className="size-3.5" /> Edit
           </button>
@@ -127,7 +127,7 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
             <button
               type="submit"
               disabled={pending}
-              className="rounded-full bg-[#02224C] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
+              className="rounded-full btn-navy px-6 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-50"
             >
               {pending ? "Saving…" : "Save bank details"}
             </button>

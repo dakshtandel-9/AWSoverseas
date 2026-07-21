@@ -149,7 +149,7 @@ export function PhoneInput({
                     onMouseEnter={() => setActiveIndex(i)}
                     className={cn(
                       "flex cursor-pointer items-center gap-2.5 px-4 py-2 text-sm text-[#002144] transition-colors",
-                      i === activeIndex ? "bg-[#eef8fd] text-[#861b28]" : "hover:bg-[#f6f8fc]",
+                      i === activeIndex ? "bg-[#eef8fd] text-maroon-admin" : "hover:bg-[#f6f8fc]",
                     )}
                   >
                     <span className="text-base leading-none">{country.flag}</span>

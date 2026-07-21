@@ -179,7 +179,7 @@ function ViewAllCard({ index }: { index: number }) {
           <div className="pointer-events-none absolute -right-14 -top-14 size-56 rounded-full bg-[#9e4953]/30 blur-3xl" aria-hidden />
 
           <span className="relative grid size-14 place-items-center rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-            <LayoutGrid className="size-6 text-[#e05c72]" aria-hidden />
+            <LayoutGrid className="size-6 text-maroon-admin" aria-hidden />
           </span>
 
           <div className="relative">
@@ -189,7 +189,7 @@ function ViewAllCard({ index }: { index: number }) {
             <p className="mt-2 text-sm leading-relaxed text-white/70">
               Explore the complete export-ready catalog, category by category.
             </p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#e05c72]">
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-maroon-admin">
               Browse catalog
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
             </span>
@@ -274,7 +274,7 @@ export function ProductsWeExport() {
 
         <div className="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
           <div className="max-w-xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#e05c72] ring-1 ring-white/15">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-maroon-admin ring-1 ring-white/15">
               <span className="size-1.5 rounded-full bg-[#e05c72]" aria-hidden />
               Start Sourcing
             </span>

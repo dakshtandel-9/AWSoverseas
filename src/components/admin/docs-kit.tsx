@@ -79,7 +79,7 @@ export function FieldTable({
         <tbody>
           {rows.map(([field, meaning], i) => (
             <tr key={field} className={i % 2 === 1 ? "bg-[#fbfcfe]" : undefined}>
-              <td className="border-t border-[#e4e9f2] px-4 py-2.5 align-top font-mono text-[12px] font-semibold text-[#861b28]">
+              <td className="border-t border-[#e4e9f2] px-4 py-2.5 align-top font-mono text-[12px] font-semibold text-maroon-admin">
                 {field}
               </td>
               <td className="border-t border-[#e4e9f2] px-4 py-2.5 align-top leading-relaxed text-[#5b6b82]">

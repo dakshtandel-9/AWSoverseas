@@ -65,7 +65,7 @@ export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswer
             type="button"
             onClick={load}
             aria-label="Get a new code"
-            className="grid size-14 shrink-0 place-items-center rounded-xl border border-[#e4e9f2] bg-white text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#861b28]"
+            className="grid size-14 shrink-0 place-items-center rounded-xl border border-[#e4e9f2] bg-white text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-maroon-admin"
           >
             <RefreshCw className={cn("size-4", loading && "animate-spin")} />
           </button>

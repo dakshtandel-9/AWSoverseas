@@ -33,7 +33,7 @@ export function VerificationNotice({ status }: { status: AccountStatus }) {
         {declined && (
           <Link
             href="/profile/setup"
-            className="inline-flex items-center rounded-full bg-[#02224C] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+            className="inline-flex items-center rounded-full btn-navy px-6 py-3 text-sm font-semibold text-white transition-colors"
           >
             Update details
           </Link>

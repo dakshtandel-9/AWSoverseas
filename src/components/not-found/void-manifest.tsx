@@ -148,7 +148,7 @@ export function VoidManifest() {
                           {r.note}
                         </span>
                         <span
-                          className="text-[#9e4953] transition-transform duration-300 group-hover:translate-x-1"
+                          className="text-maroon-admin transition-transform duration-300 group-hover:translate-x-1"
                           aria-hidden
                         >
                           &rarr;

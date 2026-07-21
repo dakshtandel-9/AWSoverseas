@@ -56,7 +56,7 @@ export function AboutHero({ data }: { data: Data }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
             <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>

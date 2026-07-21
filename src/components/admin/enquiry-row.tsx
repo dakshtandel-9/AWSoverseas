@@ -86,7 +86,7 @@ function QuoteForm({ item }: { item: Enquiry }) {
       </p>
       <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
         <div className="w-32">
-          <Field label="Price (₹)">
+          <Field label="Price ($)">
             <input
               name="price"
               type="number"
@@ -130,7 +130,7 @@ function QuoteForm({ item }: { item: Enquiry }) {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
+          className="rounded-lg btn-navy px-3.5 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
         >
           {item.quote_status === "quoted" ? "Update quote" : "Approve & send"}
         </button>
@@ -195,7 +195,7 @@ function DecisionPanel({ item }: { item: Enquiry }) {
 
       {item.quote_status === "quoted" && (
         <p className="mt-2 text-xs text-[#5b6b82]">
-          Currently quoted: ₹{item.quoted_price?.toLocaleString("en-IN")}
+          Currently quoted: ${item.quoted_price?.toLocaleString("en-US")}
           {item.quoted_quantity && ` · Qty ${item.quoted_quantity}`}
           {item.quoted_weight_kg != null && ` · ${item.quoted_weight_kg} kg`}
           {item.delivery_date && ` · Delivery by ${formatDate(item.delivery_date)}`}
@@ -273,15 +273,15 @@ export function EnquiryRow({
             <span className="font-semibold">Product:</span> {item.product_name}
           </p>
           <p>
-            <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#861b28] hover:underline">
+            <span className="font-semibold">Email:</span>{""}
+            <a href={`mailto:${item.email}`} className="text-maroon-admin hover:underline">
               {item.email}
             </a>
           </p>
           {item.phone && (
             <p>
-              <span className="font-semibold">Phone:</span>{" "}
-              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#861b28] hover:underline">
+              <span className="font-semibold">Phone:</span>{""}
+              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-maroon-admin hover:underline">
                 {item.phone}
               </a>
             </p>

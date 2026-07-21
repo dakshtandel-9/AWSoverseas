@@ -35,7 +35,7 @@ export function ReferralTeaser({ data }: { data: Data }) {
 
           <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_auto]">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-maroon-admin">
                 <Gift className="size-3.5" />
                 {data.badge}
               </span>
@@ -69,7 +69,7 @@ export function ReferralTeaser({ data }: { data: Data }) {
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                 >
                   <span className="text-xs text-ink/55">{h.label}</span>
-                  <span className="font-mono text-sm font-bold text-[#e05c72]">{h.value}</span>
+                  <span className="font-mono text-sm font-bold text-maroon-admin">{h.value}</span>
                 </motion.div>
               ))}
             </div>

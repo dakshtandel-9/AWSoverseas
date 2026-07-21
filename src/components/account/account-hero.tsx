@@ -30,7 +30,7 @@ export function AccountHero({
 
       <Container className="relative">
         <div className="flex items-center gap-4 border-b border-ink/12 pb-4">
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
             <span className="size-1.5 rounded-full bg-[#9e4953]" />
             {eyebrow}
           </span>

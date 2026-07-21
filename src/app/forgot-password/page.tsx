@@ -32,7 +32,7 @@ export default async function ForgotPasswordPage() {
 
             <Link
               href="/login"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:underline"
             >
               <ArrowLeft className="size-3.5" />
               Back to sign in

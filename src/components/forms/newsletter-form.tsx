@@ -36,7 +36,7 @@ export function NewsletterForm({
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-medium text-ink ring-1 ring-ink/10"
           >
-            <Check className="size-4 text-accent-400" /> {successText}
+            <Check className="size-4 text-maroon-admin" /> {successText}
           </motion.p>
         ) : (
           <motion.form
@@ -62,7 +62,7 @@ export function NewsletterForm({
             <button
               type="submit"
               disabled={pending}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-400 disabled:opacity-60"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full btn-maroon px-5 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-60"
             >
               {pending ? "Subscribing…" : buttonText}
               <ArrowRight className="size-4" />

@@ -8,11 +8,11 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "ghost" | "outline" | "white";
 type Size = "sm" | "md" | "lg";
 
+// primary/secondary use .btn-navy/.btn-maroon (globals.css), which read --btn-navy/--btn-maroon —
+// admin-editable in /admin/settings — so a color change doesn't need a rebuild.
 const VARIANTS: Record<Variant, string> = {
-  primary:
-    "bg-brand-900 text-white shadow-soft hover:bg-brand-800 hover:shadow-lift",
-  secondary:
-    "bg-accent-500 text-white shadow-soft hover:bg-accent-600 hover:shadow-lift",
+  primary: "btn-navy text-white shadow-soft hover:shadow-lift",
+  secondary: "btn-maroon text-white shadow-soft hover:shadow-lift",
   outline:
     "border border-brand-200 bg-white/60 text-brand-900 hover:border-brand-400 hover:bg-white",
   ghost: "text-brand-900 hover:bg-brand-50",

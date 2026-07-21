@@ -43,14 +43,14 @@ export default async function ReferralsPage() {
         <div className="mx-auto max-w-3xl">
           <Link
             href="/profile"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:underline"
           >
             <ArrowLeft className="size-3.5" /> Back to profile
           </Link>
 
           <div className="mt-5 rounded-3xl border border-[#e4e9f2] bg-white p-7">
             <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-              <Users className="size-4 text-[#861b28]" />
+              <Users className="size-4 text-maroon-admin" />
               {referrals?.length ?? 0} {referrals?.length === 1 ? "referral" : "referrals"}
             </h2>
 

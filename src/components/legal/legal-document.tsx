@@ -91,7 +91,7 @@ export function LegalDocument({ sections }: { sections: SectionData[] }) {
                   className="scroll-mt-28"
                 >
                   <div className="flex items-baseline gap-3 border-b border-line pb-3">
-                    <span className="font-mono text-sm font-semibold text-accent-600">
+                    <span className="font-mono text-sm font-semibold text-maroon-admin">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h2 className="text-xl font-bold text-ink sm:text-2xl">{item.title}</h2>

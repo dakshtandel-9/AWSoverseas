@@ -30,7 +30,7 @@ export function ServiceCta({ data }: { data: Data }) {
 
           <div className="relative mx-auto max-w-2xl">
             <motion.span
-              className="inline-flex -rotate-3 items-center gap-2 rounded-md border border-[#9e4953]/40 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#902d39]"
+              className="inline-flex -rotate-3 items-center gap-2 rounded-md border border-[#9e4953]/40 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-maroon-admin"
               initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
               whileInView={{ opacity: 1, scale: 1, rotate: -3 }}
               viewport={{ once: true }}

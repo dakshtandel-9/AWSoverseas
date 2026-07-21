@@ -24,7 +24,7 @@ export function ReferralCodeCard({ code }: { code: string }) {
 
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-[#CFE8FF] p-7 text-ink">
-      <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+      <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
         <Gift className="size-3.5" />
         Your referral code
       </p>
@@ -37,7 +37,7 @@ export function ReferralCodeCard({ code }: { code: string }) {
           className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/20 text-ink/80 transition-colors hover:border-[#9e4953] hover:text-ink"
           aria-label={copied ? "Copied" : "Copy referral code"}
         >
-          {copied ? <Check className="size-4 text-[#9e4953]" /> : <Copy className="size-4" />}
+          {copied ? <Check className="size-4 text-maroon-admin" /> : <Copy className="size-4" />}
         </button>
       </div>
 
@@ -48,7 +48,7 @@ export function ReferralCodeCard({ code }: { code: string }) {
 
       <Link
         href="/profile/referrals"
-        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#e05c72] hover:text-ink"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:text-ink"
       >
         View your referrals <ArrowRight className="size-3.5" />
       </Link>

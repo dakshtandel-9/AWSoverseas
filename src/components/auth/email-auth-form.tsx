@@ -152,7 +152,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
           <div className="flex items-baseline justify-between">
             <label className="text-sm font-semibold text-[#002144]">Password</label>
             {mode === "sign-in" && (
-              <Link href="/forgot-password" className="text-xs font-semibold text-[#861b28] hover:underline">
+              <Link href="/forgot-password" className="text-xs font-semibold text-maroon-admin hover:underline">
                 Forgot password?
               </Link>
             )}
@@ -197,7 +197,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
         <button
           type="submit"
           disabled={pending}
-          className="group mt-1 inline-flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="group mt-1 inline-flex h-13 w-full items-center justify-center gap-2 rounded-full btn-navy px-6 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {pending ? (
             <Loader2 className="size-4 animate-spin" />

@@ -109,7 +109,7 @@ export default async function AdminDashboardPage() {
               <p className="text-3xl font-bold text-[#002144]">{value}</p>
               <p className="mt-1 text-sm text-[#5b6b82]">{label}</p>
             </div>
-            <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28]">
+            <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin">
               View
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
             </span>

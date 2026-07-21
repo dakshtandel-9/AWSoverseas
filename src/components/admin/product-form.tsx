@@ -44,7 +44,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#002144]">Name *</label>
-              <input name="name" required defaultValue={product?.name ?? ""} className={inputClasses} />
+              <input name="name" required defaultValue={product?.name ??""} className={inputClasses} />
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-[#002144]">Category</label>
@@ -96,7 +96,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           </p>
         )}
         {state.success && (
-          <p className="flex items-center gap-2 rounded-lg bg-[#f8f1f2] px-3 py-2 text-sm font-medium text-[#861b28]" role="status">
+          <p className="flex items-center gap-2 rounded-lg bg-[#f8f1f2] px-3 py-2 text-sm font-medium text-maroon-admin" role="status">
             <Check className="size-4" />
             Saved.
           </p>
@@ -106,7 +106,7 @@ export function ProductForm({ product }: { product?: ProductRecord }) {
           <button
             type="submit"
             disabled={pending}
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[#02224C] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+            className="inline-flex h-12 items-center justify-center rounded-full btn-navy px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {pending ? "Saving…" : product ? "Save changes" : "Create product"}
           </button>

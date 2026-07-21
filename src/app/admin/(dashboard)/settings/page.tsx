@@ -9,10 +9,10 @@ export default async function AdminSettingsPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Site Settings</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Contact details</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Contact details &amp; brand colors</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
-        These numbers, this email and this address appear across the live site — in the footer, the Contact page,
-        and every WhatsApp link. Changes here go live immediately.
+        Contact details appear across the live site — in the footer, the Contact page, and every WhatsApp link.
+        Button and text colors apply everywhere those colors are used, site-wide. Changes here go live immediately.
       </p>
 
       {!isSupabaseConfigured() && (

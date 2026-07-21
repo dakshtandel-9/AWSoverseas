@@ -71,7 +71,7 @@ export function TrackingHero({
 
       <Container className="relative flex flex-col items-center text-center">
         <motion.span
-          className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#902d39]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-maroon-admin"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
@@ -131,7 +131,7 @@ export function TrackingHero({
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#9e4953] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#861b28] disabled:opacity-70"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl btn-maroon px-7 py-4 text-sm font-semibold text-white transition-colors disabled:opacity-70"
             >
               {loading ? (
                 <>

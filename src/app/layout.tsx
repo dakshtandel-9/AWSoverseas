@@ -4,9 +4,11 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageLoader } from "@/components/layout/page-loader";
+import { LanguageLoader } from "@/components/layout/language-loader";
 import { ChromeGate } from "@/components/layout/chrome-gate";
 import { LanguageProvider } from "@/lib/language/language-context";
 import { home } from "@/lib/content";
+import { getSiteSettings } from "@/lib/site-settings";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,20 +51,31 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSiteSettings();
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${manrope.variable} ${cairo.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <style
+          // Runtime color override — the only per-request source of truth for --btn-*/--text-maroon.
+          dangerouslySetInnerHTML={{
+            __html: `:root{--btn-navy:${settings.btnNavy};--btn-navy-hover:${settings.btnNavyHover};--btn-maroon:${settings.btnMaroon};--btn-maroon-hover:${settings.btnMaroonHover};--text-maroon:${settings.textMaroon};}`,
+          }}
+        />
+      </head>
       <body className="min-h-dvh bg-surface text-ink antialiased" suppressHydrationWarning>
         <LanguageProvider>
           <PageLoader />
+          <LanguageLoader />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-white"

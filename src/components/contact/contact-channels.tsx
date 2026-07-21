@@ -101,14 +101,14 @@ export function ContactChannels({
           aria-hidden
           style={{ background: "rgba(144, 45, 57,0.22)" }}
         />
-        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#9e4953]/15 text-[#e05c72]">
+        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#9e4953]/15 text-maroon-admin">
           <MessageCircle className="size-6" />
         </span>
         <div className="relative min-w-0 flex-1">
           <p className="text-sm font-bold text-ink">{whatsapp.title}</p>
           <p className="mt-0.5 text-xs leading-snug text-ink/55">{whatsapp.description}</p>
         </div>
-        <ArrowUpRight className="relative size-4 shrink-0 text-ink/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#e05c72]" />
+        <ArrowUpRight className="relative size-4 shrink-0 text-ink/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-maroon-admin" />
       </motion.a>
 
       {/* Business hours */}
@@ -120,7 +120,7 @@ export function ContactChannels({
         transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center gap-2.5">
-          <Clock className="size-4 text-[#861b28]" />
+          <Clock className="size-4 text-maroon-admin" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             {businessHours.title}
           </p>

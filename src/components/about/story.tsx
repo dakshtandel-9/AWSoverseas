@@ -81,7 +81,7 @@ export function Story({ data }: { data: Data }) {
                 aria-hidden
               />
               <div className="min-w-0">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#861b28]">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-maroon-admin">
                   {s.marker}
                 </span>
                 <h3 className="mt-1.5 text-lg font-bold text-[#002144]">{s.title}</h3>

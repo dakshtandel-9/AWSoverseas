@@ -17,7 +17,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const FLOATING_CARDS = [
   { label: "Shipment Cleared", sub: "AWO-2847-SH", dot: "#c28d94", top: "10%", left: "-64px" },
-  { label: "Payment Confirmed", sub: "₹48,200 received", dot: "#34d399", top: "48%", left: "-84px" },
+  { label: "Payment Confirmed", sub: "$48,200 received", dot: "#34d399", top: "48%", left: "-84px" },
   { label: "Out for Delivery", sub: "ETA today, 4 PM", dot: "#f59e0b", top: "80%", left: "-56px" },
 ];
 
@@ -47,7 +47,7 @@ export function AppHero({ data }: { data: Data }) {
       <Container className="relative grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
         <div className="max-w-xl">
           <motion.span
-            className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-maroon-admin"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}

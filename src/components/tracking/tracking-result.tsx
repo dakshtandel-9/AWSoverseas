@@ -57,7 +57,7 @@ export async function TrackingResult({ reference }: { reference: string }) {
           <div className="text-right">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Route</p>
             <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
-              <MapPin className="size-3.5 text-[#861b28]" />
+              <MapPin className="size-3.5 text-maroon-admin" />
               {shipment.origin_country} → {shipment.destination_country}
             </p>
           </div>
@@ -117,7 +117,7 @@ export async function TrackingResult({ reference }: { reference: string }) {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3 border-t border-[#e4e9f2] pt-6">
           <Link
             href="/mobile-app"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+            className="inline-flex items-center gap-1.5 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
           >
             Open in App <ArrowRight className="size-3.5" />
           </Link>

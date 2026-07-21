@@ -32,7 +32,7 @@ export function ActivityList({
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-        <Icon className="size-4 text-[#861b28]" />
+        <Icon className="size-4 text-maroon-admin" />
         {title}
       </h2>
       <p className="mt-1 text-sm text-[#5b6b82]">{description}</p>

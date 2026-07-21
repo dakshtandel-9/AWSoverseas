@@ -197,7 +197,7 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
 
             {/* Footer */}
             <div className="mt-4 flex items-center gap-2 rounded-xl bg-[#002144] px-3.5 py-2.5">
-              <PackageSearch className="size-3.5 shrink-0 text-[#9e4953]" />
+              <PackageSearch className="size-3.5 shrink-0 text-maroon-admin" />
               <p className="text-[11px] font-medium text-white/80">
                 {data.manifestFooterLabel}: <span className="font-bold text-white">{data.manifestFooterValue}</span>
               </p>
@@ -241,7 +241,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
       <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         <div className="max-w-[600px]">
           <motion.div
-            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-maroon-admin sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
@@ -257,15 +257,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
             <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>{line1}</span>
-            <span
-              className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
-              style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
+            <span className="text-maroon-gradient block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
               {line2}
             </span>
           </motion.h1>

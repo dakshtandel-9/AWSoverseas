@@ -34,7 +34,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
             {/* Mini legend */}
             <div className="mt-10 flex flex-col gap-3">
               <div className="flex items-center gap-3 text-sm text-[#5b6b82]">
-                <CheckCircle2 className="size-4 text-[#9e4953]" />
+                <CheckCircle2 className="size-4 text-maroon-admin" />
                 Completed
               </div>
               <div className="flex items-center gap-3 text-sm text-[#d97706]">
@@ -78,7 +78,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
                 {/* Node */}
                 <div className="relative z-10 mt-0.5 shrink-0">
                   {isDone ? (
-                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-[#9e4953] shadow-[0_0_0_4px_#f6f8fc]" />
+                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-maroon-admin shadow-[0_0_0_4px_#f6f8fc]" />
                   ) : isActive ? (
                     <div className="relative">
                       <motion.span

@@ -101,7 +101,7 @@ export default async function ProfilePage() {
         createdAt: formatDate(e.created_at),
         badgeTone: "positive" as const,
         badge: [
-          `₹${Number(e.quoted_price).toLocaleString("en-IN")}`,
+          `$${Number(e.quoted_price).toLocaleString("en-US")}`,
           e.quoted_quantity && `Qty ${e.quoted_quantity}`,
           e.quoted_weight_kg != null && `${e.quoted_weight_kg} kg`,
           e.delivery_date && `Delivery by ${formatDate(e.delivery_date)}`,
@@ -162,7 +162,7 @@ export default async function ProfilePage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/quote"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+                  className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
                 >
                   <FileText className="size-4" /> Request a quote
                 </Link>
@@ -180,7 +180,7 @@ export default async function ProfilePage() {
                 <h2 className="text-base font-bold text-[#002144]">Your details</h2>
                 <Link
                   href="/profile/setup"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:underline"
                 >
                   <Pencil className="size-3.5" /> Edit
                 </Link>

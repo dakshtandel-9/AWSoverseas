@@ -120,7 +120,7 @@ function Combobox<T extends { id: string }>({
                   }}
                   className={cn(
                     "cursor-pointer px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
-                    item.id === value?.id && "bg-[#eef8fd] text-[#861b28]",
+                    item.id === value?.id && "bg-[#eef8fd] text-maroon-admin",
                   )}
                 >
                   {(renderOption ?? render)(item)}
@@ -224,7 +224,7 @@ function CreateOrderModal({
               <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
                 <Check className="size-4" />
               </span>
-              <p className="text-sm font-medium leading-relaxed text-[#861b28]">
+              <p className="text-sm font-medium leading-relaxed text-maroon-admin">
                 Order created for {context ? context.item.full_name : "the customer"} — it now shows on their
                 profile. Revise the quote, reject it, or credit a referral below.
               </p>
@@ -258,7 +258,7 @@ function CreateOrderModal({
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Customer <span className="text-[#861b28]">*</span>
+                Customer <span className="text-maroon-admin">*</span>
               </label>
               <Combobox
                 items={users}
@@ -291,7 +291,7 @@ function CreateOrderModal({
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Product <span className="text-[#861b28]">*</span>
+                Product <span className="text-maroon-admin">*</span>
               </label>
               <Combobox
                 items={products}
@@ -324,7 +324,7 @@ function CreateOrderModal({
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <div className="flex flex-col gap-1">
                   <label className="text-[11px] font-semibold uppercase tracking-wide text-[#94a3b8]">
-                    Price (₹)
+                    Price ($)
                   </label>
                   <input
                     name="price"
@@ -376,7 +376,7 @@ function CreateOrderModal({
             <button
               type="submit"
               disabled={pending}
-              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
             >
               {pending ? "Creating…" : "Create order"}
             </button>
@@ -402,7 +402,7 @@ export function CreateOrderButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+        className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
       >
         <Plus className="size-4" />
         New order

@@ -131,7 +131,7 @@ export function CountrySelect({
                 onMouseEnter={() => setActiveIndex(i)}
                 className={cn(
                   "cursor-pointer px-4 py-2.5 text-sm text-[#002144] transition-colors",
-                  i === activeIndex ? "bg-[#eef8fd] text-[#861b28]" : "hover:bg-[#f6f8fc]",
+                  i === activeIndex ? "bg-[#eef8fd] text-maroon-admin" : "hover:bg-[#f6f8fc]",
                 )}
               >
                 {country}

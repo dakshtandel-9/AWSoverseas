@@ -123,7 +123,7 @@ function UserCombobox({
                   }}
                   className={cn(
                     "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
-                    u.id === value?.id && "bg-[#eef8fd] text-[#861b28]",
+                    u.id === value?.id && "bg-[#eef8fd] text-maroon-admin",
                   )}
                 >
                   <span className="flex items-center gap-2">
@@ -233,7 +233,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
               <Check className="size-6" />
             </span>
-            <p className="max-w-xs text-sm font-medium leading-relaxed text-[#861b28]">
+            <p className="max-w-xs text-sm font-medium leading-relaxed text-maroon-admin">
               Quote created — it now shows on this customer&rsquo;s profile and in the list below, ready to
               track.
             </p>
@@ -243,7 +243,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
                 <p className="font-mono text-base font-bold text-[#002144]">{state.trackingNumber}</p>
                 <Link
                   href={`/tracking?ref=${encodeURIComponent(state.trackingNumber)}`}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#02224C] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#011a38]"
+                  className="inline-flex items-center gap-1.5 rounded-full btn-navy px-4 py-2 text-xs font-semibold text-white transition-colors"
                 >
                   <PackageSearch className="size-3.5" /> Track this shipment
                 </Link>
@@ -263,7 +263,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Customer <span className="text-[#861b28]">*</span>
+                Customer <span className="text-maroon-admin">*</span>
               </label>
               <UserCombobox users={users} value={user} onChange={setUser} />
             </div>
@@ -315,7 +315,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <button
               type="submit"
               disabled={pending}
-              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
             >
               {pending ? "Creating…" : "Create quote"}
             </button>
@@ -335,7 +335,7 @@ export function CreateQuoteButton({ users }: { users: QuoteUserOption[] }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+        className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
       >
         <Plus className="size-4" />
         New quote

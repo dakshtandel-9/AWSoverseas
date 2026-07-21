@@ -113,7 +113,7 @@ export function ContactForm({ data }: { data: Data }) {
             <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
               <Check className="size-4" />
             </span>
-            <p className="text-sm font-medium leading-relaxed text-[#861b28]">
+            <p className="text-sm font-medium leading-relaxed text-maroon-admin">
               {data.successMessage}
             </p>
           </motion.div>
@@ -137,7 +137,7 @@ export function ContactForm({ data }: { data: Data }) {
               >
                 <label className="text-sm font-semibold text-[#002144]">
                   {field.label}
-                  {field.required && <span className="ml-1 text-[#861b28]">*</span>}
+                  {field.required && <span className="ml-1 text-maroon-admin">*</span>}
                 </label>
                 <FieldControl field={field} />
               </div>
@@ -157,7 +157,7 @@ export function ContactForm({ data }: { data: Data }) {
               <button
                 type="submit"
                 disabled={pending}
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full btn-navy px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
                 {pending ? "Sending…" : data.submitButton}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

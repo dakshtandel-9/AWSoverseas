@@ -80,7 +80,7 @@ export function IndustriesDirectory({ data }: { data: Data }) {
               </span>
 
               {hasProfile ? (
-                <span className="hidden shrink-0 items-center gap-1.5 rounded-full bg-[#f8f1f2] px-3 py-1 text-[11px] font-semibold text-[#861b28] sm:inline-flex">
+                <span className="hidden shrink-0 items-center gap-1.5 rounded-full bg-[#f8f1f2] px-3 py-1 text-[11px] font-semibold text-maroon-admin sm:inline-flex">
                   <FileCheck2 className="size-3.5" />
                   Profile below
                 </span>

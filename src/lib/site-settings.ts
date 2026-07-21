@@ -9,7 +9,28 @@ export type SiteSettings = {
   email: string;
   whatsappNumber: string;
   address: string;
+  btnNavy: string;
+  btnNavyHover: string;
+  btnMaroon: string;
+  btnMaroonHover: string;
+  textMaroon: string;
 };
+
+/** Defaults matching the values the site shipped with, used until Supabase is configured or a row exists. */
+const BUTTON_COLOR_DEFAULTS = {
+  btnNavy: "#02224C",
+  btnNavyHover: "#011a38",
+  btnMaroon: "#902d39",
+  btnMaroonHover: "#861b28",
+  textMaroon: "#9e4953",
+} as const;
+
+const HEX_COLOR = /^#[0-9a-fA-F]{3,8}$/;
+
+/** Guards against malformed/malicious values reaching the inline <style> override in the root layout. */
+function sanitizeHex(value: string | null | undefined, fallback: string): string {
+  return value && HEX_COLOR.test(value) ? value : fallback;
+}
 
 /** Fallback values sourced from the original static JSON, used only until Supabase is configured. */
 function fallbackSettings(): SiteSettings {
@@ -17,7 +38,7 @@ function fallbackSettings(): SiteSettings {
   const email = contact.contactInfo?.items?.find((i: { type: string }) => i.type === "Email")?.value ?? "";
   const office = contact.officeLocations?.locations?.[0];
   const address = office ? `${office.address}, ${office.city}, ${office.country}` : "";
-  return { phone1: phone, phone2: "", email, whatsappNumber: "", address };
+  return { phone1: phone, phone2: "", email, whatsappNumber: "", address, ...BUTTON_COLOR_DEFAULTS };
 }
 
 const getCachedSettings = unstable_cache(
@@ -31,6 +52,11 @@ const getCachedSettings = unstable_cache(
       email: data.email || "",
       whatsappNumber: data.whatsapp_number || "",
       address: data.address || "",
+      btnNavy: sanitizeHex(data.btn_navy, BUTTON_COLOR_DEFAULTS.btnNavy),
+      btnNavyHover: sanitizeHex(data.btn_navy_hover, BUTTON_COLOR_DEFAULTS.btnNavyHover),
+      btnMaroon: sanitizeHex(data.btn_maroon, BUTTON_COLOR_DEFAULTS.btnMaroon),
+      btnMaroonHover: sanitizeHex(data.btn_maroon_hover, BUTTON_COLOR_DEFAULTS.btnMaroonHover),
+      textMaroon: sanitizeHex(data.text_maroon, BUTTON_COLOR_DEFAULTS.textMaroon),
     };
   },
   ["site-settings"],

@@ -42,7 +42,7 @@ export function WalletActivityList({
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-          <ListFilter className="size-4 text-[#861b28]" />
+          <ListFilter className="size-4 text-maroon-admin" />
           Wallet activity
         </h2>
 
@@ -77,7 +77,7 @@ export function WalletActivityList({
             entry.kind === "credit" ? (
               <li key={`credit-${entry.id}`} className="flex items-start justify-between gap-3 py-4 text-sm">
                 <div className="flex min-w-0 items-start gap-2.5">
-                  <Gift className="mt-0.5 size-3.5 shrink-0 text-[#861b28]" />
+                  <Gift className="mt-0.5 size-3.5 shrink-0 text-maroon-admin" />
                   <div className="min-w-0">
                     <p className="font-semibold text-[#002144]">{entry.data.reason || "Referral reward"}</p>
                     <p className="mt-0.5 text-xs text-[#5b6b82]">

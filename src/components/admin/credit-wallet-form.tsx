@@ -39,7 +39,7 @@ export function ReferralCreditBadge({
   }
 
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-[#fdf1f3] px-2 py-0.5 text-[11px] font-semibold text-[#861b28]">
+    <span className="inline-flex items-center gap-1 rounded-full bg-[#fdf1f3] px-2 py-0.5 text-[11px] font-semibold text-maroon-admin">
       <Wallet className="size-3" /> Referral pending
     </span>
   );
@@ -100,7 +100,7 @@ export function CreditWalletForm({
       {alreadyCredited && (
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
-            <Wallet className="size-3.5" /> Credited ${alreadyCredited.amount.toLocaleString("en-US")} to{" "}
+            <Wallet className="size-3.5" /> Credited ${alreadyCredited.amount.toLocaleString("en-US")} to{""}
             {referrerName}&apos;s wallet
             {alreadyCredited.count > 1 ? ` (${alreadyCredited.count} credits)` : ""}.
           </p>
@@ -108,7 +108,7 @@ export function CreditWalletForm({
             <button
               type="button"
               onClick={() => setFormOpen(true)}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#861b28] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-maroon-admin hover:underline"
             >
               <Plus className="size-3.5" /> Add more
             </button>
@@ -120,7 +120,7 @@ export function CreditWalletForm({
         <>
           {!alreadyCredited && (
             <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
-              <Wallet className="size-3.5 text-[#861b28]" /> Credit {referrerName}&apos;s wallet for this referral
+              <Wallet className="size-3.5 text-maroon-admin" /> Credit {referrerName}&apos;s wallet for this referral
             </p>
           )}
           <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
@@ -137,7 +137,7 @@ export function CreditWalletForm({
             <button
               type="submit"
               disabled={pending}
-              className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
+              className="rounded-lg btn-navy px-3.5 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
             >
               Credit wallet
             </button>

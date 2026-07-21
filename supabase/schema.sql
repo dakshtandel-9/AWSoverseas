@@ -11,12 +11,26 @@ create table if not exists site_settings (
   email text not null default '',
   whatsapp_number text not null default '', -- digits only, e.g. "919876543210"
   address text not null default '',
+  -- Admin-editable button colors: navy (nav/form CTAs) and maroon (hero/section CTAs), each with a hover shade.
+  btn_navy text not null default '#02224C',
+  btn_navy_hover text not null default '#011a38',
+  btn_maroon text not null default '#902d39',
+  btn_maroon_hover text not null default '#861b28',
+  -- Admin-editable maroon text color (headline gradients, icons, links).
+  text_maroon text not null default '#9e4953',
   updated_at timestamptz not null default now()
 );
 
 insert into site_settings (id)
 values (1)
 on conflict (id) do nothing;
+
+-- Button/text color columns added after the table existed on some deployments.
+alter table site_settings add column if not exists btn_navy text not null default '#02224C';
+alter table site_settings add column if not exists btn_navy_hover text not null default '#011a38';
+alter table site_settings add column if not exists btn_maroon text not null default '#902d39';
+alter table site_settings add column if not exists btn_maroon_hover text not null default '#861b28';
+alter table site_settings add column if not exists text_maroon text not null default '#9e4953';
 
 create or replace function set_updated_at()
 returns trigger as $$

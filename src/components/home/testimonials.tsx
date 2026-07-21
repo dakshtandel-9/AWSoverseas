@@ -129,7 +129,7 @@ export function Testimonials({ data, eyebrow }: { data: Data; eyebrow: string })
       >
         {SIGNALS.map((s) => (
           <div key={s.label} className="flex flex-col items-center gap-1.5 bg-white px-6 py-6 text-center">
-            <s.Icon className="size-5 text-[#9e4953]" />
+            <s.Icon className="size-5 text-maroon-admin" />
             <p className="font-heading text-2xl font-extrabold text-[#002144]">{s.metric}</p>
             <p className="text-[12px] font-medium text-[#5b6b82]">{s.label}</p>
           </div>

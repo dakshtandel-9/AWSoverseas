@@ -138,7 +138,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
 
               {/* Icon */}
               <span className="relative grid size-16 place-items-center rounded-2xl bg-ink/8 ring-1 ring-ink/15 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-                <FeaturedIcon className="size-8 text-[#e05c72]" />
+                <FeaturedIcon className="size-8 text-maroon-admin" />
               </span>
 
               {/* Animated route — sits between icon and content, fills available space */}
@@ -149,12 +149,12 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
               {/* Content */}
               <div className="relative">
                 {/* Stat badge */}
-                <span className="mb-4 inline-flex items-center rounded-full bg-ink/8 px-3 py-1 text-[11px] font-semibold tracking-wide text-[#e05c72] ring-1 ring-ink/15">
+                <span className="mb-4 inline-flex items-center rounded-full bg-ink/8 px-3 py-1 text-[11px] font-semibold tracking-wide text-maroon-admin ring-1 ring-ink/15">
                   {SERVICE_STATS[featured.title] ?? "500+ verified manufacturers"}
                 </span>
                 <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#002144" }}>{featured.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-ink/70">{featured.description}</p>
-                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#e05c72]">
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-maroon-admin">
                   Explore service
                   <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
@@ -236,7 +236,7 @@ function CompactCard({
         <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
 
         {stat && (
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#9e4953]">
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-maroon-admin">
             <span className="size-1.5 rounded-full bg-[#9e4953]" />
             {stat}
           </span>

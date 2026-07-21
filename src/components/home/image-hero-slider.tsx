@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -19,54 +19,10 @@ export type ImageSlide = {
   primaryButtonHref: string;
   secondaryButton: string;
   secondaryButtonHref: string;
-  stats: { number: string; label: string }[];
 };
 
 const AUTOPLAY_MS = 8000;
 const ease = [0.16, 1, 0.3, 1] as const;
-
-function useCountUp(target: number, active: boolean, duration = 1600) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (!inView || !active) return;
-    let start: number | null = null;
-    const step = (ts: number) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [inView, active, target, duration]);
-
-  return { count, ref };
-}
-
-function AnimatedStat({ number, label, active }: { number: string; label: string; active: boolean }) {
-  const match = number.match(/^(\d+)(.*)$/);
-  const numericPart = match ? parseInt(match[1], 10) : 0;
-  const suffix = match ? match[2] : number;
-  const { count, ref } = useCountUp(numericPart, active, 1400);
-
-  return (
-    <div className="flex flex-col">
-      <dt className="sr-only">{label}</dt>
-      <dd
-        ref={ref as React.RefObject<HTMLElement>}
-        data-no-translate
-        className="font-heading text-3xl font-extrabold text-white"
-      >
-        {count}
-        {suffix}
-      </dd>
-      <p className="mt-1 text-xs font-medium text-white/50">{label}</p>
-    </div>
-  );
-}
 
 /**
  * A second hero slider for the home page, kept separate from `HeroSlider`
@@ -203,15 +159,15 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
 
       <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-28 sm:pb-16 sm:pt-32 lg:h-[100svh] lg:justify-start lg:pt-40 xl:pt-44">
         <AnimatePresence mode="wait">
-          <div key={index} className="max-w-[600px]">
+          <div key={index} className="w-full max-w-[600px]">
             {/* Eyebrow */}
             <motion.div
-              className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+              className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-maroon-admin sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
             >
-              <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
+              <span className="size-1.5 shrink-0 animate-pulse rounded-full bg-[#9e4953]" />
               {slide.badge}
             </motion.div>
 
@@ -225,15 +181,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               <span className="block text-5xl text-white sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
                 {line1}
               </span>
-              <span
-                className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
-                style={{
-                  background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
+              <span className="text-maroon-gradient block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
                 {line2}
               </span>
             </motion.h1>
@@ -249,17 +197,22 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
 
             {/* CTA row — maroon filled + glass outline, matches Hero */}
             <motion.div
-              className="mt-9 flex flex-wrap items-center gap-3"
+              className="mt-9 flex max-w-full flex-wrap items-center gap-3"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.26, ease }}
             >
-              <Button href={slide.primaryButtonHref} size="lg" variant="secondary">
-                {slide.primaryButton} <ArrowRight className="size-4" />
+              <Button
+                href={slide.primaryButtonHref}
+                size="lg"
+                variant="secondary"
+                className="h-auto min-h-14 max-w-full whitespace-normal text-center"
+              >
+                {slide.primaryButton} <ArrowRight className="size-4 shrink-0" />
               </Button>
               <a
                 href={slide.secondaryButtonHref}
-                className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium transition-all duration-300"
+                className="group inline-flex h-auto min-h-14 max-w-full items-center gap-2 rounded-full px-8 py-3 text-base font-medium transition-all duration-300"
                 style={{
                   background: "rgba(255,255,255,0.08)",
                   border: "1px solid rgba(255,255,255,0.18)",
@@ -283,20 +236,6 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
                 {slide.secondaryButton}
               </a>
             </motion.div>
-
-            {/* Stats row — animated count-up */}
-            <motion.dl
-              className="mt-12 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4 sm:gap-x-0 sm:divide-x sm:divide-white/10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease }}
-            >
-              {slide.stats.map((s, i) => (
-                <div key={s.label} className={i > 0 ? "sm:pl-8" : ""}>
-                  <AnimatedStat number={s.number} label={s.label} active />
-                </div>
-              ))}
-            </motion.dl>
           </div>
         </AnimatePresence>
       </Container>

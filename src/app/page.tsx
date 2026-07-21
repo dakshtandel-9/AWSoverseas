@@ -4,7 +4,6 @@ import { getActiveProducts } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { ImageHeroSlider } from "@/components/home/image-hero-slider";
 import { Certifications } from "@/components/home/certifications";
-import { StatsStrip } from "@/components/home/stats-strip";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { ProductsTeaser } from "@/components/home/products-teaser";
 import { GlobalCoverage } from "@/components/home/global-coverage";
@@ -50,10 +49,10 @@ export default async function HomePage() {
             primaryButtonHref: "/quote",
             secondaryButton: home.hero.secondaryButton,
             secondaryButtonHref: "/mobile-app",
-            stats: home.hero.stats,
           },
           {
             image: "/hero-slider/slide-2-warehouse.jpg",
+            video: "/hero-slider/Manufacturing.mp4",
             imageAlt: "Warehouse aisle stacked with export-ready goods",
             badge: home.exportHero.badge,
             title: home.exportHero.title,
@@ -62,7 +61,6 @@ export default async function HomePage() {
             primaryButtonHref: "/products",
             secondaryButton: home.exportHero.secondaryButton,
             secondaryButtonHref: "/products",
-            stats: home.exportHero.stats,
           },
           {
             image: "/hero-slider/slide-3-port.jpg",
@@ -75,12 +73,6 @@ export default async function HomePage() {
             primaryButtonHref: "/quote",
             secondaryButton: "Explore Logistics Services",
             secondaryButtonHref: "/services",
-            stats: [
-              { number: "100+", label: "Countries Served" },
-              { number: "24/7", label: "Shipment Tracking" },
-              { number: "1000+", label: "Successful Shipments" },
-              { number: "99%", label: "On-Time Delivery" },
-            ],
           },
           {
             image: "/hero-slider/slide-4-export-warehouse.jpg",
@@ -93,12 +85,6 @@ export default async function HomePage() {
             primaryButtonHref: "/quote",
             secondaryButton: "Talk to an Expert",
             secondaryButtonHref: "/contact",
-            stats: [
-              { number: "500+", label: "Verified Suppliers" },
-              { number: "100%", label: "Quality Inspection" },
-              { number: "40+", label: "Product Categories" },
-              { number: "1", label: "Dedicated Partner" },
-            ],
           },
           {
             image: "/hero-slider/Manufacturing.png",
@@ -111,16 +97,9 @@ export default async function HomePage() {
             primaryButtonHref: "/quote",
             secondaryButton: "Meet Our Sourcing Agents",
             secondaryButtonHref: "/sourcing-agent",
-            stats: [
-              { number: "500+", label: "Vetted Factories" },
-              { number: "100%", label: "Production Audits" },
-              { number: "40+", label: "Product Categories" },
-              { number: "99%", label: "On-Spec Delivery" },
-            ],
           },
         ]}
       />
-      <StatsStrip stats={home.hero.stats} />
       <WhyChooseUs data={home.whyChooseUs} />
       <ProductsTeaser data={home.products} products={catalog} auth={auth} eyebrow="Catalog" />
       <GlobalCoverage data={home.coverage} />

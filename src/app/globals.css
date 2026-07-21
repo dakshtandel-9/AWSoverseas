@@ -79,10 +79,56 @@
 :root {
   color-scheme: light;
   --grid-line: rgba(4, 22, 47, 0.045);
+
+  /* Button colors — admin-editable from /admin/settings (Button colors section).
+     Defaults match the original hardcoded navy/maroon. Overridden per-request via
+     an inline <style> tag in the root layout, sourced from site_settings. */
+  --btn-navy: #02224c;
+  --btn-navy-hover: #011a38;
+  --btn-maroon: #902d39;
+  --btn-maroon-hover: #861b28;
+
+  /* Maroon text color — admin-editable from /admin/settings (Text color section).
+     Drives flat maroon text/icons/borders AND the 3-stop headline gradient, whose
+     lighter/darker stops are derived from the base with color-mix() so the admin
+     only has to pick one color. Defaults match the original hardcoded #9e4953. */
+  --text-maroon: #9e4953;
+  --text-maroon-light: color-mix(in srgb, var(--text-maroon) 65%, white);
+  --text-maroon-lighter: color-mix(in srgb, var(--text-maroon) 35%, white);
+  --text-maroon-gradient: linear-gradient(
+    110deg,
+    var(--text-maroon-light) 0%,
+    var(--text-maroon) 55%,
+    var(--text-maroon-lighter) 100%
+  );
 }
 
 * {
   border-color: var(--color-line);
+}
+
+/* Admin-editable button fills — see the --btn- and --text-maroon variables in :root above.
+   Plain CSS (not Tailwind arbitrary values) so the hover swap works without JS. */
+.btn-navy {
+  background: var(--btn-navy);
+}
+.btn-navy:hover {
+  background: var(--btn-navy-hover);
+}
+.btn-maroon {
+  background: var(--btn-maroon);
+}
+.btn-maroon:hover {
+  background: var(--btn-maroon-hover);
+}
+.text-maroon-admin {
+  color: var(--text-maroon);
+}
+.text-maroon-gradient {
+  background: var(--text-maroon-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 html {

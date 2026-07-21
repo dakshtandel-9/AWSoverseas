@@ -71,7 +71,7 @@ function GateNotice({ auth }: { auth: EnquiryAuth }) {
       </div>
       <Link
         href={content.cta.href}
-        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white transition-colors"
       >
         {content.cta.label}
         <ArrowRight className="size-4" />
@@ -187,7 +187,7 @@ export function EnquiryModal({
                   <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
                     <Check className="size-6" />
                   </span>
-                  <p className="max-w-xs text-sm font-medium leading-relaxed text-[#861b28]">
+                  <p className="max-w-xs text-sm font-medium leading-relaxed text-maroon-admin">
                     Thanks — we&rsquo;ve received your {copy.successVerb} about {productName} and will get back
                     to you shortly.
                   </p>
@@ -215,7 +215,7 @@ export function EnquiryModal({
 
                   <div className="flex flex-col gap-1.5">
                     <label className="text-sm font-semibold text-[#002144]">
-                      Name <span className="text-[#861b28]">*</span>
+                      Name <span className="text-maroon-admin">*</span>
                     </label>
                     <input
                       name="name"
@@ -229,7 +229,7 @@ export function EnquiryModal({
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-semibold text-[#002144]">
-                        Email <span className="text-[#861b28]">*</span>
+                        Email <span className="text-maroon-admin">*</span>
                       </label>
                       <input
                         type="email"
@@ -242,7 +242,7 @@ export function EnquiryModal({
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-semibold text-[#002144]">
-                        Phone number <span className="text-[#861b28]">*</span>
+                        Phone number <span className="text-maroon-admin">*</span>
                       </label>
                       <input
                         type="tel"
@@ -300,7 +300,7 @@ export function EnquiryModal({
                   <button
                     type="submit"
                     disabled={pending}
-                    className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                    className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
                     {pending ? copy.buttonPending : copy.button}
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

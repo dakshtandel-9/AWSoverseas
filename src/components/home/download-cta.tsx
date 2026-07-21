@@ -53,7 +53,7 @@ export function DownloadCTA({ data }: { data: Data }) {
             {/* ── Left column ─────────────────────────────── */}
             <div className="max-w-xl">
               {/* Eyebrow */}
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-maroon-admin">
                 <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
                 Mobile App
               </span>

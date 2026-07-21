@@ -96,7 +96,7 @@ function ConfirmPassportChangeModal({
               <button
                 type="button"
                 onClick={onConfirm}
-                className="flex-1 rounded-full bg-[#861b28] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#721722]"
+                className="flex-1 rounded-full btn-maroon px-5 py-2.5 text-sm font-semibold text-white transition-colors"
               >
                 Save anyway
               </button>
@@ -237,7 +237,7 @@ export function ProfileSetupForm({
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              First name <span className="text-[#861b28]">*</span>
+              First name <span className="text-maroon-admin">*</span>
             </label>
             <input
               name="first-name"
@@ -254,7 +254,7 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Last name <span className="text-[#861b28]">*</span>
+              Last name <span className="text-maroon-admin">*</span>
             </label>
             <input
               name="last-name"
@@ -271,7 +271,7 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Username <span className="text-[#861b28]">*</span>
+              Username <span className="text-maroon-admin">*</span>
             </label>
             <input
               name="username"
@@ -288,14 +288,14 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Phone number <span className="text-[#861b28]">*</span>
+              Phone number <span className="text-maroon-admin">*</span>
             </label>
             <PhoneInput name="phone" required defaultValue={profile.phone} />
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Country <span className="text-[#861b28]">*</span>
+              Country <span className="text-maroon-admin">*</span>
             </label>
             <CountrySelect
               name="country"
@@ -332,7 +332,7 @@ export function ProfileSetupForm({
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Passport number <span className="text-[#861b28]">*</span>
+              Passport number <span className="text-maroon-admin">*</span>
             </label>
             <input
               name="passport-number"
@@ -376,7 +376,7 @@ export function ProfileSetupForm({
       ) : (
         referrerLabel && (
           <div className="flex items-center gap-3 border-b border-[#e4e9f2] px-7 py-6 text-sm text-[#5b6b82] sm:px-10">
-            <Gift className="size-4 shrink-0 text-[#861b28]" />
+            <Gift className="size-4 shrink-0 text-maroon-admin" />
             Referred by <span className="font-semibold text-[#002144]">{referrerLabel}</span>
           </div>
         )
@@ -406,7 +406,7 @@ export function ProfileSetupForm({
         <button
           type="submit"
           disabled={pending || usernameStatus === "taken" || usernameStatus === "checking"}
-          className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+          className="group inline-flex w-full items-center justify-center gap-2 rounded-full btn-navy px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
         >
           {pending ? "Saving…" : firstTime ? "Submit for verification" : "Save changes"}
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

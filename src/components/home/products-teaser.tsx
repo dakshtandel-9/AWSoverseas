@@ -43,7 +43,7 @@ export function ProductsTeaser({
         <div className="mt-10 flex justify-center">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 rounded-full bg-[#02224C] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
+            className="inline-flex items-center gap-2 rounded-full btn-navy px-6 py-3 text-sm font-semibold text-white transition-colors"
           >
             View more products <ArrowRight className="size-4" />
           </Link>

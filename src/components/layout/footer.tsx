@@ -77,25 +77,25 @@ export async function Footer() {
             <ul className="mt-6 space-y-3 text-sm">
               {address && (
                 <li className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-accent-400" />
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-maroon-admin" />
                   <span>{address}</span>
                 </li>
               )}
               {phone1 && (
                 <li className="flex items-center gap-3">
-                  <Phone className="size-4 shrink-0 text-accent-400" />
+                  <Phone className="size-4 shrink-0 text-maroon-admin" />
                   <span>{phone1}</span>
                 </li>
               )}
               {phone2 && (
                 <li className="flex items-center gap-3">
-                  <Phone className="size-4 shrink-0 text-accent-400" />
+                  <Phone className="size-4 shrink-0 text-maroon-admin" />
                   <span>{phone2}</span>
                 </li>
               )}
               {email && (
                 <li className="flex items-center gap-3">
-                  <Mail className="size-4 shrink-0 text-accent-400" />
+                  <Mail className="size-4 shrink-0 text-maroon-admin" />
                   <span>{email}</span>
                 </li>
               )}

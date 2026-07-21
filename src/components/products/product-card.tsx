@@ -75,7 +75,7 @@ export function ProductCard({
             <button
               type="button"
               onClick={() => openModal("order")}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#02224C] px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#011a38]"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full btn-navy px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200"
             >
               <ShoppingBag className="size-4" />
               Order

@@ -47,7 +47,7 @@ function DecisionPanel({ item }: { item: Withdrawal }) {
         type="button"
         disabled={pending}
         onClick={() => startTransition(() => markWithdrawalPaidAction(item.id))}
-        className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
+        className="rounded-lg btn-navy px-3.5 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
       >
         Mark as paid
       </button>

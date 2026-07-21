@@ -178,7 +178,7 @@ function ShipmentCard() {
 
           {/* Route bar */}
           <div className="mt-5 flex items-center gap-2.5 rounded-2xl bg-[#f6f8fc] px-4 py-3">
-            <MapPin className="size-4 shrink-0 text-[#9e4953]" />
+            <MapPin className="size-4 shrink-0 text-maroon-admin" />
             <span className="text-sm font-semibold text-[#002144]">Shanghai</span>
             <div className="flex flex-1 items-center gap-1">
               {[0, 1, 2, 3, 4].map((i) => (
@@ -198,7 +198,7 @@ function ShipmentCard() {
             {SHIPMENT_STEPS.map((step) => (
               <li key={step.id} className="flex items-start gap-3">
                 {step.done ? (
-                  <CheckCircle2 className="mt-0.5 size-4.5 shrink-0 text-[#9e4953]" />
+                  <CheckCircle2 className="mt-0.5 size-4.5 shrink-0 text-maroon-admin" />
                 ) : step.active ? (
                   <motion.span
                     className="mt-1 size-3.5 shrink-0 rounded-full bg-[#f59e0b]"
@@ -228,7 +228,7 @@ function ShipmentCard() {
 
           {/* ETA footer */}
           <div className="mt-5 flex items-center gap-2 rounded-xl bg-[#002144] px-4 py-3">
-            <Clock className="size-4 shrink-0 text-[#9e4953]" />
+            <Clock className="size-4 shrink-0 text-maroon-admin" />
             <p className="text-xs font-medium text-white/80">
               Estimated delivery: <span className="font-bold text-white">Jul 3, 2026</span>
             </p>
@@ -278,7 +278,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
         <div className="max-w-[600px]">
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-maroon-admin sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
@@ -297,15 +297,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
             <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>
               {line1}
             </span>
-            <span
-              className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
-              style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
+            <span className="text-maroon-gradient block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
               {line2}
             </span>
           </motion.h1>

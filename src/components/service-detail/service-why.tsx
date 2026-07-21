@@ -43,7 +43,7 @@ export function ServiceWhy({ data }: { data: Data }) {
               show: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
             }}
           >
-            <ShieldCheck className="size-4 text-[#9e4953]" />
+            <ShieldCheck className="size-4 text-maroon-admin" />
             {item}
           </motion.span>
         ))}

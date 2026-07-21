@@ -48,7 +48,7 @@ export function ShipmentStatusPanel({
   return (
     <div className="mt-4 border-t border-[#e4e9f2] pt-4">
       <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
-        <PackageSearch className="size-3.5 text-[#861b28]" />
+        <PackageSearch className="size-3.5 text-maroon-admin" />
         Tracking: <span className="font-mono">{trackingNumber}</span>
         {currentStatus === "rejected" && (
           <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-700">
@@ -96,7 +96,7 @@ export function ShipmentStatusPanel({
         <button
           type="submit"
           disabled={pending}
-          className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
+          className="rounded-lg btn-navy px-3.5 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
         >
           Update status
         </button>

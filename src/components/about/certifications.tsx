@@ -40,7 +40,7 @@ export function Certifications({ data }: { data: Data }) {
               className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#002144] to-[#9e4953]"
               aria-hidden
             />
-            <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#861b28] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
+            <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-maroon-admin transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
               <BadgeCheck className="size-5" />
             </span>
             <div className="min-w-0">

@@ -36,7 +36,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
 
       <div className="relative">
         <Reveal direction="up">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#e05c72]/70">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-maroon-admin/70">
             Our Global Network
           </p>
           <h2
@@ -105,11 +105,11 @@ export function GlobalNetwork({ data }: { data: Data }) {
                   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                 }}
               >
-                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-ink/8 text-[#e05c72]">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-ink/8 text-maroon-admin">
                   <Icon className="size-4.5" />
                 </span>
                 <span className="text-sm font-medium text-ink/85">{h}</span>
-                <ArrowUpRight className="ml-auto size-4 text-ink/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#e05c72]" />
+                <ArrowUpRight className="ml-auto size-4 text-ink/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-maroon-admin" />
               </motion.li>
             );
           })}

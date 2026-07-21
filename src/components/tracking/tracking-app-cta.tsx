@@ -51,7 +51,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
           >
             {data.features.map((f) => (
               <li key={f} className="flex items-center gap-3 text-ink/85">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#9e4953]/20 text-[#e05c72]">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#9e4953]/20 text-maroon-admin">
                   <Check className="size-3.5" />
                 </span>
                 <span className="text-sm font-medium">{f}</span>

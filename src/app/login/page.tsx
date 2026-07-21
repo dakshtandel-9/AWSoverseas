@@ -55,7 +55,7 @@ export default async function LoginPage({
 
         <div className="relative z-10 mt-auto flex flex-col gap-10">
           <div>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
               <span className="size-1.5 rounded-full bg-[#9e4953]" />
               Boarding pass — customer access
             </span>
@@ -84,7 +84,7 @@ export default async function LoginPage({
           <ul className="flex flex-col gap-4 border-t border-ink/12 pt-8">
             {PERKS.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-start gap-3 text-sm leading-relaxed text-ink/65">
-                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-ink/8 text-[#e05c72] ring-1 ring-ink/10">
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-ink/8 text-maroon-admin ring-1 ring-ink/10">
                   <Icon className="size-4" />
                 </span>
                 {text}
@@ -113,7 +113,7 @@ export default async function LoginPage({
           </div>
 
           <div className="mb-7">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#861b28]">
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
               <span className="size-1.5 rounded-full bg-[#9e4953]" />
               Customer access
             </span>

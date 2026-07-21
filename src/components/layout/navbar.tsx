@@ -58,12 +58,7 @@ export function Navbar() {
           <div className="hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
             <LanguageSwitcher />
             <NavbarUser scrolled />
-            <Button
-              href="/quote"
-              variant="primary"
-              size="sm"
-              className="shrink-0 bg-[#022248] hover:bg-[#011530]"
-            >
+            <Button href="/quote" variant="primary" size="sm" className="shrink-0">
               Request Quote <ArrowRight className="size-4 shrink-0" />
             </Button>
           </div>
@@ -110,13 +105,7 @@ export function Navbar() {
               ))}
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <LanguageSwitcher mobile />
-                <Button
-                  href="/quote"
-                  variant="primary"
-                  size="lg"
-                  magnetic={false}
-                  className="bg-[#022248] hover:bg-[#011530]"
-                >
+                <Button href="/quote" variant="primary" size="lg" magnetic={false}>
                   Request a Quote <ArrowRight className="size-4" />
                 </Button>
                 <NavbarUser mobile />

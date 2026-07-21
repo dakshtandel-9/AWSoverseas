@@ -48,7 +48,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
         >
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#002144]/55 transition-colors hover:text-[#902d39]"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#002144]/55 transition-colors hover:text-maroon-admin"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
             All Services
@@ -60,7 +60,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
 
         <div className="mt-10 flex max-w-3xl items-start gap-5">
           <motion.span
-            className="mt-1.5 hidden shrink-0 grid size-14 place-items-center rounded-2xl bg-white/60 text-[#902d39] ring-1 ring-[#002144]/10 backdrop-blur-sm sm:grid"
+            className="mt-1.5 hidden shrink-0 grid size-14 place-items-center rounded-2xl bg-white/60 text-maroon-admin ring-1 ring-[#002144]/10 backdrop-blur-sm sm:grid"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.05, ease }}
@@ -70,7 +70,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
 
           <div>
             <motion.span
-              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#902d39]"
+              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}

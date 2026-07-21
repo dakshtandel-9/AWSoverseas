@@ -45,7 +45,7 @@ export function ServiceOverview({ data }: { data: Data }) {
                 show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
               }}
             >
-              <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#f8f1f2] text-[#861b28]">
+              <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#f8f1f2] text-maroon-admin">
                 <Check className="size-3.5" />
               </span>
               {f}
