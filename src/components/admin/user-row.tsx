@@ -91,7 +91,7 @@ export function UserRow({ user }: { user: AdminUser }) {
             <p>
               <span className="font-semibold">Phone:</span>{" "}
               {user.phone ? (
-                <a href={`tel:${user.phone.replace(/\s+/g, "")}`} className="text-[#8d1a32] hover:underline">
+                <a href={`tel:${user.phone.replace(/\s+/g, "")}`} className="text-[#861b28] hover:underline">
                   {user.phone}
                 </a>
               ) : (
@@ -113,7 +113,7 @@ export function UserRow({ user }: { user: AdminUser }) {
             </p>
             {user.referrer && (
               <p className="sm:col-span-2">
-                <Gift className="mr-1.5 inline size-3.5 text-[#8d1a32]" />
+                <Gift className="mr-1.5 inline size-3.5 text-[#861b28]" />
                 <span className="font-semibold">Referred by:</span> {user.referrer.first_name}{" "}
                 {user.referrer.last_name}
                 {user.referrer.username ? ` (@${user.referrer.username})` : ""}

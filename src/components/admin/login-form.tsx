@@ -24,7 +24,7 @@ export function LoginForm() {
             required
             autoFocus
             placeholder="Enter admin password"
-            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#002144] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20"
+            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#002144] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20"
           />
         </div>
       </div>

@@ -65,13 +65,13 @@ export function AppShowcase({
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[70px]"
             aria-hidden
-            style={{ background: "rgba(171, 31, 61,0.16)" }}
+            style={{ background: "rgba(144, 45, 57,0.16)" }}
           />
           <div className="relative aspect-[9/19] w-[260px] rounded-[2.6rem] bg-[#CFE8FF] p-2.5 shadow-[0_30px_60px_-20px_rgba(4,22,47,0.25)] ring-1 ring-ink/10">
             <div className="absolute left-1/2 top-3 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/60" />
             <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-gradient-to-b from-[#f6f8fc] to-white">
               <div className="bg-[#CFE8FF] px-5 pb-5 pt-9 text-ink">
-                <p className="text-[11px] text-ink/70">AWS Overseas</p>
+                <p className="text-[11px] text-ink/70">aws overseas</p>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={current.key}
@@ -100,7 +100,7 @@ export function AppShowcase({
                         key={item}
                         className="flex items-center gap-2.5 rounded-xl bg-[#f6f8fc] px-3.5 py-2.5 text-[11px] font-semibold text-[#002144] ring-1 ring-[#e4e9f2]"
                       >
-                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#fceef1] text-[#8d1a32]">
+                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#f8f1f2] text-[#861b28]">
                           <Check className="size-3" />
                         </span>
                         <span className="truncate">{item}</span>
@@ -128,7 +128,7 @@ export function AppShowcase({
                 className={cn(
                   "group flex items-start gap-4 rounded-2xl border px-5 py-4 text-left transition-all duration-300",
                   isActive
-                    ? "border-[#d6274c]/40 bg-[#eef3fb] shadow-[0_4px_16px_-6px_rgba(3,62,141,0.2)]"
+                    ? "border-[#9e4953]/40 bg-[#eef3fb] shadow-[0_4px_16px_-6px_rgba(3,62,141,0.2)]"
                     : "border-[#e4e9f2] bg-white hover:border-[#c8d5e8] hover:bg-[#f6f8fc]",
                 )}
               >

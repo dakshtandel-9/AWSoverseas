@@ -38,7 +38,7 @@ type Submit = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 function FieldControl({
   field,
@@ -161,7 +161,7 @@ function FormSection({
           >
             <label className="text-sm font-semibold text-[#002144]">
               {field.label}
-              {field.required && <span className="ml-1 text-[#8d1a32]">*</span>}
+              {field.required && <span className="ml-1 text-[#861b28]">*</span>}
             </label>
             <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} gated={gated} />
           </div>
@@ -269,10 +269,10 @@ export function QuoteForm({
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col items-center gap-4 px-8 py-16 text-center"
           >
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
               <Check className="size-6" />
             </span>
-            <p className="max-w-sm text-base font-medium leading-relaxed text-[#8d1a32]">
+            <p className="max-w-sm text-base font-medium leading-relaxed text-[#861b28]">
               {submit.successMessage}
             </p>
 
@@ -352,7 +352,7 @@ export function QuoteForm({
               <button
                 type="submit"
                 disabled={pending || redirecting}
-                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(171, 31, 61,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
                 {redirecting
                   ? "Redirecting…"

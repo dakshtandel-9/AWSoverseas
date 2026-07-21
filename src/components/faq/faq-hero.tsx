@@ -24,7 +24,7 @@ export function FaqHero({ data }: { data: Data }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 88% 0%, rgba(171, 31, 61,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 88% 0%, rgba(144, 45, 57,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -37,7 +37,7 @@ export function FaqHero({ data }: { data: Data }) {
           transition={{ duration: 0.6, ease }}
         >
           <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
+            <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
@@ -57,7 +57,7 @@ export function FaqHero({ data }: { data: Data }) {
               Frequently Asked{" "}
               <span
                 style={{
-                  background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
+                  background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   color: "transparent",
@@ -100,8 +100,8 @@ export function FaqHero({ data }: { data: Data }) {
             <div
               className="grid size-32 place-items-center rounded-[2rem]"
               style={{
-                background: "rgba(171, 31, 61,0.1)",
-                border: "1px solid rgba(171, 31, 61,0.25)",
+                background: "rgba(144, 45, 57,0.1)",
+                border: "1px solid rgba(144, 45, 57,0.25)",
               }}
             >
               <LifeBuoy className="size-14 text-[#e05c72]" strokeWidth={1.4} />

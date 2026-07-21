@@ -132,9 +132,9 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
                 aria-hidden
               />
               {/* Top-right radial glow */}
-              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#d6274c]/25 blur-3xl" aria-hidden />
+              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#9e4953]/25 blur-3xl" aria-hidden />
               {/* Bottom-left secondary glow */}
-              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#d6274c]/15 blur-2xl" aria-hidden />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#9e4953]/15 blur-2xl" aria-hidden />
 
               {/* Icon */}
               <span className="relative grid size-16 place-items-center rounded-2xl bg-ink/8 ring-1 ring-ink/15 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
@@ -220,10 +220,10 @@ function CompactCard({
     >
       <Link
         href={href}
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#d6274c]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(171, 31, 61,0.2)]"
+        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#9e4953]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(144, 45, 57,0.2)]"
       >
         {/* Left accent stripe on hover */}
-        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#d6274c] transition-transform duration-300 group-hover:scale-y-100" />
+        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#9e4953] transition-transform duration-300 group-hover:scale-y-100" />
 
         <div className="flex items-start justify-between">
           <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#002144] group-hover:text-white group-hover:scale-110">
@@ -236,8 +236,8 @@ function CompactCard({
         <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
 
         {stat && (
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#d6274c]">
-            <span className="size-1.5 rounded-full bg-[#d6274c]" />
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#9e4953]">
+            <span className="size-1.5 rounded-full bg-[#9e4953]" />
             {stat}
           </span>
         )}

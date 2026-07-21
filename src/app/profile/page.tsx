@@ -24,7 +24,7 @@ import { ActivityList, type ActivityItem } from "@/components/account/activity-l
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your profile — AWS Overseas",
+  title: "Your profile — aws overseas",
   robots: { index: false },
 };
 
@@ -67,7 +67,7 @@ export default async function ProfilePage() {
 
   const db = supabaseAdmin();
 
-  const [{ data: quotes }, { data: enquiries }, walletSummary] = await Promise.all([
+  const [{ data: quotes }, { data: orders }, walletSummary] = await Promise.all([
     db
       .from("quote_submissions")
       .select("id, service_type, origin_country, destination_country, created_at")
@@ -79,6 +79,7 @@ export default async function ProfilePage() {
         "id, product_name, message, created_at, quote_status, quoted_price, quoted_quantity, quoted_weight_kg, delivery_date, rejection_reason",
       )
       .eq("user_id", account.user.id)
+      .eq("request_type", "order")
       .order("created_at", { ascending: false }),
     getWalletSummary(profile.id),
   ]);
@@ -91,7 +92,7 @@ export default async function ProfilePage() {
     createdAt: formatDate(q.created_at),
   }));
 
-  const enquiryItems: ActivityItem[] = (enquiries ?? []).map((e) => {
+  const orderItems: ActivityItem[] = (orders ?? []).map((e) => {
     if (e.quote_status === "quoted") {
       return {
         id: e.id,
@@ -167,7 +168,7 @@ export default async function ProfilePage() {
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#d6274c]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#9e4953]"
                 >
                   <MessageSquareText className="size-4" /> Browse products
                 </Link>
@@ -179,7 +180,7 @@ export default async function ProfilePage() {
                 <h2 className="text-base font-bold text-[#002144]">Your details</h2>
                 <Link
                   href="/profile/setup"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
                 >
                   <Pencil className="size-3.5" /> Edit
                 </Link>
@@ -210,10 +211,10 @@ export default async function ProfilePage() {
 
             <ActivityList
               icon={MessageSquareText}
-              title="Your product enquiries"
-              description="Enquiries you've sent from the catalog."
-              emptyLabel="No product enquiries yet."
-              items={enquiryItems}
+              title="Your product orders"
+              description="Orders you've placed from the catalog."
+              emptyLabel="No product orders yet."
+              items={orderItems}
             />
 
           </div>

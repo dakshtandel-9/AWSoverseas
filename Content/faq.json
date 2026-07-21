@@ -1,7 +1,7 @@
 {
     "page": "FAQ",
     "meta": {
-        "title": "Frequently Asked Questions | AWS Overseas",
+        "title": "Frequently Asked Questions | aws overseas",
         "description": "Find answers to common questions about international shipping, freight forwarding, customs clearance, shipment tracking, payments, and shipping services."
     },
     "hero": {
@@ -49,12 +49,12 @@
         "items": [
             {
                 "category": "General",
-                "question": "What services does AWS Overseas provide?",
+                "question": "What services does aws overseas provide?",
                 "answer": "We source and verify manufacturers in India, inspect goods before dispatch, and manage Air Freight, Sea Freight, Import Services, Export Services, Customs Clearance, Warehousing, FCL, LCL, and Door-to-Door delivery."
             },
             {
                 "category": "Product Sourcing",
-                "question": "How does AWS Overseas find and verify suppliers?",
+                "question": "How does aws overseas find and verify suppliers?",
                 "answer": "We shortlist manufacturers matched to your specifications, then run on-ground checks to confirm their capacity, compliance, and production standards before you commit to an order."
             },
             {
@@ -79,13 +79,13 @@
             },
             {
                 "category": "Import & Export",
-                "question": "Can AWS Overseas handle import and export documentation?",
+                "question": "Can aws overseas handle import and export documentation?",
                 "answer": "Yes. Our team assists with documentation, customs procedures, and shipment coordination."
             },
             {
                 "category": "Shipment Tracking",
                 "question": "How can I track my shipment?",
-                "answer": "You can enter your tracking number on our website or use the AWS Overseas Mobile App for real-time shipment updates and notifications."
+                "answer": "You can enter your tracking number on our website or use the aws overseas Mobile App for real-time shipment updates and notifications."
             },
             {
                 "category": "Shipment Tracking",
@@ -109,7 +109,7 @@
             },
             {
                 "category": "Mobile App",
-                "question": "Is the AWS Overseas Mobile App free?",
+                "question": "Is the aws overseas Mobile App free?",
                 "answer": "Yes. The application is completely free to download for Android and iOS devices."
             },
             {

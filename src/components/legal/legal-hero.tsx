@@ -24,7 +24,7 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(50% 45% at 88% 0%, rgba(171, 31, 61,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(50% 45% at 88% 0%, rgba(144, 45, 57,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
@@ -37,7 +37,7 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
           transition={{ duration: 0.6, ease }}
         >
           <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 rounded-full bg-[#d6274c]" />
+            <span className="size-1.5 rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>
           <span className="font-mono text-[11px] tracking-[0.18em] text-ink/35">

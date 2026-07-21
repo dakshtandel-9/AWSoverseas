@@ -13,13 +13,13 @@ type Data = {
 };
 
 const FLOATING_CARDS = [
-  { label: "Inspection Passed", sub: "Supplier: SR Textiles", dot: "#e5748c" },
+  { label: "Inspection Passed", sub: "Supplier: SR Textiles", dot: "#c28d94" },
   { label: "Shipment Cleared", sub: "AWS-9X42-118", dot: "#f59e0b" },
   { label: "Quotation Ready", sub: "$4,280 confirmed", dot: "#34d399" },
 ];
 
 export function DownloadCTA({ data }: { data: Data }) {
-  const titleParts = data.title.split(/(AWS Overseas)/i);
+  const titleParts = data.title.split(/(aws overseas)/i);
 
   return (
     <Section spacing="lg">
@@ -39,33 +39,33 @@ export function DownloadCTA({ data }: { data: Data }) {
           <div
             className="pointer-events-none absolute -left-32 top-1/2 size-[600px] -translate-y-1/2 rounded-full blur-[100px]"
             aria-hidden
-            style={{ background: "rgba(214, 39, 76,0.22)" }}
+            style={{ background: "rgba(158, 73, 83,0.22)" }}
           />
 
           {/* Right / phone glow */}
           <div
             className="pointer-events-none absolute -right-16 top-1/2 size-[520px] -translate-y-1/2 rounded-full blur-[90px]"
             aria-hidden
-            style={{ background: "rgba(171, 31, 61,0.28)" }}
+            style={{ background: "rgba(144, 45, 57,0.28)" }}
           />
 
           <div className="relative grid items-center gap-14 lg:grid-cols-[1fr_auto]">
             {/* ── Left column ─────────────────────────────── */}
             <div className="max-w-xl">
               {/* Eyebrow */}
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
-                <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
+                <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
                 Mobile App
               </span>
 
               {/* Heading */}
               <h2 className="mt-6 text-balance text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-[3.25rem]">
                 {titleParts.map((part, i) =>
-                  /AWS Overseas/i.test(part) ? (
+                  /aws overseas/i.test(part) ? (
                     <span
                       key={i}
                       style={{
-                        background: "linear-gradient(120deg, #e05c72 0%, #d6274c 50%, #023f8d 100%)",
+                        background: "linear-gradient(120deg, #e05c72 0%, #9e4953 50%, #023f8d 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
@@ -123,7 +123,7 @@ export function DownloadCTA({ data }: { data: Data }) {
               <div
                 className="pointer-events-none absolute top-1/2 left-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[72px]"
                 aria-hidden
-                style={{ background: "rgba(214, 39, 76,0.32)" }}
+                style={{ background: "rgba(158, 73, 83,0.32)" }}
               />
 
               {/* Floating notification cards */}

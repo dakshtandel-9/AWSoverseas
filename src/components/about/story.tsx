@@ -57,7 +57,7 @@ export function Story({ data }: { data: Data }) {
             aria-hidden
           />
           <motion.div
-            className="absolute left-[7px] top-2 w-px origin-top bg-gradient-to-b from-[#002144] to-[#d6274c]"
+            className="absolute left-[7px] top-2 w-px origin-top bg-gradient-to-b from-[#002144] to-[#9e4953]"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -77,11 +77,11 @@ export function Story({ data }: { data: Data }) {
             >
               <span
                 className="relative z-10 mt-1.5 size-3.5 shrink-0 rounded-full border-2 border-white bg-[#002144] shadow-[0_0_0_4px_#eef3fb]"
-                style={i === STAGES.length - 1 ? { background: "#d6274c" } : undefined}
+                style={i === STAGES.length - 1 ? { background: "#9e4953" } : undefined}
                 aria-hidden
               />
               <div className="min-w-0">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#8d1a32]">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#861b28]">
                   {s.marker}
                 </span>
                 <h3 className="mt-1.5 text-lg font-bold text-[#002144]">{s.title}</h3>

@@ -23,7 +23,7 @@ type Data = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 function FieldControl({ field }: { field: Field }) {
   const id = useId();
@@ -106,12 +106,12 @@ export function PartnerApplyForm({ data }: { data: Data }) {
               key="success"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 flex items-start gap-3 rounded-2xl bg-[#fceef1] px-5 py-5 ring-1 ring-[#d6274c]/25"
+              className="mt-8 flex items-start gap-3 rounded-2xl bg-[#f8f1f2] px-5 py-5 ring-1 ring-[#9e4953]/25"
             >
-              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
+              <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
                 <Check className="size-4" />
               </span>
-              <p className="text-sm font-medium leading-relaxed text-[#8d1a32]">
+              <p className="text-sm font-medium leading-relaxed text-[#861b28]">
                 {data.successMessage}
               </p>
             </motion.div>
@@ -134,7 +134,7 @@ export function PartnerApplyForm({ data }: { data: Data }) {
                 >
                   <label className="text-sm font-semibold text-[#002144]">
                     {field.label}
-                    {field.required && <span className="ml-1 text-[#8d1a32]">*</span>}
+                    {field.required && <span className="ml-1 text-[#861b28]">*</span>}
                   </label>
                   <FieldControl field={field} />
                 </div>
@@ -143,7 +143,7 @@ export function PartnerApplyForm({ data }: { data: Data }) {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(171, 31, 61,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)] sm:w-auto"
                 >
                   {data.submitButton}
                   <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

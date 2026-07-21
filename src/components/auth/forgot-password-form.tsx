@@ -5,7 +5,7 @@ import { AlertCircle, ArrowRight, Loader2, Mail } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState("");

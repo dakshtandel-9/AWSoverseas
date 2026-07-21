@@ -33,7 +33,7 @@ export function ContactHero({ data, phone }: { data: Data; phone?: string }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(171, 31, 61,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(144, 45, 57,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -46,7 +46,7 @@ export function ContactHero({ data, phone }: { data: Data; phone?: string }) {
           transition={{ duration: 0.6, ease }}
         >
           <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
+            <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
@@ -65,7 +65,7 @@ export function ContactHero({ data, phone }: { data: Data; phone?: string }) {
             {line1}{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -105,7 +105,7 @@ export function ContactHero({ data, phone }: { data: Data; phone?: string }) {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.background = "rgba(1,33,74,0.1)";
-                  el.style.boxShadow = "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
+                  el.style.boxShadow = "0 0 0 1px rgba(144, 45, 57,0.4), 0 4px 20px rgba(144, 45, 57,0.15)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;

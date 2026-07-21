@@ -64,14 +64,14 @@ export function TrackingHero({
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 50% 0%, rgba(171, 31, 61,0.16) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 50% 0%, rgba(144, 45, 57,0.16) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative flex flex-col items-center text-center">
         <motion.span
-          className="inline-flex items-center gap-2 rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#ab1f3d]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#902d39]"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
@@ -125,13 +125,13 @@ export function TrackingHero({
                   if (error) setError(false);
                 }}
                 placeholder={form.placeholder}
-                className="w-full rounded-2xl border border-[#002144]/15 bg-white py-4 pl-11 pr-4 text-sm font-medium text-[#002144] placeholder:text-[#002144]/35 outline-none focus:border-[#d6274c]/50 focus:ring-2 focus:ring-[#d6274c]/25"
+                className="w-full rounded-2xl border border-[#002144]/15 bg-white py-4 pl-11 pr-4 text-sm font-medium text-[#002144] placeholder:text-[#002144]/35 outline-none focus:border-[#9e4953]/50 focus:ring-2 focus:ring-[#9e4953]/25"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#d6274c] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#8d1a32] disabled:opacity-70"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#9e4953] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#861b28] disabled:opacity-70"
             >
               {loading ? (
                 <>

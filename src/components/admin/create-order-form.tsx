@@ -34,7 +34,7 @@ export type OrderProductOption = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: CreateOrderState = {};
 
@@ -120,7 +120,7 @@ function Combobox<T extends { id: string }>({
                   }}
                   className={cn(
                     "cursor-pointer px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
-                    item.id === value?.id && "bg-[#eef8fd] text-[#8d1a32]",
+                    item.id === value?.id && "bg-[#eef8fd] text-[#861b28]",
                   )}
                 >
                   {(renderOption ?? render)(item)}
@@ -221,10 +221,10 @@ function CreateOrderModal({
         {done ? (
           <div className="flex flex-col gap-4 overflow-y-auto px-6 py-6">
             <div className="flex items-start gap-3 rounded-2xl bg-[#eef8fd] px-4 py-3">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
+              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
                 <Check className="size-4" />
               </span>
-              <p className="text-sm font-medium leading-relaxed text-[#8d1a32]">
+              <p className="text-sm font-medium leading-relaxed text-[#861b28]">
                 Order created for {context ? context.item.full_name : "the customer"} — it now shows on their
                 profile. Revise the quote, reject it, or credit a referral below.
               </p>
@@ -245,7 +245,7 @@ function CreateOrderModal({
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#d6274c]"
+              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
             >
               Done
             </button>
@@ -258,7 +258,7 @@ function CreateOrderModal({
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Customer <span className="text-[#8d1a32]">*</span>
+                Customer <span className="text-[#861b28]">*</span>
               </label>
               <Combobox
                 items={users}
@@ -291,7 +291,7 @@ function CreateOrderModal({
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Product <span className="text-[#8d1a32]">*</span>
+                Product <span className="text-[#861b28]">*</span>
               </label>
               <Combobox
                 items={products}

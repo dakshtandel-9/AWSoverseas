@@ -11,7 +11,7 @@ export const metadata: Metadata = metaFrom(mobileApp.meta, "/mobile-app");
 const APP_JSONLD = {
   "@context": "https://schema.org",
   "@type": "MobileApplication",
-  name: "AWS Overseas",
+  name: "aws overseas",
   operatingSystem: "Android, iOS",
   applicationCategory: "BusinessApplication",
   description: mobileApp.meta?.description,

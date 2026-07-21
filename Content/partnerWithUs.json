@@ -2,20 +2,20 @@
   "page": "Partner With Us",
 
   "meta": {
-    "title": "Partner With AWS Overseas | Grow Together",
-    "description": "Join the AWS Overseas global shipping network. Partner with us as a freight forwarder, customs broker, transport provider, warehouse partner, or business associate."
+    "title": "Partner With aws overseas | Grow Together",
+    "description": "Join the aws overseas global shipping network. Partner with us as a freight forwarder, customs broker, transport provider, warehouse partner, or business associate."
   },
 
   "hero": {
     "badge": "Business Partnership",
     "title": "Let's Build a Stronger Global Shipping Network Together",
-    "subtitle": "Become an AWS Overseas partner and expand your business with international shipping opportunities, reliable support, and long-term collaboration.",
+    "subtitle": "Become an aws overseas partner and expand your business with international shipping opportunities, reliable support, and long-term collaboration.",
     "primaryButton": "Apply Now",
     "secondaryButton": "Contact Partnership Team"
   },
 
   "benefits": {
-    "title": "Why Partner With AWS Overseas?",
+    "title": "Why Partner With aws overseas?",
     "description": "We believe in building long-term relationships that create value for both our partners and customers.",
     "items": [
       {
@@ -97,7 +97,7 @@
       {
         "step": "04",
         "title": "Partnership Approval",
-        "description": "Once approved, you'll become an official AWS Overseas business partner."
+        "description": "Once approved, you'll become an official aws overseas business partner."
       }
     ]
   },
@@ -152,7 +152,7 @@
       {
         "label": "Tell Us About Your Business",
         "type": "textarea",
-        "placeholder": "Describe your company, experience, and how you'd like to partner with AWS Overseas."
+        "placeholder": "Describe your company, experience, and how you'd like to partner with aws overseas."
       }
     ],
     "submitButton": "Submit Application",
@@ -163,7 +163,7 @@
     "title": "Frequently Asked Questions",
     "items": [
       {
-        "question": "Who can become an AWS Overseas partner?",
+        "question": "Who can become an aws overseas partner?",
         "answer": "We welcome freight forwarders, customs brokers, transport companies, warehouse providers, shipping agents, and other shipping-related businesses."
       },
       {

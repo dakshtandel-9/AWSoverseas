@@ -99,9 +99,9 @@ export function ContactChannels({
         <div
           className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full blur-[60px]"
           aria-hidden
-          style={{ background: "rgba(171, 31, 61,0.22)" }}
+          style={{ background: "rgba(144, 45, 57,0.22)" }}
         />
-        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#d6274c]/15 text-[#e05c72]">
+        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#9e4953]/15 text-[#e05c72]">
           <MessageCircle className="size-6" />
         </span>
         <div className="relative min-w-0 flex-1">
@@ -120,7 +120,7 @@ export function ContactChannels({
         transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center gap-2.5">
-          <Clock className="size-4 text-[#8d1a32]" />
+          <Clock className="size-4 text-[#861b28]" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             {businessHours.title}
           </p>

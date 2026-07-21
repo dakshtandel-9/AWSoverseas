@@ -29,7 +29,7 @@ export function VoidManifest() {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 0%, rgba(171, 31, 61,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 85% 0%, rgba(144, 45, 57,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
@@ -49,7 +49,7 @@ export function VoidManifest() {
             STATUS: NO&nbsp;RECORD
           </span>
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-ink/35 sm:block">
-            AWS OVERSEAS&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
+            aws overseas&nbsp;/&nbsp;MANIFEST&nbsp;SCAN
           </span>
         </motion.div>
 
@@ -85,7 +85,7 @@ export function VoidManifest() {
                 ))}
               </div>
               <motion.div
-                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#d6274c]/80 to-transparent"
+                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#9e4953]/80 to-transparent"
                 initial={{ x: "-2rem" }}
                 animate={{ x: "280px" }}
                 transition={{ duration: 1.1, delay: 0.6, ease: "easeInOut" }}
@@ -148,7 +148,7 @@ export function VoidManifest() {
                           {r.note}
                         </span>
                         <span
-                          className="text-[#d6274c] transition-transform duration-300 group-hover:translate-x-1"
+                          className="text-[#9e4953] transition-transform duration-300 group-hover:translate-x-1"
                           aria-hidden
                         >
                           &rarr;

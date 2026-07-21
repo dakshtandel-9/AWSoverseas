@@ -119,7 +119,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
               <p>
                 <span className="font-semibold">Phone:</span>{" "}
                 {profile.phone ? (
-                  <a href={`tel:${profile.phone.replace(/\s+/g, "")}`} className="text-[#8d1a32] hover:underline">
+                  <a href={`tel:${profile.phone.replace(/\s+/g, "")}`} className="text-[#861b28] hover:underline">
                     {profile.phone}
                   </a>
                 ) : (
@@ -128,7 +128,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
               </p>
               <p>
                 <span className="font-semibold">Email:</span>{" "}
-                <a href={`mailto:${profile.email}`} className="text-[#8d1a32] hover:underline">
+                <a href={`mailto:${profile.email}`} className="text-[#861b28] hover:underline">
                   {profile.email}
                 </a>
               </p>
@@ -142,7 +142,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
                 <span className="font-semibold">Passport no.:</span> {profile.passport_number || "—"}
               </p>
               <p className="sm:col-span-2">
-                <Gift className="mr-1.5 inline size-3.5 text-[#8d1a32]" />
+                <Gift className="mr-1.5 inline size-3.5 text-[#861b28]" />
                 <span className="font-semibold">Referral code:</span>{" "}
                 <span className="font-mono">{profile.referral_code}</span>
               </p>
@@ -174,7 +174,7 @@ export function ViewProfileButton({ profile }: { profile: AdminUserProfile | nul
           e.stopPropagation();
           setOpen(true);
         }}
-        className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3.5 py-1.5 text-xs font-semibold text-[#5b6b82] transition-colors hover:border-[#d6274c] hover:text-[#8d1a32]"
+        className="inline-flex items-center gap-1.5 rounded-full border border-[#e4e9f2] px-3.5 py-1.5 text-xs font-semibold text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#861b28]"
       >
         <UserRound className="size-3.5" />
         View profile

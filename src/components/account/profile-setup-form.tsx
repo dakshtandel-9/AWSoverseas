@@ -18,7 +18,7 @@ import { SignOutButton } from "@/components/account/sign-out-button";
 import type { UserProfile } from "@/lib/account";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 type UsernameStatus = "idle" | "checking" | "available" | "taken" | "invalid";
 
@@ -89,14 +89,14 @@ function ConfirmPassportChangeModal({
               <button
                 type="button"
                 onClick={onCancel}
-                className="flex-1 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#d6274c]"
+                className="flex-1 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#9e4953]"
               >
                 Go back
               </button>
               <button
                 type="button"
                 onClick={onConfirm}
-                className="flex-1 rounded-full bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700"
+                className="flex-1 rounded-full bg-[#861b28] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#721722]"
               >
                 Save anyway
               </button>
@@ -237,7 +237,7 @@ export function ProfileSetupForm({
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              First name <span className="text-[#8d1a32]">*</span>
+              First name <span className="text-[#861b28]">*</span>
             </label>
             <input
               name="first-name"
@@ -254,7 +254,7 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Last name <span className="text-[#8d1a32]">*</span>
+              Last name <span className="text-[#861b28]">*</span>
             </label>
             <input
               name="last-name"
@@ -271,7 +271,7 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Username <span className="text-[#8d1a32]">*</span>
+              Username <span className="text-[#861b28]">*</span>
             </label>
             <input
               name="username"
@@ -288,14 +288,14 @@ export function ProfileSetupForm({
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Phone number <span className="text-[#8d1a32]">*</span>
+              Phone number <span className="text-[#861b28]">*</span>
             </label>
             <PhoneInput name="phone" required defaultValue={profile.phone} />
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Country <span className="text-[#8d1a32]">*</span>
+              Country <span className="text-[#861b28]">*</span>
             </label>
             <CountrySelect
               name="country"
@@ -332,7 +332,7 @@ export function ProfileSetupForm({
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
             <label className="text-sm font-semibold text-[#002144]">
-              Passport number <span className="text-[#8d1a32]">*</span>
+              Passport number <span className="text-[#861b28]">*</span>
             </label>
             <input
               name="passport-number"
@@ -376,7 +376,7 @@ export function ProfileSetupForm({
       ) : (
         referrerLabel && (
           <div className="flex items-center gap-3 border-b border-[#e4e9f2] px-7 py-6 text-sm text-[#5b6b82] sm:px-10">
-            <Gift className="size-4 shrink-0 text-[#8d1a32]" />
+            <Gift className="size-4 shrink-0 text-[#861b28]" />
             Referred by <span className="font-semibold text-[#002144]">{referrerLabel}</span>
           </div>
         )

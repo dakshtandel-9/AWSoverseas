@@ -10,7 +10,7 @@ import { PasswordChecklist } from "@/components/auth/password-checklist";
 import { CaptchaField, type CaptchaHandle } from "@/components/auth/captcha-field";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 type Mode = "sign-in" | "sign-up";
 
@@ -152,7 +152,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
           <div className="flex items-baseline justify-between">
             <label className="text-sm font-semibold text-[#002144]">Password</label>
             {mode === "sign-in" && (
-              <Link href="/forgot-password" className="text-xs font-semibold text-[#8d1a32] hover:underline">
+              <Link href="/forgot-password" className="text-xs font-semibold text-[#861b28] hover:underline">
                 Forgot password?
               </Link>
             )}

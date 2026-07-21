@@ -57,7 +57,7 @@ export async function TrackingResult({ reference }: { reference: string }) {
           <div className="text-right">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Route</p>
             <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
-              <MapPin className="size-3.5 text-[#8d1a32]" />
+              <MapPin className="size-3.5 text-[#861b28]" />
               {shipment.origin_country} → {shipment.destination_country}
             </p>
           </div>

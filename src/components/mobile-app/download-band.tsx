@@ -23,7 +23,7 @@ export function DownloadBand({ data }: { data: Data }) {
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(50% 60% at 50% -10%, rgba(171, 31, 61,0.14) 0%, transparent 60%)",
+              "radial-gradient(50% 60% at 50% -10%, rgba(144, 45, 57,0.14) 0%, transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-xl">
@@ -42,27 +42,29 @@ export function DownloadBand({ data }: { data: Data }) {
             <a
               href={data.playStore.link}
               aria-label={`${data.playStore.title} ${data.playStore.button}`}
-              className="transition-transform hover:-translate-y-0.5"
+              className="flex items-center rounded-xl px-4 py-2.5 shadow-lg shadow-[#002144]/15 transition-transform hover:-translate-y-0.5"
+              style={{ background: "#002144" }}
             >
               <Image
                 src="/brand/google-play-real.png"
                 alt="Get it on Google Play"
                 width={200}
                 height={59}
-                className="h-14 w-auto"
+                className="h-9 w-auto"
               />
             </a>
             <a
               href={data.appStore.link}
               aria-label={`${data.appStore.title} ${data.appStore.button}`}
-              className="transition-transform hover:-translate-y-0.5"
+              className="flex items-center rounded-xl px-4 py-2.5 shadow-lg shadow-[#002144]/15 transition-transform hover:-translate-y-0.5"
+              style={{ background: "#002144" }}
             >
               <Image
                 src="/brand/app-store-real.png"
                 alt="Download on the App Store"
                 width={200}
                 height={59}
-                className="h-14 w-auto"
+                className="h-9 w-auto"
               />
             </a>
           </div>

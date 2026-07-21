@@ -20,7 +20,7 @@ export function WhyChoose({ data }: { data: Data }) {
         <Reveal direction="up">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-              The Case for AWS Overseas
+              The Case for aws overseas
             </p>
             <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
@@ -60,7 +60,7 @@ export function WhyChoose({ data }: { data: Data }) {
                   </p>
                 </div>
                 <span
-                  className="hidden h-8 w-px shrink-0 bg-[#dfe6f1] transition-colors duration-300 group-hover:bg-[#d6274c] sm:block"
+                  className="hidden h-8 w-px shrink-0 bg-[#dfe6f1] transition-colors duration-300 group-hover:bg-[#9e4953] sm:block"
                   aria-hidden
                 />
               </motion.div>

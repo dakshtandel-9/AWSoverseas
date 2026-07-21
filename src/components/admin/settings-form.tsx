@@ -8,7 +8,7 @@ import type { SiteSettings } from "@/lib/site-settings";
 const initialState: SettingsState = {};
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
   const [state, formAction, pending] = useActionState(updateSettingsAction, initialState);
@@ -49,7 +49,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </p>
       )}
       {state.success && (
-        <p className="flex items-center gap-2 rounded-lg bg-[#fceef1] px-3 py-2 text-sm font-medium text-[#8d1a32]" role="status">
+        <p className="flex items-center gap-2 rounded-lg bg-[#f8f1f2] px-3 py-2 text-sm font-medium text-[#861b28]" role="status">
           <Check className="size-4" />
           Settings saved — live on the site now.
         </p>
@@ -87,7 +87,7 @@ function Field({
     <div className="flex flex-col gap-2">
       <label htmlFor={name} className="text-sm font-semibold text-[#002144]">
         {label}
-        {required && <span className="ml-1 text-[#8d1a32]">*</span>}
+        {required && <span className="ml-1 text-[#861b28]">*</span>}
       </label>
       <input
         id={name}

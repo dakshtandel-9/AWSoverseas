@@ -34,7 +34,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
             {/* Mini legend */}
             <div className="mt-10 flex flex-col gap-3">
               <div className="flex items-center gap-3 text-sm text-[#5b6b82]">
-                <CheckCircle2 className="size-4 text-[#d6274c]" />
+                <CheckCircle2 className="size-4 text-[#9e4953]" />
                 Completed
               </div>
               <div className="flex items-center gap-3 text-sm text-[#d97706]">
@@ -55,7 +55,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
           <div className="absolute left-[22px] top-0 h-full w-0.5 bg-[#e4e9f2]" aria-hidden />
           {/* Filled line — up to and including the active step */}
           <motion.div
-            className="absolute left-[22px] top-0 w-0.5 origin-top bg-gradient-to-b from-[#d6274c] to-[#f59e0b]"
+            className="absolute left-[22px] top-0 w-0.5 origin-top bg-gradient-to-b from-[#9e4953] to-[#f59e0b]"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -78,7 +78,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
                 {/* Node */}
                 <div className="relative z-10 mt-0.5 shrink-0">
                   {isDone ? (
-                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-[#d6274c] shadow-[0_0_0_4px_#f6f8fc]" />
+                    <CheckCircle2 className="size-[46px] rounded-full bg-white text-[#9e4953] shadow-[0_0_0_4px_#f6f8fc]" />
                   ) : isActive ? (
                     <div className="relative">
                       <motion.span

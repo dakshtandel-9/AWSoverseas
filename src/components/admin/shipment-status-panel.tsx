@@ -6,6 +6,7 @@ import { addShipmentMilestoneAction } from "@/app/admin/(dashboard)/quotes/actio
 import type { ShipmentStatus } from "@/lib/tracking";
 
 const STAGES: { value: ShipmentStatus; label: string }[] = [
+  { value: "verifying", label: "Verifying" },
   { value: "pending", label: "Pending pickup" },
   { value: "collected", label: "Collected" },
   { value: "customs_cleared", label: "Customs cleared" },
@@ -47,7 +48,7 @@ export function ShipmentStatusPanel({
   return (
     <div className="mt-4 border-t border-[#e4e9f2] pt-4">
       <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
-        <PackageSearch className="size-3.5 text-[#8d1a32]" />
+        <PackageSearch className="size-3.5 text-[#861b28]" />
         Tracking: <span className="font-mono">{trackingNumber}</span>
         {currentStatus === "rejected" && (
           <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-700">

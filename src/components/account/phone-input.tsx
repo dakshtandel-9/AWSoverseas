@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { COUNTRY_CODES, DEFAULT_COUNTRY_ISO, type CountryCode } from "@/lib/country-codes";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 /** Splits a stored "+91 6363073455" style value into dial code + local number. */
 function parsePhone(raw: string): { iso: string; number: string } {
@@ -149,7 +149,7 @@ export function PhoneInput({
                     onMouseEnter={() => setActiveIndex(i)}
                     className={cn(
                       "flex cursor-pointer items-center gap-2.5 px-4 py-2 text-sm text-[#002144] transition-colors",
-                      i === activeIndex ? "bg-[#eef8fd] text-[#8d1a32]" : "hover:bg-[#f6f8fc]",
+                      i === activeIndex ? "bg-[#eef8fd] text-[#861b28]" : "hover:bg-[#f6f8fc]",
                     )}
                   >
                     <span className="text-base leading-none">{country.flag}</span>

@@ -40,7 +40,7 @@ export function VerificationNotice({ status }: { status: AccountStatus }) {
         )}
         <Link
           href="/profile"
-          className="inline-flex items-center rounded-full border border-[#e4e9f2] px-6 py-3 text-sm font-semibold text-[#002144] transition-colors hover:border-[#d6274c]"
+          className="inline-flex items-center rounded-full border border-[#e4e9f2] px-6 py-3 text-sm font-semibold text-[#002144] transition-colors hover:border-[#9e4953]"
         >
           View your profile
         </Link>

@@ -20,13 +20,13 @@ export function ReferEarn({ data }: { data: Data }) {
         aria-hidden
         style={{
           background:
-            "radial-gradient(55% 45% at 90% 0%, rgba(171, 31, 61,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 5% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
+            "radial-gradient(55% 45% at 90% 0%, rgba(144, 45, 57,0.18) 0%, transparent 60%), radial-gradient(50% 45% at 5% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
         }}
       />
 
       <div className="relative grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:items-center">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]">
             <Gift className="size-3.5" />
             Refer &amp; Earn
           </span>
@@ -58,7 +58,7 @@ export function ReferEarn({ data }: { data: Data }) {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#d6274c]/15 font-heading text-base font-extrabold text-[#e05c72]">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#9e4953]/15 font-heading text-base font-extrabold text-[#e05c72]">
                 {s.step}
               </span>
               <span className="text-[15px] font-semibold text-ink">{s.title}</span>

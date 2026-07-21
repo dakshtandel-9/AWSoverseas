@@ -6,7 +6,7 @@ import { updateBankDetailsAction, type BankDetailsFormState } from "@/app/action
 import type { UserProfile } from "@/lib/account";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: BankDetailsFormState = {};
 
@@ -33,14 +33,14 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <div className="flex items-center justify-between">
         <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-          <Landmark className="size-4 text-[#8d1a32]" />
+          <Landmark className="size-4 text-[#861b28]" />
           Bank details
         </h2>
         {hasSavedDetails && !editing && (
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
           >
             <Pencil className="size-3.5" /> Edit
           </button>

@@ -31,7 +31,7 @@ export function ProductCard({
   return (
     <>
       <motion.div
-        className="group flex flex-col overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white transition-colors duration-300 hover:border-[#d6274c]/50"
+        className="group flex flex-col overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white transition-colors duration-300 hover:border-[#9e4953]/50"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}

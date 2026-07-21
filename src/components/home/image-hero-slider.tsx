@@ -186,12 +186,12 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
           <div key={index} className="max-w-[600px]">
             {/* Eyebrow */}
             <motion.div
-              className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+              className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
             >
-              <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
+              <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
               {slide.badge}
             </motion.div>
 
@@ -208,7 +208,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               <span
                 className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
                 style={{
-                  background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
+                  background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   color: "transparent",
@@ -245,17 +245,17 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
                   border: "1px solid rgba(255,255,255,0.18)",
                   color: "rgba(255,255,255,0.92)",
                   backdropFilter: "blur(12px)",
-                  boxShadow: "0 0 0 0 rgba(171, 31, 61,0)",
+                  boxShadow: "0 0 0 0 rgba(144, 45, 57,0)",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
+                    "0 0 0 1px rgba(144, 45, 57,0.4), 0 4px 20px rgba(144, 45, 57,0.15)";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(171, 31, 61,0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(144, 45, 57,0)";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                 }}
               >
@@ -288,7 +288,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
             type="button"
             onClick={(e) => goTo(index - 1, e)}
             aria-label="Previous slide"
-            className="absolute left-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/[0.08] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6274c] sm:left-6 md:grid"
+            className="absolute left-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/[0.08] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9e4953] sm:left-6 md:grid"
           >
             <ChevronLeft className="size-5" />
           </button>
@@ -296,7 +296,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
             type="button"
             onClick={(e) => goTo(index + 1, e)}
             aria-label="Next slide"
-            className="absolute right-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/[0.08] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6274c] sm:right-6 md:grid"
+            className="absolute right-4 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/[0.08] text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/[0.18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9e4953] sm:right-6 md:grid"
           >
             <ChevronRight className="size-5" />
           </button>
@@ -310,11 +310,11 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
                 onClick={(e) => goTo(i, e)}
                 aria-label={`Go to slide ${i + 1}`}
                 aria-current={i === index}
-                className="rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6274c]"
+                className="rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9e4953]"
                 style={{
                   width: i === index ? 28 : 9,
                   height: 9,
-                  background: i === index ? "#d6274c" : "rgba(255,255,255,0.35)",
+                  background: i === index ? "#9e4953" : "rgba(255,255,255,0.35)",
                 }}
               />
             ))}

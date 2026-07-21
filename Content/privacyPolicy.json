@@ -1,13 +1,13 @@
 {
     "page": "Privacy Policy",
     "meta": {
-        "title": "Privacy Policy | AWS Overseas",
-        "description": "Read the AWS Overseas Privacy Policy to understand how we collect, use, and protect your personal information."
+        "title": "Privacy Policy | aws overseas",
+        "description": "Read the aws overseas Privacy Policy to understand how we collect, use, and protect your personal information."
     },
     "hero": {
         "badge": "Legal",
         "title": "Privacy Policy",
-        "subtitle": "Your privacy is important to us. This policy explains how AWS Overseas collects, uses, stores, and protects your personal information."
+        "subtitle": "Your privacy is important to us. This policy explains how aws overseas collects, uses, stores, and protects your personal information."
     },
     "lastUpdated": "01 July 2026",
     "sections": [
@@ -21,7 +21,7 @@
         },
         {
             "title": "Data Security",
-            "content": "AWS Overseas uses appropriate security measures to protect your information from unauthorized access, disclosure, alteration, or destruction."
+            "content": "aws overseas uses appropriate security measures to protect your information from unauthorized access, disclosure, alteration, or destruction."
         },
         {
             "title": "Third-Party Services",
@@ -37,7 +37,7 @@
         },
         {
             "title": "Contact Us",
-            "content": "If you have any questions regarding this Privacy Policy, please contact AWS Overseas."
+            "content": "If you have any questions regarding this Privacy Policy, please contact aws overseas."
         }
     ]
 }

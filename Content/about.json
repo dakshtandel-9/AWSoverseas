@@ -1,11 +1,11 @@
 {
     "page": "About",
     "meta": {
-        "title": "About AWS Overseas | Sourcing & Export Partner in India",
-        "description": "AWS Overseas connects global buyers with trusted Indian manufacturers — verifying suppliers, inspecting quality, and managing export shipping so you can source from India with confidence."
+        "title": "About aws overseas | Sourcing & Export Partner in India",
+        "description": "aws overseas connects global buyers with trusted Indian manufacturers — verifying suppliers, inspecting quality, and managing export shipping so you can source from India with confidence."
     },
     "hero": {
-        "badge": "About AWS Overseas",
+        "badge": "About aws overseas",
         "title": "Your Trusted Bridge to Indian Manufacturing",
         "subtitle": "We connect global buyers with verified Indian manufacturers — vetting suppliers, safeguarding quality, and handling the export process end to end, so sourcing from India feels like working with a partner on the ground.",
         "primaryButton": "Request a Quote",
@@ -13,7 +13,7 @@
     },
     "companyStory": {
         "title": "Our Story",
-        "description": "AWS Overseas was founded on a simple observation: global buyers wanted to source from India, but the distance, language, and unfamiliar processes made it risky to go it alone. We started by building real relationships with manufacturers across India's production hubs — visiting factories, vetting capabilities, and earning the kind of trust that can't be arranged over email. Over time, we layered in the export knowledge and shipping expertise those relationships needed to matter: quality assurance before goods ever leave the factory, documentation done right the first time, and freight handled by people who understand both ends of the trade. Today, that combination — supplier relationships, sourcing know-how, and shipping execution — is what lets a buyer anywhere in the world source from India with the same confidence as buying down the street."
+        "description": "aws overseas was founded on a simple observation: global buyers wanted to source from India, but the distance, language, and unfamiliar processes made it risky to go it alone. We started by building real relationships with manufacturers across India's production hubs — visiting factories, vetting capabilities, and earning the kind of trust that can't be arranged over email. Over time, we layered in the export knowledge and shipping expertise those relationships needed to matter: quality assurance before goods ever leave the factory, documentation done right the first time, and freight handled by people who understand both ends of the trade. Today, that combination — supplier relationships, sourcing know-how, and shipping execution — is what lets a buyer anywhere in the world source from India with the same confidence as buying down the street."
     },
     "missionVision": {
         "title": "Mission & Vision",
@@ -23,7 +23,7 @@
         },
         "vision": {
             "title": "Become the preferred sourcing and export partner for businesses worldwide.",
-            "description": "We're building toward a future where 'sourcing from India' and 'working with AWS Overseas' mean the same thing to buyers worldwide — the first call for anyone who wants a trusted supplier, not just a shipment."
+            "description": "We're building toward a future where 'sourcing from India' and 'working with aws overseas' mean the same thing to buyers worldwide — the first call for anyone who wants a trusted supplier, not just a shipment."
         }
     },
     "values": {
@@ -69,7 +69,7 @@
     },
     "certifications": {
         "title": "Compliance & Verification",
-        "description": "Trust with AWS Overseas isn't a single certificate — it's a process we run on every order, from the factory floor to the paperwork that clears customs.",
+        "description": "Trust with aws overseas isn't a single certificate — it's a process we run on every order, from the factory floor to the paperwork that clears customs.",
         "items": [
             "Supplier Verification",
             "Export Compliance",
@@ -80,7 +80,7 @@
         ]
     },
     "whyChooseUs": {
-        "title": "Why Global Buyers Choose AWS Overseas",
+        "title": "Why Global Buyers Choose aws overseas",
         "items": [
             {
                 "title": "Verified Supplier Relationships",
@@ -110,7 +110,7 @@
     },
     "cta": {
         "title": "Let's Find Your Next Supplier in India",
-        "description": "Whether you need a manufacturer sourced and verified, an existing supplier relationship managed, or your next order shipped and cleared, AWS Overseas handles it as one connected partnership.",
+        "description": "Whether you need a manufacturer sourced and verified, an existing supplier relationship managed, or your next order shipped and cleared, aws overseas handles it as one connected partnership.",
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
     }

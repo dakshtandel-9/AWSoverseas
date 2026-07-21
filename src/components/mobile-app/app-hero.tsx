@@ -16,7 +16,7 @@ type Data = {
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const FLOATING_CARDS = [
-  { label: "Shipment Cleared", sub: "AWO-2847-SH", dot: "#e5748c", top: "10%", left: "-64px" },
+  { label: "Shipment Cleared", sub: "AWO-2847-SH", dot: "#c28d94", top: "10%", left: "-64px" },
   { label: "Payment Confirmed", sub: "₹48,200 received", dot: "#34d399", top: "48%", left: "-84px" },
   { label: "Out for Delivery", sub: "ETA today, 4 PM", dot: "#f59e0b", top: "80%", left: "-56px" },
 ];
@@ -40,19 +40,19 @@ export function AppHero({ data }: { data: Data }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 15%, rgba(171, 31, 61,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.2) 0%, transparent 60%)",
+            "radial-gradient(55% 50% at 85% 15%, rgba(144, 45, 57,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 5% 100%, rgba(3,62,141,0.2) 0%, transparent 60%)",
         }}
       />
 
       <Container className="relative grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
         <div className="max-w-xl">
           <motion.span
-            className="inline-flex items-center gap-2 rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#e05c72]"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
           >
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
+            <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </motion.span>
 
@@ -66,7 +66,7 @@ export function AppHero({ data }: { data: Data }) {
             {line1}{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #e05c72 0%, #9e4953 55%, #e88797 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -91,22 +91,32 @@ export function AppHero({ data }: { data: Data }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease }}
           >
-            <a href="#" aria-label={data.primaryButton} className="transition-transform hover:-translate-y-0.5">
+            <a
+              href="#"
+              aria-label={data.primaryButton}
+              className="flex items-center rounded-xl px-4 py-2.5 shadow-lg shadow-[#002144]/15 transition-transform hover:-translate-y-0.5"
+              style={{ background: "#002144" }}
+            >
               <Image
                 src="/brand/google-play-real.png"
                 alt="Get it on Google Play"
                 width={200}
                 height={59}
-                className="h-14 w-auto"
+                className="h-9 w-auto"
               />
             </a>
-            <a href="#" aria-label={data.secondaryButton} className="transition-transform hover:-translate-y-0.5">
+            <a
+              href="#"
+              aria-label={data.secondaryButton}
+              className="flex items-center rounded-xl px-4 py-2.5 shadow-lg shadow-[#002144]/15 transition-transform hover:-translate-y-0.5"
+              style={{ background: "#002144" }}
+            >
               <Image
                 src="/brand/app-store-real.png"
                 alt="Download on the App Store"
                 width={200}
                 height={59}
-                className="h-14 w-auto"
+                className="h-9 w-auto"
               />
             </a>
           </motion.div>
@@ -121,7 +131,7 @@ export function AppHero({ data }: { data: Data }) {
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px]"
             aria-hidden
-            style={{ background: "rgba(171, 31, 61,0.28)" }}
+            style={{ background: "rgba(144, 45, 57,0.28)" }}
           />
           <div className="relative animate-float">
             <PhoneMockup />

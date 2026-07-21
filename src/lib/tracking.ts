@@ -1,8 +1,9 @@
 import "server-only";
-import { BadgeCheck, CircleDot, PackageCheck, PackageSearch, ShipWheel, type LucideIcon } from "lucide-react";
+import { BadgeCheck, CircleDot, ClipboardCheck, PackageCheck, PackageSearch, ShipWheel, type LucideIcon } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 
 export type ShipmentStatus =
+  | "verifying"
   | "pending"
   | "collected"
   | "customs_cleared"
@@ -13,6 +14,7 @@ export type ShipmentStatus =
 /** Linear pipeline shown as steps on the tracking page. "rejected" is a terminal
  * exception state handled separately, not a step in this sequence. */
 export const SHIPMENT_STAGES: { value: ShipmentStatus; label: string; icon: LucideIcon }[] = [
+  { value: "verifying", label: "Verifying", icon: ClipboardCheck },
   { value: "pending", label: "Pending pickup", icon: CircleDot },
   { value: "collected", label: "Collected", icon: PackageCheck },
   { value: "customs_cleared", label: "Customs cleared", icon: BadgeCheck },

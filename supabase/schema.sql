@@ -207,11 +207,11 @@ alter table product_enquiries add column if not exists user_id uuid references a
 -- glance; shipment_milestones is the timeline an admin builds up under it.
 -- ============================================================
 alter table quote_submissions add column if not exists tracking_number text unique;
-alter table quote_submissions add column if not exists shipment_status text not null default 'pending';
+alter table quote_submissions add column if not exists shipment_status text not null default 'verifying';
 
 alter table quote_submissions drop constraint if exists quote_submissions_shipment_status_check;
 alter table quote_submissions add constraint quote_submissions_shipment_status_check
-  check (shipment_status in ('pending', 'collected', 'customs_cleared', 'in_transit', 'delivered', 'rejected'));
+  check (shipment_status in ('verifying', 'pending', 'collected', 'customs_cleared', 'in_transit', 'delivered', 'rejected'));
 
 create unique index if not exists quote_submissions_tracking_idx on quote_submissions (tracking_number);
 
@@ -226,7 +226,7 @@ create table if not exists shipment_milestones (
 
 alter table shipment_milestones drop constraint if exists shipment_milestones_status_check;
 alter table shipment_milestones add constraint shipment_milestones_status_check
-  check (status in ('pending', 'collected', 'customs_cleared', 'in_transit', 'delivered', 'rejected'));
+  check (status in ('verifying', 'pending', 'collected', 'customs_cleared', 'in_transit', 'delivered', 'rejected'));
 
 create index if not exists shipment_milestones_quote_idx on shipment_milestones (quote_id, created_at);
 

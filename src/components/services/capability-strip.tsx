@@ -48,7 +48,7 @@ export function CapabilityStrip({ data }: { data: Data }) {
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
               }}
             >
-              <Icon className="size-4 text-[#d6274c]" />
+              <Icon className="size-4 text-[#9e4953]" />
               {h}
             </motion.span>
           );

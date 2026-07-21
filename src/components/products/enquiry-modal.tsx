@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: EnquiryFormState = {};
 
@@ -184,17 +184,17 @@ export function EnquiryModal({
                   animate={{ opacity: 1, y: 0 }}
                   className="flex flex-col items-center gap-4 overflow-y-auto px-8 py-14 text-center"
                 >
-                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
                     <Check className="size-6" />
                   </span>
-                  <p className="max-w-xs text-sm font-medium leading-relaxed text-[#8d1a32]">
+                  <p className="max-w-xs text-sm font-medium leading-relaxed text-[#861b28]">
                     Thanks — we&rsquo;ve received your {copy.successVerb} about {productName} and will get back
                     to you shortly.
                   </p>
                   <button
                     type="button"
                     onClick={onClose}
-                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#d6274c]"
+                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
                   >
                     Close
                   </button>
@@ -215,7 +215,7 @@ export function EnquiryModal({
 
                   <div className="flex flex-col gap-1.5">
                     <label className="text-sm font-semibold text-[#002144]">
-                      Name <span className="text-[#8d1a32]">*</span>
+                      Name <span className="text-[#861b28]">*</span>
                     </label>
                     <input
                       name="name"
@@ -229,7 +229,7 @@ export function EnquiryModal({
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-semibold text-[#002144]">
-                        Email <span className="text-[#8d1a32]">*</span>
+                        Email <span className="text-[#861b28]">*</span>
                       </label>
                       <input
                         type="email"
@@ -242,7 +242,7 @@ export function EnquiryModal({
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm font-semibold text-[#002144]">
-                        Phone number <span className="text-[#8d1a32]">*</span>
+                        Phone number <span className="text-[#861b28]">*</span>
                       </label>
                       <input
                         type="tel"
@@ -272,7 +272,7 @@ export function EnquiryModal({
                     </label>
                     <label
                       htmlFor="attachment"
-                      className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3 text-sm text-[#5b6b82] transition-colors hover:border-[#d6274c]"
+                      className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3 text-sm text-[#5b6b82] transition-colors hover:border-[#9e4953]"
                     >
                       <Paperclip className="size-4 shrink-0 text-[#94a3b8]" />
                       <span className="truncate">{attachmentName || "Choose a photo…"}</span>

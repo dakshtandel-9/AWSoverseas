@@ -1,8 +1,8 @@
 {
     "page": "Disclaimer",
     "meta": {
-        "title": "Disclaimer | AWS Overseas",
-        "description": "Read the AWS Overseas disclaimer regarding the use of our website, shipping information, and services."
+        "title": "Disclaimer | aws overseas",
+        "description": "Read the aws overseas disclaimer regarding the use of our website, shipping information, and services."
     },
     "hero": {
         "badge": "Legal",
@@ -21,7 +21,7 @@
         },
         {
             "title": "Third-Party Links",
-            "content": "Our website may contain links to third-party websites. AWS Overseas is not responsible for their content or privacy practices."
+            "content": "Our website may contain links to third-party websites. aws overseas is not responsible for their content or privacy practices."
         },
         {
             "title": "Service Availability",
@@ -29,11 +29,11 @@
         },
         {
             "title": "Limitation of Liability",
-            "content": "AWS Overseas is not responsible for losses resulting from circumstances beyond our reasonable control, including customs delays, force majeure events, or government restrictions."
+            "content": "aws overseas is not responsible for losses resulting from circumstances beyond our reasonable control, including customs delays, force majeure events, or government restrictions."
         },
         {
             "title": "Contact",
-            "content": "For any questions regarding this disclaimer, please contact AWS Overseas."
+            "content": "For any questions regarding this disclaimer, please contact aws overseas."
         }
     ]
 }

@@ -11,7 +11,7 @@ import { WalletActivityList } from "@/components/account/wallet-activity-list";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your wallet — AWS Overseas",
+  title: "Your wallet — aws overseas",
   robots: { index: false },
 };
 
@@ -43,7 +43,7 @@ export default async function WalletPage() {
         <div className="mx-auto max-w-3xl">
           <Link
             href="/profile"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#861b28] hover:underline"
           >
             <ArrowLeft className="size-3.5" /> Back to profile
           </Link>

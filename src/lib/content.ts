@@ -50,7 +50,7 @@ export const sourcingAgent = sourcingAgentJson as Content;
 
 /** Build a Next.js Metadata object from a page's `meta` block. */
 export function metaFrom(meta: Content | undefined, path = "/") {
-  const title = meta?.title ?? "AWS Overseas";
+  const title = meta?.title ?? "aws overseas";
   const description = meta?.description ?? "";
   const url = `https://awsoverseas.com${path}`;
   return {
@@ -62,7 +62,7 @@ export function metaFrom(meta: Content | undefined, path = "/") {
       title,
       description,
       url,
-      siteName: "AWS Overseas",
+      siteName: "aws overseas",
       type: "website",
     },
     twitter: {

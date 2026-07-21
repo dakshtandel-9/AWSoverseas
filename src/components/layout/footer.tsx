@@ -34,7 +34,7 @@ const NEWSLETTER = {
   description: "Supplier sourcing guides, export tips and shipping updates — straight to your inbox.",
   placeholder: "Enter your email address",
   buttonText: "Subscribe",
-  successMessage: "Thank you for subscribing to the AWS Overseas newsletter!",
+  successMessage: "Thank you for subscribing to the aws overseas newsletter!",
   privacyText: "We respect your privacy. Your email will never be shared with third parties.",
 };
 
@@ -70,7 +70,7 @@ export async function Footer() {
           <div className="lg:col-span-4">
             <Logo tone="dark" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
-              AWS Overseas is your trusted partner for product sourcing, supplier verification,
+              aws overseas is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>

@@ -46,9 +46,9 @@ export function ProductImageUploadField({
         </div>
       ) : (
         <form ref={formRef} action={formAction}>
-          <label className="flex w-full max-w-xs cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-8 text-center transition-colors hover:border-[#d6274c]">
+          <label className="flex w-full max-w-xs cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-8 text-center transition-colors hover:border-[#9e4953]">
             {pending ? (
-              <Loader2 className="size-6 animate-spin text-[#8d1a32]" />
+              <Loader2 className="size-6 animate-spin text-[#861b28]" />
             ) : (
               <ImagePlus className="size-6 text-[#94a3b8]" />
             )}

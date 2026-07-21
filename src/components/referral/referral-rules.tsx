@@ -24,7 +24,7 @@ export function ReferralRules({ data }: { data: Data }) {
           return (
             <motion.div
               key={item.title}
-              className="group rounded-2xl border border-[#e4e9f2] bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#d6274c]/30 hover:shadow-[0_18px_40px_-20px_rgba(3,62,141,0.25)]"
+              className="group rounded-2xl border border-[#e4e9f2] bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#9e4953]/30 hover:shadow-[0_18px_40px_-20px_rgba(3,62,141,0.25)]"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}

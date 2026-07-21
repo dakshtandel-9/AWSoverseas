@@ -65,7 +65,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
               <ul className="mt-5 flex flex-1 flex-col gap-2">
                 {item.features.slice(0, 4).map((f) => (
                   <li key={f} className="flex items-start gap-2 text-[13px] text-[#2a3a52]">
-                    <span className="mt-1.5 size-1 shrink-0 rounded-full bg-[#d6274c]" aria-hidden />
+                    <span className="mt-1.5 size-1 shrink-0 rounded-full bg-[#9e4953]" aria-hidden />
                     <span>{f}</span>
                   </li>
                 ))}
@@ -73,7 +73,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
 
               <Link
                 href={item.href}
-                className="mt-6 inline-flex items-center gap-1.5 border-t border-[#e4e9f2] pt-5 text-sm font-bold text-[#002144] transition-colors group-hover:text-[#8d1a32]"
+                className="mt-6 inline-flex items-center gap-1.5 border-t border-[#e4e9f2] pt-5 text-sm font-bold text-[#002144] transition-colors group-hover:text-[#861b28]"
               >
                 {item.button}
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

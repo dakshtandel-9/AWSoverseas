@@ -12,7 +12,7 @@ export const metadata: Metadata = metaFrom(services.meta, "/services");
  * source of truth for /services/[slug]) — seaFreight rolls up FCL/LCL here,
  * so it links to the sea-freight detail page rather than a third card.
  * Sourcing leads the schedule (line 01) since it happens before freight and
- * is an equal half of what AWS Overseas does, not an add-on at the end.
+ * is an equal half of what aws overseas does, not an add-on at the end.
  */
 const SCHEDULE = [
   // Sourcing happens before freight, and already has its own full page
@@ -30,7 +30,7 @@ const SERVICES_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Service",
   serviceType: "Product Sourcing & Freight Forwarding",
-  provider: { "@type": "Organization", name: "AWS Overseas" },
+  provider: { "@type": "Organization", name: "aws overseas" },
   areaServed: "Worldwide",
   name: services.meta?.title,
   description: services.meta?.description,

@@ -79,7 +79,7 @@ export function AboutPreview({
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(214, 39, 76,0.07) 0%, transparent 70%), linear-gradient(to right, rgba(4,22,47,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.035) 1px, transparent 1px)",
+            "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(158, 73, 83,0.07) 0%, transparent 70%), linear-gradient(to right, rgba(4,22,47,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.035) 1px, transparent 1px)",
           backgroundSize: "auto, 48px 48px, 48px 48px",
         }}
       />
@@ -87,7 +87,7 @@ export function AboutPreview({
       {/* Eyebrow */}
       <div className="relative mx-auto mb-16 flex max-w-[1280px] items-center gap-6 px-4 sm:px-6 lg:px-8">
         <div className="h-px flex-1 bg-[#e4e9f2]" />
-        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About AWS Overseas</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">About aws overseas</span>
         <div className="h-px flex-1 bg-[#e4e9f2]" />
       </div>
 
@@ -110,10 +110,10 @@ export function AboutPreview({
                   key={s.label}
                   custom={i}
                   variants={cardVariants}
-                  className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white p-5 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#d6274c]/40 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)]"
+                  className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-[#e4e9f2] bg-white p-5 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#9e4953]/40 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)]"
                 >
                   {/* Left accent stripe */}
-                  <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#d6274c] transition-transform duration-300 group-hover:scale-y-100" />
+                  <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#9e4953] transition-transform duration-300 group-hover:scale-y-100" />
                   {/* Icon */}
                   <span className="grid size-10 place-items-center rounded-xl bg-[#edf5ff] text-[#002144] transition-colors duration-200 group-hover:bg-[#002144] group-hover:text-white">
                     <Icon className="size-5" />
@@ -158,7 +158,7 @@ export function AboutPreview({
                   key={y}
                   cx="1" cy={y} r="5"
                   fill="white"
-                  stroke={i === 1 || i === 2 ? "#d6274c" : "#002144"}
+                  stroke={i === 1 || i === 2 ? "#9e4953" : "#002144"}
                   strokeWidth="2"
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -169,7 +169,7 @@ export function AboutPreview({
               <defs>
                 <linearGradient id="routeGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#002144" />
-                  <stop offset="100%" stopColor="#d6274c" />
+                  <stop offset="100%" stopColor="#9e4953" />
                 </linearGradient>
               </defs>
             </svg>
@@ -198,7 +198,7 @@ export function AboutPreview({
             <motion.div variants={copyItem} className="mt-10">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(171, 31, 61,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
               >
                 {data.button}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

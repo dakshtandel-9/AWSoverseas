@@ -39,7 +39,7 @@ export default async function ServiceDetailPage({
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: svc.hero?.title,
-    provider: { "@type": "Organization", name: "AWS Overseas" },
+    provider: { "@type": "Organization", name: "aws overseas" },
     areaServed: "Worldwide",
     description: svc.overview?.description,
     url: `https://awsoverseas.com/services/${slug}`,

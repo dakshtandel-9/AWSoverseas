@@ -36,7 +36,7 @@ const SERVICE_TYPES = [
 const SHIPMENT_TYPES = ["Commercial Cargo", "Machinery", "Electronics", "Others"];
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: CreateQuoteState = {};
 
@@ -123,7 +123,7 @@ function UserCombobox({
                   }}
                   className={cn(
                     "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
-                    u.id === value?.id && "bg-[#eef8fd] text-[#8d1a32]",
+                    u.id === value?.id && "bg-[#eef8fd] text-[#861b28]",
                   )}
                 >
                   <span className="flex items-center gap-2">
@@ -230,10 +230,10 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
 
         {done ? (
           <div className="flex flex-col items-center gap-4 px-8 py-14 text-center">
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
               <Check className="size-6" />
             </span>
-            <p className="max-w-xs text-sm font-medium leading-relaxed text-[#8d1a32]">
+            <p className="max-w-xs text-sm font-medium leading-relaxed text-[#861b28]">
               Quote created — it now shows on this customer&rsquo;s profile and in the list below, ready to
               track.
             </p>
@@ -252,7 +252,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#d6274c]"
+              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
             >
               Done
             </button>
@@ -263,7 +263,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-semibold text-[#002144]">
-                Customer <span className="text-[#8d1a32]">*</span>
+                Customer <span className="text-[#861b28]">*</span>
               </label>
               <UserCombobox users={users} value={user} onChange={setUser} />
             </div>

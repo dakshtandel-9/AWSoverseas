@@ -18,7 +18,7 @@ export const metadata: Metadata = metaFrom(home.meta, "/");
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "AWS Overseas",
+  name: "aws overseas",
   description: home.meta?.description,
   url: "https://awsoverseas.com",
   slogan: home.hero?.title,
@@ -69,7 +69,7 @@ export default async function HomePage() {
             badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
             title: "Move Cargo Anywhere in the World",
             subtitle:
-              "From air freight and sea freight to customs clearance, warehousing, and door-to-door delivery, AWS Overseas manages every stage of international logistics with complete visibility and reliable execution.",
+              "From air freight and sea freight to customs clearance, warehousing, and door-to-door delivery, aws overseas manages every stage of international logistics with complete visibility and reliable execution.",
             primaryButton: "Request Shipping Quote",
             primaryButtonHref: "/quote",
             secondaryButton: "Explore Logistics Services",

@@ -53,7 +53,12 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <NavbarUser scrolled />
-            <Button href="/quote" variant="primary" size="sm">
+            <Button
+              href="/quote"
+              variant="primary"
+              size="sm"
+              className="bg-[#022248] hover:bg-[#011530]"
+            >
               Request Quote <ArrowRight className="size-4" />
             </Button>
           </div>
@@ -99,7 +104,13 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="mt-auto flex flex-col gap-3 pt-6">
-                <Button href="/quote" variant="primary" size="lg" magnetic={false}>
+                <Button
+                  href="/quote"
+                  variant="primary"
+                  size="lg"
+                  magnetic={false}
+                  className="bg-[#022248] hover:bg-[#011530]"
+                >
                   Request a Quote <ArrowRight className="size-4" />
                 </Button>
                 <NavbarUser mobile />

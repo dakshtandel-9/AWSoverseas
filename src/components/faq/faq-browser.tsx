@@ -72,7 +72,7 @@ export function FaqBrowser({
             <span
               className={cn(
                 "font-mono text-[11px]",
-                active === cat.title ? "text-white/60" : "text-[#8d1a32]/60",
+                active === cat.title ? "text-white/60" : "text-[#861b28]/60",
               )}
             >
               {counts.get(cat.title) ?? 0}

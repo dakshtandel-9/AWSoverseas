@@ -66,10 +66,10 @@ export function TrustedPartners({
               <motion.div key={name} variants={item}>
                 <Link
                   href="/industries"
-                  className="group relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)] hover:ring-[#d6274c]/30"
+                  className="group relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_16px_rgba(4,22,47,0.06),0_30px_60px_-20px_rgba(4,22,47,0.22)] hover:ring-[#9e4953]/30"
                 >
                   {/* Subtle accent line on hover */}
-                  <span className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#002144] to-[#d6274c] transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                  <span className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#002144] to-[#9e4953] transition-transform duration-300 ease-out group-hover:scale-x-100" />
 
                   {/* Icon */}
                   <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700 transition-colors duration-200 group-hover:bg-brand-700 group-hover:text-white">

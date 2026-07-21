@@ -5,7 +5,7 @@ import { RefreshCw, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 export type CaptchaHandle = {
   /** Verifies the current answer against the server; refreshes to a new
@@ -65,7 +65,7 @@ export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswer
             type="button"
             onClick={load}
             aria-label="Get a new code"
-            className="grid size-14 shrink-0 place-items-center rounded-xl border border-[#e4e9f2] bg-white text-[#5b6b82] transition-colors hover:border-[#d6274c] hover:text-[#8d1a32]"
+            className="grid size-14 shrink-0 place-items-center rounded-xl border border-[#e4e9f2] bg-white text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#861b28]"
           >
             <RefreshCw className={cn("size-4", loading && "animate-spin")} />
           </button>

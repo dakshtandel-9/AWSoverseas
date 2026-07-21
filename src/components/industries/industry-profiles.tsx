@@ -81,7 +81,7 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                       <ul className="grid gap-2.5 sm:grid-cols-1">
                         {p.services.map((s) => (
                           <li key={s} className="flex items-center gap-2.5 text-sm text-[#2a3a52]">
-                            <Check className="size-4 shrink-0 text-[#d6274c]" />
+                            <Check className="size-4 shrink-0 text-[#9e4953]" />
                             <span className="font-medium">{s}</span>
                           </li>
                         ))}

@@ -51,7 +51,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
           >
             {data.features.map((f) => (
               <li key={f} className="flex items-center gap-3 text-ink/85">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d6274c]/20 text-[#e05c72]">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#9e4953]/20 text-[#e05c72]">
                   <Check className="size-3.5" />
                 </span>
                 <span className="text-sm font-medium">{f}</span>
@@ -91,7 +91,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d6274c]/20 blur-3xl" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9e4953]/20 blur-3xl" />
           <div className="relative animate-float">
             <PhoneMockup />
           </div>

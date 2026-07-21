@@ -30,7 +30,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
         aria-hidden
         style={{
           background:
-            "radial-gradient(55% 45% at 15% 0%, rgba(214, 39, 76,0.16) 0%, transparent 60%), radial-gradient(50% 45% at 95% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
+            "radial-gradient(55% 45% at 15% 0%, rgba(158, 73, 83,0.16) 0%, transparent 60%), radial-gradient(50% 45% at 95% 100%, rgba(3,62,141,0.4) 0%, transparent 55%)",
         }}
       />
 
@@ -59,7 +59,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
             <div className="relative mt-6">
               <div className="absolute left-0 right-0 top-[7px] h-px bg-ink/10" aria-hidden />
               <motion.div
-                className="absolute left-0 top-[7px] h-px origin-left bg-gradient-to-r from-[#d6274c] to-[#e05c72]"
+                className="absolute left-0 top-[7px] h-px origin-left bg-gradient-to-r from-[#9e4953] to-[#e05c72]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -77,7 +77,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.45, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#CFE8FF] bg-[#d6274c] shadow-[0_0_0_3px_rgba(171, 31, 61,0.25)]" />
+                    <span className="mb-4 size-3.5 rounded-full border-2 border-[#CFE8FF] bg-[#9e4953] shadow-[0_0_0_3px_rgba(144, 45, 57,0.25)]" />
                     <span className="text-sm font-semibold text-ink">{region}</span>
                   </motion.li>
                 ))}

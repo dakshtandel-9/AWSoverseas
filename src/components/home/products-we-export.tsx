@@ -106,7 +106,7 @@ function ProductCard({
             className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               padding: 1,
-              background: "linear-gradient(135deg, rgba(214, 39, 76,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
+              background: "linear-gradient(135deg, rgba(158, 73, 83,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
               WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMaskComposite: "xor",
               maskComposite: "exclude",
@@ -148,7 +148,7 @@ function ProductCard({
             <p className="text-sm leading-relaxed text-[#5b6b82]">{subtitle}</p>
 
             <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#002144]">
-              <span className="size-1.5 rounded-full bg-[#d6274c]" aria-hidden />
+              <span className="size-1.5 rounded-full bg-[#9e4953]" aria-hidden />
               <BadgeCheck className="size-3" aria-hidden />
               {badge}
             </span>
@@ -176,7 +176,7 @@ function ViewAllCard({ index }: { index: number }) {
             }}
             aria-hidden
           />
-          <div className="pointer-events-none absolute -right-14 -top-14 size-56 rounded-full bg-[#d6274c]/30 blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -right-14 -top-14 size-56 rounded-full bg-[#9e4953]/30 blur-3xl" aria-hidden />
 
           <span className="relative grid size-14 place-items-center rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
             <LayoutGrid className="size-6 text-[#e05c72]" aria-hidden />
@@ -219,7 +219,7 @@ export function ProductsWeExport() {
         <Reveal direction="up">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-700 ring-1 ring-brand-100">
-              <span className="size-1.5 rounded-full bg-[#d6274c]" aria-hidden />
+              <span className="size-1.5 rounded-full bg-[#9e4953]" aria-hidden />
               Export Catalog
             </span>
             <h2 className="mt-4 text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
@@ -235,7 +235,7 @@ export function ProductsWeExport() {
         <Reveal direction="up" delay={0.1}>
           <Link
             href="/products"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#002144]/15 px-6 py-3 text-sm font-semibold text-[#002144] transition-all duration-300 hover:border-[#d6274c]/40 hover:bg-[#eef3fb]"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#002144]/15 px-6 py-3 text-sm font-semibold text-[#002144] transition-all duration-300 hover:border-[#9e4953]/40 hover:bg-[#eef3fb]"
           >
             View Complete Catalog
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -269,7 +269,7 @@ export function ProductsWeExport() {
           aria-hidden
         />
         {/* Glows */}
-        <div className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[#d6274c]/30 blur-[100px]" aria-hidden />
+        <div className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[#9e4953]/30 blur-[100px]" aria-hidden />
         <div className="pointer-events-none absolute -bottom-16 -left-16 size-64 rounded-full bg-[#0a3580]/40 blur-[90px]" aria-hidden />
 
         <div className="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
@@ -292,7 +292,7 @@ export function ProductsWeExport() {
           <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
             <Link
               href="/quote"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d6274c] to-[#e05c72] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(214, 39, 76,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-6px_rgba(214, 39, 76,0.65)]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#9e4953] to-[#e05c72] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(158, 73, 83,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-6px_rgba(158, 73, 83,0.65)]"
             >
               Request Product Quote
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />

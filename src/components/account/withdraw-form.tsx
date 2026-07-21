@@ -35,7 +35,7 @@ export function WithdrawForm({ available, hasBankDetails }: { available: number;
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
-        <ArrowDownToLine className="size-4 text-[#8d1a32]" />
+        <ArrowDownToLine className="size-4 text-[#861b28]" />
         Request a withdrawal
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">
@@ -56,7 +56,7 @@ export function WithdrawForm({ available, hasBankDetails }: { available: number;
             required
             disabled={disabled}
             placeholder={String(MIN_WITHDRAWAL_AMOUNT)}
-            className="mt-2 w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20 disabled:bg-[#f6f8fc] disabled:text-[#94a3b8]"
+            className="mt-2 w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20 disabled:bg-[#f6f8fc] disabled:text-[#94a3b8]"
           />
         </div>
         <button

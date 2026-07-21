@@ -1,8 +1,8 @@
 {
     "page": "Terms & Conditions",
     "meta": {
-        "title": "Terms & Conditions | AWS Overseas",
-        "description": "Read the terms and conditions governing the use of AWS Overseas's website and shipping services."
+        "title": "Terms & Conditions | aws overseas",
+        "description": "Read the terms and conditions governing the use of aws overseas's website and shipping services."
     },
     "hero": {
         "badge": "Legal",
@@ -13,11 +13,11 @@
     "sections": [
         {
             "title": "Acceptance of Terms",
-            "content": "By accessing or using AWS Overseas's website or services, you agree to comply with these Terms & Conditions."
+            "content": "By accessing or using aws overseas's website or services, you agree to comply with these Terms & Conditions."
         },
         {
             "title": "Services",
-            "content": "AWS Overseas provides international shipping, freight forwarding, customs clearance, warehousing, and related supply chain services."
+            "content": "aws overseas provides international shipping, freight forwarding, customs clearance, warehousing, and related supply chain services."
         },
         {
             "title": "Customer Responsibilities",
@@ -29,15 +29,15 @@
         },
         {
             "title": "Prohibited Goods",
-            "content": "Customers must not ship prohibited, illegal, hazardous, or restricted goods unless permitted under applicable laws and approved by AWS Overseas."
+            "content": "Customers must not ship prohibited, illegal, hazardous, or restricted goods unless permitted under applicable laws and approved by aws overseas."
         },
         {
             "title": "Limitation of Liability",
-            "content": "AWS Overseas shall not be liable for delays or losses caused by customs, natural disasters, government actions, or other circumstances beyond our reasonable control."
+            "content": "aws overseas shall not be liable for delays or losses caused by customs, natural disasters, government actions, or other circumstances beyond our reasonable control."
         },
         {
             "title": "Changes",
-            "content": "AWS Overseas reserves the right to update these Terms & Conditions at any time."
+            "content": "aws overseas reserves the right to update these Terms & Conditions at any time."
         }
     ]
 }
