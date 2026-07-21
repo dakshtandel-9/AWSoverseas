@@ -10,6 +10,7 @@ import { NAV_LINKS } from "@/lib/site";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { NavbarUser } from "@/components/auth/navbar-user";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -52,6 +53,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <LanguageSwitcher />
             <NavbarUser scrolled />
             <Button
               href="/quote"
@@ -104,6 +106,7 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="mt-auto flex flex-col gap-3 pt-6">
+                <LanguageSwitcher mobile />
                 <Button
                   href="/quote"
                   variant="primary"

@@ -41,6 +41,7 @@ export default async function HomePage() {
         slides={[
           {
             image: "/hero-slider/slide-1-ship.jpg",
+            video: "/hero-slider/ship.mp4",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,

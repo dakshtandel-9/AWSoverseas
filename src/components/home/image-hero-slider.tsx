@@ -10,6 +10,8 @@ import { Container } from "@/components/ui/container";
 export type ImageSlide = {
   image: string;
   imageAlt: string;
+  /** Optional background video — when set, autoplays/loops muted in place of the still image. */
+  video?: string;
   badge: string;
   title: string;
   subtitle: string;
@@ -158,14 +160,28 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
           aria-roledescription="slide"
           aria-label={`${index + 1} of ${slideCount}`}
         >
-          <Image
-            src={slide.image}
-            alt={slide.imageAlt}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            className="object-cover"
-          />
+          {slide.video ? (
+            <video
+              key={slide.video}
+              className="absolute inset-0 size-full object-cover"
+              src={slide.video}
+              poster={slide.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-hidden
+            />
+          ) : (
+            <Image
+              src={slide.image}
+              alt={slide.imageAlt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="object-cover"
+            />
+          )}
           {/* Scrim: solid enough on the left for text, fading out on the right so the photo reads clearly */}
           <div
             className="absolute inset-0"
@@ -181,7 +197,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
         </motion.div>
       </AnimatePresence>
 
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh]">
+      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-28 sm:pb-16 sm:pt-32 lg:h-[100svh] lg:justify-start lg:pt-40 xl:pt-44">
         <AnimatePresence mode="wait">
           <div key={index} className="max-w-[600px]">
             {/* Eyebrow */}
