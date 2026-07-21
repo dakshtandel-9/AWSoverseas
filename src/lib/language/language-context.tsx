@@ -14,7 +14,12 @@ export type LanguageCode = string;
 
 const DEFAULT_LANGUAGE = "en";
 const STORAGE_KEY = "aws-overseas-lang";
-const CACHE_KEY_PREFIX = "aws-overseas-translations-";
+// Bump this whenever the translation/batching logic changes in a way that
+// could have produced bad cached values (e.g. the multi-sentence batching
+// bug) — old localStorage entries under a previous version are discarded
+// instead of being trusted forever.
+const CACHE_VERSION = "v2";
+const CACHE_KEY_PREFIX = `aws-overseas-translations-${CACHE_VERSION}-`;
 const BATCH_SIZE = 60;
 const DEBOUNCE_MS = 150;
 const SKIP_TAGS = new Set([
