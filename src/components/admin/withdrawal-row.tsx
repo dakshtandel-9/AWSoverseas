@@ -19,7 +19,7 @@ type Withdrawal = {
 };
 
 const STATUS_BADGE: Record<string, string> = {
-  pending: "bg-[#eef3fb] text-[#01214a]",
+  pending: "bg-[#eef3fb] text-[#002144]",
   paid: "bg-emerald-50 text-emerald-700",
   rejected: "bg-red-50 text-red-600",
 };
@@ -47,7 +47,7 @@ function DecisionPanel({ item }: { item: Withdrawal }) {
         type="button"
         disabled={pending}
         onClick={() => startTransition(() => markWithdrawalPaidAction(item.id))}
-        className="rounded-lg bg-[#01214a] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
+        className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
       >
         Mark as paid
       </button>
@@ -55,7 +55,7 @@ function DecisionPanel({ item }: { item: Withdrawal }) {
         value={reason}
         onChange={(e) => setReason(e.target.value)}
         placeholder="Rejection reason (optional)"
-        className="min-w-[200px] flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]"
+        className="min-w-[200px] flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
       />
       <button
         type="button"
@@ -93,7 +93,7 @@ export function WithdrawalRow({
         className="flex w-full items-center gap-4 px-5 py-4 text-left"
       >
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-[#01214a]">{requesterName}</p>
+          <p className="truncate text-sm font-bold text-[#002144]">{requesterName}</p>
           <p className="truncate text-xs text-[#94a3b8]">{item.bank_name}</p>
         </div>
         <span
@@ -101,7 +101,7 @@ export function WithdrawalRow({
         >
           {STATUS_LABEL[item.status]}
         </span>
-        <span className="shrink-0 font-mono text-xs text-[#94a3b8]">₹{item.amount.toLocaleString("en-IN")}</span>
+        <span className="shrink-0 font-mono text-xs text-[#94a3b8]">${item.amount.toLocaleString("en-US")}</span>
         <span className="shrink-0 text-xs text-[#94a3b8]">{createdAt}</span>
         <ChevronDown className={cn("size-4 shrink-0 text-[#94a3b8] transition-transform", open && "rotate-180")} />
       </button>
@@ -113,9 +113,9 @@ export function WithdrawalRow({
               <ViewProfileButton profile={profile} />
             </div>
           )}
-          <div className="grid gap-2 text-sm leading-relaxed text-[#01214a]">
+          <div className="grid gap-2 text-sm leading-relaxed text-[#002144]">
             <p>
-              <span className="font-semibold">Amount:</span> ₹{item.amount.toLocaleString("en-IN")}
+              <span className="font-semibold">Amount:</span> ${item.amount.toLocaleString("en-US")}
             </p>
             <p>
               <span className="font-semibold">Account holder:</span> {item.bank_account_holder}

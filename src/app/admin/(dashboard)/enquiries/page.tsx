@@ -52,7 +52,7 @@ export default async function AdminOrdersPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
-          <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Orders</h1>
+          <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Orders</h1>
           <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
             Submissions from the Order button on the Products page — from signed-in, approved customers, or
             placed here for a customer. Price them out or reject; the customer sees the decision on their

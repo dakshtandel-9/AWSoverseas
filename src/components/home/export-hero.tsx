@@ -126,7 +126,7 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
         <div
           className="relative"
           style={{
-            filter: "drop-shadow(0 0 28px rgba(172,32,56,0.22)) drop-shadow(0 0 60px rgba(3,62,141,0.18))",
+            filter: "drop-shadow(0 0 28px rgba(171, 31, 61,0.22)) drop-shadow(0 0 60px rgba(3,62,141,0.18))",
           }}
         >
           <motion.div
@@ -145,11 +145,11 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-[#5b6b82]">
                   {data.manifestLabel}
                 </p>
-                <p className="mt-0.5 font-mono text-[13px] font-bold tracking-wider text-[#01214a]">
+                <p className="mt-0.5 font-mono text-[13px] font-bold tracking-wider text-[#002144]">
                   {data.manifestOrigin}
                 </p>
               </div>
-              <div className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-2.5 py-1 text-[11px] font-semibold text-[#01214a]">
+              <div className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-2.5 py-1 text-[11px] font-semibold text-[#002144]">
                 <BadgeCheck className="size-3" />
                 Verified
               </div>
@@ -172,14 +172,14 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
                       <span
                         className="grid size-7 shrink-0 place-items-center rounded-lg transition-colors duration-300"
                         style={{
-                          background: isActive ? "#d72846" : "#eef3fb",
-                          color: isActive ? "#ffffff" : "#01214a",
+                          background: isActive ? "#d6274c" : "#eef3fb",
+                          color: isActive ? "#ffffff" : "#002144",
                         }}
                       >
                         <Icon className="size-3.5" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-[11.5px] font-semibold text-[#01214a]">{item.name}</p>
+                        <p className="truncate text-[11.5px] font-semibold text-[#002144]">{item.name}</p>
                         <p className="text-[10px] text-[#5b6b82]">{item.unit}</p>
                       </div>
                       <span className="shrink-0 font-mono text-[9px] font-medium text-[#5b6b82]">
@@ -192,8 +192,8 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
             </ol>
 
             {/* Footer */}
-            <div className="mt-4 flex items-center gap-2 rounded-xl bg-[#01214a] px-3.5 py-2.5">
-              <PackageSearch className="size-3.5 shrink-0 text-[#d72846]" />
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-[#002144] px-3.5 py-2.5">
+              <PackageSearch className="size-3.5 shrink-0 text-[#d6274c]" />
               <p className="text-[11px] font-medium text-white/80">
                 {data.manifestFooterLabel}: <span className="font-bold text-white">{data.manifestFooterValue}</span>
               </p>
@@ -224,11 +224,11 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
           glowRadius={0}
           sparkle={false}
           waveAmplitude={3}
-          gradientFrom="#ac2038"
+          gradientFrom="#ab1f3d"
           gradientTo="#023f8d"
           glowColor="transparent"
           baseDotColor="#7fb3e0"
-          accentDotColor="#d72846"
+          accentDotColor="#d6274c"
           accentRatio={0.1}
           dotOpacity={0.35}
         />
@@ -237,12 +237,12 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
       <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         <div className="max-w-[600px]">
           <motion.div
-            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
           >
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
+            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
             {data.badge}
           </motion.div>
 
@@ -252,11 +252,11 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#01214a" }}>{line1}</span>
+            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>{line1}</span>
             <span
               className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d72846 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -296,12 +296,12 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.1)";
                 (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
+                  "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.06)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(172,32,56,0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(171, 31, 61,0)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >

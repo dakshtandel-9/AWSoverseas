@@ -41,7 +41,7 @@ export function Story({ data }: { data: Data }) {
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               Our Story
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
+            <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
             </h2>
             <p className="mt-6 text-base leading-[1.85] text-[#5b6b82]">
@@ -57,7 +57,7 @@ export function Story({ data }: { data: Data }) {
             aria-hidden
           />
           <motion.div
-            className="absolute left-[7px] top-2 w-px origin-top bg-gradient-to-b from-[#01214a] to-[#d72846]"
+            className="absolute left-[7px] top-2 w-px origin-top bg-gradient-to-b from-[#002144] to-[#d6274c]"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -76,15 +76,15 @@ export function Story({ data }: { data: Data }) {
               transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="relative z-10 mt-1.5 size-3.5 shrink-0 rounded-full border-2 border-white bg-[#01214a] shadow-[0_0_0_4px_#eef3fb]"
-                style={i === STAGES.length - 1 ? { background: "#d72846" } : undefined}
+                className="relative z-10 mt-1.5 size-3.5 shrink-0 rounded-full border-2 border-white bg-[#002144] shadow-[0_0_0_4px_#eef3fb]"
+                style={i === STAGES.length - 1 ? { background: "#d6274c" } : undefined}
                 aria-hidden
               />
               <div className="min-w-0">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#8e1b2e]">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#8d1a32]">
                   {s.marker}
                 </span>
-                <h3 className="mt-1.5 text-lg font-bold text-[#01214a]">{s.title}</h3>
+                <h3 className="mt-1.5 text-lg font-bold text-[#002144]">{s.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-[#5b6b82]">{s.body}</p>
               </div>
             </motion.li>

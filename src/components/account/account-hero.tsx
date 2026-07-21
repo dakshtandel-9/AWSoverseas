@@ -23,7 +23,7 @@ export function AccountHero({
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 88% 0%, rgba(172,32,56,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 88% 0%, rgba(171, 31, 61,0.12) 0%, transparent 60%), radial-gradient(45% 40% at 4% 100%, rgba(3,62,141,0.2) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
@@ -31,7 +31,7 @@ export function AccountHero({
       <Container className="relative">
         <div className="flex items-center gap-4 border-b border-ink/12 pb-4">
           <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 rounded-full bg-[#d72846]" />
+            <span className="size-1.5 rounded-full bg-[#d6274c]" />
             {eyebrow}
           </span>
           {right && (
@@ -43,7 +43,7 @@ export function AccountHero({
 
         <h1
           className="mt-8 font-heading text-3xl font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-4xl"
-          style={{ color: "#01214a" }}
+          style={{ color: "#002144" }}
         >
           {title}
         </h1>

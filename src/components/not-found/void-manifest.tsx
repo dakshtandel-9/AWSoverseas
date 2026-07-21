@@ -29,7 +29,7 @@ export function VoidManifest() {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 50% at 85% 0%, rgba(172,32,56,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+            "radial-gradient(55% 50% at 85% 0%, rgba(171, 31, 61,0.1) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, 44px 44px, 44px 44px",
         }}
       />
@@ -65,7 +65,7 @@ export function VoidManifest() {
             </p>
             <h1
               className="mt-2 font-heading text-[clamp(4.5rem,12vw,8.5rem)] font-extrabold leading-[0.9] tracking-[-0.04em]"
-              style={{ color: "#01214a" }}
+              style={{ color: "#002144" }}
             >
               404
             </h1>
@@ -85,7 +85,7 @@ export function VoidManifest() {
                 ))}
               </div>
               <motion.div
-                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#d72846]/80 to-transparent"
+                className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-transparent via-[#d6274c]/80 to-transparent"
                 initial={{ x: "-2rem" }}
                 animate={{ x: "280px" }}
                 transition={{ duration: 1.1, delay: 0.6, ease: "easeInOut" }}
@@ -104,7 +104,7 @@ export function VoidManifest() {
           >
             <h2
               className="font-heading text-2xl font-bold leading-tight sm:text-3xl"
-              style={{ color: "#01214a" }}
+              style={{ color: "#002144" }}
             >
               This shipment has no manifest on file.
             </h2>
@@ -148,7 +148,7 @@ export function VoidManifest() {
                           {r.note}
                         </span>
                         <span
-                          className="text-[#d72846] transition-transform duration-300 group-hover:translate-x-1"
+                          className="text-[#d6274c] transition-transform duration-300 group-hover:translate-x-1"
                           aria-hidden
                         >
                           &rarr;

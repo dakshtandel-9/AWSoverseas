@@ -54,14 +54,14 @@ export function ContactChannels({
                   href={href}
                   className="group flex items-center gap-4 rounded-2xl px-2 py-1 transition-colors hover:bg-[#f6f8fc]"
                 >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] transition-colors group-hover:bg-[#01214a] group-hover:text-white">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors group-hover:bg-[#002144] group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                       {item.type}
                     </p>
-                    <p className="truncate text-sm font-semibold text-[#01214a]">{item.value}</p>
+                    <p className="truncate text-sm font-semibold text-[#002144]">{item.value}</p>
                   </div>
                 </a>
               </li>
@@ -69,14 +69,14 @@ export function ContactChannels({
           })}
           {location && (
             <li className="flex items-start gap-4 px-2 py-1">
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a]">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144]">
                 <MapPin className="size-5" />
               </span>
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                   {location.office}
                 </p>
-                <p className="text-sm font-semibold leading-snug text-[#01214a]">
+                <p className="text-sm font-semibold leading-snug text-[#002144]">
                   {[location.address, location.city, location.country].filter(Boolean).join(", ")}
                 </p>
               </div>
@@ -99,9 +99,9 @@ export function ContactChannels({
         <div
           className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full blur-[60px]"
           aria-hidden
-          style={{ background: "rgba(172,32,56,0.22)" }}
+          style={{ background: "rgba(171, 31, 61,0.22)" }}
         />
-        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#d72846]/15 text-[#e05c72]">
+        <span className="relative grid size-12 shrink-0 place-items-center rounded-2xl bg-[#d6274c]/15 text-[#e05c72]">
           <MessageCircle className="size-6" />
         </span>
         <div className="relative min-w-0 flex-1">
@@ -120,7 +120,7 @@ export function ContactChannels({
         transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center gap-2.5">
-          <Clock className="size-4 text-[#8e1b2e]" />
+          <Clock className="size-4 text-[#8d1a32]" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
             {businessHours.title}
           </p>
@@ -132,7 +132,7 @@ export function ContactChannels({
               <span
                 className={cn(
                   "font-semibold",
-                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#01214a]",
+                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#002144]",
                 )}
               >
                 {s.time}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PackageSearch, ArrowRight, MapPin } from "lucide-react";
+import { PackageSearch, ArrowRight, MapPin, XCircle } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { findShipmentByTrackingNumber, SHIPMENT_STAGES } from "@/lib/tracking";
 
@@ -10,12 +10,12 @@ function formatDate(iso: string) {
 function NotFound({ reference }: { reference: string }) {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-4 rounded-3xl border border-[#e4e9f2] bg-white p-8 text-center shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]">
-      <span className="grid size-12 place-items-center rounded-full bg-[#eef3fb] text-[#01214a]">
+      <span className="grid size-12 place-items-center rounded-full bg-[#eef3fb] text-[#002144]">
         <PackageSearch className="size-6" />
       </span>
       <div>
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Tracking Number</p>
-        <p className="mt-1 font-mono text-lg font-bold text-[#01214a]">{reference}</p>
+        <p className="mt-1 font-mono text-lg font-bold text-[#002144]">{reference}</p>
       </div>
       <p className="max-w-sm text-sm leading-relaxed text-[#5b6b82]">
         We couldn't find a shipment with that tracking number. Double-check it against your quote
@@ -23,7 +23,7 @@ function NotFound({ reference }: { reference: string }) {
       </p>
       <Link
         href="/contact"
-        className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:bg-[#e2ebf9]"
+        className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:bg-[#e2ebf9]"
       >
         Contact Support
       </Link>
@@ -42,7 +42,9 @@ export async function TrackingResult({ reference }: { reference: string }) {
     );
   }
 
+  const isRejected = shipment.shipment_status === "rejected";
   const currentIndex = SHIPMENT_STAGES.findIndex((s) => s.value === shipment.shipment_status);
+  const rejectionNote = shipment.milestones.filter((m) => m.status === "rejected").at(-1);
 
   return (
     <Section id="tracking-result" spacing="sm" className="scroll-mt-24">
@@ -50,63 +52,78 @@ export async function TrackingResult({ reference }: { reference: string }) {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e4e9f2] pb-5">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Tracking Number</p>
-            <p className="mt-1 font-mono text-lg font-bold text-[#01214a]">{shipment.tracking_number}</p>
+            <p className="mt-1 font-mono text-lg font-bold text-[#002144]">{shipment.tracking_number}</p>
           </div>
           <div className="text-right">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">Route</p>
-            <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#01214a]">
-              <MapPin className="size-3.5 text-[#8e1b2e]" />
+            <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
+              <MapPin className="size-3.5 text-[#8d1a32]" />
               {shipment.origin_country} → {shipment.destination_country}
             </p>
           </div>
         </div>
 
-        <ol className="mt-6 flex flex-col gap-5">
-          {SHIPMENT_STAGES.map((stage, i) => {
-            const done = i <= currentIndex;
-            const milestone = shipment.milestones.filter((m) => m.status === stage.value).at(-1);
-            const StageIcon = stage.icon;
-            return (
-              <li key={stage.value} className="flex items-start gap-3.5">
-                <span
-                  className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-full ${
-                    done ? "bg-[#01214a] text-white" : "bg-[#eef3fb] text-[#94a3b8]"
-                  }`}
-                >
-                  <StageIcon className="size-4" />
-                </span>
-                <div className="min-w-0">
-                  <p className={`text-sm font-semibold ${done ? "text-[#01214a]" : "text-[#94a3b8]"}`}>
-                    {stage.label}
-                    {i === currentIndex && (
-                      <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
-                        Live
-                      </span>
-                    )}
-                  </p>
-                  {milestone && (
-                    <p className="mt-0.5 text-xs text-[#5b6b82]">
-                      {[milestone.location, milestone.note].filter(Boolean).join(" — ") || undefined}
-                      {milestone.location || milestone.note ? " · " : ""}
-                      {formatDate(milestone.created_at)}
+        {isRejected ? (
+          <div className="mt-6 flex flex-col items-center gap-3 rounded-2xl bg-red-50 p-6 text-center">
+            <span className="grid size-12 place-items-center rounded-full bg-red-100 text-red-600">
+              <XCircle className="size-6" />
+            </span>
+            <div>
+              <p className="text-sm font-bold text-red-700">Request rejected</p>
+              <p className="mt-1 max-w-sm text-sm leading-relaxed text-red-600/80">
+                {rejectionNote?.note ||
+                  "This shipment request couldn't be processed. Contact our team for details."}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <ol className="mt-6 flex flex-col gap-5">
+            {SHIPMENT_STAGES.map((stage, i) => {
+              const done = i <= currentIndex;
+              const milestone = shipment.milestones.filter((m) => m.status === stage.value).at(-1);
+              const StageIcon = stage.icon;
+              return (
+                <li key={stage.value} className="flex items-start gap-3.5">
+                  <span
+                    className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-full ${
+                      done ? "bg-[#002144] text-white" : "bg-[#eef3fb] text-[#94a3b8]"
+                    }`}
+                  >
+                    <StageIcon className="size-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className={`text-sm font-semibold ${done ? "text-[#002144]" : "text-[#94a3b8]"}`}>
+                      {stage.label}
+                      {i === currentIndex && (
+                        <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
+                          Live
+                        </span>
+                      )}
                     </p>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+                    {milestone && (
+                      <p className="mt-0.5 text-xs text-[#5b6b82]">
+                        {[milestone.location, milestone.note].filter(Boolean).join(" — ") || undefined}
+                        {milestone.location || milestone.note ? " · " : ""}
+                        {formatDate(milestone.created_at)}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        )}
 
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3 border-t border-[#e4e9f2] pt-6">
           <Link
             href="/mobile-app"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
           >
             Open in App <ArrowRight className="size-3.5" />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:bg-[#e2ebf9]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:bg-[#e2ebf9]"
           >
             Contact Support
           </Link>

@@ -12,7 +12,7 @@ export function LoginForm() {
   return (
     <form action={formAction} className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <label htmlFor="password" className="text-sm font-semibold text-[#01214a]">
+        <label htmlFor="password" className="text-sm font-semibold text-[#002144]">
           Admin password
         </label>
         <div className="relative">
@@ -24,7 +24,7 @@ export function LoginForm() {
             required
             autoFocus
             placeholder="Enter admin password"
-            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#01214a] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20"
+            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#002144] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20"
           />
         </div>
       </div>
@@ -38,7 +38,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex h-12 items-center justify-center rounded-full bg-[#01214a] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+        className="inline-flex h-12 items-center justify-center rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {pending ? "Signing in…" : "Sign in"}
       </button>

@@ -43,14 +43,14 @@ export default async function ReferralsPage() {
         <div className="mx-auto max-w-3xl">
           <Link
             href="/profile"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32] hover:underline"
           >
             <ArrowLeft className="size-3.5" /> Back to profile
           </Link>
 
           <div className="mt-5 rounded-3xl border border-[#e4e9f2] bg-white p-7">
-            <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#01214a]">
-              <Users className="size-4 text-[#8e1b2e]" />
+            <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
+              <Users className="size-4 text-[#8d1a32]" />
               {referrals?.length ?? 0} {referrals?.length === 1 ? "referral" : "referrals"}
             </h2>
 
@@ -63,7 +63,7 @@ export default async function ReferralsPage() {
                 {referrals.map((r) => (
                   <li key={r.id} className="flex items-center justify-between gap-3 py-4">
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-[#01214a]">
+                      <p className="truncate text-sm font-semibold text-[#002144]">
                         {r.first_name} {r.last_name}
                       </p>
                       {r.username && <p className="truncate text-xs text-[#5b6b82]">@{r.username}</p>}

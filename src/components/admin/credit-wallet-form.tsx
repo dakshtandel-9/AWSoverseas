@@ -4,7 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { Plus, Wallet } from "lucide-react";
 
 const fieldClasses =
-  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]";
+  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -12,6 +12,36 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="text-[11px] font-semibold uppercase tracking-wide text-[#94a3b8]">{label}</span>
       {children}
     </label>
+  );
+}
+
+/**
+ * Compact "was a referral reward paid on this?" indicator for the collapsed
+ * row line — only rendered when the booking has a referrer at all, so rows
+ * with no referred_by stay quiet instead of showing a "not credited" badge
+ * for the common case.
+ */
+export function ReferralCreditBadge({
+  referrerName,
+  alreadyCredited,
+}: {
+  referrerName: string | null;
+  alreadyCredited: { amount: number; count: number } | null;
+}) {
+  if (!referrerName) return null;
+
+  if (alreadyCredited) {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+        <Wallet className="size-3" /> ${alreadyCredited.amount.toLocaleString("en-US")} credited
+      </span>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full bg-[#fdf1f3] px-2 py-0.5 text-[11px] font-semibold text-[#8d1a32]">
+      <Wallet className="size-3" /> Referral pending
+    </span>
   );
 }
 
@@ -70,7 +100,7 @@ export function CreditWalletForm({
       {alreadyCredited && (
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
-            <Wallet className="size-3.5" /> Credited ₹{alreadyCredited.amount.toLocaleString("en-IN")} to{" "}
+            <Wallet className="size-3.5" /> Credited ${alreadyCredited.amount.toLocaleString("en-US")} to{" "}
             {referrerName}&apos;s wallet
             {alreadyCredited.count > 1 ? ` (${alreadyCredited.count} credits)` : ""}.
           </p>
@@ -78,7 +108,7 @@ export function CreditWalletForm({
             <button
               type="button"
               onClick={() => setFormOpen(true)}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e1b2e] hover:underline"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#8d1a32] hover:underline"
             >
               <Plus className="size-3.5" /> Add more
             </button>
@@ -89,14 +119,14 @@ export function CreditWalletForm({
       {formOpen && (
         <>
           {!alreadyCredited && (
-            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#01214a]">
-              <Wallet className="size-3.5 text-[#8e1b2e]" /> Credit {referrerName}&apos;s wallet for this referral
+            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
+              <Wallet className="size-3.5 text-[#8d1a32]" /> Credit {referrerName}&apos;s wallet for this referral
             </p>
           )}
           <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
             <div className="w-28">
-              <Field label="Amount (₹)">
-                <input name="amount" type="number" min="0" step="0.01" required placeholder="500" className={fieldClasses} />
+              <Field label="Amount ($)">
+                <input name="amount" type="number" min="0" step="0.01" required placeholder="25" className={fieldClasses} />
               </Field>
             </div>
             <div className="min-w-[200px] flex-1">
@@ -107,7 +137,7 @@ export function CreditWalletForm({
             <button
               type="submit"
               disabled={pending}
-              className="rounded-lg bg-[#01214a] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
+              className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
             >
               Credit wallet
             </button>

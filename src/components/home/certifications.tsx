@@ -13,7 +13,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 function CertPlaque({ item }: { item: CertItem }) {
   return (
-    <div className="group relative flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-[#e4e9f2] bg-white px-8 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-10px_rgba(4,22,47,0.1)] transition-all duration-300 hover:border-[#d72846]/35 hover:shadow-[0_14px_36px_-14px_rgba(4,22,47,0.24)] sm:h-44 sm:w-72">
+    <div className="group relative flex h-40 w-64 shrink-0 items-center justify-center rounded-2xl border border-[#e4e9f2] bg-white px-8 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-10px_rgba(4,22,47,0.1)] transition-all duration-300 hover:border-[#d6274c]/35 hover:shadow-[0_14px_36px_-14px_rgba(4,22,47,0.24)] sm:h-44 sm:w-72">
       <Image
         src={item.logo}
         alt={`${item.name} — ${item.issuer}`}
@@ -43,7 +43,7 @@ export function Certifications({ data }: { data: Data }) {
           <ShieldCheck className="size-3.5" aria-hidden />
           {data.badge}
         </span>
-        <h2 className="mt-4 text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
+        <h2 className="mt-4 text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
           {data.title}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-[#5b6b82]">{data.description}</p>

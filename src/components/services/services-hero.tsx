@@ -28,29 +28,29 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#C4DFFD] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(171, 31, 61,0.14) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.12) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative">
         <motion.div
-          className="flex items-center gap-4 border-b border-white/12 pb-4"
+          className="flex items-center gap-4 border-b border-[#002144]/12 pb-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ab1f3d]">
+            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
             TARIFF&nbsp;SCHEDULE&nbsp;/&nbsp;{String(lineCount).padStart(2, "0")}&nbsp;SERVICE&nbsp;LINES
           </span>
         </motion.div>
@@ -58,7 +58,7 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
         <div className="mt-10 max-w-3xl">
           <motion.h1
             className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#002144" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -66,7 +66,7 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
             {line1}{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d72846 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #ab1f3d 0%, #d6274c 55%, #8d1a32 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -77,7 +77,7 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -96,20 +96,20 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
             </Button>
             <a
               href="/contact"
-              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-white/90 transition-all duration-300"
+              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#002144]/90 transition-all duration-300"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(1,33,74,0.06)",
+                border: "1px solid rgba(1,33,74,0.16)",
                 backdropFilter: "blur(12px)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget;
-                el.style.background = "rgba(255,255,255,0.14)";
-                el.style.boxShadow = "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
+                el.style.background = "rgba(1,33,74,0.1)";
+                el.style.boxShadow = "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget;
-                el.style.background = "rgba(255,255,255,0.08)";
+                el.style.background = "rgba(1,33,74,0.06)";
                 el.style.boxShadow = "none";
               }}
             >

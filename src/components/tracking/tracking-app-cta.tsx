@@ -24,7 +24,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
         <div>
           <motion.h2
             className="text-3xl font-bold sm:text-4xl"
-            style={{ color: "#01214a" }}
+            style={{ color: "#002144" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -51,7 +51,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
           >
             {data.features.map((f) => (
               <li key={f} className="flex items-center gap-3 text-ink/85">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d72846]/20 text-[#e05c72]">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d6274c]/20 text-[#e05c72]">
                   <Check className="size-3.5" />
                 </span>
                 <span className="text-sm font-medium">{f}</span>
@@ -68,14 +68,14 @@ export function TrackingAppCta({ data }: { data: Data }) {
           >
             <a
               href={data.playStoreButton.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#01214a] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#002144] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
             >
               <Play className="size-6" />
               <span className="text-sm font-bold">{data.playStoreButton.text}</span>
             </a>
             <a
               href={data.appStoreButton.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[#01214a] transition-all hover:-translate-y-0.5"
+              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[#002144] transition-all hover:-translate-y-0.5"
               style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(1,33,74,0.18)" }}
             >
               <Apple className="size-6" />
@@ -91,7 +91,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d72846]/20 blur-3xl" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d6274c]/20 blur-3xl" />
           <div className="relative animate-float">
             <PhoneMockup />
           </div>

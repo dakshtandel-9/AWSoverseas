@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 const initialState: EnquiryFormState = {};
 
@@ -30,14 +30,14 @@ function GateNotice({ auth }: { auth: EnquiryAuth }) {
   const content = {
     guest: {
       icon: UserRound,
-      iconClasses: "bg-[#eef3fb] text-[#01214a]",
+      iconClasses: "bg-[#eef3fb] text-[#002144]",
       title: "Sign in to place an order",
       body: "Orders are available to registered customers — sign in with your email to continue.",
       cta: { href: "/login?next=/products", label: "Sign in" },
     },
     setup: {
       icon: UserRound,
-      iconClasses: "bg-[#eef3fb] text-[#01214a]",
+      iconClasses: "bg-[#eef3fb] text-[#002144]",
       title: "Complete your profile",
       body: "Finish your account details and verification first — it only takes a couple of minutes.",
       cta: { href: "/profile/setup", label: "Complete profile" },
@@ -66,12 +66,12 @@ function GateNotice({ auth }: { auth: EnquiryAuth }) {
         <Icon className="size-6" />
       </span>
       <div>
-        <p className="text-base font-bold text-[#01214a]">{content.title}</p>
+        <p className="text-base font-bold text-[#002144]">{content.title}</p>
         <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">{content.body}</p>
       </div>
       <Link
         href={content.cta.href}
-        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#01214a] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
+        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
       >
         {content.cta.label}
         <ArrowRight className="size-4" />
@@ -160,7 +160,7 @@ export function EnquiryModal({
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
                   {copy.eyebrow}
                 </p>
-                <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#01214a]">
+                <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#002144]">
                   {productName}
                 </h2>
               </div>
@@ -168,7 +168,7 @@ export function EnquiryModal({
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#01214a]"
+                className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
               >
                 <X className="size-4" />
               </button>
@@ -184,17 +184,17 @@ export function EnquiryModal({
                   animate={{ opacity: 1, y: 0 }}
                   className="flex flex-col items-center gap-4 overflow-y-auto px-8 py-14 text-center"
                 >
-                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d72846] text-white">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
                     <Check className="size-6" />
                   </span>
-                  <p className="max-w-xs text-sm font-medium leading-relaxed text-[#8e1b2e]">
+                  <p className="max-w-xs text-sm font-medium leading-relaxed text-[#8d1a32]">
                     Thanks — we&rsquo;ve received your {copy.successVerb} about {productName} and will get back
                     to you shortly.
                   </p>
                   <button
                     type="button"
                     onClick={onClose}
-                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#01214a] hover:border-[#d72846]"
+                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#d6274c]"
                   >
                     Close
                   </button>
@@ -214,8 +214,8 @@ export function EnquiryModal({
                   <input type="hidden" name="product-name" value={productName} />
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#01214a]">
-                      Name <span className="text-[#8e1b2e]">*</span>
+                    <label className="text-sm font-semibold text-[#002144]">
+                      Name <span className="text-[#8d1a32]">*</span>
                     </label>
                     <input
                       name="name"
@@ -228,8 +228,8 @@ export function EnquiryModal({
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#01214a]">
-                        Email <span className="text-[#8e1b2e]">*</span>
+                      <label className="text-sm font-semibold text-[#002144]">
+                        Email <span className="text-[#8d1a32]">*</span>
                       </label>
                       <input
                         type="email"
@@ -241,8 +241,8 @@ export function EnquiryModal({
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#01214a]">
-                        Phone number <span className="text-[#8e1b2e]">*</span>
+                      <label className="text-sm font-semibold text-[#002144]">
+                        Phone number <span className="text-[#8d1a32]">*</span>
                       </label>
                       <input
                         type="tel"
@@ -256,7 +256,7 @@ export function EnquiryModal({
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#01214a]">Message</label>
+                    <label className="text-sm font-semibold text-[#002144]">Message</label>
                     <textarea
                       name="message"
                       rows={3}
@@ -266,13 +266,13 @@ export function EnquiryModal({
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#01214a]">
+                    <label className="text-sm font-semibold text-[#002144]">
                       Attach an image{" "}
                       <span className="font-normal text-[#94a3b8]">(optional)</span>
                     </label>
                     <label
                       htmlFor="attachment"
-                      className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3 text-sm text-[#5b6b82] transition-colors hover:border-[#d72846]"
+                      className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3 text-sm text-[#5b6b82] transition-colors hover:border-[#d6274c]"
                     >
                       <Paperclip className="size-4 shrink-0 text-[#94a3b8]" />
                       <span className="truncate">{attachmentName || "Choose a photo…"}</span>
@@ -300,7 +300,7 @@ export function EnquiryModal({
                   <button
                     type="submit"
                     disabled={pending}
-                    className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#01214a] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                    className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
                     {pending ? copy.buttonPending : copy.button}
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

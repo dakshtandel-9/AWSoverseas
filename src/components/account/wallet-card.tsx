@@ -10,10 +10,10 @@ export function WalletCard({ summary }: { summary: WalletSummary }) {
         Your wallet
       </p>
 
-      <p className="mt-4 text-3xl font-bold tracking-tight">₹{summary.available.toLocaleString("en-IN")}</p>
+      <p className="mt-4 text-3xl font-bold tracking-tight">${summary.available.toLocaleString("en-US")}</p>
       <p className="mt-1 text-sm leading-relaxed text-ink/60">
         {summary.pendingWithdrawals > 0
-          ? `Available to withdraw · ₹${summary.pendingWithdrawals.toLocaleString("en-IN")} pending review`
+          ? `Available to withdraw · $${summary.pendingWithdrawals.toLocaleString("en-US")} pending review`
           : "Available to withdraw — credit earned from your referrals."}
       </p>
 

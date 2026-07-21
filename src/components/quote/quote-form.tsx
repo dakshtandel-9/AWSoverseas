@@ -38,7 +38,7 @@ type Submit = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 function FieldControl({
   field,
@@ -144,7 +144,7 @@ function FormSection({
     <div className="border-b border-[#e4e9f2] px-7 py-8 last:border-b-0 sm:px-10">
       <div className="flex items-baseline gap-3">
         <span className="font-mono text-xs font-bold text-[#94a3b8]">{index}</span>
-        <h2 className="text-lg font-bold text-[#01214a]">{group.title}</h2>
+        <h2 className="text-lg font-bold text-[#002144]">{group.title}</h2>
       </div>
       {group.description && (
         <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">{group.description}</p>
@@ -159,9 +159,9 @@ function FormSection({
               (field.type === "textarea" || field.type === "select") && "sm:col-span-2",
             )}
           >
-            <label className="text-sm font-semibold text-[#01214a]">
+            <label className="text-sm font-semibold text-[#002144]">
               {field.label}
-              {field.required && <span className="ml-1 text-[#8e1b2e]">*</span>}
+              {field.required && <span className="ml-1 text-[#8d1a32]">*</span>}
             </label>
             <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} gated={gated} />
           </div>
@@ -269,10 +269,10 @@ export function QuoteForm({
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col items-center gap-4 px-8 py-16 text-center"
           >
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d72846] text-white">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
               <Check className="size-6" />
             </span>
-            <p className="max-w-sm text-base font-medium leading-relaxed text-[#8e1b2e]">
+            <p className="max-w-sm text-base font-medium leading-relaxed text-[#8d1a32]">
               {submit.successMessage}
             </p>
 
@@ -281,13 +281,13 @@ export function QuoteForm({
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">
                   Your tracking number
                 </p>
-                <p className="font-mono text-lg font-bold text-[#01214a]">{state.trackingNumber}</p>
+                <p className="font-mono text-lg font-bold text-[#002144]">{state.trackingNumber}</p>
                 <p className="max-w-xs text-xs leading-relaxed text-[#5b6b82]">
                   Save this number — no account needed to check your shipment's progress.
                 </p>
                 <Link
                   href={`/tracking?ref=${encodeURIComponent(state.trackingNumber)}`}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
                 >
                   <PackageSearch className="size-4" /> Track this shipment
                 </Link>
@@ -319,12 +319,12 @@ export function QuoteForm({
             />
 
             <div className="px-7 py-8 sm:px-10">
-              <h3 className="text-base font-bold text-[#01214a]">{submit.title}</h3>
+              <h3 className="text-base font-bold text-[#002144]">{submit.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{submit.description}</p>
 
               {gateHref && (
                 <div
-                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-[#eef3fb] px-4 py-3 text-sm font-medium text-[#01214a]"
+                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-[#eef3fb] px-4 py-3 text-sm font-medium text-[#002144]"
                   role="status"
                 >
                   <AlertCircle className="mt-0.5 size-4 shrink-0" />
@@ -352,7 +352,7 @@ export function QuoteForm({
               <button
                 type="submit"
                 disabled={pending || redirecting}
-                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#01214a] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] hover:shadow-[0_0_0_4px_rgba(172,32,56,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(171, 31, 61,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
                 {redirecting
                   ? "Redirecting…"

@@ -25,6 +25,7 @@ const FOOTER_SERVICES = [
 
 const FOOTER_RESOURCES = [
   { label: "Product Catalog", href: "/products" },
+  { label: "Track Shipment", href: "/tracking" },
   { label: "FAQ", href: "/faq" },
 ];
 

@@ -16,7 +16,7 @@ export function SubscriberRow({ item }: { item: Subscriber }) {
 
   return (
     <div className="flex items-center gap-4 rounded-2xl border border-[#e4e9f2] bg-white px-5 py-4">
-      <p className="min-w-0 flex-1 truncate text-sm font-medium text-[#01214a]">
+      <p className="min-w-0 flex-1 truncate text-sm font-medium text-[#002144]">
         <a href={`mailto:${item.email}`} className="hover:underline">
           {item.email}
         </a>

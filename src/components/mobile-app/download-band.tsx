@@ -23,7 +23,7 @@ export function DownloadBand({ data }: { data: Data }) {
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(50% 60% at 50% -10%, rgba(172,32,56,0.14) 0%, transparent 60%)",
+              "radial-gradient(50% 60% at 50% -10%, rgba(171, 31, 61,0.14) 0%, transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-xl">
@@ -31,7 +31,7 @@ export function DownloadBand({ data }: { data: Data }) {
             <Star className="size-3.5 fill-current text-[#f59e0b]" />
             Free on Android &amp; iOS
           </div>
-          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#01214a" }}>
+          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#002144" }}>
             {data.title}
           </h2>
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-ink/60">

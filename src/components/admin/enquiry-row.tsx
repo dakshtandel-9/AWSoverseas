@@ -11,7 +11,7 @@ import {
   creditEnquiryReferrerAction,
 } from "@/app/admin/(dashboard)/enquiries/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
-import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
+import { CreditWalletForm, ReferralCreditBadge } from "@/components/admin/credit-wallet-form";
 import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
 
 export type AdminOrder = {
@@ -36,7 +36,7 @@ export type AdminOrder = {
 type Enquiry = AdminOrder;
 
 const STATUS_BADGE: Record<string, string> = {
-  awaiting_quote: "bg-[#eef3fb] text-[#01214a]",
+  awaiting_quote: "bg-[#eef3fb] text-[#002144]",
   quoted: "bg-emerald-50 text-emerald-700",
   rejected: "bg-red-50 text-red-600",
 };
@@ -52,7 +52,7 @@ function formatDate(iso: string) {
 }
 
 const fieldClasses =
-  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]";
+  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -81,7 +81,7 @@ function QuoteForm({ item }: { item: Enquiry }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-[#01214a]">
+      <p className="text-sm font-semibold text-[#002144]">
         {item.quote_status === "quoted" ? "Update quote" : "Approve & send a quote"}
       </p>
       <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
@@ -130,7 +130,7 @@ function QuoteForm({ item }: { item: Enquiry }) {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-lg bg-[#01214a] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
+          className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
         >
           {item.quote_status === "quoted" ? "Update quote" : "Approve & send"}
         </button>
@@ -145,7 +145,7 @@ function RejectForm({ item }: { item: Enquiry }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-[#01214a]">Reject this order</p>
+      <p className="text-sm font-semibold text-[#002144]">Reject this order</p>
       <div className="mt-3 flex flex-wrap items-end gap-2.5">
         <div className="min-w-[220px] flex-1">
           <Field label="Reason (optional)">
@@ -257,6 +257,7 @@ export function EnquiryRow({
       title={item.full_name}
       subtitle={item.product_name}
       meta={item.phone}
+      badge={<ReferralCreditBadge referrerName={referrerName} alreadyCredited={alreadyCredited} />}
       isRead={item.is_read}
       createdAt={createdAt}
       onToggleRead={() => markEnquiryReadAction(item.id, !item.is_read)}
@@ -273,27 +274,27 @@ export function EnquiryRow({
           </p>
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#8e1b2e] hover:underline">
+            <a href={`mailto:${item.email}`} className="text-[#8d1a32] hover:underline">
               {item.email}
             </a>
           </p>
           {item.phone && (
             <p>
               <span className="font-semibold">Phone:</span>{" "}
-              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
+              <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8d1a32] hover:underline">
                 {item.phone}
               </a>
             </p>
           )}
           {item.message && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#01214a]">Message:</p>
+              <p className="font-semibold text-[#002144]">Message:</p>
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}
           {item.attachment_url && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#01214a]">Attachment:</p>
+              <p className="font-semibold text-[#002144]">Attachment:</p>
               <a
                 href={item.attachment_url}
                 target="_blank"

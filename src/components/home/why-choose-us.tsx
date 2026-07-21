@@ -30,7 +30,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 40% at 30% 0%, rgba(215,40,70,0.06) 0%, transparent 65%), linear-gradient(to right, rgba(4,22,47,0.032) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.032) 1px, transparent 1px)",
+            "radial-gradient(ellipse 60% 40% at 30% 0%, rgba(214, 39, 76,0.06) 0%, transparent 65%), linear-gradient(to right, rgba(4,22,47,0.032) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.032) 1px, transparent 1px)",
           backgroundSize: "auto, 48px 48px, 48px 48px",
         }}
       />
@@ -39,7 +39,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
       <Reveal direction="up">
         <div className="relative max-w-2xl">
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Why AWS Overseas</p>
-          <h2 className="mt-3 text-3xl font-bold text-[#01214a] sm:text-4xl lg:text-[2.5rem]">
+          <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem]">
             {data.title}
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
@@ -70,7 +70,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
               style={{ willChange: "transform" }}
             >
               {/* Left accent stripe */}
-              <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#01214a] to-[#d72846] transition-transform duration-300 group-hover:scale-y-100 rounded-l-3xl" />
+              <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#d6274c] transition-transform duration-300 group-hover:scale-y-100 rounded-l-3xl" />
 
               {/* Icon row */}
               <div className="flex items-start justify-between">
@@ -78,28 +78,28 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
                   className="grid size-13 place-items-center rounded-xl shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:scale-110"
                   style={{
                     background: useAmber ? "#fffbeb" : "#eef3fb",
-                    color: useAmber ? "#d97706" : "#01214a",
+                    color: useAmber ? "#d97706" : "#002144",
                   }}
                 >
                   <Icon className="size-6" />
                 </span>
                 {/* Accent dot — expands to glow on hover */}
                 <motion.span
-                  className="size-2.5 rounded-full transition-shadow duration-300 group-hover:shadow-[0_0_8px_3px_rgba(172,32,56,0.45)]"
-                  style={{ background: useAmber ? "#f59e0b" : "#d72846" }}
+                  className="size-2.5 rounded-full transition-shadow duration-300 group-hover:shadow-[0_0_8px_3px_rgba(171, 31, 61,0.45)]"
+                  style={{ background: useAmber ? "#f59e0b" : "#d6274c" }}
                 />
               </div>
 
-              <h3 className="mt-5 text-base font-bold text-[#01214a]">{item.title}</h3>
+              <h3 className="mt-5 text-base font-bold text-[#002144]">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
               {metric && (
                 <span
                   className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold"
-                  style={{ color: useAmber ? "#d97706" : "#d72846" }}
+                  style={{ color: useAmber ? "#d97706" : "#d6274c" }}
                 >
                   <span
                     className="size-1.5 rounded-full"
-                    style={{ background: useAmber ? "#d97706" : "#d72846" }}
+                    style={{ background: useAmber ? "#d97706" : "#d6274c" }}
                   />
                   {metric}
                 </span>
@@ -118,10 +118,10 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
         transition={{ duration: 0.55, delay: 0.3 }}
       >
         <div className="flex flex-col items-center gap-4 text-center">
-          <p className="text-base font-semibold text-[#01214a]">Ready to ship globally?</p>
+          <p className="text-base font-semibold text-[#002144]">Ready to ship globally?</p>
           <Link
             href="/quote"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#01214a] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] hover:shadow-[0_0_0_4px_rgba(172,32,56,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#02224C] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] hover:shadow-[0_0_0_4px_rgba(171, 31, 61,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
           >
             Request a Quote
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

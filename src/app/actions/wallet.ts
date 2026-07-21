@@ -49,7 +49,7 @@ export async function requestWithdrawalAction(
   const account = await getAccount();
   if (!account) return { ok: false, error: "Your session expired — please sign in again." };
   if (!amount || amount < MIN_WITHDRAWAL_AMOUNT) {
-    return { ok: false, error: `Minimum withdrawal is ₹${MIN_WITHDRAWAL_AMOUNT}` };
+    return { ok: false, error: `Minimum withdrawal is $${MIN_WITHDRAWAL_AMOUNT}` };
   }
 
   const { profile } = account;

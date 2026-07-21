@@ -72,15 +72,15 @@ export function IndustriesDirectory({ data }: { data: Data }) {
               <span className="hidden font-mono text-xs font-semibold text-[#94a3b8] sm:block">
                 {code}
               </span>
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] transition-colors duration-300 group-hover:bg-[#01214a] group-hover:text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
                 <Icon className="size-5" />
               </span>
-              <span className="min-w-0 flex-1 truncate text-base font-bold text-[#01214a]">
+              <span className="min-w-0 flex-1 truncate text-base font-bold text-[#002144]">
                 {item.title}
               </span>
 
               {hasProfile ? (
-                <span className="hidden shrink-0 items-center gap-1.5 rounded-full bg-[#fcf0f2] px-3 py-1 text-[11px] font-semibold text-[#8e1b2e] sm:inline-flex">
+                <span className="hidden shrink-0 items-center gap-1.5 rounded-full bg-[#fceef1] px-3 py-1 text-[11px] font-semibold text-[#8d1a32] sm:inline-flex">
                   <FileCheck2 className="size-3.5" />
                   Profile below
                 </span>

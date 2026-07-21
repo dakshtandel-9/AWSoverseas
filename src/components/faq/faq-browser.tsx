@@ -50,8 +50,8 @@ export function FaqBrowser({
           className={cn(
             "rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
             active === "All"
-              ? "bg-[#01214a] text-white"
-              : "bg-[#eef3fb] text-[#01214a] hover:bg-[#dce7f7]",
+              ? "bg-[#002144] text-white"
+              : "bg-[#eef3fb] text-[#002144] hover:bg-[#dce7f7]",
           )}
         >
           All Topics
@@ -64,15 +64,15 @@ export function FaqBrowser({
             className={cn(
               "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
               active === cat.title
-                ? "bg-[#01214a] text-white"
-                : "bg-[#eef3fb] text-[#01214a] hover:bg-[#dce7f7]",
+                ? "bg-[#002144] text-white"
+                : "bg-[#eef3fb] text-[#002144] hover:bg-[#dce7f7]",
             )}
           >
             {cat.title}
             <span
               className={cn(
                 "font-mono text-[11px]",
-                active === cat.title ? "text-white/60" : "text-[#8e1b2e]/60",
+                active === cat.title ? "text-white/60" : "text-[#8d1a32]/60",
               )}
             >
               {counts.get(cat.title) ?? 0}

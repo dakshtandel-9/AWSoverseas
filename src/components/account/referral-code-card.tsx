@@ -34,10 +34,10 @@ export function ReferralCodeCard({ code }: { code: string }) {
         <button
           type="button"
           onClick={copy}
-          className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/20 text-ink/80 transition-colors hover:border-[#d72846] hover:text-ink"
+          className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/20 text-ink/80 transition-colors hover:border-[#d6274c] hover:text-ink"
           aria-label={copied ? "Copied" : "Copy referral code"}
         >
-          {copied ? <Check className="size-4 text-[#d72846]" /> : <Copy className="size-4" />}
+          {copied ? <Check className="size-4 text-[#d6274c]" /> : <Copy className="size-4" />}
         </button>
       </div>
 

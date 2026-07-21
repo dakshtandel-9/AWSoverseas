@@ -46,7 +46,7 @@ export default async function LoginPage({
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(60% 50% at 12% 8%, rgba(172,32,56,0.14) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.22) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+              "radial-gradient(60% 50% at 12% 8%, rgba(171, 31, 61,0.14) 0%, transparent 60%), radial-gradient(50% 45% at 92% 100%, rgba(3,62,141,0.22) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
             backgroundSize: "auto, auto, 44px 44px, 44px 44px",
           }}
         />
@@ -56,12 +56,12 @@ export default async function LoginPage({
         <div className="relative z-10 mt-auto flex flex-col gap-10">
           <div>
             <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-              <span className="size-1.5 rounded-full bg-[#d72846]" />
+              <span className="size-1.5 rounded-full bg-[#d6274c]" />
               Boarding pass — customer access
             </span>
             <h1
               className="mt-6 max-w-md font-heading text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] xl:text-[2.75rem]"
-              style={{ color: "#01214a" }}
+              style={{ color: "#002144" }}
             >
               One account clears every shipment.
             </h1>
@@ -75,8 +75,8 @@ export default async function LoginPage({
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-ink/45">
             <span className="text-ink/85">Enquiry</span>
             <span className="relative h-px flex-1 bg-ink/15">
-              <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
-              <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d72846]" />
+              <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d6274c]" />
+              <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#d6274c]" />
             </span>
             <span className="text-ink/85">Cleared</span>
           </div>
@@ -113,11 +113,11 @@ export default async function LoginPage({
           </div>
 
           <div className="mb-7">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8e1b2e]">
-              <span className="size-1.5 rounded-full bg-[#d72846]" />
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8d1a32]">
+              <span className="size-1.5 rounded-full bg-[#d6274c]" />
               Customer access
             </span>
-            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#01214a] sm:text-[1.75rem]">
+            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#002144] sm:text-[1.75rem]">
               {isSignUp ? "Create your account" : "Sign in to AWS Overseas"}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">

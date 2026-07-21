@@ -24,7 +24,7 @@ export function AppFeatures({ data, eyebrow }: { data: Data; eyebrow: string }) 
             <Badge tone="light">{eyebrow}</Badge>
           </Reveal>
           <Reveal direction="up" delay={0.05}>
-            <h2 className="mt-5 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#01214a" }}>
+            <h2 className="mt-5 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#002144" }}>
               {data.title}
             </h2>
           </Reveal>

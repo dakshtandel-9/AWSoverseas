@@ -11,6 +11,7 @@ const STAGES: { value: ShipmentStatus; label: string }[] = [
   { value: "customs_cleared", label: "Customs cleared" },
   { value: "in_transit", label: "In transit" },
   { value: "delivered", label: "Delivered" },
+  { value: "rejected", label: "Rejected" },
 ];
 
 type Milestone = { id: string; status: string; location: string; note: string; created_at: string };
@@ -45,16 +46,21 @@ export function ShipmentStatusPanel({
 
   return (
     <div className="mt-4 border-t border-[#e4e9f2] pt-4">
-      <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#01214a]">
-        <PackageSearch className="size-3.5 text-[#8e1b2e]" />
+      <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
+        <PackageSearch className="size-3.5 text-[#8d1a32]" />
         Tracking: <span className="font-mono">{trackingNumber}</span>
+        {currentStatus === "rejected" && (
+          <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-700">
+            Rejected
+          </span>
+        )}
       </p>
 
       {milestones.length > 0 && (
         <ul className="mt-2 flex flex-col gap-1 text-xs text-[#5b6b82]">
           {milestones.map((m) => (
             <li key={m.id}>
-              <span className="font-semibold text-[#01214a]">
+              <span className="font-semibold text-[#002144]">
                 {STAGES.find((s) => s.value === m.status)?.label ?? m.status}
               </span>
               {m.location && ` · ${m.location}`}
@@ -68,7 +74,7 @@ export function ShipmentStatusPanel({
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as ShipmentStatus)}
-          className="rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs font-semibold text-[#01214a]"
+          className="rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs font-semibold text-[#002144]"
         >
           {STAGES.map((s) => (
             <option key={s.value} value={s.value}>
@@ -79,17 +85,17 @@ export function ShipmentStatusPanel({
         <input
           name="location"
           placeholder="Location (optional)"
-          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]"
+          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
         />
         <input
           name="note"
           placeholder="Note (optional)"
-          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#01214a] placeholder:text-[#94a3b8]"
+          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
         />
         <button
           type="submit"
           disabled={pending}
-          className="rounded-lg bg-[#01214a] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
+          className="rounded-lg bg-[#02224C] px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
         >
           Update status
         </button>

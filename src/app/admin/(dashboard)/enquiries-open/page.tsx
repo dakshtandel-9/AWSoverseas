@@ -18,7 +18,7 @@ export default async function AdminEnquiriesPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Enquiries</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Enquiries</h1>
       <p className="mt-2 text-sm text-[#5b6b82]">
         Open enquiries from the Enquiry button on the Products page — anyone can send one, no account needed.
         Follow up by email or phone.

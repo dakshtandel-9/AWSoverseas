@@ -141,7 +141,7 @@ function ShipmentCard() {
         <div
           className="relative"
           style={{
-            filter: "drop-shadow(0 0 28px rgba(172,32,56,0.22)) drop-shadow(0 0 60px rgba(3,62,141,0.18))",
+            filter: "drop-shadow(0 0 28px rgba(171, 31, 61,0.22)) drop-shadow(0 0 60px rgba(3,62,141,0.18))",
           }}
         >
         <motion.div
@@ -158,7 +158,7 @@ function ShipmentCard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-widest text-[#5b6b82]">Shipment</p>
-              <p className="mt-0.5 font-mono text-sm font-bold tracking-wider text-[#01214a]">AWO-2847-SH</p>
+              <p className="mt-0.5 font-mono text-sm font-bold tracking-wider text-[#002144]">AWO-2847-SH</p>
             </div>
             <AnimatePresence mode="wait">
               <motion.div
@@ -167,7 +167,7 @@ function ShipmentCard() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#01214a]"
+                className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#002144]"
               >
                 <Mode.Icon className="size-3.5" />
                 {Mode.label}
@@ -177,18 +177,18 @@ function ShipmentCard() {
 
           {/* Route bar */}
           <div className="mt-5 flex items-center gap-2.5 rounded-2xl bg-[#f6f8fc] px-4 py-3">
-            <MapPin className="size-4 shrink-0 text-[#d72846]" />
-            <span className="text-sm font-semibold text-[#01214a]">Shanghai</span>
+            <MapPin className="size-4 shrink-0 text-[#d6274c]" />
+            <span className="text-sm font-semibold text-[#002144]">Shanghai</span>
             <div className="flex flex-1 items-center gap-1">
               {[0, 1, 2, 3, 4].map((i) => (
                 <span
                   key={i}
                   className="h-px flex-1 rounded-full"
-                  style={{ background: i < 3 ? "#d72846" : "#e4e9f2" }}
+                  style={{ background: i < 3 ? "#d6274c" : "#e4e9f2" }}
                 />
               ))}
             </div>
-            <span className="text-sm font-semibold text-[#01214a]">Los Angeles</span>
+            <span className="text-sm font-semibold text-[#002144]">Los Angeles</span>
             <MapPin className="size-4 shrink-0 text-[#5b6b82]" />
           </div>
 
@@ -197,7 +197,7 @@ function ShipmentCard() {
             {SHIPMENT_STEPS.map((step) => (
               <li key={step.id} className="flex items-start gap-3">
                 {step.done ? (
-                  <CheckCircle2 className="mt-0.5 size-4.5 shrink-0 text-[#d72846]" />
+                  <CheckCircle2 className="mt-0.5 size-4.5 shrink-0 text-[#d6274c]" />
                 ) : step.active ? (
                   <motion.span
                     className="mt-1 size-3.5 shrink-0 rounded-full bg-[#f59e0b]"
@@ -210,7 +210,7 @@ function ShipmentCard() {
                 <div className="min-w-0">
                   <p
                     className="text-sm font-semibold"
-                    style={{ color: step.active ? "#f59e0b" : step.done ? "#01214a" : "#5b6b82" }}
+                    style={{ color: step.active ? "#f59e0b" : step.done ? "#002144" : "#5b6b82" }}
                   >
                     {step.label}
                   </p>
@@ -226,8 +226,8 @@ function ShipmentCard() {
           </ol>
 
           {/* ETA footer */}
-          <div className="mt-5 flex items-center gap-2 rounded-xl bg-[#01214a] px-4 py-3">
-            <Clock className="size-4 shrink-0 text-[#d72846]" />
+          <div className="mt-5 flex items-center gap-2 rounded-xl bg-[#002144] px-4 py-3">
+            <Clock className="size-4 shrink-0 text-[#d6274c]" />
             <p className="text-xs font-medium text-white/80">
               Estimated delivery: <span className="font-bold text-white">Jul 3, 2026</span>
             </p>
@@ -262,11 +262,11 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
           glowRadius={0}
           sparkle={false}
           waveAmplitude={3}
-          gradientFrom="#ac2038"
+          gradientFrom="#ab1f3d"
           gradientTo="#023f8d"
           glowColor="transparent"
           baseDotColor="#7fb3e0"
-          accentDotColor="#d72846"
+          accentDotColor="#d6274c"
           accentRatio={0.1}
           dotOpacity={0.35}
         />
@@ -277,12 +277,12 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
         <div className="max-w-[600px]">
           {/* Eyebrow */}
           <motion.div
-            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+            className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-[#e05c72] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
             initial={{ opacity: 0, y: 12 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
           >
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
+            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
             {data.badge}
           </motion.div>
 
@@ -293,13 +293,13 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#01214a" }}>
+            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>
               {line1}
             </span>
             <span
               className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d72846 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #e05c72 0%, #d6274c 55%, #e88797 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -337,16 +337,16 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
                 border: "1px solid rgba(1,33,74,0.16)",
                 color: "rgba(1,33,74,0.92)",
                 backdropFilter: "blur(12px)",
-                boxShadow: "0 0 0 0 rgba(172,32,56,0)",
+                boxShadow: "0 0 0 0 rgba(171, 31, 61,0)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.1)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "rgba(1,33,74,0.06)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(172,32,56,0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(171, 31, 61,0)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >

@@ -12,7 +12,7 @@ export default function AdminLoginPage() {
         <p className="mt-6 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           Admin Access
         </p>
-        <h1 className="mt-2 text-2xl font-bold text-[#01214a]">Sign in to the dashboard</h1>
+        <h1 className="mt-2 text-2xl font-bold text-[#002144]">Sign in to the dashboard</h1>
         <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
           Enter the admin password to manage site content, messages, and settings.
         </p>

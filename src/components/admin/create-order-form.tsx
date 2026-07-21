@@ -34,7 +34,7 @@ export type OrderProductOption = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 const initialState: CreateOrderState = {};
 
@@ -100,7 +100,7 @@ function Combobox<T extends { id: string }>({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={searchPlaceholder}
-              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#01214a] outline-none placeholder:text-[#94a3b8]"
+              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#002144] outline-none placeholder:text-[#94a3b8]"
             />
           </div>
           <ul className="max-h-56 overflow-y-auto py-1.5">
@@ -119,8 +119,8 @@ function Combobox<T extends { id: string }>({
                     setQuery("");
                   }}
                   className={cn(
-                    "cursor-pointer px-4 py-2 text-sm text-[#01214a] transition-colors hover:bg-[#f6f8fc]",
-                    item.id === value?.id && "bg-[#eef8fd] text-[#8e1b2e]",
+                    "cursor-pointer px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
+                    item.id === value?.id && "bg-[#eef8fd] text-[#8d1a32]",
                   )}
                 >
                   {(renderOption ?? render)(item)}
@@ -204,7 +204,7 @@ function CreateOrderModal({
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               Place an Order
             </p>
-            <h2 id="create-order-title" className="mt-1 text-base font-bold text-[#01214a]">
+            <h2 id="create-order-title" className="mt-1 text-base font-bold text-[#002144]">
               For a customer
             </h2>
           </div>
@@ -212,7 +212,7 @@ function CreateOrderModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#01214a]"
+            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
           >
             <X className="size-4" />
           </button>
@@ -221,17 +221,17 @@ function CreateOrderModal({
         {done ? (
           <div className="flex flex-col gap-4 overflow-y-auto px-6 py-6">
             <div className="flex items-start gap-3 rounded-2xl bg-[#eef8fd] px-4 py-3">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#d72846] text-white">
+              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#d6274c] text-white">
                 <Check className="size-4" />
               </span>
-              <p className="text-sm font-medium leading-relaxed text-[#8e1b2e]">
+              <p className="text-sm font-medium leading-relaxed text-[#8d1a32]">
                 Order created for {context ? context.item.full_name : "the customer"} — it now shows on their
                 profile. Revise the quote, reject it, or credit a referral below.
               </p>
             </div>
 
             {context ? (
-              <div className="text-sm text-[#01214a]">
+              <div className="text-sm text-[#002144]">
                 <OrderDecisionSection
                   item={context.item}
                   referrerName={context.referrerName}
@@ -245,7 +245,7 @@ function CreateOrderModal({
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#01214a] hover:border-[#d72846]"
+              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#d6274c]"
             >
               Done
             </button>
@@ -257,8 +257,8 @@ function CreateOrderModal({
             <input type="hidden" name="product-name" value={product?.name ?? ""} />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#01214a]">
-                Customer <span className="text-[#8e1b2e]">*</span>
+              <label className="text-sm font-semibold text-[#002144]">
+                Customer <span className="text-[#8d1a32]">*</span>
               </label>
               <Combobox
                 items={users}
@@ -290,8 +290,8 @@ function CreateOrderModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#01214a]">
-                Product <span className="text-[#8e1b2e]">*</span>
+              <label className="text-sm font-semibold text-[#002144]">
+                Product <span className="text-[#8d1a32]">*</span>
               </label>
               <Combobox
                 items={products}
@@ -306,7 +306,7 @@ function CreateOrderModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#01214a]">Message</label>
+              <label className="text-sm font-semibold text-[#002144]">Message</label>
               <textarea
                 name="message"
                 rows={3}
@@ -316,7 +316,7 @@ function CreateOrderModal({
             </div>
 
             <div className="rounded-2xl border border-[#e4e9f2] bg-[#f9fbfe] p-4">
-              <p className="text-sm font-semibold text-[#01214a]">Quote (optional)</p>
+              <p className="text-sm font-semibold text-[#002144]">Quote (optional)</p>
               <p className="mt-1 text-xs text-[#5b6b82]">
                 Fill in a price to send the quote right away — or leave blank and price it out after creating.
                 You can revise it any time.
@@ -376,7 +376,7 @@ function CreateOrderModal({
             <button
               type="submit"
               disabled={pending}
-              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#01214a] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#02224C] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {pending ? "Creating…" : "Create order"}
             </button>
@@ -402,7 +402,7 @@ export function CreateOrderButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-full bg-[#01214a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938]"
+        className="inline-flex items-center gap-2 rounded-full bg-[#02224C] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38]"
       >
         <Plus className="size-4" />
         New order

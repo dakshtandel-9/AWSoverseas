@@ -87,7 +87,7 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Overview</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Dashboard</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Dashboard</h1>
 
       {!configured && (
         <div className="mt-6">
@@ -102,14 +102,14 @@ export default async function AdminDashboardPage() {
             href={href}
             className="group flex flex-col gap-4 rounded-2xl border border-[#e4e9f2] bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_rgba(4,22,47,0.14)]"
           >
-            <span className="grid size-11 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a]">
+            <span className="grid size-11 place-items-center rounded-xl bg-[#eef3fb] text-[#002144]">
               <Icon className="size-5" />
             </span>
             <div>
-              <p className="text-3xl font-bold text-[#01214a]">{value}</p>
+              <p className="text-3xl font-bold text-[#002144]">{value}</p>
               <p className="mt-1 text-sm text-[#5b6b82]">{label}</p>
             </div>
-            <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e]">
+            <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32]">
               View
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
             </span>

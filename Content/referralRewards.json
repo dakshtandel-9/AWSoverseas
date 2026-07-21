@@ -59,6 +59,34 @@
     ]
   },
 
+  "withdrawal": {
+    "title": "Turning your wallet balance into cash",
+    "description": "$25 lands in your AWS Overseas wallet the moment a referral's order is confirmed. From there, moving it to your bank account takes four steps.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Add your bank details, once",
+        "description": "Save your account holder name, account number, IFSC code, and bank name under account settings. You only need to do this the first time."
+      },
+      {
+        "step": "02",
+        "title": "Request a withdrawal",
+        "description": "From your wallet, enter the amount you want to move out — anything from $25 up to your available balance — and submit the request."
+      },
+      {
+        "step": "03",
+        "title": "We review and approve it",
+        "description": "Our team checks the request against your saved bank details. You can track its status — pending, paid, or rejected — right from your wallet."
+      },
+      {
+        "step": "04",
+        "title": "It lands in your account",
+        "description": "Once approved, the amount is transferred directly to your bank account and your wallet balance updates to match."
+      }
+    ],
+    "note": "No withdrawal fee, and no expiry on wallet balance — cash out $25 at a time or let it build up first."
+  },
+
   "cta": {
     "title": "Your code is already waiting in your account",
     "description": "Sign in to grab your referral code and start sharing — it takes less than a minute.",

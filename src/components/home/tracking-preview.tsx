@@ -16,7 +16,7 @@ export function TrackingPreview({ data }: { data: Data }) {
             <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-ink/8 ring-1 ring-ink/15">
               <PackageSearch className="size-8 text-accent-500" />
             </span>
-            <h2 className="mt-6 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#01214a" }}>{data.title}</h2>
+            <h2 className="mt-6 text-3xl font-bold text-balance sm:text-4xl" style={{ color: "#002144" }}>{data.title}</h2>
             <p className="mt-4 text-ink/70 text-pretty">{data.description}</p>
             <div className="mx-auto mt-8 max-w-xl">
               <TrackingInput tone="light" placeholder={data.placeholder} buttonText={data.button} />

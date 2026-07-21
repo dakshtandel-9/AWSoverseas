@@ -28,21 +28,21 @@ export function ReferralTeaser({ data }: { data: Data }) {
             aria-hidden
             style={{
               backgroundImage:
-                "radial-gradient(55% 60% at 90% 10%, rgba(172,32,56,0.12) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
+                "radial-gradient(55% 60% at 90% 10%, rgba(171, 31, 61,0.12) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
               backgroundSize: "auto, 44px 44px, 44px 44px",
             }}
           />
 
           <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_auto]">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#d72846]/30 bg-[#d72846]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#d6274c]/30 bg-[#d6274c]/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e05c72]">
                 <Gift className="size-3.5" />
                 {data.badge}
               </span>
 
               <h2
                 className="mt-6 text-balance text-3xl font-bold leading-[1.1] sm:text-4xl"
-                style={{ color: "#01214a" }}
+                style={{ color: "#002144" }}
               >
                 {data.title}
               </h2>

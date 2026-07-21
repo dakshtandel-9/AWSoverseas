@@ -21,7 +21,7 @@ export function FaqCta({ data }: { data: Data }) {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(55% 60% at 85% 20%, rgba(172,32,56,0.18) 0%, transparent 60%)",
+            "radial-gradient(55% 60% at 85% 20%, rgba(171, 31, 61,0.18) 0%, transparent 60%)",
         }}
       />
       <motion.div
@@ -31,7 +31,7 @@ export function FaqCta({ data }: { data: Data }) {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#01214a" }}>
+        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#002144" }}>
           {data.title}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-ink/60 sm:text-lg">{data.description}</p>

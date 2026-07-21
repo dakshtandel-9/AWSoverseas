@@ -8,7 +8,7 @@ import type { SiteSettings } from "@/lib/site-settings";
 const initialState: SettingsState = {};
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
   const [state, formAction, pending] = useActionState(updateSettingsAction, initialState);
@@ -30,7 +30,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       />
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="address" className="text-sm font-semibold text-[#01214a]">
+        <label htmlFor="address" className="text-sm font-semibold text-[#002144]">
           Office address
         </label>
         <textarea
@@ -49,7 +49,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </p>
       )}
       {state.success && (
-        <p className="flex items-center gap-2 rounded-lg bg-[#fcf0f2] px-3 py-2 text-sm font-medium text-[#8e1b2e]" role="status">
+        <p className="flex items-center gap-2 rounded-lg bg-[#fceef1] px-3 py-2 text-sm font-medium text-[#8d1a32]" role="status">
           <Check className="size-4" />
           Settings saved — live on the site now.
         </p>
@@ -59,7 +59,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center justify-center rounded-full bg-[#01214a] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-[#02224C] px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {pending ? "Saving…" : "Save changes"}
         </button>
@@ -85,9 +85,9 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-sm font-semibold text-[#01214a]">
+      <label htmlFor={name} className="text-sm font-semibold text-[#002144]">
         {label}
-        {required && <span className="ml-1 text-[#8e1b2e]">*</span>}
+        {required && <span className="ml-1 text-[#8d1a32]">*</span>}
       </label>
       <input
         id={name}

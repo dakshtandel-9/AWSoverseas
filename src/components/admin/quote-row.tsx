@@ -3,7 +3,7 @@
 import { markQuoteReadAction, deleteQuoteAction, creditQuoteReferrerAction } from "@/app/admin/(dashboard)/quotes/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
-import { CreditWalletForm } from "@/components/admin/credit-wallet-form";
+import { CreditWalletForm, ReferralCreditBadge } from "@/components/admin/credit-wallet-form";
 import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
 
 type Quote = {
@@ -66,6 +66,7 @@ export function QuoteRow({
       title={item.full_name}
       subtitle={`${item.origin_country} → ${item.destination_country}`}
       meta={item.service_type}
+      badge={<ReferralCreditBadge referrerName={referrerName} alreadyCredited={alreadyCredited} />}
       isRead={item.is_read}
       createdAt={createdAt}
       onToggleRead={() => markQuoteReadAction(item.id, !item.is_read)}
@@ -84,13 +85,13 @@ export function QuoteRow({
           )}
           <p>
             <span className="font-semibold">Phone:</span>{" "}
-            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8e1b2e] hover:underline">
+            <a href={`tel:${item.phone.replace(/\s+/g, "")}`} className="text-[#8d1a32] hover:underline">
               {item.phone}
             </a>
           </p>
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-[#8e1b2e] hover:underline">
+            <a href={`mailto:${item.email}`} className="text-[#8d1a32] hover:underline">
               {item.email}
             </a>
           </p>
@@ -101,7 +102,7 @@ export function QuoteRow({
             <div className="mt-2 grid gap-1.5 border-t border-[#e4e9f2] pt-3">
               {extraFields.map(([key, value]) => (
                 <p key={key} className="text-[#5b6b82]">
-                  <span className="font-semibold text-[#01214a]">{toLabel(key)}:</span> {value}
+                  <span className="font-semibold text-[#002144]">{toLabel(key)}:</span> {value}
                 </p>
               ))}
             </div>

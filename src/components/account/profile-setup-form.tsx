@@ -18,7 +18,7 @@ import { SignOutButton } from "@/components/account/sign-out-button";
 import type { UserProfile } from "@/lib/account";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 type UsernameStatus = "idle" | "checking" | "available" | "taken" | "invalid";
 
@@ -76,7 +76,7 @@ function ConfirmPassportChangeModal({
               <ShieldAlert className="size-6" />
             </span>
             <div>
-              <p id="passport-change-title" className="text-base font-bold text-[#01214a]">
+              <p id="passport-change-title" className="text-base font-bold text-[#002144]">
                 Your account will go back for review
               </p>
               <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
@@ -89,7 +89,7 @@ function ConfirmPassportChangeModal({
               <button
                 type="button"
                 onClick={onCancel}
-                className="flex-1 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#01214a] transition-colors hover:border-[#d72846]"
+                className="flex-1 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#d6274c]"
               >
                 Go back
               </button>
@@ -231,13 +231,13 @@ export function ProfileSetupForm({
       <div className="border-b border-[#e4e9f2] px-7 py-8 sm:px-10">
         <div className="flex items-baseline gap-3">
           <span className="font-mono text-xs font-bold text-[#94a3b8]">01</span>
-          <h2 className="text-lg font-bold text-[#01214a]">Your details</h2>
+          <h2 className="text-lg font-bold text-[#002144]">Your details</h2>
         </div>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              First name <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              First name <span className="text-[#8d1a32]">*</span>
             </label>
             <input
               name="first-name"
@@ -253,8 +253,8 @@ export function ProfileSetupForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              Last name <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              Last name <span className="text-[#8d1a32]">*</span>
             </label>
             <input
               name="last-name"
@@ -270,8 +270,8 @@ export function ProfileSetupForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              Username <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              Username <span className="text-[#8d1a32]">*</span>
             </label>
             <input
               name="username"
@@ -287,15 +287,15 @@ export function ProfileSetupForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              Phone number <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              Phone number <span className="text-[#8d1a32]">*</span>
             </label>
             <PhoneInput name="phone" required defaultValue={profile.phone} />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              Country <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              Country <span className="text-[#8d1a32]">*</span>
             </label>
             <CountrySelect
               name="country"
@@ -306,12 +306,12 @@ export function ProfileSetupForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">Company name</label>
+            <label className="text-sm font-semibold text-[#002144]">Company name</label>
             <input name="company-name" defaultValue={profile.company_name} placeholder="Your company (optional)" className={inputClasses} />
           </div>
 
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#01214a]">Email</label>
+            <label className="text-sm font-semibold text-[#002144]">Email</label>
             <input value={profile.email} disabled className={cn(inputClasses, "bg-[#f6f8fc] text-[#5b6b82]")} />
             <p className="text-xs text-[#94a3b8]">Your account email — used to sign in.</p>
           </div>
@@ -322,7 +322,7 @@ export function ProfileSetupForm({
       <div className="border-b border-[#e4e9f2] px-7 py-8 sm:px-10">
         <div className="flex items-baseline gap-3">
           <span className="font-mono text-xs font-bold text-[#94a3b8]">02</span>
-          <h2 className="text-lg font-bold text-[#01214a]">Passport verification</h2>
+          <h2 className="text-lg font-bold text-[#002144]">Passport verification</h2>
         </div>
         <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">
           International shipping requires identity verification — our team reviews these before your
@@ -331,8 +331,8 @@ export function ProfileSetupForm({
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#01214a]">
-              Passport number <span className="text-[#8e1b2e]">*</span>
+            <label className="text-sm font-semibold text-[#002144]">
+              Passport number <span className="text-[#8d1a32]">*</span>
             </label>
             <input
               name="passport-number"
@@ -357,7 +357,7 @@ export function ProfileSetupForm({
         <div className="border-b border-[#e4e9f2] px-7 py-8 sm:px-10">
           <div className="flex items-baseline gap-3">
             <span className="font-mono text-xs font-bold text-[#94a3b8]">03</span>
-            <h2 className="text-lg font-bold text-[#01214a]">Referral code</h2>
+            <h2 className="text-lg font-bold text-[#002144]">Referral code</h2>
           </div>
           <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">
             Were you referred by an existing customer? Enter their code — this can&rsquo;t be changed
@@ -376,8 +376,8 @@ export function ProfileSetupForm({
       ) : (
         referrerLabel && (
           <div className="flex items-center gap-3 border-b border-[#e4e9f2] px-7 py-6 text-sm text-[#5b6b82] sm:px-10">
-            <Gift className="size-4 shrink-0 text-[#8e1b2e]" />
-            Referred by <span className="font-semibold text-[#01214a]">{referrerLabel}</span>
+            <Gift className="size-4 shrink-0 text-[#8d1a32]" />
+            Referred by <span className="font-semibold text-[#002144]">{referrerLabel}</span>
           </div>
         )
       )}
@@ -406,7 +406,7 @@ export function ProfileSetupForm({
         <button
           type="submit"
           disabled={pending || usernameStatus === "taken" || usernameStatus === "checking"}
-          className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#01214a] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011938] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+          className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#02224C] px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#011a38] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
         >
           {pending ? "Saving…" : firstTime ? "Submit for verification" : "Save changes"}
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

@@ -106,7 +106,7 @@ function ProductCard({
             className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               padding: 1,
-              background: "linear-gradient(135deg, rgba(215,40,70,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
+              background: "linear-gradient(135deg, rgba(214, 39, 76,0.55), rgba(224,92,114,0.15) 40%, transparent 70%)",
               WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMaskComposite: "xor",
               maskComposite: "exclude",
@@ -126,29 +126,29 @@ function ProductCard({
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-[#eef3fb]">
-                <Icon className="size-10 text-[#01214a]/30" />
+                <Icon className="size-10 text-[#002144]/30" />
               </div>
             )}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
 
             {/* Top-right arrow button */}
-            <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#002144] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
               <ArrowUpRight className="size-4" aria-hidden />
             </span>
 
             {/* Category icon chip */}
-            <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#01214a] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
+            <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#002144] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
               <Icon className="size-4" aria-hidden />
             </span>
           </div>
 
           {/* Content */}
           <div className="flex flex-1 flex-col gap-2 p-5">
-            <h3 className="text-base font-bold text-[#01214a]">{title}</h3>
+            <h3 className="text-base font-bold text-[#002144]">{title}</h3>
             <p className="text-sm leading-relaxed text-[#5b6b82]">{subtitle}</p>
 
-            <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#01214a]">
-              <span className="size-1.5 rounded-full bg-[#d72846]" aria-hidden />
+            <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#002144]">
+              <span className="size-1.5 rounded-full bg-[#d6274c]" aria-hidden />
               <BadgeCheck className="size-3" aria-hidden />
               {badge}
             </span>
@@ -166,7 +166,7 @@ function ViewAllCard({ index }: { index: number }) {
         <Link
           href="/products"
           aria-label="View all exportable products in the full catalog"
-          className="group relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br from-[#01214a] via-[#054ba8] to-[#0a3580] p-6 text-white shadow-[0_12px_40px_-12px_rgba(3,62,141,0.5)] transition-shadow duration-300 hover:shadow-[0_16px_48px_-8px_rgba(3,62,141,0.6)] sm:min-h-[340px]"
+          className="group relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br from-[#002144] via-[#054ba8] to-[#0a3580] p-6 text-white shadow-[0_12px_40px_-12px_rgba(3,62,141,0.5)] transition-shadow duration-300 hover:shadow-[0_16px_48px_-8px_rgba(3,62,141,0.6)] sm:min-h-[340px]"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.08]"
@@ -176,7 +176,7 @@ function ViewAllCard({ index }: { index: number }) {
             }}
             aria-hidden
           />
-          <div className="pointer-events-none absolute -right-14 -top-14 size-56 rounded-full bg-[#d72846]/30 blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -right-14 -top-14 size-56 rounded-full bg-[#d6274c]/30 blur-3xl" aria-hidden />
 
           <span className="relative grid size-14 place-items-center rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
             <LayoutGrid className="size-6 text-[#e05c72]" aria-hidden />
@@ -219,10 +219,10 @@ export function ProductsWeExport() {
         <Reveal direction="up">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-700 ring-1 ring-brand-100">
-              <span className="size-1.5 rounded-full bg-[#d72846]" aria-hidden />
+              <span className="size-1.5 rounded-full bg-[#d6274c]" aria-hidden />
               Export Catalog
             </span>
-            <h2 className="mt-4 text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
               Products We Export
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
@@ -235,7 +235,7 @@ export function ProductsWeExport() {
         <Reveal direction="up" delay={0.1}>
           <Link
             href="/products"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#01214a]/15 px-6 py-3 text-sm font-semibold text-[#01214a] transition-all duration-300 hover:border-[#d72846]/40 hover:bg-[#eef3fb]"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#002144]/15 px-6 py-3 text-sm font-semibold text-[#002144] transition-all duration-300 hover:border-[#d6274c]/40 hover:bg-[#eef3fb]"
           >
             View Complete Catalog
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -253,7 +253,7 @@ export function ProductsWeExport() {
 
       {/* Bottom CTA strip */}
       <motion.div
-        className="relative mt-16 overflow-hidden rounded-[28px] bg-gradient-to-br from-[#01214a] via-[#04234f] to-[#0a3580] p-8 shadow-[0_20px_60px_-16px_rgba(1,33,74,0.55)] sm:p-10 lg:p-14"
+        className="relative mt-16 overflow-hidden rounded-[28px] bg-gradient-to-br from-[#002144] via-[#04234f] to-[#0a3580] p-8 shadow-[0_20px_60px_-16px_rgba(1,33,74,0.55)] sm:p-10 lg:p-14"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -269,7 +269,7 @@ export function ProductsWeExport() {
           aria-hidden
         />
         {/* Glows */}
-        <div className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[#d72846]/30 blur-[100px]" aria-hidden />
+        <div className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[#d6274c]/30 blur-[100px]" aria-hidden />
         <div className="pointer-events-none absolute -bottom-16 -left-16 size-64 rounded-full bg-[#0a3580]/40 blur-[90px]" aria-hidden />
 
         <div className="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
@@ -292,7 +292,7 @@ export function ProductsWeExport() {
           <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
             <Link
               href="/quote"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d72846] to-[#e05c72] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(215,40,70,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-6px_rgba(215,40,70,0.65)]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d6274c] to-[#e05c72] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(214, 39, 76,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-6px_rgba(214, 39, 76,0.65)]"
             >
               Request Product Quote
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />

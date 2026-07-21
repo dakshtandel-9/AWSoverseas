@@ -31,29 +31,29 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
   const productCount = stats[0]?.number ?? "";
 
   return (
-    <section className="relative overflow-hidden bg-[#000c1a] pb-20 pt-32 sm:pb-24 sm:pt-36">
+    <section className="relative overflow-hidden bg-[#C4DFFD] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(60% 55% at 82% 8%, rgba(172,32,56,0.16) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.42) 0%, transparent 60%), linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            "radial-gradient(60% 55% at 82% 8%, rgba(171, 31, 61,0.14) 0%, transparent 60%), radial-gradient(45% 40% at 6% 100%, rgba(3,62,141,0.12) 0%, transparent 60%), linear-gradient(to right, rgba(1,33,74,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(1,33,74,0.05) 1px, transparent 1px)",
           backgroundSize: "auto, auto, 44px 44px, 44px 44px",
         }}
       />
 
       <Container className="relative">
         <motion.div
-          className="flex items-center gap-4 border-b border-white/12 pb-4"
+          className="flex items-center gap-4 border-b border-[#002144]/12 pb-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e05c72]">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#d72846]" />
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#ab1f3d]">
+            <span className="size-1.5 animate-pulse rounded-full bg-[#d6274c]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-white/35 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
             PRODUCT&nbsp;CATALOG&nbsp;/&nbsp;{productCount}&nbsp;LISTED
           </span>
         </motion.div>
@@ -61,7 +61,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
         <div className="mt-10 max-w-3xl">
           <motion.h1
             className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#002144" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -69,7 +69,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
             {line1}{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #e05c72 0%, #d72846 55%, #e88797 100%)",
+                background: "linear-gradient(110deg, #ab1f3d 0%, #d6274c 55%, #8d1a32 100%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
@@ -80,7 +80,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -99,20 +99,20 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
             </Button>
             <a
               href="/contact"
-              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-white/90 transition-all duration-300"
+              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#002144]/90 transition-all duration-300"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(1,33,74,0.06)",
+                border: "1px solid rgba(1,33,74,0.16)",
                 backdropFilter: "blur(12px)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget;
-                el.style.background = "rgba(255,255,255,0.14)";
-                el.style.boxShadow = "0 0 0 1px rgba(172,32,56,0.4), 0 4px 20px rgba(172,32,56,0.15)";
+                el.style.background = "rgba(1,33,74,0.1)";
+                el.style.boxShadow = "0 0 0 1px rgba(171, 31, 61,0.4), 0 4px 20px rgba(171, 31, 61,0.15)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget;
-                el.style.background = "rgba(255,255,255,0.08)";
+                el.style.background = "rgba(1,33,74,0.06)";
                 el.style.boxShadow = "none";
               }}
             >
@@ -124,17 +124,17 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
 
         {/* Export stats — reuses overview.stats */}
         <motion.dl
-          className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/12 sm:grid-cols-4"
+          className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#002144]/12 bg-[#002144]/12 sm:grid-cols-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.36, ease }}
         >
           {stats.map((s) => (
-            <div key={s.label} className="bg-[#000c1a] px-6 py-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
+            <div key={s.label} className="bg-[#C4DFFD] px-6 py-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#002144]/45">
                 {s.label}
               </dt>
-              <dd className="mt-1.5 font-heading text-2xl font-extrabold text-white sm:text-3xl">
+              <dd className="mt-1.5 font-heading text-2xl font-extrabold text-[#002144] sm:text-3xl">
                 <Counter value={s.number} />
               </dd>
             </div>

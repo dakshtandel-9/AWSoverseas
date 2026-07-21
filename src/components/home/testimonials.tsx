@@ -13,7 +13,7 @@ const REVIEWS = [
     role: "Head of Procurement",
     company: "NovaTex Industries",
     initials: "JH",
-    color: "#01214a",
+    color: "#002144",
     rating: 5,
     quote:
       "AWS Overseas found and verified three manufacturers for us in under two weeks, then caught a spec mismatch during pre-shipment inspection that would have cost us the whole order. That's the kind of sourcing support we couldn't get from a regular forwarder.",
@@ -65,7 +65,7 @@ export function Testimonials({ data, eyebrow }: { data: Data; eyebrow: string })
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(215,40,70,0.07) 0%, transparent 65%)",
+            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(214, 39, 76,0.07) 0%, transparent 65%)",
         }}
       />
 
@@ -82,10 +82,10 @@ export function Testimonials({ data, eyebrow }: { data: Data; eyebrow: string })
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
             whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-            className="group relative flex flex-col overflow-hidden rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.16)] hover:ring-[#d72846]/30"
+            className="group relative flex flex-col overflow-hidden rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.16)] hover:ring-[#d6274c]/30"
           >
             {/* Left accent stripe */}
-            <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 rounded-l-3xl bg-gradient-to-b from-[#01214a] to-[#d72846] transition-transform duration-300 group-hover:scale-y-100" />
+            <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 rounded-l-3xl bg-gradient-to-b from-[#002144] to-[#d6274c] transition-transform duration-300 group-hover:scale-y-100" />
 
             {/* Stars */}
             <div className="flex gap-0.5">
@@ -109,7 +109,7 @@ export function Testimonials({ data, eyebrow }: { data: Data; eyebrow: string })
                 {r.initials}
               </span>
               <div className="min-w-0">
-                <p className="text-sm font-bold text-[#01214a]">{r.name}</p>
+                <p className="text-sm font-bold text-[#002144]">{r.name}</p>
                 <p className="truncate text-[12px] text-[#5b6b82]">
                   {r.role} · {r.company}
                 </p>
@@ -129,8 +129,8 @@ export function Testimonials({ data, eyebrow }: { data: Data; eyebrow: string })
       >
         {SIGNALS.map((s) => (
           <div key={s.label} className="flex flex-col items-center gap-1.5 bg-white px-6 py-6 text-center">
-            <s.Icon className="size-5 text-[#d72846]" />
-            <p className="font-heading text-2xl font-extrabold text-[#01214a]">{s.metric}</p>
+            <s.Icon className="size-5 text-[#d6274c]" />
+            <p className="font-heading text-2xl font-extrabold text-[#002144]">{s.metric}</p>
             <p className="text-[12px] font-medium text-[#5b6b82]">{s.label}</p>
           </div>
         ))}

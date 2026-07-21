@@ -13,7 +13,7 @@ export default async function AdminNewsletterPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Mailing list</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#01214a] sm:text-3xl">Newsletter subscribers</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Newsletter subscribers</h1>
       <p className="mt-2 text-sm text-[#5b6b82]">
         Emails collected from the site&apos;s newsletter form. {items.length} subscriber{items.length === 1 ? "" : "s"}.
       </p>

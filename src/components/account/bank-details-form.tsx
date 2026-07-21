@@ -6,7 +6,7 @@ import { updateBankDetailsAction, type BankDetailsFormState } from "@/app/action
 import type { UserProfile } from "@/lib/account";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#01214a] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d72846] focus:ring-2 focus:ring-[#d72846]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#d6274c] focus:ring-2 focus:ring-[#d6274c]/20";
 
 const initialState: BankDetailsFormState = {};
 
@@ -32,15 +32,15 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
       <div className="flex items-center justify-between">
-        <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#01214a]">
-          <Landmark className="size-4 text-[#8e1b2e]" />
+        <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
+          <Landmark className="size-4 text-[#8d1a32]" />
           Bank details
         </h2>
         {hasSavedDetails && !editing && (
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8e1b2e] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8d1a32] hover:underline"
           >
             <Pencil className="size-3.5" /> Edit
           </button>
@@ -60,14 +60,14 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
           ].map(({ label, value }) => (
             <div key={label}>
               <dt className="text-xs font-medium uppercase tracking-wide text-[#94a3b8]">{label}</dt>
-              <dd className="mt-0.5 text-sm font-semibold text-[#01214a]">{value}</dd>
+              <dd className="mt-0.5 text-sm font-semibold text-[#002144]">{value}</dd>
             </div>
           ))}
         </dl>
       ) : (
         <form action={formAction} className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#01214a]">Account holder name</label>
+            <label className="text-sm font-semibold text-[#002144]">Account holder name</label>
             <input
               name="bank-account-holder"
               required
@@ -78,7 +78,7 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">Account number</label>
+            <label className="text-sm font-semibold text-[#002144]">Account number</label>
             <input
               name="bank-account-number"
               required
@@ -90,7 +90,7 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#01214a]">IFSC code</label>
+            <label className="text-sm font-semibold text-[#002144]">IFSC code</label>
             <input
               name="bank-ifsc"
               required
@@ -103,7 +103,7 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
           </div>
 
           <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#01214a]">Bank name</label>
+            <label className="text-sm font-semibold text-[#002144]">Bank name</label>
             <input
               name="bank-name"
               required
@@ -127,7 +127,7 @@ export function BankDetailsForm({ profile }: { profile: UserProfile }) {
             <button
               type="submit"
               disabled={pending}
-              className="rounded-full bg-[#01214a] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011938] disabled:opacity-50"
+              className="rounded-full bg-[#02224C] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#011a38] disabled:opacity-50"
             >
               {pending ? "Saving…" : "Save bank details"}
             </button>

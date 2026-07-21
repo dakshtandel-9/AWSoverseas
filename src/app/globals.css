@@ -7,7 +7,7 @@
    values below in ONE place.
    ========================================================= */
 @theme {
-  /* Brand — Deep Navy (from AWS Overseas logo "AWS" = #01214a) */
+  /* Brand — Deep Navy (from AWS Overseas logo, standardized to #002144) */
   --color-brand-50: #edf5ff;
   --color-brand-100: #cde2fe;
   --color-brand-200: #90c0fe;
@@ -15,25 +15,25 @@
   --color-brand-400: #035ed3;
   --color-brand-500: #023f8d;
   --color-brand-600: #012d65;
-  --color-brand-700: #01214a;
-  --color-brand-800: #011938;
+  --color-brand-700: #002144;
+  --color-brand-800: #001830;
   --color-brand-900: #011229;
   --color-brand-950: #000c1a;
 
-  /* Accent — Maroon (from logo "OVERSEAS" = #8b1a2d) */
-  --color-accent-50: #fcf0f2;
-  --color-accent-100: #f8d8de;
-  --color-accent-200: #f1b2bc;
-  --color-accent-300: #e57688;
-  --color-accent-400: #d72846;
-  --color-accent-500: #ac2038;
-  --color-accent-600: #8e1b2e;
-  --color-accent-700: #8b1a2d;
-  --color-accent-800: #6c1423;
-  --color-accent-900: #510f1a;
+  /* Accent — Maroon (brand color = #8A1931) */
+  --color-accent-50: #fceef1;
+  --color-accent-100: #f8d6dd;
+  --color-accent-200: #f1b0be;
+  --color-accent-300: #e5748c;
+  --color-accent-400: #d6274c;
+  --color-accent-500: #ab1f3d;
+  --color-accent-600: #8d1a32;
+  --color-accent-700: #8a1931;
+  --color-accent-800: #6b1326;
+  --color-accent-900: #500e1c;
 
   /* Neutrals */
-  --color-ink: #01214a;
+  --color-ink: #002144;
   --color-ink-soft: #2a3a52;
   --color-muted: #5b6b82;
   --color-line: #e4e9f2;
@@ -57,7 +57,7 @@
   --shadow-soft: 0 1px 2px rgba(4, 22, 47, 0.04), 0 8px 24px -8px rgba(4, 22, 47, 0.12);
   --shadow-card: 0 2px 4px rgba(4, 22, 47, 0.04), 0 18px 40px -16px rgba(4, 22, 47, 0.18);
   --shadow-lift: 0 8px 16px rgba(4, 22, 47, 0.06), 0 30px 60px -20px rgba(4, 22, 47, 0.28);
-  --shadow-glow: 0 0 0 1px rgba(215, 40, 70, 0.18), 0 20px 60px -18px rgba(172, 32, 56, 0.45);
+  --shadow-glow: 0 0 0 1px rgba(214, 39, 76, 0.18), 0 20px 60px -18px rgba(171, 31, 61, 0.45);
 
   /* Amber — signal/runway accent (used for active/in-progress states) */
   --color-amber-400: #fbbf24;
@@ -134,9 +134,9 @@ h1, h2, h3, h4, h5, h6 {
 
   .bg-mesh {
     background:
-      radial-gradient(60% 50% at 12% 8%, rgba(215, 40, 70, 0.16), transparent 60%),
+      radial-gradient(60% 50% at 12% 8%, rgba(214, 39, 76, 0.16), transparent 60%),
       radial-gradient(50% 45% at 88% 0%, rgba(3, 94, 211, 0.18), transparent 60%),
-      radial-gradient(55% 60% at 80% 100%, rgba(172, 32, 56, 0.1), transparent 55%);
+      radial-gradient(55% 60% at 80% 100%, rgba(171, 31, 61, 0.1), transparent 55%);
   }
 
   .bg-grid {

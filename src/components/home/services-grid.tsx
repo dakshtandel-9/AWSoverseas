@@ -44,17 +44,17 @@ function AirplaneRoute() {
         <svg viewBox="0 0 320 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <motion.line
             x1="0" y1="6" x2="320" y2="6"
-            stroke="#01214a" strokeWidth="1.5" strokeDasharray="6 8"
+            stroke="#002144" strokeWidth="1.5" strokeDasharray="6 8"
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
           />
-          <motion.circle cx="6" cy="6" r="3.5" fill="#01214a"
+          <motion.circle cx="6" cy="6" r="3.5" fill="#002144"
             initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.3, ease: "backOut" }}
           />
-          <motion.circle cx="314" cy="6" r="3.5" fill="#01214a"
+          <motion.circle cx="314" cy="6" r="3.5" fill="#002144"
             initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
             transition={{ delay: 1.4, duration: 0.3, ease: "backOut" }}
           />
@@ -68,7 +68,7 @@ function AirplaneRoute() {
           viewport={{ once: true }}
           transition={{ duration: 1.6, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
         >
-          <Plane className="size-10 text-[#01214a]" style={{ transform: "rotate(45deg)" }} strokeWidth={1.5} fill="#01214a" />
+          <Plane className="size-10 text-[#002144]" style={{ transform: "rotate(45deg)" }} strokeWidth={1.5} fill="#002144" />
         </motion.div>
       </div>
     </div>
@@ -85,7 +85,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
       <div className="mb-14 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Our Services</p>
-          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#01214a] sm:text-4xl lg:text-[2.6rem]">
+          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
             Sourcing & Shipping,<br className="hidden sm:block" /> End to End
           </h2>
         </div>
@@ -132,9 +132,9 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
                 aria-hidden
               />
               {/* Top-right radial glow */}
-              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#d72846]/25 blur-3xl" aria-hidden />
+              <div className="pointer-events-none absolute -right-16 -top-16 size-72 rounded-full bg-[#d6274c]/25 blur-3xl" aria-hidden />
               {/* Bottom-left secondary glow */}
-              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#d72846]/15 blur-2xl" aria-hidden />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 size-48 rounded-full bg-[#d6274c]/15 blur-2xl" aria-hidden />
 
               {/* Icon */}
               <span className="relative grid size-16 place-items-center rounded-2xl bg-ink/8 ring-1 ring-ink/15 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
@@ -152,7 +152,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
                 <span className="mb-4 inline-flex items-center rounded-full bg-ink/8 px-3 py-1 text-[11px] font-semibold tracking-wide text-[#e05c72] ring-1 ring-ink/15">
                   {SERVICE_STATS[featured.title] ?? "500+ verified manufacturers"}
                 </span>
-                <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#01214a" }}>{featured.title}</h3>
+                <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#002144" }}>{featured.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-ink/70">{featured.description}</p>
                 <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#e05c72]">
                   Explore service
@@ -220,24 +220,24 @@ function CompactCard({
     >
       <Link
         href={href}
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#d72846]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(172,32,56,0.2)]"
+        className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_8px_24px_-8px_rgba(4,22,47,0.10)] ring-1 ring-[#e4e9f2] transition-all duration-300 hover:ring-[#d6274c]/35 hover:shadow-[0_8px_32px_-4px_rgba(4,22,47,0.18),0_0_0_1px_rgba(171, 31, 61,0.2)]"
       >
         {/* Left accent stripe on hover */}
-        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#01214a] to-[#d72846] transition-transform duration-300 group-hover:scale-y-100" />
+        <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#d6274c] transition-transform duration-300 group-hover:scale-y-100" />
 
         <div className="flex items-start justify-between">
-          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#01214a] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#01214a] group-hover:text-white group-hover:scale-110">
+          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#002144] group-hover:text-white group-hover:scale-110">
             <Icon className="size-6" />
           </span>
-          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#01214a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#002144] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
-        <h3 className="mt-4 text-base font-bold text-[#01214a]">{item.title}</h3>
+        <h3 className="mt-4 text-base font-bold text-[#002144]">{item.title}</h3>
         <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
 
         {stat && (
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#d72846]">
-            <span className="size-1.5 rounded-full bg-[#d72846]" />
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#d6274c]">
+            <span className="size-1.5 rounded-full bg-[#d6274c]" />
             {stat}
           </span>
         )}

@@ -54,7 +54,7 @@ export async function submitProductEnquiryAction(
   }
 
   const db = supabaseAdmin();
-  const { error } = await db.from("product_enquiries").insert({
+  const row = {
     request_type: requestType,
     product_id: productId || null,
     product_name: productName,
@@ -66,9 +66,21 @@ export async function submitProductEnquiryAction(
     message,
     attachment_url: attachmentUrl,
     user_id: account?.user.id ?? null,
-  });
+  };
+
+  let { error } = await db.from("product_enquiries").insert(row);
+
+  // The product list on the page can go stale (e.g. it was deleted or
+  // deactivated after the visitor loaded it) — product_id is a foreign key,
+  // so that shows up as a constraint violation. product_name is kept as a
+  // snapshot precisely to survive this; retry without the dangling id
+  // instead of failing the whole submission.
+  if (error?.code === "23503" && row.product_id) {
+    ({ error } = await db.from("product_enquiries").insert({ ...row, product_id: null }));
+  }
 
   if (error) {
+    console.error("[product-enquiry] insert failed:", error);
     return {
       error:
         requestType === "order"
