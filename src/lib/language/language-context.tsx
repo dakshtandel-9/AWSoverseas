@@ -250,7 +250,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     [collectTextNodes, collectAttrElements, translateBatch],
   );
 
-  const revertDom = useCallback(() => {
+  // Restores every translated node back to its original English text. Called
+  // at the start of every language switch (not just switches back to
+  // English) so a change like French -> Urdu starts from a clean baseline
+  // instead of translating already-translated French text.
+  const restoreOriginalDom = useCallback(() => {
     const textNodes = collectTextNodes(document.body);
     textNodes.forEach((node) => {
       const original = originalTextRef.current.get(node);
@@ -290,6 +294,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       scheduleRef.current = null;
     }
     dirtyRootsRef.current.clear();
+    restoreOriginalDom();
 
     if (language !== DEFAULT_LANGUAGE) {
       setIsTranslating(true);
@@ -323,8 +328,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         characterData: true,
       });
       observerRef.current = observer;
-    } else {
-      revertDom();
     }
 
     return () => {
