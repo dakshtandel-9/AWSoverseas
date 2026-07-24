@@ -9,6 +9,8 @@ import { ChromeGate } from "@/components/layout/chrome-gate";
 import { LanguageProvider } from "@/lib/language/language-context";
 import { home } from "@/lib/content";
 import { getSiteSettings } from "@/lib/site-settings";
+import { getMarketingIntegrations } from "@/lib/marketing-integrations";
+import { TrackingScripts } from "@/components/analytics/tracking-scripts";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,22 +30,36 @@ const cairo = Cairo({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://awsoverseas.com"),
-  title: {
-    default: home.meta?.title ?? "aws overseas | Global Shipping Beyond Borders",
-    template: "%s | aws overseas",
-  },
-  description: home.meta?.description,
-  keywords: home.meta?.keywords,
-  openGraph: {
-    type: "website",
-    siteName: "aws overseas",
-    title: home.meta?.title,
+export async function generateMetadata(): Promise<Metadata> {
+  // Search Console / Bing site-verification tokens are admin-entered at
+  // /admin/integrations, so the meta tags have to come from the DB.
+  const integrations = await getMarketingIntegrations();
+
+  return {
+    metadataBase: new URL("https://awsoverseas.com"),
+    title: {
+      default: home.meta?.title ?? "aws overseas | Global Shipping Beyond Borders",
+      template: "%s | aws overseas",
+    },
     description: home.meta?.description,
-  },
-  twitter: { card: "summary_large_image" },
-};
+    keywords: home.meta?.keywords,
+    openGraph: {
+      type: "website",
+      siteName: "aws overseas",
+      title: home.meta?.title,
+      description: home.meta?.description,
+    },
+    twitter: { card: "summary_large_image" },
+    verification: {
+      ...(integrations.googleSiteVerification
+        ? { google: integrations.googleSiteVerification }
+        : {}),
+      ...(integrations.bingSiteVerification
+        ? { other: { "msvalidate.01": integrations.bingSiteVerification } }
+        : {}),
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#000c1a",
@@ -56,7 +72,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const settings = await getSiteSettings();
+  const [settings, integrations] = await Promise.all([
+    getSiteSettings(),
+    getMarketingIntegrations(),
+  ]);
 
   return (
     <html
@@ -73,6 +92,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-dvh bg-surface text-ink antialiased" suppressHydrationWarning>
+        <TrackingScripts integrations={integrations} />
         <LanguageProvider>
           <PageLoader />
           <LanguageLoader />

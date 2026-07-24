@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ChevronDown, PackageSearch } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
+import { trackLead } from "@/lib/track-lead";
 import { CountrySelect } from "@/components/quote/country-select";
 import { INDIA_STATES } from "@/lib/india-states";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
@@ -233,7 +234,10 @@ export function QuoteForm({
     : undefined;
 
   useEffect(() => {
-    if (state.success) formRef.current?.reset();
+    if (state.success) {
+      formRef.current?.reset();
+      trackLead();
+    }
   }, [state.success]);
 
   const next = product ? `/quote?product=${product}` : "/quote";

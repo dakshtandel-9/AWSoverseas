@@ -64,6 +64,7 @@ export default async function HomePage() {
           },
           {
             image: "/hero-slider/slide-3-port.jpg",
+            video: "/hero-slider/cargo.mp4",
             imageAlt: "Aerial view of a container port with cranes and cargo ships",
             badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
             title: "Move Cargo Anywhere in the World",
@@ -76,6 +77,7 @@ export default async function HomePage() {
           },
           {
             image: "/hero-slider/slide-4-export-warehouse.jpg",
+            video: "/hero-slider/Factory to Destination.mp4",
             imageAlt: "Export warehouse with packaged goods, pallets, and loading docks",
             badge: "END-TO-END EXPORT MANAGEMENT",
             title: "Your Export Partner From Factory to Destination",

@@ -123,6 +123,52 @@ before update on products
 for each row execute function set_updated_at();
 
 -- ============================================================
+-- categories — /products shows a category grid (name, image,
+-- description); clicking one opens /products/[slug] listing that
+-- category's products. Replaces the free-text products.category column
+-- (kept, unused, for backfill history) with a real FK.
+-- ============================================================
+create table if not exists categories (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  slug text not null unique,
+  description text not null default '',
+  image_url text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists categories_active_idx on categories (is_active, sort_order, created_at desc);
+
+drop trigger if exists categories_touch on categories;
+create trigger categories_touch
+before update on categories
+for each row execute function set_updated_at();
+
+alter table products add column if not exists category_id uuid references categories(id) on delete set null;
+
+create index if not exists products_category_idx on products (category_id, sort_order, created_at desc);
+
+-- Backfill: one category row per distinct existing products.category value,
+-- then point each product at its new category.
+insert into categories (name, slug)
+select distinct
+  trim(p.category),
+  lower(regexp_replace(trim(p.category), '[^a-zA-Z0-9]+', '-', 'g'))
+from products p
+where trim(p.category) <> ''
+on conflict (slug) do nothing;
+
+update products p
+set category_id = c.id
+from categories c
+where p.category_id is null
+  and trim(p.category) <> ''
+  and c.slug = lower(regexp_replace(trim(p.category), '[^a-zA-Z0-9]+', '-', 'g'));
+
+-- ============================================================
 -- product_enquiries
 -- Submitted from the Enquiry modal on a product card. product_name is a
 -- snapshot (kept even if the product is later renamed/deleted).
@@ -301,6 +347,34 @@ create index if not exists wallet_withdrawals_user_idx on wallet_withdrawals (us
 create index if not exists wallet_withdrawals_status_idx on wallet_withdrawals (status, created_at desc);
 
 -- ============================================================
+-- marketing_integrations — singleton row (id enforced to always be 1).
+-- Tracking/verification IDs the admin pastes in at /admin/integrations;
+-- the public root layout reads them to inject analytics scripts and
+-- search-engine verification meta tags.
+-- ============================================================
+create table if not exists marketing_integrations (
+  id integer primary key default 1 check (id = 1),
+  ga4_measurement_id text not null default '',          -- Google Analytics 4, "G-XXXXXXXXXX"
+  gtm_container_id text not null default '',            -- Google Tag Manager, "GTM-XXXXXXX"
+  google_site_verification text not null default '',    -- Search Console HTML-tag content value
+  bing_site_verification text not null default '',      -- Bing "msvalidate.01" content value
+  clarity_project_id text not null default '',          -- Microsoft Clarity project ID
+  meta_pixel_id text not null default '',               -- Meta Pixel / dataset ID (numeric)
+  google_ads_id text not null default '',               -- Google Ads conversion ID, "AW-XXXXXXXXX"
+  google_ads_conversion_label text not null default '', -- Google Ads conversion label (after the slash)
+  updated_at timestamptz not null default now()
+);
+
+insert into marketing_integrations (id)
+values (1)
+on conflict (id) do nothing;
+
+drop trigger if exists marketing_integrations_touch on marketing_integrations;
+create trigger marketing_integrations_touch
+before update on marketing_integrations
+for each row execute function set_updated_at();
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
@@ -308,6 +382,7 @@ alter table contact_submissions enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table quote_submissions enable row level security;
 alter table products enable row level security;
+alter table categories enable row level security;
 alter table product_enquiries enable row level security;
 alter table user_profiles enable row level security;
 alter table shipment_milestones enable row level security;
@@ -324,12 +399,25 @@ drop policy if exists "public read active products" on products;
 create policy "public read active products" on products
   for select using (is_active = true);
 
+-- categories: public can read only active categories (/products grid and
+-- /products/[slug]). All writes happen via the service-role client.
+drop policy if exists "public read active categories" on categories;
+create policy "public read active categories" on categories
+  for select using (is_active = true);
+
 -- product_enquiries: no public policies — inserts go through a Server
 -- Action using the service-role client (same pattern as quote_submissions).
 
 -- site_settings: public can read (footer/contact page need it), no public writes.
 drop policy if exists "public read site_settings" on site_settings;
 create policy "public read site_settings" on site_settings
+  for select using (true);
+
+-- marketing_integrations: public can read — every ID here is injected into the
+-- public site's HTML anyway, so none are secrets. No public writes.
+alter table marketing_integrations enable row level security;
+drop policy if exists "public read marketing_integrations" on marketing_integrations;
+create policy "public read marketing_integrations" on marketing_integrations
   for select using (true);
 
 -- contact_submissions / newsletter_subscribers / quote_submissions /

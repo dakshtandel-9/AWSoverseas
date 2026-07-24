@@ -55,12 +55,7 @@ export function ProductCard({
 
         <div className="flex flex-1 flex-col gap-3 p-4">
           <div className="min-w-0">
-            {product.category && (
-              <p className="truncate font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#94a3b8]">
-                {product.category}
-              </p>
-            )}
-            <h3 className="mt-1 truncate text-base font-bold text-[#002144]">{product.name}</h3>
+            <h3 className="truncate text-base font-bold text-[#002144]">{product.name}</h3>
           </div>
 
           <div className="mt-auto flex gap-2">

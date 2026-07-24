@@ -35,10 +35,11 @@ export async function uploadProductImageAction(
 }
 
 function readProductFields(formData: FormData) {
+  const categoryId = String(formData.get("category_id") ?? "").trim();
   return {
     name: String(formData.get("name") ?? "").trim(),
     description: String(formData.get("description") ?? "").trim(),
-    category: String(formData.get("category") ?? "").trim(),
+    category_id: categoryId || null,
     image_url: String(formData.get("image_url") ?? "").trim(),
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
     is_active: formData.get("is_active") === "true",

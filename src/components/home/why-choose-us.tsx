@@ -24,17 +24,6 @@ const METRICS: Record<string, string> = {
 export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
   return (
     <Section spacing="lg" className="relative overflow-hidden">
-      {/* Background: grid + radial glow behind heading */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse 60% 40% at 30% 0%, rgba(158, 73, 83,0.06) 0%, transparent 65%), linear-gradient(to right, rgba(4,22,47,0.032) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.032) 1px, transparent 1px)",
-          backgroundSize: "auto, 48px 48px, 48px 48px",
-        }}
-      />
-
       {/* Heading */}
       <Reveal direction="up">
         <div className="relative max-w-2xl">

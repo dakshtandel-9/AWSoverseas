@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitContactAction, type ContactFormState } from "@/app/actions/contact";
+import { trackLead } from "@/lib/track-lead";
 
 type Field = {
   label: string;
@@ -91,7 +92,10 @@ export function ContactForm({ data }: { data: Data }) {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.success) formRef.current?.reset();
+    if (state.success) {
+      formRef.current?.reset();
+      trackLead();
+    }
   }, [state.success]);
 
   return (

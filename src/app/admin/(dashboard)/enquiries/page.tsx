@@ -27,7 +27,7 @@ export default async function AdminOrdersPage() {
           .order("first_name", { ascending: true }),
         db
           .from("products")
-          .select("id, name, category")
+          .select("id, name, category_id, categories(name)")
           .eq("is_active", true)
           .order("name", { ascending: true }),
       ])
@@ -35,7 +35,9 @@ export default async function AdminOrdersPage() {
 
   const items = itemsRes.data ?? [];
   const users = (usersRes.data as OrderUserOption[] | null) ?? [];
-  const products = (productsRes.data as OrderProductOption[] | null) ?? [];
+  const products = (
+    (productsRes.data as { id: string; name: string; categories: { name: string } | null }[] | null) ?? []
+  ).map((p) => ({ id: p.id, name: p.name, category: p.categories?.name ?? null }));
 
   const userIds = items.map((i) => i.user_id).filter((id): id is string => Boolean(id));
   const [referrerByUserId, creditBySourceId, profileByUserId] = await Promise.all([

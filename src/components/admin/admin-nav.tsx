@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Settings, LogOut, Boxes, MessageSquareText, ShoppingBag, Users, Wallet, BookOpen, Send } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Settings, LogOut, Boxes, LayoutGrid, MessageSquareText, ShoppingBag, Users, Wallet, BookOpen, Send, ChartNoAxesCombined } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
 const LINKS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/categories", label: "Categories", icon: LayoutGrid },
   { href: "/admin/products", label: "Products", icon: Boxes },
   // /admin/enquiries is a prefix of /admin/enquiries-open, so it must match
   // exactly or both would highlight on the open-enquiries page.
@@ -19,6 +20,7 @@ const LINKS = [
   { href: "/admin/newsletter", label: "Newsletter", icon: Send },
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },
   { href: "/admin/withdrawals", label: "Withdrawals", icon: Wallet },
+  { href: "/admin/integrations", label: "SEO & Analytics", icon: ChartNoAxesCombined },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },
   { href: "/admin/docs", label: "Documentation", icon: BookOpen },
 ];

@@ -28,6 +28,7 @@ const SECTIONS: DocSection[] = [
   { id: "wallet", label: "Referral wallet & withdrawals" },
   { id: "messages", label: "Messages" },
   { id: "settings", label: "Site settings" },
+  { id: "integrations", label: "SEO & Analytics" },
   { id: "accounts", label: "Accounts & access" },
   { id: "data-model", label: "How data flows" },
   { id: "glossary", label: "Status glossary" },
@@ -305,6 +306,27 @@ export default function AdminDocsPage() {
             <Callout kind="warning">
               Changes here go live immediately on the public site — there&rsquo;s no draft/preview step, so double-check
               a phone number or the WhatsApp digit format before saving.
+            </Callout>
+          </Section>
+
+          <Section
+            id="integrations"
+            eyebrow="/admin/integrations"
+            title="SEO & Analytics"
+            intro="Connects the website to Google Analytics 4, Google Tag Manager, Google Search Console, Bing Webmaster Tools, Microsoft Clarity, Meta Pixel, and Google Ads conversion tracking. Each service needs exactly one ID pasted in — the site injects the right tracking code automatically, and saving takes effect on the next page load."
+          >
+            <FieldTable
+              rows={[
+                ["Analytics & recordings", "GA4 (visitor stats), Microsoft Clarity (session recordings and heatmaps)."],
+                ["Search engines", "Search Console and Bing verification codes, so both engines report how the site ranks. The sitemap to submit is /sitemap.xml."],
+                ["Advertising", "Meta Pixel and Google Ads conversion ID + label. Every quote request, enquiry, order, and contact message is reported as a lead/conversion automatically."],
+                ["Tag Manager", "A container for adding any future marketing tag without code changes."],
+              ]}
+            />
+            <Callout>
+              The full step-by-step instructions for creating each account and finding each ID live on
+              the SEO &amp; Analytics page itself, under the form. Admin pages are excluded from
+              tracking, so your own dashboard visits never skew the numbers.
             </Callout>
           </Section>
 

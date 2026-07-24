@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
 import { products, metaFrom } from "@/lib/content";
 import { getActiveProducts } from "@/lib/product-data";
-import { getAccount, enquiryAuthFor } from "@/lib/account";
+import { getActiveCategories } from "@/lib/category-data";
 import { ProductsHero } from "@/components/products/products-hero";
-import { ProductGrid } from "@/components/products/product-grid";
+import { CategoryGrid } from "@/components/products/category-grid";
 import { ProductsCta } from "@/components/products/products-cta";
 
 export const metadata: Metadata = metaFrom(products.meta, "/products");
 
 export default async function Page() {
-  const [catalog, account] = await Promise.all([getActiveProducts(), getAccount()]);
-
-  // The catalog stays public; the enquiry modal gates on account state.
-  const auth = enquiryAuthFor(account);
+  const [catalog, categories] = await Promise.all([getActiveProducts(), getActiveCategories()]);
 
   const stats = products.overview.stats.map((stat: { number: string; label: string }, i: number) =>
     i === 0 ? { ...stat, number: String(catalog.length) } : stat,
@@ -24,9 +21,10 @@ export default async function Page() {
     name: products.meta?.title,
     description: products.meta?.description,
     url: "https://awsoverseas.com/products",
-    hasPart: catalog.map((item) => ({
-      "@type": "Product",
+    hasPart: categories.map((item) => ({
+      "@type": "ProductGroup",
       name: item.name,
+      url: `https://awsoverseas.com/products/${item.slug}`,
     })),
   };
 
@@ -38,7 +36,7 @@ export default async function Page() {
       />
 
       <ProductsHero data={products.hero} stats={stats} />
-      <ProductGrid products={catalog} auth={auth} />
+      <CategoryGrid categories={categories} />
       <ProductsCta data={products.cta} />
     </>
   );

@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, Clock3, Paperclip, ShieldAlert, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
+import { trackLead } from "@/lib/track-lead";
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
@@ -116,6 +117,10 @@ export function EnquiryModal({
         button: "Send enquiry",
         buttonPending: "Sending…",
       };
+
+  useEffect(() => {
+    if (state.success) trackLead();
+  }, [state.success]);
 
   useEffect(() => {
     if (!open) return;
