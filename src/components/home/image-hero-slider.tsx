@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 
 export type ImageSlide = {
-  image: string;
+  /** Still photo shown as the video's poster frame, or as the background when no video is set. */
+  image?: string;
   imageAlt: string;
   /** Optional background video — when set, autoplays/loops muted in place of the still image. */
   video?: string;
@@ -132,7 +133,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               playsInline
               aria-hidden
             />
-          ) : (
+          ) : slide.image ? (
             <Image
               src={slide.image}
               alt={slide.imageAlt}
@@ -141,7 +142,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               sizes="100vw"
               className="object-cover"
             />
-          )}
+          ) : null}
           {/* Scrim: solid enough on the left for text, fading out on the right so the photo reads clearly */}
           <div
             className="absolute inset-0"

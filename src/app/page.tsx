@@ -39,8 +39,7 @@ export default async function HomePage() {
       <ImageHeroSlider
         slides={[
           {
-            image: "/hero-slider/slide-1-ship.jpg",
-            video: "/hero-slider/ship.mp4",
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927227/awsoversea/hero-slider/ship.mp4",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,
@@ -51,8 +50,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/mobile-app",
           },
           {
-            image: "/hero-slider/slide-2-warehouse.jpg",
-            video: "/hero-slider/Manufacturing.mp4",
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927234/awsoversea/hero-slider/manufacturing.mp4",
             imageAlt: "Warehouse aisle stacked with export-ready goods",
             badge: home.exportHero.badge,
             title: home.exportHero.title,
@@ -63,8 +61,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/products",
           },
           {
-            image: "/hero-slider/slide-3-port.jpg",
-            video: "/hero-slider/cargo.mp4",
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927226/awsoversea/hero-slider/cargo.mp4",
             imageAlt: "Aerial view of a container port with cranes and cargo ships",
             badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
             title: "Move Cargo Anywhere in the World",
@@ -76,8 +73,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/services",
           },
           {
-            image: "/hero-slider/slide-4-export-warehouse.jpg",
-            video: "/hero-slider/Factory to Destination.mp4",
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927228/awsoversea/hero-slider/factory-to-destination.mp4",
             imageAlt: "Export warehouse with packaged goods, pallets, and loading docks",
             badge: "END-TO-END EXPORT MANAGEMENT",
             title: "Your Export Partner From Factory to Destination",
@@ -87,18 +83,6 @@ export default async function HomePage() {
             primaryButtonHref: "/quote",
             secondaryButton: "Talk to an Expert",
             secondaryButtonHref: "/contact",
-          },
-          {
-            image: "/hero-slider/Manufacturing.png",
-            imageAlt: "Textile manufacturing facility with industrial production lines",
-            badge: "TRUSTED MANUFACTURING NETWORK",
-            title: "Sourced and Manufactured to Your Exact Standard",
-            subtitle:
-              "We vet factories, audit production lines, and oversee manufacturing at the source, so every order leaves the facility meeting the specification, quality, and timeline you agreed to.",
-            primaryButton: "Get a Sourcing Quote",
-            primaryButtonHref: "/quote",
-            secondaryButton: "Meet Our Sourcing Agents",
-            secondaryButtonHref: "/sourcing-agent",
           },
         ]}
       />

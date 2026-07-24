@@ -81,73 +81,73 @@
                 "name": "Udyog Aadhaar",
                 "issuer": "Ministry of MSME, Government of India",
                 "code": "UDYOG-AADHAAR",
-                "logo": "/certifications/udyogaadhaar.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927236/awsoversea/certifications/udyogaadhaar-png.webp"
             },
             {
                 "name": "APEDA",
                 "issuer": "Agricultural & Processed Food Products Export Development Authority",
                 "code": "APEDA",
-                "logo": "/certifications/logo5.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927232/awsoversea/certifications/logo5-png.webp"
             },
             {
                 "name": "FDA Registered",
                 "issuer": "U.S. Food and Drug Administration",
                 "code": "FDA",
-                "logo": "/certifications/fda.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927224/awsoversea/certifications/fda-png.webp"
             },
             {
                 "name": "DGFT / IEC",
                 "issuer": "Director General of Foreign Trade",
                 "code": "DGFT",
-                "logo": "/certifications/dgft.jpg.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927223/awsoversea/certifications/dgft-jpg.webp"
             },
             {
                 "name": "Spices Board India",
                 "issuer": "Ministry of Commerce & Industry",
                 "code": "SPICES-BOARD",
-                "logo": "/certifications/spice.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927234/awsoversea/certifications/spice-png.webp"
             },
             {
                 "name": "FICCI Member",
                 "issuer": "Federation of Indian Chambers of Commerce & Industry",
                 "code": "FICCI",
-                "logo": "/certifications/ficci.jpg.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927225/awsoversea/certifications/ficci-jpg.webp"
             },
             {
                 "name": "FIEO Member",
                 "issuer": "Federation of Indian Export Organisations",
                 "code": "FIEO",
-                "logo": "/certifications/fieo.jpg.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927227/awsoversea/certifications/fieo-jpg.webp"
             },
             {
                 "name": "GCCI Member",
                 "issuer": "Gujarat Chamber of Commerce & Industry",
                 "code": "GCCI",
-                "logo": "/certifications/gcci.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927229/awsoversea/certifications/gcci-png.webp"
             },
             {
                 "name": "GMP Certified",
                 "issuer": "Good Manufacturing Practice",
                 "code": "GMP",
-                "logo": "/certifications/gmp.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927230/awsoversea/certifications/gmp-png.webp"
             },
             {
                 "name": "GSTC Registered",
                 "issuer": "Goods and Services Tax Council",
                 "code": "GSTC",
-                "logo": "/certifications/logo3.jpg.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927231/awsoversea/certifications/logo3-jpg.webp"
             },
             {
                 "name": "MSME Registered",
                 "issuer": "Ministry of Micro, Small & Medium Enterprises",
                 "code": "MSME",
-                "logo": "/certifications/msme.png.webp"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927233/awsoversea/certifications/msme-png.webp"
             },
             {
                 "name": "FSSAI Registered",
                 "issuer": "Food Safety and Standards Authority of India",
                 "code": "FSSAI",
-                "logo": "/certifications/fssi.png"
+                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927228/awsoversea/certifications/fssi.png"
             }
         ]
     },
