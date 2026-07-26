@@ -48,8 +48,22 @@ function readProductFields(formData: FormData) {
 
 function revalidateProducts() {
   updateTag("products");
+  updateTag("categories");
   revalidatePath("/admin/products");
+  revalidatePath("/admin/categories/[id]", "page");
   revalidatePath("/products");
+  revalidatePath("/products/[slug]", "page");
+}
+
+/**
+ * The branch-or-leaf trigger rejects products aimed at a category that holds
+ * subcategories. Say which fix the admin needs rather than "couldn't save".
+ */
+function messageForProductError(error: { message?: string }, fallback: string) {
+  if (error.message?.includes("category_has_subcategories")) {
+    return "That category holds subcategories, so products can't sit in it directly. Pick one of its subcategories instead.";
+  }
+  return fallback;
 }
 
 export async function createProductAction(
@@ -66,11 +80,11 @@ export async function createProductAction(
   const { error } = await db.from("products").insert(fields);
 
   if (error) {
-    return { error: "Couldn't create the product." };
+    return { error: messageForProductError(error, "Couldn't create the product.") };
   }
 
   revalidateProducts();
-  redirect("/admin/products");
+  redirect(fields.category_id ? `/admin/categories/${fields.category_id}` : "/admin/products");
 }
 
 export async function updateProductAction(
@@ -88,7 +102,7 @@ export async function updateProductAction(
   const { error } = await db.from("products").update(fields).eq("id", id);
 
   if (error) {
-    return { error: "Couldn't save the product." };
+    return { error: messageForProductError(error, "Couldn't save the product.") };
   }
 
   revalidateProducts();

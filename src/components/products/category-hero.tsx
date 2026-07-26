@@ -8,7 +8,20 @@ import type { PublicCategory } from "@/lib/category-data";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function CategoryHero({ category, count }: { category: PublicCategory; count: number }) {
+export function CategoryHero({
+  category,
+  count,
+  /** Root-first ancestors, excluding `category` itself. */
+  trail = [],
+  /** What `count` counts, so the meta line stays honest at every depth. */
+  countLabel = "LISTED",
+}: {
+  category: PublicCategory;
+  count: number;
+  trail?: PublicCategory[];
+  countLabel?: string;
+}) {
+  const parent = trail[trail.length - 1];
   return (
     <section className="relative overflow-hidden bg-[#C4DFFD] pb-20 pt-32 sm:pb-24 sm:pt-36">
       <div
@@ -29,14 +42,35 @@ export function CategoryHero({ category, count }: { category: PublicCategory; co
           transition={{ duration: 0.6, ease }}
         >
           <Link
-            href="/products"
+            href={parent ? `/products/${parent.slug}` : "/products"}
             className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#002144]/55 transition-colors hover:text-maroon-admin"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
-            All Categories
+            {parent ? parent.name : "All Categories"}
           </Link>
+
+          {trail.length > 0 && (
+            <nav
+              aria-label="Breadcrumb"
+              className="hidden flex-wrap items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#002144]/40 md:flex"
+            >
+              <span aria-hidden>/</span>
+              <Link href="/products" className="transition-colors hover:text-maroon-admin">
+                Products
+              </Link>
+              {trail.map((step) => (
+                <span key={step.id} className="flex items-center gap-1.5">
+                  <span aria-hidden>/</span>
+                  <Link href={`/products/${step.slug}`} className="transition-colors hover:text-maroon-admin">
+                    {step.name}
+                  </Link>
+                </span>
+              ))}
+            </nav>
+          )}
+
           <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
-            CATEGORY&nbsp;/&nbsp;{count}&nbsp;LISTED
+            {count}&nbsp;{countLabel}
           </span>
         </motion.div>
 

@@ -6,12 +6,14 @@ import { SubmissionRow } from "@/components/admin/submission-row";
 
 type EnquiryLead = {
   id: string;
+  product_id?: string | null;
   product_name: string;
   full_name: string;
   email: string;
   phone: string;
   message: string;
   attachment_url?: string;
+  requested_quantity?: string;
   is_read: boolean;
   created_at: string;
 };
@@ -29,7 +31,7 @@ export function EnquiryLeadRow({ item }: { item: EnquiryLead }) {
     <SubmissionRow
       title={item.full_name || "—"}
       subtitle={item.product_name}
-      meta={item.phone}
+      meta={item.phone || item.email}
       isRead={item.is_read}
       createdAt={formatDate(item.created_at)}
       onToggleRead={() => markEnquiryReadAction(item.id, !item.is_read)}
@@ -38,13 +40,25 @@ export function EnquiryLeadRow({ item }: { item: EnquiryLead }) {
         <div className="grid gap-2">
           <p>
             <span className="font-semibold">Product:</span> {item.product_name}
+            {!item.product_id && (
+              <span className="ml-2 rounded-full bg-[#f8f1f2] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-maroon-admin">
+                Not in catalog
+              </span>
+            )}
           </p>
-          <p>
-            <span className="font-semibold">Email:</span>{" "}
-            <a href={`mailto:${item.email}`} className="text-maroon-admin hover:underline">
-              {item.email}
-            </a>
-          </p>
+          {item.requested_quantity && (
+            <p>
+              <span className="font-semibold">Quantity/quality:</span> {item.requested_quantity}
+            </p>
+          )}
+          {item.email && (
+            <p>
+              <span className="font-semibold">Email:</span>{" "}
+              <a href={`mailto:${item.email}`} className="text-maroon-admin hover:underline">
+                {item.email}
+              </a>
+            </p>
+          )}
           {item.phone && (
             <p>
               <span className="font-semibold">Phone:</span>{" "}

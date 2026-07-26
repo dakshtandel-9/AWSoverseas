@@ -11,6 +11,7 @@ type Data = {
   description: string;
   primaryButton: string;
   secondaryButton: string;
+  tertiaryButton: string;
 };
 
 export function ProductsCta({ data }: { data: Data }) {
@@ -54,7 +55,10 @@ export function ProductsCta({ data }: { data: Data }) {
               <Button href="/quote" size="lg" variant="secondary">
                 {data.primaryButton} <ArrowRight className="size-4" />
               </Button>
-              <Button href="/contact" size="lg" variant="white">
+              <Button href="/request-product" size="lg" variant="white">
+                {data.tertiaryButton}
+              </Button>
+              <Button href="/contact" size="lg" variant="outline">
                 {data.secondaryButton}
               </Button>
             </div>

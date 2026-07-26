@@ -11,16 +11,28 @@ export type CategoryRecord = {
   name: string;
   description: string;
   image_url: string;
+  parent_id: string | null;
   sort_order: number;
   is_active: boolean;
 };
+
+export type ParentOption = { id: string; name: string };
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: CategoryFormState = {};
 
-export function CategoryForm({ category }: { category?: CategoryRecord }) {
+export function CategoryForm({
+  category,
+  parentOptions,
+  defaultParentId,
+}: {
+  category?: CategoryRecord;
+  parentOptions: ParentOption[];
+  /** Preselected when arriving from "New subcategory" inside a category. */
+  defaultParentId?: string;
+}) {
   const action = category ? updateCategoryAction.bind(null, category.id) : createCategoryAction;
   const [state, formAction, pending] = useActionState(action, initialState);
   const [imageUrl, setImageUrl] = useState(category?.image_url ?? "");
@@ -30,6 +42,10 @@ export function CategoryForm({ category }: { category?: CategoryRecord }) {
       {/* Rendered outside the category-save <form>: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
         <h2 className="text-sm font-bold uppercase tracking-wide text-[#002144]">Category photo</h2>
+        <p className="mt-1.5 text-sm text-[#5b6b82]">
+          Shown on the category card. Cropped to a wide 16:10 frame, so keep the subject centred —
+          1200 × 750px or larger looks sharpest.
+        </p>
         <div className="mt-5">
           <CategoryImageUploadField value={imageUrl} onUploaded={setImageUrl} />
         </div>
@@ -44,6 +60,24 @@ export function CategoryForm({ category }: { category?: CategoryRecord }) {
             <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#002144]">Name *</label>
               <input name="name" required defaultValue={category?.name ?? ""} placeholder="e.g. Handicrafts" className={inputClasses} />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-[#002144]">Sits inside</label>
+              <select
+                name="parent_id"
+                defaultValue={category?.parent_id ?? defaultParentId ?? ""}
+                className={inputClasses}
+              >
+                <option value="">Top level</option>
+                {parentOptions.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-[#94a3b8]">
+                Categories that already hold products aren&apos;t listed — they can&apos;t also hold subcategories.
+              </p>
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-[#002144]">Sort order</label>

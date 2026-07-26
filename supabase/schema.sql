@@ -123,10 +123,12 @@ before update on products
 for each row execute function set_updated_at();
 
 -- ============================================================
--- categories — /products shows a category grid (name, image,
--- description); clicking one opens /products/[slug] listing that
--- category's products. Replaces the free-text products.category column
--- (kept, unused, for backfill history) with a real FK.
+-- categories — /products shows a grid of top-level categories; clicking one
+-- opens /products/[slug], which lists either its subcategories or its
+-- products. Categories nest to any depth via parent_id, and a category holds
+-- subcategories OR products, never both (see the triggers below). Replaces
+-- the free-text products.category column (kept, unused, for backfill history)
+-- with a real FK.
 -- ============================================================
 create table if not exists categories (
   id uuid primary key default gen_random_uuid(),
@@ -134,13 +136,20 @@ create table if not exists categories (
   slug text not null unique,
   description text not null default '',
   image_url text not null default '',
+  parent_id uuid references categories(id) on delete cascade,
   is_active boolean not null default true,
   sort_order integer not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
+-- Pre-existing installs predate the tree.
+alter table categories
+  add column if not exists parent_id uuid references categories(id) on delete cascade;
+
 create index if not exists categories_active_idx on categories (is_active, sort_order, created_at desc);
+
+create index if not exists categories_parent_idx on categories (parent_id, sort_order, created_at desc);
 
 drop trigger if exists categories_touch on categories;
 create trigger categories_touch
@@ -167,6 +176,76 @@ from categories c
 where p.category_id is null
   and trim(p.category) <> ''
   and c.slug = lower(regexp_replace(trim(p.category), '[^a-zA-Z0-9]+', '-', 'g'));
+
+-- Branch-or-leaf rule, enforced in the database so it holds no matter which
+-- code path writes. Two triggers because the rule spans two tables: a category
+-- row is only invalid relative to the products pointing at it, and vice versa.
+
+-- Refuse a product whose category already has subcategories.
+create or replace function assert_category_is_leaf()
+returns trigger
+language plpgsql
+as $$
+begin
+  if new.category_id is null then
+    return new;
+  end if;
+
+  if exists (select 1 from categories where parent_id = new.category_id) then
+    raise exception 'category_has_subcategories'
+      using hint = 'Products belong in the deepest subcategory, not a category that holds other categories.';
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists products_category_is_leaf on products;
+create trigger products_category_is_leaf
+before insert or update of category_id on products
+for each row execute function assert_category_is_leaf();
+
+-- Refuse a subcategory whose parent already holds products, and refuse a
+-- parent chain that would cycle.
+create or replace function assert_parent_is_branch()
+returns trigger
+language plpgsql
+as $$
+declare
+  cursor_id uuid;
+  hops integer := 0;
+begin
+  if new.parent_id is null then
+    return new;
+  end if;
+
+  if new.parent_id = new.id then
+    raise exception 'category_cycle' using hint = 'A category cannot be its own parent.';
+  end if;
+
+  if exists (select 1 from products where category_id = new.parent_id) then
+    raise exception 'parent_has_products'
+      using hint = 'Move or remove the products in that category before adding subcategories to it.';
+  end if;
+
+  cursor_id := new.parent_id;
+  while cursor_id is not null and hops < 100 loop
+    if cursor_id = new.id then
+      raise exception 'category_cycle'
+        using hint = 'That would put the category inside one of its own subcategories.';
+    end if;
+    select parent_id into cursor_id from categories where id = cursor_id;
+    hops := hops + 1;
+  end loop;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists categories_parent_is_branch on categories;
+create trigger categories_parent_is_branch
+before insert or update of parent_id on categories
+for each row execute function assert_parent_is_branch();
 
 -- ============================================================
 -- product_enquiries
@@ -216,6 +295,11 @@ create index if not exists product_enquiries_request_type_idx on product_enquiri
 
 -- Optional image attachment (e.g. a reference photo) uploaded with the enquiry.
 alter table product_enquiries add column if not exists attachment_url text not null default '';
+
+-- Optional free-text quantity/quality note. Used by the standalone "Request a
+-- Product" page (/request-product), where a visitor names something that may
+-- not exist in the catalog at all — product_id stays null for these rows.
+alter table product_enquiries add column if not exists requested_quantity text not null default '';
 
 -- ============================================================
 -- user_profiles — one row per Google-authenticated customer
@@ -291,27 +375,45 @@ alter table shipment_milestones add constraint shipment_milestones_status_check
 create index if not exists shipment_milestones_quote_idx on shipment_milestones (quote_id, created_at);
 
 -- ============================================================
--- wallet_transactions — referral reward ledger. Admin grants a credit to
--- a referrer when a customer they referred gets a quote/enquiry approved.
+-- wallet_transactions — reward ledger. Admin grants a credit to
+-- a referrer when a customer they referred gets a quote/enquiry approved,
+-- and every new account is credited a one-time 'signup' welcome bonus.
 -- Balance is derived by summing this table (no separate balance column,
 -- so it can never drift from the history). A booking can be credited more
 -- than once (e.g. a top-up bonus) — source_type + source_id is indexed
--- for lookups but not unique.
+-- for lookups but not unique. A signup bonus has no booking behind it, so
+-- its source_id is null and a partial unique index caps it at one per user.
 -- ============================================================
 create table if not exists wallet_transactions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references user_profiles(id) on delete cascade,
   amount numeric not null check (amount > 0),
   reason text not null default '',
-  source_type text not null check (source_type in ('quote', 'enquiry')),
-  source_id uuid not null,
+  source_type text not null,
+  source_id uuid,
   referred_user_id uuid references user_profiles(id) on delete set null,
   created_at timestamptz not null default now()
 );
 
+-- Pre-existing installs predate the signup bonus.
+alter table wallet_transactions alter column source_id drop not null;
+
+alter table wallet_transactions drop constraint if exists wallet_transactions_source_type_check;
+alter table wallet_transactions add constraint wallet_transactions_source_type_check
+  check (source_type in ('quote', 'enquiry', 'signup'));
+
+-- Booking credits still require a source; signup credits never have one.
+alter table wallet_transactions drop constraint if exists wallet_transactions_source_id_check;
+alter table wallet_transactions add constraint wallet_transactions_source_id_check
+  check ((source_type = 'signup') = (source_id is null));
+
 create index if not exists wallet_transactions_user_idx on wallet_transactions (user_id, created_at desc);
 drop index if exists wallet_transactions_source_idx;
 create index if not exists wallet_transactions_source_lookup_idx on wallet_transactions (source_type, source_id);
+
+create unique index if not exists wallet_transactions_signup_once_idx
+  on wallet_transactions (user_id)
+  where source_type = 'signup';
 
 -- Bank details for wallet withdrawals — same pattern as passport fields:
 -- plain columns on user_profiles, editable any time from the wallet page.

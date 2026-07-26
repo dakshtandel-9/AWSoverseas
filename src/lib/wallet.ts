@@ -1,11 +1,14 @@
 import "server-only";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import { SIGNUP_BONUS_AMOUNT, SIGNUP_BONUS_REASON } from "@/lib/wallet-constants";
+
+export type WalletSourceType = "quote" | "enquiry" | "signup";
 
 export type WalletTransaction = {
   id: string;
   amount: number;
   reason: string;
-  source_type: "quote" | "enquiry";
+  source_type: WalletSourceType;
   created_at: string;
   /** Name of the referred customer whose booking generated this credit, if known. */
   referredName: string | null;
@@ -137,4 +140,22 @@ export async function creditReferrerForSource(
   if (error) return { ok: false, error: "Could not credit wallet" };
 
   return { ok: true };
+}
+
+/**
+ * Credits a brand-new account with the one-time welcome bonus. Safe to call
+ * more than once for the same user: a partial unique index on
+ * (user_id) where source_type = 'signup' caps it at one row, and the
+ * resulting duplicate-key error is swallowed. Never throws — a failed bonus
+ * must not block the signup itself.
+ */
+export async function grantSignupBonus(userId: string): Promise<void> {
+  const db = supabaseAdmin();
+  await db.from("wallet_transactions").insert({
+    user_id: userId,
+    amount: SIGNUP_BONUS_AMOUNT,
+    reason: SIGNUP_BONUS_REASON,
+    source_type: "signup",
+    source_id: null,
+  });
 }

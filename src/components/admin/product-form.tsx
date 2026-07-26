@@ -23,7 +23,17 @@ const inputClasses =
 
 const initialState: ProductFormState = {};
 
-export function ProductForm({ product, categories }: { product?: ProductRecord; categories: CategoryOption[] }) {
+export function ProductForm({
+  product,
+  categories,
+  defaultCategoryId,
+}: {
+  product?: ProductRecord;
+  /** Leaf categories only — ones that hold subcategories can't take products. */
+  categories: CategoryOption[];
+  /** Preselected when arriving from "New product" inside a category. */
+  defaultCategoryId?: string;
+}) {
   const action = product ? updateProductAction.bind(null, product.id) : createProductAction;
   const [state, formAction, pending] = useActionState(action, initialState);
   const [imageUrl, setImageUrl] = useState(product?.image_url ?? "");
@@ -33,6 +43,10 @@ export function ProductForm({ product, categories }: { product?: ProductRecord; 
       {/* Rendered outside the product-save <form>: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
         <h2 className="text-sm font-bold uppercase tracking-wide text-[#002144]">Product photo</h2>
+        <p className="mt-1.5 text-sm text-[#5b6b82]">
+          Shown on the product card. Cropped to a square, so keep the subject centred —
+          1200 × 1200px or larger looks sharpest.
+        </p>
         <div className="mt-5">
           <ProductImageUploadField value={imageUrl} onUploaded={setImageUrl} />
         </div>
@@ -52,7 +66,7 @@ export function ProductForm({ product, categories }: { product?: ProductRecord; 
               <label className="text-sm font-semibold text-[#002144]">Category</label>
               <select
                 name="category_id"
-                defaultValue={product?.category_id ?? ""}
+                defaultValue={product?.category_id ?? defaultCategoryId ?? ""}
                 className={inputClasses}
               >
                 <option value="">No category</option>
@@ -62,6 +76,9 @@ export function ProductForm({ product, categories }: { product?: ProductRecord; 
                   </option>
                 ))}
               </select>
+              <p className="text-xs text-[#94a3b8]">
+                Only categories without subcategories are listed — products go in the deepest one.
+              </p>
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-[#002144]">Sort order</label>

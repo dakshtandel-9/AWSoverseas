@@ -3,6 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { grantSignupBonus } from "@/lib/wallet";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 export type AccountStatus = "incomplete" | "pending" | "approved" | "rejected";
@@ -137,7 +138,10 @@ async function createProfileForUser(user: User): Promise<UserProfile | null> {
       .select("*")
       .single();
 
-    if (data) return data as UserProfile;
+    if (data) {
+      await grantSignupBonus(user.id);
+      return data as UserProfile;
+    }
     // 23505 = unique violation. A duplicate id means a concurrent request
     // already created the row; a duplicate referral_code just needs a re-roll.
     if (error?.code === "23505" && error.message.includes("referral_code")) continue;

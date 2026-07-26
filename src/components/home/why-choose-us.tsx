@@ -27,9 +27,8 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
       {/* Heading */}
       <Reveal direction="up">
         <div className="relative max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Why aws overseas</p>
-          <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem]">
-            {data.title}
+          <h2 className="text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem]">
+            {data.title} <span style={{ fontSize: "10px" }} className="align-baseline font-normal text-[#5b6b82]">imprex</span>
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
             Trusted by businesses worldwide for reliable, secure, and transparent shipping solutions.

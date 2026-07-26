@@ -36,7 +36,7 @@ export default async function WalletPage() {
       <AccountHero
         eyebrow="Account"
         title="Your wallet"
-        subtitle="Referral credit earned, and withdrawals to your bank account."
+        subtitle="Credit earned, and withdrawals to your bank account."
       />
 
       <Section spacing="md" tone="soft">

@@ -81,9 +81,11 @@ export function WalletActivityList({
                   <div className="min-w-0">
                     <p className="font-semibold text-[#002144]">{entry.data.reason || "Referral reward"}</p>
                     <p className="mt-0.5 text-xs text-[#5b6b82]">
-                      {entry.data.referredName
-                        ? `From ${entry.data.referredName}'s ${entry.data.source_type}`
-                        : `${entry.data.source_type} reward`}
+                      {entry.data.source_type === "signup"
+                        ? "Credited when you created your account"
+                        : entry.data.referredName
+                          ? `From ${entry.data.referredName}'s ${entry.data.source_type}`
+                          : `${entry.data.source_type} reward`}
                       {" · "}
                       {formatDate(entry.data.created_at)}
                     </p>

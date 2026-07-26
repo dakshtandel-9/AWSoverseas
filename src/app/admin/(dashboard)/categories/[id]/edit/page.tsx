@@ -1,10 +1,14 @@
 import { notFound } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { CategoryForm, type CategoryRecord } from "@/components/admin/category-form";
+import { listParentOptions } from "@/lib/admin-category-tree";
 
 export default async function AdminEditCategoryPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const { data } = await supabaseAdmin().from("categories").select("*").eq("id", id).single();
+  const [{ data }, parentOptions] = await Promise.all([
+    supabaseAdmin().from("categories").select("*").eq("id", id).single(),
+    listParentOptions(id),
+  ]);
 
   if (!data) notFound();
 
@@ -13,6 +17,7 @@ export default async function AdminEditCategoryPage({ params }: { params: Promis
     name: data.name,
     description: data.description,
     image_url: data.image_url,
+    parent_id: data.parent_id,
     sort_order: data.sort_order,
     is_active: data.is_active,
   };
@@ -21,7 +26,7 @@ export default async function AdminEditCategoryPage({ params }: { params: Promis
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Catalog</p>
       <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Edit category</h1>
-      <CategoryForm category={category} />
+      <CategoryForm category={category} parentOptions={parentOptions} />
     </div>
   );
 }

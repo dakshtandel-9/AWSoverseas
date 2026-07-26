@@ -14,7 +14,7 @@ export function WalletCard({ summary }: { summary: WalletSummary }) {
       <p className="mt-1 text-sm leading-relaxed text-ink/60">
         {summary.pendingWithdrawals > 0
           ? `Available to withdraw · $${summary.pendingWithdrawals.toLocaleString("en-US")} pending review`
-          : "Available to withdraw — credit earned from your referrals."}
+          : "Available to withdraw — your welcome bonus and referral credit."}
       </p>
 
       <Link

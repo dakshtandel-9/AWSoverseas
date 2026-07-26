@@ -28,16 +28,6 @@ function CertPlaque({ item }: { item: CertItem }) {
 export function Certifications({ data }: { data: Data }) {
   return (
     <Section spacing="lg" tone="soft" id="certifications" className="relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(4,22,47,0.028) 1px, transparent 1px), linear-gradient(to bottom, rgba(4,22,47,0.028) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-
       <Reveal direction="up" className="relative mx-auto max-w-2xl text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 ring-1 ring-emerald-100">
           <ShieldCheck className="size-3.5" aria-hidden />

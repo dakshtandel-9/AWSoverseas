@@ -1,0 +1,20 @@
+{
+  "page": "Request a Product",
+  "meta": {
+    "title": "Request a Product | aws overseas",
+    "description": "Can't find what you're sourcing in our catalog? Tell us the product you need — name, a short description, a photo, and how much you need — and our sourcing team will get back to you."
+  },
+  "hero": {
+    "badge": "Product Request",
+    "title": "Looking for something we don't list yet?",
+    "subtitle": "Tell us what you need — a name and a way to reach you is enough. A description, a photo, and quantity all help, but none of it is required.",
+    "note": "No account needed — anyone can submit a request."
+  },
+  "form": {
+    "title": "Tell us what you're after",
+    "description": "The more you tell us, the faster we can quote it — but only the product name and one way to reach you are required.",
+    "submitButton": "Send request",
+    "successTitle": "Request received",
+    "successMessage": "Thanks — we've got your request and will get back to you by email or phone shortly."
+  }
+}

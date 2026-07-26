@@ -38,6 +38,7 @@ export const FOOTER_NAV = {
     { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },
     { label: "Request a Quote", href: "/quote" },
+    { label: "Request a Product", href: "/request-product" },
   ],
   Resources: [
     { label: "FAQ", href: "/faq" },

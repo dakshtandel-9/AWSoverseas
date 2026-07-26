@@ -55,6 +55,11 @@ export function CategoryImageUploadField({
             <span className="text-sm font-medium text-[#5b6b82]">
               {pending ? "Uploading…" : "Click to upload a category photo"}
             </span>
+            {!pending && (
+              <span className="text-xs text-[#94a3b8]">
+                1200 × 750px or larger, JPG or PNG under 8MB
+              </span>
+            )}
             <input
               type="file"
               name="image"

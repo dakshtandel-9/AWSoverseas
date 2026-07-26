@@ -34,9 +34,15 @@ export async function submitProductEnquiryAction(
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const requestedQuantity = String(formData.get("requested-quantity") ?? "").trim();
   const attachment = formData.get("attachment");
 
-  if (!productName || !name || !email || !phone) {
+  // The "Request a Product" page (no product_id, product-name typed by the
+  // visitor) only needs a way to respond — email OR phone, not both — since
+  // everything else on that page is explicitly optional. The catalog
+  // enquiry/order modal still requires both, matching its existing fields.
+  const hasContact = productId ? Boolean(email && phone) : Boolean(email || phone);
+  if (!productName || !name || !hasContact) {
     return { error: "Please fill in all required fields." };
   }
 
@@ -65,6 +71,7 @@ export async function submitProductEnquiryAction(
     phone,
     message,
     attachment_url: attachmentUrl,
+    requested_quantity: requestedQuantity,
     user_id: account?.user.id ?? null,
   };
 

@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { ProductForm, type ProductRecord } from "@/components/admin/product-form";
+import { listProductTargets } from "@/lib/admin-category-tree";
 
 export default async function AdminEditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const db = supabaseAdmin();
-  const [{ data }, { data: categories }] = await Promise.all([
+  const [{ data }, categories] = await Promise.all([
     db.from("products").select("*").eq("id", id).single(),
-    db.from("categories").select("id, name").order("sort_order", { ascending: true }),
+    listProductTargets(),
   ]);
 
   if (!data) notFound();
@@ -26,7 +27,7 @@ export default async function AdminEditProductPage({ params }: { params: Promise
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Catalog</p>
       <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Edit product</h1>
-      <ProductForm product={product} categories={categories ?? []} />
+      <ProductForm product={product} categories={categories} />
     </div>
   );
 }

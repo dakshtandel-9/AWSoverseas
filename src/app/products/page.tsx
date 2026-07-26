@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { products, metaFrom } from "@/lib/content";
 import { getActiveProducts } from "@/lib/product-data";
-import { getActiveCategories } from "@/lib/category-data";
+import { getRootCategories } from "@/lib/category-data";
 import { ProductsHero } from "@/components/products/products-hero";
 import { CategoryGrid } from "@/components/products/category-grid";
 import { ProductsCta } from "@/components/products/products-cta";
@@ -9,7 +9,7 @@ import { ProductsCta } from "@/components/products/products-cta";
 export const metadata: Metadata = metaFrom(products.meta, "/products");
 
 export default async function Page() {
-  const [catalog, categories] = await Promise.all([getActiveProducts(), getActiveCategories()]);
+  const [catalog, categories] = await Promise.all([getActiveProducts(), getRootCategories()]);
 
   const stats = products.overview.stats.map((stat: { number: string; label: string }, i: number) =>
     i === 0 ? { ...stat, number: String(catalog.length) } : stat,

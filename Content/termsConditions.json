@@ -9,35 +9,35 @@
         "title": "Terms & Conditions",
         "subtitle": "Please read these terms carefully before using our website or shipping services."
     },
-    "lastUpdated": "01 July 2026",
+    "lastUpdated": "26 July 2026",
     "sections": [
         {
-            "title": "Acceptance of Terms",
-            "content": "By accessing or using aws overseas's website or services, you agree to comply with these Terms & Conditions."
+            "title": "Governing Law & Jurisdiction",
+            "content": "All disputes, claims, or controversies arising out of or in connection with any shipment, product, or service provided through this website shall be governed by and construed in accordance with the laws of India. The parties irrevocably agree that any such dispute shall be subject to the exclusive jurisdiction of the courts at Mumbai, India, and no other court, tribunal, or forum in any other country or jurisdiction shall have the authority to entertain, adjudicate, or otherwise deal with such disputes."
         },
         {
-            "title": "Services",
-            "content": "aws overseas provides international shipping, freight forwarding, customs clearance, warehousing, and related supply chain services."
-        },
-        {
-            "title": "Customer Responsibilities",
-            "content": "Customers must provide accurate shipment information, required documentation, and comply with all applicable laws and regulations."
-        },
-        {
-            "title": "Payments",
-            "content": "All payments must be completed according to the agreed quotation before shipment processing unless otherwise agreed."
-        },
-        {
-            "title": "Prohibited Goods",
-            "content": "Customers must not ship prohibited, illegal, hazardous, or restricted goods unless permitted under applicable laws and approved by aws overseas."
+            "title": "Arbitration",
+            "content": "In the event of any dispute, difference, or claim arising out of or relating to any shipment, product, or transaction under these Terms, the parties shall first attempt to resolve the matter amicably. Failing amicable resolution within 30 days, the dispute shall be referred to and finally resolved by arbitration under the Arbitration and Conciliation Act, 1996 (including any statutory modifications or re-enactments thereof), seated in Mumbai, India. The arbitration shall be conducted by a sole arbitrator appointed by mutual consent of the parties, and the proceedings shall be conducted in the English language. The award rendered by the arbitrator shall be final and binding on both parties."
         },
         {
             "title": "Limitation of Liability",
-            "content": "aws overseas shall not be liable for delays or losses caused by customs, natural disasters, government actions, or other circumstances beyond our reasonable control."
+            "content": "The Company's total liability arising out of or in connection with any shipment, product, or service, whether in contract, tort, or otherwise, shall not exceed the invoice value of the specific shipment or product giving rise to the claim. The Company shall not be liable for any indirect, incidental, consequential, or special damages, including but not limited to loss of profit, loss of business, or loss of goodwill, arising from delays, damage in transit, or non-delivery."
         },
         {
-            "title": "Changes",
-            "content": "aws overseas reserves the right to update these Terms & Conditions at any time."
+            "title": "Force Majeure",
+            "content": "The Company shall not be held liable for any delay, failure, or non-performance of its obligations where such delay or failure arises from circumstances beyond its reasonable control, including but not limited to port congestion, strikes, lockouts, customs delays or holds, natural disasters, war, civil unrest, pandemic, government restrictions, or failure of shipping lines, carriers, or freight forwarders. Performance shall be resumed as soon as reasonably practicable once such circumstances cease."
+        },
+        {
+            "title": "Incoterms",
+            "content": "Unless otherwise agreed in writing between the parties, all shipments and transactions shall be governed by Incoterms 2020, as published by the International Chamber of Commerce, and the applicable Incoterm (e.g., FOB, CIF, CFR) shall be specified in the relevant invoice or purchase order."
+        },
+        {
+            "title": "Governing Language",
+            "content": "These Terms & Conditions are drafted in the English language. In the event these Terms are translated into any other language for reference purposes, the English version shall prevail in the event of any conflict, discrepancy, or dispute regarding interpretation."
+        },
+        {
+            "title": "Amendments",
+            "content": "The Company reserves the right to amend, modify, or update these Terms & Conditions at any time without prior notice. Continued use of the website and services following any such amendment constitutes acceptance of the revised Terms."
         }
     ]
 }
