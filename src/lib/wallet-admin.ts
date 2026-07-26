@@ -32,7 +32,7 @@ const PROFILE_COLUMNS =
 
 /**
  * Batch-fetches full profiles (for the "View profile" popup on quote/
- * enquiry/withdrawal rows) keyed by user_id, so each admin list page can
+ * enquiry rows) keyed by user_id, so each admin list page can
  * look one up per row without a query per row.
  */
 export async function getProfilesForUsers(userIds: string[]): Promise<Record<string, AdminUserProfile>> {

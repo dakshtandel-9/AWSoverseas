@@ -12,16 +12,14 @@ export function WalletCard({ summary }: { summary: WalletSummary }) {
 
       <p className="mt-4 text-3xl font-bold tracking-tight">${summary.available.toLocaleString("en-US")}</p>
       <p className="mt-1 text-sm leading-relaxed text-ink/60">
-        {summary.pendingWithdrawals > 0
-          ? `Available to withdraw · $${summary.pendingWithdrawals.toLocaleString("en-US")} pending review`
-          : "Available to withdraw — your welcome bonus and referral credit."}
+        Your welcome bonus and referral credit.
       </p>
 
       <Link
         href="/profile/wallet"
         className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:text-ink"
       >
-        View wallet & withdraw <ArrowRight className="size-3.5" />
+        View wallet <ArrowRight className="size-3.5" />
       </Link>
     </div>
   );

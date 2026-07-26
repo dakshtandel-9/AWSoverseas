@@ -2,7 +2,7 @@ import "server-only";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { SIGNUP_BONUS_AMOUNT, SIGNUP_BONUS_REASON } from "@/lib/wallet-constants";
 
-export type WalletSourceType = "quote" | "enquiry" | "signup";
+export type WalletSourceType = "quote" | "enquiry" | "signup" | "adjustment";
 
 export type WalletTransaction = {
   id: string;
@@ -14,26 +14,12 @@ export type WalletTransaction = {
   referredName: string | null;
 };
 
-export type WithdrawalStatus = "pending" | "paid" | "rejected";
-
-export type WalletWithdrawal = {
-  id: string;
-  amount: number;
-  status: WithdrawalStatus;
-  bank_account_number: string;
-  bank_account_holder: string;
-  bank_name: string;
-  bank_ifsc: string;
-  rejection_reason: string;
-  created_at: string;
-  decided_at: string | null;
-};
-
 export type WalletSummary = {
+  /** Sum of every credit row — before any admin deduction. */
   earned: number;
-  pendingWithdrawals: number;
-  paidWithdrawals: number;
-  /** Spendable balance: earned minus amounts pending or already paid out. */
+  /** Sum of admin deductions, as a positive number. */
+  deducted: number;
+  /** Current balance: credits minus deductions. */
   available: number;
 };
 
@@ -42,26 +28,42 @@ const SOURCE_TABLE = {
   enquiry: "product_enquiries",
 } as const;
 
-async function sumColumn(table: string, userId: string, filters?: Record<string, string>) {
+export async function getWalletSummary(userId: string): Promise<WalletSummary> {
   const db = supabaseAdmin();
-  let query = db.from(table).select("amount").eq("user_id", userId);
-  for (const [key, value] of Object.entries(filters ?? {})) query = query.eq(key, value);
-  const { data } = await query;
-  return (data ?? []).reduce((sum, row) => sum + Number(row.amount), 0);
+  const { data } = await db.from("wallet_transactions").select("amount").eq("user_id", userId);
+
+  let earned = 0;
+  let deducted = 0;
+  for (const row of data ?? []) {
+    const amount = Number(row.amount);
+    if (amount < 0) deducted += -amount;
+    else earned += amount;
+  }
+
+  return { earned, deducted, available: earned - deducted };
 }
 
-export async function getWalletSummary(userId: string): Promise<WalletSummary> {
-  const [earned, pendingWithdrawals, paidWithdrawals] = await Promise.all([
-    sumColumn("wallet_transactions", userId),
-    sumColumn("wallet_withdrawals", userId, { status: "pending" }),
-    sumColumn("wallet_withdrawals", userId, { status: "paid" }),
-  ]);
-  return {
-    earned,
-    pendingWithdrawals,
-    paidWithdrawals,
-    available: earned - pendingWithdrawals - paidWithdrawals,
-  };
+/** Balances for many users at once, for the admin wallet list. */
+export async function getWalletSummaries(userIds: string[]): Promise<Record<string, WalletSummary>> {
+  const uniqueIds = [...new Set(userIds)];
+  if (uniqueIds.length === 0) return {};
+
+  const db = supabaseAdmin();
+  const { data } = await db.from("wallet_transactions").select("user_id, amount").in("user_id", uniqueIds);
+
+  const result: Record<string, WalletSummary> = {};
+  for (const id of uniqueIds) result[id] = { earned: 0, deducted: 0, available: 0 };
+
+  for (const row of data ?? []) {
+    const summary = result[row.user_id];
+    if (!summary) continue;
+    const amount = Number(row.amount);
+    if (amount < 0) summary.deducted += -amount;
+    else summary.earned += amount;
+  }
+
+  for (const summary of Object.values(result)) summary.available = summary.earned - summary.deducted;
+  return result;
 }
 
 export async function getWalletHistory(userId: string): Promise<WalletTransaction[]> {
@@ -83,18 +85,6 @@ export async function getWalletHistory(userId: string): Promise<WalletTransactio
       referredName: referred ? `${referred.first_name} ${referred.last_name}`.trim() : null,
     };
   });
-}
-
-export async function getWithdrawalHistory(userId: string): Promise<WalletWithdrawal[]> {
-  const db = supabaseAdmin();
-  const { data } = await db
-    .from("wallet_withdrawals")
-    .select(
-      "id, amount, status, bank_account_number, bank_account_holder, bank_name, bank_ifsc, rejection_reason, created_at, decided_at",
-    )
-    .eq("user_id", userId)
-    .order("created_at", { ascending: false });
-  return (data as WalletWithdrawal[] | null) ?? [];
 }
 
 /**
@@ -138,6 +128,56 @@ export async function creditReferrerForSource(
   });
 
   if (error) return { ok: false, error: "Could not credit wallet" };
+
+  return { ok: true };
+}
+
+/**
+ * Manual admin correction to a customer's balance, not tied to any booking.
+ * A deduction is stored as a negative ledger row rather than by editing or
+ * removing earlier credits, so the history stays append-only: the customer
+ * can still see what they earned and what was taken back, and the two always
+ * add up to the balance on screen.
+ *
+ * `amount` is always given as a positive number; `direction` decides the sign.
+ */
+export async function adjustWalletBalance(
+  userId: string,
+  direction: "add" | "deduct",
+  amount: number,
+  reason: string,
+): Promise<{ ok: boolean; error?: string }> {
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return { ok: false, error: "Enter an amount greater than zero" };
+  }
+
+  const trimmedReason = reason.trim();
+  if (!trimmedReason) return { ok: false, error: "Add a reason — the customer sees it in their wallet activity" };
+
+  const db = supabaseAdmin();
+  const { data: profile } = await db.from("user_profiles").select("id").eq("id", userId).maybeSingle();
+  if (!profile) return { ok: false, error: "That customer no longer exists" };
+
+  // Rounded to cents so a stray float can't leave a balance that renders as
+  // one number but sums to another.
+  const magnitude = Math.round(amount * 100) / 100;
+
+  if (direction === "deduct") {
+    const { available } = await getWalletSummary(userId);
+    if (magnitude > available) {
+      return { ok: false, error: `That's more than the $${available.toLocaleString("en-US")} balance` };
+    }
+  }
+
+  const { error } = await db.from("wallet_transactions").insert({
+    user_id: userId,
+    amount: direction === "deduct" ? -magnitude : magnitude,
+    reason: trimmedReason,
+    source_type: "adjustment",
+    source_id: null,
+  });
+
+  if (error) return { ok: false, error: "Could not update the wallet. Please try again." };
 
   return { ok: true };
 }

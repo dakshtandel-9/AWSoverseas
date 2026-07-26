@@ -25,7 +25,7 @@ const SECTIONS: DocSection[] = [
   { id: "orders", label: "Orders" },
   { id: "enquiries", label: "Enquiries" },
   { id: "quotes", label: "Quote requests & tracking" },
-  { id: "wallet", label: "Referral wallet & withdrawals" },
+  { id: "wallet", label: "Referral wallet" },
   { id: "messages", label: "Messages" },
   { id: "settings", label: "Site settings" },
   { id: "integrations", label: "SEO & Analytics" },
@@ -61,7 +61,7 @@ export default function AdminDocsPage() {
                 { icon: Boxes, title: "Catalog & content", detail: "Products shown on the public site are created and edited here." },
                 { icon: MessageSquareText, title: "Customer requests", detail: "Orders, enquiries, quote requests and contact messages all land in an inbox here to action." },
                 { icon: Users, title: "Customer accounts", detail: "New sign-ups wait for approval before they can place an order or request a quote." },
-                { icon: Wallet, title: "Referral payouts", detail: "Customers earn wallet credit for referrals; payout requests are approved here." },
+                { icon: Wallet, title: "Referral wallet", detail: "Customers earn wallet credit for referrals; you grant and adjust that credit here." },
               ].map(({ icon: Icon, title, detail }) => (
                 <div key={title} className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
                   <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
@@ -90,7 +90,7 @@ export default function AdminDocsPage() {
             id="dashboard"
             eyebrow="/admin"
             title="Dashboard"
-            intro="The landing page after login. Six tiles, each a live count pulled straight from the database — nothing here is cached or delayed."
+            intro="The landing page after login. Each tile is a live count pulled straight from the database — nothing here is cached or delayed."
           >
             <FieldTable
               columns={["Tile", "What it counts"]}
@@ -100,7 +100,6 @@ export default function AdminDocsPage() {
                 ["Unread enquiries", "Open enquiries not yet opened — see Enquiries."],
                 ["Unread messages", "Contact form submissions not yet opened — see Messages."],
                 ["Unread quote requests", "Quote form submissions not yet opened — see Quote requests."],
-                ["Pending withdrawals", "Wallet payout requests awaiting a decision — see Referral wallet."],
               ]}
             />
             <p className="text-sm leading-relaxed text-[#5b6b82]">
@@ -144,7 +143,7 @@ export default function AdminDocsPage() {
             </Callout>
             <FieldTable
               rows={[
-                ["Referred by", "If this customer signed up using someone else's referral link, that referrer's name shows here. See Referral wallet for how referrals turn into payouts."],
+                ["Referred by", "If this customer signed up using someone else's referral link, that referrer's name shows here. See Referral wallet for how referrals turn into wallet credit."],
                 ["Username", "Auto-generated from their name at sign-up (e.g. john-doe), used in referral lists elsewhere in the panel."],
               ]}
             />
@@ -254,9 +253,9 @@ export default function AdminDocsPage() {
 
           <Section
             id="wallet"
-            eyebrow="/admin/withdrawals"
-            title="Referral wallet & withdrawals"
-            intro="Customers get a personal referral code and link at sign-up. When someone they referred gets an order or quote approved, you can credit the referrer's wallet. Customers then request to withdraw (cash out) that balance."
+            eyebrow="/admin/wallets"
+            title="Referral wallet"
+            intro="Customers get a personal referral code and link at sign-up. When someone they referred gets an order or quote approved, you can credit the referrer's wallet. Customers see that balance on their own wallet page."
           >
             <StepList
               steps={[
@@ -265,15 +264,20 @@ export default function AdminDocsPage() {
                   detail: "From an approved Order or Quote request row, if the customer was referred, you'll see who referred them and can grant a wallet credit tied to that specific order/quote — this ties the credit to a source so it's traceable and can't be double-counted by accident.",
                 },
                 {
-                  title: "Customer requests a withdrawal",
-                  detail: "They do this from their own profile/wallet page once they have a balance. It appears here under “Awaiting review.”",
+                  title: "Adjusting a balance by hand",
+                  detail: "Wallets lists every customer with their balance. Open one to add credit (a goodwill bonus, a reward that didn't come from a booking) or deduct it (reversing a mistaken credit, a reward paid out elsewhere). A reason is required on both — the customer reads it.",
                 },
-                { title: "Approve or reject", detail: "Approving means you've paid them outside the site (bank transfer, etc.) and are confirming it here." },
+                {
+                  title: "The customer sees it",
+                  detail: "Credits and deductions show up on their profile wallet page as activity, with the balance recalculated from the ledger.",
+                },
               ]}
             />
             <p className="text-sm leading-relaxed text-[#5b6b82]">
               A customer&rsquo;s wallet balance is always the sum of their credit history — there&rsquo;s no single
               &ldquo;balance&rdquo; number that can drift out of sync; it&rsquo;s recalculated from the ledger every time.
+              A deduction is added as its own negative line rather than erasing an earlier credit, so the history
+              always explains how the balance got where it is.
             </p>
           </Section>
 
@@ -371,7 +375,7 @@ export default function AdminDocsPage() {
                 { icon: FileText, text: "Request a Quote form (approved customers only) → Quote requests, which also issues a public tracking number." },
                 { icon: Mail, text: "Contact page form (anyone) → Messages inbox." },
                 { icon: Users, text: "Public sign-up + profile → Users, gated pending → approved before Orders/Quotes unlock." },
-                { icon: Wallet, text: "Approved Order/Quote from a referred customer → credit the referrer's wallet → they request a Withdrawal." },
+                { icon: Wallet, text: "Approved Order/Quote from a referred customer → credit the referrer's wallet → they see the balance on their wallet page." },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
                   <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
@@ -425,14 +429,6 @@ export default function AdminDocsPage() {
                   <Badge>Customs cleared</Badge>
                   <Badge>In transit</Badge>
                   <Badge tone="green">Delivered</Badge>
-                </div>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wide text-[#5b6b82]">Withdrawals</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <Badge tone="amber">Pending</Badge>
-                  <Badge tone="green">Approved</Badge>
-                  <Badge tone="red">Rejected</Badge>
                 </div>
               </div>
             </div>

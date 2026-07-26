@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Mail, FileText, ArrowRight, MessageSquareText, ShoppingBag, Users, Wallet } from "lucide-react";
+import { Mail, FileText, ArrowRight, MessageSquareText, ShoppingBag, Users } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 
 async function getCounts() {
   const db = supabaseAdmin();
-  const [messages, quotes, orders, enquiries, pendingUsers, pendingWithdrawals] = await Promise.all([
+  const [messages, quotes, orders, enquiries, pendingUsers] = await Promise.all([
     db.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db.from("quote_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
     db
@@ -20,7 +20,6 @@ async function getCounts() {
       .eq("is_read", false)
       .eq("request_type", "enquiry"),
     db.from("user_profiles").select("id", { count: "exact", head: true }).eq("status", "pending"),
-    db.from("wallet_withdrawals").select("id", { count: "exact", head: true }).eq("status", "pending"),
   ]);
   return {
     unreadMessages: messages.count ?? 0,
@@ -28,7 +27,6 @@ async function getCounts() {
     unreadOrders: orders.count ?? 0,
     unreadEnquiries: enquiries.count ?? 0,
     pendingUsers: pendingUsers.count ?? 0,
-    pendingWithdrawals: pendingWithdrawals.count ?? 0,
   };
 }
 
@@ -42,7 +40,6 @@ export default async function AdminDashboardPage() {
         unreadOrders: 0,
         unreadEnquiries: 0,
         pendingUsers: 0,
-        pendingWithdrawals: 0,
       };
 
   const cards = [
@@ -75,12 +72,6 @@ export default async function AdminDashboardPage() {
       label: "Unread quote requests",
       value: counts.unreadQuotes,
       icon: FileText,
-    },
-    {
-      href: "/admin/withdrawals",
-      label: "Pending withdrawals",
-      value: counts.pendingWithdrawals,
-      icon: Wallet,
     },
   ];
 

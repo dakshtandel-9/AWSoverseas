@@ -383,11 +383,16 @@ create index if not exists shipment_milestones_quote_idx on shipment_milestones 
 -- than once (e.g. a top-up bonus) — source_type + source_id is indexed
 -- for lookups but not unique. A signup bonus has no booking behind it, so
 -- its source_id is null and a partial unique index caps it at one per user.
+--
+-- An 'adjustment' row is a manual admin correction from /admin/wallets,
+-- not tied to any booking. It is the only kind that may carry a negative
+-- amount: deducting money writes a negative row rather than editing or
+-- deleting earlier rows, so the history stays append-only and auditable.
 -- ============================================================
 create table if not exists wallet_transactions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references user_profiles(id) on delete cascade,
-  amount numeric not null check (amount > 0),
+  amount numeric not null,
   reason text not null default '',
   source_type text not null,
   source_id uuid,
@@ -400,12 +405,23 @@ alter table wallet_transactions alter column source_id drop not null;
 
 alter table wallet_transactions drop constraint if exists wallet_transactions_source_type_check;
 alter table wallet_transactions add constraint wallet_transactions_source_type_check
-  check (source_type in ('quote', 'enquiry', 'signup'));
+  check (source_type in ('quote', 'enquiry', 'signup', 'adjustment'));
 
--- Booking credits still require a source; signup credits never have one.
+-- Booking credits still require a source; signup and adjustment rows never
+-- have one.
 alter table wallet_transactions drop constraint if exists wallet_transactions_source_id_check;
 alter table wallet_transactions add constraint wallet_transactions_source_id_check
-  check ((source_type = 'signup') = (source_id is null));
+  check ((source_type in ('signup', 'adjustment')) = (source_id is null));
+
+-- Pre-existing installs have the original inline `check (amount > 0)`, which
+-- would reject a deduction. Postgres auto-named that constraint
+-- wallet_transactions_amount_check, so dropping that exact name removes it on
+-- an old install and is a harmless no-op on a fresh one. It is replaced with a
+-- rule that allows a negative amount only on an admin adjustment, and never
+-- allows zero.
+alter table wallet_transactions drop constraint if exists wallet_transactions_amount_check;
+alter table wallet_transactions add constraint wallet_transactions_amount_check
+  check (amount <> 0 and (amount > 0 or source_type = 'adjustment'));
 
 create index if not exists wallet_transactions_user_idx on wallet_transactions (user_id, created_at desc);
 drop index if exists wallet_transactions_source_idx;
@@ -415,38 +431,10 @@ create unique index if not exists wallet_transactions_signup_once_idx
   on wallet_transactions (user_id)
   where source_type = 'signup';
 
--- Bank details for wallet withdrawals — same pattern as passport fields:
--- plain columns on user_profiles, editable any time from the wallet page.
-alter table user_profiles add column if not exists bank_account_number text not null default '';
-alter table user_profiles add column if not exists bank_account_holder text not null default '';
-alter table user_profiles add column if not exists bank_name text not null default '';
-alter table user_profiles add column if not exists bank_ifsc text not null default '';
-
--- ============================================================
--- wallet_withdrawals — a payout request against wallet_transactions credit.
--- Bank fields are snapshotted at request time (like product_enquiries'
--- product_name snapshot) so a later bank-detail edit never changes a
--- pending/historical request. Pending amounts are locked out of the
--- spendable balance (see getWalletSummary in src/lib/wallet.ts); paid
--- permanently deducts, rejected releases the lock back to available.
--- ============================================================
-create table if not exists wallet_withdrawals (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references user_profiles(id) on delete cascade,
-  amount numeric not null check (amount > 0),
-  status text not null default 'pending'
-    check (status in ('pending', 'paid', 'rejected')),
-  bank_account_number text not null default '',
-  bank_account_holder text not null default '',
-  bank_name text not null default '',
-  bank_ifsc text not null default '',
-  rejection_reason text not null default '',
-  created_at timestamptz not null default now(),
-  decided_at timestamptz
-);
-
-create index if not exists wallet_withdrawals_user_idx on wallet_withdrawals (user_id, created_at desc);
-create index if not exists wallet_withdrawals_status_idx on wallet_withdrawals (status, created_at desc);
+-- Wallet credit has no payout path — there is no withdrawal/cash-out flow, so
+-- user_profiles holds no bank details (see the
+-- 2026-07-26-remove-wallet-withdrawals migration, which dropped both the
+-- wallet_withdrawals table and those columns).
 
 -- ============================================================
 -- marketing_integrations — singleton row (id enforced to always be 1).
@@ -489,7 +477,6 @@ alter table product_enquiries enable row level security;
 alter table user_profiles enable row level security;
 alter table shipment_milestones enable row level security;
 alter table wallet_transactions enable row level security;
-alter table wallet_withdrawals enable row level security;
 
 -- user_profiles: no public policies — all reads/writes go through the
 -- service-role client in Server Actions (passport data must never be
@@ -529,7 +516,6 @@ create policy "public read marketing_integrations" on marketing_integrations
 -- without RLS because it's scoped to an exact tracking_number match, not a
 -- broad select.
 
--- wallet_transactions / wallet_withdrawals: no public policies — admin
--- grants credits and reviews payouts, and the customer's own balance/
--- history/requests are all read or written via the service-role client
+-- wallet_transactions: no public policies — admin grants or adjusts credit,
+-- and the customer's own balance/history is read via the service-role client
 -- (same pattern as user_profiles).
