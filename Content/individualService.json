@@ -983,6 +983,129 @@
         "primaryButton": "Request a Quote",
         "secondaryButton": "Contact Us"
       }
+    },
+    {
+      "slug": "marine-insurance",
+      "meta": {
+        "title": "Marine Insurance | aws overseas",
+        "description": "Marine Insurance coverage by aws overseas to protect your cargo against loss or damage in transit."
+      },
+      "hero": {
+        "badge": "Cargo Protection",
+        "title": "Marine Insurance for Every Shipment",
+        "subtitle": "aws overseas arranges marine cargo insurance so your goods are covered against loss, damage, and delay from the moment they leave the factory to the moment they reach your door.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      },
+      "overview": {
+        "title": "Marine Insurance Overview",
+        "description": "Our marine insurance cover protects your cargo against loss, theft, and damage in transit by sea or air, so a single bad shipment doesn't become a total loss.",
+        "features": [
+          "Full Transit Coverage",
+          "Air & Sea Cargo Cover",
+          "Fast Claims Processing",
+          "Flexible Coverage Value",
+          "Damage & Theft Protection",
+          "Dedicated Support"
+        ]
+      },
+      "benefits": {
+        "title": "Key Benefits",
+        "items": [
+          {
+            "title": "Full Transit Cover",
+            "description": "Protection from the origin warehouse to final destination, not just port to port."
+          },
+          {
+            "title": "Fast Claims",
+            "description": "Straightforward claims handling with minimal paperwork delays."
+          },
+          {
+            "title": "Flexible Coverage",
+            "description": "Cover scaled to your shipment's declared value."
+          },
+          {
+            "title": "Loss & Damage Protection",
+            "description": "Covers theft, breakage, water damage, and non-delivery."
+          },
+          {
+            "title": "Expert Support",
+            "description": "Guidance choosing the right policy for your cargo type."
+          },
+          {
+            "title": "Worldwide Validity",
+            "description": "Coverage that travels with your shipment across any route."
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Request Quote",
+            "description": "Share shipment value and route details."
+          },
+          {
+            "step": "02",
+            "title": "Choose Coverage",
+            "description": "Select a policy matched to your cargo and risk."
+          },
+          {
+            "step": "03",
+            "title": "Confirm Policy",
+            "description": "Approve terms and receive your certificate of insurance."
+          },
+          {
+            "step": "04",
+            "title": "Cargo in Transit",
+            "description": "Your shipment moves under active cover."
+          },
+          {
+            "step": "05",
+            "title": "Claims Support",
+            "description": "If something goes wrong, we help you file and settle the claim."
+          }
+        ]
+      },
+      "whyAWS": {
+        "title": "Why aws overseas",
+        "items": [
+          "Experienced Shipping Team",
+          "Trusted Insurance Partners",
+          "End-to-End Coverage",
+          "Fast Claims Support",
+          "Customer-Focused Service",
+          "Trusted International Service"
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "What does Marine Insurance cover?",
+            "answer": "Loss, theft, and physical damage to your cargo while in transit by sea or air, from pickup to final delivery."
+          },
+          {
+            "question": "Is insurance included with every shipment?",
+            "answer": "No, marine insurance is arranged separately based on your cargo's declared value and route."
+          },
+          {
+            "question": "How do I file a claim?",
+            "answer": "Contact our team with your shipment and policy details, and we'll guide you through documentation and settlement."
+          },
+          {
+            "question": "How do I get a quotation?",
+            "answer": "Submit your shipment details using the Request a Quote form."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Protect Your Next Shipment",
+        "description": "Talk to aws overseas about marine insurance cover for your cargo, arranged alongside your freight booking.",
+        "primaryButton": "Request a Quote",
+        "secondaryButton": "Contact Us"
+      }
     }
   ]
 }

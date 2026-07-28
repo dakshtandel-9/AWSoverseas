@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { NavbarUser } from "@/components/auth/navbar-user";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { ProductsNavItem, ProductsMobileAccordion } from "@/components/layout/products-nav-menu";
+import { ServicesNavItem, ServicesMobileAccordion } from "@/components/layout/services-nav-menu";
 import type { CategoryNode } from "@/lib/category-data";
 
 export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] }) {
@@ -48,6 +49,8 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
             {NAV_LINKS.map((link) =>
               link.href === "/products" ? (
                 <ProductsNavItem key={link.href} tree={categoryTree} isActive={isActive(link.href)} />
+              ) : link.href === "/services" ? (
+                <ServicesNavItem key={link.href} isActive={isActive(link.href)} />
               ) : (
                 <Link
                   key={link.href}
@@ -100,6 +103,12 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
                   <ProductsMobileAccordion
                     key={link.href}
                     tree={categoryTree}
+                    isActive={isActive(link.href)}
+                    onNavigate={() => setMobileOpen(false)}
+                  />
+                ) : link.href === "/services" ? (
+                  <ServicesMobileAccordion
+                    key={link.href}
                     isActive={isActive(link.href)}
                     onNavigate={() => setMobileOpen(false)}
                   />

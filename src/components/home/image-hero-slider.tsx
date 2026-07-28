@@ -16,10 +16,11 @@ export type ImageSlide = {
   badge: string;
   title: string;
   subtitle: string;
-  primaryButton: string;
-  primaryButtonHref: string;
-  secondaryButton: string;
-  secondaryButtonHref: string;
+  /** Omit both to render the slide as a pure statement, with no CTA row. */
+  primaryButton?: string;
+  primaryButtonHref?: string;
+  secondaryButton?: string;
+  secondaryButtonHref?: string;
 };
 
 const AUTOPLAY_MS = 8000;
@@ -196,52 +197,58 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               {slide.subtitle}
             </motion.p>
 
-            {/* CTA row — maroon filled + glass outline, matches Hero */}
-            <motion.div
-              className="mt-9 flex max-w-full flex-wrap items-center gap-3"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.26, ease }}
-            >
-              <Button
-                href={slide.primaryButtonHref}
-                size="lg"
-                variant="secondary"
-                className="h-auto min-h-14 max-w-full whitespace-normal text-center"
+            {/* CTA row — maroon filled + glass outline, matches Hero. Omitted entirely on statement-only slides. */}
+            {(slide.primaryButtonHref || slide.secondaryButtonHref) && (
+              <motion.div
+                className="mt-9 flex max-w-full flex-wrap items-center gap-3"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.26, ease }}
               >
-                {slide.primaryButton} <ArrowRight className="size-4 shrink-0" />
-              </Button>
-              <a
-                href={slide.secondaryButtonHref}
-                className="group inline-flex h-auto min-h-14 max-w-full items-center gap-2 rounded-full px-8 py-3 text-base font-medium transition-all duration-300"
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  color: "rgba(255,255,255,0.92)",
-                  backdropFilter: "blur(12px)",
-                  boxShadow: "0 0 0 0 rgba(144, 45, 57,0)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 0 1px rgba(144, 45, 57,0.4), 0 4px 20px rgba(144, 45, 57,0.15)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(144, 45, 57,0)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                }}
-              >
-                {/* Only the app slide gets the phone icon; other slides link to pages. */}
-                {slide.secondaryButtonHref === "/mobile-app" ? (
-                  <Smartphone className="size-4" />
-                ) : (
-                  <ArrowUpRight className="size-4" />
+                {slide.primaryButtonHref && (
+                  <Button
+                    href={slide.primaryButtonHref}
+                    size="lg"
+                    variant="secondary"
+                    className="h-auto min-h-14 max-w-full whitespace-normal text-center"
+                  >
+                    {slide.primaryButton} <ArrowRight className="size-4 shrink-0" />
+                  </Button>
                 )}
-                {slide.secondaryButton}
-              </a>
-            </motion.div>
+                {slide.secondaryButtonHref && (
+                  <a
+                    href={slide.secondaryButtonHref}
+                    className="group inline-flex h-auto min-h-14 max-w-full items-center gap-2 rounded-full px-8 py-3 text-base font-medium transition-all duration-300"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.18)",
+                      color: "rgba(255,255,255,0.92)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: "0 0 0 0 rgba(144, 45, 57,0)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)";
+                      (e.currentTarget as HTMLElement).style.boxShadow =
+                        "0 0 0 1px rgba(144, 45, 57,0.4), 0 4px 20px rgba(144, 45, 57,0.15)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 rgba(144, 45, 57,0)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    }}
+                  >
+                    {/* Only the app slide gets the phone icon; other slides link to pages. */}
+                    {slide.secondaryButtonHref === "/mobile-app" ? (
+                      <Smartphone className="size-4" />
+                    ) : (
+                      <ArrowUpRight className="size-4" />
+                    )}
+                    {slide.secondaryButton}
+                  </a>
+                )}
+              </motion.div>
+            )}
           </div>
         </AnimatePresence>
       </Container>

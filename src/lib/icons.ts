@@ -43,6 +43,7 @@ export function iconFor(label: string): LucideIcon {
   if (k.includes("import")) return PackageCheck;
   if (k.includes("export")) return PackageOpen;
   if (k.includes("customs")) return ShieldCheck;
+  if (k.includes("insur")) return ShieldCheck;
   if (k.includes("warehous") || k.includes("storage") || k.includes("distribution"))
     return Warehouse;
   if (k.includes("network") || k.includes("global") || k.includes("worldwide"))

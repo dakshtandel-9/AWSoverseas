@@ -1,73 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { FloatingPanel, useCloseTimer } from "@/components/layout/nav-flyout";
 import type { CategoryNode } from "@/lib/category-data";
-
-/** Bridges the mouse gap between a trigger and its (portaled) panel before closing. */
-const CLOSE_DELAY = 150;
-
-function useCloseTimer(close: () => void) {
-  const timer = useRef<number | null>(null);
-
-  const cancel = () => {
-    if (timer.current !== null) {
-      window.clearTimeout(timer.current);
-      timer.current = null;
-    }
-  };
-  const schedule = () => {
-    cancel();
-    timer.current = window.setTimeout(close, CLOSE_DELAY);
-  };
-
-  useEffect(() => cancel, []);
-
-  return { cancel, schedule };
-}
-
-/**
- * The nav header clips overflow (it scrolls horizontally on cramped desktop
- * widths), so a plain `absolute` panel gets cut off. Portal it to <body> and
- * position it from the trigger's live bounding rect instead.
- */
-function FloatingPanel({
-  anchorRect,
-  placement,
-  onMouseEnter,
-  onMouseLeave,
-  children,
-}: {
-  anchorRect: DOMRect;
-  placement: "below" | "right";
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  children: ReactNode;
-}) {
-  if (typeof document === "undefined") return null;
-
-  const style: React.CSSProperties =
-    placement === "below"
-      ? { position: "fixed", top: anchorRect.bottom + 8, left: anchorRect.left, zIndex: 70 }
-      : { position: "fixed", top: anchorRect.top, left: anchorRect.right + 6, zIndex: 70 };
-
-  return createPortal(
-    <div
-      data-products-menu
-      style={style}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      className="overflow-hidden rounded-2xl border border-line bg-white shadow-lg"
-    >
-      {children}
-    </div>,
-    document.body,
-  );
-}
 
 function CategoryRow({
   node,
@@ -207,7 +146,7 @@ export function ProductsNavItem({
     if (!open) return;
     const onClick = (e: MouseEvent) => {
       const target = e.target as Element;
-      if (rootRef.current?.contains(target) || target.closest("[data-products-menu]")) return;
+      if (rootRef.current?.contains(target) || target.closest("[data-nav-flyout]")) return;
       setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
