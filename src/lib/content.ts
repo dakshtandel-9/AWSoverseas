@@ -26,6 +26,7 @@ import disclaimerJson from "@/content/disclaimer.json";
 import referralRewardsJson from "@/content/referralRewards.json";
 import sourcingAgentJson from "@/content/sourcingAgent.json";
 import requestProductJson from "@/content/requestProduct.json";
+import sustainabilityJson from "@/content/sustainability.json";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Content = Record<string, any>;
@@ -49,6 +50,7 @@ export const disclaimer = disclaimerJson as Content;
 export const referralRewards = referralRewardsJson as Content;
 export const sourcingAgent = sourcingAgentJson as Content;
 export const requestProduct = requestProductJson as Content;
+export const sustainability = sustainabilityJson as Content;
 
 /** Build a Next.js Metadata object from a page's `meta` block. */
 export function metaFrom(meta: Content | undefined, path = "/") {

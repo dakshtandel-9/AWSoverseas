@@ -34,6 +34,7 @@ export const FOOTER_NAV = {
     { label: "Products", href: "/products" },
     { label: "Sourcing Partner", href: "/sourcing-agent" },
     { label: "Partner With Us", href: "/partner" },
+    { label: "Sustainability", href: "/sustainability" },
     { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },
     { label: "Request Enquiry", href: "/quote" },

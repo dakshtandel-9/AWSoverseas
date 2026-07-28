@@ -1,0 +1,62 @@
+{
+  "page": "Sustainability",
+  "meta": {
+    "title": "Sustainability & Community Impact | aws overseas",
+    "description": "A share of aws overseas proceeds funds climate action and community-driven initiatives in the regions we source from and ship through — part of what responsible trade means to us."
+  },
+  "hero": {
+    "badge": "Impact Ledger · Responsible Trade",
+    "title": "Every Shipment Carries More Than Cargo",
+    "subtitle": "A share of our proceeds funds climate action and community-driven initiatives in the regions where we source and ship — because moving goods across the world should leave it better than we found it.",
+    "primaryButton": "See How It Works",
+    "secondaryButton": "Contact Us"
+  },
+  "commitment": {
+    "title": "Why We Give Back",
+    "description": "We build our business on two things: the manufacturing communities across India that make what we ship, and the global freight networks that carry it. Both come with a responsibility we take seriously. A share of our proceeds goes back into the places and systems our trade depends on — supporting climate action that addresses the footprint of global shipping, and community-driven initiatives in the manufacturing regions we source from. It's part of how we define responsible trade, not a side project."
+  },
+  "pillars": {
+    "title": "Where the Contribution Goes",
+    "items": [
+      {
+        "title": "Climate Action",
+        "description": "Global freight has a footprint. We put a share of proceeds toward reducing and offsetting the environmental cost of moving goods across borders — from carbon-conscious shipping practices to environmental restoration."
+      },
+      {
+        "title": "Community-Driven Initiatives",
+        "description": "Our supply chain runs through real communities — the manufacturing hubs and production regions across India our suppliers call home. We direct part of our proceeds to community programs in these regions, supporting the people behind what we export."
+      }
+    ]
+  },
+  "process": {
+    "title": "How Proceeds Are Routed",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Every Order Contributes",
+        "description": "A share of proceeds from our sourcing, shipping and export services is set aside as part of standard operations — no separate charge to buyers."
+      },
+      {
+        "step": "02",
+        "title": "Allocated to Two Funds",
+        "description": "Contributions are split between our Climate Action fund and our Community Initiatives fund."
+      },
+      {
+        "step": "03",
+        "title": "Directed to Real Programs",
+        "description": "Funds are deployed to climate and community programs, prioritizing the regions where we source and ship."
+      }
+    ]
+  },
+  "transparency": {
+    "title": "Our Approach to Transparency",
+    "description": "This is an evolving commitment. As our climate and community programs take shape, we'll share updates on what we're supporting and how — reach out if you'd like more detail on a specific initiative, or want to partner with us on one."
+  },
+  "cta": {
+    "badge": "Committed · Ongoing",
+    "title": "Want to Know More — or Partner With Us?",
+    "description": "Whether you're a buyer curious about where a share of your order goes, or an organization working on climate or community programs in India's manufacturing regions, we'd like to hear from you.",
+    "primaryButton": "Contact Us",
+    "secondaryButton": "Read Our Story"
+  }
+}
