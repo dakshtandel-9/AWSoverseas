@@ -41,7 +41,7 @@ export function CategoryForm({
     <div className="mt-8 flex flex-col gap-8">
       {/* Rendered outside the category-save <form>: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#002144]">Category photo</h2>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-[#002144]">Category photo *</h2>
         <p className="mt-1.5 text-sm text-[#5b6b82]">
           Shown on the category card. Cropped to a wide 16:10 frame, so keep the subject centred —
           1200 × 750px or larger looks sharpest.
@@ -49,6 +49,11 @@ export function CategoryForm({
         <div className="mt-5">
           <CategoryImageUploadField value={imageUrl} onUploaded={setImageUrl} />
         </div>
+        {!imageUrl && (
+          <p className="mt-3 text-sm font-medium text-[#5b6b82]">
+            Add a photo to save this category.
+          </p>
+        )}
       </section>
 
       <form action={formAction} className="flex flex-col gap-8">
@@ -129,7 +134,7 @@ export function CategoryForm({
         <div>
           <button
             type="submit"
-            disabled={pending}
+            disabled={pending || !imageUrl}
             className="inline-flex h-12 items-center justify-center rounded-full btn-navy px-8 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {pending ? "Saving…" : category ? "Save changes" : "Create category"}

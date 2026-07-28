@@ -3,9 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageSquareText, ImageOff, ShoppingBag } from "lucide-react";
+import { MessageSquareText, ImageOff } from "lucide-react";
 import { EnquiryModal, type EnquiryAuth } from "@/components/products/enquiry-modal";
-import type { RequestType } from "@/app/actions/product-enquiry";
 import type { PublicProduct } from "@/lib/product-data";
 
 export function ProductCard({
@@ -17,14 +16,13 @@ export function ProductCard({
   index: number;
   auth: EnquiryAuth;
 }) {
-  // null = modal closed; otherwise which flow the modal is showing.
-  const [modalType, setModalType] = useState<RequestType | null>(null);
+  const [open, setOpen] = useState(false);
   // Bumped on each open so the modal remounts with fresh form/submit state —
   // otherwise a prior success screen would linger when reopening.
   const [openCount, setOpenCount] = useState(0);
 
-  function openModal(type: RequestType) {
-    setModalType(type);
+  function openModal() {
+    setOpen(true);
     setOpenCount((n) => n + 1);
   }
 
@@ -58,22 +56,14 @@ export function ProductCard({
             <h3 className="truncate text-base font-bold text-[#002144]">{product.name}</h3>
           </div>
 
-          <div className="mt-auto flex gap-2">
+          <div className="mt-auto">
             <button
               type="button"
-              onClick={() => openModal("enquiry")}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#002144] px-3 py-2.5 text-sm font-semibold text-[#002144] transition-colors duration-200 hover:bg-[#eef3fb]"
+              onClick={openModal}
+              className="inline-flex w-full items-center justify-center gap-1.5 rounded-full btn-navy px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200"
             >
               <MessageSquareText className="size-4" />
               Enquiry
-            </button>
-            <button
-              type="button"
-              onClick={() => openModal("order")}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full btn-navy px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200"
-            >
-              <ShoppingBag className="size-4" />
-              Order
             </button>
           </div>
         </div>
@@ -84,9 +74,8 @@ export function ProductCard({
         productId={product.id}
         productName={product.name}
         auth={auth}
-        requestType={modalType ?? "enquiry"}
-        open={modalType !== null}
-        onClose={() => setModalType(null)}
+        open={open}
+        onClose={() => setOpen(false)}
       />
     </>
   );

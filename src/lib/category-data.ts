@@ -56,6 +56,32 @@ export async function getActiveCategoryBySlug(slug: string): Promise<PublicCateg
   return categories.find((c) => c.slug === slug) ?? null;
 }
 
+export type CategoryNode = PublicCategory & { children: CategoryNode[] };
+
+/**
+ * All active categories as a root-first tree (via `parent_id`), for the header
+ * dropdown — nesting mirrors the DB's arbitrary-depth branch/leaf rule, so a
+ * subcategory with its own children gets its own `children` array too.
+ */
+export async function getCategoryTree(): Promise<CategoryNode[]> {
+  const categories = await getActiveCategories();
+  const byId = new Map<string, CategoryNode>(
+    categories.map((c) => [c.id, { ...c, children: [] }]),
+  );
+
+  const roots: CategoryNode[] = [];
+  for (const category of categories) {
+    const node = byId.get(category.id)!;
+    if (category.parent_id && byId.has(category.parent_id)) {
+      byId.get(category.parent_id)!.children.push(node);
+    } else if (!category.parent_id) {
+      roots.push(node);
+    }
+  }
+
+  return roots;
+}
+
 /**
  * Root-first chain down to `category`, inclusive — the breadcrumb on a category
  * page. Stops if a link is missing (a hidden ancestor), returning what it has.

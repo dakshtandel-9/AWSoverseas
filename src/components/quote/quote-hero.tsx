@@ -67,7 +67,7 @@ export function QuoteHero({ data }: { data: Data }) {
                 color: "transparent",
               }}
             >
-              International Shipping Quote
+              International Shipping Enquiry
             </span>
           </motion.h1>
 

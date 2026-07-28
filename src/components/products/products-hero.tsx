@@ -94,7 +94,7 @@ export function ProductsHero({ data, stats }: { data: Data; stats: Stat[] }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease }}
           >
-            <Button href="/quote" size="lg" variant="secondary">
+            <Button href="/request-product" size="lg" variant="secondary">
               {data.primaryButton} <ArrowRight className="size-4" />
             </Button>
             <a

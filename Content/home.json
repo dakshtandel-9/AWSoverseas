@@ -68,6 +68,32 @@
             { "number": "24/7", "label": "Export Support" }
         ]
     },
+    "warehouse": {
+        "eyebrow": "Warehousing & Distribution",
+        "title": "Many factories in. One shipment out.",
+        "description": "When your order comes from more than one supplier, we hold and manage the inventory in India \u2014 consolidating shipments from multiple factories into one packed, labeled, ready-to-ship load instead of several.",
+        "video": "https://res.cloudinary.com/dwethh3fq/video/upload/v1785242161/awsoversea/hero-slider/warehouse.mp4",
+        "poster": "https://res.cloudinary.com/dwethh3fq/video/upload/so_1/awsoversea/hero-slider/warehouse.jpg",
+        "videoAlt": "Warehouse floor where export orders are received, packed, and staged for shipping",
+        "points": [
+            "Inventory received and held in India, order by order",
+            "Goods checked, packed to export grade, and labeled",
+            "One set of export documents for the whole load"
+        ],
+        "inboundLabel": "Inbound \u2014 separate factory loads",
+        "inbound": [
+            { "name": "Cotton & textile fabric", "code": "HS 5208" },
+            { "name": "Stainless steel utensils", "code": "HS 7323" },
+            { "name": "Leather & casual footwear", "code": "HS 6403" }
+        ],
+        "outboundLabel": "Outbound",
+        "outbound": {
+            "title": "One sealed, export-cleared load",
+            "meta": "1 shipment \u00b7 1 set of documents \u00b7 1 clearance"
+        },
+        "primaryButton": "See warehousing service",
+        "secondaryButton": "Request a warehousing quote"
+    },
     "trustedPartners": {
         "title": "Trusted by Businesses Worldwide",
         "description": "Helping businesses source and export products across multiple industries from verified Indian manufacturers, then move them worldwide with dependable shipping."

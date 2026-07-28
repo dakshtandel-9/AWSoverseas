@@ -37,7 +37,7 @@ export const FOOTER_NAV = {
     { label: "Partner With Us", href: "/partner" },
     { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },
-    { label: "Request a Quote", href: "/quote" },
+    { label: "Request Enquiry", href: "/quote" },
     { label: "Request a Product", href: "/request-product" },
   ],
   Resources: [

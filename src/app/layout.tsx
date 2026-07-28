@@ -10,6 +10,7 @@ import { LanguageProvider } from "@/lib/language/language-context";
 import { home } from "@/lib/content";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getMarketingIntegrations } from "@/lib/marketing-integrations";
+import { getCategoryTree } from "@/lib/category-data";
 import { TrackingScripts } from "@/components/analytics/tracking-scripts";
 
 const inter = Inter({
@@ -72,9 +73,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [settings, integrations] = await Promise.all([
+  const [settings, integrations, categoryTree] = await Promise.all([
     getSiteSettings(),
     getMarketingIntegrations(),
+    getCategoryTree(),
   ]);
 
   return (
@@ -102,7 +104,7 @@ export default async function RootLayout({
           >
             Skip to content
           </a>
-          <ChromeGate navbar={<Navbar />} footer={<Footer />}>
+          <ChromeGate navbar={<Navbar categoryTree={categoryTree} />} footer={<Footer />}>
             <main id="main">{children}</main>
           </ChromeGate>
         </LanguageProvider>

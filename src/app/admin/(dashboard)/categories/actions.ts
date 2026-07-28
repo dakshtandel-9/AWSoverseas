@@ -94,6 +94,9 @@ export async function createCategoryAction(
   if (!fields.name) {
     return { error: "Category name is required." };
   }
+  if (!fields.image_url) {
+    return { error: "Upload a category photo before saving." };
+  }
 
   const db = supabaseAdmin();
   const slug = slugify(fields.name);
@@ -116,6 +119,9 @@ export async function updateCategoryAction(
 
   if (!fields.name) {
     return { error: "Category name is required." };
+  }
+  if (!fields.image_url) {
+    return { error: "Upload a category photo before saving." };
   }
 
   const db = supabaseAdmin();

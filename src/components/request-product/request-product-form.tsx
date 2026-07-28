@@ -24,10 +24,10 @@ type ContactDefaults = { name: string; email: string; phone: string };
 
 /**
  * Standalone product-request form — reuses submitProductEnquiryAction with
- * no product-id, so it lands in product_enquiries as a request_type
- * "enquiry" row with product_id null (same as a catalog enquiry whose
- * product was later deleted). Only product name + one contact method are
- * required; description, image, and quantity are all optional.
+ * no product-id, so it lands in product_enquiries as an enquiry row with
+ * product_id null (same as a catalog enquiry whose product was later
+ * deleted). Only product name + one contact method are required;
+ * description, image, and quantity are all optional.
  */
 export function RequestProductForm({
   data,
@@ -94,8 +94,6 @@ export function RequestProductForm({
             exit={{ opacity: 0 }}
             className="mt-8 grid gap-5 sm:grid-cols-2"
           >
-            <input type="hidden" name="request-type" value="enquiry" />
-
             <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#002144]">
                 Product name <span className="ml-1 text-maroon-admin">*</span>

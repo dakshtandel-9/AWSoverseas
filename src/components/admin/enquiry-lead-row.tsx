@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { markEnquiryReadAction, deleteEnquiryAction } from "@/app/admin/(dashboard)/enquiries/actions";
+import { useState, useTransition } from "react";
+import { ShoppingBag } from "lucide-react";
+import {
+  markEnquiryReadAction,
+  deleteEnquiryAction,
+  moveEnquiryToOrderAction,
+} from "@/app/admin/(dashboard)/enquiries/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 
 type EnquiryLead = {
@@ -23,10 +29,68 @@ function formatDate(iso: string) {
 }
 
 /**
- * Open product enquiry — a lead (possibly from a guest with no account), so
- * there's no pricing/approval flow, just contact details to follow up on.
+ * Two-step so a stray click can't move a lead — the confirm step names the
+ * customer account the order will be attached to, since an enquiry can come
+ * from a guest with no account at all.
  */
-export function EnquiryLeadRow({ item }: { item: EnquiryLead }) {
+function MoveToOrderButton({ id, linkedCustomer }: { id: string; linkedCustomer: string | null }) {
+  const [confirming, setConfirming] = useState(false);
+  const [pending, startTransition] = useTransition();
+
+  if (!confirming) {
+    return (
+      <button
+        type="button"
+        onClick={() => setConfirming(true)}
+        className="inline-flex items-center gap-1.5 rounded-full border border-[#002144] px-3.5 py-1.5 text-xs font-semibold text-[#002144] transition-colors hover:bg-[#eef3fb]"
+      >
+        <ShoppingBag className="size-3.5" />
+        Move to Order
+      </button>
+    );
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 rounded-2xl bg-[#f6f8fc] px-3.5 py-2">
+      <p className="text-xs text-[#5b6b82]">
+        {linkedCustomer
+          ? `Moves to Orders to be priced — ${linkedCustomer} will see it on their profile.`
+          : "Moves to Orders to be priced. No customer account matches this email, so it stays admin-only."}
+      </p>
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          disabled={pending}
+          onClick={() => startTransition(() => moveEnquiryToOrderAction(id))}
+          className="rounded-full btn-navy px-3.5 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
+        >
+          {pending ? "Moving…" : "Move to Order"}
+        </button>
+        <button
+          type="button"
+          disabled={pending}
+          onClick={() => setConfirming(false)}
+          className="text-xs font-semibold text-[#5b6b82] underline-offset-2 hover:underline disabled:opacity-50"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Open product enquiry — a lead (possibly from a guest with no account), so
+ * there's no pricing/approval flow here. The admin reviews it and either
+ * follows up on the contact details or moves it over to Orders to price.
+ */
+export function EnquiryLeadRow({
+  item,
+  linkedCustomer,
+}: {
+  item: EnquiryLead;
+  linkedCustomer: string | null;
+}) {
   return (
     <SubmissionRow
       title={item.full_name || "—"}
@@ -36,6 +100,7 @@ export function EnquiryLeadRow({ item }: { item: EnquiryLead }) {
       createdAt={formatDate(item.created_at)}
       onToggleRead={() => markEnquiryReadAction(item.id, !item.is_read)}
       onDelete={() => deleteEnquiryAction(item.id)}
+      actions={<MoveToOrderButton id={item.id} linkedCustomer={linkedCustomer} />}
       detail={
         <div className="grid gap-2">
           <p>

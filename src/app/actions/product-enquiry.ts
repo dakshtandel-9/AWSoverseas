@@ -5,28 +5,20 @@ import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { uploadEnquiryAttachment } from "@/lib/cloudinary";
 
-export type RequestType = "enquiry" | "order";
-
 export type EnquiryFormState = { success?: boolean; error?: string };
 
+/**
+ * Public submissions are always enquiries — no account needed, and no way to
+ * create an order from here. Orders exist only once an admin moves an enquiry
+ * over on the admin Enquiries page (or places one from the Orders page).
+ */
 export async function submitProductEnquiryAction(
   _prevState: EnquiryFormState,
   formData: FormData,
 ): Promise<EnquiryFormState> {
-  const requestType: RequestType =
-    String(formData.get("request-type") ?? "enquiry") === "order" ? "order" : "enquiry";
-
-  // Orders require a signed-in, approved account; open enquiries don't. The
-  // modal already gates on the client, but never trust it.
+  // Only used to stamp the row with a user id when the visitor happens to be
+  // signed in, so a later order carries through to their profile.
   const account = await getAccount();
-  if (requestType === "order") {
-    if (!account) {
-      return { error: "Please sign in to place an order." };
-    }
-    if (account.profile.status !== "approved") {
-      return { error: "Your account is still being verified — orders unlock once it's approved." };
-    }
-  }
 
   const productId = String(formData.get("product-id") ?? "").trim();
   const productName = String(formData.get("product-name") ?? "").trim();
@@ -61,7 +53,7 @@ export async function submitProductEnquiryAction(
 
   const db = supabaseAdmin();
   const row = {
-    request_type: requestType,
+    request_type: "enquiry",
     product_id: productId || null,
     product_name: productName,
     first_name: name,
@@ -88,12 +80,7 @@ export async function submitProductEnquiryAction(
 
   if (error) {
     console.error("[product-enquiry] insert failed:", error);
-    return {
-      error:
-        requestType === "order"
-          ? "Something went wrong placing your order. Please try again."
-          : "Something went wrong submitting your enquiry. Please try again.",
-    };
+    return { error: "Something went wrong submitting your enquiry. Please try again." };
   }
 
   return { success: true };

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight, Smartphone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 
@@ -233,7 +233,12 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
                   (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                 }}
               >
-                <Smartphone className="size-4" />
+                {/* Only the app slide gets the phone icon; other slides link to pages. */}
+                {slide.secondaryButtonHref === "/mobile-app" ? (
+                  <Smartphone className="size-4" />
+                ) : (
+                  <ArrowUpRight className="size-4" />
+                )}
                 {slide.secondaryButton}
               </a>
             </motion.div>

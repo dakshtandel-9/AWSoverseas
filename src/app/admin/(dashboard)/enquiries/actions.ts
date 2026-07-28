@@ -112,6 +112,54 @@ export async function getOrderContextAction(id: string): Promise<OrderContext | 
   };
 }
 
+/**
+ * Promotes an enquiry to an order — the only path from a customer-submitted
+ * enquiry to the Orders page, so orders are always an admin decision. The row
+ * moves in place (same id, so the attachment and message carry over) and lands
+ * awaiting a quote. If the enquiry isn't tied to an account, a customer with a
+ * matching email is linked so the order shows on their profile.
+ */
+export async function moveEnquiryToOrderAction(id: string) {
+  const db = supabaseAdmin();
+
+  const { data: enquiry } = await db
+    .from("product_enquiries")
+    .select("id, email, user_id, request_type")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (!enquiry || enquiry.request_type === "order") return;
+
+  let userId: string | null = enquiry.user_id ?? null;
+  if (!userId && enquiry.email) {
+    // Profile emails come from Supabase auth (already lowercased); enquiry
+    // emails are typed by hand, so normalise this side to match.
+    const { data: match } = await db
+      .from("user_profiles")
+      .select("id")
+      .eq("email", enquiry.email.trim().toLowerCase())
+      .neq("status", "incomplete")
+      .maybeSingle();
+    userId = match?.id ?? null;
+  }
+
+  await db
+    .from("product_enquiries")
+    .update({
+      request_type: "order",
+      user_id: userId,
+      // The admin has read it to make this call — no unread dot on the new row.
+      is_read: true,
+      quote_status: "awaiting_quote",
+      rejection_reason: "",
+    })
+    .eq("id", id);
+
+  revalidatePath("/admin/enquiries");
+  revalidatePath("/admin/enquiries-open");
+  revalidatePath("/profile");
+}
+
 export async function markEnquiryReadAction(id: string, isRead: boolean) {
   const db = supabaseAdmin();
   await db.from("product_enquiries").update({ is_read: isRead }).eq("id", id);

@@ -3,8 +3,10 @@ import { home, faq, metaFrom } from "@/lib/content";
 import { getActiveProducts } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { ImageHeroSlider } from "@/components/home/image-hero-slider";
+import { ReferralPopup } from "@/components/home/referral-popup";
 import { Certifications } from "@/components/home/certifications";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
+import { WarehouseConsolidation } from "@/components/home/warehouse-consolidation";
 import { ProductsTeaser } from "@/components/home/products-teaser";
 import { GlobalCoverage } from "@/components/home/global-coverage";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -34,6 +36,8 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
       />
+
+      <ReferralPopup loggedIn={Boolean(account)} referralCode={account?.profile.referral_code ?? null} />
 
       {/* <HeroSlider hero={home.hero} exportHero={home.exportHero} /> */}
       <ImageHeroSlider
@@ -84,11 +88,24 @@ export default async function HomePage() {
             secondaryButton: "Talk to an Expert",
             secondaryButtonHref: "/contact",
           },
+          {
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1785242161/awsoversea/hero-slider/warehouse.mp4",
+            imageAlt: "Warehouse floor where export orders are received, packed, and staged for shipping",
+            badge: "Warehousing & Order Consolidation",
+            title: "One Shipment, Not Five",
+            subtitle:
+              "Orders from several suppliers land in our India warehouse, where goods are checked, packed to export grade, labeled, and consolidated into a single shipment — so you clear one load instead of five.",
+            primaryButton: "Request Warehousing Quote",
+            primaryButtonHref: "/quote",
+            secondaryButton: "See Warehousing Service",
+            secondaryButtonHref: "/services/warehousing",
+          },
         ]}
       />
       <WhyChooseUs data={home.whyChooseUs} />
       <ProductsTeaser data={home.products} products={catalog} auth={auth} eyebrow="Catalog" />
       <GlobalCoverage data={home.coverage} />
+      <WarehouseConsolidation data={home.warehouse} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />
       <AppFeatures data={home.mobileApp} eyebrow="Mobile App" />

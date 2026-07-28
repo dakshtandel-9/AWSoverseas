@@ -1,12 +1,11 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, AlertCircle, Check, Clock3, Paperclip, ShieldAlert, UserRound, X } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, Paperclip, X } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { submitProductEnquiryAction, type EnquiryFormState, type RequestType } from "@/app/actions/product-enquiry";
+import { submitProductEnquiryAction, type EnquiryFormState } from "@/app/actions/product-enquiry";
 import { trackLead } from "@/lib/track-lead";
 
 const inputClasses =
@@ -14,7 +13,10 @@ const inputClasses =
 
 const initialState: EnquiryFormState = {};
 
-/** Auth snapshot computed server-side on the products page. */
+/**
+ * Auth snapshot computed server-side on the products page. Enquiries are open
+ * to everyone, so this only prefills the form — it never gates it.
+ */
 export type EnquiryAuth = {
   state: "guest" | "setup" | "pending" | "rejected" | "approved";
   firstName?: string;
@@ -23,100 +25,23 @@ export type EnquiryAuth = {
   phone?: string;
 };
 
-/**
- * Sign-in / verification prompt shown in the modal body instead of the form.
- * Only reached for the "order" flow — open enquiries never gate.
- */
-function GateNotice({ auth }: { auth: EnquiryAuth }) {
-  const content = {
-    guest: {
-      icon: UserRound,
-      iconClasses: "bg-[#eef3fb] text-[#002144]",
-      title: "Sign in to place an order",
-      body: "Orders are available to registered customers — sign in with your email to continue.",
-      cta: { href: "/login?next=/products", label: "Sign in" },
-    },
-    setup: {
-      icon: UserRound,
-      iconClasses: "bg-[#eef3fb] text-[#002144]",
-      title: "Complete your profile",
-      body: "Finish your account details and verification first — it only takes a couple of minutes.",
-      cta: { href: "/profile/setup", label: "Complete profile" },
-    },
-    pending: {
-      icon: Clock3,
-      iconClasses: "bg-amber-50 text-amber-500",
-      title: "Verification pending",
-      body: "Our team is reviewing your account. Ordering unlocks as soon as you're approved.",
-      cta: { href: "/profile", label: "View your profile" },
-    },
-    rejected: {
-      icon: ShieldAlert,
-      iconClasses: "bg-red-50 text-red-500",
-      title: "Verification declined",
-      body: "We couldn't verify your details. Update your passport information and resubmit for review.",
-      cta: { href: "/profile/setup", label: "Update details" },
-    },
-  }[auth.state as Exclude<EnquiryAuth["state"], "approved">];
-
-  const Icon = content.icon;
-
-  return (
-    <div className="flex flex-col items-center gap-4 overflow-y-auto px-8 py-12 text-center">
-      <span className={cn("grid size-12 shrink-0 place-items-center rounded-full", content.iconClasses)}>
-        <Icon className="size-6" />
-      </span>
-      <div>
-        <p className="text-base font-bold text-[#002144]">{content.title}</p>
-        <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">{content.body}</p>
-      </div>
-      <Link
-        href={content.cta.href}
-        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white transition-colors"
-      >
-        {content.cta.label}
-        <ArrowRight className="size-4" />
-      </Link>
-    </div>
-  );
-}
-
 export function EnquiryModal({
   productId,
   productName,
   auth,
   open,
   onClose,
-  requestType = "enquiry",
 }: {
   productId: string;
   productName: string;
   auth: EnquiryAuth;
   open: boolean;
   onClose: () => void;
-  requestType?: RequestType;
 }) {
   const [state, formAction, pending] = useActionState(submitProductEnquiryAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const [attachmentName, setAttachmentName] = useState("");
   const done = Boolean(state.success);
-
-  const isOrder = requestType === "order";
-  // Orders gate on account state; open enquiries never gate.
-  const gated = isOrder && auth.state !== "approved";
-  const copy = isOrder
-    ? {
-        eyebrow: "Place an Order",
-        successVerb: "order",
-        button: "Place order",
-        buttonPending: "Placing…",
-      }
-    : {
-        eyebrow: "Product Enquiry",
-        successVerb: "enquiry",
-        button: "Send enquiry",
-        buttonPending: "Sending…",
-      };
 
   useEffect(() => {
     if (state.success) trackLead();
@@ -163,7 +88,7 @@ export function EnquiryModal({
             <div className="flex shrink-0 items-center justify-between border-b border-[#e4e9f2] bg-[#f6f8fc] px-6 py-5">
               <div className="min-w-0">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-                  {copy.eyebrow}
+                  Product Enquiry
                 </p>
                 <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#002144]">
                   {productName}
@@ -180,9 +105,7 @@ export function EnquiryModal({
             </div>
 
             <AnimatePresence mode="wait">
-              {gated ? (
-                <GateNotice auth={auth} />
-              ) : done ? (
+              {done ? (
                 <motion.div
                   key="success"
                   initial={{ opacity: 0, y: 8 }}
@@ -193,8 +116,8 @@ export function EnquiryModal({
                     <Check className="size-6" />
                   </span>
                   <p className="max-w-xs text-sm font-medium leading-relaxed text-maroon-admin">
-                    Thanks — we&rsquo;ve received your {copy.successVerb} about {productName} and will get back
-                    to you shortly.
+                    Thanks — we&rsquo;ve received your enquiry about {productName} and will get back to you
+                    shortly.
                   </p>
                   <button
                     type="button"
@@ -214,7 +137,6 @@ export function EnquiryModal({
                   exit={{ opacity: 0 }}
                   className="flex flex-col gap-4 overflow-y-auto px-6 py-6"
                 >
-                  <input type="hidden" name="request-type" value={requestType} />
                   <input type="hidden" name="product-id" value={productId} />
                   <input type="hidden" name="product-name" value={productName} />
 
@@ -307,7 +229,7 @@ export function EnquiryModal({
                     disabled={pending}
                     className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
-                    {pending ? copy.buttonPending : copy.button}
+                    {pending ? "Sending…" : "Send enquiry"}
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
 

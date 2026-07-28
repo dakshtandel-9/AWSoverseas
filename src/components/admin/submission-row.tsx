@@ -12,6 +12,7 @@ export function SubmissionRow({
   isRead,
   createdAt,
   detail,
+  actions,
   onToggleRead,
   onDelete,
 }: {
@@ -22,6 +23,8 @@ export function SubmissionRow({
   isRead: boolean;
   createdAt: string;
   detail: React.ReactNode;
+  /** Extra controls shown alongside Mark as read / Delete. */
+  actions?: React.ReactNode;
   onToggleRead: () => Promise<void>;
   onDelete: () => Promise<void>;
 }) {
@@ -51,7 +54,7 @@ export function SubmissionRow({
       {open && (
         <div className="border-t border-[#e4e9f2] px-5 py-4">
           <div className="text-sm leading-relaxed text-[#002144]">{detail}</div>
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <button
               type="button"
               disabled={pending}
@@ -70,6 +73,7 @@ export function SubmissionRow({
               <Trash2 className="size-3.5" />
               Delete
             </button>
+            {actions}
           </div>
         </div>
       )}
