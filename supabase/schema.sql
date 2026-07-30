@@ -147,14 +147,6 @@ create table if not exists categories (
 alter table categories
   add column if not exists parent_id uuid references categories(id) on delete cascade;
 
--- Copy for the "About Our <category>" block on the category page. `about_body`
--- holds paragraphs separated by a blank line; `about_image_url` falls back to
--- `image_url` when empty.
-alter table categories add column if not exists badge text not null default '';
-alter table categories add column if not exists about_body text not null default '';
-alter table categories add column if not exists about_image_url text not null default '';
-alter table categories add column if not exists about_caption text not null default '';
-
 create index if not exists categories_active_idx on categories (is_active, sort_order, created_at desc);
 
 create index if not exists categories_parent_idx on categories (parent_id, sort_order, created_at desc);

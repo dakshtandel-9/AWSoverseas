@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
 import type { PublicCategory } from "@/lib/category-data";
 
-/** Paragraphs are authored as one textarea, split on blank lines. */
+/** A description typed as several paragraphs still renders as several. */
 function paragraphsOf(body: string): string[] {
   return body
     .split(/\n\s*\n/)
@@ -14,10 +14,19 @@ function paragraphsOf(body: string): string[] {
 }
 
 /**
- * The "About Our <category>" block: centred badge and heading, then prose on
- * one side and a captioned photo on the other. Consecutive blocks on the same
- * page flip `imageSide`, so a page listing several categories reads as an
- * alternating column rather than a stack of identical rows.
+ * Whether there is anything to say. A category saved without a description
+ * would otherwise render a heading beside an empty column, so callers use this
+ * to leave the block out entirely.
+ */
+export function hasAboutContent(category: PublicCategory): boolean {
+  return paragraphsOf(category.description).length > 0;
+}
+
+/**
+ * The "About <product>" block: a name pill, a centred heading, then the
+ * description on one side and the photo on the other. Consecutive blocks on the
+ * same page flip `imageSide`, so a category page listing several products reads
+ * as an alternating column rather than a stack of identical rows.
  *
  * Bare on purpose — the caller owns the surrounding <Section>, so the block can
  * sit alone or directly above a product grid without doubling up on padding.
@@ -25,23 +34,21 @@ function paragraphsOf(body: string): string[] {
 export function CategoryAbout({
   category,
   imageSide = "right",
-  headingPrefix = "About Our",
+  headingPrefix = "About",
 }: {
   category: PublicCategory;
   imageSide?: "left" | "right";
   headingPrefix?: string;
 }) {
-  const paragraphs = paragraphsOf(category.about_body);
-  const image = category.about_image_url || category.image_url;
+  const paragraphs = paragraphsOf(category.description);
+  if (paragraphs.length === 0) return null;
 
   return (
     <div>
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-        {category.badge && (
-          <Reveal direction="up">
-            <Badge>{category.badge}</Badge>
-          </Reveal>
-        )}
+        <Reveal direction="up">
+          <Badge>{category.name}</Badge>
+        </Reveal>
         <Reveal direction="up" delay={0.05}>
           <h2 className="text-balance text-3xl font-bold text-ink sm:text-4xl lg:text-[2.75rem]">
             {headingPrefix} {category.name}
@@ -56,17 +63,11 @@ export function CategoryAbout({
           delay={0.1}
           className={cn("flex flex-col gap-5", imageSide === "left" ? "lg:order-2" : "lg:order-1")}
         >
-          {paragraphs.length > 0 ? (
-            paragraphs.map((paragraph, i) => (
-              <p key={i} className="text-pretty text-base leading-relaxed text-muted">
-                {paragraph}
-              </p>
-            ))
-          ) : (
-            <p className="text-pretty text-base leading-relaxed text-muted">
-              {category.description}
+          {paragraphs.map((paragraph, i) => (
+            <p key={i} className="text-pretty text-base leading-relaxed text-muted">
+              {paragraph}
             </p>
-          )}
+          ))}
         </Reveal>
 
         <Reveal
@@ -77,9 +78,9 @@ export function CategoryAbout({
             imageSide === "left" ? "lg:order-1" : "lg:order-2",
           )}
         >
-          {image ? (
+          {category.image_url ? (
             <Image
-              src={image}
+              src={category.image_url}
               alt={category.name}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -89,18 +90,6 @@ export function CategoryAbout({
             <div className="flex h-full w-full items-center justify-center text-[#94a3b8]">
               <ImageOff className="size-8" />
             </div>
-          )}
-
-          {category.about_caption && (
-            <>
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent"
-                aria-hidden
-              />
-              <p className="absolute bottom-5 start-6 text-lg font-bold text-white drop-shadow-sm">
-                {category.about_caption}
-              </p>
-            </>
           )}
         </Reveal>
       </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronRight, FolderTree, Package, Pencil, Plus } from "lucide-react";
+import { ChevronRight, Package, Pencil, Plus } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
@@ -30,7 +30,7 @@ export default async function AdminCategoryDetailPage({
   if (!category) notFound();
 
   const db = supabaseAdmin();
-  const [subcategories, trail, { data: productRows }] = await Promise.all([
+  const [products, trail, { data: subproductRows }] = await Promise.all([
     listAdminCategories(id),
     getAdminTrail(id),
     db
@@ -41,12 +41,11 @@ export default async function AdminCategoryDetailPage({
       .order("created_at", { ascending: false }),
   ]);
 
-  const products = (productRows ?? []).map((p) => ({ ...p, categoryName: category.name }));
+  const subproducts = (subproductRows ?? []).map((p) => ({ ...p, categoryName: category.name }));
 
-  // Branch or leaf: whichever it already holds is the only thing it can take
-  // more of. An empty category can still become either.
-  const isBranch = subcategories.length > 0;
-  const isLeaf = products.length > 0;
+  // Two levels, decided by where this row sits: a top-level row is a category
+  // and holds products; anything nested is a product and holds subproducts.
+  const isCategory = category.parent_id === null;
 
   return (
     <div>
@@ -72,11 +71,9 @@ export default async function AdminCategoryDetailPage({
         <div>
           <h1 className="text-2xl font-bold text-[#1A0A53] sm:text-3xl">{category.name}</h1>
           <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
-            {isBranch
-              ? "This category holds subcategories, so products go inside those — not here."
-              : isLeaf
-                ? "This category holds products directly, so it can't also contain subcategories."
-                : "Empty. Add subcategories to group things further, or add products directly — whichever you add first is what this category holds from now on."}
+            {isCategory
+              ? "Add a product for each group you want on this category's page. Each one gets its own photo, description, and row of subproducts — all on the same page, no extra page per product."
+              : "Add the individual items customers can enquire on. They show as a grid under this product's description."}
           </p>
         </div>
 
@@ -86,54 +83,59 @@ export default async function AdminCategoryDetailPage({
             className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]"
           >
             <Pencil className="size-4" />
-            Edit category
+            {isCategory ? "Edit category" : "Edit product"}
           </Link>
 
-          {!isLeaf && (
+          {isCategory ? (
             <Link
               href={`/admin/categories/new?parent=${category.id}`}
               className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
             >
               <Plus className="size-4" />
-              New subcategory
+              New product
             </Link>
-          )}
-
-          {!isBranch && (
+          ) : (
             <Link
               href={`/admin/products/new?category=${category.id}`}
               className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
             >
               <Plus className="size-4" />
-              New product
+              New subproduct
             </Link>
           )}
         </div>
       </div>
 
-      {isBranch || !isLeaf ? (
-        <section className="mt-10">
-          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
-            <FolderTree className="size-4" />
-            Subcategories
-          </h2>
-          <div className="mt-5">
-            <CategoryListGrid categories={subcategories} />
-          </div>
-        </section>
-      ) : null}
+      <section className="mt-10">
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
+          <Package className="size-4" />
+          {isCategory ? "Products" : "Subproducts"}
+        </h2>
+        <div className="mt-5">
+          {isCategory ? (
+            <CategoryListGrid categories={products} />
+          ) : (
+            <ProductListGrid products={subproducts} />
+          )}
+        </div>
+      </section>
 
-      {isLeaf || !isBranch ? (
-        <section className="mt-10">
-          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
-            <Package className="size-4" />
-            Products
+      {/* Subproducts hanging straight off a category predate the two-level
+          split. Surfaced here so they can't go missing. */}
+      {isCategory && subproducts.length > 0 && (
+        <section className="mt-12">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
+            Filed directly in this category
           </h2>
+          <p className="mt-1.5 max-w-2xl text-sm text-[#5b6b82]">
+            These sit in the category itself rather than inside one of its products. They still show
+            on the site, below the products above. Edit one to move it into a product.
+          </p>
           <div className="mt-5">
-            <ProductListGrid products={products} />
+            <ProductListGrid products={subproducts} />
           </div>
         </section>
-      ) : null}
+      )}
     </div>
   );
 }

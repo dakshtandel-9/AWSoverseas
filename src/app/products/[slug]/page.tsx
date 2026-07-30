@@ -10,7 +10,7 @@ import { getActiveProductsByCategory } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { Section } from "@/components/ui/section";
 import { CategoryHero } from "@/components/products/category-hero";
-import { CategoryAbout } from "@/components/products/category-about";
+import { CategoryAbout, hasAboutContent } from "@/components/products/category-about";
 import { CategoryGrid } from "@/components/products/category-grid";
 import { CategorySection } from "@/components/products/category-section";
 import { ProductGrid } from "@/components/products/product-grid";
@@ -97,10 +97,6 @@ export default async function CategoryDetailPage({
         trail={ancestors}
         countLabel={isBranch ? "SUBCATEGORIES" : "LISTED"}
       />
-
-      <Section spacing="lg" tone="default">
-        <CategoryAbout category={category} imageSide="right" />
-      </Section>
 
       {linked.length > 0 && (
         <CategoryGrid

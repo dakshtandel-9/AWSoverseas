@@ -29,9 +29,9 @@ export function ProductForm({
   defaultCategoryId,
 }: {
   product?: ProductRecord;
-  /** Leaf categories only — ones that hold subcategories can't take products. */
+  /** The products a subproduct can be filed under, deepest level only. */
   categories: CategoryOption[];
-  /** Preselected when arriving from "New product" inside a category. */
+  /** Preselected when arriving from "New subproduct" inside a product. */
   defaultCategoryId?: string;
 }) {
   const action = product ? updateProductAction.bind(null, product.id) : createProductAction;
@@ -43,10 +43,10 @@ export function ProductForm({
       {/* Rendered outside the product-save <form>: independent server action, no nested forms. */}
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
         <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
-          Product photo (optional)
+          Subproduct photo (optional)
         </h2>
         <p className="mt-1.5 text-sm text-[#5b6b82]">
-          Shown on the product card. Leave it empty and the card uses the category photo instead.
+          Shown on the subproduct card. Leave it empty and the card uses its product's photo instead.
           Cropped to a square, so keep the subject centred — 1200 × 1200px or larger looks sharpest.
         </p>
         <div className="mt-5">
@@ -58,20 +58,20 @@ export function ProductForm({
         <input type="hidden" name="image_url" value={imageUrl} />
 
         <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">Product details</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">Subproduct details</h2>
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#1A0A53]">Name *</label>
               <input name="name" required defaultValue={product?.name ??""} className={inputClasses} />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">Category</label>
+              <label className="text-sm font-semibold text-[#1A0A53]">Sits inside</label>
               <select
                 name="category_id"
                 defaultValue={product?.category_id ?? defaultCategoryId ?? ""}
                 className={inputClasses}
               >
-                <option value="">No category</option>
+                <option value="">Not filed yet</option>
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}

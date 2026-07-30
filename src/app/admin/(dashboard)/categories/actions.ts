@@ -51,10 +51,6 @@ function readCategoryFields(formData: FormData) {
     parent_id: parentId || null,
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
     is_active: formData.get("is_active") === "true",
-    badge: String(formData.get("badge") ?? "").trim(),
-    about_body: String(formData.get("about_body") ?? "").trim(),
-    about_image_url: String(formData.get("about_image_url") ?? "").trim(),
-    about_caption: String(formData.get("about_caption") ?? "").trim(),
   };
 }
 
@@ -67,12 +63,12 @@ function messageForCategoryError(error: { code?: string; message?: string }) {
     return "A category with that name already exists.";
   }
   if (error.message?.includes("parent_has_products")) {
-    return "That category already holds products, so it can't contain subcategories. Move its products into a subcategory first.";
+    return "This category has subproducts filed directly in it, so it can't also hold products. Move those subproducts into a product first — open the category and edit each one under “Filed directly in this category”.";
   }
   if (error.message?.includes("category_cycle")) {
-    return "A category can't be placed inside itself or one of its own subcategories.";
+    return "A category can't be placed inside itself.";
   }
-  return "Couldn't save the category.";
+  return "Couldn't save.";
 }
 
 /** Where to land after saving: the list the category actually lives in. */

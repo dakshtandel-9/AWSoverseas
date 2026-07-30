@@ -8,10 +8,14 @@ import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { SocialIcon, type SocialName } from "@/components/ui/social-icon";
 
 const SOCIALS: { name: SocialName; label: string; href: string }[] = [
-  { name: "linkedin", label: "LinkedIn", href: "#" },
-  { name: "twitter", label: "Twitter", href: "#" },
-  { name: "facebook", label: "Facebook", href: "#" },
-  { name: "instagram", label: "Instagram", href: "#" },
+  { name: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/awsoverseas/" },
+  { name: "twitter", label: "Twitter", href: "https://x.com/AWSOVERSEAS" },
+  {
+    name: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/people/Awsoverseas/61592449029516/",
+  },
+  { name: "instagram", label: "Instagram", href: "https://www.instagram.com/awsoverseas/" },
 ];
 
 const FOOTER_SERVICES = [
@@ -147,6 +151,8 @@ export async function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="grid size-10 place-items-center rounded-full bg-ink/5 text-ink/80 ring-1 ring-ink/10 transition-colors hover:bg-accent-500 hover:text-white"
               >
                 <SocialIcon name={name} className="size-4" />

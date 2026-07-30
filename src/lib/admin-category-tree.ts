@@ -26,18 +26,6 @@ export type AdminCategory = {
 };
 
 /**
- * A category holds subcategories or products, never both — so which one it
- * already has decides what an admin is still allowed to add to it.
- */
-export type CategoryKind = "empty" | "branch" | "leaf";
-
-export function kindOf(row: { childCount: number; productCount: number }): CategoryKind {
-  if (row.childCount > 0) return "branch";
-  if (row.productCount > 0) return "leaf";
-  return "empty";
-}
-
-/**
  * Children of `parentId` (or the top level when null), each with the counts the
  * list needs to show what it holds and what can still be added to it.
  */
@@ -98,66 +86,6 @@ export async function getAdminTrail(id: string): Promise<AdminCategory[]> {
   }
 
   return trail;
-}
-
-/** Whether this category can still take products directly (leaf or untouched). */
-export async function acceptsProducts(id: string): Promise<boolean> {
-  const db = supabaseAdmin();
-  const { count } = await db
-    .from("categories")
-    .select("id", { count: "exact", head: true })
-    .eq("parent_id", id);
-  return (count ?? 0) === 0;
-}
-
-/**
- * Categories that may be chosen as a parent: anything not already holding
- * products. When editing, `excludeId` and its descendants drop out — a category
- * can't be moved inside itself.
- */
-export async function listParentOptions(excludeId?: string): Promise<{ id: string; name: string }[]> {
-  const db = supabaseAdmin();
-  const [{ data }, { data: productRows }] = await Promise.all([
-    db
-      .from("categories")
-      .select("id, name, parent_id, sort_order")
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: false }),
-    db.from("products").select("category_id").not("category_id", "is", null),
-  ]);
-
-  const rows = data ?? [];
-  const byId = new Map(rows.map((r) => [r.id, r]));
-  const holdsProducts = new Set((productRows ?? []).map((p) => p.category_id as string));
-
-  const isDescendantOfExcluded = (id: string) => {
-    if (!excludeId) return false;
-    let cursor: string | null = id;
-    let hops = 0;
-    while (cursor && hops < 100) {
-      if (cursor === excludeId) return true;
-      cursor = byId.get(cursor)?.parent_id ?? null;
-      hops += 1;
-    }
-    return false;
-  };
-
-  const pathOf = (id: string) => {
-    const parts: string[] = [];
-    let cursor: string | null = id;
-    while (cursor && parts.length < 100) {
-      const row = byId.get(cursor);
-      if (!row) break;
-      parts.unshift(row.name);
-      cursor = row.parent_id;
-    }
-    return parts.join(" → ");
-  };
-
-  return rows
-    .filter((r) => !holdsProducts.has(r.id) && !isDescendantOfExcluded(r.id))
-    .map((r) => ({ id: r.id, name: pathOf(r.id) }))
-    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**

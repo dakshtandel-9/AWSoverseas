@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/section";
-import { CategoryAbout } from "@/components/products/category-about";
+import { Reveal } from "@/components/ui/reveal";
+import { CategoryAbout, hasAboutContent } from "@/components/products/category-about";
 import { ProductCardGrid } from "@/components/products/product-card-grid";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 import type { CategoryBranch } from "@/lib/catalog-tree";
@@ -23,10 +24,19 @@ export function CategorySection({
   index: number;
 }) {
   const flipped = index % 2 === 1;
+  const showAbout = hasAboutContent(branch);
 
   return (
     <Section spacing="lg" tone={flipped ? "default" : "soft"}>
-      <CategoryAbout category={branch} imageSide={flipped ? "left" : "right"} />
+      {showAbout ? (
+        <CategoryAbout category={branch} imageSide={flipped ? "left" : "right"} />
+      ) : (
+        // No description written yet — the grid still needs naming.
+        <Reveal direction="up" className="mx-auto max-w-2xl text-center">
+          <h2 className="text-balance text-3xl font-bold text-ink sm:text-4xl">{branch.name}</h2>
+        </Reveal>
+      )}
+
       <div className="mt-14">
         <ProductCardGrid products={branch.products} auth={auth} />
       </div>

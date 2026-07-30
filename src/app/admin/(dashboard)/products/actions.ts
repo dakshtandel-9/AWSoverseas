@@ -61,7 +61,7 @@ function revalidateProducts() {
  */
 function messageForProductError(error: { message?: string }, fallback: string) {
   if (error.message?.includes("category_has_subcategories")) {
-    return "That category holds subcategories, so products can't sit in it directly. Pick one of its subcategories instead.";
+    return "That category already holds products, so a subproduct can't sit in it directly. Pick one of its products instead.";
   }
   return fallback;
 }
