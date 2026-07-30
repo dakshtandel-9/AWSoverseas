@@ -100,7 +100,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
 
   return (
     <section
-      className="relative min-h-[100svh] h-auto lg:h-[100svh] w-full overflow-hidden bg-[#1e3a5f]"
+      className="relative w-full overflow-hidden bg-[#1e3a5f]"
       aria-roledescription="carousel"
       aria-label="Highlights"
       onMouseEnter={() => setPaused(true)}
@@ -159,7 +159,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
         </motion.div>
       </AnimatePresence>
 
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-28 sm:pb-16 sm:pt-32 lg:h-[100svh] lg:justify-start lg:pt-40 xl:pt-44">
+      <Container className="relative flex min-h-[680px] flex-col justify-center pb-20 pt-32 sm:min-h-[720px] sm:pt-36 lg:min-h-[780px]">
         <AnimatePresence mode="wait">
           <div key={index} className="w-full max-w-[600px]">
             {/* Eyebrow */}

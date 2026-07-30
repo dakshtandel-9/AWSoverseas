@@ -2,7 +2,7 @@
 import { individualService } from "@/lib/content";
 
 export const SITE = {
-  name: "aws overseas",
+  name: "aws overseas impex",
   tagline: "Global Shipping Beyond Borders",
   url: "https://awsoverseas.com",
 };

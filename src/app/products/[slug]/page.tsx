@@ -30,7 +30,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = await getActiveCategoryBySlug(slug);
-  const title = category ? `${category.name} | aws overseas` : "Category | aws overseas";
+  const title = category ? `${category.name} | aws overseas impex` : "Category | aws overseas impex";
   const description = category?.description || productsContent.meta?.description;
   return {
     title,

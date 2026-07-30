@@ -28,7 +28,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
       <Reveal direction="up">
         <div className="relative max-w-2xl">
           <h2 className="text-3xl font-bold text-[#1A0A53] sm:text-4xl lg:text-[2.5rem]">
-            {data.title} <span style={{ fontSize: "10px" }} className="align-baseline font-normal text-[#5b6b82]">impex</span>
+            {data.title}
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
             Trusted by businesses worldwide for reliable, secure, and transparent shipping solutions.

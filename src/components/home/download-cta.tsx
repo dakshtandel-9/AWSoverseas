@@ -19,7 +19,7 @@ const FLOATING_CARDS = [
 ];
 
 export function DownloadCTA({ data }: { data: Data }) {
-  const titleParts = data.title.split(/(aws overseas)/i);
+  const titleParts = data.title.split(/(aws overseas impex)/i);
 
   return (
     <Section spacing="lg">
@@ -61,7 +61,7 @@ export function DownloadCTA({ data }: { data: Data }) {
               {/* Heading */}
               <h2 className="mt-6 text-balance text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-[3.25rem]">
                 {titleParts.map((part, i) =>
-                  /aws overseas/i.test(part) ? (
+                  /aws overseas impex/i.test(part) ? (
                     <span
                       key={i}
                       style={{

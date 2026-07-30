@@ -40,7 +40,7 @@ const NEWSLETTER = {
   description: "Supplier sourcing guides, export tips and shipping updates — straight to your inbox.",
   placeholder: "Enter your email address",
   buttonText: "Subscribe",
-  successMessage: "Thank you for subscribing to the aws overseas newsletter!",
+  successMessage: "Thank you for subscribing to the aws overseas impex newsletter!",
   privacyText: "We respect your privacy. Your email will never be shared with third parties.",
 };
 
@@ -79,7 +79,7 @@ export async function Footer() {
               <span className="pb-1 text-[8.75px] font-medium tracking-wide text-ink/60">impex</span>
             </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
-              aws overseas is your trusted partner for product sourcing, supplier verification,
+              aws overseas impex is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>

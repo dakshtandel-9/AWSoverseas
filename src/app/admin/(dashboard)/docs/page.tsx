@@ -15,7 +15,7 @@ import {
 import { DocsToc, type DocSection } from "@/components/admin/docs-toc";
 import { DocSection as Section, Callout, StepList, FieldTable, Badge, Kbd } from "@/components/admin/docs-kit";
 
-export const metadata: Metadata = { title: "Documentation | Admin | aws overseas", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Documentation | Admin | aws overseas impex", robots: { index: false, follow: false } };
 
 const SECTIONS: DocSection[] = [
   { id: "overview", label: "Overview" },
@@ -41,7 +41,7 @@ export default function AdminDocsPage() {
       <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Documentation</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
         Everything this admin panel does and how to run it day to day — written for whoever is operating
-        aws overseas, not for a developer. Every page in the sidebar has a matching section below.
+        aws overseas impex, not for a developer. Every page in the sidebar has a matching section below.
       </p>
 
       <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
@@ -54,7 +54,7 @@ export default function AdminDocsPage() {
             id="overview"
             eyebrow="Start here"
             title="What this panel is for"
-            intro="This is the control room for the aws overseas website. Everything a visitor sees or submits on the public site — the product catalog, contact details, quote and enquiry forms — is managed from here. Nothing on the public site is hardcoded; it all reads from what's entered in this panel."
+            intro="This is the control room for the aws overseas impex website. Everything a visitor sees or submits on the public site — the product catalog, contact details, quote and enquiry forms — is managed from here. Nothing on the public site is hardcoded; it all reads from what's entered in this panel."
           >
             <div className="grid gap-4 sm:grid-cols-2">
               {[

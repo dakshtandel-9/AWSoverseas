@@ -24,7 +24,7 @@ import { ActivityList, type ActivityItem } from "@/components/account/activity-l
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your profile — aws overseas",
+  title: "Your profile — aws overseas impex",
   robots: { index: false },
 };
 

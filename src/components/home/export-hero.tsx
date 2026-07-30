@@ -216,7 +216,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <div className="relative min-h-[100svh] h-auto lg:h-[100svh] overflow-hidden bg-[#CFE8FF]">
+    <div className="relative overflow-hidden bg-[#CFE8FF]">
       <div className="absolute inset-0" aria-hidden>
         <DotField
           dotRadius={4}
@@ -238,7 +238,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
         />
       </div>
 
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
+      <Container className="relative flex min-h-[680px] flex-col justify-center pb-20 pt-32 sm:min-h-[720px] sm:pt-36 lg:min-h-[780px] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         <div className="max-w-[600px]">
           <motion.div
             className="inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-maroon-admin sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"

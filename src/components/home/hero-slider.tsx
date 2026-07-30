@@ -73,7 +73,7 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
 
   return (
     <section
-      className="relative min-h-[100svh] h-auto overflow-x-hidden lg:overflow-hidden bg-[#CFE8FF]"
+      className="relative grid overflow-x-hidden bg-[#CFE8FF]"
       aria-roledescription="carousel"
       aria-label="Featured highlights"
       onMouseEnter={() => setPaused(true)}
@@ -85,14 +85,14 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
     >
       {/* Slides crossfade in place (mode="sync", both layers stacked) so the shared
           dark background is never left uncovered between an exit and the next enter.
-          Below lg the stacked hero content can exceed one viewport, so slides sit in
-          normal flow (relative) instead of being pinned edge-to-edge (absolute inset-0),
-          which would clip anything past the section's own height. */}
+          Both slides sit in the same grid cell rather than being pinned with
+          absolute inset-0: stacked for the crossfade, but the section still sizes
+          to the tallest slide, so a short viewport scrolls instead of clipping. */}
       <AnimatePresence initial={false}>
         {index === 0 && (
           <motion.div
             key="hero-export"
-            className="relative lg:absolute lg:inset-0"
+            className="col-start-1 row-start-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -106,7 +106,7 @@ export function HeroSlider({ hero, exportHero }: { hero: HeroData; exportHero: E
         {index === 1 && (
           <motion.div
             key="hero-main"
-            className="relative lg:absolute lg:inset-0"
+            className="col-start-1 row-start-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

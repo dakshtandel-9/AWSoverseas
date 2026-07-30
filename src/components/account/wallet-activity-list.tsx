@@ -9,7 +9,7 @@ function formatDate(iso: string) {
 /** Where the money came from or went, in the customer's own terms. */
 function sourceLine(tx: WalletTransaction) {
   if (tx.source_type === "adjustment") {
-    return tx.amount < 0 ? "Deducted by aws overseas" : "Added by aws overseas";
+    return tx.amount < 0 ? "Deducted by aws overseas impex" : "Added by aws overseas impex";
   }
   if (tx.source_type === "signup") return "Credited when you created your account";
   if (tx.referredName) return `From ${tx.referredName}'s ${tx.source_type}`;

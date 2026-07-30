@@ -250,7 +250,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
   const line2 = words.slice(mid).join(" ");
 
   return (
-    <div className="relative min-h-[100svh] h-auto lg:h-[100svh] overflow-hidden bg-[#CFE8FF]">
+    <div className="relative overflow-hidden bg-[#CFE8FF]">
       {/* Interactive dot field */}
       <div className="absolute inset-0" aria-hidden>
         <DotField
@@ -273,7 +273,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
         />
       </div>
 
-      <Container className="relative flex min-h-[100svh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-28 lg:h-[100svh] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
+      <Container className="relative flex min-h-[680px] flex-col justify-center pb-20 pt-32 sm:min-h-[720px] sm:pt-36 lg:min-h-[780px] lg:grid lg:grid-cols-[1fr_440px] lg:items-center lg:gap-16 xl:gap-20">
         {/* Left — headline + actions */}
         <div className="max-w-[600px]">
           {/* Eyebrow */}
