@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FOOTER_NAV, SITE } from "@/lib/site";
-import { getSiteSettings } from "@/lib/site-settings";
+import { getSiteSettings, hasContactDetails, type FooterContact } from "@/lib/site-settings";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
@@ -46,8 +46,14 @@ const NEWSLETTER = {
 
 export async function Footer() {
   const settings = await getSiteSettings();
-  const { phone1, phone2, email, address } = settings;
+  const { phone1, phone2, email, address, contactLabel, footerContacts } = settings;
   const year = new Date().getFullYear();
+
+  // Column 1 is the site-wide contact; columns 2-4 come from Settings. Empty columns drop out.
+  const contacts = [
+    { label: contactLabel, phone1, phone2, email, address },
+    ...footerContacts,
+  ].filter(hasContactDetails);
 
   return (
     <footer className="relative overflow-hidden bg-[#CFE8FF] text-ink/80">
@@ -83,32 +89,6 @@ export async function Footer() {
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>
-            <ul className="mt-6 space-y-3 text-sm">
-              {address && (
-                <li className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-maroon-admin" />
-                  <span>{address}</span>
-                </li>
-              )}
-              {phone1 && (
-                <li className="flex items-center gap-3">
-                  <Phone className="size-4 shrink-0 text-maroon-admin" />
-                  <span>{phone1}</span>
-                </li>
-              )}
-              {phone2 && (
-                <li className="flex items-center gap-3">
-                  <Phone className="size-4 shrink-0 text-maroon-admin" />
-                  <span>{phone2}</span>
-                </li>
-              )}
-              {email && (
-                <li className="flex items-center gap-3">
-                  <Mail className="size-4 shrink-0 text-maroon-admin" />
-                  <span>{email}</span>
-                </li>
-              )}
-            </ul>
           </div>
 
           <FooterColumn title="Services" className="lg:col-span-2">
@@ -140,6 +120,15 @@ export async function Footer() {
             ))}
         </div>
 
+        {/* Contact band — one column per office, all admin-editable in Settings */}
+        {contacts.length > 0 && (
+          <div className="grid gap-6 border-t border-ink/10 py-10 sm:grid-cols-2 lg:grid-cols-4">
+            {contacts.map((contact, i) => (
+              <ContactCard key={i} contact={contact} />
+            ))}
+          </div>
+        )}
+
         {/* Bottom bar */}
         <div className="flex flex-col gap-6 border-t border-ink/10 py-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-ink/60">
@@ -162,6 +151,62 @@ export async function Footer() {
         </div>
       </Container>
     </footer>
+  );
+}
+
+function ContactCard({ contact }: { contact: FooterContact }) {
+  const { label, phone1, phone2, email, address } = contact;
+  return (
+    <div className="rounded-xl bg-white/45 p-5 ring-1 ring-ink/10">
+      {label && (
+        <h4 className="text-xs font-semibold uppercase tracking-[0.14em] !text-ink/70">{label}</h4>
+      )}
+      <ul className={`space-y-3 text-sm text-ink/80 ${label ? "mt-4" : ""}`}>
+        {[phone1, phone2].map(
+          (phone, i) =>
+            phone && (
+              <ContactRow key={i} icon={<Phone className="size-4" />} href={`tel:${phone.replace(/[^\d+]/g, "")}`}>
+                {phone}
+              </ContactRow>
+            ),
+        )}
+        {email && (
+          <ContactRow icon={<Mail className="size-4" />} href={`mailto:${email}`}>
+            {email}
+          </ContactRow>
+        )}
+        {address && (
+          <ContactRow icon={<MapPin className="size-4" />} align="start">
+            {address}
+          </ContactRow>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+function ContactRow({
+  icon,
+  href,
+  align = "center",
+  children,
+}: {
+  icon: React.ReactNode;
+  href?: string;
+  align?: "start" | "center";
+  children: React.ReactNode;
+}) {
+  return (
+    <li className={`flex gap-3 ${align === "start" ? "items-start" : "items-center"}`}>
+      <span className={`shrink-0 text-maroon-admin ${align === "start" ? "mt-0.5" : ""}`}>{icon}</span>
+      {href ? (
+        <a href={href} className="break-words transition-colors hover:text-ink">
+          {children}
+        </a>
+      ) : (
+        <span className="break-words leading-relaxed">{children}</span>
+      )}
+    </li>
   );
 }
 

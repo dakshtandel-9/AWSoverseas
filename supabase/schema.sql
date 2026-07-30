@@ -11,6 +11,10 @@ create table if not exists site_settings (
   email text not null default '',
   whatsapp_number text not null default '', -- digits only, e.g. "919876543210"
   address text not null default '',
+  -- Heading shown above the first footer contact column.
+  contact_label text not null default 'Head office',
+  -- Footer contact columns 2-4: [{ label, phone1, phone2, email, address }, ...]. Column 1 uses the fields above.
+  footer_contacts jsonb not null default '[]'::jsonb,
   -- Admin-editable button colors: navy (nav/form CTAs) and maroon (hero/section CTAs), each with a hover shade.
   btn_navy text not null default '#02224C',
   btn_navy_hover text not null default '#011a38',
@@ -31,6 +35,10 @@ alter table site_settings add column if not exists btn_navy_hover text not null 
 alter table site_settings add column if not exists btn_maroon text not null default '#902d39';
 alter table site_settings add column if not exists btn_maroon_hover text not null default '#861b28';
 alter table site_settings add column if not exists text_maroon text not null default '#9e4953';
+
+-- Footer contact columns added after the table existed on some deployments.
+alter table site_settings add column if not exists contact_label text not null default 'Head office';
+alter table site_settings add column if not exists footer_contacts jsonb not null default '[]'::jsonb;
 
 create or replace function set_updated_at()
 returns trigger as $$
