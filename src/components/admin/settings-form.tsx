@@ -8,7 +8,7 @@ import type { SiteSettings } from "@/lib/site-settings";
 const initialState: SettingsState = {};
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
   const [state, formAction, pending] = useActionState(updateSettingsAction, initialState);
@@ -30,7 +30,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       />
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="address" className="text-sm font-semibold text-[#002144]">
+        <label htmlFor="address" className="text-sm font-semibold text-[#1A0A53]">
           Office address
         </label>
         <textarea
@@ -106,7 +106,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-sm font-semibold text-[#002144]">
+      <label htmlFor={name} className="text-sm font-semibold text-[#1A0A53]">
         {label}
         {required && <span className="ml-1 text-maroon-admin">*</span>}
       </label>
@@ -126,7 +126,7 @@ function Field({
 function SectionDivider({ title, description }: { title: string; description: string }) {
   return (
     <div className="mt-4 border-t border-[#e4e9f2] pt-6">
-      <h2 className="text-base font-bold text-[#002144]">{title}</h2>
+      <h2 className="text-base font-bold text-[#1A0A53]">{title}</h2>
       <p className="mt-1 text-sm leading-relaxed text-[#5b6b82]">{description}</p>
     </div>
   );
@@ -143,7 +143,7 @@ function ColorField({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-sm font-semibold text-[#002144]">
+      <label htmlFor={name} className="text-sm font-semibold text-[#1A0A53]">
         {label}
       </label>
       <div className="flex items-center gap-2">

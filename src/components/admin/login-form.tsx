@@ -12,7 +12,7 @@ export function LoginForm() {
   return (
     <form action={formAction} className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <label htmlFor="password" className="text-sm font-semibold text-[#002144]">
+        <label htmlFor="password" className="text-sm font-semibold text-[#1A0A53]">
           Admin password
         </label>
         <div className="relative">
@@ -24,7 +24,7 @@ export function LoginForm() {
             required
             autoFocus
             placeholder="Enter admin password"
-            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#002144] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20"
+            className="w-full rounded-xl border border-[#e4e9f2] bg-white py-3 pl-11 pr-4 text-sm text-[#1A0A53] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20"
           />
         </div>
       </div>

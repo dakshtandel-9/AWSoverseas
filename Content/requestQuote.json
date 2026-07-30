@@ -42,23 +42,53 @@
         "required": true
       },
       {
-        "label": "Origin State",
-        "type": "state-select",
-        "placeholder": "Search origin state…",
-        "required": true
-      },
-      {
-        "label": "Destination Country",
-        "type": "country-select",
-        "placeholder": "Search destination country…",
-        "required": true
+        "label": "Route",
+        "type": "route"
       },
       {
         "label": "Estimated Shipment Date",
         "type": "date",
         "required": true
       }
-    ]
+    ],
+    "route": {
+      "export": {
+        "label": "Export",
+        "hint": "Shipping out of India",
+        "fields": [
+          {
+            "label": "Origin State",
+            "type": "state-select",
+            "placeholder": "Search origin state…",
+            "required": true
+          },
+          {
+            "label": "Destination Country",
+            "type": "country-select",
+            "placeholder": "Search destination country…",
+            "required": true
+          }
+        ]
+      },
+      "import": {
+        "label": "Import",
+        "hint": "Shipping into India",
+        "fields": [
+          {
+            "label": "Origin Country",
+            "type": "country-select",
+            "placeholder": "Search origin country…",
+            "required": true
+          },
+          {
+            "label": "Destination State",
+            "type": "state-select",
+            "placeholder": "Search destination state…",
+            "required": true
+          }
+        ]
+      }
+    }
   },
   "shipmentDetails": {
     "title": "Shipment Details",

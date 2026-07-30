@@ -159,7 +159,7 @@ function ShipmentCard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-widest text-[#5b6b82]">Shipment</p>
-              <p className="mt-0.5 font-mono text-sm font-bold tracking-wider text-[#002144]">AWO-2847-SH</p>
+              <p className="mt-0.5 font-mono text-sm font-bold tracking-wider text-[#1A0A53]">AWO-2847-SH</p>
             </div>
             <AnimatePresence mode="wait">
               <motion.div
@@ -168,7 +168,7 @@ function ShipmentCard() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
-                className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#002144]"
+                className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1.5 text-xs font-semibold text-[#1A0A53]"
               >
                 <Mode.Icon className="size-3.5" />
                 {Mode.label}
@@ -179,7 +179,7 @@ function ShipmentCard() {
           {/* Route bar */}
           <div className="mt-5 flex items-center gap-2.5 rounded-2xl bg-[#f6f8fc] px-4 py-3">
             <MapPin className="size-4 shrink-0 text-maroon-admin" />
-            <span className="text-sm font-semibold text-[#002144]">Shanghai</span>
+            <span className="text-sm font-semibold text-[#1A0A53]">Shanghai</span>
             <div className="flex flex-1 items-center gap-1">
               {[0, 1, 2, 3, 4].map((i) => (
                 <span
@@ -189,7 +189,7 @@ function ShipmentCard() {
                 />
               ))}
             </div>
-            <span className="text-sm font-semibold text-[#002144]">Los Angeles</span>
+            <span className="text-sm font-semibold text-[#1A0A53]">Los Angeles</span>
             <MapPin className="size-4 shrink-0 text-[#5b6b82]" />
           </div>
 
@@ -211,7 +211,7 @@ function ShipmentCard() {
                 <div className="min-w-0">
                   <p
                     className="text-sm font-semibold"
-                    style={{ color: step.active ? "#f59e0b" : step.done ? "#002144" : "#5b6b82" }}
+                    style={{ color: step.active ? "#f59e0b" : step.done ? "#1A0A53" : "#5b6b82" }}
                   >
                     {step.label}
                   </p>
@@ -294,7 +294,7 @@ export function Hero({ data, active = true }: { data: HeroData; active?: boolean
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>
+            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#1A0A53" }}>
               {line1}
             </span>
             <span className="text-maroon-gradient block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">

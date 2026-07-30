@@ -73,7 +73,7 @@ export default async function AdminWalletsPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Customers</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Wallets</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Wallets</h1>
       <p className="mt-2 text-sm text-[#5b6b82]">
         Every customer&apos;s referral balance. Open a customer to add credit or deduct it — each adjustment is
         recorded as its own line in the wallet activity they see.
@@ -87,7 +87,7 @@ export default async function AdminWalletsPage() {
 
       {configured && (
         <p className="mt-6 inline-flex items-baseline gap-2 rounded-2xl border border-[#e4e9f2] bg-white px-5 py-3">
-          <span className="font-mono text-xl font-bold text-[#002144]">{money(totalOutstanding)}</span>
+          <span className="font-mono text-xl font-bold text-[#1A0A53]">{money(totalOutstanding)}</span>
           <span className="text-sm text-[#5b6b82]">
             held across {withBalance.length} wallet{withBalance.length === 1 ? "" : "s"}
           </span>

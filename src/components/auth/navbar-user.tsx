@@ -63,7 +63,7 @@ export function NavbarUser({ scrolled, mobile }: { scrolled?: boolean; mobile?: 
         href="/profile"
         className={cn(
           "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+          scrolled ? "text-ink-soft hover:text-ink" : "text-white/85 hover:text-white",
         )}
       >
         <UserRound className="size-4 shrink-0" />
@@ -78,7 +78,7 @@ export function NavbarUser({ scrolled, mobile }: { scrolled?: boolean; mobile?: 
         href="/login"
         className={cn(
           "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+          scrolled ? "text-ink-soft hover:text-ink" : "text-white/85 hover:text-white",
         )}
       >
         Sign in
@@ -87,7 +87,7 @@ export function NavbarUser({ scrolled, mobile }: { scrolled?: boolean; mobile?: 
         href="/login?mode=sign-up"
         className={cn(
           "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
-          scrolled ? "text-ink-soft hover:text-brand-900" : "text-white/85 hover:text-white",
+          scrolled ? "text-ink-soft hover:text-ink" : "text-white/85 hover:text-white",
         )}
       >
         Sign up

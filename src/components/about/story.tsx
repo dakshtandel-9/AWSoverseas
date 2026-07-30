@@ -41,7 +41,7 @@ export function Story({ data }: { data: Data }) {
             <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               Our Story
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
+            <h2 className="mt-3 text-3xl font-bold text-[#1A0A53] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
             </h2>
             <p className="mt-6 text-base leading-[1.85] text-[#5b6b82]">
@@ -84,7 +84,7 @@ export function Story({ data }: { data: Data }) {
                 <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-maroon-admin">
                   {s.marker}
                 </span>
-                <h3 className="mt-1.5 text-lg font-bold text-[#002144]">{s.title}</h3>
+                <h3 className="mt-1.5 text-lg font-bold text-[#1A0A53]">{s.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-[#5b6b82]">{s.body}</p>
               </div>
             </motion.li>

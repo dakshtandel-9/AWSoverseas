@@ -4,7 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { Plus, Wallet } from "lucide-react";
 
 const fieldClasses =
-  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]";
+  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -119,7 +119,7 @@ export function CreditWalletForm({
       {formOpen && (
         <>
           {!alreadyCredited && (
-            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
+            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A0A53]">
               <Wallet className="size-3.5 text-maroon-admin" /> Credit {referrerName}&apos;s wallet for this referral
             </p>
           )}

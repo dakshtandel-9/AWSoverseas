@@ -78,7 +78,7 @@ export function CategoryListGrid({ categories }: { categories: Category[] }) {
               <div className="min-w-0 flex-1">
                 <Link
                   href={`/admin/categories/${category.id}`}
-                  className="block truncate text-sm font-bold text-[#002144] hover:text-maroon-admin"
+                  className="block truncate text-sm font-bold text-[#1A0A53] hover:text-maroon-admin"
                 >
                   {category.name}
                 </Link>

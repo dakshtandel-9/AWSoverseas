@@ -38,7 +38,7 @@ export default function AdminDocsPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Reference</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Documentation</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Documentation</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
         Everything this admin panel does and how to run it day to day — written for whoever is operating
         aws overseas, not for a developer. Every page in the sidebar has a matching section below.
@@ -64,11 +64,11 @@ export default function AdminDocsPage() {
                 { icon: Wallet, title: "Referral wallet", detail: "Customers earn wallet credit for referrals; you grant and adjust that credit here." },
               ].map(({ icon: Icon, title, detail }) => (
                 <div key={title} className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
-                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#1A0A53]">
                     <Icon className="size-4" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-[#002144]">{title}</p>
+                    <p className="text-sm font-semibold text-[#1A0A53]">{title}</p>
                     <p className="mt-0.5 text-sm leading-relaxed text-[#5b6b82]">{detail}</p>
                   </div>
                 </div>
@@ -350,7 +350,7 @@ export default function AdminDocsPage() {
               ]}
             />
             <div className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
+              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#1A0A53]">
                 <KeyRound className="size-4" />
               </span>
               <p className="text-sm leading-relaxed text-[#5b6b82]">
@@ -378,7 +378,7 @@ export default function AdminDocsPage() {
                 { icon: Wallet, text: "Approved Order/Quote from a referred customer → credit the referrer's wallet → they see the balance on their wallet page." },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
-                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#1A0A53]">
                     <Icon className="size-4" />
                   </span>
                   <p className="text-sm leading-relaxed text-[#5b6b82]">{text}</p>
@@ -386,7 +386,7 @@ export default function AdminDocsPage() {
               ))}
             </div>
             <div className="flex gap-3 rounded-2xl border border-[#e4e9f2] p-4">
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
+              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#1A0A53]">
                 <ImageIcon className="size-4" />
               </span>
               <p className="text-sm leading-relaxed text-[#5b6b82]">

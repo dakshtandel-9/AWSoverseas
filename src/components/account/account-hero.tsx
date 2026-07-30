@@ -43,7 +43,7 @@ export function AccountHero({
 
         <h1
           className="mt-8 font-heading text-3xl font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-4xl"
-          style={{ color: "#002144" }}
+          style={{ color: "#1A0A53" }}
         >
           {title}
         </h1>

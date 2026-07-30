@@ -31,7 +31,7 @@ export function DownloadBand({ data }: { data: Data }) {
             <Star className="size-3.5 fill-current text-[#f59e0b]" />
             Free on Android &amp; iOS
           </div>
-          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#002144" }}>
+          <h2 className="mt-5 text-3xl font-bold sm:text-4xl" style={{ color: "#1A0A53" }}>
             {data.title}
           </h2>
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-ink/60">

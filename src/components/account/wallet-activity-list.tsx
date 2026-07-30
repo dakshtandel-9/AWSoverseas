@@ -23,7 +23,7 @@ export function WalletActivityList({ credits }: { credits: WalletTransaction[] }
 
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
-      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
+      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#1A0A53]">
         <ListFilter className="size-4 text-maroon-admin" />
         Wallet activity
       </h2>
@@ -46,7 +46,7 @@ export function WalletActivityList({ credits }: { credits: WalletTransaction[] }
                     className={cn("mt-0.5 size-3.5 shrink-0", isDeduction ? "text-red-500" : "text-maroon-admin")}
                   />
                   <div className="min-w-0">
-                    <p className="font-semibold text-[#002144]">{tx.reason || "Referral reward"}</p>
+                    <p className="font-semibold text-[#1A0A53]">{tx.reason || "Referral reward"}</p>
                     <p className="mt-0.5 text-xs text-[#5b6b82]">
                       {sourceLine(tx)} · {formatDate(tx.created_at)}
                     </p>

@@ -55,7 +55,7 @@ export function MissionVision({ data }: { data: Data }) {
                 className={`grid size-13 place-items-center rounded-2xl ${
                   c.dark
                     ? "bg-white/60 text-[#c02845]"
-                    : "bg-[#eef3fb] text-[#002144]"
+                    : "bg-[#eef3fb] text-[#1A0A53]"
                 }`}
               >
                 <c.Icon className="size-6" />
@@ -69,7 +69,7 @@ export function MissionVision({ data }: { data: Data }) {
               </span>
             </div>
 
-            <h3 className="relative mt-7 text-xl font-bold sm:text-2xl" style={{ color: "#002144" }}>
+            <h3 className="relative mt-7 text-xl font-bold sm:text-2xl" style={{ color: "#1A0A53" }}>
               {c.block.title}
             </h3>
             <p className="relative mt-4 text-[15px] leading-[1.8] text-[#5b6b82] sm:text-base">

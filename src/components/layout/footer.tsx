@@ -18,6 +18,8 @@ const FOOTER_SERVICES = [
   { label: "Product Sourcing", href: "/sourcing-agent" },
   { label: "Supplier Verification", href: "/sourcing-agent" },
   { label: "International Shipping", href: "/services" },
+  { label: "Import Services", href: "/services/import-services" },
+  { label: "Export Services", href: "/services/export-services" },
   { label: "Export Documentation", href: "/services/export-services" },
   { label: "Customs Clearance", href: "/services/customs-clearance" },
   { label: "Warehousing", href: "/services/warehousing" },
@@ -68,7 +70,10 @@ export async function Footer() {
         {/* Link columns */}
         <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo tone="dark" />
+            <div className="flex items-end gap-2">
+              <Logo tone="dark" />
+              <span className="pb-1 text-[8.75px] font-medium tracking-wide text-ink/60">impex</span>
+            </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
               aws overseas is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source

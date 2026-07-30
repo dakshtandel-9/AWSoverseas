@@ -32,7 +32,7 @@ export function ReferEarn({ data }: { data: Data }) {
           </span>
           <h2
             className="mt-5 text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.5rem]"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
           >
             {data.title}
           </h2>

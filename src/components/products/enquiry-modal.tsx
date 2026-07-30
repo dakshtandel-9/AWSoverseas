@@ -9,7 +9,7 @@ import { submitProductEnquiryAction, type EnquiryFormState } from "@/app/actions
 import { trackLead } from "@/lib/track-lead";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: EnquiryFormState = {};
 
@@ -90,7 +90,7 @@ export function EnquiryModal({
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
                   Product Enquiry
                 </p>
-                <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#002144]">
+                <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#1A0A53]">
                   {productName}
                 </h2>
               </div>
@@ -98,7 +98,7 @@ export function EnquiryModal({
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
+                className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#1A0A53]"
               >
                 <X className="size-4" />
               </button>
@@ -122,7 +122,7 @@ export function EnquiryModal({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
+                    className="mt-2 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#1A0A53] hover:border-[#9e4953]"
                   >
                     Close
                   </button>
@@ -141,7 +141,7 @@ export function EnquiryModal({
                   <input type="hidden" name="product-name" value={productName} />
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#002144]">
+                    <label className="text-sm font-semibold text-[#1A0A53]">
                       Name <span className="text-maroon-admin">*</span>
                     </label>
                     <input
@@ -155,7 +155,7 @@ export function EnquiryModal({
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#002144]">
+                      <label className="text-sm font-semibold text-[#1A0A53]">
                         Email <span className="text-maroon-admin">*</span>
                       </label>
                       <input
@@ -168,7 +168,7 @@ export function EnquiryModal({
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-sm font-semibold text-[#002144]">
+                      <label className="text-sm font-semibold text-[#1A0A53]">
                         Phone number <span className="text-maroon-admin">*</span>
                       </label>
                       <input
@@ -183,7 +183,7 @@ export function EnquiryModal({
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#002144]">Message</label>
+                    <label className="text-sm font-semibold text-[#1A0A53]">Message</label>
                     <textarea
                       name="message"
                       rows={3}
@@ -193,7 +193,7 @@ export function EnquiryModal({
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-sm font-semibold text-[#002144]">
+                    <label className="text-sm font-semibold text-[#1A0A53]">
                       Attach an image{" "}
                       <span className="font-normal text-[#94a3b8]">(optional)</span>
                     </label>

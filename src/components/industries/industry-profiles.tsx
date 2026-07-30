@@ -44,7 +44,7 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                 <span
                   className={cn(
                     "grid size-12 shrink-0 place-items-center rounded-xl transition-colors duration-300",
-                    isOpen ? "bg-[#002144] text-white" : "bg-[#eef3fb] text-[#002144]",
+                    isOpen ? "bg-[#002144] text-white" : "bg-[#eef3fb] text-[#1A0A53]",
                   )}
                 >
                   <Icon className="size-5" />
@@ -53,11 +53,11 @@ export function IndustryProfiles({ profiles }: { profiles: Profile[] }) {
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#94a3b8]">
                     Profile {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-0.5 text-lg font-bold text-[#002144]">{p.title}</h3>
+                  <h3 className="mt-0.5 text-lg font-bold text-[#1A0A53]">{p.title}</h3>
                 </div>
                 <span
                   className={cn(
-                    "grid size-9 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#002144] transition-transform duration-300",
+                    "grid size-9 shrink-0 place-items-center rounded-full bg-[#eef3fb] text-[#1A0A53] transition-transform duration-300",
                     isOpen && "rotate-45 bg-[#002144] text-white",
                   )}
                 >

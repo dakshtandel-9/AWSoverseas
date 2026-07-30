@@ -149,11 +149,11 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-[#5b6b82]">
                   {data.manifestLabel}
                 </p>
-                <p className="mt-0.5 font-mono text-[13px] font-bold tracking-wider text-[#002144]">
+                <p className="mt-0.5 font-mono text-[13px] font-bold tracking-wider text-[#1A0A53]">
                   {data.manifestOrigin}
                 </p>
               </div>
-              <div className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-2.5 py-1 text-[11px] font-semibold text-[#002144]">
+              <div className="flex items-center gap-1.5 rounded-full bg-[#eef3fb] px-2.5 py-1 text-[11px] font-semibold text-[#1A0A53]">
                 <BadgeCheck className="size-3" />
                 Verified
               </div>
@@ -177,13 +177,13 @@ function ManifestCard({ data }: { data: ExportHeroData }) {
                         className="grid size-7 shrink-0 place-items-center rounded-lg transition-colors duration-300"
                         style={{
                           background: isActive ? "#9e4953" : "#eef3fb",
-                          color: isActive ? "#ffffff" : "#002144",
+                          color: isActive ? "#ffffff" : "#1A0A53",
                         }}
                       >
                         <Icon className="size-3.5" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-[11.5px] font-semibold text-[#002144]">{item.name}</p>
+                        <p className="truncate text-[11.5px] font-semibold text-[#1A0A53]">{item.name}</p>
                         <p className="text-[10px] text-[#5b6b82]">{item.unit}</p>
                       </div>
                       <span className="shrink-0 font-mono text-[9px] font-medium text-[#5b6b82]">
@@ -256,7 +256,7 @@ export function ExportHero({ data, active }: { data: ExportHeroData; active: boo
             animate={active ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.08, ease }}
           >
-            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#002144" }}>{line1}</span>
+            <span className="block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]" style={{ color: "#1A0A53" }}>{line1}</span>
             <span className="text-maroon-gradient block text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]">
               {line2}
             </span>

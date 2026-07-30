@@ -22,8 +22,19 @@ export async function submitQuoteAction(
 
   const serviceType = String(formData.get("service-type") ?? "").trim();
   const shipmentType = String(formData.get("shipment-type") ?? "").trim();
-  const originCountry = String(formData.get("origin-state") ?? "").trim();
-  const destinationCountry = String(formData.get("destination-country") ?? "").trim();
+
+  // Export and import mirror each other: one end of the route is always an
+  // Indian state and the other a foreign country, so the field names swap with
+  // the direction. Anything other than a known direction is treated as export,
+  // matching the form's own default.
+  const direction = formData.get("direction") === "import" ? "import" : "export";
+  const [originField, destinationField] =
+    direction === "import"
+      ? (["origin-country", "destination-state"] as const)
+      : (["origin-state", "destination-country"] as const);
+
+  const originCountry = String(formData.get(originField) ?? "").trim();
+  const destinationCountry = String(formData.get(destinationField) ?? "").trim();
   const fullName = String(formData.get("full-name") ?? "").trim();
   const companyName = String(formData.get("company-name") ?? "").trim();
   const email = String(formData.get("email-address") ?? "").trim();
@@ -52,6 +63,7 @@ export async function submitQuoteAction(
   const { error } = await db.from("quote_submissions").insert({
     service_type: serviceType,
     shipment_type: shipmentType,
+    direction,
     origin_country: originCountry,
     destination_country: destinationCountry,
     full_name: fullName,

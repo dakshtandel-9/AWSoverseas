@@ -8,7 +8,7 @@ import type { MarketingIntegrations } from "@/lib/marketing-integrations";
 const initialState: IntegrationsState = {};
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20 font-mono";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20 font-mono";
 
 type ServiceField = {
   name: string;
@@ -150,7 +150,7 @@ export function IntegrationsForm({ integrations }: { integrations: MarketingInte
             className="rounded-2xl border border-[#e4e9f2] bg-white p-6"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-base font-bold text-[#002144]">{service.title}</h2>
+              <h2 className="text-base font-bold text-[#1A0A53]">{service.title}</h2>
               {connected ? (
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
                   <BadgeCheck className="size-3.5" />
@@ -168,7 +168,7 @@ export function IntegrationsForm({ integrations }: { integrations: MarketingInte
             <div className={`mt-4 grid gap-4 ${service.fields.length > 1 ? "sm:grid-cols-2" : ""}`}>
               {service.fields.map((field) => (
                 <div key={field.name} className="flex flex-col gap-2">
-                  <label htmlFor={field.name} className="text-sm font-semibold text-[#002144]">
+                  <label htmlFor={field.name} className="text-sm font-semibold text-[#1A0A53]">
                     {field.label}
                   </label>
                   <input

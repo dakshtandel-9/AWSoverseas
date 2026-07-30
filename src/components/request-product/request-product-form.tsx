@@ -16,7 +16,7 @@ type Data = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: EnquiryFormState = {};
 
@@ -65,7 +65,7 @@ export function RequestProductForm({
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
         Product Request
       </p>
-      <h2 className="mt-3 text-2xl font-bold text-[#002144] sm:text-3xl">{data.title}</h2>
+      <h2 className="mt-3 text-2xl font-bold text-[#1A0A53] sm:text-3xl">{data.title}</h2>
       <p className="mt-3 text-[15px] leading-relaxed text-[#5b6b82]">{data.description}</p>
 
       <AnimatePresence mode="wait">
@@ -95,7 +95,7 @@ export function RequestProductForm({
             className="mt-8 grid gap-5 sm:grid-cols-2"
           >
             <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Product name <span className="ml-1 text-maroon-admin">*</span>
               </label>
               <input
@@ -107,7 +107,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Description or message{" "}
                 <span className="font-normal text-[#94a3b8]">(optional)</span>
               </label>
@@ -120,7 +120,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Quantity or quality needed{" "}
                 <span className="font-normal text-[#94a3b8]">(optional)</span>
               </label>
@@ -132,7 +132,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Photo <span className="font-normal text-[#94a3b8]">(optional)</span>
               </label>
               <label
@@ -158,7 +158,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#002144]">Your name</label>
+              <label className="text-sm font-semibold text-[#1A0A53]">Your name</label>
               <input
                 name="name"
                 placeholder="Your name"
@@ -168,7 +168,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#002144]">Email</label>
+              <label className="text-sm font-semibold text-[#1A0A53]">Email</label>
               <input
                 type="email"
                 name="email"
@@ -179,7 +179,7 @@ export function RequestProductForm({
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#002144]">Phone number</label>
+              <label className="text-sm font-semibold text-[#1A0A53]">Phone number</label>
               <input
                 type="tel"
                 name="phone"

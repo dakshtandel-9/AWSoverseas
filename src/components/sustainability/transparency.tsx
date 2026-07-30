@@ -16,7 +16,7 @@ export function Transparency({ data }: { data: Data }) {
           className="mx-auto max-w-2xl rounded-2xl border-l-4 bg-[#f6f8fc] px-7 py-8 text-center sm:px-10"
           style={{ borderColor: MOSS }}
         >
-          <h3 className="text-lg font-bold text-[#002144] sm:text-xl">{data.title}</h3>
+          <h3 className="text-lg font-bold text-[#1A0A53] sm:text-xl">{data.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-[#5b6b82]">{data.description}</p>
         </div>
       </Reveal>

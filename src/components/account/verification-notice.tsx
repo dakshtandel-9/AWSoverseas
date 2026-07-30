@@ -20,7 +20,7 @@ export function VerificationNotice({ status }: { status: AccountStatus }) {
         <Icon className="size-7" />
       </span>
 
-      <h2 className="mt-5 text-xl font-bold text-[#002144]">
+      <h2 className="mt-5 text-xl font-bold text-[#1A0A53]">
         {declined ? "Verification declined" : "Verification pending"}
       </h2>
       <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[#5b6b82]">
@@ -40,7 +40,7 @@ export function VerificationNotice({ status }: { status: AccountStatus }) {
         )}
         <Link
           href="/profile"
-          className="inline-flex items-center rounded-full border border-[#e4e9f2] px-6 py-3 text-sm font-semibold text-[#002144] transition-colors hover:border-[#9e4953]"
+          className="inline-flex items-center rounded-full border border-[#e4e9f2] px-6 py-3 text-sm font-semibold text-[#1A0A53] transition-colors hover:border-[#9e4953]"
         >
           View your profile
         </Link>

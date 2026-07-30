@@ -49,7 +49,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
               transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease }}
             >
               <div className="flex items-start justify-between">
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
+                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
                   <Icon className="size-5" />
                 </span>
                 <span className="font-mono text-[11px] font-semibold tracking-[0.16em] text-[#94a3b8]">
@@ -57,7 +57,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
                 </span>
               </div>
 
-              <h3 className="mt-5 text-lg font-bold text-[#002144]">{item.title}</h3>
+              <h3 className="mt-5 text-lg font-bold text-[#1A0A53]">{item.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-[#5b6b82]">
                 {item.description}
               </p>
@@ -73,7 +73,7 @@ export function ServicesSchedule({ items }: { items: Item[] }) {
 
               <Link
                 href={item.href}
-                className="mt-6 inline-flex items-center gap-1.5 border-t border-[#e4e9f2] pt-5 text-sm font-bold text-[#002144] transition-colors group-hover:text-maroon-admin"
+                className="mt-6 inline-flex items-center gap-1.5 border-t border-[#e4e9f2] pt-5 text-sm font-bold text-[#1A0A53] transition-colors group-hover:text-maroon-admin"
               >
                 {item.button}
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

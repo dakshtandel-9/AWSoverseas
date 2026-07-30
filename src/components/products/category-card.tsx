@@ -35,7 +35,7 @@ export function CategoryCard({ category, index }: { category: PublicCategory; in
         </div>
 
         <div className="flex flex-1 flex-col gap-2 p-5">
-          <h3 className="text-lg font-bold text-[#002144]">{category.name}</h3>
+          <h3 className="text-lg font-bold text-[#1A0A53]">{category.name}</h3>
           {category.description && (
             <p className="line-clamp-2 text-sm leading-relaxed text-[#5b6b82]">{category.description}</p>
           )}

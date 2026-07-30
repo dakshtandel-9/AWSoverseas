@@ -8,7 +8,7 @@ import { passwordError } from "@/lib/password";
 import { PasswordChecklist } from "@/components/auth/password-checklist";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 /**
  * Rendered only once /auth/callback has verified the recovery link and
@@ -62,7 +62,7 @@ export function ResetPasswordForm() {
         <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
           <Check className="size-6" />
         </span>
-        <p className="text-base font-bold text-[#002144]">Password updated</p>
+        <p className="text-base font-bold text-[#1A0A53]">Password updated</p>
         <p className="text-sm text-[#5b6b82]">Taking you to your profile…</p>
       </div>
     );
@@ -71,7 +71,7 @@ export function ResetPasswordForm() {
   return (
     <form onSubmit={submit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-[#002144]">New password</label>
+        <label className="text-sm font-semibold text-[#1A0A53]">New password</label>
         <input
           type="password"
           required
@@ -86,7 +86,7 @@ export function ResetPasswordForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-[#002144]">Confirm new password</label>
+        <label className="text-sm font-semibold text-[#1A0A53]">Confirm new password</label>
         <input
           type="password"
           required

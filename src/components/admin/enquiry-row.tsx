@@ -36,7 +36,7 @@ export type AdminOrder = {
 type Enquiry = AdminOrder;
 
 const STATUS_BADGE: Record<string, string> = {
-  awaiting_quote: "bg-[#eef3fb] text-[#002144]",
+  awaiting_quote: "bg-[#eef3fb] text-[#1A0A53]",
   quoted: "bg-emerald-50 text-emerald-700",
   rejected: "bg-red-50 text-red-600",
 };
@@ -52,7 +52,7 @@ function formatDate(iso: string) {
 }
 
 const fieldClasses =
-  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]";
+  "w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -81,7 +81,7 @@ function QuoteForm({ item }: { item: Enquiry }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-[#002144]">
+      <p className="text-sm font-semibold text-[#1A0A53]">
         {item.quote_status === "quoted" ? "Update quote" : "Approve & send a quote"}
       </p>
       <form ref={formRef} onSubmit={onSubmit} className="mt-3 flex flex-wrap items-end gap-2.5">
@@ -145,7 +145,7 @@ function RejectForm({ item }: { item: Enquiry }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-[#002144]">Reject this order</p>
+      <p className="text-sm font-semibold text-[#1A0A53]">Reject this order</p>
       <div className="mt-3 flex flex-wrap items-end gap-2.5">
         <div className="min-w-[220px] flex-1">
           <Field label="Reason (optional)">
@@ -288,13 +288,13 @@ export function EnquiryRow({
           )}
           {item.message && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#002144]">Message:</p>
+              <p className="font-semibold text-[#1A0A53]">Message:</p>
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}
           {item.attachment_url && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#002144]">Attachment:</p>
+              <p className="font-semibold text-[#1A0A53]">Attachment:</p>
               <a
                 href={item.attachment_url}
                 target="_blank"

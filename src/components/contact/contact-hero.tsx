@@ -57,7 +57,7 @@ export function ContactHero({ data, phone }: { data: Data; phone?: string }) {
         <div className="mt-10 max-w-2xl">
           <motion.h1
             className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.1rem]"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}

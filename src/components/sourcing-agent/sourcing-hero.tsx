@@ -41,7 +41,7 @@ export function SourcingHero({ data }: { data: Data }) {
             <span className="size-1.5 animate-pulse rounded-full bg-[#0fade8]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
             LOCAL&nbsp;PARTNER&nbsp;/&nbsp;INDIA
           </span>
         </motion.div>
@@ -49,7 +49,7 @@ export function SourcingHero({ data }: { data: Data }) {
         <div className="mt-10 flex flex-col items-center text-center">
           <motion.h1
             className="max-w-3xl font-heading text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -68,7 +68,7 @@ export function SourcingHero({ data }: { data: Data }) {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-2xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-[#1A0A53]/65 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -85,7 +85,7 @@ export function SourcingHero({ data }: { data: Data }) {
             <Button href="/quote" size="lg" variant="secondary">
               {data.primaryButton} <ArrowRight className="size-4" />
             </Button>
-            <Button href="/contact" size="lg" variant="ghost" className="text-[#002144] hover:bg-[#002144]/10">
+            <Button href="/contact" size="lg" variant="ghost" className="text-[#1A0A53] hover:bg-[#002144]/10">
               {data.secondaryButton}
             </Button>
           </motion.div>

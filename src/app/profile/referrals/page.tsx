@@ -49,7 +49,7 @@ export default async function ReferralsPage() {
           </Link>
 
           <div className="mt-5 rounded-3xl border border-[#e4e9f2] bg-white p-7">
-            <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
+            <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#1A0A53]">
               <Users className="size-4 text-maroon-admin" />
               {referrals?.length ?? 0} {referrals?.length === 1 ? "referral" : "referrals"}
             </h2>
@@ -63,7 +63,7 @@ export default async function ReferralsPage() {
                 {referrals.map((r) => (
                   <li key={r.id} className="flex items-center justify-between gap-3 py-4">
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-[#002144]">
+                      <p className="truncate text-sm font-semibold text-[#1A0A53]">
                         {r.first_name} {r.last_name}
                       </p>
                       {r.username && <p className="truncate text-xs text-[#5b6b82]">@{r.username}</p>}

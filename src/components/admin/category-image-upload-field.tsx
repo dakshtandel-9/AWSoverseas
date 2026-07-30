@@ -15,9 +15,13 @@ const initialState: ImageUploadState = {};
 export function CategoryImageUploadField({
   value,
   onUploaded,
+  label = "Click to upload a category photo",
+  hint = "1200 × 750px or larger, JPG or PNG under 8MB",
 }: {
   value: string;
   onUploaded: (url: string) => void;
+  label?: string;
+  hint?: string;
 }) {
   const [state, formAction, pending] = useActionState(uploadCategoryImageAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -53,13 +57,9 @@ export function CategoryImageUploadField({
               <ImagePlus className="size-6 text-[#94a3b8]" />
             )}
             <span className="text-sm font-medium text-[#5b6b82]">
-              {pending ? "Uploading…" : "Click to upload a category photo"}
+              {pending ? "Uploading…" : label}
             </span>
-            {!pending && (
-              <span className="text-xs text-[#94a3b8]">
-                1200 × 750px or larger, JPG or PNG under 8MB
-              </span>
-            )}
+            {!pending && <span className="text-xs text-[#94a3b8]">{hint}</span>}
             <input
               type="file"
               name="image"

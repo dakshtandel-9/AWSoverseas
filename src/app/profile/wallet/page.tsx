@@ -44,11 +44,11 @@ export default async function WalletPage() {
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-[#e4e9f2] bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">Balance</p>
-              <p className="mt-1.5 text-2xl font-bold text-[#002144]">${summary.available.toLocaleString("en-US")}</p>
+              <p className="mt-1.5 text-2xl font-bold text-[#1A0A53]">${summary.available.toLocaleString("en-US")}</p>
             </div>
             <div className="rounded-2xl border border-[#e4e9f2] bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">Lifetime earned</p>
-              <p className="mt-1.5 text-2xl font-bold text-[#002144]">${summary.earned.toLocaleString("en-US")}</p>
+              <p className="mt-1.5 text-2xl font-bold text-[#1A0A53]">${summary.earned.toLocaleString("en-US")}</p>
             </div>
           </div>
 

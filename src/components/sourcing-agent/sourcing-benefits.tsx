@@ -48,7 +48,7 @@ export function SourcingBenefits({ data }: { data: Data }) {
           <Reveal direction="up" delay={0.05}>
             <h2
               className="text-balance text-3xl font-bold sm:text-4xl lg:text-[2.75rem]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
             >
               {data.title}
             </h2>
@@ -89,7 +89,7 @@ export function SourcingBenefits({ data }: { data: Data }) {
                 </span>
                 <h3
                   className="mt-5 text-base font-bold"
-                  style={{ color: isLast ? "#0891b2" : "#002144" }}
+                  style={{ color: isLast ? "#0891b2" : "#1A0A53" }}
                 >
                   {item.title}
                 </h3>

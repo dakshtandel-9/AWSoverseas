@@ -26,7 +26,7 @@ export function IndustriesStrip({ data, eyebrow }: { data: Data; eyebrow: string
                 href="/industries"
                 className="group flex items-center gap-4 rounded-2xl bg-white p-5 shadow-soft ring-1 ring-line transition-all hover:-translate-y-1 hover:shadow-lift"
               >
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-900 group-hover:text-white">
+                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-ink transition-colors group-hover:bg-brand-900 group-hover:text-white">
                   <Icon className="size-6" />
                 </span>
                 <span className="font-semibold text-ink">{name}</span>
@@ -45,7 +45,7 @@ export function IndustriesStrip({ data, eyebrow }: { data: Data; eyebrow: string
       >
         <Link
           href="/industries"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-ink-soft"
         >
           Explore all industries <ArrowRight className="size-4" />
         </Link>

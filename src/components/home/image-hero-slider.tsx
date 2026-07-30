@@ -23,7 +23,7 @@ export type ImageSlide = {
   secondaryButtonHref?: string;
 };
 
-const AUTOPLAY_MS = 8000;
+const AUTOPLAY_MS = 5000;
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**

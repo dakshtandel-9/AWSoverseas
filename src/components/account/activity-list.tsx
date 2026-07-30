@@ -10,7 +10,7 @@ export type ActivityItem = {
 };
 
 const BADGE_TONE: Record<NonNullable<ActivityItem["badgeTone"]>, string> = {
-  neutral: "bg-[#eef3fb] text-[#002144]",
+  neutral: "bg-[#eef3fb] text-[#1A0A53]",
   positive: "bg-emerald-50 text-emerald-700",
   negative: "bg-red-50 text-red-600",
 };
@@ -31,7 +31,7 @@ export function ActivityList({
 }) {
   return (
     <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
-      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#002144]">
+      <h2 className="inline-flex items-center gap-2 text-base font-bold text-[#1A0A53]">
         <Icon className="size-4 text-maroon-admin" />
         {title}
       </h2>
@@ -47,7 +47,7 @@ export function ActivityList({
             <li key={item.id} className="flex flex-col gap-1.5 py-3.5">
               <div className="flex items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-[#002144]">{item.title}</p>
+                  <p className="truncate text-sm font-semibold text-[#1A0A53]">{item.title}</p>
                   {item.subtitle && <p className="truncate text-xs text-[#5b6b82]">{item.subtitle}</p>}
                 </div>
                 <span className="shrink-0 text-xs text-[#94a3b8]">{item.createdAt}</span>

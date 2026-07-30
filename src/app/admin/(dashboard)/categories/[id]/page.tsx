@@ -18,7 +18,7 @@ export default async function AdminCategoryDetailPage({
   if (!isSupabaseConfigured()) {
     return (
       <div>
-        <h1 className="text-2xl font-bold text-[#002144] sm:text-3xl">Category</h1>
+        <h1 className="text-2xl font-bold text-[#1A0A53] sm:text-3xl">Category</h1>
         <div className="mt-6">
           <SetupNotice />
         </div>
@@ -58,7 +58,7 @@ export default async function AdminCategoryDetailPage({
           <span key={step.id} className="flex items-center gap-1.5">
             <ChevronRight className="size-3.5 text-[#94a3b8]" />
             {i === trail.length - 1 ? (
-              <span className="font-semibold text-[#002144]">{step.name}</span>
+              <span className="font-semibold text-[#1A0A53]">{step.name}</span>
             ) : (
               <Link href={`/admin/categories/${step.id}`} className="hover:text-maroon-admin">
                 {step.name}
@@ -70,7 +70,7 @@ export default async function AdminCategoryDetailPage({
 
       <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#002144] sm:text-3xl">{category.name}</h1>
+          <h1 className="text-2xl font-bold text-[#1A0A53] sm:text-3xl">{category.name}</h1>
           <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
             {isBranch
               ? "This category holds subcategories, so products go inside those — not here."
@@ -83,7 +83,7 @@ export default async function AdminCategoryDetailPage({
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={`/admin/categories/${category.id}/edit`}
-            className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:bg-[#f6f8fc]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]"
           >
             <Pencil className="size-4" />
             Edit category
@@ -113,7 +113,7 @@ export default async function AdminCategoryDetailPage({
 
       {isBranch || !isLeaf ? (
         <section className="mt-10">
-          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#002144]">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
             <FolderTree className="size-4" />
             Subcategories
           </h2>
@@ -125,7 +125,7 @@ export default async function AdminCategoryDetailPage({
 
       {isLeaf || !isBranch ? (
         <section className="mt-10">
-          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#002144]">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
             <Package className="size-4" />
             Products
           </h2>

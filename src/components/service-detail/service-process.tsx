@@ -37,7 +37,7 @@ export function ServiceProcess({ data }: { data: Data }) {
             <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-[#002144] font-mono text-sm font-bold text-white ring-4 ring-[#f6f8fc]">
               {s.step}
             </span>
-            <h3 className="mt-4 text-base font-bold text-[#002144]">{s.title}</h3>
+            <h3 className="mt-4 text-base font-bold text-[#1A0A53]">{s.title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{s.description}</p>
           </motion.li>
         ))}

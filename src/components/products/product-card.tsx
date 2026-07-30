@@ -36,9 +36,9 @@ export function ProductCard({
         transition={{ duration: 0.45, delay: (index % 9) * 0.05, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative aspect-square w-full overflow-hidden bg-[#eef3fb]">
-          {product.image_url ? (
+          {product.display_image_url ? (
             <Image
-              src={product.image_url}
+              src={product.display_image_url}
               alt={product.name}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
@@ -53,7 +53,7 @@ export function ProductCard({
 
         <div className="flex flex-1 flex-col gap-3 p-4">
           <div className="min-w-0">
-            <h3 className="truncate text-base font-bold text-[#002144]">{product.name}</h3>
+            <h3 className="truncate text-base font-bold text-[#1A0A53]">{product.name}</h3>
           </div>
 
           <div className="mt-auto">

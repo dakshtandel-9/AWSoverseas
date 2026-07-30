@@ -15,7 +15,7 @@ export function Badge({
       className={cn(
         "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide uppercase",
         tone === "default"
-          ? "bg-brand-50 text-brand-700 ring-1 ring-brand-100"
+          ? "bg-brand-50 text-ink ring-1 ring-brand-100"
           : "bg-ink/8 text-ink ring-1 ring-ink/15",
         className,
       )}

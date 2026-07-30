@@ -5,7 +5,7 @@ import { RefreshCw, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 export type CaptchaHandle = {
   /** Verifies the current answer against the server; refreshes to a new
@@ -51,7 +51,7 @@ export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswer
 
     return (
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-[#002144]">Verification code</label>
+        <label className="text-sm font-semibold text-[#1A0A53]">Verification code</label>
         <div className="flex items-center gap-2">
           <div className="flex h-14 w-[160px] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#e4e9f2] bg-[#eef3fb]">
             {loading ? (

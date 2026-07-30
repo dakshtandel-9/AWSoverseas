@@ -57,7 +57,7 @@ export function ProductListGrid({ products }: { products: Product[] }) {
 
           <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-bold text-[#002144]">{product.name}</p>
+              <p className="truncate text-sm font-bold text-[#1A0A53]">{product.name}</p>
               {product.categoryName && <p className="truncate text-xs text-[#94a3b8]">{product.categoryName}</p>}
             </div>
 

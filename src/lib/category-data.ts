@@ -9,6 +9,14 @@ export type PublicCategory = {
   description: string;
   image_url: string;
   parent_id: string | null;
+  /** Small eyebrow above the About heading, e.g. "🍊 Fresh Fruits". */
+  badge: string;
+  /** Longer prose for the About block; paragraphs split on a blank line. */
+  about_body: string;
+  /** Large photo beside the About text. Falls back to `image_url`. */
+  about_image_url: string;
+  /** Caption laid over that photo, e.g. "Farm Fresh". */
+  about_caption: string;
 };
 
 const getCachedCategories = unstable_cache(
@@ -16,7 +24,9 @@ const getCachedCategories = unstable_cache(
     const db = supabasePublic();
     const { data } = await db
       .from("categories")
-      .select("id, name, slug, description, image_url, parent_id")
+      .select(
+        "id, name, slug, description, image_url, parent_id, badge, about_body, about_image_url, about_caption",
+      )
       .eq("is_active", true)
       .order("sort_order", { ascending: true })
       .order("created_at", { ascending: false });
@@ -44,11 +54,6 @@ export async function getActiveCategories(): Promise<PublicCategory[]> {
 export async function getRootCategories(): Promise<PublicCategory[]> {
   const categories = await getActiveCategories();
   return categories.filter((c) => c.parent_id === null);
-}
-
-export async function getSubcategories(parentId: string): Promise<PublicCategory[]> {
-  const categories = await getActiveCategories();
-  return categories.filter((c) => c.parent_id === parentId);
 }
 
 export async function getActiveCategoryBySlug(slug: string): Promise<PublicCategory | null> {

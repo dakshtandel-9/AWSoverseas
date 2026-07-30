@@ -68,7 +68,7 @@ function AirplaneRoute() {
           viewport={{ once: true }}
           transition={{ duration: 1.6, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
         >
-          <Plane className="size-10 text-[#002144]" style={{ transform: "rotate(45deg)" }} strokeWidth={1.5} fill="#002144" />
+          <Plane className="size-10 text-[#1A0A53]" style={{ transform: "rotate(45deg)" }} strokeWidth={1.5} fill="#002144" />
         </motion.div>
       </div>
     </div>
@@ -85,7 +85,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
       <div className="mb-14 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Our Services</p>
-          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
+          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#1A0A53] sm:text-4xl lg:text-[2.6rem]">
             Sourcing & Shipping,<br className="hidden sm:block" /> End to End
           </h2>
         </div>
@@ -152,7 +152,7 @@ export function ServicesGrid({ data }: { data: Data; eyebrow?: string }) {
                 <span className="mb-4 inline-flex items-center rounded-full bg-ink/8 px-3 py-1 text-[11px] font-semibold tracking-wide text-maroon-admin ring-1 ring-ink/15">
                   {SERVICE_STATS[featured.title] ?? "500+ verified manufacturers"}
                 </span>
-                <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#002144" }}>{featured.title}</h3>
+                <h3 className="text-2xl font-bold lg:text-3xl" style={{ color: "#1A0A53" }}>{featured.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-ink/70">{featured.description}</p>
                 <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-maroon-admin">
                   Explore service
@@ -226,13 +226,13 @@ function CompactCard({
         <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#9e4953] transition-transform duration-300 group-hover:scale-y-100" />
 
         <div className="flex items-start justify-between">
-          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#002144] group-hover:text-white group-hover:scale-110">
+          <span className="grid size-12 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53] shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:bg-[#002144] group-hover:text-white group-hover:scale-110">
             <Icon className="size-6" />
           </span>
-          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#002144] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="size-4 text-[#c8d5e8] transition-all duration-200 group-hover:text-[#1A0A53] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
-        <h3 className="mt-4 text-base font-bold text-[#002144]">{item.title}</h3>
+        <h3 className="mt-4 text-base font-bold text-[#1A0A53]">{item.title}</h3>
         <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
 
         {stat && (

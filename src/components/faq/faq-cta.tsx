@@ -31,7 +31,7 @@ export function FaqCta({ data }: { data: Data }) {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#002144" }}>
+        <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: "#1A0A53" }}>
           {data.title}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-ink/60 sm:text-lg">{data.description}</p>

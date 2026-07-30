@@ -47,7 +47,7 @@ export function Certifications({ data }: { data: Data }) {
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#94a3b8]">
                 {REFS[i] ?? "STD"}
               </p>
-              <p className="mt-1 text-sm font-bold text-[#002144]">{item}</p>
+              <p className="mt-1 text-sm font-bold text-[#1A0A53]">{item}</p>
             </div>
           </motion.div>
         ))}

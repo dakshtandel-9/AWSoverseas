@@ -10,6 +10,8 @@ type Quote = {
   id: string;
   service_type: string;
   shipment_type: string;
+  /** "export" (Indian state → foreign country) or "import" (the reverse). Older rows predate the column. */
+  direction: string | null;
   origin_country: string;
   destination_country: string;
   full_name: string;
@@ -25,11 +27,17 @@ type Quote = {
 
 type Milestone = { id: string; status: string; location: string; note: string; created_at: string };
 
+// Keys already shown above the fold, so the raw payload doesn't repeat them.
+// Both directions' route field names are listed: export submits
+// origin-state/destination-country, import submits origin-country/destination-state.
 const PROMOTED_KEYS = new Set([
   "service-type",
   "shipment-type",
+  "direction",
   "origin-country",
+  "origin-state",
   "destination-country",
+  "destination-state",
   "full-name",
   "company-name",
   "email-address",
@@ -65,7 +73,9 @@ export function QuoteRow({
     <SubmissionRow
       title={item.full_name}
       subtitle={`${item.origin_country} → ${item.destination_country}`}
-      meta={item.service_type}
+      meta={[item.direction === "import" ? "Import" : "Export", item.service_type]
+        .filter(Boolean)
+        .join(" · ")}
       badge={<ReferralCreditBadge referrerName={referrerName} alreadyCredited={alreadyCredited} />}
       isRead={item.is_read}
       createdAt={createdAt}
@@ -102,7 +112,7 @@ export function QuoteRow({
             <div className="mt-2 grid gap-1.5 border-t border-[#e4e9f2] pt-3">
               {extraFields.map(([key, value]) => (
                 <p key={key} className="text-[#5b6b82]">
-                  <span className="font-semibold text-[#002144]">{toLabel(key)}:</span> {value}
+                  <span className="font-semibold text-[#1A0A53]">{toLabel(key)}:</span> {value}
                 </p>
               ))}
             </div>

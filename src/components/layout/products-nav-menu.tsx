@@ -44,7 +44,7 @@ function CategoryRow({
           href={`/products/${node.slug}`}
           role="menuitem"
           onClick={onNavigate}
-          className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+          className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
         >
           {node.name}
         </Link>
@@ -64,7 +64,7 @@ function CategoryRow({
         onClick={onToggle}
         className={cn(
           "flex w-full items-center justify-between gap-2 rounded-xl px-3.5 py-2.5 text-start text-sm font-semibold transition-colors",
-          isActive ? "bg-surface-soft text-brand-900" : "text-ink-soft hover:bg-surface-soft hover:text-brand-900",
+          isActive ? "bg-surface-soft text-ink" : "text-ink-soft hover:bg-surface-soft hover:text-ink",
         )}
       >
         <span className="truncate">{node.name}</span>
@@ -170,7 +170,7 @@ export function ProductsNavItem({
       <Link
         href="/products"
         data-active={isActive}
-        className="nav-underline whitespace-nowrap rounded-full py-2 ps-2.5 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900 xl:ps-3.5"
+        className="nav-underline whitespace-nowrap rounded-full py-2 ps-2.5 text-sm font-semibold text-ink-soft transition-colors hover:text-ink xl:ps-3.5"
       >
         Products
       </Link>
@@ -181,7 +181,7 @@ export function ProductsNavItem({
           aria-haspopup="true"
           aria-expanded={open}
           onClick={() => (open ? setOpen(false) : openNow())}
-          className="rounded-full py-2 pe-2.5 ps-1 text-ink-soft transition-colors hover:text-brand-900 xl:pe-3.5"
+          className="rounded-full py-2 pe-2.5 ps-1 text-ink-soft transition-colors hover:text-ink xl:pe-3.5"
         >
           <ChevronDown className={cn("size-3.5 transition-transform duration-200", open && "rotate-180")} />
         </button>
@@ -248,7 +248,7 @@ function CategoryAccordionList({
               <Link
                 href={`/products/${node.slug}`}
                 onClick={onNavigate}
-                className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+                className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
                 style={{ paddingInlineStart: `${0.75 + depth * 1}rem` }}
               >
                 {node.name}
@@ -279,7 +279,7 @@ export function ProductsMobileAccordion({
         onClick={onNavigate}
         className={cn(
           "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
-          isActive ? "bg-brand-50 text-brand-900" : "text-ink-soft hover:bg-surface-soft",
+          isActive ? "bg-brand-50 text-ink" : "text-ink-soft hover:bg-surface-soft",
         )}
       >
         Products
@@ -292,7 +292,7 @@ export function ProductsMobileAccordion({
       <div
         className={cn(
           "flex items-center justify-between gap-3 rounded-2xl transition-colors",
-          isActive ? "bg-brand-50 text-brand-900" : "text-ink-soft",
+          isActive ? "bg-brand-50 text-ink" : "text-ink-soft",
         )}
       >
         <Link href="/products" onClick={onNavigate} className="flex-1 px-4 py-3.5 text-lg font-semibold">

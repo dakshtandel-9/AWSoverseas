@@ -45,7 +45,7 @@ export function QuoteHero({ data }: { data: Data }) {
             <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
             WAYBILL&nbsp;DRAFT&nbsp;/&nbsp;PRE-BOOKING
           </span>
         </motion.div>
@@ -53,7 +53,7 @@ export function QuoteHero({ data }: { data: Data }) {
         <div className="mt-10 max-w-2xl">
           <motion.h1
             className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.1rem]"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -72,7 +72,7 @@ export function QuoteHero({ data }: { data: Data }) {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
+            className="mt-6 max-w-xl text-base leading-relaxed text-[#1A0A53]/65 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -91,7 +91,7 @@ export function QuoteHero({ data }: { data: Data }) {
             </Button>
             <a
               href="/contact"
-              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#002144]/90 transition-all duration-300"
+              className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#1A0A53]/90 transition-all duration-300"
               style={{
                 background: "rgba(1,33,74,0.06)",
                 border: "1px solid rgba(1,33,74,0.16)",

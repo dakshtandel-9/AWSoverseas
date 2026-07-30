@@ -50,7 +50,7 @@ export function LegalHero({ data, lastUpdated }: { data: Data; lastUpdated: stri
 
         <motion.h1
           className="mt-8 font-heading text-4xl font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-5xl"
-          style={{ color: "#002144" }}
+          style={{ color: "#1A0A53" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease }}

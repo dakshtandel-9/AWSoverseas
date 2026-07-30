@@ -4,12 +4,15 @@ import {
   getActiveCategories,
   getActiveCategoryBySlug,
   getCategoryTrail,
-  getSubcategories,
 } from "@/lib/category-data";
+import { getCategoryBranches } from "@/lib/catalog-tree";
 import { getActiveProductsByCategory } from "@/lib/product-data";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
+import { Section } from "@/components/ui/section";
 import { CategoryHero } from "@/components/products/category-hero";
+import { CategoryAbout } from "@/components/products/category-about";
 import { CategoryGrid } from "@/components/products/category-grid";
+import { CategorySection } from "@/components/products/category-section";
 import { ProductGrid } from "@/components/products/product-grid";
 import { ProductsCta } from "@/components/products/products-cta";
 import { products as productsContent } from "@/lib/content";
@@ -45,7 +48,7 @@ export default async function CategoryDetailPage({
   if (!category) notFound();
 
   const [subcategories, catalog, trailWithSelf, account] = await Promise.all([
-    getSubcategories(category.id),
+    getCategoryBranches(category.id),
     getActiveProductsByCategory(category.id),
     getCategoryTrail(category),
     getAccount(),
@@ -56,6 +59,12 @@ export default async function CategoryDetailPage({
   // it has. An empty one falls through to the product grid's empty state.
   const isBranch = subcategories.length > 0;
   const ancestors = trailWithSelf.slice(0, -1);
+
+  // A subcategory that nests further gets a card to click through to; one that
+  // holds products is opened out in place, since its page would show the same
+  // grid one click later.
+  const linked = subcategories.filter((s) => s.children.length > 0);
+  const inlined = subcategories.filter((s) => s.children.length === 0);
 
   const CATEGORY_JSONLD = {
     "@context": "https://schema.org",
@@ -89,15 +98,35 @@ export default async function CategoryDetailPage({
         countLabel={isBranch ? "SUBCATEGORIES" : "LISTED"}
       />
 
-      {isBranch ? (
+      <Section spacing="lg" tone="default">
+        <CategoryAbout category={category} imageSide="right" />
+      </Section>
+
+      {linked.length > 0 && (
         <CategoryGrid
-          categories={subcategories}
-          eyebrow="Subcategories"
-          title={`Browse ${category.name}`}
-          subtitle="Pick a subcategory to see everything we have available in it."
+          categories={linked}
+          title={`Explore Our ${category.name} Range`}
+          subtitle="Pick a range to see everything filed under it."
         />
-      ) : (
-        <ProductGrid products={catalog} auth={auth} />
+      )}
+
+      {inlined.map((branch, i) => (
+        <CategorySection
+          key={branch.id}
+          branch={branch}
+          auth={auth}
+          // Keep the tone alternating across the cards band above it.
+          index={linked.length > 0 ? i + 1 : i}
+        />
+      ))}
+
+      {!isBranch && (
+        <ProductGrid
+          products={catalog}
+          auth={auth}
+          title={`Browse ${category.name}`}
+          subtitle="Tap Enquiry on anything you're interested in — we'll follow up with availability and a quote."
+        />
       )}
 
       <ProductsCta data={productsContent.cta} />

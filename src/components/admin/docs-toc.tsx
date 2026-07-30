@@ -37,8 +37,8 @@ export function DocsToc({ sections }: { sections: DocSection[] }) {
           className={cn(
             "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
             activeId === s.id
-              ? "bg-[#eef3fb] text-[#002144]"
-              : "text-[#5b6b82] hover:bg-[#f6f8fc] hover:text-[#002144]",
+              ? "bg-[#eef3fb] text-[#1A0A53]"
+              : "text-[#5b6b82] hover:bg-[#f6f8fc] hover:text-[#1A0A53]",
           )}
         >
           {s.label}

@@ -23,13 +23,24 @@ type Field = {
     | "select"
     | "textarea"
     | "country-select"
-    | "state-select";
+    | "state-select"
+    /** Placeholder expanded at render time into the active direction's origin/destination pair. */
+    | "route";
   placeholder?: string;
   required?: boolean;
   options?: string[];
 };
 
-type FieldGroup = { title: string; description?: string; fields: Field[] };
+export type Direction = "export" | "import";
+
+type RouteVariant = { label: string; hint: string; fields: Field[] };
+
+type FieldGroup = {
+  title: string;
+  description?: string;
+  fields: Field[];
+  route?: Record<Direction, RouteVariant>;
+};
 type Submit = {
   title: string;
   description: string;
@@ -39,7 +50,7 @@ type Submit = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 function FieldControl({
   field,
@@ -130,29 +141,94 @@ function FieldControl({
   );
 }
 
+/**
+ * Export and import are the same waybill read in opposite directions, so they
+ * share one control rather than one form each: the segmented switch swaps only
+ * the origin/destination pair beneath it. Rendered as a two-up switch instead
+ * of a select because there are exactly two states and the choice reshapes the
+ * fields below — a change worth seeing before you make it.
+ */
+function DirectionToggle({
+  route,
+  direction,
+  onChange,
+}: {
+  route: Record<Direction, RouteVariant>;
+  direction: Direction;
+  onChange: (d: Direction) => void;
+}) {
+  const directions: Direction[] = ["export", "import"];
+
+  return (
+    <div>
+      <div
+        role="radiogroup"
+        aria-label="Trade direction"
+        className="inline-flex rounded-xl border border-[#e4e9f2] bg-[#f6f8fc] p-1"
+      >
+        {directions.map((d) => {
+          const active = d === direction;
+          return (
+            <button
+              key={d}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => onChange(d)}
+              className={cn(
+                "rounded-lg px-5 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9e4953]/40",
+                active
+                  ? "bg-[#9e4953] text-white shadow-[0_1px_3px_rgba(4,22,47,0.18)]"
+                  : "text-[#5b6b82] hover:text-[#1A0A53]",
+              )}
+            >
+              {route[d].label}
+            </button>
+          );
+        })}
+      </div>
+      <p className="mt-2 text-sm text-[#5b6b82]">{route[direction].hint}</p>
+    </div>
+  );
+}
+
 function FormSection({
   index,
   group,
   fieldDefaults,
   gated,
+  direction,
+  toolbar,
 }: {
   index: string;
   group: FieldGroup;
   fieldDefaults?: Record<string, string>;
   gated?: boolean;
+  /** Only set for the group carrying a `route` block. */
+  direction?: Direction;
+  toolbar?: React.ReactNode;
 }) {
+  // A `route` field is a placeholder: it expands in place into the active
+  // direction's origin/destination pair, so the JSON keeps field order
+  // without duplicating the fields shared by both directions.
+  const fields = group.fields.flatMap((field) =>
+    field.type === "route" ? (direction && group.route ? group.route[direction].fields : []) : [field],
+  );
+
   return (
     <div className="border-b border-[#e4e9f2] px-7 py-8 last:border-b-0 sm:px-10">
       <div className="flex items-baseline gap-3">
         <span className="font-mono text-xs font-bold text-[#94a3b8]">{index}</span>
-        <h2 className="text-lg font-bold text-[#002144]">{group.title}</h2>
+        <h2 className="text-lg font-bold text-[#1A0A53]">{group.title}</h2>
       </div>
       {group.description && (
         <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">{group.description}</p>
       )}
 
+      {toolbar && <div className="mt-6">{toolbar}</div>}
+
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
-        {group.fields.map((field) => (
+        {fields.map((field) => (
           <div
             key={field.label}
             className={cn(
@@ -160,7 +236,7 @@ function FormSection({
               (field.type === "textarea" || field.type === "select") && "sm:col-span-2",
             )}
           >
-            <label className="text-sm font-semibold text-[#002144]">
+            <label className="text-sm font-semibold text-[#1A0A53]">
               {field.label}
               {field.required && <span className="ml-1 text-maroon-admin">*</span>}
             </label>
@@ -229,6 +305,7 @@ export function QuoteForm({
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
   const [redirecting, setRedirecting] = useState(false);
+  const [direction, setDirection] = useState<Direction>("export");
   const shipmentDefaults = product
     ? { "Cargo Description": `Enquiry about: ${product}` }
     : undefined;
@@ -258,7 +335,9 @@ export function QuoteForm({
     >
       <div className="flex items-center justify-between rounded-t-3xl border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-          {product ? `Product Enquiry — ${product}` : "Shipment Waybill — Draft"}
+          {product
+            ? `Product Enquiry — ${product}`
+            : `Shipment Waybill — ${quoteForm.route ? `${quoteForm.route[direction].label} ` : ""}Draft`}
         </p>
         <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">
           3 sections
@@ -285,7 +364,7 @@ export function QuoteForm({
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#94a3b8]">
                   Your tracking number
                 </p>
-                <p className="font-mono text-lg font-bold text-[#002144]">{state.trackingNumber}</p>
+                <p className="font-mono text-lg font-bold text-[#1A0A53]">{state.trackingNumber}</p>
                 <p className="max-w-xs text-xs leading-relaxed text-[#5b6b82]">
                   Save this number — no account needed to check your shipment's progress.
                 </p>
@@ -308,7 +387,23 @@ export function QuoteForm({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FormSection index="01" group={quoteForm} gated={Boolean(gateHref)} />
+            <input type="hidden" name="direction" value={direction} />
+
+            <FormSection
+              index="01"
+              group={quoteForm}
+              gated={Boolean(gateHref)}
+              direction={direction}
+              toolbar={
+                quoteForm.route && (
+                  <DirectionToggle
+                    route={quoteForm.route}
+                    direction={direction}
+                    onChange={setDirection}
+                  />
+                )
+              }
+            />
             <FormSection
               index="02"
               group={shipmentDetails}
@@ -323,12 +418,12 @@ export function QuoteForm({
             />
 
             <div className="px-7 py-8 sm:px-10">
-              <h3 className="text-base font-bold text-[#002144]">{submit.title}</h3>
+              <h3 className="text-base font-bold text-[#1A0A53]">{submit.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{submit.description}</p>
 
               {gateHref && (
                 <div
-                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-[#eef3fb] px-4 py-3 text-sm font-medium text-[#002144]"
+                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-[#eef3fb] px-4 py-3 text-sm font-medium text-[#1A0A53]"
                   role="status"
                 >
                   <AlertCircle className="mt-0.5 size-4 shrink-0" />

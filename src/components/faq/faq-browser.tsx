@@ -51,7 +51,7 @@ export function FaqBrowser({
             "rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
             active === "All"
               ? "bg-[#002144] text-white"
-              : "bg-[#eef3fb] text-[#002144] hover:bg-[#dce7f7]",
+              : "bg-[#eef3fb] text-[#1A0A53] hover:bg-[#dce7f7]",
           )}
         >
           All Topics
@@ -65,7 +65,7 @@ export function FaqBrowser({
               "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200",
               active === cat.title
                 ? "bg-[#002144] text-white"
-                : "bg-[#eef3fb] text-[#002144] hover:bg-[#dce7f7]",
+                : "bg-[#eef3fb] text-[#1A0A53] hover:bg-[#dce7f7]",
             )}
           >
             {cat.title}

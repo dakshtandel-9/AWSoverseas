@@ -24,7 +24,7 @@ export function TrackingAppCta({ data }: { data: Data }) {
         <div>
           <motion.h2
             className="text-3xl font-bold sm:text-4xl"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -68,14 +68,14 @@ export function TrackingAppCta({ data }: { data: Data }) {
           >
             <a
               href={data.playStoreButton.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#002144] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-14 items-center gap-3 rounded-2xl bg-white px-6 text-[#1A0A53] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)] transition-transform hover:-translate-y-0.5"
             >
               <Play className="size-6" />
               <span className="text-sm font-bold">{data.playStoreButton.text}</span>
             </a>
             <a
               href={data.appStoreButton.link}
-              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[#002144] transition-all hover:-translate-y-0.5"
+              className="inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[#1A0A53] transition-all hover:-translate-y-0.5"
               style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(1,33,74,0.18)" }}
             >
               <Apple className="size-6" />

@@ -47,7 +47,7 @@ export function SustainabilityCta({ data }: { data: Data }) {
 
             <h2
               className="mt-7 text-balance text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-[3rem]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
             >
               {data.title}
             </h2>

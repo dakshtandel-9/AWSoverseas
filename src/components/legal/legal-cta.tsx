@@ -9,7 +9,7 @@ export function LegalCta() {
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div className="flex items-start gap-3">
-            <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-700">
+            <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-ink">
               <Mail className="size-4" />
             </span>
             <div>

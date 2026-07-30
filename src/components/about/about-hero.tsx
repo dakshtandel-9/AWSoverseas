@@ -78,7 +78,7 @@ export function AboutHero({ data }: { data: Data }) {
             </motion.p>
             <motion.h1
               className="mt-3 font-heading text-4xl font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.14, ease }}

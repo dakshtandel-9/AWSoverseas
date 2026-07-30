@@ -65,7 +65,7 @@ export function VoidManifest() {
             </p>
             <h1
               className="mt-2 font-heading text-[clamp(4.5rem,12vw,8.5rem)] font-extrabold leading-[0.9] tracking-[-0.04em]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
             >
               404
             </h1>
@@ -104,7 +104,7 @@ export function VoidManifest() {
           >
             <h2
               className="font-heading text-2xl font-bold leading-tight sm:text-3xl"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
             >
               This shipment has no manifest on file.
             </h2>

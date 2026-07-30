@@ -43,7 +43,7 @@ export function Pillars({ data }: { data: Data }) {
               >
                 <Icon className="size-5" />
               </span>
-              <h3 className="mt-5 text-lg font-bold text-[#002144]">{item.title}</h3>
+              <h3 className="mt-5 text-lg font-bold text-[#1A0A53]">{item.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[#5b6b82]">
                 {item.description}
               </p>

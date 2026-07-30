@@ -82,7 +82,7 @@ export function TrackingHero({
 
         <motion.h1
           className="mt-6 max-w-2xl font-heading text-4xl font-extrabold leading-[1.1] tracking-[-0.03em] sm:text-5xl"
-          style={{ color: "#002144" }}
+          style={{ color: "#1A0A53" }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -91,7 +91,7 @@ export function TrackingHero({
         </motion.h1>
 
         <motion.p
-          className="mt-5 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
+          className="mt-5 max-w-xl text-base leading-relaxed text-[#1A0A53]/65 sm:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -106,17 +106,17 @@ export function TrackingHero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.28, ease }}
         >
-          <p className="text-left font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#002144]/45">
+          <p className="text-left font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A0A53]/45">
             {form.title}
           </p>
-          <p className="mt-2 text-left text-sm text-[#002144]/60">{form.description}</p>
+          <p className="mt-2 text-left text-sm text-[#1A0A53]/60">{form.description}</p>
 
           <form onSubmit={onSubmit} className="mt-5 flex flex-col gap-3 sm:flex-row">
             <label htmlFor="tracking-ref" className="sr-only">
               Tracking number
             </label>
             <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-[#002144]/40" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-[#1A0A53]/40" />
               <input
                 id="tracking-ref"
                 value={value}
@@ -125,7 +125,7 @@ export function TrackingHero({
                   if (error) setError(false);
                 }}
                 placeholder={form.placeholder}
-                className="w-full rounded-2xl border border-[#002144]/15 bg-white py-4 pl-11 pr-4 text-sm font-medium text-[#002144] placeholder:text-[#002144]/35 outline-none focus:border-[#9e4953]/50 focus:ring-2 focus:ring-[#9e4953]/25"
+                className="w-full rounded-2xl border border-[#002144]/15 bg-white py-4 pl-11 pr-4 text-sm font-medium text-[#1A0A53] placeholder:text-[#1A0A53]/35 outline-none focus:border-[#9e4953]/50 focus:ring-2 focus:ring-[#9e4953]/25"
               />
             </div>
             <button

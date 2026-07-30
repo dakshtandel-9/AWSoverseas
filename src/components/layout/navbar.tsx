@@ -56,7 +56,7 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
                   key={link.href}
                   href={link.href}
                   data-active={isActive(link.href)}
-                  className="nav-underline shrink-0 whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900 xl:px-3.5"
+                  className="nav-underline shrink-0 whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-ink xl:px-3.5"
                 >
                   {link.label}
                 </Link>
@@ -119,7 +119,7 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
                     className={cn(
                       "rounded-2xl px-4 py-3.5 text-lg font-semibold transition-colors",
                       isActive(link.href)
-                        ? "bg-brand-50 text-brand-900"
+                        ? "bg-brand-50 text-ink"
                         : "text-ink-soft hover:bg-surface-soft",
                     )}
                   >

@@ -27,7 +27,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
       {/* Heading */}
       <Reveal direction="up">
         <div className="relative max-w-2xl">
-          <h2 className="text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem]">
+          <h2 className="text-3xl font-bold text-[#1A0A53] sm:text-4xl lg:text-[2.5rem]">
             {data.title} <span style={{ fontSize: "10px" }} className="align-baseline font-normal text-[#5b6b82]">impex</span>
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
@@ -66,7 +66,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
                   className="grid size-13 place-items-center rounded-xl shadow-[0_2px_8px_rgba(3,62,141,0.08)] transition-all duration-300 group-hover:scale-110"
                   style={{
                     background: useAmber ? "#fffbeb" : "#eef3fb",
-                    color: useAmber ? "#d97706" : "#002144",
+                    color: useAmber ? "#d97706" : "#1A0A53",
                   }}
                 >
                   <Icon className="size-6" />
@@ -78,7 +78,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
                 />
               </div>
 
-              <h3 className="mt-5 text-base font-bold text-[#002144]">{item.title}</h3>
+              <h3 className="mt-5 text-base font-bold text-[#1A0A53]">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
               {metric && (
                 <span
@@ -106,7 +106,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
         transition={{ duration: 0.55, delay: 0.3 }}
       >
         <div className="flex flex-col items-center gap-4 text-center">
-          <p className="text-base font-semibold text-[#002144]">Ready to ship globally?</p>
+          <p className="text-base font-semibold text-[#1A0A53]">Ready to ship globally?</p>
           <Link
             href="/quote"
             className="group inline-flex items-center gap-2 rounded-full btn-navy px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)]"

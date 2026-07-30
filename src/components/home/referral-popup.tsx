@@ -94,7 +94,7 @@ export function ReferralPopup({
                   type="button"
                   onClick={close}
                   aria-label="Close"
-                  className="absolute right-4 top-4 z-10 grid size-9 shrink-0 place-items-center rounded-full bg-white/80 text-[#5b6b82] backdrop-blur-sm transition-colors hover:bg-white hover:text-[#002144]"
+                  className="absolute right-4 top-4 z-10 grid size-9 shrink-0 place-items-center rounded-full bg-white/80 text-[#5b6b82] backdrop-blur-sm transition-colors hover:bg-white hover:text-[#1A0A53]"
                 >
                   <X className="size-4" />
                 </button>
@@ -134,7 +134,7 @@ export function ReferralPopup({
                   {/* Right: the offer and action */}
                   <div className="flex flex-1 flex-col gap-5 p-7 sm:p-8">
                     <div className="flex items-center gap-4 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-5 py-4">
-                      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#CFE8FF] text-[#002144]">
+                      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#CFE8FF] text-[#1A0A53]">
                         <Wallet className="size-5" />
                       </span>
                       <div>
@@ -146,14 +146,14 @@ export function ReferralPopup({
                     {loggedIn && referralCode ? (
                       <div className="mt-auto flex flex-col gap-3">
                         <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-5 py-3.5">
-                          <span className="font-mono text-lg font-bold tracking-[0.12em] text-[#002144]">
+                          <span className="font-mono text-lg font-bold tracking-[0.12em] text-[#1A0A53]">
                             {referralCode}
                           </span>
                           <button
                             type="button"
                             onClick={copyCode}
                             aria-label={copied ? "Copied" : "Copy referral code"}
-                            className="grid size-9 shrink-0 place-items-center rounded-full border border-[#e4e9f2] text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#002144]"
+                            className="grid size-9 shrink-0 place-items-center rounded-full border border-[#e4e9f2] text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#1A0A53]"
                           >
                             {copied ? <Check className="size-4 text-maroon-admin" /> : <Copy className="size-4" />}
                           </button>
@@ -174,7 +174,7 @@ export function ReferralPopup({
                         </Button>
                         <Link
                           href="/login?next=/profile/referrals"
-                          className="text-center text-sm font-medium text-[#5b6b82] hover:text-[#002144]"
+                          className="text-center text-sm font-medium text-[#5b6b82] hover:text-[#1A0A53]"
                         >
                           Already have an account? Sign in
                         </Link>
@@ -204,7 +204,7 @@ export function ReferralPopup({
               type="button"
               onClick={() => setOpen(true)}
               aria-label="Open refer and earn"
-              className="fixed bottom-5 right-5 z-[90] inline-flex items-center gap-2 rounded-full border border-[#9e4953]/25 bg-white px-4 py-3 text-sm font-semibold text-[#002144] shadow-[0_18px_40px_-16px_rgba(4,22,47,0.35)] transition-colors hover:border-[#9e4953]/50 sm:bottom-6 sm:right-6"
+              className="fixed bottom-5 right-5 z-[90] inline-flex items-center gap-2 rounded-full border border-[#9e4953]/25 bg-white px-4 py-3 text-sm font-semibold text-[#1A0A53] shadow-[0_18px_40px_-16px_rgba(4,22,47,0.35)] transition-colors hover:border-[#9e4953]/50 sm:bottom-6 sm:right-6"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}

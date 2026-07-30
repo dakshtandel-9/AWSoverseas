@@ -20,12 +20,16 @@ export default async function AdminEditCategoryPage({ params }: { params: Promis
     parent_id: data.parent_id,
     sort_order: data.sort_order,
     is_active: data.is_active,
+    badge: data.badge ?? "",
+    about_body: data.about_body ?? "",
+    about_image_url: data.about_image_url ?? "",
+    about_caption: data.about_caption ?? "",
   };
 
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Catalog</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Edit category</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Edit category</h1>
       <CategoryForm category={category} parentOptions={parentOptions} />
     </div>
   );

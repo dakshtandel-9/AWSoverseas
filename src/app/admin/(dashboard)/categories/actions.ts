@@ -51,6 +51,10 @@ function readCategoryFields(formData: FormData) {
     parent_id: parentId || null,
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
     is_active: formData.get("is_active") === "true",
+    badge: String(formData.get("badge") ?? "").trim(),
+    about_body: String(formData.get("about_body") ?? "").trim(),
+    about_image_url: String(formData.get("about_image_url") ?? "").trim(),
+    about_caption: String(formData.get("about_caption") ?? "").trim(),
   };
 }
 

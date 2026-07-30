@@ -72,10 +72,10 @@ export function IndustriesDirectory({ data }: { data: Data }) {
               <span className="hidden font-mono text-xs font-semibold text-[#94a3b8] sm:block">
                 {code}
               </span>
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
                 <Icon className="size-5" />
               </span>
-              <span className="min-w-0 flex-1 truncate text-base font-bold text-[#002144]">
+              <span className="min-w-0 flex-1 truncate text-base font-bold text-[#1A0A53]">
                 {item.title}
               </span>
 

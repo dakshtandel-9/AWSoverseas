@@ -48,12 +48,12 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
         >
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#002144]/55 transition-colors hover:text-maroon-admin"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1A0A53]/55 transition-colors hover:text-maroon-admin"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
             All Services
           </Link>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
             SERVICE&nbsp;RECORD&nbsp;/&nbsp;{String(stepCount).padStart(2, "0")}-STEP&nbsp;PROCESS
           </span>
         </motion.div>
@@ -81,7 +81,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
 
             <motion.h1
               className="mt-4 font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.2rem]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -90,7 +90,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
             </motion.h1>
 
             <motion.p
-              className="mt-6 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-[#1A0A53]/65 sm:text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -109,7 +109,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
               </Button>
               <a
                 href="/contact"
-                className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#002144]/90 transition-all duration-300"
+                className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#1A0A53]/90 transition-all duration-300"
                 style={{
                   background: "rgba(1,33,74,0.06)",
                   border: "1px solid rgba(1,33,74,0.16)",

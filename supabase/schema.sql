@@ -147,6 +147,14 @@ create table if not exists categories (
 alter table categories
   add column if not exists parent_id uuid references categories(id) on delete cascade;
 
+-- Copy for the "About Our <category>" block on the category page. `about_body`
+-- holds paragraphs separated by a blank line; `about_image_url` falls back to
+-- `image_url` when empty.
+alter table categories add column if not exists badge text not null default '';
+alter table categories add column if not exists about_body text not null default '';
+alter table categories add column if not exists about_image_url text not null default '';
+alter table categories add column if not exists about_caption text not null default '';
+
 create index if not exists categories_active_idx on categories (is_active, sort_order, created_at desc);
 
 create index if not exists categories_parent_idx on categories (parent_id, sort_order, created_at desc);
@@ -358,6 +366,16 @@ alter table quote_submissions add constraint quote_submissions_shipment_status_c
   check (shipment_status in ('verifying', 'pending', 'collected', 'customs_cleared', 'in_transit', 'delivered', 'rejected'));
 
 create unique index if not exists quote_submissions_tracking_idx on quote_submissions (tracking_number);
+
+-- Trade direction — /quote carries an Export/Import toggle, and origin_country
+-- / destination_country hold whichever side of the route applies: export is
+-- Indian state → foreign country, import is foreign country → Indian state.
+-- Rows created before the toggle were all outbound, hence the 'export' default.
+alter table quote_submissions add column if not exists direction text not null default 'export';
+
+alter table quote_submissions drop constraint if exists quote_submissions_direction_check;
+alter table quote_submissions add constraint quote_submissions_direction_check
+  check (direction in ('export', 'import'));
 
 create table if not exists shipment_milestones (
   id uuid primary key default gen_random_uuid(),

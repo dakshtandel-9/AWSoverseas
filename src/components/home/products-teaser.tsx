@@ -27,7 +27,7 @@ export function ProductsTeaser({
         <SectionHeading eyebrow={eyebrow} title={data.title} subtitle={data.description} align="left" />
         <Link
           href="/products"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-brand-200 px-5 py-2.5 text-sm font-semibold text-brand-900 transition-colors hover:border-brand-400 hover:bg-brand-50"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-brand-200 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-brand-400 hover:bg-brand-50"
         >
           {data.button} <ArrowRight className="size-4" />
         </Link>

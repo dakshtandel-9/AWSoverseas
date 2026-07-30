@@ -40,7 +40,7 @@ export function SubmissionRow({
       >
         {!isRead && <span className="size-2 shrink-0 rounded-full bg-[#9e4953]" aria-hidden />}
         <div className="min-w-0 flex-1">
-          <p className={cn("truncate text-sm", isRead ? "font-medium text-[#5b6b82]" : "font-bold text-[#002144]")}>
+          <p className={cn("truncate text-sm", isRead ? "font-medium text-[#5b6b82]" : "font-bold text-[#1A0A53]")}>
             {title}
           </p>
           <p className="truncate text-xs text-[#94a3b8]">{subtitle}</p>
@@ -53,7 +53,7 @@ export function SubmissionRow({
 
       {open && (
         <div className="border-t border-[#e4e9f2] px-5 py-4">
-          <div className="text-sm leading-relaxed text-[#002144]">{detail}</div>
+          <div className="text-sm leading-relaxed text-[#1A0A53]">{detail}</div>
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <button
               type="button"

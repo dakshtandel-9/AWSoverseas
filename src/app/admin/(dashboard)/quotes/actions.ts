@@ -20,6 +20,7 @@ export async function createQuoteForUserAction(
   const userId = String(formData.get("user-id") ?? "").trim();
   const serviceType = String(formData.get("service-type") ?? "").trim();
   const shipmentType = String(formData.get("shipment-type") ?? "").trim();
+  const direction = formData.get("direction") === "import" ? "import" : "export";
   const originCountry = String(formData.get("origin-country") ?? "").trim();
   const destinationCountry = String(formData.get("destination-country") ?? "").trim();
   const estimatedDate = String(formData.get("estimated-date") ?? "").trim();
@@ -47,6 +48,7 @@ export async function createQuoteForUserAction(
   const raw: Record<string, string> = {
     "service-type": serviceType,
     "shipment-type": shipmentType,
+    direction,
     "origin-country": originCountry,
     "destination-country": destinationCountry,
     "full-name": fullName,
@@ -60,6 +62,7 @@ export async function createQuoteForUserAction(
   const { error } = await db.from("quote_submissions").insert({
     service_type: serviceType,
     shipment_type: shipmentType,
+    direction,
     origin_country: originCountry,
     destination_country: destinationCountry,
     full_name: fullName,

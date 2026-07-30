@@ -22,7 +22,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
         <Reveal direction="up">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5b6b82]">Process</p>
-            <h2 className="mt-3 text-3xl font-bold text-[#002144] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
+            <h2 className="mt-3 text-3xl font-bold text-[#1A0A53] sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {data.title}
             </h2>
             <p className="mt-5 text-base leading-relaxed text-[#5b6b82]">
@@ -107,7 +107,7 @@ export function HowItWorks({ data }: { data: Data; eyebrow?: string }) {
                   )}
                   <h3
                     className="text-lg font-bold"
-                    style={{ color: isActive ? "#d97706" : isDone ? "#002144" : "#2a3a52" }}
+                    style={{ color: isActive ? "#d97706" : isDone ? "#1A0A53" : "#2a3a52" }}
                   >
                     {s.title}
                   </h3>

@@ -42,7 +42,7 @@ export function AdminNav() {
                   "flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                   active
                     ? "bg-[#002144] text-white"
-                    : "text-[#5b6b82] hover:bg-[#eef3fb] hover:text-[#002144]",
+                    : "text-[#5b6b82] hover:bg-[#eef3fb] hover:text-[#1A0A53]",
                 )}
               >
                 <Icon className="size-4 shrink-0" />

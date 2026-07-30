@@ -28,7 +28,7 @@ export function FaqSection({
           />
           <Link
             href="/faq"
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-ink-soft"
           >
             View all questions <ArrowRight className="size-4" />
           </Link>

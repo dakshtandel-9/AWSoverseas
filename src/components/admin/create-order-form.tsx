@@ -34,7 +34,7 @@ export type OrderProductOption = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: CreateOrderState = {};
 
@@ -100,7 +100,7 @@ function Combobox<T extends { id: string }>({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={searchPlaceholder}
-              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#002144] outline-none placeholder:text-[#94a3b8]"
+              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#1A0A53] outline-none placeholder:text-[#94a3b8]"
             />
           </div>
           <ul className="max-h-56 overflow-y-auto py-1.5">
@@ -119,7 +119,7 @@ function Combobox<T extends { id: string }>({
                     setQuery("");
                   }}
                   className={cn(
-                    "cursor-pointer px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
+                    "cursor-pointer px-4 py-2 text-sm text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]",
                     item.id === value?.id && "bg-[#eef8fd] text-maroon-admin",
                   )}
                 >
@@ -204,7 +204,7 @@ function CreateOrderModal({
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               Place an Order
             </p>
-            <h2 id="create-order-title" className="mt-1 text-base font-bold text-[#002144]">
+            <h2 id="create-order-title" className="mt-1 text-base font-bold text-[#1A0A53]">
               For a customer
             </h2>
           </div>
@@ -212,7 +212,7 @@ function CreateOrderModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
+            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#1A0A53]"
           >
             <X className="size-4" />
           </button>
@@ -231,7 +231,7 @@ function CreateOrderModal({
             </div>
 
             {context ? (
-              <div className="text-sm text-[#002144]">
+              <div className="text-sm text-[#1A0A53]">
                 <OrderDecisionSection
                   item={context.item}
                   referrerName={context.referrerName}
@@ -245,7 +245,7 @@ function CreateOrderModal({
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
+              className="mt-1 inline-flex h-10 items-center justify-center self-start rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#1A0A53] hover:border-[#9e4953]"
             >
               Done
             </button>
@@ -257,7 +257,7 @@ function CreateOrderModal({
             <input type="hidden" name="product-name" value={product?.name ?? ""} />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Customer <span className="text-maroon-admin">*</span>
               </label>
               <Combobox
@@ -290,7 +290,7 @@ function CreateOrderModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Product <span className="text-maroon-admin">*</span>
               </label>
               <Combobox
@@ -306,7 +306,7 @@ function CreateOrderModal({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#002144]">Message</label>
+              <label className="text-sm font-semibold text-[#1A0A53]">Message</label>
               <textarea
                 name="message"
                 rows={3}
@@ -316,7 +316,7 @@ function CreateOrderModal({
             </div>
 
             <div className="rounded-2xl border border-[#e4e9f2] bg-[#f9fbfe] p-4">
-              <p className="text-sm font-semibold text-[#002144]">Quote (optional)</p>
+              <p className="text-sm font-semibold text-[#1A0A53]">Quote (optional)</p>
               <p className="mt-1 text-xs text-[#5b6b82]">
                 Fill in a price to send the quote right away — or leave blank and price it out after creating.
                 You can revise it any time.

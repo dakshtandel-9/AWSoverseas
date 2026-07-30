@@ -63,7 +63,7 @@ export function GlobalCoverage({ data }: { data: Data; eyebrow?: string }) {
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-maroon-admin/70">
               Sourcing & Delivery Network
             </p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#002144" }}>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight" style={{ color: "#1A0A53" }}>
               {data.title}
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-ink/60">

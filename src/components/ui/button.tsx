@@ -14,9 +14,9 @@ const VARIANTS: Record<Variant, string> = {
   primary: "btn-navy text-white shadow-soft hover:shadow-lift",
   secondary: "btn-maroon text-white shadow-soft hover:shadow-lift",
   outline:
-    "border border-brand-200 bg-white/60 text-brand-900 hover:border-brand-400 hover:bg-white",
-  ghost: "text-brand-900 hover:bg-brand-50",
-  white: "bg-white text-brand-900 shadow-soft hover:shadow-lift",
+    "border border-brand-200 bg-white/60 text-ink hover:border-brand-400 hover:bg-white",
+  ghost: "text-ink hover:bg-brand-50",
+  white: "bg-white text-ink shadow-soft hover:shadow-lift",
 };
 
 const SIZES: Record<Size, string> = {

@@ -24,7 +24,7 @@ type Data = {
 };
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 function FieldControl({ field }: { field: Field }) {
   const id = useId();
@@ -103,7 +103,7 @@ export function ContactForm({ data }: { data: Data }) {
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
         Request Form
       </p>
-      <h2 className="mt-3 text-2xl font-bold text-[#002144] sm:text-3xl">{data.title}</h2>
+      <h2 className="mt-3 text-2xl font-bold text-[#1A0A53] sm:text-3xl">{data.title}</h2>
       <p className="mt-3 text-[15px] leading-relaxed text-[#5b6b82]">{data.description}</p>
 
       <AnimatePresence mode="wait">
@@ -139,7 +139,7 @@ export function ContactForm({ data }: { data: Data }) {
                   (field.type === "textarea" || field.type === "select") && "sm:col-span-2",
                 )}
               >
-                <label className="text-sm font-semibold text-[#002144]">
+                <label className="text-sm font-semibold text-[#1A0A53]">
                   {field.label}
                   {field.required && <span className="ml-1 text-maroon-admin">*</span>}
                 </label>

@@ -72,7 +72,7 @@ export function UserRow({ user }: { user: AdminUser }) {
         className="flex w-full items-center gap-4 px-5 py-4 text-left"
       >
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-[#002144]">{name}</p>
+          <p className="truncate text-sm font-bold text-[#1A0A53]">{name}</p>
           <p className="truncate text-xs text-[#94a3b8]">
             {user.username ? `@${user.username} · ` : ""}
             {user.email}
@@ -87,7 +87,7 @@ export function UserRow({ user }: { user: AdminUser }) {
 
       {open && (
         <div className="border-t border-[#e4e9f2] px-5 py-5">
-          <div className="grid gap-x-8 gap-y-2 text-sm text-[#002144] sm:grid-cols-2">
+          <div className="grid gap-x-8 gap-y-2 text-sm text-[#1A0A53] sm:grid-cols-2">
             <p>
               <span className="font-semibold">Phone:</span>{" "}
               {user.phone ? (

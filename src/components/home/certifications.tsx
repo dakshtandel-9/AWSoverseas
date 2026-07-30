@@ -33,7 +33,7 @@ export function Certifications({ data }: { data: Data }) {
           <ShieldCheck className="size-3.5" aria-hidden />
           {data.badge}
         </span>
-        <h2 className="mt-4 text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
+        <h2 className="mt-4 text-3xl font-bold leading-tight text-[#1A0A53] sm:text-4xl lg:text-[2.6rem]">
           {data.title}
         </h2>
         <p className="mt-4 text-base leading-relaxed text-[#5b6b82]">{data.description}</p>

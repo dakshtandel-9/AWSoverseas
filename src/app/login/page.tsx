@@ -61,7 +61,7 @@ export default async function LoginPage({
             </span>
             <h1
               className="mt-6 max-w-md font-heading text-4xl font-extrabold leading-[1.06] tracking-[-0.03em] xl:text-[2.75rem]"
-              style={{ color: "#002144" }}
+              style={{ color: "#1A0A53" }}
             >
               One account clears every shipment.
             </h1>
@@ -117,7 +117,7 @@ export default async function LoginPage({
               <span className="size-1.5 rounded-full bg-[#9e4953]" />
               Customer access
             </span>
-            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#002144] sm:text-[1.75rem]">
+            <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#1A0A53] sm:text-[1.75rem]">
               {isSignUp ? "Create your account" : "Sign in to aws overseas"}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">

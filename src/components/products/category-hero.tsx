@@ -43,7 +43,7 @@ export function CategoryHero({
         >
           <Link
             href={parent ? `/products/${parent.slug}` : "/products"}
-            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#002144]/55 transition-colors hover:text-maroon-admin"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1A0A53]/55 transition-colors hover:text-maroon-admin"
           >
             <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
             {parent ? parent.name : "All Categories"}
@@ -52,7 +52,7 @@ export function CategoryHero({
           {trail.length > 0 && (
             <nav
               aria-label="Breadcrumb"
-              className="hidden flex-wrap items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#002144]/40 md:flex"
+              className="hidden flex-wrap items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#1A0A53]/40 md:flex"
             >
               <span aria-hidden>/</span>
               <Link href="/products" className="transition-colors hover:text-maroon-admin">
@@ -69,7 +69,7 @@ export function CategoryHero({
             </nav>
           )}
 
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#002144]/40 sm:block">
+          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
             {count}&nbsp;{countLabel}
           </span>
         </motion.div>
@@ -77,7 +77,7 @@ export function CategoryHero({
         <div className="mt-10 max-w-3xl">
           <motion.h1
             className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[3.4rem]"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
@@ -87,7 +87,7 @@ export function CategoryHero({
 
           {category.description && (
             <motion.p
-              className="mt-6 max-w-xl text-base leading-relaxed text-[#002144]/65 sm:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-[#1A0A53]/65 sm:text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease }}

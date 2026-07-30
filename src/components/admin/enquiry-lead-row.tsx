@@ -42,7 +42,7 @@ function MoveToOrderButton({ id, linkedCustomer }: { id: string; linkedCustomer:
       <button
         type="button"
         onClick={() => setConfirming(true)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-[#002144] px-3.5 py-1.5 text-xs font-semibold text-[#002144] transition-colors hover:bg-[#eef3fb]"
+        className="inline-flex items-center gap-1.5 rounded-full border border-[#002144] px-3.5 py-1.5 text-xs font-semibold text-[#1A0A53] transition-colors hover:bg-[#eef3fb]"
       >
         <ShoppingBag className="size-3.5" />
         Move to Order
@@ -134,13 +134,13 @@ export function EnquiryLeadRow({
           )}
           {item.message && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#002144]">Message:</p>
+              <p className="font-semibold text-[#1A0A53]">Message:</p>
               <p className="mt-1 whitespace-pre-wrap text-[#5b6b82]">{item.message}</p>
             </div>
           )}
           {item.attachment_url && (
             <div className="mt-2 border-t border-[#e4e9f2] pt-3">
-              <p className="font-semibold text-[#002144]">Attachment:</p>
+              <p className="font-semibold text-[#1A0A53]">Attachment:</p>
               <a
                 href={item.attachment_url}
                 target="_blank"

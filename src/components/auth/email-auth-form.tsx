@@ -10,7 +10,7 @@ import { PasswordChecklist } from "@/components/auth/password-checklist";
 import { CaptchaField, type CaptchaHandle } from "@/components/auth/captcha-field";
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 type Mode = "sign-in" | "sign-up";
 
@@ -126,7 +126,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
             }}
             className={cn(
               "rounded-lg py-2 text-sm font-semibold transition-colors",
-              mode === m ? "bg-white text-[#002144] shadow-[0_1px_2px_rgba(4,22,47,0.08)]" : "text-[#5b6b82]",
+              mode === m ? "bg-white text-[#1A0A53] shadow-[0_1px_2px_rgba(4,22,47,0.08)]" : "text-[#5b6b82]",
             )}
           >
             {m === "sign-in" ? "Sign in" : "Create account"}
@@ -136,7 +136,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
       <form onSubmit={submit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-[#002144]">Email</label>
+          <label className="text-sm font-semibold text-[#1A0A53]">Email</label>
           <input
             type="email"
             required
@@ -150,7 +150,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
         <div className="flex flex-col gap-2">
           <div className="flex items-baseline justify-between">
-            <label className="text-sm font-semibold text-[#002144]">Password</label>
+            <label className="text-sm font-semibold text-[#1A0A53]">Password</label>
             {mode === "sign-in" && (
               <Link href="/forgot-password" className="text-xs font-semibold text-maroon-admin hover:underline">
                 Forgot password?
@@ -172,7 +172,7 @@ export function EmailAuthForm({ mode: initialMode, next }: { mode: Mode; next?: 
 
         {mode === "sign-up" && (
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-[#002144]">Confirm password</label>
+            <label className="text-sm font-semibold text-[#1A0A53]">Confirm password</label>
             <input
               type="password"
               required

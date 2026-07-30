@@ -85,7 +85,7 @@ function AdjustForm({ customer }: { customer: AdminWalletCustomer }) {
 
   return (
     <form ref={formRef} onSubmit={onSubmit} className="mt-5 border-t border-[#e4e9f2] pt-5">
-      <p className="text-sm font-semibold text-[#002144]">Adjust balance</p>
+      <p className="text-sm font-semibold text-[#1A0A53]">Adjust balance</p>
       <p className="mt-1 text-xs text-[#5b6b82]">
         Adding or deducting writes a new line in this customer&apos;s wallet activity. Earlier entries are never
         changed.
@@ -99,7 +99,7 @@ function AdjustForm({ customer }: { customer: AdminWalletCustomer }) {
             aria-pressed={direction === "add"}
             className={cn(
               toggle,
-              direction === "add" ? "bg-emerald-600 text-white" : "text-[#5b6b82] hover:text-[#002144]",
+              direction === "add" ? "bg-emerald-600 text-white" : "text-[#5b6b82] hover:text-[#1A0A53]",
             )}
           >
             <Plus className="mr-1 inline size-3.5" />
@@ -111,7 +111,7 @@ function AdjustForm({ customer }: { customer: AdminWalletCustomer }) {
             aria-pressed={direction === "deduct"}
             className={cn(
               toggle,
-              direction === "deduct" ? "bg-red-600 text-white" : "text-[#5b6b82] hover:text-[#002144]",
+              direction === "deduct" ? "bg-red-600 text-white" : "text-[#5b6b82] hover:text-[#1A0A53]",
             )}
           >
             <Minus className="mr-1 inline size-3.5" />
@@ -128,7 +128,7 @@ function AdjustForm({ customer }: { customer: AdminWalletCustomer }) {
             step="0.01"
             required
             placeholder="25"
-            className="w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
+            className="w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]"
           />
         </label>
 
@@ -138,7 +138,7 @@ function AdjustForm({ customer }: { customer: AdminWalletCustomer }) {
             name="reason"
             required
             placeholder={direction === "add" ? "Goodwill credit" : "Reversed duplicate referral"}
-            className="w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
+            className="w-full rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]"
           />
         </label>
 
@@ -171,7 +171,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
         className="flex w-full items-center gap-4 px-5 py-4 text-left"
       >
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-[#002144]">{customer.name}</p>
+          <p className="truncate text-sm font-bold text-[#1A0A53]">{customer.name}</p>
           <p className="truncate text-xs text-[#94a3b8]">
             {customer.username ? `@${customer.username} · ` : ""}
             {customer.email}
@@ -179,7 +179,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
         </div>
 
         <span className="shrink-0 text-right">
-          <span className="block font-mono text-sm font-bold text-[#002144]">{money(customer.available)}</span>
+          <span className="block font-mono text-sm font-bold text-[#1A0A53]">{money(customer.available)}</span>
           <span className="block text-[11px] text-[#94a3b8]">balance</span>
         </span>
 
@@ -191,7 +191,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-xl bg-[#f7f9fd] px-4 py-3">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-[#94a3b8]">Balance</p>
-              <p className="mt-0.5 font-mono text-lg font-bold text-[#002144]">{money(customer.available)}</p>
+              <p className="mt-0.5 font-mono text-lg font-bold text-[#1A0A53]">{money(customer.available)}</p>
             </div>
             <div className="rounded-xl bg-[#f7f9fd] px-4 py-3">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-[#94a3b8]">Credited</p>
@@ -199,7 +199,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
             </div>
             <div className="rounded-xl bg-[#f7f9fd] px-4 py-3">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-[#94a3b8]">Deducted</p>
-              <p className="mt-0.5 font-mono text-lg font-bold text-[#002144]">
+              <p className="mt-0.5 font-mono text-lg font-bold text-[#1A0A53]">
                 {customer.deducted > 0 ? `−${money(customer.deducted)}` : money(0)}
               </p>
             </div>
@@ -208,7 +208,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
           <AdjustForm customer={customer} />
 
           <div className="mt-5 border-t border-[#e4e9f2] pt-4">
-            <p className="text-sm font-semibold text-[#002144]">Wallet activity</p>
+            <p className="text-sm font-semibold text-[#1A0A53]">Wallet activity</p>
             {customer.history.length === 0 ? (
               <p className="mt-2 text-xs text-[#94a3b8]">Nothing in this wallet yet.</p>
             ) : (
@@ -226,7 +226,7 @@ export function WalletRow({ customer }: { customer: AdminWalletCustomer }) {
                           )}
                         />
                         <div className="min-w-0">
-                          <p className="font-medium text-[#002144]">{entry.reason || entryLabel(entry)}</p>
+                          <p className="font-medium text-[#1A0A53]">{entry.reason || entryLabel(entry)}</p>
                           <p className="mt-0.5 text-xs text-[#5b6b82]">
                             {entryLabel(entry)} · {formatDate(entry.created_at)}
                           </p>

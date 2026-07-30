@@ -27,10 +27,10 @@ export function ServiceBenefits({ data }: { data: Data }) {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease }}
             >
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53] transition-colors duration-300 group-hover:bg-[#002144] group-hover:text-white">
                 <Icon className="size-5" />
               </span>
-              <h3 className="mt-4 text-base font-bold text-[#002144]">{item.title}</h3>
+              <h3 className="mt-4 text-base font-bold text-[#1A0A53]">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{item.description}</p>
             </motion.div>
           );

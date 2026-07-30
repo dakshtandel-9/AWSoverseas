@@ -26,7 +26,7 @@ export function Accordion({ items, className }: { items: QA[]; className?: strin
               <span className="font-semibold text-ink">{qa.question}</span>
               <span
                 className={cn(
-                  "grid size-8 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-700 transition-transform duration-300",
+                  "grid size-8 shrink-0 place-items-center rounded-full bg-brand-50 text-ink transition-transform duration-300",
                   isOpen && "rotate-45 bg-brand-900 text-white",
                 )}
               >

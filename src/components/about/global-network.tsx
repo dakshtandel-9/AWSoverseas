@@ -41,7 +41,7 @@ export function GlobalNetwork({ data }: { data: Data }) {
           </p>
           <h2
             className="mt-3 max-w-2xl text-3xl font-bold sm:text-4xl lg:text-[2.5rem] lg:leading-tight"
-            style={{ color: "#002144" }}
+            style={{ color: "#1A0A53" }}
           >
             {data.title}
           </h2>

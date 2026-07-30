@@ -115,13 +115,13 @@ export function AboutPreview({
                   {/* Left accent stripe */}
                   <span className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-[#002144] to-[#9e4953] transition-transform duration-300 group-hover:scale-y-100" />
                   {/* Icon */}
-                  <span className="grid size-10 place-items-center rounded-xl bg-[#edf5ff] text-[#002144] transition-colors duration-200 group-hover:bg-[#002144] group-hover:text-white">
+                  <span className="grid size-10 place-items-center rounded-xl bg-[#edf5ff] text-[#1A0A53] transition-colors duration-200 group-hover:bg-[#002144] group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
                   {/* Count */}
                   <span
                     data-no-translate
-                    className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#002144] sm:text-4xl"
+                    className="font-heading text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#1A0A53] sm:text-4xl"
                   >
                     <CountUp target={value} suffix={suffix} />
                   </span>
@@ -188,7 +188,7 @@ export function AboutPreview({
           >
             <motion.h2
               variants={copyItem}
-              className="font-heading text-3xl font-bold leading-snug text-balance text-[#002144] sm:text-4xl lg:text-[2.5rem]"
+              className="font-heading text-3xl font-bold leading-snug text-balance text-[#1A0A53] sm:text-4xl lg:text-[2.5rem]"
             >
               {data.title}
             </motion.h2>

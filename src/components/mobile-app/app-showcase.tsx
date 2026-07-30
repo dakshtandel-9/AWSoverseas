@@ -98,7 +98,7 @@ export function AppShowcase({
                     {current.items.slice(0, 5).map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2.5 rounded-xl bg-[#f6f8fc] px-3.5 py-2.5 text-[11px] font-semibold text-[#002144] ring-1 ring-[#e4e9f2]"
+                        className="flex items-center gap-2.5 rounded-xl bg-[#f6f8fc] px-3.5 py-2.5 text-[11px] font-semibold text-[#1A0A53] ring-1 ring-[#e4e9f2]"
                       >
                         <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#f8f1f2] text-maroon-admin">
                           <Check className="size-3" />
@@ -135,7 +135,7 @@ export function AppShowcase({
                 <span
                   className={cn(
                     "grid size-11 shrink-0 place-items-center rounded-xl transition-colors duration-300",
-                    isActive ? "bg-[#002144] text-white" : "bg-[#eef3fb] text-[#002144]",
+                    isActive ? "bg-[#002144] text-white" : "bg-[#eef3fb] text-[#1A0A53]",
                   )}
                 >
                   <f.icon className="size-5" />
@@ -144,7 +144,7 @@ export function AppShowcase({
                   <h3
                     className={cn(
                       "text-base font-bold transition-colors",
-                      isActive ? "text-[#002144]" : "text-[#002144]",
+                      isActive ? "text-[#1A0A53]" : "text-[#1A0A53]",
                     )}
                   >
                     {f.title}

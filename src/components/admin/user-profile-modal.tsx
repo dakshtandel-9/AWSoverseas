@@ -91,7 +91,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
         >
           <div className="flex items-start justify-between gap-4 border-b border-[#e4e9f2] px-7 py-5">
             <div className="min-w-0">
-              <p id="user-profile-modal-title" className="truncate text-lg font-bold text-[#002144]">
+              <p id="user-profile-modal-title" className="truncate text-lg font-bold text-[#1A0A53]">
                 {name}
               </p>
               <p className="truncate text-xs text-[#94a3b8]">
@@ -103,7 +103,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="grid size-8 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
+              className="grid size-8 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#1A0A53]"
             >
               <X className="size-4" />
             </button>
@@ -115,7 +115,7 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
               <span className="text-xs text-[#94a3b8]">Member since {createdAt}</span>
             </div>
 
-            <div className="mt-5 grid gap-x-8 gap-y-3 text-sm text-[#002144] sm:grid-cols-2">
+            <div className="mt-5 grid gap-x-8 gap-y-3 text-sm text-[#1A0A53] sm:grid-cols-2">
               <p>
                 <span className="font-semibold">Phone:</span>{" "}
                 {profile.phone ? (

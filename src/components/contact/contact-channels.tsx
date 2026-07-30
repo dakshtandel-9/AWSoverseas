@@ -54,14 +54,14 @@ export function ContactChannels({
                   href={href}
                   className="group flex items-center gap-4 rounded-2xl px-2 py-1 transition-colors hover:bg-[#f6f8fc]"
                 >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144] transition-colors group-hover:bg-[#002144] group-hover:text-white">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53] transition-colors group-hover:bg-[#002144] group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                       {item.type}
                     </p>
-                    <p className="truncate text-sm font-semibold text-[#002144]">{item.value}</p>
+                    <p className="truncate text-sm font-semibold text-[#1A0A53]">{item.value}</p>
                   </div>
                 </a>
               </li>
@@ -69,14 +69,14 @@ export function ContactChannels({
           })}
           {location && (
             <li className="flex items-start gap-4 px-2 py-1">
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#002144]">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eef3fb] text-[#1A0A53]">
                 <MapPin className="size-5" />
               </span>
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8]">
                   {location.office}
                 </p>
-                <p className="text-sm font-semibold leading-snug text-[#002144]">
+                <p className="text-sm font-semibold leading-snug text-[#1A0A53]">
                   {[location.address, location.city, location.country].filter(Boolean).join(", ")}
                 </p>
               </div>
@@ -132,7 +132,7 @@ export function ContactChannels({
               <span
                 className={cn(
                   "font-semibold",
-                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#002144]",
+                  s.time.toLowerCase() === "closed" ? "text-[#94a3b8]" : "text-[#1A0A53]",
                 )}
               >
                 {s.time}

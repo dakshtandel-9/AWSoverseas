@@ -36,7 +36,7 @@ const SERVICE_TYPES = [
 const SHIPMENT_TYPES = ["Commercial Cargo", "Machinery", "Electronics", "Others"];
 
 const inputClasses =
-  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#002144] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+  "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-2.5 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 const initialState: CreateQuoteState = {};
 
@@ -103,7 +103,7 @@ function UserCombobox({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name, username, or email…"
-              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#002144] outline-none placeholder:text-[#94a3b8]"
+              className="w-full bg-transparent py-2.5 pl-8 pr-3 text-sm text-[#1A0A53] outline-none placeholder:text-[#94a3b8]"
             />
           </div>
           <ul className="max-h-56 overflow-y-auto py-1.5">
@@ -122,7 +122,7 @@ function UserCombobox({
                     setQuery("");
                   }}
                   className={cn(
-                    "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#002144] transition-colors hover:bg-[#f6f8fc]",
+                    "flex cursor-pointer flex-col px-4 py-2 text-sm text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]",
                     u.id === value?.id && "bg-[#eef8fd] text-maroon-admin",
                   )}
                 >
@@ -166,7 +166,7 @@ function Select({ name, options, placeholder }: { name: string; options: string[
 function Labelled({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-[#002144]">{label}</label>
+      <label className="text-sm font-semibold text-[#1A0A53]">{label}</label>
       {children}
     </div>
   );
@@ -175,6 +175,8 @@ function Labelled({ label, children }: { label: string; children: React.ReactNod
 function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClose: () => void }) {
   const [state, formAction, pending] = useActionState(createQuoteForUserAction, initialState);
   const [user, setUser] = useState<QuoteUserOption | null>(null);
+  // Mirrors the customer-facing /quote toggle so admins can log either direction.
+  const [direction, setDirection] = useState<"export" | "import">("export");
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -214,7 +216,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
               New Quote Request
             </p>
-            <h2 id="create-quote-title" className="mt-1 text-base font-bold text-[#002144]">
+            <h2 id="create-quote-title" className="mt-1 text-base font-bold text-[#1A0A53]">
               For a customer
             </h2>
           </div>
@@ -222,7 +224,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#002144]"
+            className="grid size-9 shrink-0 place-items-center rounded-full text-[#5b6b82] transition-colors hover:bg-[#eef3fb] hover:text-[#1A0A53]"
           >
             <X className="size-4" />
           </button>
@@ -240,7 +242,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             {state.trackingNumber && (
               <div className="flex flex-col items-center gap-2 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-6 py-4">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#94a3b8]">Tracking</p>
-                <p className="font-mono text-base font-bold text-[#002144]">{state.trackingNumber}</p>
+                <p className="font-mono text-base font-bold text-[#1A0A53]">{state.trackingNumber}</p>
                 <Link
                   href={`/tracking?ref=${encodeURIComponent(state.trackingNumber)}`}
                   className="inline-flex items-center gap-1.5 rounded-full btn-navy px-4 py-2 text-xs font-semibold text-white transition-colors"
@@ -252,7 +254,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <button
               type="button"
               onClick={onClose}
-              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#002144] hover:border-[#9e4953]"
+              className="mt-1 inline-flex h-10 items-center justify-center rounded-full border border-[#e4e9f2] px-5 text-sm font-semibold text-[#1A0A53] hover:border-[#9e4953]"
             >
               Done
             </button>
@@ -262,10 +264,39 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
             <input type="hidden" name="user-id" value={user?.id ?? ""} />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-semibold text-[#002144]">
+              <label className="text-sm font-semibold text-[#1A0A53]">
                 Customer <span className="text-maroon-admin">*</span>
               </label>
               <UserCombobox users={users} value={user} onChange={setUser} />
+            </div>
+
+            <input type="hidden" name="direction" value={direction} />
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-semibold text-[#1A0A53]">Direction</label>
+              <div
+                role="radiogroup"
+                aria-label="Trade direction"
+                className="inline-flex w-fit rounded-xl border border-[#e4e9f2] bg-[#f6f8fc] p-1"
+              >
+                {(["export", "import"] as const).map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    role="radio"
+                    aria-checked={d === direction}
+                    onClick={() => setDirection(d)}
+                    className={cn(
+                      "rounded-lg px-4 py-1.5 text-xs font-bold uppercase tracking-[0.12em] transition-colors duration-200",
+                      d === direction
+                        ? "bg-[#9e4953] text-white"
+                        : "text-[#5b6b82] hover:text-[#1A0A53]",
+                    )}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -275,18 +306,51 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
               <Labelled label="Shipment type *">
                 <Select name="shipment-type" options={SHIPMENT_TYPES} placeholder="Select a type" />
               </Labelled>
-              <Labelled label="Origin state *">
-                <CountrySelect
-                  name="origin-country"
-                  required
-                  placeholder="Search origin state…"
-                  options={INDIA_STATES}
-                  noResultsLabel="states"
-                />
-              </Labelled>
-              <Labelled label="Destination country *">
-                <CountrySelect name="destination-country" required placeholder="Search countries…" />
-              </Labelled>
+              {/* Remounted per direction (distinct keys) so a value picked for one
+                  route can't linger in the other's field. */}
+              {direction === "export" ? (
+                <>
+                  <Labelled label="Origin state *">
+                    <CountrySelect
+                      key="origin-state"
+                      name="origin-country"
+                      required
+                      placeholder="Search origin state…"
+                      options={INDIA_STATES}
+                      noResultsLabel="states"
+                    />
+                  </Labelled>
+                  <Labelled label="Destination country *">
+                    <CountrySelect
+                      key="destination-country"
+                      name="destination-country"
+                      required
+                      placeholder="Search countries…"
+                    />
+                  </Labelled>
+                </>
+              ) : (
+                <>
+                  <Labelled label="Origin country *">
+                    <CountrySelect
+                      key="origin-country"
+                      name="origin-country"
+                      required
+                      placeholder="Search countries…"
+                    />
+                  </Labelled>
+                  <Labelled label="Destination state *">
+                    <CountrySelect
+                      key="destination-state"
+                      name="destination-country"
+                      required
+                      placeholder="Search destination state…"
+                      options={INDIA_STATES}
+                      noResultsLabel="states"
+                    />
+                  </Labelled>
+                </>
+              )}
             </div>
 
             <Labelled label="Estimated shipment date">

@@ -44,8 +44,8 @@ function LanguageList({
             aria-selected={activeCode === lang.code}
             onClick={() => onSelect(lang.code)}
             className={cn(
-              "flex w-full items-center justify-between gap-3 px-4 py-2.5 text-start text-sm transition-colors hover:bg-surface-soft hover:text-brand-900",
-              activeCode === lang.code ? "text-brand-900 font-semibold" : "text-ink-soft font-medium",
+              "flex w-full items-center justify-between gap-3 px-4 py-2.5 text-start text-sm transition-colors hover:bg-surface-soft hover:text-ink",
+              activeCode === lang.code ? "text-ink font-semibold" : "text-ink-soft font-medium",
             )}
           >
             <span className="flex min-w-0 items-baseline gap-2">
@@ -54,7 +54,7 @@ function LanguageList({
                 <span className="shrink-0 text-xs text-muted">{lang.name}</span>
               )}
             </span>
-            {activeCode === lang.code && <Check className="size-4 shrink-0 text-brand-900" />}
+            {activeCode === lang.code && <Check className="size-4 shrink-0 text-ink" />}
           </button>
         </li>
       ))}
@@ -155,7 +155,7 @@ export function LanguageSwitcher({ mobile }: { mobile?: boolean }) {
         aria-expanded={open}
         aria-label="Select language"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900"
+        className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-ink"
       >
         {isTranslating ? (
           <Loader2 className="size-4 animate-spin" />

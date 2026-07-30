@@ -39,7 +39,7 @@ export function GivingProcess({ data }: { data: Data }) {
             >
               {s.step}
             </span>
-            <h3 className="mt-4 text-base font-bold text-[#002144]">{s.title}</h3>
+            <h3 className="mt-4 text-base font-bold text-[#1A0A53]">{s.title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{s.description}</p>
           </motion.li>
         ))}

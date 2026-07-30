@@ -62,7 +62,7 @@ function ServiceRow({
           href={entry.href!}
           role="menuitem"
           onClick={onNavigate}
-          className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+          className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
         >
           {entry.label}
         </Link>
@@ -82,7 +82,7 @@ function ServiceRow({
         onClick={onToggle}
         className={cn(
           "flex w-full items-center justify-between gap-2 rounded-xl px-3.5 py-2.5 text-start text-sm font-semibold transition-colors",
-          isActive ? "bg-surface-soft text-brand-900" : "text-ink-soft hover:bg-surface-soft hover:text-brand-900",
+          isActive ? "bg-surface-soft text-ink" : "text-ink-soft hover:bg-surface-soft hover:text-ink",
         )}
       >
         <span className="truncate">{entry.label}</span>
@@ -98,7 +98,7 @@ function ServiceRow({
                   href={child.href}
                   role="menuitem"
                   onClick={onNavigate}
-                  className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+                  className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
                 >
                   {child.label}
                 </Link>
@@ -161,7 +161,7 @@ export function ServicesNavItem({ isActive, className }: { isActive: boolean; cl
       <Link
         href="/services"
         data-active={isActive}
-        className="nav-underline whitespace-nowrap rounded-full py-2 ps-2.5 text-sm font-semibold text-ink-soft transition-colors hover:text-brand-900 xl:ps-3.5"
+        className="nav-underline whitespace-nowrap rounded-full py-2 ps-2.5 text-sm font-semibold text-ink-soft transition-colors hover:text-ink xl:ps-3.5"
       >
         Services
       </Link>
@@ -171,7 +171,7 @@ export function ServicesNavItem({ isActive, className }: { isActive: boolean; cl
         aria-haspopup="true"
         aria-expanded={open}
         onClick={() => (open ? setOpen(false) : openNow())}
-        className="rounded-full py-2 pe-2.5 ps-1 text-ink-soft transition-colors hover:text-brand-900 xl:pe-3.5"
+        className="rounded-full py-2 pe-2.5 ps-1 text-ink-soft transition-colors hover:text-ink xl:pe-3.5"
       >
         <ChevronDown className={cn("size-3.5 transition-transform duration-200", open && "rotate-180")} />
       </button>
@@ -211,7 +211,7 @@ export function ServicesMobileAccordion({ isActive, onNavigate }: { isActive: bo
       <div
         className={cn(
           "flex items-center justify-between gap-3 rounded-2xl transition-colors",
-          isActive ? "bg-brand-50 text-brand-900" : "text-ink-soft",
+          isActive ? "bg-brand-50 text-ink" : "text-ink-soft",
         )}
       >
         <Link href="/services" onClick={onNavigate} className="flex-1 px-4 py-3.5 text-lg font-semibold">
@@ -246,7 +246,7 @@ export function ServicesMobileAccordion({ isActive, onNavigate }: { isActive: bo
                       <Link
                         href={entry.href!}
                         onClick={onNavigate}
-                        className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+                        className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
                         style={{ paddingInlineStart: "1.75rem" }}
                       >
                         {entry.label}
@@ -285,7 +285,7 @@ export function ServicesMobileAccordion({ isActive, onNavigate }: { isActive: bo
                                 <Link
                                   href={child.href}
                                   onClick={onNavigate}
-                                  className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-brand-900"
+                                  className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
                                   style={{ paddingInlineStart: "2.75rem" }}
                                 >
                                   {child.label}

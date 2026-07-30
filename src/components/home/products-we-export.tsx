@@ -126,28 +126,28 @@ function ProductCard({
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-[#eef3fb]">
-                <Icon className="size-10 text-[#002144]/30" />
+                <Icon className="size-10 text-[#1A0A53]/30" />
               </div>
             )}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
 
             {/* Top-right arrow button */}
-            <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#002144] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+            <span className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#1A0A53] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
               <ArrowUpRight className="size-4" aria-hidden />
             </span>
 
             {/* Category icon chip */}
-            <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#002144] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
+            <span className="absolute left-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#1A0A53] shadow-[0_2px_8px_rgba(4,22,47,0.18)] backdrop-blur-sm">
               <Icon className="size-4" aria-hidden />
             </span>
           </div>
 
           {/* Content */}
           <div className="flex flex-1 flex-col gap-2 p-5">
-            <h3 className="text-base font-bold text-[#002144]">{title}</h3>
+            <h3 className="text-base font-bold text-[#1A0A53]">{title}</h3>
             <p className="text-sm leading-relaxed text-[#5b6b82]">{subtitle}</p>
 
-            <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#002144]">
+            <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eef3fb] px-3 py-1 text-[11px] font-semibold text-[#1A0A53]">
               <span className="size-1.5 rounded-full bg-[#9e4953]" aria-hidden />
               <BadgeCheck className="size-3" aria-hidden />
               {badge}
@@ -218,11 +218,11 @@ export function ProductsWeExport() {
       <div className="relative mb-14 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <Reveal direction="up">
           <div className="max-w-xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-700 ring-1 ring-brand-100">
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-ink ring-1 ring-brand-100">
               <span className="size-1.5 rounded-full bg-[#9e4953]" aria-hidden />
               Export Catalog
             </span>
-            <h2 className="mt-4 text-3xl font-bold leading-tight text-[#002144] sm:text-4xl lg:text-[2.6rem]">
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-[#1A0A53] sm:text-4xl lg:text-[2.6rem]">
               Products We Export
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
@@ -235,7 +235,7 @@ export function ProductsWeExport() {
         <Reveal direction="up" delay={0.1}>
           <Link
             href="/products"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#002144]/15 px-6 py-3 text-sm font-semibold text-[#002144] transition-all duration-300 hover:border-[#9e4953]/40 hover:bg-[#eef3fb]"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#002144]/15 px-6 py-3 text-sm font-semibold text-[#1A0A53] transition-all duration-300 hover:border-[#9e4953]/40 hover:bg-[#eef3fb]"
           >
             View Complete Catalog
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

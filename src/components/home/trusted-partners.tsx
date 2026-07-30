@@ -72,7 +72,7 @@ export function TrustedPartners({
                   <span className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#002144] to-[#9e4953] transition-transform duration-300 ease-out group-hover:scale-x-100" />
 
                   {/* Icon */}
-                  <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700 transition-colors duration-200 group-hover:bg-brand-700 group-hover:text-white">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-50 text-ink transition-colors duration-200 group-hover:bg-brand-700 group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
 
@@ -87,7 +87,7 @@ export function TrustedPartners({
                   </div>
 
                   {/* Arrow */}
-                  <ArrowRight className="size-4 self-end text-brand-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-brand-700" />
+                  <ArrowRight className="size-4 self-end text-brand-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-ink" />
                 </Link>
               </motion.div>
             );
@@ -104,7 +104,7 @@ export function TrustedPartners({
         >
           <Link
             href="/industries"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-ink-soft"
           >
             Explore all industries <ArrowRight className="size-4" />
           </Link>

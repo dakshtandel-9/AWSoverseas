@@ -37,7 +37,7 @@ export function PassportUploadField({
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm font-semibold text-[#002144]">
+      <span className="text-sm font-semibold text-[#1A0A53]">
         {label} <span className="text-maroon-admin">*</span>
       </span>
 

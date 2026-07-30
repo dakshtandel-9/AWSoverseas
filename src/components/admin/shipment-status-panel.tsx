@@ -47,7 +47,7 @@ export function ShipmentStatusPanel({
 
   return (
     <div className="mt-4 border-t border-[#e4e9f2] pt-4">
-      <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002144]">
+      <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A0A53]">
         <PackageSearch className="size-3.5 text-maroon-admin" />
         Tracking: <span className="font-mono">{trackingNumber}</span>
         {currentStatus === "rejected" && (
@@ -61,7 +61,7 @@ export function ShipmentStatusPanel({
         <ul className="mt-2 flex flex-col gap-1 text-xs text-[#5b6b82]">
           {milestones.map((m) => (
             <li key={m.id}>
-              <span className="font-semibold text-[#002144]">
+              <span className="font-semibold text-[#1A0A53]">
                 {STAGES.find((s) => s.value === m.status)?.label ?? m.status}
               </span>
               {m.location && ` · ${m.location}`}
@@ -75,7 +75,7 @@ export function ShipmentStatusPanel({
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as ShipmentStatus)}
-          className="rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs font-semibold text-[#002144]"
+          className="rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs font-semibold text-[#1A0A53]"
         >
           {STAGES.map((s) => (
             <option key={s.value} value={s.value}>
@@ -86,12 +86,12 @@ export function ShipmentStatusPanel({
         <input
           name="location"
           placeholder="Location (optional)"
-          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
+          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]"
         />
         <input
           name="note"
           placeholder="Note (optional)"
-          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#002144] placeholder:text-[#94a3b8]"
+          className="min-w-0 flex-1 rounded-lg border border-[#e4e9f2] px-2.5 py-1.5 text-xs text-[#1A0A53] placeholder:text-[#94a3b8]"
         />
         <button
           type="submit"

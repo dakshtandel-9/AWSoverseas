@@ -63,7 +63,7 @@ export function LegalDocument({ sections }: { sections: SectionData[] }) {
                         className={cn(
                           "-ml-px flex items-baseline gap-3 border-l-2 py-2 pl-4 text-sm transition-colors duration-200",
                           isActive
-                            ? "border-accent-500 font-semibold text-brand-900"
+                            ? "border-accent-500 font-semibold text-ink"
                             : "border-transparent text-muted hover:text-ink",
                         )}
                       >

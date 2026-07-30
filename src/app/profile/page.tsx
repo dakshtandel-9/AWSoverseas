@@ -168,7 +168,7 @@ export default async function ProfilePage() {
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#002144] transition-colors hover:border-[#9e4953]"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:border-[#9e4953]"
                 >
                   <MessageSquareText className="size-4" /> Browse products
                 </Link>
@@ -177,7 +177,7 @@ export default async function ProfilePage() {
 
             <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-bold text-[#002144]">Your details</h2>
+                <h2 className="text-base font-bold text-[#1A0A53]">Your details</h2>
                 <Link
                   href="/profile/setup"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-maroon-admin hover:underline"
@@ -189,12 +189,12 @@ export default async function ProfilePage() {
               <dl className="mt-5 grid gap-4 sm:grid-cols-2">
                 {details.map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-start gap-3">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#002144]">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#eef3fb] text-[#1A0A53]">
                       <Icon className="size-4" />
                     </span>
                     <div className="min-w-0">
                       <dt className="text-xs font-medium uppercase tracking-wide text-[#94a3b8]">{label}</dt>
-                      <dd className="mt-0.5 truncate text-sm font-semibold text-[#002144]">{value}</dd>
+                      <dd className="mt-0.5 truncate text-sm font-semibold text-[#1A0A53]">{value}</dd>
                     </div>
                   </div>
                 ))}

@@ -12,7 +12,7 @@ export default async function AdminIntegrationsPage() {
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
         SEO &amp; Analytics
       </p>
-      <h1 className="mt-2 text-2xl font-bold text-[#002144] sm:text-3xl">Marketing integrations</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Marketing integrations</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
         Connect Google Analytics, Search Console, Tag Manager, Microsoft Clarity, Meta Pixel, Bing
         Webmaster Tools, and Google Ads conversion tracking. Each one only needs its ID pasted below —

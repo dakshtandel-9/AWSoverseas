@@ -17,7 +17,7 @@ function Ext({ href, children }: { href: string; children: ReactNode }) {
 
 function Code({ children }: { children: ReactNode }) {
   return (
-    <code className="rounded bg-[#eef3fb] px-1.5 py-0.5 font-mono text-[13px] text-[#002144]">
+    <code className="rounded bg-[#eef3fb] px-1.5 py-0.5 font-mono text-[13px] text-[#1A0A53]">
       {children}
     </code>
   );
@@ -362,7 +362,7 @@ export function IntegrationsGuide() {
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
         Setup Guide
       </p>
-      <h2 className="mt-2 text-xl font-bold text-[#002144] sm:text-2xl">
+      <h2 className="mt-2 text-xl font-bold text-[#1A0A53] sm:text-2xl">
         How to connect each service
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
@@ -379,7 +379,7 @@ export function IntegrationsGuide() {
             id={guide.id}
             className="scroll-mt-24 rounded-2xl border border-[#e4e9f2] bg-white p-6 sm:p-7"
           >
-            <h3 className="text-base font-bold text-[#002144]">{guide.title}</h3>
+            <h3 className="text-base font-bold text-[#1A0A53]">{guide.title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-[#5b6b82]">{guide.lead}</p>
             <div className="mt-5">
               <StepList steps={guide.steps} />
