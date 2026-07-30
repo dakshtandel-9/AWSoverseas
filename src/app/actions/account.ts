@@ -5,12 +5,12 @@ import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
-import { uploadPassportImage } from "@/lib/cloudinary";
-import { getAccount, getAuthUser, isUsernameTaken, suggestAvailableUsername, USERNAME_RE } from "@/lib/account";
+import { uploadIdDocumentImage } from "@/lib/cloudinary";
+import { getAccount, getAuthUser, isUsernameTaken, suggestAvailableUsername, USERNAME_RE, type IdType } from "@/lib/account";
 
 export type ProfileFormState = { error?: string };
 
-export type PassportUploadState = { url?: string; error?: string };
+export type IdDocumentUploadState = { url?: string; error?: string };
 
 export async function signOutAction() {
   if (isSupabaseConfigured()) {
@@ -40,10 +40,10 @@ export async function suggestUsernameAction(
   return { username: await suggestAvailableUsername(firstName, lastName, user.id) };
 }
 
-export async function uploadPassportImageAction(
-  _prevState: PassportUploadState,
+export async function uploadIdDocumentImageAction(
+  _prevState: IdDocumentUploadState,
   formData: FormData,
-): Promise<PassportUploadState> {
+): Promise<IdDocumentUploadState> {
   const user = await getAuthUser();
   if (!user) return { error: "Your session expired — please sign in again." };
 
@@ -53,10 +53,10 @@ export async function uploadPassportImageAction(
   if (file.size > 8 * 1024 * 1024) return { error: "Image is too large (max 8MB)." };
 
   try {
-    const url = await uploadPassportImage(file);
+    const url = await uploadIdDocumentImage(file);
     return { url };
   } catch (err) {
-    console.error("[uploadPassportImageAction] Cloudinary upload failed:", err);
+    console.error("[uploadIdDocumentImageAction] Cloudinary upload failed:", err);
     return { error: "Upload failed. Please try again." };
   }
 }
@@ -74,10 +74,17 @@ export async function completeProfileAction(
   const phone = String(formData.get("phone") ?? "").trim();
   const companyName = String(formData.get("company-name") ?? "").trim();
   const country = String(formData.get("country") ?? "").trim();
-  const passportNumber = String(formData.get("passport-number") ?? "").trim();
-  const passportFrontUrl = String(formData.get("passport-front-url") ?? "").trim();
-  const passportBackUrl = String(formData.get("passport-back-url") ?? "").trim();
+  // India verifies with Aadhaar or PAN instead of a passport — the country
+  // decides which document set applies, and (for India) the customer picks
+  // which of the two they're submitting.
+  const isIndia = country === "India";
+  const idType: IdType = isIndia ? (formData.get("id-type") === "pan" ? "pan" : "aadhaar") : "passport";
+  const idNumber = String(formData.get("id-number") ?? "").trim();
+  const idFrontUrl = String(formData.get("id-front-url") ?? "").trim();
+  const idBackUrl = String(formData.get("id-back-url") ?? "").trim();
   const referralCode = String(formData.get("referral-code") ?? "").trim().toUpperCase();
+
+  const idLabel = { passport: "passport", aadhaar: "Aadhaar", pan: "PAN card" }[idType];
 
   if (!firstName || !lastName) return { error: "Please enter your first and last name." };
   if (!USERNAME_RE.test(username)) {
@@ -85,9 +92,9 @@ export async function completeProfileAction(
   }
   if (!phone) return { error: "Please enter your phone number." };
   if (!country) return { error: "Please select your country." };
-  if (!passportNumber) return { error: "Please enter your passport number." };
-  if (!passportFrontUrl || !passportBackUrl) {
-    return { error: "Please upload both sides of your passport." };
+  if (!idNumber) return { error: `Please enter your ${idLabel} number.` };
+  if (!idFrontUrl || !idBackUrl) {
+    return { error: `Please upload both sides of your ${idLabel}.` };
   }
 
   if (await isUsernameTaken(username, account.user.id)) {
@@ -113,15 +120,16 @@ export async function completeProfileAction(
     referredBy = referrer.id;
   }
 
-  // Approved accounts keep their status on edits, unless the passport
-  // details actually changed — identity verification must be re-reviewed
-  // any time the underlying documents change. New and rejected accounts
-  // always (re)enter the admin verification queue.
-  const passportChanged =
-    passportNumber !== profile.passport_number ||
-    passportFrontUrl !== profile.passport_front_url ||
-    passportBackUrl !== profile.passport_back_url;
-  const status = profile.status === "approved" && !passportChanged ? "approved" : "pending";
+  // Approved accounts keep their status on edits, unless the ID details
+  // actually changed — identity verification must be re-reviewed any time
+  // the underlying documents (or which document type) change. New and
+  // rejected accounts always (re)enter the admin verification queue.
+  const idChanged =
+    idType !== profile.id_type ||
+    idNumber !== profile.id_number ||
+    idFrontUrl !== profile.id_front_url ||
+    idBackUrl !== profile.id_back_url;
+  const status = profile.status === "approved" && !idChanged ? "approved" : "pending";
 
   const { error } = await db
     .from("user_profiles")
@@ -132,9 +140,10 @@ export async function completeProfileAction(
       phone,
       company_name: companyName,
       country,
-      passport_number: passportNumber,
-      passport_front_url: passportFrontUrl,
-      passport_back_url: passportBackUrl,
+      id_type: idType,
+      id_number: idNumber,
+      id_front_url: idFrontUrl,
+      id_back_url: idBackUrl,
       referred_by: referredBy,
       status,
     })

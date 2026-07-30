@@ -48,7 +48,7 @@ const STATUS_BANNER: Record<
     icon: ShieldAlert,
     classes: "border-red-200 bg-red-50 text-red-700",
     title: "Verification declined",
-    body: "We couldn't verify your details. Check your passport information, update it, and resubmit for review.",
+    body: "We couldn't verify your details. Check your ID information, update it, and resubmit for review.",
   },
 };
 
@@ -130,12 +130,14 @@ export default async function ProfilePage() {
     };
   });
 
+  const idTypeLabel = { passport: "Passport number", aadhaar: "Aadhaar number", pan: "PAN number" }[profile.id_type];
+
   const details = [
     { icon: Mail, label: "Email", value: profile.email },
     { icon: Phone, label: "Phone", value: profile.phone },
     { icon: Globe, label: "Country", value: profile.country || "—" },
     { icon: Building2, label: "Company", value: profile.company_name || "—" },
-    { icon: FileText, label: "Passport number", value: profile.passport_number },
+    { icon: FileText, label: idTypeLabel, value: profile.id_number },
   ];
 
   return (

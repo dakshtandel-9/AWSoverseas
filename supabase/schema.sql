@@ -160,23 +160,6 @@ alter table products add column if not exists category_id uuid references catego
 
 create index if not exists products_category_idx on products (category_id, sort_order, created_at desc);
 
--- Backfill: one category row per distinct existing products.category value,
--- then point each product at its new category.
-insert into categories (name, slug)
-select distinct
-  trim(p.category),
-  lower(regexp_replace(trim(p.category), '[^a-zA-Z0-9]+', '-', 'g'))
-from products p
-where trim(p.category) <> ''
-on conflict (slug) do nothing;
-
-update products p
-set category_id = c.id
-from categories c
-where p.category_id is null
-  and trim(p.category) <> ''
-  and c.slug = lower(regexp_replace(trim(p.category), '[^a-zA-Z0-9]+', '-', 'g'));
-
 -- Branch-or-leaf rule, enforced in the database so it holds no matter which
 -- code path writes. Two triggers because the rule spans two tables: a category
 -- row is only invalid relative to the products pointing at it, and vice versa.
@@ -317,9 +300,6 @@ create table if not exists user_profiles (
   phone text not null default '',
   company_name text not null default '',
   country text not null default '',      -- customer's country, from profile setup
-  passport_number text not null default '',
-  passport_front_url text not null default '',
-  passport_back_url text not null default '',
   referral_code text not null unique,    -- e.g. "DKSH47", generated at first login
   referred_by uuid references user_profiles(id) on delete set null,
   status text not null default 'incomplete'
@@ -330,6 +310,40 @@ create table if not exists user_profiles (
 
 -- country added after the table existed on some deployments.
 alter table user_profiles add column if not exists country text not null default '';
+
+-- Identity verification generalized beyond passport: Indian customers verify
+-- with Aadhaar or PAN instead (no passport in daily use for domestic trade).
+-- id_type picks the document; id_number/id_front_url/id_back_url replace the
+-- old passport-only columns and hold whichever document applies. Existing
+-- rows backfill as id_type 'passport' from their passport_* data so no
+-- verification history is lost.
+alter table user_profiles add column if not exists id_type text not null default 'passport';
+alter table user_profiles add column if not exists id_number text not null default '';
+alter table user_profiles add column if not exists id_front_url text not null default '';
+alter table user_profiles add column if not exists id_back_url text not null default '';
+
+do $$
+begin
+  if exists (
+    select 1 from information_schema.columns
+    where table_name = 'user_profiles' and column_name = 'passport_number'
+  ) then
+    update user_profiles
+    set id_type = 'passport',
+        id_number = passport_number,
+        id_front_url = passport_front_url,
+        id_back_url = passport_back_url
+    where id_number = '' and passport_number <> '';
+  end if;
+end $$;
+
+alter table user_profiles drop constraint if exists user_profiles_id_type_check;
+alter table user_profiles add constraint user_profiles_id_type_check
+  check (id_type in ('passport', 'aadhaar', 'pan'));
+
+alter table user_profiles drop column if exists passport_number;
+alter table user_profiles drop column if exists passport_front_url;
+alter table user_profiles drop column if exists passport_back_url;
 
 create index if not exists user_profiles_status_idx on user_profiles (status, created_at desc);
 create index if not exists user_profiles_referred_by_idx on user_profiles (referred_by);

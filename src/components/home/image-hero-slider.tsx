@@ -100,7 +100,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
 
   return (
     <section
-      className="relative min-h-[100svh] h-auto lg:h-[100svh] w-full overflow-hidden bg-[#000c1a]"
+      className="relative min-h-[100svh] h-auto lg:h-[100svh] w-full overflow-hidden bg-[#1e3a5f]"
       aria-roledescription="carousel"
       aria-label="Highlights"
       onMouseEnter={() => setPaused(true)}
@@ -144,17 +144,17 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
               className="object-cover"
             />
           ) : null}
-          {/* Scrim: solid enough on the left for text, fading out on the right so the photo reads clearly */}
+          {/* Scrim: solid enough on the left for text, fading out on the right so the photo reads clearly. Lighter steel-blue (not near-black) so the maroon accent text stays legible against it. */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, #000c1a 0%, rgba(0,12,26,0.94) 22%, rgba(0,12,26,0.72) 42%, rgba(0,12,26,0.32) 62%, rgba(0,12,26,0.08) 80%, rgba(0,12,26,0) 100%)",
+                "linear-gradient(90deg, #1e3a5f 0%, rgba(30,58,95,0.94) 22%, rgba(30,58,95,0.72) 42%, rgba(30,58,95,0.32) 62%, rgba(30,58,95,0.08) 80%, rgba(30,58,95,0) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(0deg, rgba(0,12,26,0.65) 0%, transparent 30%)" }}
+            style={{ background: "linear-gradient(0deg, rgba(30,58,95,0.55) 0%, transparent 30%)" }}
           />
         </motion.div>
       </AnimatePresence>

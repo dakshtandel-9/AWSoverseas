@@ -11,21 +11,27 @@ import {
   suggestUsernameAction,
   type ProfileFormState,
 } from "@/app/actions/account";
-import { PassportUploadField } from "@/components/account/passport-upload-field";
+import { IdDocumentUploadField } from "@/components/account/id-document-upload-field";
 import { PhoneInput } from "@/components/account/phone-input";
 import { CountrySelect } from "@/components/quote/country-select";
 import { SignOutButton } from "@/components/account/sign-out-button";
-import type { UserProfile } from "@/lib/account";
+import type { IdType, UserProfile } from "@/lib/account";
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
 
 type UsernameStatus = "idle" | "checking" | "available" | "taken" | "invalid";
 
+const idCopy: Record<IdType, { label: string; numberLabel: string; numberPlaceholder: string }> = {
+  passport: { label: "Passport", numberLabel: "Passport number", numberPlaceholder: "e.g. A1234567" },
+  aadhaar: { label: "Aadhaar", numberLabel: "Aadhaar number", numberPlaceholder: "e.g. 1234 5678 9012" },
+  pan: { label: "PAN card", numberLabel: "PAN number", numberPlaceholder: "e.g. ABCDE1234F" },
+};
+
 const initialState: ProfileFormState = {};
 
-/** Danger confirmation shown before a passport change is submitted on an approved account. */
-function ConfirmPassportChangeModal({
+/** Danger confirmation shown before an ID document change is submitted on an approved account. */
+function ConfirmIdChangeModal({
   open,
   onCancel,
   onConfirm,
@@ -80,9 +86,9 @@ function ConfirmPassportChangeModal({
                 Your account will go back for review
               </p>
               <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
-                You&rsquo;ve changed your passport details. Since these are what we verify your identity
-                against, your account moves back to pending until our team reviews the change — you
-                won&rsquo;t be able to request quotes or send enquiries until then.
+                You&rsquo;ve changed your ID verification details. Since these are what we verify your
+                identity against, your account moves back to pending until our team reviews the change —
+                you won&rsquo;t be able to request quotes or send enquiries until then.
               </p>
             </div>
             <div className="mt-2 flex w-full items-center gap-3">
@@ -126,22 +132,43 @@ export function ProfileSetupForm({
   const [lastName, setLastName] = useState(profile.last_name);
   const [username, setUsername] = useState(profile.username ?? suggestedUsername);
   const [usernameStatus, setUsernameStatus] = useState<UsernameStatus>("idle");
-  const [frontUrl, setFrontUrl] = useState(profile.passport_front_url);
-  const [backUrl, setBackUrl] = useState(profile.passport_back_url);
-  const [passportNumber, setPassportNumber] = useState(profile.passport_number);
+  const [country, setCountry] = useState(profile.country);
+  const isIndia = country === "India";
+  const [indianIdType, setIndianIdType] = useState<Extract<IdType, "aadhaar" | "pan">>(
+    profile.id_type === "pan" ? "pan" : "aadhaar",
+  );
+  const idType: IdType = isIndia ? indianIdType : "passport";
+  const [frontUrl, setFrontUrl] = useState(profile.id_front_url);
+  const [backUrl, setBackUrl] = useState(profile.id_back_url);
+  const [idNumber, setIdNumber] = useState(profile.id_number);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const confirmedRef = useRef(false);
 
-  const passportChanged =
-    passportNumber !== profile.passport_number ||
-    frontUrl !== profile.passport_front_url ||
-    backUrl !== profile.passport_back_url;
+  const idChanged =
+    idType !== profile.id_type ||
+    idNumber !== profile.id_number ||
+    frontUrl !== profile.id_front_url ||
+    backUrl !== profile.id_back_url;
 
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
-    if (profile.status === "approved" && passportChanged && !confirmedRef.current) {
+    if (profile.status === "approved" && idChanged && !confirmedRef.current) {
       e.preventDefault();
       setConfirmOpen(true);
+    }
+  }
+
+  // Switching to/from India clears the document fields — a passport number
+  // and an Aadhaar number aren't interchangeable, and carrying one over as
+  // the other's value would submit garbage silently.
+  function onCountryChanged(nextCountry: string) {
+    const wasIndia = country === "India";
+    const nextIsIndia = nextCountry === "India";
+    setCountry(nextCountry);
+    if (wasIndia !== nextIsIndia) {
+      setIdNumber("");
+      setFrontUrl("");
+      setBackUrl("");
     }
   }
 
@@ -302,6 +329,7 @@ export function ProfileSetupForm({
               required
               placeholder="Search countries…"
               defaultValue={profile.country}
+              onChange={onCountryChanged}
             />
           </div>
 
@@ -318,37 +346,60 @@ export function ProfileSetupForm({
         </div>
       </div>
 
-      {/* 02 — Passport verification */}
+      {/* 02 — ID verification */}
       <div className="border-b border-[#e4e9f2] px-7 py-8 sm:px-10">
         <div className="flex items-baseline gap-3">
           <span className="font-mono text-xs font-bold text-[#94a3b8]">02</span>
-          <h2 className="text-lg font-bold text-[#1A0A53]">Passport verification</h2>
+          <h2 className="text-lg font-bold text-[#1A0A53]">
+            {isIndia ? "ID verification" : "Passport verification"}
+          </h2>
         </div>
         <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">
-          International shipping requires identity verification — our team reviews these before your
-          account is approved.
+          {isIndia
+            ? "Verify your identity with Aadhaar or PAN — our team reviews this before your account is approved."
+            : "International shipping requires identity verification — our team reviews these before your account is approved."}
         </p>
+
+        {isIndia && (
+          <div className="mt-6 inline-flex rounded-full border border-[#e4e9f2] bg-[#f6f8fc] p-1">
+            {(["aadhaar", "pan"] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setIndianIdType(option)}
+                className={cn(
+                  "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
+                  indianIdType === option ? "bg-white text-maroon-admin shadow-sm" : "text-[#5b6b82]",
+                )}
+              >
+                {option === "aadhaar" ? "Aadhaar" : "PAN card"}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <input type="hidden" name="id-type" value={idType} />
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2 sm:col-span-2">
             <label className="text-sm font-semibold text-[#1A0A53]">
-              Passport number <span className="text-maroon-admin">*</span>
+              {idCopy[idType].numberLabel} <span className="text-maroon-admin">*</span>
             </label>
             <input
-              name="passport-number"
+              name="id-number"
               required
-              value={passportNumber}
-              onChange={(e) => setPassportNumber(e.target.value)}
-              placeholder="e.g. A1234567"
+              value={idNumber}
+              onChange={(e) => setIdNumber(e.target.value)}
+              placeholder={idCopy[idType].numberPlaceholder}
               autoComplete="off"
               className={inputClasses}
             />
           </div>
 
-          <PassportUploadField label="Passport front" value={frontUrl} onUploaded={setFrontUrl} />
-          <PassportUploadField label="Passport back" value={backUrl} onUploaded={setBackUrl} />
-          <input type="hidden" name="passport-front-url" value={frontUrl} />
-          <input type="hidden" name="passport-back-url" value={backUrl} />
+          <IdDocumentUploadField label={`${idCopy[idType].label} front`} value={frontUrl} onUploaded={setFrontUrl} />
+          <IdDocumentUploadField label={`${idCopy[idType].label} back`} value={backUrl} onUploaded={setBackUrl} />
+          <input type="hidden" name="id-front-url" value={frontUrl} />
+          <input type="hidden" name="id-back-url" value={backUrl} />
         </div>
       </div>
 
@@ -383,13 +434,13 @@ export function ProfileSetupForm({
       )}
 
       <div className="px-7 py-8 sm:px-10">
-        {profile.status === "approved" && passportChanged && (
+        {profile.status === "approved" && idChanged && (
           <div
             className="mb-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
             role="alert"
           >
             <ShieldAlert className="mt-0.5 size-4 shrink-0" />
-            You&rsquo;ve changed your passport details — saving will send your account back for review.
+            You&rsquo;ve changed your ID verification details — saving will send your account back for review.
           </div>
         )}
 
@@ -420,7 +471,7 @@ export function ProfileSetupForm({
         )}
       </div>
 
-      <ConfirmPassportChangeModal
+      <ConfirmIdChangeModal
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
         onConfirm={() => {

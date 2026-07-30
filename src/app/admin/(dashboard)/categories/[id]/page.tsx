@@ -47,6 +47,12 @@ export default async function AdminCategoryDetailPage({
   // and holds products; anything nested is a product and holds subproducts.
   const isCategory = category.parent_id === null;
 
+  // A category with no nested "product" groupings yet is a leaf: items go
+  // straight into it (the products table) rather than through an extra
+  // grouping layer. One that already has product groupings keeps using them,
+  // so we never mix the two structures under the same category.
+  const isLeafCategory = isCategory && products.length === 0;
+
   return (
     <div>
       <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-[#5b6b82]">
@@ -71,9 +77,11 @@ export default async function AdminCategoryDetailPage({
         <div>
           <h1 className="text-2xl font-bold text-[#1A0A53] sm:text-3xl">{category.name}</h1>
           <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
-            {isCategory
-              ? "Add a product for each group you want on this category's page. Each one gets its own photo, description, and row of subproducts — all on the same page, no extra page per product."
-              : "Add the individual items customers can enquire on. They show as a grid under this product's description."}
+            {isLeafCategory
+              ? "Add the individual items customers can enquire on. They show as a grid on this category's page."
+              : isCategory
+                ? "Add a product for each group you want on this category's page. Each one gets its own photo, description, and row of subproducts — all on the same page, no extra page per product."
+                : "Add the individual items customers can enquire on. They show as a grid under this product's description."}
           </p>
         </div>
 
@@ -86,7 +94,15 @@ export default async function AdminCategoryDetailPage({
             {isCategory ? "Edit category" : "Edit product"}
           </Link>
 
-          {isCategory ? (
+          {isLeafCategory ? (
+            <Link
+              href={`/admin/products/new?category=${category.id}`}
+              className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+            >
+              <Plus className="size-4" />
+              Add item
+            </Link>
+          ) : isCategory ? (
             <Link
               href={`/admin/categories/new?parent=${category.id}`}
               className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
@@ -109,33 +125,18 @@ export default async function AdminCategoryDetailPage({
       <section className="mt-10">
         <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
           <Package className="size-4" />
-          {isCategory ? "Products" : "Subproducts"}
+          {isLeafCategory ? "Items" : isCategory ? "Products" : "Subproducts"}
         </h2>
         <div className="mt-5">
-          {isCategory ? (
+          {isLeafCategory ? (
+            <ProductListGrid products={subproducts} />
+          ) : isCategory ? (
             <CategoryListGrid categories={products} />
           ) : (
             <ProductListGrid products={subproducts} />
           )}
         </div>
       </section>
-
-      {/* Subproducts hanging straight off a category predate the two-level
-          split. Surfaced here so they can't go missing. */}
-      {isCategory && subproducts.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
-            Filed directly in this category
-          </h2>
-          <p className="mt-1.5 max-w-2xl text-sm text-[#5b6b82]">
-            These sit in the category itself rather than inside one of its products. They still show
-            on the site, below the products above. Edit one to move it into a product.
-          </p>
-          <div className="mt-5">
-            <ProductListGrid products={subproducts} />
-          </div>
-        </section>
-      )}
     </div>
   );
 }

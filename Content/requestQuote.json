@@ -5,8 +5,8 @@
     "description": "Submit an enquiry for your international shipment and our shipping experts will respond with accurate pricing for Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, FCL, and LCL services."
   },
   "hero": {
-    "badge": "Free Freight Enquiry",
-    "title": "Request Your International Shipping Enquiry",
+    "badge": "",
+    "title": "Request Your International Import and Shipping Enquiries",
     "subtitle": "Tell us about your shipment and our shipping experts will get back to you with tailored guidance for your requirements.",
     "primaryButton": "Request Enquiry",
     "secondaryButton": "Contact Us"
@@ -58,7 +58,7 @@
         "fields": [
           {
             "label": "Origin State",
-            "type": "state-select",
+            "type": "state-or-country-select",
             "placeholder": "Search origin state…",
             "required": true
           },
@@ -82,7 +82,7 @@
           },
           {
             "label": "Destination State",
-            "type": "state-select",
+            "type": "state-or-country-select",
             "placeholder": "Search destination state…",
             "required": true
           }

@@ -8,6 +8,9 @@ import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 export type AccountStatus = "incomplete" | "pending" | "approved" | "rejected";
 
+/** Government ID used for verification — Indian customers use Aadhaar or PAN; everyone else uses a passport. */
+export type IdType = "passport" | "aadhaar" | "pan";
+
 export type UserProfile = {
   id: string;
   email: string;
@@ -17,9 +20,10 @@ export type UserProfile = {
   phone: string;
   company_name: string;
   country: string;
-  passport_number: string;
-  passport_front_url: string;
-  passport_back_url: string;
+  id_type: IdType;
+  id_number: string;
+  id_front_url: string;
+  id_back_url: string;
   referral_code: string;
   referred_by: string | null;
   status: AccountStatus;

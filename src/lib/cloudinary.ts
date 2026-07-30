@@ -17,8 +17,8 @@ function configure() {
   return cloudinary;
 }
 
-/** Uploads a passport photo (front/back) for account verification and returns its HTTPS URL. Server-only. */
-export async function uploadPassportImage(file: File): Promise<string> {
+/** Uploads a government ID photo (passport/Aadhaar/PAN, front/back) for account verification and returns its HTTPS URL. Server-only. */
+export async function uploadIdDocumentImage(file: File): Promise<string> {
   if (!isCloudinaryConfigured()) {
     throw new Error("Cloudinary is not configured — set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET in .env");
   }
@@ -28,7 +28,7 @@ export async function uploadPassportImage(file: File): Promise<string> {
   const dataUri = `data:${file.type};base64,${base64}`;
 
   const result = await configure().uploader.upload(dataUri, {
-    folder: "awsoversea/passports",
+    folder: "awsoversea/id-documents",
     resource_type: "image",
   });
 

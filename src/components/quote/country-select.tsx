@@ -20,6 +20,7 @@ export function CountrySelect({
   defaultValue = "",
   options = COUNTRIES,
   noResultsLabel = "countries",
+  onChange,
 }: {
   name: string;
   required?: boolean;
@@ -29,6 +30,8 @@ export function CountrySelect({
   options?: string[];
   /** Noun used in the "No X match" empty state, to match whatever `options` represents. */
   noResultsLabel?: string;
+  /** Fires whenever the selected value changes (including being cleared while typing). */
+  onChange?: (value: string) => void;
 }) {
   const [value, setValue] = useState(defaultValue);
   const [query, setQuery] = useState(defaultValue);
@@ -58,6 +61,7 @@ export function CountrySelect({
     setValue(country);
     setQuery(country);
     setOpen(false);
+    onChange?.(country);
   }
 
   function onKeyDown(e: React.KeyboardEvent) {
@@ -96,6 +100,7 @@ export function CountrySelect({
             setValue("");
             setOpen(true);
             setActiveIndex(0);
+            onChange?.("");
           }}
           onKeyDown={onKeyDown}
           className={cn(inputClasses, "pl-10 pr-10")}

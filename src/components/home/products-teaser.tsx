@@ -2,24 +2,21 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProductCard } from "@/components/products/product-card";
-import type { EnquiryAuth } from "@/components/products/enquiry-modal";
-import type { PublicProduct } from "@/lib/product-data";
+import { CategoryCard } from "@/components/products/category-card";
+import type { PublicCategory } from "@/lib/category-data";
 
 type Data = { title: string; description: string; button: string };
 
 export function ProductsTeaser({
   data,
-  products,
-  auth,
+  categories,
   eyebrow,
 }: {
   data: Data;
-  products: PublicProduct[];
-  auth: EnquiryAuth;
+  categories: PublicCategory[];
   eyebrow: string;
 }) {
-  if (products.length === 0) return null;
+  if (categories.length === 0) return null;
 
   return (
     <Section spacing="lg" tone="soft">
@@ -33,19 +30,19 @@ export function ProductsTeaser({
         </Link>
       </div>
 
-      <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
-        {products.slice(0, 4).map((product, i) => (
-          <ProductCard key={product.id} product={product} index={i} auth={auth} />
+      <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {categories.slice(0, 4).map((category, i) => (
+          <CategoryCard key={category.id} category={category} index={i} />
         ))}
       </div>
 
-      {products.length > 4 && (
+      {categories.length > 4 && (
         <div className="mt-10 flex justify-center">
           <Link
             href="/products"
             className="inline-flex items-center gap-2 rounded-full btn-navy px-6 py-3 text-sm font-semibold text-white transition-colors"
           >
-            View more products <ArrowRight className="size-4" />
+            View more categories <ArrowRight className="size-4" />
           </Link>
         </div>
       )}

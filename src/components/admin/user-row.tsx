@@ -15,13 +15,20 @@ export type AdminUser = {
   phone: string;
   company_name: string;
   country: string;
-  passport_number: string;
-  passport_front_url: string;
-  passport_back_url: string;
+  id_type: "passport" | "aadhaar" | "pan";
+  id_number: string;
+  id_front_url: string;
+  id_back_url: string;
   referral_code: string;
   status: "incomplete" | "pending" | "approved" | "rejected";
   created_at: string;
   referrer: { first_name: string; last_name: string; username: string | null } | null;
+};
+
+const ID_TYPE_LABEL: Record<AdminUser["id_type"], string> = {
+  passport: "Passport",
+  aadhaar: "Aadhaar",
+  pan: "PAN",
 };
 
 const STATUS_BADGE: Record<AdminUser["status"], { label: string; classes: string }> = {
@@ -31,7 +38,7 @@ const STATUS_BADGE: Record<AdminUser["status"], { label: string; classes: string
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },
 };
 
-function PassportImage({ label, url }: { label: string; url: string }) {
+function IdDocumentImage({ label, url }: { label: string; url: string }) {
   if (!url) {
     return (
       <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-[#e4e9f2] text-xs text-[#94a3b8]">
@@ -105,7 +112,7 @@ export function UserRow({ user }: { user: AdminUser }) {
               <span className="font-semibold">Company:</span> {user.company_name || "—"}
             </p>
             <p>
-              <span className="font-semibold">Passport no.:</span> {user.passport_number || "—"}
+              <span className="font-semibold">{ID_TYPE_LABEL[user.id_type]} no.:</span> {user.id_number || "—"}
             </p>
             <p>
               <span className="font-semibold">Referral code:</span>{" "}
@@ -122,8 +129,8 @@ export function UserRow({ user }: { user: AdminUser }) {
           </div>
 
           <div className="mt-4 grid gap-4 sm:grid-cols-2 sm:max-w-xl">
-            <PassportImage label="Passport front" url={user.passport_front_url} />
-            <PassportImage label="Passport back" url={user.passport_back_url} />
+            <IdDocumentImage label={`${ID_TYPE_LABEL[user.id_type]} front`} url={user.id_front_url} />
+            <IdDocumentImage label={`${ID_TYPE_LABEL[user.id_type]} back`} url={user.id_back_url} />
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-2">

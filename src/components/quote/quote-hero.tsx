@@ -36,16 +36,12 @@ export function QuoteHero({ data }: { data: Data }) {
 
       <Container className="relative">
         <motion.div
-          className="flex items-center gap-4 border-b border-[#002144]/12 pb-4"
+          className="flex items-center justify-end border-b border-[#002144]/12 pb-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
         >
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-maroon-admin">
-            <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
-            {data.badge}
-          </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
+          <span className="hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
             WAYBILL&nbsp;DRAFT&nbsp;/&nbsp;PRE-BOOKING
           </span>
         </motion.div>
@@ -67,7 +63,7 @@ export function QuoteHero({ data }: { data: Data }) {
                 color: "transparent",
               }}
             >
-              International Shipping Enquiry
+              International Import and Shipping Enquiry
             </span>
           </motion.h1>
 

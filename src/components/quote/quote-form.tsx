@@ -10,6 +10,7 @@ import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 import { trackLead } from "@/lib/track-lead";
 import { CountrySelect } from "@/components/quote/country-select";
 import { INDIA_STATES } from "@/lib/india-states";
+import { COUNTRIES } from "@/lib/countries";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 type Field = {
@@ -24,6 +25,8 @@ type Field = {
     | "textarea"
     | "country-select"
     | "state-select"
+    /** India-locked side of the route, but toggleable to any country for clients shipping from/to a non-Indian origin. */
+    | "state-or-country-select"
     /** Placeholder expanded at render time into the active direction's origin/destination pair. */
     | "route";
   placeholder?: string;
@@ -51,6 +54,70 @@ type Submit = {
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
+
+type StateOrCountry = "state" | "country";
+
+/**
+ * The India-locked side of the route (Origin State on Export, Destination
+ * State on Import) forced every client's shipment to start/end within India.
+ * Some clients also ship from/to a non-Indian origin, so this pairs a small
+ * State/Country switch with the combobox beneath it — flipping it swaps the
+ * option list (and clears the field, since a picked state isn't a valid
+ * country and vice versa) while the `name` stays constant for the server action.
+ */
+function StateOrCountryControl({
+  name,
+  required,
+  placeholder,
+  defaultValue,
+}: {
+  name: string;
+  required?: boolean;
+  placeholder?: string;
+  defaultValue?: string;
+}) {
+  const [mode, setMode] = useState<StateOrCountry>("state");
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div
+        role="radiogroup"
+        aria-label="Search by state or country"
+        className="inline-flex w-fit rounded-lg border border-[#e4e9f2] bg-[#f6f8fc] p-0.5"
+      >
+        {(["state", "country"] as const).map((m) => {
+          const active = m === mode;
+          return (
+            <button
+              key={m}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => setMode(m)}
+              className={cn(
+                "rounded-md px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9e4953]/40",
+                active
+                  ? "bg-white text-maroon-admin shadow-[0_1px_2px_rgba(4,22,47,0.12)]"
+                  : "text-[#5b6b82] hover:text-[#1A0A53]",
+              )}
+            >
+              {m === "state" ? "India State" : "Country"}
+            </button>
+          );
+        })}
+      </div>
+      <CountrySelect
+        key={mode}
+        name={name}
+        required={required}
+        placeholder={mode === "state" ? placeholder : "Search country…"}
+        defaultValue={mode === "state" ? defaultValue : ""}
+        options={mode === "state" ? INDIA_STATES : COUNTRIES}
+        noResultsLabel={mode === "state" ? "states" : "countries"}
+      />
+    </div>
+  );
+}
 
 function FieldControl({
   field,
@@ -100,6 +167,17 @@ function FieldControl({
         defaultValue={defaultValue}
         options={INDIA_STATES}
         noResultsLabel="states"
+      />
+    );
+  }
+
+  if (field.type === "state-or-country-select") {
+    return (
+      <StateOrCountryControl
+        name={name}
+        required={required}
+        placeholder={field.placeholder}
+        defaultValue={defaultValue}
       />
     );
   }

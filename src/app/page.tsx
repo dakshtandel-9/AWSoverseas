@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { home, faq, metaFrom } from "@/lib/content";
-import { getActiveProducts } from "@/lib/product-data";
-import { getAccount, enquiryAuthFor } from "@/lib/account";
+import { getRootCategories } from "@/lib/category-data";
+import { getAccount } from "@/lib/account";
 import { ImageHeroSlider } from "@/components/home/image-hero-slider";
 import { ReferralPopup } from "@/components/home/referral-popup";
 import { Certifications } from "@/components/home/certifications";
@@ -26,8 +26,7 @@ const ORG_JSONLD = {
 };
 
 export default async function HomePage() {
-  const [catalog, account] = await Promise.all([getActiveProducts(), getAccount()]);
-  const auth = enquiryAuthFor(account);
+  const [categories, account] = await Promise.all([getRootCategories(), getAccount()]);
 
   return (
     <>
@@ -98,7 +97,7 @@ export default async function HomePage() {
         ]}
       />
       <WhyChooseUs data={home.whyChooseUs} />
-      <ProductsTeaser data={home.products} products={catalog} auth={auth} eyebrow="Catalog" />
+      <ProductsTeaser data={home.products} categories={categories} eyebrow="Catalog" />
       <GlobalCoverage data={home.coverage} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />

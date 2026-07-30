@@ -3,14 +3,15 @@
 import { useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import { ImagePlus, Loader2, X } from "lucide-react";
-import { uploadPassportImageAction } from "@/app/actions/account";
+import { uploadIdDocumentImageAction } from "@/app/actions/account";
 
 /**
- * Passport photo picker. Unlike the admin image fields this is NOT its own
- * <form> — it calls the upload action directly, so it can sit inside the
- * profile form without nesting forms or colliding with its useActionState.
+ * ID document photo picker (passport / Aadhaar / PAN). Unlike the admin
+ * image fields this is NOT its own <form> — it calls the upload action
+ * directly, so it can sit inside the profile form without nesting forms or
+ * colliding with its useActionState.
  */
-export function PassportUploadField({
+export function IdDocumentUploadField({
   label,
   value,
   onUploaded,
@@ -28,7 +29,7 @@ export function PassportUploadField({
     startTransition(async () => {
       const formData = new FormData();
       formData.append("image", file);
-      const result = await uploadPassportImageAction({}, formData);
+      const result = await uploadIdDocumentImageAction({}, formData);
       if (result.url) onUploaded(result.url);
       if (result.error) setError(result.error);
       if (inputRef.current) inputRef.current.value = "";

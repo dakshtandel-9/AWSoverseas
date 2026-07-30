@@ -15,12 +15,19 @@ export type AdminUserProfile = {
   phone: string;
   company_name: string;
   country: string;
-  passport_number: string;
-  passport_front_url: string;
-  passport_back_url: string;
+  id_type: "passport" | "aadhaar" | "pan";
+  id_number: string;
+  id_front_url: string;
+  id_back_url: string;
   referral_code: string;
   status: "incomplete" | "pending" | "approved" | "rejected";
   created_at: string;
+};
+
+const ID_TYPE_LABEL: Record<AdminUserProfile["id_type"], string> = {
+  passport: "Passport",
+  aadhaar: "Aadhaar",
+  pan: "PAN",
 };
 
 const STATUS_BADGE: Record<AdminUserProfile["status"], { label: string; classes: string }> = {
@@ -30,7 +37,7 @@ const STATUS_BADGE: Record<AdminUserProfile["status"], { label: string; classes:
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },
 };
 
-function PassportImage({ label, url }: { label: string; url: string }) {
+function IdDocumentImage({ label, url }: { label: string; url: string }) {
   if (!url) {
     return (
       <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-[#e4e9f2] text-xs text-[#94a3b8]">
@@ -139,7 +146,8 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
                 <span className="font-semibold">Company:</span> {profile.company_name || "—"}
               </p>
               <p>
-                <span className="font-semibold">Passport no.:</span> {profile.passport_number || "—"}
+                <span className="font-semibold">{ID_TYPE_LABEL[profile.id_type]} no.:</span>{" "}
+                {profile.id_number || "—"}
               </p>
               <p className="sm:col-span-2">
                 <Gift className="mr-1.5 inline size-3.5 text-maroon-admin" />
@@ -149,8 +157,8 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
             </div>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <PassportImage label="Passport front" url={profile.passport_front_url} />
-              <PassportImage label="Passport back" url={profile.passport_back_url} />
+              <IdDocumentImage label={`${ID_TYPE_LABEL[profile.id_type]} front`} url={profile.id_front_url} />
+              <IdDocumentImage label={`${ID_TYPE_LABEL[profile.id_type]} back`} url={profile.id_back_url} />
             </div>
           </div>
         </motion.div>
