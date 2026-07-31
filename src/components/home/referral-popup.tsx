@@ -8,7 +8,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Copy, Gift, Wallet, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const OPEN_DELAY_MS = 2000;
+const OPEN_DELAY_MS = 10000;
 
 /** Auto-opens on every home page load. */
 export function ReferralPopup({
