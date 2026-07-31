@@ -89,14 +89,18 @@ export async function getAdminTrail(id: string): Promise<AdminCategory[]> {
 }
 
 /**
- * Categories a product may be filed under: leaves only, labelled with their full
- * path so "Cotton" from two different parents stay distinguishable.
+ * Every category keyed by id, with its full root-first path ("Food Products →
+ * Grocery Products → Rice Products") — enough to label a product with where it
+ * sits and link to that page. Also flags leaves, the only categories a product
+ * may be filed under.
  */
-export async function listProductTargets(): Promise<{ id: string; name: string }[]> {
+export async function getCategoryPaths(): Promise<
+  Map<string, { path: string; slug: string; isLeaf: boolean; sort_order: number }>
+> {
   const db = supabaseAdmin();
   const { data } = await db
     .from("categories")
-    .select("id, name, parent_id, sort_order")
+    .select("id, name, slug, parent_id, sort_order")
     .order("sort_order", { ascending: true })
     .order("created_at", { ascending: false });
 
@@ -116,8 +120,23 @@ export async function listProductTargets(): Promise<{ id: string; name: string }
     return parts.join(" → ");
   };
 
-  return rows
-    .filter((r) => !parents.has(r.id))
-    .map((r) => ({ id: r.id, name: pathOf(r.id) }))
+  return new Map(
+    rows.map((r) => [
+      r.id,
+      { path: pathOf(r.id), slug: r.slug, isLeaf: !parents.has(r.id), sort_order: r.sort_order },
+    ]),
+  );
+}
+
+/**
+ * Categories a product may be filed under: leaves only, labelled with their full
+ * path so "Accessories" under two different parents stay distinguishable.
+ */
+export async function listProductTargets(): Promise<{ id: string; name: string }[]> {
+  const paths = await getCategoryPaths();
+
+  return [...paths.entries()]
+    .filter(([, meta]) => meta.isLeaf)
+    .map(([id, meta]) => ({ id, name: meta.path }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }

@@ -45,10 +45,22 @@ export function FloatingPanel({
 }) {
   if (typeof document === "undefined") return null;
 
+  // Submenus nest arbitrarily deep, so by the third or fourth level a panel
+  // opening rightwards can run past the viewport. Flip it to the left of its
+  // trigger when there isn't room, and keep it clear of the bottom edge.
+  const PANEL_WIDTH = 264;
+  const room = window.innerWidth - anchorRect.right - 6;
+  const flipped = placement === "right" && room < PANEL_WIDTH && anchorRect.left > PANEL_WIDTH;
+
   const style: React.CSSProperties =
     placement === "below"
       ? { position: "fixed", top: anchorRect.bottom + 8, left: anchorRect.left, zIndex: 70 }
-      : { position: "fixed", top: anchorRect.top, left: anchorRect.right + 6, zIndex: 70 };
+      : {
+          position: "fixed",
+          top: Math.max(8, Math.min(anchorRect.top, window.innerHeight - 200)),
+          left: flipped ? anchorRect.left - PANEL_WIDTH - 6 : anchorRect.right + 6,
+          zIndex: 70,
+        };
 
   return createPortal(
     <div

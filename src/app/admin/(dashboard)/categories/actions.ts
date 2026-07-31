@@ -44,11 +44,15 @@ function slugify(name: string) {
 
 function readCategoryFields(formData: FormData) {
   const parentId = String(formData.get("parent_id") ?? "").trim();
+  const childLayout = String(formData.get("child_layout") ?? "");
   return {
     name: String(formData.get("name") ?? "").trim(),
     description: String(formData.get("description") ?? "").trim(),
     image_url: String(formData.get("image_url") ?? "").trim(),
     parent_id: parentId || null,
+    // Anything unrecognised falls back to the column default rather than
+    // tripping the check constraint.
+    child_layout: childLayout === "cards" ? "cards" : "inline",
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
     is_active: formData.get("is_active") === "true",
   };
@@ -62,8 +66,13 @@ function messageForCategoryError(error: { code?: string; message?: string }) {
   if (error.code === "23505") {
     return "A category with that name already exists.";
   }
+  // The Subcategory layout toggle writes a column added by the 2026-07-31
+  // migration. Say so plainly instead of a bare "couldn't save".
+  if (error.code === "PGRST204" && error.message?.includes("child_layout")) {
+    return "The database is missing the child_layout column. Run supabase/migrations/2026-07-31-category-child-layout.sql in the Supabase SQL editor, then save again.";
+  }
   if (error.message?.includes("parent_has_products")) {
-    return "This category has subproducts filed directly in it, so it can't also hold products. Move those subproducts into a product first — open the category and edit each one under “Filed directly in this category”.";
+    return "This category holds products directly, so it can't also hold subcategories. Move its products into a subcategory first, then add subcategories here.";
   }
   if (error.message?.includes("category_cycle")) {
     return "A category can't be placed inside itself.";
@@ -81,8 +90,10 @@ function revalidateCategories() {
   updateTag("products");
   revalidatePath("/admin/categories");
   revalidatePath("/admin/categories/[id]", "page");
-  revalidatePath("/products");
-  revalidatePath("/products/[slug]", "page");
+  // The header's category dropdown is rendered by the root layout, so a new or
+  // renamed category has to invalidate every page, not just /products —
+  // otherwise the nav only picks it up on the catalog routes.
+  revalidatePath("/", "layout");
 }
 
 export async function createCategoryAction(

@@ -51,8 +51,10 @@ function revalidateProducts() {
   updateTag("categories");
   revalidatePath("/admin/products");
   revalidatePath("/admin/categories/[id]", "page");
-  revalidatePath("/products");
-  revalidatePath("/products/[slug]", "page");
+  // The header's category dropdown is rendered by the root layout, so it is on
+  // every page, not just /products — refresh the whole tree or the nav goes
+  // stale everywhere else.
+  revalidatePath("/", "layout");
 }
 
 /**
@@ -61,7 +63,7 @@ function revalidateProducts() {
  */
 function messageForProductError(error: { message?: string }, fallback: string) {
   if (error.message?.includes("category_has_subcategories")) {
-    return "That category already holds products, so a subproduct can't sit in it directly. Pick one of its products instead.";
+    return "That category holds subcategories, so a product can't sit in it directly. Pick one of its subcategories instead.";
   }
   return fallback;
 }
@@ -106,7 +108,7 @@ export async function updateProductAction(
   }
 
   revalidateProducts();
-  redirect("/admin/products");
+  redirect(fields.category_id ? `/admin/categories/${fields.category_id}` : "/admin/products");
 }
 
 export async function deleteProductAction(id: string) {

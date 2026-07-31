@@ -6,18 +6,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FloatingPanel, useCloseTimer } from "@/components/layout/nav-flyout";
-import { isOwnPage, type CategoryNode } from "@/lib/category-data";
+import type { CategoryNode } from "@/lib/category-data";
 
 /**
- * One row of the top-level "Products" dropdown. Most root categories'
- * subcategories (Dals & Pulses, Leather Footwear, ...) live inline on that
- * root's own page, not as separate pages, so they're not worth a submenu —
- * the row is a plain link. A root whose children DO get their own page (see
- * isOwnPage; today only Food Products, whose Fruits & Vegetables / Grocery
- * Products / Indian Spices / Namkeen & Frozen Foods are each a real
- * destination) opens a one-level flyout listing those pages instead.
+ * One row of a category menu, at any depth. Every active category has a real
+ * page at /products/<slug>, so the row is always a link; a category that holds
+ * subcategories additionally opens a submenu listing them, which nests as deep
+ * as the tree does. The menu deliberately mirrors the category tree exactly —
+ * how a subcategory happens to *render* on its parent's page (a card, or opened
+ * out in place) is a layout decision and must not decide whether it is
+ * reachable from the nav.
  */
-function CategoryRootRow({
+function CategoryRow({
   node,
   isActive,
   onOpen,
@@ -34,7 +34,6 @@ function CategoryRootRow({
   onToggle: () => void;
   onNavigate: () => void;
 }) {
-  const linkedChildren = node.children.filter((c) => isOwnPage(c, node.children));
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
 
@@ -46,7 +45,7 @@ function CategoryRootRow({
     return () => window.removeEventListener("resize", update);
   }, [isActive]);
 
-  if (linkedChildren.length === 0) {
+  if (node.children.length === 0) {
     return (
       <li role="none">
         <Link
@@ -93,28 +92,15 @@ function CategoryRootRow({
 
       {isActive && rect && (
         <FloatingPanel anchorRect={rect} placement="right" onMouseEnter={onCancelClose} onMouseLeave={onScheduleClose}>
-          <ul role="menu" className="max-h-[70vh] w-64 overflow-y-auto p-1.5">
-            {linkedChildren.map((child) => (
-              <li key={child.id} role="none">
-                <Link
-                  href={`/products/${child.slug}`}
-                  role="menuitem"
-                  onClick={onNavigate}
-                  className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                >
-                  {child.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <CategoryMenuList nodes={node.children} onNavigate={onNavigate} />
         </FloatingPanel>
       )}
     </li>
   );
 }
 
-/** The top-level "Products" dropdown — one column of root categories. */
-function CategoryRootColumn({ nodes, onNavigate }: { nodes: CategoryNode[]; onNavigate: () => void }) {
+/** A column of category rows. Each row may open another one of these. */
+function CategoryMenuList({ nodes, onNavigate }: { nodes: CategoryNode[]; onNavigate: () => void }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const { cancel, schedule } = useCloseTimer(() => setActiveId(null));
 
@@ -126,7 +112,7 @@ function CategoryRootColumn({ nodes, onNavigate }: { nodes: CategoryNode[]; onNa
   return (
     <ul role="menu" className="max-h-[70vh] w-64 overflow-y-auto p-1.5">
       {nodes.map((node) => (
-        <CategoryRootRow
+        <CategoryRow
           key={node.id}
           node={node}
           isActive={activeId === node.id}
@@ -216,7 +202,7 @@ export function ProductsNavItem({
 
       {open && tree.length > 0 && rect && (
         <FloatingPanel anchorRect={rect} placement="below" onMouseEnter={cancel} onMouseLeave={schedule}>
-          <CategoryRootColumn nodes={tree} onNavigate={() => setOpen(false)} />
+          <CategoryMenuList nodes={tree} onNavigate={() => setOpen(false)} />
         </FloatingPanel>
       )}
     </div>
@@ -224,29 +210,37 @@ export function ProductsNavItem({
 }
 
 /**
- * Mobile drawer — one list of root categories. Most are a direct link, since
- * their subcategories live inline on their own page rather than being
- * separate pages. A root whose children DO get their own page (see
- * isOwnPage) expands in place to list those pages instead, mirroring
- * CategoryRootRow on desktop.
+ * Mobile drawer — the same tree as an accordion. A category with subcategories
+ * expands in place to reveal them, at any depth; its own name stays tappable so
+ * the category page itself is never out of reach.
  */
-function CategoryAccordionList({ nodes, onNavigate }: { nodes: CategoryNode[]; onNavigate: () => void }) {
+function CategoryAccordionList({
+  nodes,
+  depth,
+  onNavigate,
+}: {
+  nodes: CategoryNode[];
+  depth: number;
+  onNavigate: () => void;
+}) {
   const [openId, setOpenId] = useState<string | null>(null);
+
+  // Each level steps in by the same amount, so nesting reads as nesting.
+  const indent = `${1.75 + depth}rem`;
 
   return (
     <ul className="flex flex-col">
       {nodes.map((node) => {
-        const linkedChildren = node.children.filter((c) => isOwnPage(c, node.children));
         const isOpen = openId === node.id;
 
-        if (linkedChildren.length === 0) {
+        if (node.children.length === 0) {
           return (
             <li key={node.id}>
               <Link
                 href={`/products/${node.slug}`}
                 onClick={onNavigate}
                 className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                style={{ paddingInlineStart: "1.75rem" }}
+                style={{ paddingInlineStart: indent }}
               >
                 {node.name}
               </Link>
@@ -256,18 +250,27 @@ function CategoryAccordionList({ nodes, onNavigate }: { nodes: CategoryNode[]; o
 
         return (
           <li key={node.id}>
-            <button
-              type="button"
-              aria-expanded={isOpen}
-              onClick={() => setOpenId(isOpen ? null : node.id)}
-              className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-start text-base font-semibold text-ink transition-colors hover:bg-surface-soft"
-              style={{ paddingInlineStart: "1.75rem" }}
-            >
-              <span className="truncate">{node.name}</span>
-              <ChevronDown
-                className={cn("size-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")}
-              />
-            </button>
+            <div className="flex items-center gap-1">
+              <Link
+                href={`/products/${node.slug}`}
+                onClick={onNavigate}
+                className="min-w-0 flex-1 truncate rounded-xl px-3 py-3 text-base font-semibold text-ink transition-colors hover:bg-surface-soft"
+                style={{ paddingInlineStart: indent }}
+              >
+                {node.name}
+              </Link>
+              <button
+                type="button"
+                aria-label={`Show ${node.name} subcategories`}
+                aria-expanded={isOpen}
+                onClick={() => setOpenId(isOpen ? null : node.id)}
+                className="shrink-0 rounded-xl px-3 py-3 text-ink transition-colors hover:bg-surface-soft"
+              >
+                <ChevronDown
+                  className={cn("size-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")}
+                />
+              </button>
+            </div>
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
@@ -277,20 +280,7 @@ function CategoryAccordionList({ nodes, onNavigate }: { nodes: CategoryNode[]; o
                   transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <ul className="flex flex-col">
-                    {linkedChildren.map((child) => (
-                      <li key={child.id}>
-                        <Link
-                          href={`/products/${child.slug}`}
-                          onClick={onNavigate}
-                          className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                          style={{ paddingInlineStart: "2.75rem" }}
-                        >
-                          {child.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <CategoryAccordionList nodes={node.children} depth={depth + 1} onNavigate={onNavigate} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -357,7 +347,7 @@ export function ProductsMobileAccordion({
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <CategoryAccordionList nodes={tree} onNavigate={onNavigate} />
+            <CategoryAccordionList nodes={tree} depth={0} onNavigate={onNavigate} />
           </motion.div>
         )}
       </AnimatePresence>

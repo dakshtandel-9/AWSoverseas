@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronRight, Package, Pencil, Plus } from "lucide-react";
+import { ChevronRight, FolderTree, Package, Pencil, Plus } from "lucide-react";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
@@ -30,7 +30,7 @@ export default async function AdminCategoryDetailPage({
   if (!category) notFound();
 
   const db = supabaseAdmin();
-  const [products, trail, { data: subproductRows }] = await Promise.all([
+  const [subcategories, trail, { data: productRows }] = await Promise.all([
     listAdminCategories(id),
     getAdminTrail(id),
     db
@@ -41,17 +41,19 @@ export default async function AdminCategoryDetailPage({
       .order("created_at", { ascending: false }),
   ]);
 
-  const subproducts = (subproductRows ?? []).map((p) => ({ ...p, categoryName: category.name }));
+  const products = (productRows ?? []).map((p) => ({
+    ...p,
+    categoryName: category.name,
+    categorySlug: category.slug,
+  }));
 
-  // Two levels, decided by where this row sits: a top-level row is a category
-  // and holds products; anything nested is a product and holds subproducts.
-  const isCategory = category.parent_id === null;
-
-  // A category with no nested "product" groupings yet is a leaf: items go
-  // straight into it (the products table) rather than through an extra
-  // grouping layer. One that already has product groupings keeps using them,
-  // so we never mix the two structures under the same category.
-  const isLeafCategory = isCategory && products.length === 0;
+  // A category holds subcategories or products, never both — the database
+  // enforces it. Nesting goes as deep as you like, so what this page shows is
+  // decided by what the category actually contains, not by how far down it sits.
+  const holdsSubcategories = subcategories.length > 0;
+  const holdsProducts = products.length > 0;
+  const isEmpty = !holdsSubcategories && !holdsProducts;
+  const noun = trail.length > 1 ? "subcategory" : "category";
 
   return (
     <div>
@@ -77,11 +79,11 @@ export default async function AdminCategoryDetailPage({
         <div>
           <h1 className="text-2xl font-bold text-[#1A0A53] sm:text-3xl">{category.name}</h1>
           <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
-            {isLeafCategory
-              ? "Add the individual items customers can enquire on. They show as a grid on this category's page."
-              : isCategory
-                ? "Add a product for each group you want on this category's page. Each one gets its own photo, description, and row of subproducts — all on the same page, no extra page per product."
-                : "Add the individual items customers can enquire on. They show as a grid under this product's description."}
+            {holdsSubcategories
+              ? "Holds subcategories. Open one to keep going down, or add another beside it — nesting can go as deep as you need."
+              : holdsProducts
+                ? "Holds products. These are the individual items customers enquire on, shown as a grid on this category's page."
+                : "Empty so far. Fill it with products for people to enquire on, or with subcategories if it needs another level under it."}
           </p>
         </div>
 
@@ -91,52 +93,68 @@ export default async function AdminCategoryDetailPage({
             className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]"
           >
             <Pencil className="size-4" />
-            {isCategory ? "Edit category" : "Edit product"}
+            Edit {noun}
           </Link>
 
-          {isLeafCategory ? (
-            <Link
-              href={`/admin/products/new?category=${category.id}`}
-              className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
-            >
-              <Plus className="size-4" />
-              Add item
-            </Link>
-          ) : isCategory ? (
+          {/* An empty category can go either way, so it gets both buttons. Once
+              it holds one kind, only that kind can be added — matching the
+              branch-or-leaf rule the database enforces. */}
+          {!holdsProducts && (
             <Link
               href={`/admin/categories/new?parent=${category.id}`}
+              className={
+                holdsSubcategories
+                  ? "inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+                  : "inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]"
+              }
+            >
+              <Plus className="size-4" />
+              New subcategory
+            </Link>
+          )}
+
+          {!holdsSubcategories && (
+            <Link
+              href={`/admin/products/new?category=${category.id}`}
               className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
             >
               <Plus className="size-4" />
               New product
             </Link>
-          ) : (
-            <Link
-              href={`/admin/products/new?category=${category.id}`}
-              className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
-            >
-              <Plus className="size-4" />
-              New subproduct
-            </Link>
           )}
         </div>
       </div>
 
-      <section className="mt-10">
-        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
-          <Package className="size-4" />
-          {isLeafCategory ? "Items" : isCategory ? "Products" : "Subproducts"}
-        </h2>
-        <div className="mt-5">
-          {isLeafCategory ? (
-            <ProductListGrid products={subproducts} />
-          ) : isCategory ? (
-            <CategoryListGrid categories={products} />
-          ) : (
-            <ProductListGrid products={subproducts} />
-          )}
-        </div>
-      </section>
+      {isEmpty && (
+        <p className="mt-6 rounded-2xl border border-dashed border-[#e4e9f2] px-5 py-4 text-sm text-[#5b6b82]">
+          Nothing in here yet, so its page on the site is empty. Adding a product or a subcategory fixes
+          that — whichever you pick first is what this category holds from then on.
+        </p>
+      )}
+
+      {holdsSubcategories && (
+        <section className="mt-10">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
+            <FolderTree className="size-4" />
+            Subcategories
+          </h2>
+          <div className="mt-5">
+            <CategoryListGrid categories={subcategories} />
+          </div>
+        </section>
+      )}
+
+      {holdsProducts && (
+        <section className="mt-10">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-[#1A0A53]">
+            <Package className="size-4" />
+            Products
+          </h2>
+          <div className="mt-5">
+            <ProductListGrid products={products} />
+          </div>
+        </section>
+      )}
     </div>
   );
 }

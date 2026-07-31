@@ -2,6 +2,12 @@ import { unstable_cache } from "next/cache";
 import { supabasePublic } from "@/lib/supabase/public";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 
+/**
+ * How a category lays out the subcategories inside it. Admin-chosen, per
+ * category — see `rendersAsCard`.
+ */
+export type ChildLayout = "cards" | "inline";
+
 export type PublicCategory = {
   id: string;
   name: string;
@@ -9,21 +15,40 @@ export type PublicCategory = {
   description: string;
   image_url: string;
   parent_id: string | null;
+  child_layout: ChildLayout;
 };
+
+const BASE_COLUMNS = "id, name, slug, description, image_url, parent_id";
 
 const getCachedCategories = unstable_cache(
   async (): Promise<PublicCategory[]> => {
     const db = supabasePublic();
-    const { data } = await db
-      .from("categories")
-      .select("id, name, slug, description, image_url, parent_id")
-      .eq("is_active", true)
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: false });
-    return data ?? [];
+    const read = (columns: string) =>
+      db
+        .from("categories")
+        .select(columns)
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true })
+        .order("created_at", { ascending: false });
+
+    const { data, error } = await read(`${BASE_COLUMNS}, child_layout`);
+    if (!error) return (data ?? []) as unknown as PublicCategory[];
+
+    // child_layout arrives with the 2026-07-31 migration. Until that has been
+    // run against this database, fall back to the columns that do exist rather
+    // than failing the whole read and blanking the catalog.
+    const { data: legacy } = await read(BASE_COLUMNS);
+    return ((legacy ?? []) as unknown as Omit<PublicCategory, "child_layout">[]).map((c) => ({
+      ...c,
+      child_layout: "inline" as const,
+    }));
   },
   ["categories"],
-  { tags: ["categories"] },
+  // Admin edits refresh this instantly via updateTag("categories"). The window
+  // is the safety net for changes that never go through a Server Action — a
+  // seed script, a row edited straight in Supabase — which would otherwise sit
+  // behind a cache that never expires.
+  { tags: ["categories"], revalidate: 300 },
 );
 
 /** Every active category, at every depth, in display order. */
@@ -54,20 +79,22 @@ export async function getActiveCategoryBySlug(slug: string): Promise<PublicCateg
 export type CategoryNode = PublicCategory & { children: CategoryNode[] };
 
 /**
- * Whether `node` gets its own real page when listed among `siblings` on its
- * parent's category page — i.e. whether it renders as a clickable card
- * rather than being opened out inline. A node with children always does. A
- * childless node normally renders inline instead (no page of its own worth
- * linking to), *unless* the sibling group is mixed — some branches, some
- * leaves, as with Food Products' Grocery/Fruits&Veg/Namkeen&Frozen (branches)
- * next to Spices (a leaf) — in which case the whole group renders as cards
- * for a uniform grid, so the leaf gets a page too. Mirrors the branch/leaf
- * split in CategoryDetailPage; keep the two in sync.
+ * Whether a subcategory renders as a clickable card on its parent's page rather
+ * than being opened out inline (its own About block plus its product grid).
+ *
+ * The parent's admin-chosen `child_layout` decides, with one exception: a
+ * subcategory that holds its own subcategories always gets a card, because
+ * there is no product grid to open out — inlining it would render an empty one.
+ *
+ * This is a layout rule only. Every active category has a real page either way,
+ * so it must never be used to decide what the nav lists — the header shows the
+ * whole tree.
  */
-export function isOwnPage(node: CategoryNode, siblings: CategoryNode[]): boolean {
-  if (node.children.length > 0) return true;
-  const mixedDepth = siblings.some((s) => s.children.length > 0) && siblings.some((s) => s.children.length === 0);
-  return mixedDepth;
+export function rendersAsCard(
+  child: { children: unknown[] },
+  parentLayout: ChildLayout,
+): boolean {
+  return child.children.length > 0 || parentLayout === "cards";
 }
 
 /**

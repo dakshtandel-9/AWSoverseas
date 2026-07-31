@@ -31,7 +31,9 @@ const getCachedProducts = unstable_cache(
     return data ?? [];
   },
   ["products"],
-  { tags: ["products"] },
+  // Same as categories: updateTag("products") covers admin edits, the window
+  // covers anything written directly to the database.
+  { tags: ["products"], revalidate: 300 },
 );
 
 /**

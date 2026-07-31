@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Settings, LogOut, LayoutGrid, MessageSquareText, ShoppingBag, Users, BookOpen, Send, ChartNoAxesCombined, Wallet } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Settings, LogOut, LayoutGrid, MessageSquareText, Package, ShoppingBag, Users, BookOpen, Send, ChartNoAxesCombined, Wallet } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
@@ -11,9 +11,11 @@ const LINKS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/wallets", label: "Wallets", icon: Wallet },
-  // Products live inside a category now, so there is no top-level entry for
-  // them. The /admin/products routes still work if you go straight to a URL.
+  // Categories is where you browse the tree; Products is the flat list of every
+  // item across all of them, which is the only place an unfiled product (filed
+  // nowhere, so invisible on the site) can be found and fixed.
   { href: "/admin/categories", label: "Categories", icon: LayoutGrid },
+  { href: "/admin/products", label: "Products", icon: Package },
   // /admin/enquiries is a prefix of /admin/enquiries-open, so it must match
   // exactly or both would highlight on the open-enquiries page.
   { href: "/admin/enquiries", label: "Orders", icon: ShoppingBag, exact: true },

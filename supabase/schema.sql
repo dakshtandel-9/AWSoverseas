@@ -155,6 +155,19 @@ create table if not exists categories (
 alter table categories
   add column if not exists parent_id uuid references categories(id) on delete cascade;
 
+-- How this category lays out the subcategories inside it (see the
+-- 2026-07-31-category-child-layout migration for the backfill):
+--   'inline' — each subcategory's products are listed on this category's page.
+--   'cards'  — each subcategory gets a card that opens its own page.
+-- Only applies to subcategories that hold products; one that holds its own
+-- subcategories always gets a card, since there is no product grid to open out.
+alter table categories
+  add column if not exists child_layout text not null default 'inline';
+
+alter table categories drop constraint if exists categories_child_layout_check;
+alter table categories add constraint categories_child_layout_check
+  check (child_layout in ('cards', 'inline'));
+
 create index if not exists categories_active_idx on categories (is_active, sort_order, created_at desc);
 
 create index if not exists categories_parent_idx on categories (parent_id, sort_order, created_at desc);

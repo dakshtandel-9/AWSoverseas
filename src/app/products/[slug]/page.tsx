@@ -4,7 +4,7 @@ import {
   getActiveCategories,
   getActiveCategoryBySlug,
   getCategoryTrail,
-  isOwnPage,
+  rendersAsCard,
 } from "@/lib/category-data";
 import { getCategoryBranches } from "@/lib/catalog-tree";
 import { getActiveProductsByCategory } from "@/lib/product-data";
@@ -61,12 +61,10 @@ export default async function CategoryDetailPage({
   const isBranch = subcategories.length > 0;
   const ancestors = trailWithSelf.slice(0, -1);
 
-  // A subcategory that gets its own page (see isOwnPage — either it nests
-  // further, or the sibling group is a mixed set of branches and leaves) gets
-  // a card to click through to; one that doesn't is opened out in place,
-  // since its page would show the same grid one click later.
-  const linked = subcategories.filter((s) => isOwnPage(s, subcategories));
-  const inlined = subcategories.filter((s) => !isOwnPage(s, subcategories));
+  // Cards to click through to, or opened out in place — this category's own
+  // "Subcategory layout" setting decides (see rendersAsCard).
+  const linked = subcategories.filter((s) => rendersAsCard(s, category.child_layout));
+  const inlined = subcategories.filter((s) => !rendersAsCard(s, category.child_layout));
 
   const CATEGORY_JSONLD = {
     "@context": "https://schema.org",

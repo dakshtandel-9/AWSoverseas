@@ -3,14 +3,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTransition } from "react";
-import { Pencil, Trash2, ImageOff, ExternalLink } from "lucide-react";
+import { Pencil, Trash2, ImageOff, ExternalLink, TriangleAlert } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { deleteProductAction, toggleProductActiveAction } from "@/app/admin/(dashboard)/products/actions";
 
 type Product = {
   id: string;
   name: string;
+  /** Full path of the category it sits in; empty when it isn't filed anywhere. */
   categoryName: string;
+  /** Slug of that category, for the "view on site" link. */
+  categorySlug?: string;
   image_url: string;
   is_active: boolean;
   sort_order: number;
@@ -58,17 +61,26 @@ export function ProductListGrid({ products }: { products: Product[] }) {
           <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-bold text-[#1A0A53]">{product.name}</p>
-              {product.categoryName && <p className="truncate text-xs text-[#94a3b8]">{product.categoryName}</p>}
+              {product.categoryName ? (
+                <p className="truncate text-xs text-[#94a3b8]">{product.categoryName}</p>
+              ) : (
+                <p className="flex items-center gap-1 truncate text-xs font-semibold text-[#b45309]">
+                  <TriangleAlert className="size-3 shrink-0" />
+                  Not filed — hidden from the site
+                </p>
+              )}
             </div>
 
-            <Link
-              href="/products"
-              target="_blank"
-              className="shrink-0 rounded-lg p-2 text-[#5b6b82] hover:bg-[#f6f8fc]"
-              aria-label="View on site"
-            >
-              <ExternalLink className="size-4" />
-            </Link>
+            {product.categorySlug && (
+              <Link
+                href={`/products/${product.categorySlug}`}
+                target="_blank"
+                className="shrink-0 rounded-lg p-2 text-[#5b6b82] hover:bg-[#f6f8fc]"
+                aria-label="View on site"
+              >
+                <ExternalLink className="size-4" />
+              </Link>
+            )}
             <Link
               href={`/admin/products/${product.id}/edit`}
               className="shrink-0 rounded-lg p-2 text-[#5b6b82] hover:bg-[#f6f8fc]"
