@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { FOOTER_NAV, SITE } from "@/lib/site";
-import { getSiteSettings, hasContactDetails, type FooterContact } from "@/lib/site-settings";
+import { getSiteSettings } from "@/lib/site-settings";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
@@ -46,14 +46,11 @@ const NEWSLETTER = {
 
 export async function Footer() {
   const settings = await getSiteSettings();
-  const { phone1, phone2, email, address, contactLabel, footerContacts } = settings;
+  const { address, email, phone1, phone2 } = settings;
   const year = new Date().getFullYear();
-
-  // Column 1 is the site-wide contact; columns 2-4 come from Settings. Empty columns drop out.
-  const contacts = [
-    { label: contactLabel, phone1, phone2, email, address },
-    ...footerContacts,
-  ].filter(hasContactDetails);
+  const mapsHref = address
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+    : null;
 
   return (
     <footer className="relative overflow-hidden bg-[#CFE8FF] text-ink/80">
@@ -89,6 +86,49 @@ export async function Footer() {
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>
+            {(address || email || phone1 || phone2) && (
+              <ul className="mt-6 space-y-3 text-sm text-ink/80">
+                {address && (
+                  <li className="flex items-start gap-3">
+                    <MapPin className="mt-0.5 size-4 shrink-0 text-maroon-admin" />
+                    <span className="break-words leading-relaxed">{address}</span>
+                  </li>
+                )}
+                {email && (
+                  <li className="flex items-center gap-3">
+                    <Mail className="size-4 shrink-0 text-maroon-admin" />
+                    <a href={`mailto:${email}`} className="break-words transition-colors hover:text-ink">
+                      {email}
+                    </a>
+                  </li>
+                )}
+                {[phone1, phone2].map(
+                  (phone, i) =>
+                    phone && (
+                      <li key={i} className="flex items-center gap-3">
+                        <Phone className="size-4 shrink-0 text-maroon-admin" />
+                        <a
+                          href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+                          className="break-words transition-colors hover:text-ink"
+                        >
+                          {phone}
+                        </a>
+                      </li>
+                    ),
+                )}
+              </ul>
+            )}
+            {mapsHref && (
+              <a
+                href={mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/60 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/25 hover:bg-white"
+              >
+                <MapPin className="size-4 text-maroon-admin" />
+                View on Google Maps
+              </a>
+            )}
           </div>
 
           <FooterColumn title="Services" className="lg:col-span-2">
@@ -120,15 +160,6 @@ export async function Footer() {
             ))}
         </div>
 
-        {/* Contact band — one column per office, all admin-editable in Settings */}
-        {contacts.length > 0 && (
-          <div className="grid gap-6 border-t border-ink/10 py-10 sm:grid-cols-2 lg:grid-cols-4">
-            {contacts.map((contact, i) => (
-              <ContactCard key={i} contact={contact} />
-            ))}
-          </div>
-        )}
-
         {/* Bottom bar */}
         <div className="flex flex-col gap-6 border-t border-ink/10 py-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-ink/60">
@@ -151,62 +182,6 @@ export async function Footer() {
         </div>
       </Container>
     </footer>
-  );
-}
-
-function ContactCard({ contact }: { contact: FooterContact }) {
-  const { label, phone1, phone2, email, address } = contact;
-  return (
-    <div className="rounded-xl bg-white/45 p-5 ring-1 ring-ink/10">
-      {label && (
-        <h4 className="text-xs font-semibold uppercase tracking-[0.14em] !text-ink/70">{label}</h4>
-      )}
-      <ul className={`space-y-3 text-sm text-ink/80 ${label ? "mt-4" : ""}`}>
-        {[phone1, phone2].map(
-          (phone, i) =>
-            phone && (
-              <ContactRow key={i} icon={<Phone className="size-4" />} href={`tel:${phone.replace(/[^\d+]/g, "")}`}>
-                {phone}
-              </ContactRow>
-            ),
-        )}
-        {email && (
-          <ContactRow icon={<Mail className="size-4" />} href={`mailto:${email}`}>
-            {email}
-          </ContactRow>
-        )}
-        {address && (
-          <ContactRow icon={<MapPin className="size-4" />} align="start">
-            {address}
-          </ContactRow>
-        )}
-      </ul>
-    </div>
-  );
-}
-
-function ContactRow({
-  icon,
-  href,
-  align = "center",
-  children,
-}: {
-  icon: React.ReactNode;
-  href?: string;
-  align?: "start" | "center";
-  children: React.ReactNode;
-}) {
-  return (
-    <li className={`flex gap-3 ${align === "start" ? "items-start" : "items-center"}`}>
-      <span className={`shrink-0 text-maroon-admin ${align === "start" ? "mt-0.5" : ""}`}>{icon}</span>
-      {href ? (
-        <a href={href} className="break-words transition-colors hover:text-ink">
-          {children}
-        </a>
-      ) : (
-        <span className="break-words leading-relaxed">{children}</span>
-      )}
-    </li>
   );
 }
 

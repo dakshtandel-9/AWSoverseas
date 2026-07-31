@@ -8,7 +8,7 @@
     "badge": "Referral Rewards",
     "title": "Send a shipment their way. We'll send $25 your way.",
     "subtitle": "Every person you bring to AWS OVERSEAS impex who completes a shipment, purchase, or booking puts $25 in your wallet. Simple as that — no tiers, no caps, no waiting.",
-    "primaryButton": "Get my referral code",
+    "primaryButton": "Get your referral code",
     "secondaryButton": "See how it works",
     "stat": {
       "value": "$25",
@@ -57,6 +57,32 @@
       }
     ]
   },
+  "becomePartner": {
+    "eyebrow": "Partnership Program",
+    "title": "Become a Partner",
+    "description": "AWS Overseas Impex / Rainbow Overseas invites individuals, agencies, and companies across every state in India, as well as international markets, to join us as trade partners and associates.",
+    "whoCanJoin": {
+      "title": "Who can join",
+      "items": [
+        "Domestic partners representing any state or region within India",
+        "International partners and agents representing overseas markets",
+        "Freight forwarders, logistics companies, and trade consultants",
+        "Individuals with strong local networks in the import-export sector"
+      ]
+    },
+    "whatsIncluded": {
+      "title": "What association with us includes",
+      "items": [
+        "Access to our sourcing, shipping, and documentation network",
+        "Attractive commission on business generated through your referrals",
+        "Dedicated support for compliance, customs, and logistics coordination",
+        "Recognition as an official trade partner on our platform"
+      ]
+    },
+    "primaryButton": "Apply to Partner",
+    "secondaryButton": "Contact Partnership Team"
+  },
+
   "cta": {
     "title": "Your code is already waiting in your account",
     "description": "Sign in to grab your referral code and start sharing — it takes less than a minute.",

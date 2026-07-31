@@ -3,6 +3,7 @@ import { requestQuote, metaFrom } from "@/lib/content";
 import { getAccount, enquiryAuthFor } from "@/lib/account";
 import { QuoteHero } from "@/components/quote/quote-hero";
 import { QuoteForm } from "@/components/quote/quote-form";
+import { WarehouseBookingCta } from "@/components/quote/warehouse-booking-cta";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = metaFrom(requestQuote.meta, "/quote");
@@ -33,6 +34,7 @@ export default async function Page({
     <>
       <QuoteHero data={requestQuote.hero} />
       <Section spacing="lg" tone="soft">
+        <WarehouseBookingCta auth={auth} />
         <QuoteForm
           quoteForm={requestQuote.quoteForm}
           shipmentDetails={requestQuote.shipmentDetails}

@@ -2,7 +2,6 @@
 
 import { updateTag } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase/server";
-import { EXTRA_FOOTER_CONTACTS } from "@/lib/site-settings";
 
 export type SettingsState = { error?: string; success?: boolean };
 
@@ -17,7 +16,6 @@ export async function updateSettingsAction(
   const email = String(formData.get("email") ?? "").trim();
   const whatsappNumber = String(formData.get("whatsapp_number") ?? "").trim();
   const address = String(formData.get("address") ?? "").trim();
-  const contactLabel = String(formData.get("contact_label") ?? "").trim();
   const btnNavy = String(formData.get("btn_navy") ?? "").trim();
   const btnNavyHover = String(formData.get("btn_navy_hover") ?? "").trim();
   const btnMaroon = String(formData.get("btn_maroon") ?? "").trim();
@@ -27,18 +25,6 @@ export async function updateSettingsAction(
   if (!phone1 || !email) {
     return { error: "Primary phone and email are required." };
   }
-
-  // Footer columns 2-4. Kept at a fixed length so a blank column doesn't shift the ones after it.
-  const footerContacts = Array.from({ length: EXTRA_FOOTER_CONTACTS }, (_, i) => {
-    const field = (key: string) => String(formData.get(`contact_${i + 2}_${key}`) ?? "").trim();
-    return {
-      label: field("label"),
-      phone1: field("phone_1"),
-      phone2: field("phone_2"),
-      email: field("email"),
-      address: field("address"),
-    };
-  });
 
   for (const [label, value] of [
     ["Navy button color", btnNavy],
@@ -61,8 +47,6 @@ export async function updateSettingsAction(
       email,
       whatsapp_number: whatsappNumber,
       address,
-      contact_label: contactLabel,
-      footer_contacts: footerContacts,
       btn_navy: btnNavy,
       btn_navy_hover: btnNavyHover,
       btn_maroon: btnMaroon,

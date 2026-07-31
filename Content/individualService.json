@@ -75,7 +75,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -198,7 +198,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -321,7 +321,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -444,7 +444,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -567,7 +567,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -690,7 +690,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -813,7 +813,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",
@@ -936,7 +936,7 @@
           {
             "step": "04",
             "title": "Transit",
-            "description": "Cargo moves through our shipping network."
+            "description": "Cargo moves from our warehouse."
           },
           {
             "step": "05",

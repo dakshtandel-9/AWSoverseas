@@ -5,6 +5,8 @@ import { ContactHero } from "@/components/contact/contact-hero";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { OfficeMap } from "@/components/contact/office-map";
+import { OfficeLocations } from "@/components/contact/office-locations";
+import { getPublicOfficeGroups } from "@/lib/office-locations";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = metaFrom(contact.meta, "/contact");
@@ -18,7 +20,7 @@ const CONTACT_JSONLD = {
 };
 
 export default async function Page() {
-  const settings = await getSiteSettings();
+  const [settings, officeGroups] = await Promise.all([getSiteSettings(), getPublicOfficeGroups()]);
   const location = settings.address
     ? { office: contact.officeLocations?.locations?.[0]?.office ?? "Head Office", address: settings.address }
     : contact.officeLocations?.locations?.[0];
@@ -52,6 +54,8 @@ export default async function Page() {
       </Section>
 
       <OfficeMap data={contact.googleMap} location={location} />
+
+      <OfficeLocations groups={officeGroups} />
     </>
   );
 }

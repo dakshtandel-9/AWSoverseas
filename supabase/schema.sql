@@ -11,10 +11,6 @@ create table if not exists site_settings (
   email text not null default '',
   whatsapp_number text not null default '', -- digits only, e.g. "919876543210"
   address text not null default '',
-  -- Heading shown above the first footer contact column.
-  contact_label text not null default 'Head office',
-  -- Footer contact columns 2-4: [{ label, phone1, phone2, email, address }, ...]. Column 1 uses the fields above.
-  footer_contacts jsonb not null default '[]'::jsonb,
   -- Admin-editable button colors: navy (nav/form CTAs) and maroon (hero/section CTAs), each with a hover shade.
   btn_navy text not null default '#02224C',
   btn_navy_hover text not null default '#011a38',
@@ -36,9 +32,11 @@ alter table site_settings add column if not exists btn_maroon text not null defa
 alter table site_settings add column if not exists btn_maroon_hover text not null default '#861b28';
 alter table site_settings add column if not exists text_maroon text not null default '#9e4953';
 
--- Footer contact columns added after the table existed on some deployments.
-alter table site_settings add column if not exists contact_label text not null default 'Head office';
-alter table site_settings add column if not exists footer_contacts jsonb not null default '[]'::jsonb;
+-- The footer's extra "contact columns" (per-office phone/email/address blocks
+-- shown alongside the site-wide one) were removed in favor of the Contact
+-- page's office directory (office_groups/office_locations below).
+alter table site_settings drop column if exists contact_label;
+alter table site_settings drop column if exists footer_contacts;
 
 create or replace function set_updated_at()
 returns trigger as $$
@@ -106,6 +104,27 @@ create table if not exists quote_submissions (
 );
 
 create index if not exists quote_submissions_created_idx on quote_submissions (created_at desc);
+
+-- ============================================================
+-- warehouse_bookings
+-- Captures the "Book a Warehouse" popup on the /quote page — a separate ask
+-- from the shipment waybill on that same page, open to guests and signed-in
+-- customers alike.
+-- ============================================================
+create table if not exists warehouse_bookings (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete set null,
+  full_name text not null,
+  email text not null,
+  phone text not null,
+  address text not null,
+  warehouse_type text not null,
+  notes text not null default '',
+  is_read boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists warehouse_bookings_created_idx on warehouse_bookings (created_at desc);
 
 -- ============================================================
 -- products — admin-managed catalog shown on /products (no pricing;
@@ -510,12 +529,72 @@ before update on marketing_integrations
 for each row execute function set_updated_at();
 
 -- ============================================================
+-- office_groups / office_locations — the office directory on the Contact page
+-- ============================================================
+-- A group is a heading like "India Offices"; every office card belongs to one.
+-- Both are admin-managed at /admin/offices, so the page is not limited to the
+-- two groups seeded below. See the 2026-07-31-office-locations migration.
+create table if not exists office_groups (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  description text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists office_locations (
+  id uuid primary key default gen_random_uuid(),
+  group_id uuid not null references office_groups(id) on delete cascade,
+  name text not null,
+  address text not null default '',
+  -- Two numbers per office: the main line and an alternative. Either can be blank.
+  phone_1 text not null default '',
+  phone_2 text not null default '',
+  email text not null default '',
+  -- Optional Google Maps link behind the card's "View on map".
+  map_url text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists office_groups_active_idx
+  on office_groups (is_active, sort_order, created_at);
+
+create index if not exists office_locations_group_idx
+  on office_locations (group_id, sort_order, created_at);
+
+drop trigger if exists office_groups_touch on office_groups;
+create trigger office_groups_touch
+before update on office_groups
+for each row execute function set_updated_at();
+
+drop trigger if exists office_locations_touch on office_locations;
+create trigger office_locations_touch
+before update on office_locations
+for each row execute function set_updated_at();
+
+-- Starting structure only; both groups start empty, and an empty group is
+-- hidden on the public page.
+insert into office_groups (title, description, sort_order)
+select 'India Offices', 'Our offices across India.', 1
+where not exists (select 1 from office_groups);
+
+insert into office_groups (title, description, sort_order)
+select 'International Offices', 'Where we operate outside India.', 2
+where not exists (select 1 from office_groups where sort_order = 2);
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
 alter table contact_submissions enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table quote_submissions enable row level security;
+alter table warehouse_bookings enable row level security;
 alter table products enable row level security;
 alter table categories enable row level security;
 alter table product_enquiries enable row level security;
@@ -547,6 +626,20 @@ drop policy if exists "public read site_settings" on site_settings;
 create policy "public read site_settings" on site_settings
   for select using (true);
 
+-- office_groups / office_locations: public can read the active rows (the
+-- Contact page office directory). All writes go through the service-role
+-- client from Server Actions.
+alter table office_groups enable row level security;
+alter table office_locations enable row level security;
+
+drop policy if exists "public read active office_groups" on office_groups;
+create policy "public read active office_groups" on office_groups
+  for select using (is_active = true);
+
+drop policy if exists "public read active office_locations" on office_locations;
+create policy "public read active office_locations" on office_locations
+  for select using (is_active = true);
+
 -- marketing_integrations: public can read — every ID here is injected into the
 -- public site's HTML anyway, so none are secrets. No public writes.
 alter table marketing_integrations enable row level security;
@@ -555,7 +648,7 @@ create policy "public read marketing_integrations" on marketing_integrations
   for select using (true);
 
 -- contact_submissions / newsletter_subscribers / quote_submissions /
--- shipment_milestones: no public policies at all. Inserts, admin reads, and the public tracking lookup all
+-- warehouse_bookings / shipment_milestones: no public policies at all. Inserts, admin reads, and the public tracking lookup all
 -- go through the service-role client (Server Actions), which bypasses RLS —
 -- the anon key gets zero access. The tracking lookup is safe to expose
 -- without RLS because it's scoped to an exact tracking_number match, not a

@@ -27,6 +27,7 @@ const SECTIONS: DocSection[] = [
   { id: "quotes", label: "Quote requests & tracking" },
   { id: "wallet", label: "Referral wallet" },
   { id: "messages", label: "Messages" },
+  { id: "offices", label: "Offices" },
   { id: "settings", label: "Site settings" },
   { id: "integrations", label: "SEO & Analytics" },
   { id: "accounts", label: "Accounts & access" },
@@ -291,6 +292,48 @@ export default function AdminDocsPage() {
               This is the simplest inbox in the panel — read, then follow up by email or phone directly. There&rsquo;s
               no status workflow beyond read/unread.
             </p>
+          </Section>
+
+          <Section
+            id="offices"
+            eyebrow="/admin/offices"
+            title="Offices"
+            intro="The office directory below the map on the Contact page. A group is a heading — “India Offices”, “International Offices”, or anything else you name — and every office card sits under one group."
+          >
+            <StepList
+              steps={[
+                {
+                  title: "Create a group",
+                  detail:
+                    "Click New group and give it a heading, an optional description, and an order number — lower numbers appear higher on the page.",
+                },
+                {
+                  title: "Add offices to it",
+                  detail:
+                    "Click Add office on that group, then fill in the office name, address, up to two phone numbers, an email, and optionally a Google Maps link.",
+                },
+                {
+                  title: "Save",
+                  detail:
+                    "The card appears on the Contact page straight away, three to a row on desktop and stacked on mobile.",
+                },
+              ]}
+            />
+            <FieldTable
+              rows={[
+                ["Office name", "The card heading, e.g. “Mumbai Office”."],
+                ["Address", "Shown under the name. Written exactly as you type it."],
+                ["Phone number / Alternative", "Both are optional and both become tap-to-call links. Leave the second blank if there is only one line."],
+                ["Email address", "Becomes a tap-to-email link on the card."],
+                ["Google Maps link", "Optional. Adds a “View on map” link; leave blank to hide it."],
+                ["Order", "Position within the group — lower numbers come first."],
+                ["Visibility", "Hidden keeps the office in the panel but off the public site."],
+              ]}
+            />
+            <Callout kind="warning">
+              Deleting a group deletes every office inside it. Hide the group instead if you only want it off
+              the site for now. A group with no offices is skipped on the Contact page.
+            </Callout>
           </Section>
 
           <Section

@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { Check } from "lucide-react";
 import { updateSettingsAction, type SettingsState } from "@/app/admin/(dashboard)/settings/actions";
-import type { FooterContact, SiteSettings } from "@/lib/site-settings";
+import type { SiteSettings } from "@/lib/site-settings";
 
 const initialState: SettingsState = {};
 
@@ -35,17 +35,6 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         defaultValue={settings.address}
         placeholder="Street, City, Country"
       />
-
-      <SectionDivider
-        title="Footer contact columns"
-        description="The footer shows four contact columns. Column 1 uses the phone, email and address above — the site-wide contact details. Fill in columns 2 to 4 for other offices or people; a column you leave empty is hidden on the site."
-      />
-
-      <ContactColumn index={1} label={settings.contactLabel} />
-
-      {settings.footerContacts.map((contact, i) => (
-        <ContactColumn key={i} index={i + 2} contact={contact} />
-      ))}
 
       <SectionDivider
         title="Button colors"
@@ -152,71 +141,6 @@ function TextareaField({
         className={`${inputClasses} resize-none`}
       />
     </div>
-  );
-}
-
-/**
- * One footer contact column. Column 1 only edits its heading — its phone/email/address
- * are the site-wide fields above; columns 2-4 carry their own details.
- */
-function ContactColumn({
-  index,
-  label,
-  contact,
-}: {
-  index: number;
-  label?: string;
-  contact?: FooterContact;
-}) {
-  const prefix = `contact_${index}_`;
-  return (
-    <fieldset className="grid gap-5 rounded-2xl border border-[#e4e9f2] p-5">
-      <legend className="px-2 text-sm font-bold text-[#1A0A53]">Column {index}</legend>
-
-      <Field
-        label="Column heading"
-        name={contact ? `${prefix}label` : "contact_label"}
-        defaultValue={contact ? contact.label : (label ?? "")}
-        placeholder={index === 1 ? "Head office" : "e.g. Mumbai office"}
-      />
-
-      {contact ? (
-        <>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Phone number 1"
-              name={`${prefix}phone_1`}
-              defaultValue={contact.phone1}
-              placeholder="+91 98765 43210"
-            />
-            <Field
-              label="Phone number 2"
-              name={`${prefix}phone_2`}
-              defaultValue={contact.phone2}
-              placeholder="Optional"
-            />
-          </div>
-          <Field
-            label="Email address"
-            name={`${prefix}email`}
-            type="email"
-            defaultValue={contact.email}
-            placeholder="mumbai@awsoverseas.com"
-          />
-          <TextareaField
-            label="Address"
-            name={`${prefix}address`}
-            defaultValue={contact.address}
-            placeholder="Street, City, Country"
-          />
-        </>
-      ) : (
-        <p className="text-sm leading-relaxed text-[#5b6b82]">
-          Phone numbers, email and address for this column come from the contact details at the top
-          of this page.
-        </p>
-      )}
-    </fieldset>
   );
 }
 

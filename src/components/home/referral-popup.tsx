@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 const OPEN_DELAY_MS = 2000;
 
-/** Auto-opens on every home page load; reachable again after dismissal via the floating tab. */
+/** Auto-opens on every home page load. */
 export function ReferralPopup({
   loggedIn,
   referralCode,
@@ -19,7 +19,6 @@ export function ReferralPopup({
   referralCode: string | null;
 }) {
   const [open, setOpen] = useState(false);
-  const [dismissedOnce, setDismissedOnce] = useState(false);
   const [copied, setCopied] = useState(false);
   const reduceMotion = useReducedMotion();
 
@@ -48,7 +47,6 @@ export function ReferralPopup({
 
   function close() {
     setOpen(false);
-    setDismissedOnce(true);
   }
 
   async function copyCode() {
@@ -192,27 +190,6 @@ export function ReferralPopup({
                 </div>
               </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body,
-      )}
-
-      {createPortal(
-        <AnimatePresence>
-          {dismissedOnce && !open && (
-            <motion.button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Open refer and earn"
-              className="fixed bottom-5 right-5 z-[90] inline-flex items-center gap-2 rounded-full border border-[#9e4953]/25 bg-white px-4 py-3 text-sm font-semibold text-[#1A0A53] shadow-[0_18px_40px_-16px_rgba(4,22,47,0.35)] transition-colors hover:border-[#9e4953]/50 sm:bottom-6 sm:right-6"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Gift className="size-4 text-maroon-admin" />
-              Refer &amp; Earn
-            </motion.button>
           )}
         </AnimatePresence>,
         document.body,
