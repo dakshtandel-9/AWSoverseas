@@ -154,6 +154,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-ink);
 }
 
+/* No black text anywhere — form controls don't inherit `color` from body, so the
+   UA stylesheet paints them black. That shows up most in <option>, which stays
+   black in the dropdown list even when its <select> is set to ink. Element
+   selectors, so any `text-*` utility still wins. */
+input, textarea, select, option, optgroup {
+  color: var(--color-ink);
+}
+
 ::selection {
   background: var(--color-accent-400);
   color: #fff;
