@@ -41,7 +41,8 @@ export default async function HomePage() {
       <ImageHeroSlider
         slides={[
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927227/awsoversea/hero-slider/ship.mp4",
+            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1785427121/awsoversea/hero-slider/ship-hero.mp4",
+            image: "https://res.cloudinary.com/dwethh3fq/video/upload/so_1/awsoversea/hero-slider/ship-hero.jpg",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,

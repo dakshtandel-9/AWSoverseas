@@ -22,13 +22,21 @@ const METRICS: Record<string, string> = {
 
 
 export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
+  // "impex" trails the headline in the source content; it's sized down to
+  // 10% of the heading (a 90% reduction) so it reads as a small brand mark
+  // rather than competing with "Why Choose aws overseas" for attention.
+  const words = data.title.split(" ");
+  const lastWord = words[words.length - 1];
+  const leadWords = words.slice(0, -1).join(" ");
+
   return (
     <Section spacing="lg" className="relative overflow-hidden">
       {/* Heading */}
       <Reveal direction="up">
         <div className="relative max-w-2xl">
           <h2 className="text-3xl font-bold text-[#1A0A53] sm:text-4xl lg:text-[2.5rem]">
-            {data.title}
+            {leadWords}{" "}
+            <span className="text-[24%] align-baseline">{lastWord}</span>
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
             Trusted by businesses worldwide for reliable, secure, and transparent shipping solutions.
