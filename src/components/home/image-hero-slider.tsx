@@ -164,7 +164,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
           <div key={index} className="w-full max-w-[600px]">
             {/* Eyebrow */}
             <motion.div
-              className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#9e4953]/30 bg-[#9e4953]/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-maroon-admin sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
+              className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm sm:gap-2 sm:px-4 sm:text-xs sm:tracking-widest"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
