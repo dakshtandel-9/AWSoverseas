@@ -54,7 +54,7 @@ export const sustainability = sustainabilityJson as Content;
 
 /** Build a Next.js Metadata object from a page's `meta` block. */
 export function metaFrom(meta: Content | undefined, path = "/") {
-  const title = meta?.title ?? "aws overseas impex";
+  const title = meta?.title ?? "AWS OVERSEAS impex";
   const description = meta?.description ?? "";
   const url = `https://awsoverseas.com${path}`;
   return {
@@ -66,7 +66,7 @@ export function metaFrom(meta: Content | undefined, path = "/") {
       title,
       description,
       url,
-      siteName: "aws overseas impex",
+      siteName: "AWS OVERSEAS impex",
       type: "website",
     },
     twitter: {

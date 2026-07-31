@@ -7,53 +7,68 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FloatingPanel, useCloseTimer } from "@/components/layout/nav-flyout";
 
-type ServiceLink = { label: string; href: string };
-type ServiceEntry = { label: string; href?: string; children?: ServiceLink[] };
+/** Recursive so any entry (at any depth) can carry its own sub-flyout. */
+type ServiceEntry = { label: string; href?: string; children?: ServiceEntry[] };
 
 /** Static services menu — every leaf links directly to an existing page. */
 const SERVICES_MENU: ServiceEntry[] = [
   { label: "Imports", href: "/services/import-services" },
   { label: "Exports", href: "/services/export-services" },
   { label: "Sourcing Partner", href: "/sourcing-agent" },
-  { label: "Warehousing", href: "/services/warehousing" },
+  {
+    label: "Warehousing",
+    children: [
+      { label: "General", href: "/services/warehousing" },
+      { label: "Reefer", href: "/services/warehousing" },
+    ],
+  },
   {
     label: "Shipments",
     children: [
-      { label: "Air Freight", href: "/services/air-freight" },
-      { label: "Sea Freight", href: "/services/sea-freight" },
+      {
+        label: "Air Freight",
+        children: [
+          { label: "General Cargo", href: "/services/air-freight" },
+          { label: "Special Cargo", href: "/services/air-freight" },
+        ],
+      },
+      {
+        label: "Sea Freight",
+        children: [
+          { label: "FCL", href: "/services/sea-freight" },
+          { label: "LCL", href: "/services/sea-freight" },
+          { label: "Ro-Ro", href: "/services/sea-freight" },
+          { label: "Dry Bulk", href: "/services/sea-freight" },
+          { label: "Liquid Bulk", href: "/services/sea-freight" },
+          { label: "Break Bulk", href: "/services/sea-freight" },
+          { label: "Reefer", href: "/services/sea-freight" },
+        ],
+      },
     ],
   },
   { label: "Marine Insurance", href: "/services/marine-insurance" },
 ];
 
-function ServiceRow({
-  entry,
-  isActive,
-  onOpen,
-  onScheduleClose,
-  onCancelClose,
-  onToggle,
-  onNavigate,
-}: {
-  entry: ServiceEntry;
-  isActive: boolean;
-  onOpen: () => void;
-  onScheduleClose: () => void;
-  onCancelClose: () => void;
-  onToggle: () => void;
-  onNavigate: () => void;
-}) {
+/** One row of a services flyout — recurses into its own right-hand panel when it has children. */
+function ServiceRow({ entry, onNavigate }: { entry: ServiceEntry; onNavigate: () => void }) {
   const hasChildren = !!entry.children?.length;
+  const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
+  const { cancel, schedule } = useCloseTimer(() => setOpen(false));
+
+  const openNow = () => {
+    cancel();
+    setOpen(true);
+  };
 
   useEffect(() => {
-    if (!isActive || !triggerRef.current) return;
+    if (!open || !triggerRef.current) return;
     const update = () => setRect(triggerRef.current!.getBoundingClientRect());
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, [isActive]);
+  }, [open]);
 
   if (!hasChildren) {
     return (
@@ -71,38 +86,29 @@ function ServiceRow({
   }
 
   return (
-    <li role="none" onMouseEnter={onOpen} onMouseLeave={onScheduleClose}>
+    <li role="none" onMouseEnter={openNow} onMouseLeave={schedule}>
       <button
         ref={triggerRef}
         type="button"
         role="menuitem"
         aria-haspopup="true"
-        aria-expanded={isActive}
-        onFocus={onOpen}
-        onClick={onToggle}
+        aria-expanded={open}
+        onFocus={openNow}
+        onClick={() => (open ? setOpen(false) : openNow())}
         className={cn(
           "flex w-full items-center justify-between gap-2 rounded-xl px-3.5 py-2.5 text-start text-sm font-semibold transition-colors",
-          isActive ? "bg-surface-soft text-ink" : "text-ink-soft hover:bg-surface-soft hover:text-ink",
+          open ? "bg-surface-soft text-ink" : "text-ink-soft hover:bg-surface-soft hover:text-ink",
         )}
       >
         <span className="truncate">{entry.label}</span>
         <ChevronRight className="size-4 shrink-0" />
       </button>
 
-      {isActive && rect && (
-        <FloatingPanel anchorRect={rect} placement="right" onMouseEnter={onCancelClose} onMouseLeave={onScheduleClose}>
+      {open && rect && (
+        <FloatingPanel anchorRect={rect} placement="right" onMouseEnter={cancel} onMouseLeave={schedule}>
           <ul role="menu" className="w-56 p-1.5">
             {entry.children!.map((child) => (
-              <li key={child.href} role="none">
-                <Link
-                  href={child.href}
-                  role="menuitem"
-                  onClick={onNavigate}
-                  className="block truncate rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                >
-                  {child.label}
-                </Link>
-              </li>
+              <ServiceRow key={child.label} entry={child} onNavigate={onNavigate} />
             ))}
           </ul>
         </FloatingPanel>
@@ -114,11 +120,9 @@ function ServiceRow({
 /** Desktop "Services" nav item — a real link, plus a hover/click dropdown of services. */
 export function ServicesNavItem({ isActive, className }: { isActive: boolean; className?: string }) {
   const [open, setOpen] = useState(false);
-  const [activeChild, setActiveChild] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const { cancel, schedule } = useCloseTimer(() => setOpen(false));
-  const { cancel: cancelChild, schedule: scheduleChild } = useCloseTimer(() => setActiveChild(null));
 
   const openNow = () => {
     cancel();
@@ -180,19 +184,7 @@ export function ServicesNavItem({ isActive, className }: { isActive: boolean; cl
         <FloatingPanel anchorRect={rect} placement="below" onMouseEnter={cancel} onMouseLeave={schedule}>
           <ul role="menu" className="w-64 p-1.5">
             {SERVICES_MENU.map((entry) => (
-              <ServiceRow
-                key={entry.label}
-                entry={entry}
-                isActive={activeChild === entry.label}
-                onOpen={() => {
-                  cancelChild();
-                  setActiveChild(entry.label);
-                }}
-                onScheduleClose={scheduleChild}
-                onCancelClose={cancelChild}
-                onToggle={() => setActiveChild((v) => (v === entry.label ? null : entry.label))}
-                onNavigate={() => setOpen(false)}
-              />
+              <ServiceRow key={entry.label} entry={entry} onNavigate={() => setOpen(false)} />
             ))}
           </ul>
         </FloatingPanel>
@@ -201,10 +193,9 @@ export function ServicesNavItem({ isActive, className }: { isActive: boolean; cl
   );
 }
 
-/** Mobile drawer — accordion with one nested level for Shipments (Air / Sea). */
+/** Mobile drawer — accordion that nests to arbitrary depth (Shipments → Sea Freight → cargo types). */
 export function ServicesMobileAccordion({ isActive, onNavigate }: { isActive: boolean; onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
-  const [openChild, setOpenChild] = useState<string | null>(null);
 
   return (
     <div>
@@ -237,72 +228,75 @@ export function ServicesMobileAccordion({ isActive, onNavigate }: { isActive: bo
             className="overflow-hidden"
           >
             <ul className="flex flex-col">
-              {SERVICES_MENU.map((entry) => {
-                const hasChildren = !!entry.children?.length;
-
-                if (!hasChildren) {
-                  return (
-                    <li key={entry.label}>
-                      <Link
-                        href={entry.href!}
-                        onClick={onNavigate}
-                        className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                        style={{ paddingInlineStart: "1.75rem" }}
-                      >
-                        {entry.label}
-                      </Link>
-                    </li>
-                  );
-                }
-
-                const childOpen = openChild === entry.label;
-                return (
-                  <li key={entry.label}>
-                    <button
-                      type="button"
-                      aria-expanded={childOpen}
-                      onClick={() => setOpenChild(childOpen ? null : entry.label)}
-                      className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-start text-base font-semibold text-ink transition-colors hover:bg-surface-soft"
-                      style={{ paddingInlineStart: "0.75rem" }}
-                    >
-                      <span className="truncate">{entry.label}</span>
-                      <ChevronDown
-                        className={cn("size-4 shrink-0 transition-transform duration-200", childOpen && "rotate-180")}
-                      />
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {childOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <ul className="flex flex-col">
-                            {entry.children!.map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  onClick={onNavigate}
-                                  className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
-                                  style={{ paddingInlineStart: "2.75rem" }}
-                                >
-                                  {child.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </li>
-                );
-              })}
+              {SERVICES_MENU.map((entry) => (
+                <MobileServiceRow key={entry.label} entry={entry} depth={0} onNavigate={onNavigate} />
+              ))}
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+/** One row of the mobile accordion — recurses into its own nested list when it has children. */
+function MobileServiceRow({
+  entry,
+  depth,
+  onNavigate,
+}: {
+  entry: ServiceEntry;
+  depth: number;
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const hasChildren = !!entry.children?.length;
+  const linkIndent = `${1.75 + depth}rem`;
+
+  if (!hasChildren) {
+    return (
+      <li>
+        <Link
+          href={entry.href!}
+          onClick={onNavigate}
+          className="block truncate rounded-xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-surface-soft hover:text-ink"
+          style={{ paddingInlineStart: linkIndent }}
+        >
+          {entry.label}
+        </Link>
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-start text-base font-semibold text-ink transition-colors hover:bg-surface-soft"
+        style={{ paddingInlineStart: `${0.75 + depth}rem` }}
+      >
+        <span className="truncate">{entry.label}</span>
+        <ChevronDown className={cn("size-4 shrink-0 transition-transform duration-200", open && "rotate-180")} />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <ul className="flex flex-col">
+              {entry.children!.map((child) => (
+                <MobileServiceRow key={child.label} entry={child} depth={depth + 1} onNavigate={onNavigate} />
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
   );
 }

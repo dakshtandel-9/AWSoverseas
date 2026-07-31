@@ -63,7 +63,7 @@ export function QuoteHero({ data }: { data: Data }) {
                 color: "transparent",
               }}
             >
-              International Import and Shipping Enquiry
+              International Import and Shipping Enquiry/Inquiry
             </span>
           </motion.h1>
 

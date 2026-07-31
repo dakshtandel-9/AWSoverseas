@@ -182,8 +182,8 @@ export function ReferralPopup({
                     )}
 
                     <p className="text-xs leading-relaxed text-[#94a3b8]">
-                      Credits aren&rsquo;t transferable and may be changed or withdrawn at any time, at aws
-                      overseas&rsquo;s discretion.{" "}
+                      Credits aren&rsquo;t transferable and may be changed or withdrawn at any time, at AWS
+                      OVERSEAS&rsquo;s discretion.{" "}
                       <Link href="/referral-rewards" className="font-semibold text-maroon-admin hover:underline">
                         Full program terms
                       </Link>

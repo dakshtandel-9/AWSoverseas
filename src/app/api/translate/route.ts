@@ -14,6 +14,17 @@ const UPSTREAM_CHUNK_SIZE = 40;
 // segments). Strings like this must be translated individually instead.
 const MID_STRING_SENTENCE_BOUNDARY = /[.!?]\s+\S/;
 
+// The "AWS" brand name must never be transliterated or altered by Google's
+// engine (some target scripts would otherwise render it phonetically). Any
+// text containing the word is translated in fragments around it rather than
+// trusting the MT engine to leave it alone, and "AWS" is spliced back in
+// verbatim afterward.
+const BRAND_WORD = /\bAWS\b/gi;
+
+function containsBrandWord(text: string): boolean {
+  return /\bAWS\b/i.test(text);
+}
+
 async function translateSingle(text: string, target: string): Promise<string> {
   if (!text.trim()) return text;
   const params = new URLSearchParams({
@@ -34,17 +45,45 @@ async function translateSingle(text: string, target: string): Promise<string> {
   return segments.join("");
 }
 
+async function translateBranded(text: string, target: string): Promise<string> {
+  const parts = text.split(BRAND_WORD);
+  if (parts.length === 1) return translateSingle(text, target);
+  const translatedParts = await Promise.all(
+    parts.map((part) => translateSingle(part, target)),
+  );
+  return translatedParts.join("AWS");
+}
+
 async function translateChunk(texts: string[], target: string): Promise<string[]> {
   const results = [...texts];
 
+  const branded: { i: number; t: string }[] = [];
   const risky: { i: number; t: string }[] = [];
   const batchable: { i: number; t: string }[] = [];
   texts.forEach((t, i) => {
     if (!t.trim()) return;
-    (MID_STRING_SENTENCE_BOUNDARY.test(t) ? risky : batchable).push({ i, t });
+    if (containsBrandWord(t)) {
+      branded.push({ i, t });
+    } else if (MID_STRING_SENTENCE_BOUNDARY.test(t)) {
+      risky.push({ i, t });
+    } else {
+      batchable.push({ i, t });
+    }
   });
 
   const jobs: Promise<void>[] = [];
+
+  branded.forEach(({ i, t }) => {
+    jobs.push(
+      translateBranded(t, target)
+        .then((translated) => {
+          results[i] = translated;
+        })
+        .catch(() => {
+          results[i] = t;
+        }),
+    );
+  });
 
   if (batchable.length > 0) {
     jobs.push(

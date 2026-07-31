@@ -1,8 +1,8 @@
 {
     "page": "Home",
     "meta": {
-        "title": "aws overseas impex | Product Sourcing & International Shipping from India",
-        "description": "aws overseas impex sources, verifies, and exports products from India, then moves them worldwide through Air Freight, Sea Freight, Customs Clearance, and Door-to-Door delivery — one export partner from factory floor to your dock.",
+        "title": "AWS OVERSEAS impex | Product Sourcing & International Shipping from India",
+        "description": "AWS OVERSEAS impex sources, verifies, and exports products from India, then moves them worldwide through Air Freight, Sea Freight, Customs Clearance, and Door-to-Door delivery — one export partner from factory floor to your dock.",
         "keywords": [
             "Product Sourcing India",
             "Supplier Verification",
@@ -19,7 +19,7 @@
         "badge": "Your Complete Sourcing, Import & Export Partner",
         "title": "Source. Verify. Import. Export.",
         "subtitle": "We source products from verified Indian manufacturers, inspect every order for quality, handle import and export documentation and customs, and manage worldwide shipping and delivery — one partner for the entire journey from factory to your door.",
-        "primaryButton": "Request a Quote",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Download Mobile App",
         "trackingPlaceholder": "Enter Tracking Number",
         "trackingButton": "Track Shipment",
@@ -46,7 +46,7 @@
         "badge": "Sourced & Exported from India",
         "title": "From India's Manufacturers to Your Market",
         "subtitle": "Browse our catalog of Indian-made goods, sourced directly from verified manufacturers, quality-checked, documented, and shipped under one roof — with no middlemen to slow you down.",
-        "primaryButton": "Enquire About Exports",
+        "primaryButton": "Enquire/Inquire About Exports",
         "secondaryButton": "View Full Catalog",
         "manifestLabel": "Export Manifest",
         "manifestOrigin": "Origin: India",
@@ -179,7 +179,7 @@
     },
     "about": {
         "title": "One Partner for Sourcing and Shipping",
-        "description": "aws overseas impex operates as both your sourcing desk in India and your freight forwarder to the world. We identify and verify manufacturers, inspect goods before dispatch, prepare export documentation, and manage Air Freight, Sea Freight, Customs Clearance, Warehousing, and Door-to-Door Delivery — so a single conversation with us covers product to port to dock.",
+        "description": "AWS OVERSEAS impex operates as both your sourcing desk in India and your freight forwarder to the world. We identify and verify manufacturers, inspect goods before dispatch, prepare export documentation, and manage Air Freight, Sea Freight, Customs Clearance, Warehousing, and Door-to-Door Delivery — so a single conversation with us covers product to port to dock.",
         "button": "Learn More"
     },
     "services": {
@@ -213,7 +213,7 @@
         ]
     },
     "whyChooseUs": {
-        "title": "Why Choose aws overseas impex",
+        "title": "Why Choose AWS OVERSEAS impex",
         "items": [
             {
                 "title": "Verified Manufacturers",
@@ -296,7 +296,7 @@
     },
     "mobileApp": {
         "title": "Manage Sourcing and Shipping From Our Mobile App",
-        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments — all from your smartphone, from first enquiry to final delivery.",
+        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments — all from your smartphone, from first enquiry/inquiry to final delivery.",
         "features": [
             "Manage Sourcing Requests",
             "Monitor Inspections",
@@ -316,7 +316,7 @@
     },
     "testimonials": {
         "title": "What Our Clients Say",
-        "description": "Businesses worldwide work with aws overseas impex to source verified products from India, backed by quality inspection, supplier support, and dependable delivery."
+        "description": "Businesses worldwide work with AWS OVERSEAS impex to source verified products from India, backed by quality inspection, supplier support, and dependable delivery."
     },
     "coverage": {
         "title": "Global Sourcing & Delivery Network",
@@ -324,7 +324,7 @@
     },
     "products": {
         "title": "Products We Source & Export",
-        "description": "We source products directly from trusted Indian manufacturers and export them worldwide — browse a preview below, or send an enquiry on anything you don't see listed.",
+        "description": "We source products directly from trusted Indian manufacturers and export them worldwide — browse a preview below, or send an enquiry/inquiry on anything you don't see listed.",
         "button": "View All Products"
     },
     "faq": {
@@ -332,8 +332,8 @@
         "description": "Find answers to the most common questions about product sourcing, supplier verification, and international shipping."
     },
     "downloadApp": {
-        "title": "Download the aws overseas impex Mobile App",
-        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments anytime, anywhere — stay connected from first enquiry through final delivery.",
+        "title": "Download the AWS OVERSEAS impex Mobile App",
+        "description": "Manage sourcing requests, monitor inspections, receive quotations, and track shipments anytime, anywhere — stay connected from first enquiry/inquiry through final delivery.",
         "playStoreButton": "Google Play",
         "appStoreButton": "App Store"
     }

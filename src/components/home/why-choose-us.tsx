@@ -24,7 +24,7 @@ const METRICS: Record<string, string> = {
 export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
   // "impex" trails the headline in the source content; it's sized down to
   // 10% of the heading (a 90% reduction) so it reads as a small brand mark
-  // rather than competing with "Why Choose aws overseas" for attention.
+  // rather than competing with "Why Choose AWS OVERSEAS" for attention.
   const words = data.title.split(" ");
   const lastWord = words[words.length - 1];
   const leadWords = words.slice(0, -1).join(" ");
@@ -39,7 +39,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
             <span className="text-[24%] align-baseline">{lastWord}</span>
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
-            Trusted by businesses worldwide for reliable, secure, and transparent shipping solutions.
+            Trusted by businesses worldwide for secure and transparent import, export, and shipping solutions.
           </p>
         </div>
       </Reveal>
@@ -114,12 +114,12 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
         transition={{ duration: 0.55, delay: 0.3 }}
       >
         <div className="flex flex-col items-center gap-4 text-center">
-          <p className="text-base font-semibold text-[#1A0A53]">Ready for import, export, or shipments</p>
+          <p className="text-base font-semibold text-[#1A0A53]">Ready for import, export, shipments, or warehousing</p>
           <Link
             href="/quote"
             className="group inline-flex items-center gap-2 rounded-full btn-navy px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
           >
-            Enquiry
+            Enquire/Inquire
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </div>

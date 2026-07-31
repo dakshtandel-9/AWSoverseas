@@ -27,7 +27,7 @@ const STAGES = [
   {
     marker: "Delivery",
     title: "A partnership, not a transaction",
-    body: "From a first sourcing enquiry to recurring export orders, buyers work with the same team — and the same trusted suppliers — every time.",
+    body: "From a first sourcing enquiry/inquiry to recurring export orders, buyers work with the same team — and the same trusted suppliers — every time.",
   },
 ];
 

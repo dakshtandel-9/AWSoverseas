@@ -30,7 +30,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = await getActiveCategoryBySlug(slug);
-  const title = category ? `${category.name} | aws overseas impex` : "Category | aws overseas impex";
+  const title = category ? `${category.name} | AWS OVERSEAS impex` : "Category | AWS OVERSEAS impex";
   const description = category?.description || productsContent.meta?.description;
   return {
     title,
@@ -121,7 +121,7 @@ export default async function CategoryDetailPage({
           products={catalog}
           auth={auth}
           title={`Browse ${category.name}`}
-          subtitle="Tap Enquiry on anything you're interested in — we'll follow up with availability and a quote."
+          subtitle="Tap Enquire/Inquire on anything you're interested in — we'll follow up with availability and a quote."
         />
       )}
 

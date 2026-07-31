@@ -39,14 +39,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL("https://awsoverseas.com"),
     title: {
-      default: home.meta?.title ?? "aws overseas impex | Global Shipping Beyond Borders",
-      template: "%s | aws overseas impex",
+      default: home.meta?.title ?? "AWS OVERSEAS impex | Global Shipping Beyond Borders",
+      template: "%s | AWS OVERSEAS impex",
     },
     description: home.meta?.description,
     keywords: home.meta?.keywords,
     openGraph: {
       type: "website",
-      siteName: "aws overseas impex",
+      siteName: "AWS OVERSEAS impex",
       title: home.meta?.title,
       description: home.meta?.description,
     },

@@ -9,7 +9,7 @@ import { WalletActivityList } from "@/components/account/wallet-activity-list";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your wallet — aws overseas impex",
+  title: "Your wallet — AWS OVERSEAS impex",
   robots: { index: false },
 };
 

@@ -24,7 +24,7 @@ import { ActivityList, type ActivityItem } from "@/components/account/activity-l
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Your profile — aws overseas impex",
+  title: "Your profile — AWS OVERSEAS impex",
   robots: { index: false },
 };
 
@@ -36,13 +36,13 @@ const STATUS_BANNER: Record<
     icon: Clock3,
     classes: "border-amber-200 bg-amber-50 text-amber-800",
     title: "Verification pending",
-    body: "Our team is reviewing your details. You'll be able to request quotes and send product enquiries once your account is approved.",
+    body: "Our team is reviewing your details. You'll be able to request quotes and send product enquiries/inquiries once your account is approved.",
   },
   approved: {
     icon: BadgeCheck,
     classes: "border-emerald-200 bg-emerald-50 text-emerald-800",
     title: "Account verified",
-    body: "You're all set — request quotes and send product enquiries any time.",
+    body: "You're all set — request quotes and send product enquiries/inquiries any time.",
   },
   rejected: {
     icon: ShieldAlert,
@@ -166,7 +166,7 @@ export default async function ProfilePage() {
                   href="/quote"
                   className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
                 >
-                  <FileText className="size-4" /> Request a quote
+                  <FileText className="size-4" /> Enquire/Inquire
                 </Link>
                 <Link
                   href="/products"

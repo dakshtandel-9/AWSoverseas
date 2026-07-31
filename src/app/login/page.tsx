@@ -6,8 +6,8 @@ import { EmailAuthForm } from "@/components/auth/email-auth-form";
 import { Logo } from "@/components/ui/logo";
 
 export const metadata: Metadata = {
-  title: "Sign in — aws overseas impex",
-  description: "Sign in with your email to request quotes, send product enquiries, and share your referral code.",
+  title: "Sign in — AWS OVERSEAS impex",
+  description: "Sign in with your email to request quotes, send product enquiries/inquiries, and share your referral code.",
   robots: { index: false },
 };
 
@@ -18,7 +18,7 @@ function safeNext(value?: string): string {
 
 const PERKS = [
   { icon: FileText, text: "Request shipping quotes for your cargo" },
-  { icon: MessageSquareText, text: "Send enquiries on any product in our catalog" },
+  { icon: MessageSquareText, text: "Send enquiries/inquiries on any product in our catalog" },
   { icon: Gift, text: "Get a referral code to share with other importers" },
 ];
 
@@ -66,14 +66,14 @@ export default async function LoginPage({
               One account clears every shipment.
             </h1>
             <p className="mt-4 max-w-sm text-base leading-relaxed text-ink/60">
-              Sign in to move your cargo through quoting, enquiries, and referrals — no re-filing paperwork
-              at every gate.
+              Sign in to move your cargo through quoting, enquiries/inquiries, and referrals — no re-filing
+              paperwork at every gate.
             </p>
           </div>
 
           {/* Route line — the signature element, styled as a boarding-pass itinerary */}
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-ink/45">
-            <span className="text-ink/85">Enquiry</span>
+            <span className="text-ink/85">Enquiry/Inquiry</span>
             <span className="relative h-px flex-1 bg-ink/15">
               <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#9e4953]" />
               <span className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-[#9e4953]" />
@@ -118,7 +118,7 @@ export default async function LoginPage({
               Customer access
             </span>
             <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#1A0A53] sm:text-[1.75rem]">
-              {isSignUp ? "Create your account" : "Sign in to aws overseas impex"}
+              {isSignUp ? "Create your account" : "Sign in to AWS OVERSEAS impex"}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">
               {isSignUp

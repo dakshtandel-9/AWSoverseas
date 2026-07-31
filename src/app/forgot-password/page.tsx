@@ -8,7 +8,7 @@ import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = {
-  title: "Reset your password — aws overseas impex",
+  title: "Reset your password — AWS OVERSEAS impex",
   robots: { index: false },
 };
 

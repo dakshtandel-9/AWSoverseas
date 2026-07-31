@@ -88,7 +88,7 @@ function ConfirmIdChangeModal({
               <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
                 You&rsquo;ve changed your ID verification details. Since these are what we verify your
                 identity against, your account moves back to pending until our team reviews the change —
-                you won&rsquo;t be able to request quotes or send enquiries until then.
+                you won&rsquo;t be able to request quotes or send enquiries/inquiries until then.
               </p>
             </div>
             <div className="mt-2 flex w-full items-center gap-3">
@@ -466,7 +466,7 @@ export function ProfileSetupForm({
         {firstTime && (
           <p className="mt-4 text-xs leading-relaxed text-[#94a3b8]">
             After you submit, our team reviews your details — you&rsquo;ll be able to request quotes and
-            send product enquiries once your account is approved.
+            send product enquiries/inquiries once your account is approved.
           </p>
         )}
       </div>

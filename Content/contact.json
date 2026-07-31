@@ -1,14 +1,14 @@
 {
     "page": "Contact",
     "meta": {
-        "title": "Contact aws overseas impex | Get in Touch",
-        "description": "Contact aws overseas impex for international shipping, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
+        "title": "Contact AWS OVERSEAS impex | Get in Touch",
+        "description": "Contact AWS OVERSEAS impex for international shipping, freight forwarding, customs clearance, warehousing, import & export services, and shipment support."
     },
     "hero": {
         "badge": "Contact Us",
         "title": "Let's Move Your Business Beyond Borders",
-        "subtitle": "Have questions about international shipping? Need a freight quotation? Our shipping experts are ready to help you with reliable and cost-effective delivery solutions.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "Having any queries about import, export or international shipments? Need air or sea freight quotations?",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Call Now"
     },
     "contactForm": {

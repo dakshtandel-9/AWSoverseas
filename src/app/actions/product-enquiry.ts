@@ -80,7 +80,7 @@ export async function submitProductEnquiryAction(
 
   if (error) {
     console.error("[product-enquiry] insert failed:", error);
-    return { error: "Something went wrong submitting your enquiry. Please try again." };
+    return { error: "Something went wrong submitting your enquiry/inquiry. Please try again." };
   }
 
   return { success: true };

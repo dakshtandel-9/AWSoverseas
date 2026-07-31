@@ -1,14 +1,14 @@
 {
   "page": "Request Enquiry",
   "meta": {
-    "title": "Request a Freight Enquiry | aws overseas impex",
-    "description": "Submit an enquiry for your international shipment and our shipping experts will respond with accurate pricing for Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, FCL, and LCL services."
+    "title": "Request a Freight Enquiry/Inquiry | AWS OVERSEAS impex",
+    "description": "Submit an enquiry/inquiry for your international shipment and our shipping experts will respond with accurate pricing for Air Freight, Sea Freight, Import, Export, Customs Clearance, Warehousing, FCL, and LCL services."
   },
   "hero": {
     "badge": "",
-    "title": "Request Your International Import and Shipping Enquiries",
+    "title": "Request Your International Import and Shipping Enquiries/Inquiries",
     "subtitle": "Tell us about your shipment and our shipping experts will get back to you with tailored guidance for your requirements.",
-    "primaryButton": "Request Enquiry",
+    "primaryButton": "Enquire/Inquire",
     "secondaryButton": "Contact Us"
   },
   "quoteForm": {
@@ -163,10 +163,10 @@
     ]
   },
   "submit": {
-    "title": "Submit Your Enquiry",
-    "description": "Our shipping specialists will review your enquiry and get back to you as soon as possible.",
-    "buttonText": "Request Enquiry",
-    "successMessage": "Thank you! Your enquiry has been submitted successfully. Our team will contact you shortly.",
+    "title": "Submit Your Enquiry/Inquiry",
+    "description": "Our shipping specialists will review your enquiry/inquiry and get back to you as soon as possible.",
+    "buttonText": "Enquire/Inquire",
+    "successMessage": "Thank you! Your enquiry/inquiry has been submitted successfully. Our team will contact you shortly.",
     "privacyText": "By submitting this form, you agree to our Privacy Policy and Terms & Conditions."
   }
 }

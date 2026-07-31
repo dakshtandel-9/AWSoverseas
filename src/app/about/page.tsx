@@ -19,7 +19,7 @@ const ABOUT_JSONLD = {
   url: "https://awsoverseas.com/about",
   mainEntity: {
     "@type": "Organization",
-    name: "aws overseas impex",
+    name: "AWS OVERSEAS impex",
     description: about.companyStory?.description,
     areaServed: "Worldwide",
   },

@@ -2,7 +2,7 @@
 import { individualService } from "@/lib/content";
 
 export const SITE = {
-  name: "aws overseas impex",
+  name: "AWS OVERSEAS impex",
   tagline: "Global Shipping Beyond Borders",
   url: "https://awsoverseas.com",
 };
@@ -24,7 +24,7 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
-  { label: "Partnership and rewards", href: "/referral-rewards" },
+  { label: "Partner & Rewards", href: "/referral-rewards" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -37,7 +37,7 @@ export const FOOTER_NAV = {
     { label: "Sustainability", href: "/sustainability" },
     { label: "Referral Rewards", href: "/referral-rewards" },
     { label: "Contact", href: "/contact" },
-    { label: "Request Enquiry", href: "/quote" },
+    { label: "Enquire/Inquire", href: "/quote" },
     { label: "Request a Product", href: "/request-product" },
   ],
   Resources: [

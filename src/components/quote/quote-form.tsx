@@ -385,7 +385,7 @@ export function QuoteForm({
   const [redirecting, setRedirecting] = useState(false);
   const [direction, setDirection] = useState<Direction>("export");
   const shipmentDefaults = product
-    ? { "Cargo Description": `Enquiry about: ${product}` }
+    ? { "Cargo Description": `Enquiry/Inquiry about: ${product}` }
     : undefined;
 
   useEffect(() => {
@@ -414,7 +414,7 @@ export function QuoteForm({
       <div className="flex items-center justify-between rounded-t-3xl border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
           {product
-            ? `Product Enquiry — ${product}`
+            ? `Product Enquiry/Inquiry — ${product}`
             : `Shipment Waybill — ${quoteForm.route ? `${quoteForm.route[direction].label} ` : ""}Draft`}
         </p>
         <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">

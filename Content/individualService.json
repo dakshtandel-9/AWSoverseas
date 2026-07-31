@@ -3,14 +3,14 @@
     {
       "slug": "air-freight",
       "meta": {
-        "title": "Air Freight | aws overseas impex",
-        "description": "Air Freight solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Air Freight | AWS OVERSEAS impex",
+        "description": "Air Freight solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Fast & Reliable Air Freight Services",
-        "subtitle": "aws overseas impex provides professional air freight solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional air freight solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -59,7 +59,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -85,7 +85,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -104,7 +104,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -112,28 +112,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "sea-freight",
       "meta": {
-        "title": "Sea Freight | aws overseas impex",
-        "description": "Sea Freight solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Sea Freight | AWS OVERSEAS impex",
+        "description": "Sea Freight solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Global Sea Freight Solutions",
-        "subtitle": "aws overseas impex provides professional sea freight solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional sea freight solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -182,7 +182,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -208,7 +208,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -227,7 +227,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -235,28 +235,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "import-services",
       "meta": {
-        "title": "Import Services | aws overseas impex",
-        "description": "Import Services solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Import Services | AWS OVERSEAS impex",
+        "description": "Import Services solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Simplify Your Import Operations",
-        "subtitle": "aws overseas impex provides professional import services solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional import services solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -305,7 +305,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -331,7 +331,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -350,7 +350,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -358,28 +358,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "export-services",
       "meta": {
-        "title": "Export Services | aws overseas impex",
-        "description": "Export Services solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Export Services | AWS OVERSEAS impex",
+        "description": "Export Services solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Export Worldwide With Confidence",
-        "subtitle": "aws overseas impex provides professional export services solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional export services solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -428,7 +428,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -454,7 +454,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -473,7 +473,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -481,28 +481,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "fcl-shipping",
       "meta": {
-        "title": "FCL Shipping | aws overseas impex",
-        "description": "FCL Shipping solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "FCL Shipping | AWS OVERSEAS impex",
+        "description": "FCL Shipping solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Full Container Load Shipping",
-        "subtitle": "aws overseas impex provides professional FCL shipping solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional FCL shipping solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -551,7 +551,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -577,7 +577,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -596,7 +596,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -604,28 +604,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "lcl-shipping",
       "meta": {
-        "title": "LCL Shipping | aws overseas impex",
-        "description": "LCL Shipping solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "LCL Shipping | AWS OVERSEAS impex",
+        "description": "LCL Shipping solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Less than Container Load Shipping",
-        "subtitle": "aws overseas impex provides professional LCL shipping solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional LCL shipping solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -674,7 +674,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -700,7 +700,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -719,7 +719,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -727,28 +727,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "customs-clearance",
       "meta": {
-        "title": "Customs Clearance | aws overseas impex",
-        "description": "Customs Clearance solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Customs Clearance | AWS OVERSEAS impex",
+        "description": "Customs Clearance solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Professional Customs Clearance",
-        "subtitle": "aws overseas impex provides professional customs clearance solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional customs clearance solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -797,7 +797,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -823,7 +823,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -842,7 +842,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -850,28 +850,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "warehousing",
       "meta": {
-        "title": "Warehousing | aws overseas impex",
-        "description": "Warehousing solutions by aws overseas impex for international shipping and freight forwarding."
+        "title": "Warehousing | AWS OVERSEAS impex",
+        "description": "Warehousing solutions by AWS OVERSEAS impex for international shipping and freight forwarding."
       },
       "hero": {
         "badge": "International Shipping",
         "title": "Secure Warehousing & Distribution",
-        "subtitle": "aws overseas impex provides professional warehousing solutions backed by global shipping expertise.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex provides professional warehousing solutions backed by global shipping expertise.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -920,7 +920,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment details."
           },
           {
@@ -946,7 +946,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Global Partner Network",
@@ -965,7 +965,7 @@
           },
           {
             "question": "Can I track my shipment?",
-            "answer": "Yes, shipment tracking is available through the aws overseas impex mobile application."
+            "answer": "Yes, shipment tracking is available through the AWS OVERSEAS impex mobile application."
           },
           {
             "question": "Do you offer door-to-door service?",
@@ -973,28 +973,28 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Ready to Ship Globally?",
-        "description": "Contact aws overseas impex today for reliable international shipping solutions.",
-        "primaryButton": "Request a Quote",
+        "description": "Contact AWS OVERSEAS impex today for reliable international shipping solutions.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     },
     {
       "slug": "marine-insurance",
       "meta": {
-        "title": "Marine Insurance | aws overseas impex",
-        "description": "Marine Insurance coverage by aws overseas impex to protect your cargo against loss or damage in transit."
+        "title": "Marine Insurance | AWS OVERSEAS impex",
+        "description": "Marine Insurance coverage by AWS OVERSEAS impex to protect your cargo against loss or damage in transit."
       },
       "hero": {
         "badge": "Cargo Protection",
         "title": "Marine Insurance for Every Shipment",
-        "subtitle": "aws overseas impex arranges marine cargo insurance so your goods are covered against loss, damage, and delay from the moment they leave the factory to the moment they reach your door.",
-        "primaryButton": "Request a Quote",
+        "subtitle": "AWS OVERSEAS impex arranges marine cargo insurance so your goods are covered against loss, damage, and delay from the moment they leave the factory to the moment they reach your door.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -1043,7 +1043,7 @@
         "steps": [
           {
             "step": "01",
-            "title": "Request Quote",
+            "title": "Enquire/Inquire",
             "description": "Share shipment value and route details."
           },
           {
@@ -1069,7 +1069,7 @@
         ]
       },
       "whyAWS": {
-        "title": "Why aws overseas impex",
+        "title": "Why AWS OVERSEAS impex",
         "items": [
           "Experienced Shipping Team",
           "Trusted Insurance Partners",
@@ -1096,14 +1096,14 @@
           },
           {
             "question": "How do I get a quotation?",
-            "answer": "Submit your shipment details using the Request a Quote form."
+            "answer": "Submit your shipment details using the Enquire/Inquire form."
           }
         ]
       },
       "cta": {
         "title": "Protect Your Next Shipment",
-        "description": "Talk to aws overseas impex about marine insurance cover for your cargo, arranged alongside your freight booking.",
-        "primaryButton": "Request a Quote",
+        "description": "Talk to AWS OVERSEAS impex about marine insurance cover for your cargo, arranged alongside your freight booking.",
+        "primaryButton": "Enquire/Inquire",
         "secondaryButton": "Contact Us"
       }
     }

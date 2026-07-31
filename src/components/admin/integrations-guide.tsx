@@ -50,7 +50,7 @@ const GUIDES: Guide[] = [
         title: "Create a property",
         detail: (
           <>
-            Name it <Code>aws overseas impex</Code>, set your timezone and currency, and answer the short
+            Name it <Code>AWS OVERSEAS impex</Code>, set your timezone and currency, and answer the short
             business questions.
           </>
         ),
