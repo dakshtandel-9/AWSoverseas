@@ -26,10 +26,12 @@ export default async function Page() {
     : contact.officeLocations?.locations?.[0];
 
   const contactInfoItems = [
-    { type: "Phone", value: settings.phone1 },
-    ...(settings.phone2 ? [{ type: "Phone", value: settings.phone2 }] : []),
-    { type: "Email", value: settings.email },
-    { type: "Support", value: contact.contactInfo?.items?.find((i: { type: string }) => i.type === "Support")?.value ?? settings.email },
+    ...settings.phones.filter(Boolean).map((value) => ({ type: "Phone", value })),
+    ...settings.emails.filter(Boolean).map((value) => ({ type: "Email", value })),
+    {
+      type: "Support",
+      value: contact.contactInfo?.items?.find((i: { type: string }) => i.type === "Support")?.value ?? settings.emails[0],
+    },
   ].filter((i) => i.value);
 
   return (
@@ -39,7 +41,7 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACT_JSONLD) }}
       />
 
-      <ContactHero data={contact.hero} phone={settings.phone1} />
+      <ContactHero data={contact.hero} phone={settings.phones[0]} />
 
       <Section spacing="lg">
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10">

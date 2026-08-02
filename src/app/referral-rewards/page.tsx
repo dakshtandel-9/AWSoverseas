@@ -13,9 +13,9 @@ export default function ReferralRewardsPage() {
   return (
     <>
       <ReferralHero data={referralRewards.hero} />
+      <ReferralBecomePartner data={referralRewards.becomePartner} />
       <ReferralHowItWorks data={referralRewards.howItWorks} />
       <ReferralRules data={referralRewards.rules} />
-      <ReferralBecomePartner data={referralRewards.becomePartner} />
       <ReferralCta data={referralRewards.cta} />
       <ReferralFaq data={referralRewards.faq} />
     </>

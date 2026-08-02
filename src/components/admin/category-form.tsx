@@ -88,6 +88,10 @@ export function CategoryForm({
   const [state, formAction, pending] = useActionState(action, initialState);
   const [imageUrl, setImageUrl] = useState(category?.image_url ?? "");
   const [childLayout, setChildLayout] = useState<ChildLayout>(category?.child_layout ?? "inline");
+  // Collapsed by default — the default layout is fine for most categories,
+  // so only expand the two-option chooser when the admin asks to change it.
+  const [changingLayout, setChangingLayout] = useState(false);
+  const currentLayout = LAYOUTS.find((option) => option.value === childLayout)!;
 
   // Where this sits is decided by how you got here — from the Categories list,
   // or from "New subcategory" inside a category — and can't be changed
@@ -101,57 +105,93 @@ export function CategoryForm({
   return (
     <div className="mt-8 flex flex-col gap-8">
       <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">Subcategory layout</h2>
-        <p className="mt-1.5 text-sm text-[#5b6b82]">
-          How the subcategories inside this {noun} appear on its page.
-        </p>
-
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          {LAYOUTS.map((option) => {
-            const selected = childLayout === option.value;
-            return (
-              <label
-                key={option.value}
-                className={cn(
-                  "flex cursor-pointer flex-col gap-3 rounded-xl border p-4 transition-colors",
-                  selected
-                    ? "border-[#9e4953] bg-[#fdf8f8] ring-2 ring-[#9e4953]/20"
-                    : "border-[#e4e9f2] hover:bg-[#f6f8fc]",
-                )}
-              >
-                <div className="flex items-start gap-3">
-                  {/* Sits above the save <form>, like the photo field, so the
-                      value travels in the hidden input inside it. */}
-                  <input
-                    type="radio"
-                    name="child_layout_choice"
-                    value={option.value}
-                    checked={selected}
-                    onChange={() => setChildLayout(option.value)}
-                    className="mt-0.5 size-4 shrink-0 accent-[#9e4953]"
-                  />
-                  <div>
-                    <p className="text-sm font-bold text-[#1A0A53]">{option.label}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#5b6b82]">{option.hint}</p>
-                  </div>
-                </div>
-                <div
-                  className={cn(
-                    "flex justify-center rounded-lg px-3 py-4",
-                    selected ? "bg-white text-[#9e4953]" : "bg-[#f6f8fc] text-[#94a3b8]",
-                  )}
-                >
-                  <LayoutPreview variant={option.value} />
-                </div>
-              </label>
-            );
-          })}
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">Subcategory layout</h2>
+            <p className="mt-1.5 text-sm text-[#5b6b82]">
+              How the subcategories inside this {noun} appear on its page.
+            </p>
+          </div>
+          {!changingLayout && (
+            <button
+              type="button"
+              onClick={() => setChangingLayout(true)}
+              className="shrink-0 rounded-lg border border-[#e4e9f2] px-3 py-1.5 text-xs font-semibold text-[#1A0A53] transition-colors hover:bg-[#f6f8fc]"
+            >
+              Change
+            </button>
+          )}
         </div>
 
-        <p className="mt-4 text-xs leading-relaxed text-[#94a3b8]">
-          Applies to subcategories that hold products. One that holds its own subcategories always
-          gets a card — there is no product grid to open out.
-        </p>
+        {!changingLayout ? (
+          <div className="mt-5 flex items-center gap-3 rounded-xl border border-[#e4e9f2] bg-[#f6f8fc] px-4 py-3">
+            <div className="flex justify-center rounded-lg bg-white px-2 py-2 text-[#9e4953]">
+              <LayoutPreview variant={currentLayout.value} />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-[#1A0A53]">{currentLayout.label}</p>
+              <p className="mt-0.5 text-xs leading-relaxed text-[#5b6b82]">{currentLayout.hint}</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {LAYOUTS.map((option) => {
+                const selected = childLayout === option.value;
+                return (
+                  <label
+                    key={option.value}
+                    className={cn(
+                      "flex cursor-pointer flex-col gap-3 rounded-xl border p-4 transition-colors",
+                      selected
+                        ? "border-[#9e4953] bg-[#fdf8f8] ring-2 ring-[#9e4953]/20"
+                        : "border-[#e4e9f2] hover:bg-[#f6f8fc]",
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      {/* Sits above the save <form>, like the photo field, so the
+                          value travels in the hidden input inside it. */}
+                      <input
+                        type="radio"
+                        name="child_layout_choice"
+                        value={option.value}
+                        checked={selected}
+                        onChange={() => setChildLayout(option.value)}
+                        className="mt-0.5 size-4 shrink-0 accent-[#9e4953]"
+                      />
+                      <div>
+                        <p className="text-sm font-bold text-[#1A0A53]">{option.label}</p>
+                        <p className="mt-1 text-xs leading-relaxed text-[#5b6b82]">{option.hint}</p>
+                      </div>
+                    </div>
+                    <div
+                      className={cn(
+                        "flex justify-center rounded-lg px-3 py-4",
+                        selected ? "bg-white text-[#9e4953]" : "bg-[#f6f8fc] text-[#94a3b8]",
+                      )}
+                    >
+                      <LayoutPreview variant={option.value} />
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <p className="text-xs leading-relaxed text-[#94a3b8]">
+                Applies to subcategories that hold products. One that holds its own subcategories
+                always gets a card — there is no product grid to open out.
+              </p>
+              <button
+                type="button"
+                onClick={() => setChangingLayout(false)}
+                className="shrink-0 text-xs font-semibold text-[#9e4953] hover:underline"
+              >
+                Done
+              </button>
+            </div>
+          </>
+        )}
       </section>
 
       {/* Rendered outside the category-save <form>: independent server action, no nested forms. */}

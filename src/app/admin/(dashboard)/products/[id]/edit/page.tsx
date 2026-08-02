@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { ProductForm, type ProductRecord } from "@/components/admin/product-form";
-import { listProductTargets } from "@/lib/admin-category-tree";
+import { listCategoryTree } from "@/lib/admin-category-tree";
 
 export default async function AdminEditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const db = supabaseAdmin();
   const [{ data }, categories] = await Promise.all([
     db.from("products").select("*").eq("id", id).single(),
-    listProductTargets(),
+    listCategoryTree(),
   ]);
 
   if (!data) notFound();

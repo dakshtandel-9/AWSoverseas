@@ -1,6 +1,6 @@
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { ProductForm } from "@/components/admin/product-form";
-import { listProductTargets } from "@/lib/admin-category-tree";
+import { listCategoryTree } from "@/lib/admin-category-tree";
 
 export default async function AdminNewProductPage({
   searchParams,
@@ -8,7 +8,7 @@ export default async function AdminNewProductPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category } = await searchParams;
-  const categories = isSupabaseConfigured() ? await listProductTargets() : [];
+  const categories = isSupabaseConfigured() ? await listCategoryTree() : [];
 
   return (
     <div>

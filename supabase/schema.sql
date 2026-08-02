@@ -6,9 +6,17 @@
 -- ============================================================
 create table if not exists site_settings (
   id integer primary key default 1 check (id = 1),
+  -- Up to 5 phone numbers/emails shown in the footer and Contact page; blank = unused slot.
   phone_1 text not null default '',
   phone_2 text not null default '',
+  phone_3 text not null default '',
+  phone_4 text not null default '',
+  phone_5 text not null default '',
   email text not null default '',
+  email_2 text not null default '',
+  email_3 text not null default '',
+  email_4 text not null default '',
+  email_5 text not null default '',
   whatsapp_number text not null default '', -- digits only, e.g. "919876543210"
   address text not null default '',
   -- Admin-editable button colors: navy (nav/form CTAs) and maroon (hero/section CTAs), each with a hover shade.
@@ -31,6 +39,15 @@ alter table site_settings add column if not exists btn_navy_hover text not null 
 alter table site_settings add column if not exists btn_maroon text not null default '#902d39';
 alter table site_settings add column if not exists btn_maroon_hover text not null default '#861b28';
 alter table site_settings add column if not exists text_maroon text not null default '#9e4953';
+
+-- Extra phone/email slots (footer previously showed exactly 2 phones + 1 email).
+alter table site_settings add column if not exists phone_3 text not null default '';
+alter table site_settings add column if not exists phone_4 text not null default '';
+alter table site_settings add column if not exists phone_5 text not null default '';
+alter table site_settings add column if not exists email_2 text not null default '';
+alter table site_settings add column if not exists email_3 text not null default '';
+alter table site_settings add column if not exists email_4 text not null default '';
+alter table site_settings add column if not exists email_5 text not null default '';
 
 -- The footer's extra "contact columns" (per-office phone/email/address blocks
 -- shown alongside the site-wide one) were removed in favor of the Contact

@@ -19,14 +19,14 @@
         "label": "Service Type",
         "type": "select",
         "options": [
-          "Air Freight",
-          "Sea Freight",
-          "Import Services",
-          "Export Services",
-          "FCL Shipping",
-          "LCL Shipping",
-          "Customs Clearance",
-          "Warehousing"
+          "Shipment (air freight) (general cargo)",
+          "Shipment (air freight) (special cargo)",
+          "Shipment (sea freight) (FCL)",
+          "Shipment (sea freight) (LCL)",
+          "Shipment (sea freight) (RO-RO)",
+          "Shipment (sea freight) (dry bulk)",
+          "Shipment (sea freight) (liquid bulk)",
+          "Shipment (sea freight) (break bulk)"
         ],
         "required": true
       },
@@ -58,6 +58,7 @@
         "fields": [
           {
             "label": "Origin State",
+            "displayLabel": "Origin State/Country",
             "type": "state-or-country-select",
             "placeholder": "Search origin state…",
             "required": true
@@ -82,6 +83,7 @@
           },
           {
             "label": "Destination State",
+            "displayLabel": "Destination State/Country",
             "type": "state-or-country-select",
             "placeholder": "Search destination state…",
             "required": true

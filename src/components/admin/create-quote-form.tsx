@@ -27,10 +27,13 @@ const SERVICE_TYPES = [
   "Sea Freight",
   "Import Services",
   "Export Services",
+  "Sourcing Partner",
   "FCL Shipping",
   "LCL Shipping",
   "Customs Clearance",
   "Warehousing",
+  "Reefer",
+  "Marine Insurance",
 ];
 
 const SHIPMENT_TYPES = ["Commercial Cargo", "Machinery", "Electronics", "Others"];

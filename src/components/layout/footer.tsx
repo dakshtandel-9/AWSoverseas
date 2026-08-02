@@ -46,7 +46,7 @@ const NEWSLETTER = {
 
 export async function Footer() {
   const settings = await getSiteSettings();
-  const { address, email, phone1, phone2 } = settings;
+  const { address, emails, phones } = settings;
   const year = new Date().getFullYear();
   const mapsHref = address
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
@@ -79,14 +79,13 @@ export async function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-end gap-2">
               <Logo tone="dark" />
-              <span className="pb-1 text-[8.75px] font-medium tracking-wide text-ink/60">impex</span>
             </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/65">
               AWS OVERSEAS impex is your trusted partner for product sourcing, supplier verification,
               export management and international shipping. We help businesses worldwide source
               quality products from India and deliver them safely across global markets.
             </p>
-            {(address || email || phone1 || phone2) && (
+            {(address || emails.some(Boolean) || phones.some(Boolean)) && (
               <ul className="mt-6 space-y-3 text-sm text-ink/80">
                 {address && (
                   <li className="flex items-start gap-3">
@@ -94,18 +93,21 @@ export async function Footer() {
                     <span className="break-words leading-relaxed">{address}</span>
                   </li>
                 )}
-                {email && (
-                  <li className="flex items-center gap-3">
-                    <Mail className="size-4 shrink-0 text-maroon-admin" />
-                    <a href={`mailto:${email}`} className="break-words transition-colors hover:text-ink">
-                      {email}
-                    </a>
-                  </li>
+                {emails.map(
+                  (email, i) =>
+                    email && (
+                      <li key={`email-${i}`} className="flex items-center gap-3">
+                        <Mail className="size-4 shrink-0 text-maroon-admin" />
+                        <a href={`mailto:${email}`} className="break-words transition-colors hover:text-ink">
+                          {email}
+                        </a>
+                      </li>
+                    ),
                 )}
-                {[phone1, phone2].map(
+                {phones.map(
                   (phone, i) =>
                     phone && (
-                      <li key={i} className="flex items-center gap-3">
+                      <li key={`phone-${i}`} className="flex items-center gap-3">
                         <Phone className="size-4 shrink-0 text-maroon-admin" />
                         <a
                           href={`tel:${phone.replace(/[^\d+]/g, "")}`}

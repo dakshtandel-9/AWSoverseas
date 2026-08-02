@@ -11,9 +11,8 @@ export async function updateSettingsAction(
   _prevState: SettingsState,
   formData: FormData,
 ): Promise<SettingsState> {
-  const phone1 = String(formData.get("phone_1") ?? "").trim();
-  const phone2 = String(formData.get("phone_2") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
+  const phones = [1, 2, 3, 4, 5].map((n) => String(formData.get(`phone_${n}`) ?? "").trim());
+  const emails = [1, 2, 3, 4, 5].map((n) => String(formData.get(`email_${n}`) ?? "").trim());
   const whatsappNumber = String(formData.get("whatsapp_number") ?? "").trim();
   const address = String(formData.get("address") ?? "").trim();
   const btnNavy = String(formData.get("btn_navy") ?? "").trim();
@@ -22,7 +21,7 @@ export async function updateSettingsAction(
   const btnMaroonHover = String(formData.get("btn_maroon_hover") ?? "").trim();
   const textMaroon = String(formData.get("text_maroon") ?? "").trim();
 
-  if (!phone1 || !email) {
+  if (!phones[0] || !emails[0]) {
     return { error: "Primary phone and email are required." };
   }
 
@@ -42,9 +41,16 @@ export async function updateSettingsAction(
   const { error } = await db
     .from("site_settings")
     .update({
-      phone_1: phone1,
-      phone_2: phone2,
-      email,
+      phone_1: phones[0],
+      phone_2: phones[1],
+      phone_3: phones[2],
+      phone_4: phones[3],
+      phone_5: phones[4],
+      email: emails[0],
+      email_2: emails[1],
+      email_3: emails[2],
+      email_4: emails[3],
+      email_5: emails[4],
       whatsapp_number: whatsappNumber,
       address,
       btn_navy: btnNavy,

@@ -15,6 +15,8 @@ import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
 type Field = {
   label: string;
+  /** Shown in the field's <label> instead of `label` when set — `label` still drives the form field `name`, so this only affects what the user reads. */
+  displayLabel?: string;
   type:
     | "text"
     | "email"
@@ -315,7 +317,7 @@ function FormSection({
             )}
           >
             <label className="text-sm font-semibold text-[#1A0A53]">
-              {field.label}
+              {field.displayLabel ?? field.label}
               {field.required && <span className="ml-1 text-maroon-admin">*</span>}
             </label>
             <FieldControl field={field} defaultValue={fieldDefaults?.[field.label]} gated={gated} />

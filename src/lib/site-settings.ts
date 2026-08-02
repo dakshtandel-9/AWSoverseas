@@ -4,9 +4,10 @@ import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { contact } from "@/lib/content";
 
 export type SiteSettings = {
-  phone1: string;
-  phone2: string;
-  email: string;
+  /** Always 5 entries in display order; a blank string means that slot is unset. */
+  phones: string[];
+  /** Always 5 entries in display order; a blank string means that slot is unset. */
+  emails: string[];
   whatsappNumber: string;
   address: string;
   btnNavy: string;
@@ -39,9 +40,8 @@ function fallbackSettings(): SiteSettings {
   const office = contact.officeLocations?.locations?.[0];
   const address = office ? `${office.address}, ${office.city}, ${office.country}` : "";
   return {
-    phone1: phone,
-    phone2: "",
-    email,
+    phones: [phone, "", "", "", ""],
+    emails: [email, "", "", "", ""],
     whatsappNumber: "",
     address,
     ...BUTTON_COLOR_DEFAULTS,
@@ -54,9 +54,12 @@ const getCachedSettings = unstable_cache(
     const { data } = await db.from("site_settings").select("*").eq("id", 1).single();
     if (!data) return fallbackSettings();
     return {
-      phone1: data.phone_1 || "",
-      phone2: data.phone_2 || "",
-      email: data.email || "",
+      phones: [data.phone_1, data.phone_2, data.phone_3, data.phone_4, data.phone_5].map(
+        (v) => v || "",
+      ),
+      emails: [data.email, data.email_2, data.email_3, data.email_4, data.email_5].map(
+        (v) => v || "",
+      ),
       whatsappNumber: data.whatsapp_number || "",
       address: data.address || "",
       btnNavy: sanitizeHex(data.btn_navy, BUTTON_COLOR_DEFAULTS.btnNavy),

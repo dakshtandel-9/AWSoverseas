@@ -77,6 +77,9 @@ export async function createProductAction(
   if (!fields.name) {
     return { error: "Product name is required." };
   }
+  if (!fields.category_id) {
+    return { error: "Choose a category for this product." };
+  }
 
   const db = supabaseAdmin();
   const { error } = await db.from("products").insert(fields);
@@ -86,7 +89,7 @@ export async function createProductAction(
   }
 
   revalidateProducts();
-  redirect(fields.category_id ? `/admin/categories/${fields.category_id}` : "/admin/products");
+  redirect(`/admin/categories/${fields.category_id}`);
 }
 
 export async function updateProductAction(
@@ -99,6 +102,9 @@ export async function updateProductAction(
   if (!fields.name) {
     return { error: "Product name is required." };
   }
+  if (!fields.category_id) {
+    return { error: "Choose a category for this product." };
+  }
 
   const db = supabaseAdmin();
   const { error } = await db.from("products").update(fields).eq("id", id);
@@ -108,12 +114,19 @@ export async function updateProductAction(
   }
 
   revalidateProducts();
-  redirect(fields.category_id ? `/admin/categories/${fields.category_id}` : "/admin/products");
+  redirect(`/admin/categories/${fields.category_id}`);
 }
 
 export async function deleteProductAction(id: string) {
   const db = supabaseAdmin();
   await db.from("products").delete().eq("id", id);
+  revalidateProducts();
+}
+
+export async function deleteProductsAction(ids: string[]) {
+  if (ids.length === 0) return;
+  const db = supabaseAdmin();
+  await db.from("products").delete().in("id", ids);
   revalidateProducts();
 }
 

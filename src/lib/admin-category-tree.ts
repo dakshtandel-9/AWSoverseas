@@ -128,15 +128,25 @@ export async function getCategoryPaths(): Promise<
   );
 }
 
-/**
- * Categories a product may be filed under: leaves only, labelled with their full
- * path so "Accessories" under two different parents stay distinguishable.
- */
-export async function listProductTargets(): Promise<{ id: string; name: string }[]> {
-  const paths = await getCategoryPaths();
+export type CategoryTreeNode = {
+  id: string;
+  name: string;
+  image_url: string;
+  parent_id: string | null;
+  sort_order: number;
+};
 
-  return [...paths.entries()]
-    .filter(([, meta]) => meta.isLeaf)
-    .map(([id, meta]) => ({ id, name: meta.path }))
-    .sort((a, b) => a.name.localeCompare(b.name));
+/**
+ * Every category, flat, for the product form's category picker: browse from
+ * the top level into subcategories one level at a time until landing on a
+ * leaf (the only kind a product can be filed under).
+ */
+export async function listCategoryTree(): Promise<CategoryTreeNode[]> {
+  const db = supabaseAdmin();
+  const { data } = await db
+    .from("categories")
+    .select("id, name, image_url, parent_id, sort_order")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+  return data ?? [];
 }

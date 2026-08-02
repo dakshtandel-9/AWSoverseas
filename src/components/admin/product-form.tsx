@@ -5,6 +5,8 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { createProductAction, updateProductAction, type ProductFormState } from "@/app/admin/(dashboard)/products/actions";
 import { ProductImageUploadField } from "@/components/admin/product-image-upload-field";
+import { CategoryPickerField } from "@/components/admin/category-picker-field";
+import type { CategoryTreeNode } from "@/lib/admin-category-tree";
 
 export type ProductRecord = {
   id: string;
@@ -15,8 +17,6 @@ export type ProductRecord = {
   sort_order: number;
   is_active: boolean;
 };
-
-export type CategoryOption = { id: string; name: string };
 
 const inputClasses =
   "w-full rounded-xl border border-[#e4e9f2] bg-white px-4 py-3 text-sm text-[#1A0A53] placeholder:text-[#94a3b8] outline-none transition-colors focus:border-[#9e4953] focus:ring-2 focus:ring-[#9e4953]/20";
@@ -29,8 +29,8 @@ export function ProductForm({
   defaultCategoryId,
 }: {
   product?: ProductRecord;
-  /** The categories a product can be filed under, deepest level only. */
-  categories: CategoryOption[];
+  /** The full category tree, flat — the picker popup browses it level by level. */
+  categories: CategoryTreeNode[];
   /** Preselected when arriving from "New product" inside a category. */
   defaultCategoryId?: string;
 }) {
@@ -57,6 +57,9 @@ export function ProductForm({
 
       <form action={formAction} className="flex flex-col gap-8">
         <input type="hidden" name="image_url" value={imageUrl} />
+        {/* Kept in the schema and submitted with the form, just not surfaced in
+            the UI — sort order defaults to 0 and is no longer hand-set here. */}
+        <input type="hidden" name="sort_order" value={product?.sort_order ?? 0} />
 
         <section className="rounded-2xl border border-[#e4e9f2] bg-white p-6">
           <h2 className="text-sm font-bold uppercase tracking-wide text-[#1A0A53]">Product details</h2>
@@ -65,33 +68,16 @@ export function ProductForm({
               <label className="text-sm font-semibold text-[#1A0A53]">Name *</label>
               <input name="name" required defaultValue={product?.name ??""} className={inputClasses} />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#1A0A53]">Category *</label>
-              <select
-                name="category_id"
-                defaultValue={product?.category_id ?? defaultCategoryId ?? ""}
-                className={inputClasses}
-              >
-                <option value="">Not filed — hidden from the site</option>
-                {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-              <p className="text-xs text-[#94a3b8]">
-                Only categories that hold no subcategories are listed — a product goes in the deepest
-                one. Leave it unfiled and the product won&apos;t appear anywhere on the site.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">Sort order</label>
-              <input
-                type="number"
-                name="sort_order"
-                defaultValue={product?.sort_order ?? 0}
-                className={inputClasses}
+              <CategoryPickerField
+                categories={categories}
+                defaultValue={product?.category_id ?? defaultCategoryId ?? undefined}
               />
+              <p className="text-xs text-[#94a3b8]">
+                Tap a category&apos;s photo to open it. Keep tapping into subcategories until you reach
+                one with none left — that&apos;s where the product goes.
+              </p>
             </div>
             <div className="flex flex-col gap-2 sm:col-span-2">
               <label className="text-sm font-semibold text-[#1A0A53]">Description</label>

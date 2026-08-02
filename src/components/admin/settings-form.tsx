@@ -15,12 +15,44 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
 
   return (
     <form action={formAction} className="mt-8 grid max-w-2xl gap-5">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Primary phone number" name="phone_1" defaultValue={settings.phone1} required placeholder="+91 98765 43210" />
-        <Field label="Secondary phone number" name="phone_2" defaultValue={settings.phone2} placeholder="Optional" />
+      <div>
+        <p className="text-sm font-semibold text-[#1A0A53]">Phone numbers</p>
+        <p className="mt-1 text-xs text-[#5b6b82]">
+          Up to 5, shown in the footer and on the Contact page. Leave a field blank to hide it.
+        </p>
+        <div className="mt-3 grid gap-5 sm:grid-cols-2">
+          {settings.phones.map((value, i) => (
+            <Field
+              key={`phone_${i}`}
+              label={`Phone number ${i + 1}`}
+              name={`phone_${i + 1}`}
+              defaultValue={value}
+              required={i === 0}
+              placeholder={i === 0 ? "+91 98765 43210" : "Optional"}
+            />
+          ))}
+        </div>
       </div>
 
-      <Field label="Email address" name="email" type="email" defaultValue={settings.email} required placeholder="info@awsoverseas.com" />
+      <div>
+        <p className="text-sm font-semibold text-[#1A0A53]">Email addresses</p>
+        <p className="mt-1 text-xs text-[#5b6b82]">
+          Up to 5, shown in the footer and on the Contact page. Leave a field blank to hide it.
+        </p>
+        <div className="mt-3 grid gap-5 sm:grid-cols-2">
+          {settings.emails.map((value, i) => (
+            <Field
+              key={`email_${i}`}
+              label={`Email address ${i + 1}`}
+              name={`email_${i + 1}`}
+              type="email"
+              defaultValue={value}
+              required={i === 0}
+              placeholder={i === 0 ? "info@awsoverseas.com" : "Optional"}
+            />
+          ))}
+        </div>
+      </div>
 
       <Field
         label="WhatsApp number"
