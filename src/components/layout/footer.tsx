@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FOOTER_NAV, SITE } from "@/lib/site";
 import { getSiteSettings } from "@/lib/site-settings";
+import { getPublicFooterContacts, type FooterContact } from "@/lib/footer-contacts";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "@/components/ui/container";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
@@ -45,7 +46,7 @@ const NEWSLETTER = {
 };
 
 export async function Footer() {
-  const settings = await getSiteSettings();
+  const [settings, footerContacts] = await Promise.all([getSiteSettings(), getPublicFooterContacts()]);
   const { address, emails, phones } = settings;
   const year = new Date().getFullYear();
   const mapsHref = address
@@ -162,6 +163,15 @@ export async function Footer() {
             ))}
         </div>
 
+        {/* Contact band — up to four independent columns, all admin-editable in Settings */}
+        {footerContacts.length > 0 && (
+          <div className="grid gap-6 border-t border-ink/10 py-10 sm:grid-cols-2 lg:grid-cols-4">
+            {footerContacts.map((contact) => (
+              <FooterContactCard key={contact.id} contact={contact} />
+            ))}
+          </div>
+        )}
+
         {/* Bottom bar */}
         <div className="flex flex-col gap-6 border-t border-ink/10 py-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-ink/60">
@@ -184,6 +194,59 @@ export async function Footer() {
         </div>
       </Container>
     </footer>
+  );
+}
+
+function FooterContactCard({ contact }: { contact: FooterContact }) {
+  const { headline, address, phone, email } = contact;
+  return (
+    <div className="rounded-xl bg-white/45 p-5 ring-1 ring-ink/10">
+      {headline && (
+        <h4 className="text-xs font-semibold uppercase tracking-[0.14em] !text-ink/70">{headline}</h4>
+      )}
+      <ul className={`space-y-3 text-sm text-ink/80 ${headline ? "mt-4" : ""}`}>
+        {address && (
+          <FooterContactRow icon={<MapPin className="size-4" />} align="start">
+            {address}
+          </FooterContactRow>
+        )}
+        {phone && (
+          <FooterContactRow icon={<Phone className="size-4" />} href={`tel:${phone.replace(/[^\d+]/g, "")}`}>
+            {phone}
+          </FooterContactRow>
+        )}
+        {email && (
+          <FooterContactRow icon={<Mail className="size-4" />} href={`mailto:${email}`}>
+            {email}
+          </FooterContactRow>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+function FooterContactRow({
+  icon,
+  href,
+  align = "center",
+  children,
+}: {
+  icon: React.ReactNode;
+  href?: string;
+  align?: "start" | "center";
+  children: React.ReactNode;
+}) {
+  return (
+    <li className={`flex gap-3 ${align === "start" ? "items-start" : "items-center"}`}>
+      <span className={`shrink-0 text-maroon-admin ${align === "start" ? "mt-0.5" : ""}`}>{icon}</span>
+      {href ? (
+        <a href={href} className="break-words transition-colors hover:text-ink">
+          {children}
+        </a>
+      ) : (
+        <span className="break-words leading-relaxed">{children}</span>
+      )}
+    </li>
   );
 }
 

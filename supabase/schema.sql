@@ -49,9 +49,6 @@ alter table site_settings add column if not exists email_3 text not null default
 alter table site_settings add column if not exists email_4 text not null default '';
 alter table site_settings add column if not exists email_5 text not null default '';
 
--- The footer's extra "contact columns" (per-office phone/email/address blocks
--- shown alongside the site-wide one) were removed in favor of the Contact
--- page's office directory (office_groups/office_locations below).
 alter table site_settings drop column if exists contact_label;
 alter table site_settings drop column if exists footer_contacts;
 
@@ -605,6 +602,32 @@ select 'International Offices', 'Where we operate outside India.', 2
 where not exists (select 1 from office_groups where sort_order = 2);
 
 -- ============================================================
+-- footer_contacts — the footer's contact band, below the nav links and
+-- above the copyright line. Admin-managed at /admin/footer-contacts as a
+-- flat, open-ended list (unlike the office directory, no groups): add as
+-- many as needed and the footer wraps them into rows, 4 per row on desktop.
+-- ============================================================
+create table if not exists footer_contacts (
+  id uuid primary key default gen_random_uuid(),
+  headline text not null default '',
+  address text not null default '',
+  phone text not null default '',
+  email text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists footer_contacts_active_idx
+  on footer_contacts (is_active, sort_order, created_at);
+
+drop trigger if exists footer_contacts_touch on footer_contacts;
+create trigger footer_contacts_touch
+before update on footer_contacts
+for each row execute function set_updated_at();
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
@@ -655,6 +678,13 @@ create policy "public read active office_groups" on office_groups
 
 drop policy if exists "public read active office_locations" on office_locations;
 create policy "public read active office_locations" on office_locations
+  for select using (is_active = true);
+
+-- footer_contacts: public can read the active rows (the footer's contact
+-- band). All writes go through the service-role client from Server Actions.
+alter table footer_contacts enable row level security;
+drop policy if exists "public read active footer_contacts" on footer_contacts;
+create policy "public read active footer_contacts" on footer_contacts
   for select using (is_active = true);
 
 -- marketing_integrations: public can read — every ID here is injected into the

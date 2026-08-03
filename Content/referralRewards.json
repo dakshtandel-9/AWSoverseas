@@ -26,8 +26,8 @@
       },
       {
         "step": "02",
-        "title": "They complete anything, once",
-        "description": "A shipment, a product order, or any paid service booked under your code — the first one qualifies. It doesn't have to be a shipment specifically."
+        "title": "They complete an order",
+        "description": "A shipment, a product order, or any paid service booked under your code — it doesn't have to be a shipment specifically, and it isn't limited to their first one."
       },
       {
         "step": "03",
@@ -44,8 +44,8 @@
         "description": "A freight shipment, a marketplace product, or a booked service — if money changes hands, it counts toward your $25."
       },
       {
-        "title": "One reward per new customer",
-        "description": "You earn $25 the first time someone you referred completes an order. It's about bringing new business in, not repeat purchases."
+        "title": "Every shipment pays out",
+        "description": "You earn $25 each time someone you referred completes a shipment — not just their first. Refer once, get paid for every order after."
       },
       {
         "title": "No cap on referrals",
@@ -98,7 +98,7 @@
       },
       {
         "question": "Does it have to be a shipment specifically?",
-        "answer": "No. Any completed purchase counts — a freight shipment, a product order from our catalog, or any paid service. The first qualifying order from your referral is what triggers the reward."
+        "answer": "No. Any completed purchase counts — a freight shipment, a product order from our catalog, or any paid service. And it's not a one-time thing: every qualifying order from your referral pays out another $25, not just their first."
       },
       {
         "question": "Is there a limit to how much I can earn?",
@@ -121,7 +121,7 @@
   "homeSection": {
     "badge": "Referral Rewards",
     "title": "Refer a shipper. Earn $25.",
-    "description": "Know someone who imports, exports, or ships freight? Send them your code. The moment they complete their first order, $25 is yours.",
+    "description": "Know someone who imports, exports, or ships freight? Send them your code. Every shipment they complete after that puts $25 in your wallet.",
     "button": "Learn how it works",
     "highlights": [
       {

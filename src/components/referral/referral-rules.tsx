@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PackageCheck, UserCheck, Infinity as InfinityIcon, Wallet, type LucideIcon } from "lucide-react";
+import { PackageCheck, Repeat, Infinity as InfinityIcon, Wallet, type LucideIcon } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 type Item = { title: string; description: string };
 type Data = { title: string; items: Item[] };
 
-const ICONS: LucideIcon[] = [PackageCheck, UserCheck, InfinityIcon, Wallet];
+const ICONS: LucideIcon[] = [PackageCheck, Repeat, InfinityIcon, Wallet];
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
