@@ -8,7 +8,7 @@
         "badge": "Our Services",
         "title": "From Finding a Manufacturer to Shipping — One Service Line",
         "subtitle": "AWS OVERSEAS impex sources and verifies manufacturers in India, inspects goods before dispatch, and manages the air freight, sea freight, and customs clearance that gets them to your door. Sourcing and shipping, run as one process.",
-        "primaryButton": "Enquire/Inquire",
+        "primaryButton": "Enquire now",
         "secondaryButton": "Contact Our Team"
     },
     "overview": {
@@ -114,7 +114,7 @@
     "cta": {
         "title": "Ready to Source & Export from India?",
         "description": "Whether you need a manufacturer sourced and verified in India, or cargo moved and cleared through customs, AWS OVERSEAS impex scopes it as one export plan.",
-        "primaryButton": "Enquire/Inquire",
+        "primaryButton": "Enquire now",
         "secondaryButton": "Talk to Our Experts"
     }
 }

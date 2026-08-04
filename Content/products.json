@@ -13,7 +13,7 @@
   },
   "overview": {
     "title": "One Catalog, One Export Desk",
-    "description": "Every product on this list carries its own rules for packing, documentation, and compliance at the destination. Our export desk builds the shipping plan around the product, not the other way around — enquire/inquire on anything and we'll quote it.",
+    "description": "Every product on this list carries its own rules for packing, documentation, and compliance at the destination. Our export desk builds the shipping plan around the product, not the other way around — enquire now on anything and we'll quote it.",
     "stats": [
       {
         "number": "11",
@@ -34,9 +34,9 @@
     ]
   },
   "cta": {
-    "title": "Exporting Something Not on This List?",
+    "title": "Importing, Exporting Something Not on This List?",
     "description": "This schedule covers what we ship most — but our commodity desk builds custom export plans for other product categories too. Tell us what you're moving and where, and we'll quote it.",
-    "primaryButton": "Enquire/Inquire",
+    "primaryButton": "Enquire now",
     "secondaryButton": "Speak with an Expert",
     "tertiaryButton": "Request a Product"
   }

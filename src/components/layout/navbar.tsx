@@ -68,7 +68,7 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
             <LanguageSwitcher />
             <NavbarUser scrolled />
             <Button href="/quote" variant="primary" size="sm" className="shrink-0">
-              Enquire/Inquire <ArrowRight className="size-4 shrink-0" />
+              Enquire now <ArrowRight className="size-4 shrink-0" />
             </Button>
           </div>
 
@@ -130,7 +130,7 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <LanguageSwitcher mobile />
                 <Button href="/quote" variant="primary" size="lg" magnetic={false}>
-                  Enquire/Inquire <ArrowRight className="size-4" />
+                  Enquire now <ArrowRight className="size-4" />
                 </Button>
                 <NavbarUser mobile />
               </div>

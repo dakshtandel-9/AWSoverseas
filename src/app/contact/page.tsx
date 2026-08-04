@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { contact, metaFrom } from "@/lib/content";
 import { getSiteSettings } from "@/lib/site-settings";
 import { ContactHero } from "@/components/contact/contact-hero";
@@ -6,7 +7,9 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { ContactChannels } from "@/components/contact/contact-channels";
 import { OfficeMap } from "@/components/contact/office-map";
 import { OfficeLocations } from "@/components/contact/office-locations";
+import { CityAgents } from "@/components/contact/city-agents";
 import { getPublicOfficeGroups } from "@/lib/office-locations";
+import { getPublicCityAgents } from "@/lib/city-agents";
 import { Section } from "@/components/ui/section";
 
 export const metadata: Metadata = metaFrom(contact.meta, "/contact");
@@ -20,7 +23,11 @@ const CONTACT_JSONLD = {
 };
 
 export default async function Page() {
-  const [settings, officeGroups] = await Promise.all([getSiteSettings(), getPublicOfficeGroups()]);
+  const [settings, officeGroups, cityAgents] = await Promise.all([
+    getSiteSettings(),
+    getPublicOfficeGroups(),
+    getPublicCityAgents(),
+  ]);
   const location = settings.address
     ? { office: contact.officeLocations?.locations?.[0]?.office ?? "Head Office", address: settings.address }
     : contact.officeLocations?.locations?.[0];
@@ -54,6 +61,10 @@ export default async function Page() {
           />
         </div>
       </Section>
+
+      <Suspense fallback={null}>
+        <CityAgents agents={cityAgents} />
+      </Suspense>
 
       <OfficeMap data={contact.googleMap} location={location} />
 

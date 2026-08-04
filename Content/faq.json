@@ -8,7 +8,7 @@
         "badge": "Support Center",
         "title": "Frequently Asked Questions",
         "subtitle": "Find quick answers to the most common questions about product sourcing, supplier verification, and international shipping.",
-        "primaryButton": "Enquire/Inquire",
+        "primaryButton": "Enquire now",
         "secondaryButton": "Contact Support"
     },
     "categories": {
@@ -123,6 +123,6 @@
         "title": "Still Have Questions?",
         "description": "Our shipping specialists are here to help you with your requirements. Contact us today for expert guidance and personalized support.",
         "primaryButton": "Contact Us",
-        "secondaryButton": "Enquire/Inquire"
+        "secondaryButton": "Enquire now"
     }
 }

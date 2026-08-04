@@ -63,7 +63,7 @@ export function ProductCard({
               className="inline-flex w-full items-center justify-center gap-1.5 rounded-full btn-navy px-3 py-2.5 text-sm font-semibold text-white transition-colors duration-200"
             >
               <MessageSquareText className="size-4" />
-              Enquire/Inquire
+              Enquire now
             </button>
           </div>
         </div>

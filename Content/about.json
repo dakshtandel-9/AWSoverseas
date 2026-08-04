@@ -8,7 +8,7 @@
         "badge": "About AWS OVERSEAS impex",
         "title": "Your Trusted Bridge to Indian Manufacturing",
         "subtitle": "We connect global buyers with verified Indian manufacturers — vetting suppliers, safeguarding quality, and handling the export process end to end, so sourcing from India feels like working with a partner on the ground.",
-        "primaryButton": "Enquire/Inquire",
+        "primaryButton": "Enquire now",
         "secondaryButton": "Our Services"
     },
     "companyStory": {
@@ -111,7 +111,7 @@
     "cta": {
         "title": "Let's Find Your Next Supplier in India",
         "description": "Whether you need a manufacturer sourced and verified, an existing supplier relationship managed, or your next order shipped and cleared, AWS OVERSEAS impex handles it as one connected partnership.",
-        "primaryButton": "Enquire/Inquire",
+        "primaryButton": "Enquire now",
         "secondaryButton": "Contact Us"
     }
 }

@@ -10,7 +10,7 @@
     "badge": "Industries",
     "title": "Sourcing and Shipping Built for Every Industry",
     "subtitle": "Every industry sources differently and ships differently. AWS OVERSEAS impex pairs verified manufacturers and quality inspection with freight forwarding, customs clearance, and global shipping — matched to how your industry actually operates.",
-    "primaryButton": "Enquire/Inquire",
+    "primaryButton": "Enquire now",
     "secondaryButton": "Contact Us"
   },
 
@@ -139,7 +139,7 @@
   "cta": {
     "title": "Looking for Industry-Specific Sourcing or Shipping?",
     "description": "Our team is ready to source verified suppliers and build a customized shipping strategy that fits your industry and global supply chain.",
-    "primaryButton": "Enquire/Inquire",
+    "primaryButton": "Enquire now",
     "secondaryButton": "Speak with an Expert"
   }
 }

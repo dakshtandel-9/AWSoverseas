@@ -166,7 +166,7 @@ export default async function ProfilePage() {
                   href="/quote"
                   className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
                 >
-                  <FileText className="size-4" /> Enquire/Inquire
+                  <FileText className="size-4" /> Enquire now
                 </Link>
                 <Link
                   href="/products"

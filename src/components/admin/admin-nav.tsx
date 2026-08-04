@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { LayoutDashboard, Mail, FileText, Settings, LogOut, LayoutGrid, MessageSquareText, Package, ShoppingBag, Users, BookOpen, Send, ChartNoAxesCombined, Wallet, Building2, Warehouse, Columns4 } from "lucide-react";
+import { LayoutDashboard, Mail, FileText, Settings, LogOut, LayoutGrid, MessageSquareText, Package, ShoppingBag, Users, BookOpen, Send, ChartNoAxesCombined, Wallet, Building2, Warehouse, Columns4, GitFork, IdCard } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { logoutAction } from "@/lib/auth/actions";
 
 const LINKS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/referrals", label: "Referrals", icon: GitFork },
   { href: "/admin/wallets", label: "Wallets", icon: Wallet },
   // Categories is where you browse the tree; Products is the flat list of every
   // item across all of them, which is the only place an unfiled product (filed
@@ -25,6 +26,7 @@ const LINKS = [
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },
   { href: "/admin/warehouse-bookings", label: "Warehouse Bookings", icon: Warehouse },
   { href: "/admin/offices", label: "Offices", icon: Building2 },
+  { href: "/admin/city-agents", label: "City Agents", icon: IdCard },
   { href: "/admin/footer-contacts", label: "Footer Contacts", icon: Columns4 },
   { href: "/admin/integrations", label: "SEO & Analytics", icon: ChartNoAxesCombined },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },

@@ -8,7 +8,7 @@
     "badge": "",
     "title": "Request Your International Import and Shipping Enquiries/Inquiries",
     "subtitle": "Tell us about your shipment and our shipping experts will get back to you with tailored guidance for your requirements.",
-    "primaryButton": "Enquire/Inquire",
+    "primaryButton": "Enquire now",
     "secondaryButton": "Contact Us"
   },
   "quoteForm": {
@@ -167,7 +167,7 @@
   "submit": {
     "title": "Submit Your Enquiry/Inquiry",
     "description": "Our shipping specialists will review your enquiry/inquiry and get back to you as soon as possible.",
-    "buttonText": "Enquire/Inquire",
+    "buttonText": "Enquire now",
     "successMessage": "Thank you! Your enquiry/inquiry has been submitted successfully. Our team will contact you shortly.",
     "privacyText": "By submitting this form, you agree to our Privacy Policy and Terms & Conditions."
   }

@@ -7,7 +7,7 @@ export function CategoryGrid({
   categories,
   eyebrow = "Categories",
   title = "Explore Our Product Range",
-  subtitle = "Pick a category to see everything we have available in it — enquire/inquire on anything you're interested in.",
+  subtitle = "Pick a category to see everything we have available in it — enquire now on anything you're interested in.",
 }: {
   categories: PublicCategory[];
   eyebrow?: string;

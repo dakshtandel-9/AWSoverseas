@@ -121,7 +121,7 @@ export default async function CategoryDetailPage({
           products={catalog}
           auth={auth}
           title={`Browse ${category.name}`}
-          subtitle="Tap Enquire/Inquire on anything you're interested in — we'll follow up with availability and a quote."
+          subtitle="Tap Enquire now on anything you're interested in — we'll follow up with availability and a quote."
         />
       )}
 
