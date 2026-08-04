@@ -28,8 +28,9 @@ type Quote = {
 type Milestone = { id: string; status: string; location: string; note: string; created_at: string };
 
 // Keys already shown above the fold, so the raw payload doesn't repeat them.
-// Both directions' route field names are listed: export submits
-// origin-state/destination-country, import submits origin-country/destination-state.
+// The whole route — both countries and the state on each side — is promoted
+// into the detail body, so all four read together rather than split across the
+// header subtitle and the raw list.
 const PROMOTED_KEYS = new Set([
   "service-type",
   "shipment-type",
@@ -108,6 +109,23 @@ export function QuoteRow({
           <p>
             <span className="font-semibold">Shipment type:</span> {item.shipment_type}
           </p>
+          <p>
+            <span className="font-semibold">Origin country:</span> {item.origin_country}
+          </p>
+          {/* A state only exists where the submitter's country had one to pick. */}
+          {item.raw?.["origin-state"] && (
+            <p>
+              <span className="font-semibold">Origin state:</span> {item.raw["origin-state"]}
+            </p>
+          )}
+          <p>
+            <span className="font-semibold">Destination country:</span> {item.destination_country}
+          </p>
+          {item.raw?.["destination-state"] && (
+            <p>
+              <span className="font-semibold">Destination state:</span> {item.raw["destination-state"]}
+            </p>
+          )}
           {extraFields.length > 0 && (
             <div className="mt-2 grid gap-1.5 border-t border-[#e4e9f2] pt-3">
               {extraFields.map(([key, value]) => (

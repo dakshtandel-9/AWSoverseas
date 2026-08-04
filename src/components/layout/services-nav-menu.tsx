@@ -46,6 +46,7 @@ const SERVICES_MENU: ServiceEntry[] = [
       },
     ],
   },
+  { label: "Insurance", href: "/services/insurance" },
 ];
 
 /** One row of a services flyout — recurses into its own right-hand panel when it has children. */

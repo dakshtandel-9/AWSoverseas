@@ -120,7 +120,7 @@ export default async function CategoryDetailPage({
         <ProductGrid
           products={catalog}
           auth={auth}
-          title={`Browse ${category.name}`}
+          title={category.name}
           subtitle="Tap Enquire now on anything you're interested in — we'll follow up with availability and a quote."
         />
       )}

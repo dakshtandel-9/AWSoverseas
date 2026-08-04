@@ -12,7 +12,7 @@
         "secondaryButton": "Contact Support"
     },
     "categories": {
-        "title": "Browse FAQ Categories",
+        "title": "FAQ Categories",
         "description": "Select a category to quickly find the answers you're looking for.",
         "items": [
             {

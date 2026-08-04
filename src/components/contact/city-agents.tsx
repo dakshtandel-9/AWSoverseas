@@ -60,7 +60,7 @@ export function CityAgents({ agents }: { agents: CityAgent[] }) {
     <Section spacing="lg">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 border-b border-[#e4e9f2] pb-5">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold text-[#1A0A53] sm:text-4xl">Find your agent</h2>
+          <h2 className="text-3xl font-bold text-[#1A0A53] sm:text-4xl">Your associate</h2>
           <p className="mt-3 text-base leading-relaxed text-[#5b6b82]">
             Pick a city to see who&rsquo;s handling it on the ground — and share their card with
             anyone who needs it.

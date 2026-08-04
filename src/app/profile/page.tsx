@@ -172,7 +172,7 @@ export default async function ProfilePage() {
                   href="/products"
                   className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:border-[#9e4953]"
                 >
-                  <MessageSquareText className="size-4" /> Browse products
+                  <MessageSquareText className="size-4" /> View products
                 </Link>
               </div>
             )}

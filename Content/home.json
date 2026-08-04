@@ -45,7 +45,7 @@
     "exportHero": {
         "badge": "Sourced & Exported from India",
         "title": "From India's Manufacturers to Your Market",
-        "subtitle": "Browse our catalog of Indian-made goods, sourced directly from verified manufacturers, quality-checked, documented, and shipped under one roof — with no middlemen to slow you down.",
+        "subtitle": "Our catalog of Indian-made goods, sourced directly from verified manufacturers, quality-checked, documented, and shipped under one roof — with no middlemen to slow you down.",
         "primaryButton": "Enquire now About Exports",
         "secondaryButton": "View Full Catalog",
         "manifestLabel": "Export Manifest",
@@ -324,7 +324,7 @@
     },
     "products": {
         "title": "Products We Source & Export",
-        "description": "We source products directly from trusted Indian manufacturers and export them worldwide — browse a preview below, or send an enquiry/inquiry on anything you don't see listed.",
+        "description": "We source products directly from trusted Indian manufacturers and export them worldwide — see a preview below, or send an enquiry/inquiry on anything you don't see listed.",
         "button": "View All Products"
     },
     "faq": {

@@ -35,7 +35,7 @@ export function CityAgentForm({ agent }: { agent?: CityAgent }) {
         <Field label="City" name="city" required defaultValue={agent?.city ?? ""} placeholder="Mumbai" />
 
         <Field
-          label="Agent name"
+          label="Associate name"
           name="agent_name"
           required
           defaultValue={agent?.agent_name ?? ""}

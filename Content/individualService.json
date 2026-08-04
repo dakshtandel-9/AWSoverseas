@@ -985,24 +985,24 @@
       }
     },
     {
-      "slug": "marine-insurance",
+      "slug": "insurance",
       "meta": {
-        "title": "Marine Insurance | AWS OVERSEAS impex",
-        "description": "Marine Insurance coverage by AWS OVERSEAS impex to protect your cargo against loss or damage in transit."
+        "title": "Insurance | AWS OVERSEAS impex",
+        "description": "Cargo insurance by AWS OVERSEAS impex to protect your shipment against loss or damage in transit, by sea, air, or road."
       },
       "hero": {
         "badge": "Cargo Protection",
-        "title": "Marine Insurance for Every Shipment",
-        "subtitle": "AWS OVERSEAS impex arranges marine cargo insurance so your goods are covered against loss, damage, and delay from the moment they leave the factory to the moment they reach your door.",
+        "title": "Insurance for Every Shipment",
+        "subtitle": "AWS OVERSEAS impex arranges cargo insurance so your goods are covered against loss, damage, and delay from the moment they leave the factory to the moment they reach your door, whichever way they travel.",
         "primaryButton": "Enquire now",
         "secondaryButton": "Contact Us"
       },
       "overview": {
-        "title": "Marine Insurance Overview",
-        "description": "Our marine insurance cover protects your cargo against loss, theft, and damage in transit by sea or air, so a single bad shipment doesn't become a total loss.",
+        "title": "Insurance Overview",
+        "description": "Our cargo insurance protects your shipment against loss, theft, and damage in transit by sea, air, or road, so a single bad shipment doesn't become a total loss.",
         "features": [
           "Full Transit Coverage",
-          "Air & Sea Cargo Cover",
+          "Sea, Air & Road Cargo Cover",
           "Fast Claims Processing",
           "Flexible Coverage Value",
           "Damage & Theft Protection",
@@ -1083,12 +1083,12 @@
         "title": "Frequently Asked Questions",
         "items": [
           {
-            "question": "What does Marine Insurance cover?",
-            "answer": "Loss, theft, and physical damage to your cargo while in transit by sea or air, from pickup to final delivery."
+            "question": "What does the insurance cover?",
+            "answer": "Loss, theft, and physical damage to your cargo while in transit by sea, air, or road, from pickup to final delivery."
           },
           {
             "question": "Is insurance included with every shipment?",
-            "answer": "No, marine insurance is arranged separately based on your cargo's declared value and route."
+            "answer": "No, insurance is arranged separately based on your cargo's declared value and route."
           },
           {
             "question": "How do I file a claim?",
@@ -1102,7 +1102,7 @@
       },
       "cta": {
         "title": "Protect Your Next Shipment",
-        "description": "Talk to AWS OVERSEAS impex about marine insurance cover for your cargo, arranged alongside your freight booking.",
+        "description": "Talk to AWS OVERSEAS impex about insurance cover for your cargo, arranged alongside your freight booking.",
         "primaryButton": "Enquire now",
         "secondaryButton": "Contact Us"
       }

@@ -33,7 +33,7 @@ const SERVICE_TYPES = [
   "Customs Clearance",
   "Warehousing",
   "Reefer",
-  "Marine Insurance",
+  "Insurance",
 ];
 
 const SHIPMENT_TYPES = ["Commercial Cargo", "Machinery", "Electronics", "Others"];

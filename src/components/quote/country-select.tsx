@@ -21,17 +21,20 @@ export function CountrySelect({
   options = COUNTRIES,
   noResultsLabel = "countries",
   onChange,
+  disabled,
 }: {
   name: string;
   required?: boolean;
   placeholder?: string;
   defaultValue?: string;
-  /** Defaults to the full country list; pass a different list (e.g. Indian states) to repurpose this combobox. */
+  /** Defaults to the full country list; pass a different list (e.g. a country's states) to repurpose this combobox. */
   options?: string[];
   /** Noun used in the "No X match" empty state, to match whatever `options` represents. */
   noResultsLabel?: string;
   /** Fires whenever the selected value changes (including being cleared while typing). */
   onChange?: (value: string) => void;
+  /** Holds the field open-but-inert when there's nothing to pick from yet — the placeholder carries the reason. */
+  disabled?: boolean;
 }) {
   const [value, setValue] = useState(defaultValue);
   const [query, setQuery] = useState(defaultValue);
@@ -89,6 +92,7 @@ export function CountrySelect({
         <input
           type="text"
           role="combobox"
+          disabled={disabled}
           aria-expanded={open}
           aria-controls={listId}
           aria-autocomplete="list"
@@ -103,7 +107,11 @@ export function CountrySelect({
             onChange?.("");
           }}
           onKeyDown={onKeyDown}
-          className={cn(inputClasses, "pl-10 pr-10")}
+          className={cn(
+            inputClasses,
+            "pl-10 pr-10",
+            disabled && "cursor-not-allowed bg-[#f6f8fc] text-[#94a3b8]",
+          )}
         />
         <ChevronDown
           className={cn(
@@ -113,7 +121,7 @@ export function CountrySelect({
         />
       </div>
 
-      {open && (
+      {open && !disabled && (
         <ul
           id={listId}
           role="listbox"

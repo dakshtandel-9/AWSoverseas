@@ -26,7 +26,7 @@ const LINKS = [
   { href: "/admin/quotes", label: "Quote Requests", icon: FileText },
   { href: "/admin/warehouse-bookings", label: "Warehouse Bookings", icon: Warehouse },
   { href: "/admin/offices", label: "Offices", icon: Building2 },
-  { href: "/admin/city-agents", label: "City Agents", icon: IdCard },
+  { href: "/admin/city-agents", label: "Associates", icon: IdCard },
   { href: "/admin/footer-contacts", label: "Footer Contacts", icon: Columns4 },
   { href: "/admin/integrations", label: "SEO & Analytics", icon: ChartNoAxesCombined },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },

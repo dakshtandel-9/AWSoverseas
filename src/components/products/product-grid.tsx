@@ -8,7 +8,7 @@ export function ProductGrid({
   products,
   auth,
   eyebrow = "Catalog",
-  title = "Browse Our Products",
+  title = "Our Products",
   subtitle = "Tap Enquire now on anything you're interested in — we'll follow up with availability and a quote.",
   tone = "soft",
 }: {

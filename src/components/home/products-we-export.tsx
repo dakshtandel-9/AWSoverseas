@@ -190,7 +190,7 @@ function ViewAllCard({ index }: { index: number }) {
               Explore the complete export-ready catalog, category by category.
             </p>
             <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-maroon-admin">
-              Browse catalog
+              View catalog
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
             </span>
           </div>
@@ -226,7 +226,7 @@ export function ProductsWeExport() {
               Products We Export
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#5b6b82]">
-              Browse our export-ready catalog of premium Indian products. Every product is quality checked, export
+              Our export-ready catalog of premium Indian products. Every product is quality checked, export
               documented, and shipped worldwide.
             </p>
           </div>
@@ -301,7 +301,7 @@ export function ProductsWeExport() {
               href="/products"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/8 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/14"
             >
-              Browse Catalog
+              View Catalog
             </Link>
           </div>
         </div>

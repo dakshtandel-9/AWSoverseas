@@ -57,17 +57,28 @@
         "hint": "Shipping out of India",
         "fields": [
           {
-            "label": "Origin State",
-            "displayLabel": "Origin State/Country",
-            "type": "state-or-country-select",
-            "placeholder": "Search origin state…",
+            "label": "Origin Country",
+            "type": "country-select",
+            "placeholder": "Search origin country…",
             "required": true
+          },
+          {
+            "label": "Origin State",
+            "displayLabel": "Origin State/Province",
+            "type": "state-select",
+            "dependsOn": "Origin Country"
           },
           {
             "label": "Destination Country",
             "type": "country-select",
             "placeholder": "Search destination country…",
             "required": true
+          },
+          {
+            "label": "Destination State",
+            "displayLabel": "Destination State/Province",
+            "type": "state-select",
+            "dependsOn": "Destination Country"
           }
         ]
       },
@@ -82,11 +93,22 @@
             "required": true
           },
           {
-            "label": "Destination State",
-            "displayLabel": "Destination State/Country",
-            "type": "state-or-country-select",
-            "placeholder": "Search destination state…",
+            "label": "Origin State",
+            "displayLabel": "Origin State/Province",
+            "type": "state-select",
+            "dependsOn": "Origin Country"
+          },
+          {
+            "label": "Destination Country",
+            "type": "country-select",
+            "placeholder": "Search destination country…",
             "required": true
+          },
+          {
+            "label": "Destination State",
+            "displayLabel": "Destination State/Province",
+            "type": "state-select",
+            "dependsOn": "Destination Country"
           }
         ]
       }

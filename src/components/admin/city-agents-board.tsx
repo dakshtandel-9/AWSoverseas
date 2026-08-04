@@ -68,7 +68,7 @@ function CityAgentCard({ agent }: { agent: CityAgent }) {
 
       <div className="flex flex-1 flex-col p-4">
         <h3 className="text-sm font-bold leading-snug text-[#1A0A53]">{agent.city || "Untitled"}</h3>
-        <p className="mt-0.5 text-xs text-[#5b6b82]">{agent.agent_name || "No agent name yet"}</p>
+        <p className="mt-0.5 text-xs text-[#5b6b82]">{agent.agent_name || "No associate name yet"}</p>
 
         <ul className="mt-3 flex flex-col gap-1.5 text-xs text-[#5b6b82]">
           {agent.phone && (
