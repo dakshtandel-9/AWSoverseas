@@ -54,7 +54,7 @@ export function QuoteHero({ data }: { data: Data }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease }}
           >
-            Request Your{" "}
+            Request for{" "}
             <span
               style={{
                 background: "linear-gradient(110deg, #902d39 0%, #9e4953 55%, #861b28 100%)",
@@ -63,7 +63,7 @@ export function QuoteHero({ data }: { data: Data }) {
                 color: "transparent",
               }}
             >
-              International Import and Shipping Enquiry/Inquiry
+              International Import, Export and Shipments
             </span>
           </motion.h1>
 

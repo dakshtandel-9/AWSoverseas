@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAccount, suggestAvailableUsername } from "@/lib/account";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
 import { AccountHero } from "@/components/account/account-hero";
 import { ProfileSetupForm } from "@/components/account/profile-setup-form";
 import { Section } from "@/components/ui/section";
@@ -23,6 +25,10 @@ export default async function ProfileSetupPage() {
     (profile.first_name && profile.last_name
       ? await suggestAvailableUsername(profile.first_name, profile.last_name, profile.id)
       : "");
+
+  const defaultReferralCode = firstTime && !profile.referred_by
+    ? ((await cookies()).get(REF_CODE_COOKIE)?.value ?? "")
+    : "";
 
   let referrerLabel: string | undefined;
   if (profile.referred_by) {
@@ -54,6 +60,7 @@ export default async function ProfileSetupPage() {
           profile={profile}
           suggestedUsername={suggestedUsername}
           referrerLabel={referrerLabel}
+          defaultReferralCode={defaultReferralCode}
         />
       </Section>
     </>

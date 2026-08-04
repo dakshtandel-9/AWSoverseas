@@ -2,6 +2,9 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth/session";
+import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
+
+const REF_CODE_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days — long enough to sign in later and finish setup
 
 const INCOMPLETE_PROFILE_TTL_MS = 30 * 60 * 1000; // 30 minutes
 const VERIFIED_SESSION_TTL_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
@@ -80,10 +83,27 @@ async function refreshSupabaseSession(request: NextRequest) {
 }
 
 export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
 
   if (!pathname.startsWith("/admin")) {
-    return refreshSupabaseSession(request);
+    const response = await refreshSupabaseSession(request);
+
+    // A shared referral link (/login?...&ref=CODE) drops the code in a cookie
+    // so it survives the redirect chain and pre-fills the referral field at
+    // profile setup, without needing the signup form itself to carry it.
+    if (pathname === "/login") {
+      const ref = searchParams.get("ref")?.trim().toUpperCase().slice(0, 20);
+      if (ref) {
+        response.cookies.set(REF_CODE_COOKIE, ref, {
+          path: "/",
+          maxAge: REF_CODE_TTL_SECONDS,
+          sameSite: "lax",
+          httpOnly: true,
+        });
+      }
+    }
+
+    return response;
   }
 
   if (pathname === "/admin/login") {

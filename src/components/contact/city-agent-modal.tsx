@@ -44,9 +44,11 @@ export function CityAgentModal({
 
   async function share() {
     if (!agent) return;
+    // url-only: some share targets (macOS's share sheet among them) glue
+    // `text` and `url` into a single string for the recipient, corrupting the
+    // link. The title alone is enough context for the share sheet itself.
     const shareData = {
       title: `${agent.agent_name} — AWS Overseas, ${agent.city}`,
-      text: `Contact card for ${agent.agent_name} in ${agent.city}.`,
       url: shareUrl,
     };
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -110,10 +112,7 @@ export function CityAgentModal({
                 <X className="size-4" />
               </button>
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
-                  Local Agent
-                </p>
-                <h2 id="city-agent-modal-title" className="mt-0.5 text-xl font-bold text-white">
+                <h2 id="city-agent-modal-title" className="text-xl font-bold text-white">
                   {agent.city}
                 </h2>
               </div>

@@ -1,11 +1,13 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { uploadIdDocumentImage } from "@/lib/cloudinary";
+import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
 import { getAccount, getAuthUser, isUsernameTaken, suggestAvailableUsername, USERNAME_RE, type IdType } from "@/lib/account";
 
 export type ProfileFormState = { error?: string };
@@ -153,6 +155,11 @@ export async function completeProfileAction(
     if (error.code === "23505") return { error: `The username "${username}" is already taken — try another.` };
     return { error: "Something went wrong saving your details. Please try again." };
   }
+
+  // Clear the invite-link cookie now that its code has done its job (or the
+  // user chose not to use it) — it shouldn't linger and pre-fill a future,
+  // unrelated account on the same browser.
+  (await cookies()).delete(REF_CODE_COOKIE);
 
   revalidatePath("/profile");
   revalidatePath("/admin/users");

@@ -119,11 +119,14 @@ export function ProfileSetupForm({
   profile,
   suggestedUsername,
   referrerLabel,
+  defaultReferralCode,
 }: {
   profile: UserProfile;
   suggestedUsername: string;
   /** "Name (@username)" of the account whose code this user already used. */
   referrerLabel?: string;
+  /** Pre-fill from a shared referral link's ?ref= param, still editable. */
+  defaultReferralCode?: string;
 }) {
   const [state, formAction, pending] = useActionState(completeProfileAction, initialState);
 
@@ -418,10 +421,16 @@ export function ProfileSetupForm({
             <input
               name="referral-code"
               placeholder="XXXXXX (optional)"
+              defaultValue={defaultReferralCode}
               autoComplete="off"
               spellCheck={false}
               className={cn(inputClasses, "font-mono uppercase placeholder:normal-case placeholder:font-sans")}
             />
+            {defaultReferralCode && (
+              <p className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600">
+                <Check className="size-3" /> Applied from your invite link — edit if this isn&rsquo;t right.
+              </p>
+            )}
           </div>
         </div>
       ) : (
