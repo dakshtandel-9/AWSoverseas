@@ -13,7 +13,6 @@ import { isRtlLanguage } from "@/lib/language/languages";
 export type LanguageCode = string;
 
 const DEFAULT_LANGUAGE = "en";
-const STORAGE_KEY = "aws-overseas-lang";
 // Bump this whenever the translation/batching logic changes in a way that
 // could have produced bad cached values (e.g. the multi-sentence batching
 // bug) — old localStorage entries under a previous version are discarded
@@ -92,11 +91,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       cachesRef.current.set(lang, cache);
     }
     return cache;
-  }, []);
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored) setLanguageState(stored);
   }, []);
 
   useEffect(() => {
@@ -277,13 +271,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     lastAppliedRef.current = new WeakMap();
   }, [collectTextNodes, collectAttrElements]);
 
+  // Not persisted to localStorage on purpose: every fresh page load should
+  // start in English so the translate prompt has a reason to appear again.
   const setLanguage = useCallback((lang: LanguageCode) => {
     setLanguageState(lang);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      // ignore
-    }
   }, []);
 
   useEffect(() => {
