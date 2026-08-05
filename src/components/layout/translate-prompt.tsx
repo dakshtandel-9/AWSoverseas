@@ -6,6 +6,12 @@ import { useLanguage } from "@/lib/language/language-context";
 import { LANGUAGE_MAP } from "@/lib/language/languages";
 import { languageForCountry } from "@/lib/language/country-language";
 
+// Last-resort suggestion when neither the browser's reported language nor
+// IP geolocation produces a usable match — keeps the prompt from silently
+// not appearing at all (e.g. a device set to en-US with a failed/blocked
+// geolocation lookup).
+const FALLBACK_LANGUAGE = "es";
+
 // Matches navigator.language ("ar-SA", "zh-Hans-CN", ...) to a code we
 // actually support, trying progressively shorter prefixes.
 function matchBrowserLanguage(raw: string): string | null {
@@ -29,6 +35,7 @@ export function TranslatePrompt() {
     // Always shows on mount: every page, every refresh, every device.
     // No localStorage/sessionStorage gate — this is intentional, not a bug.
     let cancelled = false;
+    let hasBrowserMatch = false;
 
     // Browser language as an instant, no-network first pass so the prompt
     // can appear before the geolocation round trip resolves (or if it fails).
@@ -40,6 +47,7 @@ export function TranslatePrompt() {
       const candidate = matchBrowserLanguage(raw);
       if (candidate && candidate !== "en" && candidate !== language) {
         setSuggested(candidate);
+        hasBrowserMatch = true;
         break;
       }
     }
@@ -55,12 +63,16 @@ export function TranslatePrompt() {
         const byCountry = languageForCountry(data?.country ?? null);
         if (byCountry && byCountry !== "en" && byCountry !== language) {
           setSuggested(byCountry);
-        } else {
-          setSuggested(null);
+        } else if (!hasBrowserMatch) {
+          // Neither signal produced a match — still show something rather
+          // than leaving the prompt silently absent.
+          setSuggested(language === FALLBACK_LANGUAGE ? "fr" : FALLBACK_LANGUAGE);
         }
       })
       .catch(() => {
-        // swallow — browser-language guess set above still applies
+        if (!cancelled && !hasBrowserMatch) {
+          setSuggested(language === FALLBACK_LANGUAGE ? "fr" : FALLBACK_LANGUAGE);
+        }
       });
 
     return () => {
