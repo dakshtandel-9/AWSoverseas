@@ -80,9 +80,15 @@ export const COUNTRY_LANGUAGE: Record<string, string> = {
   PE: "es",
 
   // Africa
-  ZA: "en",
-  NG: "en",
+  ZA: "af",
+  NG: "ha",
   KE: "sw",
+  TZ: "sw",
+  UG: "sw",
+  ZW: "sn",
+  GH: "ak",
+  SN: "wo",
+  RW: "rw",
   ET: "am",
   MA: "ar",
   DZ: "ar",

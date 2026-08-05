@@ -6,12 +6,6 @@ import { useLanguage } from "@/lib/language/language-context";
 import { LANGUAGE_MAP } from "@/lib/language/languages";
 import { languageForCountry } from "@/lib/language/country-language";
 
-// Last-resort suggestion when neither the browser's reported language nor
-// IP geolocation produces a usable match — keeps the prompt from silently
-// not appearing at all (e.g. a device set to en-US with a failed/blocked
-// geolocation lookup).
-const FALLBACK_LANGUAGE = "es";
-
 // Matches navigator.language ("ar-SA", "zh-Hans-CN", ...) to a code we
 // actually support, trying progressively shorter prefixes.
 function matchBrowserLanguage(raw: string): string | null {
@@ -35,7 +29,6 @@ export function TranslatePrompt() {
     // Always shows on mount: every page, every refresh, every device.
     // No localStorage/sessionStorage gate — this is intentional, not a bug.
     let cancelled = false;
-    let hasBrowserMatch = false;
 
     // Browser language as an instant, no-network first pass so the prompt
     // can appear before the geolocation round trip resolves (or if it fails).
@@ -47,15 +40,15 @@ export function TranslatePrompt() {
       const candidate = matchBrowserLanguage(raw);
       if (candidate && candidate !== "en" && candidate !== language) {
         setSuggested(candidate);
-        hasBrowserMatch = true;
         break;
       }
     }
 
-    // Physical location (via IP) is the reliable signal — a visitor in
-    // Saudi Arabia should see Arabic even if their phone's system language
-    // is set to English, which browser-language matching alone can't do.
-    // It wins over the browser-language guess once it resolves.
+    // Where the visitor actually is, via IP — the authoritative signal, and
+    // the only one that gets India right when the phone's system language
+    // is English. It overrides the browser-language guess once it lands.
+    // A failed or countryless lookup leaves that guess alone; we never
+    // invent a language the visitor has no connection to.
     fetch("/api/geolocate")
       .then((res) => (res.ok ? res.json() : null))
       .then((data: { country: string | null } | null) => {
@@ -63,16 +56,10 @@ export function TranslatePrompt() {
         const byCountry = languageForCountry(data?.country ?? null);
         if (byCountry && byCountry !== "en" && byCountry !== language) {
           setSuggested(byCountry);
-        } else if (!hasBrowserMatch) {
-          // Neither signal produced a match — still show something rather
-          // than leaving the prompt silently absent.
-          setSuggested(language === FALLBACK_LANGUAGE ? "fr" : FALLBACK_LANGUAGE);
         }
       })
       .catch(() => {
-        if (!cancelled && !hasBrowserMatch) {
-          setSuggested(language === FALLBACK_LANGUAGE ? "fr" : FALLBACK_LANGUAGE);
-        }
+        // swallow — the browser-language guess above still stands
       });
 
     return () => {
