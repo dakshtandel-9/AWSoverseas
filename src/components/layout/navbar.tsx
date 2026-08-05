@@ -43,7 +43,7 @@ export function Navbar({ categoryTree = [] }: { categoryTree?: CategoryNode[] })
 
           {/* Desktop nav */}
           <nav
-            className="hidden min-w-0 shrink items-center gap-0.5 overflow-x-auto xl:gap-1 lg:flex"
+            className="hidden min-w-0 shrink items-center gap-0.5 overflow-x-auto overflow-y-hidden xl:gap-1 lg:flex"
             aria-label="Primary"
           >
             {NAV_LINKS.map((link) =>
