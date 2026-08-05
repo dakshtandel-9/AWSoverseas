@@ -5,7 +5,6 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ContactChannels } from "@/components/contact/contact-channels";
-import { OfficeMap } from "@/components/contact/office-map";
 import { OfficeLocations } from "@/components/contact/office-locations";
 import { CityAgents } from "@/components/contact/city-agents";
 import { getPublicOfficeGroups } from "@/lib/office-locations";
@@ -65,8 +64,6 @@ export default async function Page() {
       <Suspense fallback={null}>
         <CityAgents agents={cityAgents} />
       </Suspense>
-
-      <OfficeMap data={contact.googleMap} location={location} />
 
       <OfficeLocations groups={officeGroups} />
     </>

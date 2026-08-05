@@ -49,9 +49,6 @@ export async function Footer() {
   const [settings, footerContacts] = await Promise.all([getSiteSettings(), getPublicFooterContacts()]);
   const { address, emails, phones } = settings;
   const year = new Date().getFullYear();
-  const mapsHref = address
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
-    : null;
 
   return (
     <footer className="relative overflow-hidden bg-[#CFE8FF] text-ink/80">
@@ -120,17 +117,6 @@ export async function Footer() {
                     ),
                 )}
               </ul>
-            )}
-            {mapsHref && (
-              <a
-                href={mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/60 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/25 hover:bg-white"
-              >
-                <MapPin className="size-4 text-maroon-admin" />
-                View on Google Maps
-              </a>
             )}
           </div>
 
