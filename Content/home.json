@@ -284,11 +284,16 @@
             },
             {
                 "step": "06",
-                "title": "International Shipping",
-                "description": "Goods move by air or sea with customs clearance handled by our team at both ends."
+                "title": "Customs Clearance",
+                "description": "We classify goods under the correct HS codes, file the entries, and clear customs at both origin and destination."
             },
             {
                 "step": "07",
+                "title": "International Shipping",
+                "description": "Goods move by air or sea, booked through our carrier partners and monitored port to port."
+            },
+            {
+                "step": "08",
                 "title": "Delivery",
                 "description": "Track your shipment door-to-door until it reaches its destination."
             }
