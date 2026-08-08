@@ -39,9 +39,6 @@ export function FaqCta({ data }: { data: Data }) {
           <Button href="/contact" size="lg" variant="secondary">
             {data.primaryButton} <ArrowRight className="size-4" />
           </Button>
-          <Button href="/quote" size="lg" variant="ghost">
-            {data.secondaryButton}
-          </Button>
         </div>
       </motion.div>
     </Section>

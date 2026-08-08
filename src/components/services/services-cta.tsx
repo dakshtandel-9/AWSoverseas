@@ -51,11 +51,8 @@ export function ServicesCta({ data }: { data: Data }) {
             </p>
 
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <Button href="/quote" size="lg" variant="secondary">
-                {data.primaryButton} <ArrowRight className="size-4" />
-              </Button>
-              <Button href="/contact" size="lg" variant="white">
-                {data.secondaryButton}
+              <Button href="/contact" size="lg" variant="secondary">
+                {data.secondaryButton} <ArrowRight className="size-4" />
               </Button>
             </div>
           </div>
