@@ -82,6 +82,28 @@
     "primaryButton": "Apply to Partner",
     "secondaryButton": "Contact Partnership Team"
   },
+  "partnerCategories": {
+    "eyebrow": "Partnership Categories",
+    "title": "Partner With Us",
+    "description": "We welcome collaboration across the global trade ecosystem. Our partnership program is open to:",
+    "categories": [
+      {
+        "number": "1",
+        "title": "Manufacturers & Wholesalers",
+        "description": "Showcase your products to a global buyer network. If you manufacture or wholesale goods and wish to list them on our platform, connect with us to explore a listing partnership."
+      },
+      {
+        "number": "2",
+        "title": "Shipping & Freight Agents",
+        "description": "We invite shipping agents and freight forwarders worldwide to explore joint venture opportunities with us, strengthening logistics networks and expanding mutual reach across international trade routes."
+      },
+      {
+        "number": "3",
+        "title": "International Exporters",
+        "description": "Exporters looking to enter or expand within the Indian market are welcome to list their products on our platform, gaining visibility and access to verified Indian buyers."
+      }
+    ]
+  },
 
   "cta": {
     "title": "Your code is already waiting in your account",

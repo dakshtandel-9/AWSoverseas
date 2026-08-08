@@ -9,7 +9,7 @@ type Data = {
   badge: string;
   title: string;
   subtitle: string;
-  primaryButton: string;
+  primaryButton?: string;
   secondaryButton: string;
 };
 
@@ -91,9 +91,11 @@ export function ServicesHero({ data, lineCount }: { data: Data; lineCount: numbe
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease }}
           >
-            <Button href="/quote" size="lg" variant="secondary">
-              {data.primaryButton} <ArrowRight className="size-4" />
-            </Button>
+            {data.primaryButton && (
+              <Button href="/quote" size="lg" variant="secondary">
+                {data.primaryButton} <ArrowRight className="size-4" />
+              </Button>
+            )}
             <a
               href="/contact"
               className="group inline-flex h-14 items-center gap-2 rounded-full px-8 text-base font-medium text-[#1A0A53]/90 transition-all duration-300"

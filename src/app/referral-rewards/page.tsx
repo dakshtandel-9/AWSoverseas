@@ -4,6 +4,7 @@ import { ReferralHero } from "@/components/referral/referral-hero";
 import { ReferralHowItWorks } from "@/components/referral/referral-how-it-works";
 import { ReferralRules } from "@/components/referral/referral-rules";
 import { ReferralBecomePartner } from "@/components/referral/referral-become-partner";
+import { ReferralPartnerCategories } from "@/components/referral/referral-partner-categories";
 import { ReferralCta } from "@/components/referral/referral-cta";
 import { ReferralFaq } from "@/components/referral/referral-faq";
 
@@ -14,6 +15,7 @@ export default function ReferralRewardsPage() {
     <>
       <ReferralHero data={referralRewards.hero} />
       <ReferralBecomePartner data={referralRewards.becomePartner} />
+      <ReferralPartnerCategories data={referralRewards.partnerCategories} />
       <ReferralHowItWorks data={referralRewards.howItWorks} />
       <ReferralRules data={referralRewards.rules} />
       <ReferralCta data={referralRewards.cta} />
