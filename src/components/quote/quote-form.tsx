@@ -4,7 +4,7 @@ import { useActionState, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, AlertCircle, Check, ChevronDown, PackageSearch } from "lucide-react";
+import { ArrowRight, AlertCircle, Check, ChevronDown, ImagePlus, PackageSearch } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitQuoteAction, type QuoteFormState } from "@/app/actions/quote";
 import { trackLead } from "@/lib/track-lead";
@@ -24,6 +24,7 @@ type Field = {
     | "number"
     | "select"
     | "textarea"
+    | "file"
     | "country-select"
     /** Options come from whichever country `dependsOn` names, so it must be paired with a country-select. */
     | "state-select"
@@ -76,6 +77,47 @@ function FieldControl({
   const id = useId();
   const name = field.label.toLowerCase().replace(/\s+/g, "-");
   const required = field.required && !gated;
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (imagePreview) URL.revokeObjectURL(imagePreview);
+    };
+  }, [imagePreview]);
+
+  if (field.type === "file") {
+    return (
+      <>
+        <label
+          htmlFor={id}
+          className="flex h-[46px] cursor-pointer items-center gap-2.5 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 text-sm text-[#5b6b82] transition-colors hover:border-[#9e4953]"
+        >
+          {imagePreview ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={imagePreview} alt="" className="size-7 shrink-0 rounded-md object-cover" />
+          ) : (
+            <ImagePlus className="size-4 shrink-0 text-[#94a3b8]" />
+          )}
+          <span className="truncate">
+            {imagePreview ? "Image selected" : (field.placeholder ?? "Upload an image…")}
+          </span>
+        </label>
+        <input
+          id={id}
+          name={name}
+          type="file"
+          accept="image/*"
+          required={required}
+          className="hidden"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (imagePreview) URL.revokeObjectURL(imagePreview);
+            setImagePreview(file ? URL.createObjectURL(file) : null);
+          }}
+        />
+      </>
+    );
+  }
 
   if (field.type === "textarea") {
     return (
@@ -240,7 +282,8 @@ function FormSection({
             key={field.label}
             className={cn(
               "flex flex-col gap-2",
-              (field.type === "textarea" || field.type === "select") && "sm:col-span-2",
+              (field.type === "textarea" || field.type === "select" || field.type === "file") &&
+                "sm:col-span-2",
             )}
           >
             <label className="text-sm font-semibold text-[#1A0A53]">

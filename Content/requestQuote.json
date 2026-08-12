@@ -147,6 +147,11 @@
         "label": "Special Requirements",
         "type": "textarea",
         "placeholder": "Fragile, Dangerous Goods, Temperature Controlled, etc."
+      },
+      {
+        "label": "Shipment Image",
+        "type": "file",
+        "placeholder": "Upload a photo of your shipment…"
       }
     ]
   },

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { markQuoteReadAction, deleteQuoteAction, creditQuoteReferrerAction } from "@/app/admin/(dashboard)/quotes/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
 import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
@@ -19,6 +20,7 @@ type Quote = {
   email: string;
   phone: string;
   raw: Record<string, string>;
+  attachment_url?: string;
   is_read: boolean;
   created_at: string;
   tracking_number: string | null;
@@ -133,6 +135,20 @@ export function QuoteRow({
                   <span className="font-semibold text-[#1A0A53]">{toLabel(key)}:</span> {value}
                 </p>
               ))}
+            </div>
+          )}
+          {item.attachment_url && (
+            <div className="mt-2 border-t border-[#e4e9f2] pt-3">
+              <p className="font-semibold">Shipment image:</p>
+              <a href={item.attachment_url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block">
+                <Image
+                  src={item.attachment_url}
+                  alt="Shipment"
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 rounded-lg border border-[#e4e9f2] object-cover"
+                />
+              </a>
             </div>
           )}
 

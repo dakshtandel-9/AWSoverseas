@@ -437,6 +437,10 @@ alter table quote_submissions drop constraint if exists quote_submissions_direct
 alter table quote_submissions add constraint quote_submissions_direction_check
   check (direction in ('export', 'import'));
 
+-- Optional shipment photo uploaded with the quote request (same pattern as
+-- product_enquiries.attachment_url).
+alter table quote_submissions add column if not exists attachment_url text not null default '';
+
 create table if not exists shipment_milestones (
   id uuid primary key default gen_random_uuid(),
   quote_id uuid not null references quote_submissions(id) on delete cascade,

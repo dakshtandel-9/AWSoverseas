@@ -4,6 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { createTrackingNumber } from "@/lib/tracking";
+import { uploadEnquiryAttachment } from "@/lib/cloudinary";
 
 export type QuoteFormState = { success?: boolean; error?: string; trackingNumber?: string };
 
@@ -45,10 +46,21 @@ export async function submitQuoteAction(
     return { error: "This form isn't connected yet. Please try again later." };
   }
 
+  const shipmentImage = formData.get("shipment-image");
+  let attachmentUrl = "";
+  if (shipmentImage instanceof File && shipmentImage.size > 0) {
+    try {
+      attachmentUrl = await uploadEnquiryAttachment(shipmentImage);
+    } catch {
+      return { error: "Something went wrong uploading your image. Please try again." };
+    }
+  }
+
   // Every submitted field, keyed by its form `name` — keeps the full payload
   // even though only a subset is promoted to typed columns for the admin list.
   // Skip Next's internal "$ACTION_..." FormData entries (Server Action
-  // binding metadata, not real form fields).
+  // binding metadata, not real form fields) and the file field itself (not
+  // a string; its uploaded URL is stored in attachment_url instead).
   const raw: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
     if (typeof value === "string" && !key.startsWith("$ACTION")) raw[key] = value;
@@ -68,6 +80,7 @@ export async function submitQuoteAction(
     email,
     phone,
     raw,
+    attachment_url: attachmentUrl,
     user_id: account.user.id,
     tracking_number: trackingNumber,
   });
