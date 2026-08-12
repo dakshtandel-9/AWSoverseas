@@ -5,7 +5,14 @@ import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 type Category = { number: string; title: string; description: string };
-type Data = { eyebrow: string; title: string; description: string; categories: Category[] };
+type MarketAccess = { intro: string; title: string; steps: string[] };
+type Data = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  categories: Category[];
+  marketAccess: MarketAccess;
+};
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -33,6 +40,30 @@ export function ReferralPartnerCategories({ data }: { data: Data }) {
           </motion.div>
         ))}
       </div>
+
+      {data.marketAccess && (
+        <motion.div
+          className="mt-8 rounded-2xl border border-[#e4e9f2] bg-white p-8 lg:p-10"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.3, ease }}
+        >
+          <p className="max-w-3xl text-sm leading-relaxed text-[#5b6b82]">{data.marketAccess.intro}</p>
+
+          <h3 className="mt-8 text-lg font-bold text-[#1A0A53]">{data.marketAccess.title}</h3>
+          <ol className="mt-5 grid gap-4 sm:grid-cols-2">
+            {data.marketAccess.steps.map((step, i) => (
+              <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-[#5b6b82]">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[#002144]/8 font-mono text-xs font-bold text-[#1A0A53]">
+                  {i + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+      )}
     </Section>
   );
 }

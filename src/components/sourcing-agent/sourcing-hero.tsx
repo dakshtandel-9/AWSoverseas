@@ -82,7 +82,7 @@ export function SourcingHero({ data }: { data: Data }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease }}
           >
-            <Button href="/quote" size="lg" variant="secondary">
+            <Button href="/products" size="lg" variant="secondary">
               {data.primaryButton} <ArrowRight className="size-4" />
             </Button>
             <Button href="/contact" size="lg" variant="ghost" className="text-[#1A0A53] hover:bg-[#002144]/10">

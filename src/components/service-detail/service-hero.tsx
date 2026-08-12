@@ -12,6 +12,7 @@ type Data = {
   title: string;
   subtitle: string;
   primaryButton?: string;
+  primaryButtonHref?: string;
   secondaryButton: string;
 };
 
@@ -105,7 +106,7 @@ export function ServiceHero({ data, stepCount }: { data: Data; stepCount: number
               transition={{ duration: 0.7, delay: 0.28, ease }}
             >
               {data.primaryButton && (
-                <Button href="/quote" size="lg" variant="secondary">
+                <Button href={data.primaryButtonHref ?? "/quote"} size="lg" variant="secondary">
                   {data.primaryButton} <ArrowRight className="size-4" />
                 </Button>
               )}

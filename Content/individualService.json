@@ -256,7 +256,8 @@
         "badge": "International Shipping",
         "title": "Simplify Your Import Operations",
         "subtitle": "AWS OVERSEAS impex provides professional import services solutions backed by global shipping expertise.",
-        "primaryButton": "Enquire now",
+        "primaryButton": "View Products",
+        "primaryButtonHref": "/products",
         "secondaryButton": "Contact Us"
       },
       "overview": {
@@ -379,7 +380,8 @@
         "badge": "International Shipping",
         "title": "Export Worldwide With Confidence",
         "subtitle": "AWS OVERSEAS impex provides professional export services solutions backed by global shipping expertise.",
-        "primaryButton": "Enquire now",
+        "primaryButton": "View Products",
+        "primaryButtonHref": "/products",
         "secondaryButton": "Contact Us"
       },
       "overview": {

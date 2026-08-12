@@ -84,13 +84,13 @@
   },
   "partnerCategories": {
     "eyebrow": "Partnership Categories",
-    "title": "Partner With Us",
+    "title": "Associated with Us",
     "description": "We welcome collaboration across the global trade ecosystem. Our partnership program is open to:",
     "categories": [
       {
         "number": "1",
-        "title": "Manufacturers & Wholesalers",
-        "description": "Showcase your products to a global buyer network. If you manufacture or wholesale goods and wish to list them on our platform, connect with us to explore a listing partnership."
+        "title": "Infis Manufacturers & Wholesalers traders ",
+        "description": "Showcase your products to a global buyer network. If you manufacture or wholesale trader in your country and wish to list them on our platform, connect with us to explore a listing partnership."
       },
       {
         "number": "2",
@@ -99,12 +99,21 @@
       },
       {
         "number": "3",
-        "title": "International Exporters",
-        "description": "Exporters looking to enter or expand within the Indian market are welcome to list their products on our platform, gaining visibility and access to verified Indian buyers."
+        "title": "International Exporters and Importers",
+        "description": "Overseas exporters looking to enter or expand within the Indian market, and importers seeking reliable Indian suppliers, are welcome to connect with us for visibility and access to verified trade partners on both sides."
       }
-    ]
+    ],
+    "marketAccess": {
+      "intro": "Through a joint partnership arrangement, we take your products to market across India — leveraging our on-ground trade relationships, sourcing networks, and market knowledge to connect your offering with the right buyers. This collaboration allows overseas manufacturers, traders, and exporters to establish a reliable market presence in India without the overhead of setting up independent operations here.",
+      "title": "How it works",
+      "steps": [
+        "List your products on our platform for visibility to our verified Indian buyer network",
+        "Enter into a partnership/collaboration agreement with us for market representation",
+        "We handle Indian market outreach, buyer engagement, and local coordination on your behalf",
+        "You gain a trusted, on-ground partner to navigate the Indian market"
+      ]
+    }
   },
-
   "cta": {
     "title": "Your code is already waiting in your account",
     "description": "Sign in to grab your referral code and start sharing — it takes less than a minute.",
