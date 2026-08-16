@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { privacyPolicy, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { LegalHero } from "@/components/legal/legal-hero";
 import { LegalDocument } from "@/components/legal/legal-document";
 import { LegalCta } from "@/components/legal/legal-cta";
@@ -11,7 +12,7 @@ const JSONLD = {
   "@type": "WebPage",
   name: privacyPolicy.meta?.title,
   description: privacyPolicy.meta?.description,
-  url: "https://awsoverseas.com/privacy-policy",
+  url: absoluteUrl("/privacy-policy"),
 };
 
 export default function Page() {

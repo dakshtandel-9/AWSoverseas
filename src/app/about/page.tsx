@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { about, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { AboutHero } from "@/components/about/about-hero";
 import { Story } from "@/components/about/story";
 import { MissionVision } from "@/components/about/mission-vision";
@@ -16,7 +17,7 @@ const ABOUT_JSONLD = {
   "@type": "AboutPage",
   name: about.meta?.title,
   description: about.meta?.description,
-  url: "https://awsoverseas.com/about",
+  url: absoluteUrl("/about"),
   mainEntity: {
     "@type": "Organization",
     name: "AWS OVERSEAS impex",

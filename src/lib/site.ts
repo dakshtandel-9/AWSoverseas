@@ -1,10 +1,11 @@
 /** Static site structure — routes, service slugs, social links. */
 import { individualService } from "@/lib/content";
+import { SITE_URL } from "@/lib/site-url";
 
 export const SITE = {
   name: "AWS OVERSEAS impex",
   tagline: "Global Shipping Beyond Borders",
-  url: "https://awsoverseas.com",
+  url: SITE_URL,
 };
 
 export type ServiceLink = { slug: string; title: string; description: string };

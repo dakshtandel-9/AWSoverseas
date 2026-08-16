@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { contact, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { getSiteSettings } from "@/lib/site-settings";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { ContactForm } from "@/components/contact/contact-form";
@@ -18,7 +19,7 @@ const CONTACT_JSONLD = {
   "@type": "ContactPage",
   name: contact.meta?.title,
   description: contact.meta?.description,
-  url: "https://awsoverseas.com/contact",
+  url: absoluteUrl("/contact"),
 };
 
 export default async function Page() {

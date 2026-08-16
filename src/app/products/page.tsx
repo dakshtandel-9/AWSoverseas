@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { products, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { getActiveProducts } from "@/lib/product-data";
 import { getRootCategories } from "@/lib/category-data";
 import { ProductsHero } from "@/components/products/products-hero";
@@ -20,11 +21,11 @@ export default async function Page() {
     "@type": "CollectionPage",
     name: products.meta?.title,
     description: products.meta?.description,
-    url: "https://awsoverseas.com/products",
+    url: absoluteUrl("/products"),
     hasPart: categories.map((item) => ({
       "@type": "ProductGroup",
       name: item.name,
-      url: `https://awsoverseas.com/products/${item.slug}`,
+      url: absoluteUrl(`/products/${item.slug}`),
     })),
   };
 

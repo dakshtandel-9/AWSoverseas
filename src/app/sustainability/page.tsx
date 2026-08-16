@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { sustainability, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { SustainabilityHero } from "@/components/sustainability/sustainability-hero";
 import { WhyWeGiveBack } from "@/components/sustainability/why-we-give-back";
 import { Pillars } from "@/components/sustainability/pillars";
@@ -14,7 +15,7 @@ const SUSTAINABILITY_JSONLD = {
   "@type": "AboutPage",
   name: sustainability.meta?.title,
   description: sustainability.meta?.description,
-  url: "https://awsoverseas.com/sustainability",
+  url: absoluteUrl("/sustainability"),
 };
 
 export default function Page() {

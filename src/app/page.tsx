@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { home, faq, metaFrom } from "@/lib/content";
+import { SITE_URL } from "@/lib/site-url";
 import { getRootCategories } from "@/lib/category-data";
 import { getAccount } from "@/lib/account";
 import { ImageHeroSlider } from "@/components/home/image-hero-slider";
@@ -20,7 +21,7 @@ const ORG_JSONLD = {
   "@type": "Organization",
   name: "AWS OVERSEAS impex",
   description: home.meta?.description,
-  url: "https://awsoverseas.com",
+  url: SITE_URL,
   slogan: home.hero?.title,
   areaServed: "Worldwide",
 };

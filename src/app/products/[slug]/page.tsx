@@ -17,6 +17,7 @@ import { CategorySection } from "@/components/products/category-section";
 import { ProductGrid } from "@/components/products/product-grid";
 import { ProductsCta } from "@/components/products/products-cta";
 import { products as productsContent } from "@/lib/content";
+import { absoluteUrl, OG_IMAGE } from "@/lib/site-url";
 
 export async function generateStaticParams() {
   const categories = await getActiveCategories();
@@ -32,10 +33,21 @@ export async function generateMetadata({
   const category = await getActiveCategoryBySlug(slug);
   const title = category ? `${category.name} | AWS OVERSEAS impex` : "Category | AWS OVERSEAS impex";
   const description = category?.description || productsContent.meta?.description;
+  const url = absoluteUrl(`/products/${slug}`);
   return {
     title,
     description,
-    alternates: { canonical: `https://awsoverseas.com/products/${slug}` },
+    alternates: { canonical: url },
+    // Without its own openGraph block this page would inherit the home
+    // page's share title from the root layout.
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "AWS OVERSEAS impex",
+      type: "website",
+      images: [category?.image_url || OG_IMAGE],
+    },
   };
 }
 
@@ -71,12 +83,12 @@ export default async function CategoryDetailPage({
     "@type": "CollectionPage",
     name: category.name,
     description: category.description,
-    url: `https://awsoverseas.com/products/${slug}`,
+    url: absoluteUrl(`/products/${slug}`),
     hasPart: isBranch
       ? subcategories.map((item) => ({
           "@type": "ProductGroup",
           name: item.name,
-          url: `https://awsoverseas.com/products/${item.slug}`,
+          url: absoluteUrl(`/products/${item.slug}`),
         }))
       : catalog.map((item) => ({
           "@type": "Product",

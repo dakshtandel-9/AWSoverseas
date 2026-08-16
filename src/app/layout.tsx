@@ -9,6 +9,7 @@ import { TranslatePrompt } from "@/components/layout/translate-prompt";
 import { ChromeGate } from "@/components/layout/chrome-gate";
 import { LanguageProvider } from "@/lib/language/language-context";
 import { home } from "@/lib/content";
+import { SITE_URL, OG_IMAGE } from "@/lib/site-url";
 import { getSiteSettings } from "@/lib/site-settings";
 import { getMarketingIntegrations } from "@/lib/marketing-integrations";
 import { getCategoryTree } from "@/lib/category-data";
@@ -38,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const integrations = await getMarketingIntegrations();
 
   return {
-    metadataBase: new URL("https://awsoverseas.com"),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: home.meta?.title ?? "AWS OVERSEAS impex | Global Shipping Beyond Borders",
       template: "%s | AWS OVERSEAS impex",
@@ -48,10 +49,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       siteName: "AWS OVERSEAS impex",
+      url: SITE_URL,
       title: home.meta?.title,
       description: home.meta?.description,
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary_large_image" },
+    twitter: { card: "summary_large_image", images: [OG_IMAGE] },
     verification: {
       ...(integrations.googleSiteVerification
         ? { google: integrations.googleSiteVerification }

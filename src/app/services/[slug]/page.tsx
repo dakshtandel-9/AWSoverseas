@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { individualService, metaFrom } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site-url";
 import { ServiceHero } from "@/components/service-detail/service-hero";
 import { ServiceOverview } from "@/components/service-detail/service-overview";
 import { ServiceBenefits } from "@/components/service-detail/service-benefits";
@@ -42,7 +43,7 @@ export default async function ServiceDetailPage({
     provider: { "@type": "Organization", name: "AWS OVERSEAS impex" },
     areaServed: "Worldwide",
     description: svc.overview?.description,
-    url: `https://awsoverseas.com/services/${slug}`,
+    url: absoluteUrl(`/services/${slug}`),
   };
 
   return (

@@ -27,6 +27,7 @@ import referralRewardsJson from "@/content/referralRewards.json";
 import sourcingAgentJson from "@/content/sourcingAgent.json";
 import requestProductJson from "@/content/requestProduct.json";
 import sustainabilityJson from "@/content/sustainability.json";
+import { absoluteUrl, OG_IMAGE } from "@/lib/site-url";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Content = Record<string, any>;
@@ -56,7 +57,7 @@ export const sustainability = sustainabilityJson as Content;
 export function metaFrom(meta: Content | undefined, path = "/") {
   const title = meta?.title ?? "AWS OVERSEAS impex";
   const description = meta?.description ?? "";
-  const url = `https://awsoverseas.com${path}`;
+  const url = absoluteUrl(path);
   return {
     title,
     description,
@@ -68,11 +69,13 @@ export function metaFrom(meta: Content | undefined, path = "/") {
       url,
       siteName: "AWS OVERSEAS impex",
       type: "website",
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image" as const,
       title,
       description,
+      images: [OG_IMAGE],
     },
   };
 }
