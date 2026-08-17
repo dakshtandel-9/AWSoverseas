@@ -7,6 +7,7 @@ import {
   Clock3,
   FileText,
   Globe,
+  IdCard,
   Mail,
   MessageSquareText,
   Pencil,
@@ -32,6 +33,12 @@ const STATUS_BANNER: Record<
   Exclude<AccountStatus, "incomplete">,
   { icon: typeof Clock3; classes: string; title: string; body: string }
 > = {
+  unverified: {
+    icon: IdCard,
+    classes: "border-[#c7d7ee] bg-[#eef3fb] text-[#1A0A53]",
+    title: "One step left — verify your identity",
+    body: "Upload your ID documents and our team takes it from there. Requesting quotes and sending product enquiries/inquiries unlocks once you're approved.",
+  },
   pending: {
     icon: Clock3,
     classes: "border-amber-200 bg-amber-50 text-amber-800",
@@ -137,7 +144,7 @@ export default async function ProfilePage() {
     { icon: Phone, label: "Phone", value: profile.phone },
     { icon: Globe, label: "Country", value: profile.country || "—" },
     { icon: Building2, label: "Company", value: profile.company_name || "—" },
-    { icon: FileText, label: idTypeLabel, value: profile.id_number },
+    { icon: FileText, label: idTypeLabel, value: profile.id_number || "Not added yet" },
   ];
 
   return (
@@ -159,6 +166,17 @@ export default async function ProfilePage() {
                 <p className="mt-1 text-sm leading-relaxed opacity-90">{banner.body}</p>
               </div>
             </div>
+
+            {profile.status === "unverified" && (
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/profile/setup"
+                  className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+                >
+                  <IdCard className="size-4" /> Verify your identity
+                </Link>
+              </div>
+            )}
 
             {profile.status === "approved" && (
               <div className="flex flex-wrap gap-3">

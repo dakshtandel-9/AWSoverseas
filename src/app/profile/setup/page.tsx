@@ -46,11 +46,19 @@ export default async function ProfileSetupPage() {
     <>
       <AccountHero
         eyebrow="Account"
-        title={firstTime ? "Complete your profile" : "Edit your details"}
+        title={
+          firstTime
+            ? "Complete your profile"
+            : profile.status === "unverified"
+              ? "Verify your identity"
+              : "Edit your details"
+        }
         subtitle={
           firstTime
-            ? "A few details and a passport photo — then our team verifies your account for quoting."
-            : "Update your contact or verification details. Your referral code stays the same."
+            ? "A few details now, your ID whenever you're ready — our team verifies your account for quoting."
+            : profile.status === "unverified"
+              ? "Add your ID documents to unlock quotes and enquiries/inquiries. Your other details are already saved."
+              : "Update your contact or verification details. Your referral code stays the same."
         }
         right={firstTime ? "STEP 2 OF 2" : "ACCOUNT"}
       />

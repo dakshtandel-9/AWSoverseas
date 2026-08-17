@@ -15,10 +15,13 @@ export function IdDocumentUploadField({
   label,
   value,
   onUploaded,
+  optional = false,
 }: {
   label: string;
   value: string;
   onUploaded: (url: string) => void;
+  /** Drops the required marker — ID verification can be finished later from the profile. */
+  optional?: boolean;
 }) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
@@ -39,7 +42,7 @@ export function IdDocumentUploadField({
   return (
     <div className="flex flex-col gap-2">
       <span className="text-sm font-semibold text-[#1A0A53]">
-        {label} <span className="text-maroon-admin">*</span>
+        {label} {!optional && <span className="text-maroon-admin">*</span>}
       </span>
 
       {value ? (

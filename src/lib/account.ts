@@ -6,7 +6,13 @@ import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { grantSignupBonus } from "@/lib/wallet";
 import type { EnquiryAuth } from "@/components/products/enquiry-modal";
 
-export type AccountStatus = "incomplete" | "pending" | "approved" | "rejected";
+/**
+ * "incomplete" — signed in, profile never submitted (bounced to setup).
+ * "unverified" — details saved, ID upload skipped; the customer finishes it
+ *   from their profile whenever they're ready.
+ * "pending" — documents submitted, waiting on the admin review queue.
+ */
+export type AccountStatus = "incomplete" | "unverified" | "pending" | "approved" | "rejected";
 
 /** Government ID used for verification — Indian customers use Aadhaar or PAN; everyone else uses a passport. */
 export type IdType = "passport" | "aadhaar" | "pan";
@@ -36,6 +42,8 @@ export type Account = { user: User; profile: UserProfile };
 /** Derives the product-enquiry gate state shown to the Enquiry modal from an account (or guest). */
 export function enquiryAuthFor(account: Account | null): EnquiryAuth {
   if (!account) return { state: "guest" };
+  // "unverified" falls through to the generic gate below — the form stays
+  // reachable, and the notice points at /profile/setup to upload the ID.
   if (account.profile.status === "incomplete") return { state: "setup" };
   if (account.profile.status !== "approved") return { state: account.profile.status };
   return {

@@ -1,16 +1,45 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { isEmailConfigured, sendEmail } from "@/lib/email";
+import { registrationReceivedEmail } from "@/lib/email-templates";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { uploadIdDocumentImage } from "@/lib/cloudinary";
 import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
-import { getAccount, getAuthUser, isUsernameTaken, suggestAvailableUsername, USERNAME_RE, type IdType } from "@/lib/account";
+import {
+  getAccount,
+  getAuthUser,
+  isUsernameTaken,
+  suggestAvailableUsername,
+  USERNAME_RE,
+  type AccountStatus,
+  type IdType,
+} from "@/lib/account";
 
 export type ProfileFormState = { error?: string };
+
+/**
+ * Tells a customer their details reached the verification queue, after the
+ * response has gone out — a slow mail server must never hold up the redirect
+ * to /profile, and a failed send must never lose a submitted profile.
+ */
+function queueRegistrationEmail(email: string, firstName: string, lastName: string): void {
+  if (!email || !isEmailConfigured()) return;
+
+  try {
+    after(async () => {
+      await sendEmail({ to: email, ...registrationReceivedEmail({ firstName, lastName }) });
+    });
+  } catch {
+    // `after` needs a request scope. If this ever runs outside one, skipping
+    // the confirmation beats failing the submission.
+  }
+}
 
 export type IdDocumentUploadState = { url?: string; error?: string };
 
@@ -94,9 +123,17 @@ export async function completeProfileAction(
   }
   if (!phone) return { error: "Please enter your phone number." };
   if (!country) return { error: "Please select your country." };
-  if (!idNumber) return { error: `Please enter your ${idLabel} number.` };
-  if (!idFrontUrl || !idBackUrl) {
-    return { error: `Please upload both sides of your ${idLabel}.` };
+
+  // ID verification is optional here — leaving the whole section blank saves
+  // the account as "unverified" and the customer finishes it later from their
+  // profile. A half-filled section is the one thing we reject: a number with
+  // no photos (or photos with no number) can't be reviewed either way.
+  const idSubmitted = Boolean(idNumber && idFrontUrl && idBackUrl);
+  const idStarted = Boolean(idNumber || idFrontUrl || idBackUrl);
+  if (idStarted && !idSubmitted) {
+    return {
+      error: `Finish your ${idLabel} details — we need the number and photos of both sides. Or clear them and verify later from your profile.`,
+    };
   }
 
   if (await isUsernameTaken(username, account.user.id)) {
@@ -125,13 +162,19 @@ export async function completeProfileAction(
   // Approved accounts keep their status on edits, unless the ID details
   // actually changed — identity verification must be re-reviewed any time
   // the underlying documents (or which document type) change. New and
-  // rejected accounts always (re)enter the admin verification queue.
+  // rejected accounts always (re)enter the admin verification queue, and an
+  // account with no documents on file waits as "unverified" instead: there's
+  // nothing for the reviewer to look at until the customer uploads them.
   const idChanged =
     idType !== profile.id_type ||
     idNumber !== profile.id_number ||
     idFrontUrl !== profile.id_front_url ||
     idBackUrl !== profile.id_back_url;
-  const status = profile.status === "approved" && !idChanged ? "approved" : "pending";
+  const status: AccountStatus = !idSubmitted
+    ? "unverified"
+    : profile.status === "approved" && !idChanged
+      ? "approved"
+      : "pending";
 
   const { error } = await db
     .from("user_profiles")
@@ -154,6 +197,14 @@ export async function completeProfileAction(
   if (error) {
     if (error.code === "23505") return { error: `The username "${username}" is already taken — try another.` };
     return { error: "Something went wrong saving your details. Please try again." };
+  }
+
+  // Confirm the submission by email, but only on the way *into* the review
+  // queue — resubmitting while already pending shouldn't send a second copy,
+  // and someone who skipped the ID upload gets this when they come back and
+  // upload it, since that's the moment the copy actually describes.
+  if (status === "pending" && profile.status !== "pending") {
+    queueRegistrationEmail(profile.email, firstName, lastName);
   }
 
   // Clear the invite-link cookie now that its code has done its job (or the

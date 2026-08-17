@@ -18,7 +18,7 @@ const initialState: EnquiryFormState = {};
  * to everyone, so this only prefills the form — it never gates it.
  */
 export type EnquiryAuth = {
-  state: "guest" | "setup" | "pending" | "rejected" | "approved";
+  state: "guest" | "setup" | "unverified" | "pending" | "rejected" | "approved";
   firstName?: string;
   lastName?: string;
   email?: string;

@@ -312,6 +312,7 @@ function gateHrefFor(auth: EnquiryAuth, next: string): string | null {
     case "guest":
       return `/login?next=${encodeURIComponent(next)}`;
     case "setup":
+    case "unverified":
       return "/profile/setup";
     case "pending":
     case "rejected":
@@ -325,6 +326,7 @@ function gateHrefFor(auth: EnquiryAuth, next: string): string | null {
 const GATE_BUTTON_TEXT: Record<Exclude<EnquiryAuth["state"], "approved">, string> = {
   guest: "Sign in to submit",
   setup: "Complete your profile to submit",
+  unverified: "Verify your ID to submit",
   pending: "Verification pending",
   rejected: "Update details to submit",
 };
@@ -487,6 +489,8 @@ export function QuoteForm({
                     "Fill in your shipment details — we'll ask you to sign in before submitting."}
                   {auth.state === "setup" &&
                     "Almost there — finish your profile details before submitting."}
+                  {auth.state === "unverified" &&
+                    "Upload your ID from your profile to unlock submitting — you can prepare this request now."}
                   {auth.state === "pending" &&
                     "Our team is reviewing your account. You can prepare this request now; submitting unlocks once you're approved."}
                   {auth.state === "rejected" &&

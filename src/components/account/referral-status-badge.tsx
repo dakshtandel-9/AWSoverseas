@@ -1,7 +1,12 @@
-import { BadgeCheck, Clock3, ShieldAlert } from "lucide-react";
+import { BadgeCheck, Clock3, IdCard, ShieldAlert } from "lucide-react";
 import type { AccountStatus } from "@/lib/account";
 
 const STATUS_STYLES: Record<Exclude<AccountStatus, "incomplete">, { icon: typeof Clock3; classes: string; label: string }> = {
+  unverified: {
+    icon: IdCard,
+    classes: "border-[#c7d7ee] bg-[#eef3fb] text-[#5b6b82]",
+    label: "Unverified",
+  },
   pending: {
     icon: Clock3,
     classes: "border-amber-200 bg-amber-50 text-amber-800",
@@ -20,7 +25,9 @@ const STATUS_STYLES: Record<Exclude<AccountStatus, "incomplete">, { icon: typeof
 };
 
 export function ReferralStatusBadge({ status }: { status: AccountStatus }) {
-  const style = STATUS_STYLES[status === "incomplete" ? "pending" : status];
+  // A referred signup that never finished setup reads as unverified rather
+  // than pending — nothing of theirs is waiting on our review.
+  const style = STATUS_STYLES[status === "incomplete" ? "unverified" : status];
   const Icon = style.icon;
 
   return (

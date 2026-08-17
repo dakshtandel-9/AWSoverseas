@@ -1,9 +1,12 @@
 "use server";
 
+import { after } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { uploadEnquiryAttachment } from "@/lib/cloudinary";
+import { isEmailConfigured, salesFrom, sendEmail } from "@/lib/email";
+import { enquiryReceivedEmail } from "@/lib/email-templates";
 
 export type EnquiryFormState = { success?: boolean; error?: string };
 
@@ -81,6 +84,20 @@ export async function submitProductEnquiryAction(
   if (error) {
     console.error("[product-enquiry] insert failed:", error);
     return { error: "Something went wrong submitting your enquiry/inquiry. Please try again." };
+  }
+
+  // Acknowledge from the sales desk, after the response has gone out. The
+  // email is optional on the Request a Product page (phone alone is enough
+  // there), so there's often no address to reply to.
+  if (email && isEmailConfigured()) {
+    try {
+      after(async () => {
+        await sendEmail({ to: email, from: salesFrom(), ...enquiryReceivedEmail({ name }) });
+      });
+    } catch {
+      // `after` needs a request scope. Skipping the acknowledgement beats
+      // failing a submission that is already safely stored.
+    }
   }
 
   return { success: true };

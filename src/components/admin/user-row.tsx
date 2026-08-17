@@ -20,7 +20,7 @@ export type AdminUser = {
   id_front_url: string;
   id_back_url: string;
   referral_code: string;
-  status: "incomplete" | "pending" | "approved" | "rejected";
+  status: "incomplete" | "unverified" | "pending" | "approved" | "rejected";
   created_at: string;
   referrer: { first_name: string; last_name: string; username: string | null } | null;
 };
@@ -33,6 +33,7 @@ const ID_TYPE_LABEL: Record<AdminUser["id_type"], string> = {
 
 const STATUS_BADGE: Record<AdminUser["status"], { label: string; classes: string }> = {
   incomplete: { label: "Profile incomplete", classes: "bg-[#eef3fb] text-[#5b6b82]" },
+  unverified: { label: "No ID uploaded", classes: "bg-[#eef3fb] text-[#1A0A53]" },
   pending: { label: "Pending review", classes: "bg-amber-100 text-amber-800" },
   approved: { label: "Approved", classes: "bg-emerald-100 text-emerald-700" },
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },
@@ -140,7 +141,13 @@ export function UserRow({ user }: { user: AdminUser }) {
                 disabled={pending || user.status === "incomplete"}
                 onClick={() => startTransition(() => approveUserAction(user.id))}
                 className={cn(actionButton, "bg-emerald-600 text-white hover:bg-emerald-700")}
-                title={user.status === "incomplete" ? "User hasn't submitted their details yet" : undefined}
+                title={
+                  user.status === "incomplete"
+                    ? "User hasn't submitted their details yet"
+                    : user.status === "unverified"
+                      ? "No ID uploaded — approving skips document verification"
+                      : undefined
+                }
               >
                 <BadgeCheck className="size-3.5" />
                 Approve

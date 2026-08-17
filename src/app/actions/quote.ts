@@ -17,6 +17,9 @@ export async function submitQuoteAction(
   if (!account) {
     return { error: "Please sign in to request a quote." };
   }
+  if (account.profile.status === "unverified" || account.profile.status === "incomplete") {
+    return { error: "Upload your ID from your profile to unlock quoting — it takes a minute." };
+  }
   if (account.profile.status !== "approved") {
     return { error: "Your account is still being verified — quoting unlocks once it's approved." };
   }

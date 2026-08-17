@@ -20,7 +20,7 @@ export type AdminUserProfile = {
   id_front_url: string;
   id_back_url: string;
   referral_code: string;
-  status: "incomplete" | "pending" | "approved" | "rejected";
+  status: "incomplete" | "unverified" | "pending" | "approved" | "rejected";
   created_at: string;
 };
 
@@ -32,6 +32,7 @@ const ID_TYPE_LABEL: Record<AdminUserProfile["id_type"], string> = {
 
 const STATUS_BADGE: Record<AdminUserProfile["status"], { label: string; classes: string }> = {
   incomplete: { label: "Profile incomplete", classes: "bg-[#eef3fb] text-[#5b6b82]" },
+  unverified: { label: "No ID uploaded", classes: "bg-[#eef3fb] text-[#1A0A53]" },
   pending: { label: "Pending review", classes: "bg-amber-100 text-amber-800" },
   approved: { label: "Approved", classes: "bg-emerald-100 text-emerald-700" },
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },

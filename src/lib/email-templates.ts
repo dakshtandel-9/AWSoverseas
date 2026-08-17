@@ -1,0 +1,249 @@
+import { SITE } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site-url";
+import type { EmailMessage } from "@/lib/email";
+
+/**
+ * Transactional email bodies. Written as inline-styled tables because email
+ * clients strip <style> blocks and ignore most modern CSS — none of the
+ * site's Tailwind tokens survive the trip, so the brand colors are spelled
+ * out here as literals.
+ */
+
+const INK = "#1A0A53";
+const ACCENT = "#861B28";
+const MUTED = "#5b6b82";
+const LINE = "#e4e9f2";
+const SURFACE_SOFT = "#f6f8fc";
+
+const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+
+/**
+ * Animated route strip under the masthead: one continuous journey along a
+ * single route line at constant speed, where the mode changes by thirds. The
+ * truck runs the first third, then hands straight over to the plane at that
+ * exact point, then the ship takes the last third — the three service lines as
+ * one shipment. Nothing eases or pauses, and a second copy of the vehicle runs
+ * one band ahead so the lap wraps with no empty beat.
+ *
+ * An animated GIF is the only thing that moves in an inbox: email clients
+ * strip CSS animation, JS and SVG alike. Outlook on Windows shows the first
+ * frame only, so the loop opens with the truck already on the route.
+ *
+ * Rebuild with scripts/build-email-strip.py, re-upload to the same Cloudinary
+ * public_id, and update the version in this URL. It's hosted rather than
+ * inlined because email images need absolute URLs and most clients strip
+ * data: URIs.
+ */
+const ROUTE_STRIP = "https://res.cloudinary.com/dwethh3fq/image/upload/v1786935299/awsoversea/email/route-strip.gif";
+
+/** Names come from customer input, so they reach the template unescaped. */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Wraps body markup in the shared masthead/footer shell. */
+function shell(bodyHtml: string): string {
+  return `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:${SURFACE_SOFT};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${SURFACE_SOFT};padding:32px 16px;">
+    <tr><td align="center">
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;background:#ffffff;border:1px solid ${LINE};border-radius:14px;overflow:hidden;">
+
+        <tr><td style="background:${INK};padding:24px 32px;">
+          <div style="font-family:${FONT};font-size:17px;font-weight:700;letter-spacing:0.02em;color:#ffffff;">${SITE.name}</div>
+          <div style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#90c0fe;padding-top:6px;">${SITE.tagline}</div>
+        </td></tr>
+
+        <tr><td style="font-size:0;line-height:0;">
+          <img src="${ROUTE_STRIP}" width="560" alt="" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
+        </td></tr>
+
+        ${bodyHtml}
+
+        <tr><td style="background:${SURFACE_SOFT};border-top:1px solid ${LINE};padding:20px 32px;">
+          <div style="font-family:${FONT};font-size:12px;line-height:1.6;color:${MUTED};">
+            You received this because an account was registered with this address at
+            <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>.
+            Reply to this email if that wasn't you.
+          </div>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+/** One paragraph of body copy, at the shared measure and rhythm. */
+function paragraph(text: string): string {
+  return `<p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">${text}</p>`;
+}
+
+/** Maroon call-to-action button. */
+function button(href: string, label: string): string {
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 26px 0;"><tr>
+    <td style="background:${ACCENT};border-radius:10px;">
+      <a href="${href}" style="display:inline-block;padding:13px 26px;font-family:${FONT};font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;">${label}</a>
+    </td>
+  </tr></table>`;
+}
+
+/** Shared "Dear X," line — falls back when a name somehow isn't on the profile. */
+function salutationFor(firstName: string, lastName: string): string {
+  const name = [firstName, lastName].map((part) => part.trim()).filter(Boolean).join(" ");
+  return name ? `Dear ${name},` : "Dear Customer,";
+}
+
+export type RegistrationReceivedInput = {
+  firstName: string;
+  lastName: string;
+};
+
+/**
+ * Sent when a customer submits their profile and ID for verification — the
+ * `incomplete → pending` step, not the earlier signup. That's the moment the
+ * copy below describes: details are in hand and the admin review queue at
+ * /admin/users has picked them up.
+ *
+ * The wording is the client's own and is reproduced verbatim; only the name
+ * is interpolated.
+ */
+export function registrationReceivedEmail({ firstName, lastName }: RegistrationReceivedInput): Omit<EmailMessage, "to"> {
+  const salutation = salutationFor(firstName, lastName);
+
+  const html = shell(`
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">${escapeHtml(salutation)}</p>
+      ${paragraph(`Thank you for registering with ${SITE.name}.`)}
+      ${paragraph(
+        "We confirm that we have received your details successfully. Our team will review your submission, and you will be notified once the approval process is complete.",
+      )}
+      ${paragraph("We appreciate your interest in partnering with us and look forward to working together.")}
+      <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
+      <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
+    </td></tr>
+  `);
+
+  const text = `${salutation}
+
+Thank you for registering with ${SITE.name}.
+
+We confirm that we have received your details successfully. Our team will
+review your submission, and you will be notified once the approval process is
+complete.
+
+We appreciate your interest in partnering with us and look forward to working
+together.
+
+Warm regards,
+Team ${SITE.name}
+
+You received this because an account was registered with this address at ${SITE.url}.`;
+
+  return { subject: `We've received your registration — ${SITE.name}`, html, text };
+}
+
+export type EnquiryReceivedInput = {
+  /** The enquiry form collects one combined name field, so there's no surname. */
+  name: string;
+};
+
+/**
+ * Acknowledges a product enquiry, sent from the sales desk rather than admin@.
+ *
+ * The wording is the client's own and is reproduced verbatim — including
+ * "Thank you for registering", which they supplied for this email even though
+ * an enquiry isn't a registration.
+ */
+export function enquiryReceivedEmail({ name }: EnquiryReceivedInput): Omit<EmailMessage, "to"> {
+  const salutation = salutationFor(name, "");
+
+  const html = shell(`
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">${escapeHtml(salutation)}</p>
+      ${paragraph(`Thank you for registering with ${SITE.name}.`)}
+      ${paragraph(
+        "We confirm that we have received your details successfully. Our team will review your submission, and you will be notified once the approval process is complete.",
+      )}
+      ${paragraph("We appreciate your interest.")}
+      <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
+      <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
+    </td></tr>
+  `);
+
+  const text = `${salutation}
+
+Thank you for registering with ${SITE.name}.
+
+We confirm that we have received your details successfully. Our team will
+review your submission, and you will be notified once the approval process is
+complete.
+
+We appreciate your interest.
+
+Warm regards,
+Team ${SITE.name}
+
+You received this because an enquiry was submitted with this address at ${SITE.url}.`;
+
+  return { subject: `We've received your enquiry — ${SITE.name}`, html, text };
+}
+
+export type AccountApprovedInput = {
+  firstName: string;
+  lastName: string;
+};
+
+/**
+ * Sent when an admin approves a pending account at /admin/users. This is the
+ * follow-up the registration email promises ("you will be notified once the
+ * approval process is complete"), so its wording deliberately echoes that
+ * sentence back.
+ */
+export function accountApprovedEmail({ firstName, lastName }: AccountApprovedInput): Omit<EmailMessage, "to"> {
+  const salutation = salutationFor(firstName, lastName);
+  const profileUrl = absoluteUrl("/profile");
+
+  const html = shell(`
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">${escapeHtml(salutation)}</p>
+      ${paragraph(`We are pleased to inform you that your account with ${SITE.name} has been approved.`)}
+      ${paragraph(
+        "Your verification is complete. You can now sign in to request quotes and place orders directly through your account.",
+      )}
+      ${button(profileUrl, "Sign in to your account")}
+      ${paragraph(
+        "Thank you for choosing to partner with us. If you have any questions about shipping, customs or sourcing, simply reply to this email and our team will assist you.",
+      )}
+      <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
+      <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
+    </td></tr>
+  `);
+
+  const text = `${salutation}
+
+We are pleased to inform you that your account with ${SITE.name} has been
+approved.
+
+Your verification is complete. You can now sign in to request quotes and place
+orders directly through your account:
+${profileUrl}
+
+Thank you for choosing to partner with us. If you have any questions about
+shipping, customs or sourcing, simply reply to this email and our team will
+assist you.
+
+Warm regards,
+Team ${SITE.name}
+
+You received this because an account was registered with this address at ${SITE.url}.`;
+
+  return { subject: `Your account has been approved — ${SITE.name}`, html, text };
+}

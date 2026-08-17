@@ -8,12 +8,13 @@ export type ReferralUser = {
   email: string;
   referral_code: string;
   referred_by: string | null;
-  status: "incomplete" | "pending" | "approved" | "rejected";
+  status: "incomplete" | "unverified" | "pending" | "approved" | "rejected";
   created_at: string;
 };
 
 const STATUS_BADGE: Record<ReferralUser["status"], { label: string; classes: string }> = {
   incomplete: { label: "Incomplete", classes: "bg-[#eef3fb] text-[#5b6b82]" },
+  unverified: { label: "No ID", classes: "bg-[#eef3fb] text-[#1A0A53]" },
   pending: { label: "Pending", classes: "bg-amber-100 text-amber-800" },
   approved: { label: "Approved", classes: "bg-emerald-100 text-emerald-700" },
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },

@@ -342,7 +342,9 @@ alter table product_enquiries add column if not exists requested_quantity text n
 -- user_profiles — one row per Google-authenticated customer
 -- (auth.users). Created on first login with a generated referral
 -- code; the user then completes their details (status moves
--- incomplete -> pending) and an admin approves or rejects them.
+-- incomplete -> pending, or -> unverified if they skipped the ID
+-- upload and will do it later from their profile) and an admin
+-- approves or rejects them.
 -- Only approved users can submit quotes / product enquiries.
 -- ============================================================
 create table if not exists user_profiles (
@@ -356,14 +358,19 @@ create table if not exists user_profiles (
   country text not null default '',      -- customer's country, from profile setup
   referral_code text not null unique,    -- e.g. "DKSH47", generated at first login
   referred_by uuid references user_profiles(id) on delete set null,
-  status text not null default 'incomplete'
-    check (status in ('incomplete', 'pending', 'approved', 'rejected')),
+  status text not null default 'incomplete',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 -- country added after the table existed on some deployments.
 alter table user_profiles add column if not exists country text not null default '';
+
+-- 'unverified' was added once the ID upload became skippable at signup:
+-- details saved, documents still to come from the profile page.
+alter table user_profiles drop constraint if exists user_profiles_status_check;
+alter table user_profiles add constraint user_profiles_status_check
+  check (status in ('incomplete', 'unverified', 'pending', 'approved', 'rejected'));
 
 -- Identity verification generalized beyond passport: Indian customers verify
 -- with Aadhaar or PAN instead (no passport in daily use for domestic trade).
