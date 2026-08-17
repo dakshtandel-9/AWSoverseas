@@ -1,10 +1,13 @@
 "use server";
 
+import { after } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { createTrackingNumber } from "@/lib/tracking";
 import { uploadEnquiryAttachment } from "@/lib/cloudinary";
+import { adminNotifyTo, isEmailConfigured, salesFrom, sendEmail } from "@/lib/email";
+import { quoteNotificationEmail, quoteReceivedEmail } from "@/lib/email-templates";
 
 export type QuoteFormState = { success?: boolean; error?: string; trackingNumber?: string };
 
@@ -90,6 +93,41 @@ export async function submitQuoteAction(
 
   if (error) {
     return { error: "Something went wrong submitting your request. Please try again." };
+  }
+
+  // Acknowledge the customer from the sales desk and alert the team, both after
+  // the response so a slow provider never delays the confirmation screen.
+  // `after` needs a request scope; without one, skipping the mail beats failing
+  // a request that is already safely stored.
+  if (isEmailConfigured()) {
+    const route = `${originCountry} → ${destinationCountry}`;
+    const notifyTo = adminNotifyTo();
+    try {
+      after(async () => {
+        await sendEmail({
+          to: email,
+          from: salesFrom(),
+          ...quoteReceivedEmail({ name: fullName, serviceType, route, trackingNumber }),
+        });
+        if (notifyTo) {
+          await sendEmail({
+            to: notifyTo,
+            ...quoteNotificationEmail({
+              name: fullName,
+              email,
+              phone,
+              companyName,
+              serviceType,
+              shipmentType,
+              route,
+              trackingNumber,
+            }),
+          });
+        }
+      });
+    } catch {
+      // No request scope — nothing to do but let the submission stand.
+    }
   }
 
   return { success: true, trackingNumber };

@@ -282,6 +282,139 @@ You received this because an enquiry was submitted with this address at ${SITE.u
   return { subject: `We've received your enquiry — ${SITE.name}`, html, text };
 }
 
+export type QuoteReceivedInput = {
+  name: string;
+  serviceType: string;
+  route: string;
+  trackingNumber: string;
+};
+
+/**
+ * Acknowledges a submission from the /quote shipment form, sent from the sales
+ * desk. Everything the customer reads calls it an **enquiry**, never a "quote
+ * request" or a "quotation" — the client's wording. The code around it still
+ * says quote (submitQuoteAction, quote_submissions, /admin/quotes), so the two
+ * vocabularies meet here.
+ *
+ * Unlike a product enquiry this already has a tracking number by the time it
+ * sends, so the reference is the point of the email — it's the one thing the
+ * customer needs to keep.
+ */
+export function quoteReceivedEmail({
+  name,
+  serviceType,
+  route,
+  trackingNumber,
+}: QuoteReceivedInput): Omit<EmailMessage, "to"> {
+  const salutation = salutationFor(name, "");
+  const trackingUrl = absoluteUrl(`/tracking?ref=${encodeURIComponent(trackingNumber)}`);
+
+  const html = shell(`
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">${escapeHtml(salutation)}</p>
+      ${paragraph(`Thank you for your enquiry with ${SITE.name}. We have received your shipment details and our team is reviewing them now.`)}
+      ${detailTable([
+        ["Reference", trackingNumber],
+        ["Service", serviceType],
+        ["Route", route],
+      ])}
+      ${paragraph("Keep the reference above — you can follow your shipment's progress with it at any time.")}
+      ${button(trackingUrl, "Track this shipment")}
+      ${paragraph("We'll come back to you shortly with pricing and next steps. If anything about the shipment changes in the meantime, simply reply to this email.")}
+      <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
+      <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
+    </td></tr>
+  `);
+
+  const text = `${salutation}
+
+Thank you for your enquiry with ${SITE.name}. We have received your shipment
+details and our team is reviewing them now.
+
+Reference: ${trackingNumber}
+Service:   ${serviceType}
+Route:     ${route}
+
+Keep the reference above — you can follow your shipment's progress with it at
+any time:
+${trackingUrl}
+
+We'll come back to you shortly with pricing and next steps. If anything about
+the shipment changes in the meantime, simply reply to this email.
+
+Warm regards,
+Team ${SITE.name}`;
+
+  return { subject: `We've received your enquiry — ${trackingNumber}`, html, text };
+}
+
+export type QuoteNotificationInput = {
+  name: string;
+  email: string;
+  phone: string;
+  companyName: string;
+  serviceType: string;
+  shipmentType: string;
+  route: string;
+  trackingNumber: string;
+};
+
+/**
+ * The internal side of a /quote submission, same alert shape as the product
+ * enquiry one. Qualified as a **shipment enquiry** rather than plain "enquiry"
+ * only so the team can tell the two alerts apart in the inbox — a product
+ * enquiry names a product, this one names a route.
+ */
+export function quoteNotificationEmail({
+  name,
+  email,
+  phone,
+  companyName,
+  serviceType,
+  shipmentType,
+  route,
+  trackingNumber,
+}: QuoteNotificationInput): Omit<EmailMessage, "to"> {
+  const adminUrl = absoluteUrl("/admin/quotes");
+
+  const html = shell(
+    `
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 20px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">A new shipment enquiry just came in through the website.</p>
+      ${detailTable([
+        ["Reference", trackingNumber],
+        ["Service", serviceType],
+        ["Shipment", shipmentType],
+        ["Route", route],
+        ["From", name],
+        ["Company", companyName],
+        ["Email", email],
+        ["Phone", phone],
+      ])}
+      ${button(adminUrl, "Open in the admin panel")}
+    </td></tr>
+  `,
+    `Sent to the team because a shipment enquiry was submitted at
+     <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>.`,
+  );
+
+  const text = `A new shipment enquiry just came in through the website.
+
+Reference: ${trackingNumber}
+Service:   ${serviceType}
+Shipment:  ${shipmentType}
+Route:     ${route}
+From:      ${name}
+Company:   ${companyName || "—"}
+Email:     ${email}
+Phone:     ${phone}
+
+Open in the admin panel:
+${adminUrl}`;
+
+  return { subject: `New shipment enquiry: ${route}`, html, text };
+}
+
 export type EnquiryNotificationInput = {
   name: string;
   email: string;
