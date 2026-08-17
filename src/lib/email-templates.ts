@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/site";
 import { absoluteUrl } from "@/lib/site-url";
+import { EMAIL_BANNER } from "@/lib/email-assets";
 import type { EmailMessage } from "@/lib/email";
 
 /**
@@ -45,8 +46,22 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
-/** Wraps body markup in the shared masthead/footer shell. */
-function shell(bodyHtml: string): string {
+/**
+ * Wraps body markup in the shared masthead/footer shell.
+ *
+ * The brand banner sits *below* the message rather than above it: it's a 2:1
+ * image, so at the 560px body width it's 280px tall, and leading with it would
+ * push "your account has been approved" off the first screen on a phone. After
+ * the sign-off it reads as a signature instead of an obstacle. The bytes are
+ * attached by `sendEmail` — see EMAIL_BANNER.
+ */
+function shell(bodyHtml: string, footerNote?: string): string {
+  const footer =
+    footerNote ??
+    `You received this because an account was registered with this address at
+            <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>.
+            Reply to this email if that wasn't you.`;
+
   return `<!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -66,11 +81,15 @@ function shell(bodyHtml: string): string {
 
         ${bodyHtml}
 
+        <tr><td style="font-size:0;line-height:0;border-top:1px solid ${LINE};">
+          <a href="${absoluteUrl("/")}" style="display:block;">
+            <img src="cid:${EMAIL_BANNER.cid}" width="560" alt="${EMAIL_BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
+          </a>
+        </td></tr>
+
         <tr><td style="background:${SURFACE_SOFT};border-top:1px solid ${LINE};padding:20px 32px;">
           <div style="font-family:${FONT};font-size:12px;line-height:1.6;color:${MUTED};">
-            You received this because an account was registered with this address at
-            <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>.
-            Reply to this email if that wasn't you.
+            ${footer}
           </div>
         </td></tr>
 
@@ -95,10 +114,77 @@ function button(href: string, label: string): string {
   </tr></table>`;
 }
 
+/**
+ * Label/value rows for the internal notifications — a customer email is prose,
+ * an ops alert is a set of fields someone scans in five seconds.
+ */
+function detailTable(rows: [label: string, value: string][]): string {
+  const cells = rows
+    .filter(([, value]) => value)
+    .map(
+      ([label, value]) => `<tr>
+        <td style="padding:7px 16px 7px 0;font-family:${FONT};font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};vertical-align:top;white-space:nowrap;">${escapeHtml(label)}</td>
+        <td style="padding:7px 0;font-family:${FONT};font-size:15px;line-height:1.6;color:${INK};">${escapeHtml(value)}</td>
+      </tr>`,
+    )
+    .join("");
+
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 22px 0;border-top:1px solid ${LINE};border-bottom:1px solid ${LINE};">${cells}</table>`;
+}
+
 /** Shared "Dear X," line — falls back when a name somehow isn't on the profile. */
 function salutationFor(firstName: string, lastName: string): string {
   const name = [firstName, lastName].map((part) => part.trim()).filter(Boolean).join(" ");
   return name ? `Dear ${name},` : "Dear Customer,";
+}
+
+/**
+ * Sent the moment the account itself exists — the profile row's creation on
+ * the first request after sign-up, before any details have been filled in.
+ *
+ * There is deliberately no salutation: sign-up collects an email and a password
+ * and nothing else, so a name doesn't exist yet and "Dear Customer," reads
+ * worse than opening with the news. Its job is to confirm the account and point
+ * at the one thing left to do.
+ *
+ * The copy here is mine, not the client's — swap it for their wording when they
+ * supply some, the way the registration and enquiry emails already carry theirs.
+ */
+export function welcomeEmail(): Omit<EmailMessage, "to"> {
+  const setupUrl = absoluteUrl("/profile/setup");
+
+  const html = shell(`
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">Your ${escapeHtml(SITE.name)} account is ready.</p>
+      ${paragraph(
+        "One step is left: add your details so our team can verify you. Verification is what unlocks quote requests and product orders.",
+      )}
+      ${button(setupUrl, "Complete your profile")}
+      ${paragraph(
+        "You can upload your ID documents while you're there, or skip them and add them from your profile whenever you're ready.",
+      )}
+      <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
+      <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
+    </td></tr>
+  `);
+
+  const text = `Your ${SITE.name} account is ready.
+
+One step is left: add your details so our team can verify you. Verification is
+what unlocks quote requests and product orders.
+
+Complete your profile:
+${setupUrl}
+
+You can upload your ID documents while you're there, or skip them and add them
+from your profile whenever you're ready.
+
+Warm regards,
+Team ${SITE.name}
+
+You received this because an account was registered with this address at ${SITE.url}.`;
+
+  return { subject: `Welcome to ${SITE.name}`, html, text };
 }
 
 export type RegistrationReceivedInput = {
@@ -194,6 +280,65 @@ Team ${SITE.name}
 You received this because an enquiry was submitted with this address at ${SITE.url}.`;
 
   return { subject: `We've received your enquiry — ${SITE.name}`, html, text };
+}
+
+export type EnquiryNotificationInput = {
+  name: string;
+  email: string;
+  phone: string;
+  productName: string;
+  quantity: string;
+  message: string;
+};
+
+/**
+ * The internal side of an enquiry: tells the team a lead just landed, so nobody
+ * has to keep the admin panel open to find out. Goes to `adminNotifyTo()`, not
+ * the customer, and carries the contact details inline so it can be actioned
+ * from a phone without signing in.
+ */
+export function enquiryNotificationEmail({
+  name,
+  email,
+  phone,
+  productName,
+  quantity,
+  message,
+}: EnquiryNotificationInput): Omit<EmailMessage, "to"> {
+  const adminUrl = absoluteUrl("/admin/enquiries-open");
+
+  const html = shell(
+    `
+    <tr><td style="padding:32px 32px 16px 32px;">
+      <p style="margin:0 0 20px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">A new enquiry just came in through the website.</p>
+      ${detailTable([
+        ["Product", productName],
+        ["From", name],
+        ["Email", email],
+        ["Phone", phone],
+        ["Quantity", quantity],
+        ["Message", message],
+      ])}
+      ${button(adminUrl, "Open in the admin panel")}
+    </td></tr>
+  `,
+    `Sent to the team because an enquiry was submitted at
+     <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>.`,
+  );
+
+  const text = `A new enquiry just came in through the website.
+
+Product:  ${productName}
+From:     ${name}
+Email:    ${email || "—"}
+Phone:    ${phone || "—"}
+Quantity: ${quantity || "—"}
+Message:  ${message || "—"}
+
+Open in the admin panel:
+${adminUrl}`;
+
+  return { subject: `New enquiry: ${productName}`, html, text };
 }
 
 export type AccountApprovedInput = {

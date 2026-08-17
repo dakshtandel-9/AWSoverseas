@@ -5,8 +5,8 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { uploadEnquiryAttachment } from "@/lib/cloudinary";
-import { isEmailConfigured, salesFrom, sendEmail } from "@/lib/email";
-import { enquiryReceivedEmail } from "@/lib/email-templates";
+import { adminNotifyTo, isEmailConfigured, salesFrom, sendEmail } from "@/lib/email";
+import { enquiryNotificationEmail, enquiryReceivedEmail } from "@/lib/email-templates";
 
 export type EnquiryFormState = { success?: boolean; error?: string };
 
@@ -86,17 +86,38 @@ export async function submitProductEnquiryAction(
     return { error: "Something went wrong submitting your enquiry/inquiry. Please try again." };
   }
 
-  // Acknowledge from the sales desk, after the response has gone out. The
-  // email is optional on the Request a Product page (phone alone is enough
-  // there), so there's often no address to reply to.
-  if (email && isEmailConfigured()) {
+  // Both notifications go out after the response, so a slow provider never
+  // holds up the visitor's confirmation screen. `after` needs a request scope;
+  // if it ever runs without one, skipping the mail beats failing a submission
+  // that is already safely stored.
+  if (isEmailConfigured()) {
+    const notifyTo = adminNotifyTo();
     try {
       after(async () => {
-        await sendEmail({ to: email, from: salesFrom(), ...enquiryReceivedEmail({ name }) });
+        // Acknowledge from the sales desk. The address is optional on the
+        // Request a Product page (phone alone is enough there), so there's
+        // often nobody to acknowledge.
+        if (email) {
+          await sendEmail({ to: email, from: salesFrom(), ...enquiryReceivedEmail({ name }) });
+        }
+        // Tell the team, whether or not the visitor left an email — a
+        // phone-only lead is the one most worth chasing quickly.
+        if (notifyTo) {
+          await sendEmail({
+            to: notifyTo,
+            ...enquiryNotificationEmail({
+              name,
+              email,
+              phone,
+              productName,
+              quantity: requestedQuantity,
+              message,
+            }),
+          });
+        }
       });
     } catch {
-      // `after` needs a request scope. Skipping the acknowledgement beats
-      // failing a submission that is already safely stored.
+      // No request scope — nothing to do but let the submission stand.
     }
   }
 

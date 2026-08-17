@@ -1,5 +1,6 @@
 import "server-only";
 import nodemailer, { type Transporter } from "nodemailer";
+import { EMAIL_BANNER, emailBannerBase64 } from "@/lib/email-assets";
 
 /**
  * Outbound transactional email.
@@ -63,6 +64,16 @@ export function salesFrom(): string | undefined {
   return process.env.EMAIL_FROM_SALES || undefined;
 }
 
+/**
+ * Where internal "someone just submitted something" alerts go. Falls back to
+ * `EMAIL_FROM` (admin@awsoverseas.com), which is a real Hostinger mailbox — so
+ * notifications land somewhere readable even if `EMAIL_ADMIN_NOTIFY` is never
+ * set. Set it to route alerts to a different address or a shared inbox.
+ */
+export function adminNotifyTo(): string | undefined {
+  return process.env.EMAIL_ADMIN_NOTIFY || process.env.EMAIL_FROM || undefined;
+}
+
 /** Reused across sends so every email doesn't pay for a fresh TLS handshake. */
 let cachedTransporter: Transporter | null = null;
 
@@ -80,7 +91,7 @@ function smtpTransporter(): Transporter {
   return cachedTransporter;
 }
 
-async function sendViaSmtp(message: EmailMessage): Promise<void> {
+async function sendViaSmtp(message: EmailMessage, banner: string | null): Promise<void> {
   await smtpTransporter().sendMail({
     from: message.from ?? process.env.EMAIL_FROM,
     replyTo: process.env.EMAIL_REPLY_TO || undefined,
@@ -88,10 +99,22 @@ async function sendViaSmtp(message: EmailMessage): Promise<void> {
     subject: message.subject,
     html: message.html,
     text: message.text,
+    // `cid` is what makes nodemailer mark the part inline and resolve the
+    // matching `src="cid:…"` in the HTML.
+    attachments: banner
+      ? [
+          {
+            filename: EMAIL_BANNER.filename,
+            content: Buffer.from(banner, "base64"),
+            contentType: EMAIL_BANNER.contentType,
+            cid: EMAIL_BANNER.cid,
+          },
+        ]
+      : undefined,
   });
 }
 
-async function sendViaResend(message: EmailMessage): Promise<void> {
+async function sendViaResend(message: EmailMessage, banner: string | null): Promise<void> {
   const response = await fetch(RESEND_ENDPOINT, {
     method: "POST",
     headers: {
@@ -105,7 +128,22 @@ async function sendViaResend(message: EmailMessage): Promise<void> {
       subject: message.subject,
       html: message.html,
       text: message.text,
+      // Resend's equivalent of nodemailer's `cid`. Note it embeds the image in
+      // the body rather than listing it as a downloadable file.
+      attachments: banner
+        ? [
+            {
+              content: banner,
+              filename: EMAIL_BANNER.filename,
+              content_type: EMAIL_BANNER.contentType,
+              content_id: EMAIL_BANNER.cid,
+            },
+          ]
+        : undefined,
     }),
+    // The welcome email is awaited during a page render, so an unresponsive
+    // provider would otherwise hold up the redirect into profile setup.
+    signal: AbortSignal.timeout(15_000),
   });
 
   if (!response.ok) {
@@ -124,8 +162,11 @@ export async function sendEmail(message: EmailMessage): Promise<boolean> {
   if (transport === "none" || !process.env.EMAIL_FROM) return false;
 
   try {
-    if (transport === "smtp") await sendViaSmtp(message);
-    else await sendViaResend(message);
+    // Null when the artwork couldn't be fetched — the message still goes out,
+    // showing the image's alt text where the banner would have been.
+    const banner = await emailBannerBase64();
+    if (transport === "smtp") await sendViaSmtp(message, banner);
+    else await sendViaResend(message, banner);
     // Logged on success too: a send that silently works looks identical in the
     // logs to one that never fired, which makes "no email arrived" impossible
     // to diagnose — the message may simply have landed in the spam folder.

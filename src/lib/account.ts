@@ -1,5 +1,7 @@
 import "server-only";
 import type { User } from "@supabase/supabase-js";
+import { isEmailConfigured, sendEmail } from "@/lib/email";
+import { welcomeEmail } from "@/lib/email-templates";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
@@ -125,6 +127,27 @@ function generateReferralCode(firstName: string, lastName: string, email: string
   return `${letters}${digits}`;
 }
 
+/**
+ * Confirms the new account by email.
+ *
+ * Hung off the profile insert rather than the sign-up form because that insert
+ * is the one thing that happens exactly once per account, server-side, on the
+ * first request after sign-up — the browser's `signUp()` call can't be trusted
+ * to fire an email, and retrying it would double-send.
+ *
+ * Awaited rather than deferred with `after()`, unlike every other email in this
+ * app. That insert happens during the `/profile` render that immediately
+ * redirects a brand-new user to `/profile/setup`, and an `after()` callback
+ * registered by a render ending in `redirect()` never runs — measured, not
+ * assumed: the callback was registered and simply never fired, so the welcome
+ * email silently never sent. The cost is one bounded send on the first page
+ * load of a new account, and `sendEmail` never throws.
+ */
+async function sendWelcomeEmail(email: string): Promise<void> {
+  if (!email || !isEmailConfigured()) return;
+  await sendEmail({ to: email, ...welcomeEmail() });
+}
+
 /** Insert the initial profile row, retrying on referral-code collisions. */
 async function createProfileForUser(user: User): Promise<UserProfile | null> {
   const db = supabaseAdmin();
@@ -148,6 +171,7 @@ async function createProfileForUser(user: User): Promise<UserProfile | null> {
 
     if (data) {
       await grantSignupBonus(user.id);
+      await sendWelcomeEmail(user.email ?? "");
       return data as UserProfile;
     }
     // 23505 = unique violation. A duplicate id means a concurrent request
