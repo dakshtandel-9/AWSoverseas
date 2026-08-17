@@ -3,7 +3,7 @@
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase/server";
-import { uploadCityAgentImage } from "@/lib/cloudinary";
+import { uploadCityAgentImage } from "@/lib/storage";
 
 export type CityAgentFormState = { error?: string; success?: boolean };
 

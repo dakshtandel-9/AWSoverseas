@@ -3,7 +3,7 @@
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { supabaseAdmin } from "@/lib/supabase/server";
-import { uploadProductImage } from "@/lib/cloudinary";
+import { uploadProductImage } from "@/lib/storage";
 
 export type ProductFormState = { error?: string; success?: boolean };
 
