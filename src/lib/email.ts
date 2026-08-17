@@ -1,5 +1,4 @@
 import "server-only";
-import { EMAIL_BANNER, emailBannerBase64 } from "@/lib/email-assets";
 
 /**
  * Outbound transactional email, sent through Resend's HTTPS API.
@@ -80,10 +79,6 @@ export async function sendEmail(message: EmailMessage): Promise<boolean> {
   if (!isEmailConfigured()) return false;
 
   try {
-    // Null when the artwork couldn't be fetched — the message still goes out,
-    // showing the image's alt text where the banner would have been.
-    const banner = await emailBannerBase64();
-
     const response = await fetch(RESEND_ENDPOINT, {
       method: "POST",
       headers: {
@@ -97,18 +92,6 @@ export async function sendEmail(message: EmailMessage): Promise<boolean> {
         subject: message.subject,
         html: message.html,
         text: message.text,
-        // `content_id` is what embeds the banner in the body, matching the
-        // `src="cid:…"` in the HTML, rather than listing it as a download.
-        attachments: banner
-          ? [
-              {
-                content: banner,
-                filename: EMAIL_BANNER.filename,
-                content_type: EMAIL_BANNER.contentType,
-                content_id: EMAIL_BANNER.cid,
-              },
-            ]
-          : undefined,
       }),
       // The welcome email is awaited during a page render, so an unresponsive
       // provider would otherwise hold up the redirect into profile setup.
