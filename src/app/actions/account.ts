@@ -9,7 +9,7 @@ import { registrationReceivedEmail } from "@/lib/email-templates";
 import { supabaseServer } from "@/lib/supabase/server-client";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
-import { uploadIdDocumentImage } from "@/lib/cloudinary";
+import { uploadIdDocumentImage } from "@/lib/storage";
 import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
 import {
   getAccount,

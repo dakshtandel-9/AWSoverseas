@@ -34,12 +34,17 @@ const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, 
  * strip CSS animation, JS and SVG alike. Outlook on Windows shows the first
  * frame only, so the loop opens with the truck already on the route.
  *
- * Rebuild with scripts/build-email-strip.py, re-upload to the same Cloudinary
- * public_id, and update the version in this URL. It's hosted rather than
- * inlined because email images need absolute URLs and most clients strip
- * data: URIs.
+ * Rebuild with scripts/build-email-strip.py and overwrite public/email/route-strip.gif.
+ * It's hosted rather than inlined because email images need absolute URLs and
+ * most clients strip data: URIs.
+ *
+ * Served from this app's own /public rather than Cloudinary (moved 2026-08-17,
+ * see [[awsoversea-cloudinary-disabled]]) — Cloudinary delivery started
+ * returning 401 mid-outage even after the account itself came back, which
+ * blanked this image and the email banner in every inbox. Both assets are now
+ * plain static files with no third-party dependency to fail again.
  */
-const ROUTE_STRIP = "https://res.cloudinary.com/dwethh3fq/image/upload/v1786947036/awsoversea/email/route-strip.gif";
+const ROUTE_STRIP = absoluteUrl("/email/route-strip.gif");
 
 /** Names come from customer input, so they reach the template unescaped. */
 function escapeHtml(value: string): string {

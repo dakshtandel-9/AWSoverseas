@@ -5,7 +5,7 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getAccount } from "@/lib/account";
 import { createTrackingNumber } from "@/lib/tracking";
-import { uploadEnquiryAttachment } from "@/lib/cloudinary";
+import { uploadEnquiryAttachment } from "@/lib/storage";
 import { adminNotifyTo, isEmailConfigured, salesFrom, sendEmail } from "@/lib/email";
 import { quoteNotificationEmail, quoteReceivedEmail } from "@/lib/email-templates";
 
