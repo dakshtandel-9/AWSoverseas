@@ -1,44 +1,35 @@
 import "server-only";
-import nodemailer, { type Transporter } from "nodemailer";
 import { EMAIL_BANNER, emailBannerBase64 } from "@/lib/email-assets";
 
 /**
- * Outbound transactional email.
+ * Outbound transactional email, sent through Resend's HTTPS API.
  *
- * Two interchangeable transports, picked by whichever is configured:
+ * Resend is the only transport. There was an SMTP path signing in to the real
+ * admin@awsoverseas.com mailbox at smtp.hostinger.com; it was removed on
+ * 2026-08-17 because Hostinger cannot deliver this mail and never could:
  *
- *  1. **SMTP** (`SMTP_PASSWORD` set) — signs in to the real admin@awsoverseas.com
- *     mailbox at smtp.hostinger.com, so mail is sent by the same account that
- *     receives the replies.
- *  2. **Resend** (`RESEND_API_KEY` set) — an HTTPS API, no SMTP port involved.
+ *  - Hostinger relays outbound mail through MailChannels, which rejects every
+ *    external recipient with `550 5.7.1 [PSFD] Blocked`.
+ *  - The failure is invisible from here. Hostinger accepts the message with a
+ *    `250 Ok: queued`, so the send is logged as a success, then bounces
+ *    asynchronously. Mail to an @awsoverseas.com address delivers regardless,
+ *    because same-domain mail is handled locally and never reaches the relay —
+ *    so an SMTP test only means something if the recipient is external.
+ *  - It also can't send as sales@ while authenticated as admin@:
+ *    `553 5.7.1 Sender address rejected: not owned by user`.
  *
- * **Resend is the working transport; SMTP is not.** Hostinger relays outbound
- * mail through MailChannels, which rejects every external recipient with
- * `550 5.7.1 [PSFD] Blocked`. That failure is easy to miss: Hostinger accepts
- * the message with a `250 Ok: queued`, bounces asynchronously, and delivery to
- * an @awsoverseas.com address succeeds regardless because same-domain mail is
- * delivered locally and never reaches the relay. Any SMTP test must therefore
- * go to an *external* address to mean anything.
+ * Keeping the branch was actively harmful: merely filling in SMTP_PASSWORD
+ * silently switched every email onto the broken path.
  *
- * The SMTP path is kept because it costs nothing and the block is Hostinger's
- * policy, not a permanent fact — if support ever lifts it, filling in
- * SMTP_PASSWORD switches back with no code change.
+ * Hostinger still keeps the MX records and the mailboxes, so replies to
+ * admin@ and sales@ land there as before. Only sending moved.
  */
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
-type Transport = "smtp" | "resend" | "none";
-
-/** Which transport this environment is set up for. */
-function activeTransport(): Transport {
-  if (process.env.SMTP_PASSWORD && process.env.SMTP_USER && process.env.SMTP_HOST) return "smtp";
-  if (process.env.RESEND_API_KEY) return "resend";
-  return "none";
-}
-
-/** True once a transport and a sender address are both configured. */
+/** True once Resend and a sender address are both configured. */
 export function isEmailConfigured(): boolean {
-  return activeTransport() !== "none" && Boolean(process.env.EMAIL_FROM);
+  return Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM);
 }
 
 export type EmailMessage = {
@@ -74,106 +65,67 @@ export function adminNotifyTo(): string | undefined {
   return process.env.EMAIL_ADMIN_NOTIFY || process.env.EMAIL_FROM || undefined;
 }
 
-/** Reused across sends so every email doesn't pay for a fresh TLS handshake. */
-let cachedTransporter: Transporter | null = null;
-
-function smtpTransporter(): Transporter {
-  if (!cachedTransporter) {
-    const port = Number(process.env.SMTP_PORT ?? 465);
-    cachedTransporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port,
-      // Hostinger's 465 is implicit TLS; 587 upgrades with STARTTLS instead.
-      secure: port === 465,
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
-    });
-  }
-  return cachedTransporter;
-}
-
-async function sendViaSmtp(message: EmailMessage, banner: string | null): Promise<void> {
-  await smtpTransporter().sendMail({
-    from: message.from ?? process.env.EMAIL_FROM,
-    replyTo: process.env.EMAIL_REPLY_TO || undefined,
-    to: message.to,
-    subject: message.subject,
-    html: message.html,
-    text: message.text,
-    // `cid` is what makes nodemailer mark the part inline and resolve the
-    // matching `src="cid:…"` in the HTML.
-    attachments: banner
-      ? [
-          {
-            filename: EMAIL_BANNER.filename,
-            content: Buffer.from(banner, "base64"),
-            contentType: EMAIL_BANNER.contentType,
-            cid: EMAIL_BANNER.cid,
-          },
-        ]
-      : undefined,
-  });
-}
-
-async function sendViaResend(message: EmailMessage, banner: string | null): Promise<void> {
-  const response = await fetch(RESEND_ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: message.from ?? process.env.EMAIL_FROM,
-      reply_to: process.env.EMAIL_REPLY_TO || undefined,
-      to: [message.to],
-      subject: message.subject,
-      html: message.html,
-      text: message.text,
-      // Resend's equivalent of nodemailer's `cid`. Note it embeds the image in
-      // the body rather than listing it as a downloadable file.
-      attachments: banner
-        ? [
-            {
-              content: banner,
-              filename: EMAIL_BANNER.filename,
-              content_type: EMAIL_BANNER.contentType,
-              content_id: EMAIL_BANNER.cid,
-            },
-          ]
-        : undefined,
-    }),
-    // The welcome email is awaited during a page render, so an unresponsive
-    // provider would otherwise hold up the redirect into profile setup.
-    signal: AbortSignal.timeout(15_000),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Resend responded ${response.status}: ${await response.text()}`);
-  }
-}
-
 /**
- * Sends one message and reports whether it left. Never throws: email is
- * always a side effect of something more important (an account was created,
- * a profile was submitted for review), so a dead mail provider must not fail
- * that work.
+ * Sends one message and reports whether Resend accepted it.
+ *
+ * Never throws: email is always a side effect of something more important (an
+ * account was created, a profile was submitted for review), so a dead mail
+ * provider must not fail that work.
+ *
+ * "Accepted" is not "delivered" — Resend queues the message and the recipient's
+ * server can still bounce it afterwards (a mistyped address, a full mailbox).
+ * Those outcomes only show up in the Resend dashboard, never here.
  */
 export async function sendEmail(message: EmailMessage): Promise<boolean> {
-  const transport = activeTransport();
-  if (transport === "none" || !process.env.EMAIL_FROM) return false;
+  if (!isEmailConfigured()) return false;
 
   try {
     // Null when the artwork couldn't be fetched — the message still goes out,
     // showing the image's alt text where the banner would have been.
     const banner = await emailBannerBase64();
-    if (transport === "smtp") await sendViaSmtp(message, banner);
-    else await sendViaResend(message, banner);
+
+    const response = await fetch(RESEND_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: message.from ?? process.env.EMAIL_FROM,
+        reply_to: process.env.EMAIL_REPLY_TO || undefined,
+        to: [message.to],
+        subject: message.subject,
+        html: message.html,
+        text: message.text,
+        // `content_id` is what embeds the banner in the body, matching the
+        // `src="cid:…"` in the HTML, rather than listing it as a download.
+        attachments: banner
+          ? [
+              {
+                content: banner,
+                filename: EMAIL_BANNER.filename,
+                content_type: EMAIL_BANNER.contentType,
+                content_id: EMAIL_BANNER.cid,
+              },
+            ]
+          : undefined,
+      }),
+      // The welcome email is awaited during a page render, so an unresponsive
+      // provider would otherwise hold up the redirect into profile setup.
+      signal: AbortSignal.timeout(15_000),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Resend responded ${response.status}: ${await response.text()}`);
+    }
+
     // Logged on success too: a send that silently works looks identical in the
     // logs to one that never fired, which makes "no email arrived" impossible
     // to diagnose — the message may simply have landed in the spam folder.
-    console.log(`[email] ${transport} sent "${message.subject}" to ${message.to}`);
+    console.log(`[email] resend sent "${message.subject}" to ${message.to}`);
     return true;
   } catch (error) {
-    console.error(`[email] ${transport} could not send "${message.subject}" to ${message.to}`, error);
+    console.error(`[email] resend could not send "${message.subject}" to ${message.to}`, error);
     return false;
   }
 }
