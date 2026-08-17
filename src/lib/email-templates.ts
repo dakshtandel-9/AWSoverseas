@@ -26,6 +26,10 @@ const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, 
  * one shipment. Nothing eases or pauses, and a second copy of the vehicle runs
  * one band ahead so the lap wraps with no empty beat.
  *
+ * Painted in a watercolour light blue as of 2026-08-17, replacing the original
+ * brand maroon at the client's request — each vehicle carries a soft wash that
+ * pools darker at its base, over a lighter tint of the same blue for the line.
+ *
  * An animated GIF is the only thing that moves in an inbox: email clients
  * strip CSS animation, JS and SVG alike. Outlook on Windows shows the first
  * frame only, so the loop opens with the truck already on the route.
@@ -35,7 +39,7 @@ const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, 
  * inlined because email images need absolute URLs and most clients strip
  * data: URIs.
  */
-const ROUTE_STRIP = "https://res.cloudinary.com/dwethh3fq/image/upload/v1786935299/awsoversea/email/route-strip.gif";
+const ROUTE_STRIP = "https://res.cloudinary.com/dwethh3fq/image/upload/v1786947036/awsoversea/email/route-strip.gif";
 
 /** Names come from customer input, so they reach the template unescaped. */
 function escapeHtml(value: string): string {

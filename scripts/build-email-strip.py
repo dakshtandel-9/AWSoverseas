@@ -22,7 +22,16 @@ W, H = 1120, 104          # 2x of 560x52 display size
 TOTAL = 66
 FRAME_MS = 90             # 66 x 90ms -> a touch under 6s per lap
 
-ROUTE = "#861B28"         # brand maroon: the route line and every vehicle
+# Watercolour light blue, replacing the original brand maroon. The wash is what
+# makes it read as paint rather than a flat icon: each vehicle is filled with a
+# soft top-to-bottom gradient, pooling darker at its base the way pigment
+# settles, and the route line is a much lighter tint so it recedes behind the
+# vehicle instead of competing with it.
+WASH_TOP = "#A8CFF0"      # pale, where the wash thins out
+WASH_BOTTOM = "#5590C6"   # where the pigment pools
+LINE = "#93BEE4"          # the route line: a lighter tint, but it still has to
+                          # carry across 560px of near-white band — anything
+                          # paler than this vanishes at actual size.
 BAND = "#f6f8fc"          # surface-soft band
 
 BASELINE = 70             # y of the route line
@@ -76,7 +85,7 @@ def vehicle_markup(nose: float) -> str:
     vh = 44 * scale
     return (
         f"""<g transform="translate({nose - vw:.2f},{BASELINE - vh - lift:.2f}) """
-        f"""scale({scale:.4f})" fill="{ROUTE}">{paths}</g>"""
+        f"""scale({scale:.4f})" fill="url(#wash)">{paths}</g>"""
     )
 
 
@@ -89,11 +98,19 @@ def frame_markup(index: int) -> str:
     # clipped by the viewBox.
     bodies = vehicle_markup(nose) + vehicle_markup(nose + W)
 
+    # objectBoundingBox units, so every vehicle gets the same wash across its own
+    # height regardless of how tall its silhouette is.
     return f"""
     <div class="f">
       <svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="{WASH_TOP}"/>
+            <stop offset="100%" stop-color="{WASH_BOTTOM}"/>
+          </linearGradient>
+        </defs>
         <rect width="{W}" height="{H}" fill="{BAND}"/>
-        <rect x="0" y="{BASELINE - LINE_H // 2}" width="{W}" height="{LINE_H}" fill="{ROUTE}"/>
+        <rect x="0" y="{BASELINE - LINE_H // 2}" width="{W}" height="{LINE_H}" fill="{LINE}"/>
         {bodies}
       </svg>
     </div>"""
@@ -117,8 +134,10 @@ def slice_to_gif(sheet_path: Path, gif_path: Path) -> None:
     start = TOTAL // 4
     frames = frames[start:] + frames[:start]
     frames = [f.resize((W // 2, H // 2), Image.LANCZOS) for f in frames]
-    # Two flat colours, so a tiny palette keeps the file small.
-    frames = [f.quantize(colors=16, method=Image.MEDIANCUT, dither=Image.NONE) for f in frames]
+    # The wash needs a real palette — 16 colours banded it into stripes. Still no
+    # dithering: at this size the noise reads as dirt on the artwork, and the
+    # gradient spans so few pixels vertically that 64 steps are already smooth.
+    frames = [f.quantize(colors=64, method=Image.MEDIANCUT, dither=Image.NONE) for f in frames]
     frames[0].save(
         gif_path,
         save_all=True,
