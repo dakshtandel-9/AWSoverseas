@@ -42,8 +42,7 @@ export default async function HomePage() {
       <ImageHeroSlider
         slides={[
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1785427121/awsoversea/hero-slider/ship-hero.mp4",
-            image: "https://res.cloudinary.com/dwethh3fq/video/upload/so_1/awsoversea/hero-slider/ship-hero.jpg",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/ship-hero.mp4",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,
@@ -54,7 +53,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/mobile-app",
           },
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927234/awsoversea/hero-slider/manufacturing.mp4",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/manufacturing.mp4",
             imageAlt: "Warehouse aisle stacked with export-ready goods",
             badge: home.exportHero.badge,
             title: home.exportHero.title,
@@ -65,7 +64,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/products",
           },
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1784927226/awsoversea/hero-slider/cargo.mp4",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/cargo.mp4",
             imageAlt: "Aerial view of a container port with cranes and cargo ships",
             badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
             title: "Move Cargo Anywhere in the World",
@@ -77,7 +76,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/services",
           },
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1785346174/awsoversea/hero-slider/partner-import-export.mp4",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/partner-import-export.mp4",
             imageAlt: "Air freight aircraft on final approach with landing gear down",
             badge: "END-TO-END IMPORT & EXPORT MANAGEMENT",
             title: "One Partner for Import & Export",
@@ -89,7 +88,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/contact",
           },
           {
-            video: "https://res.cloudinary.com/dwethh3fq/video/upload/v1785242161/awsoversea/hero-slider/warehouse.mp4",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/warehouse.mp4",
             imageAlt: "Warehouse floor where export orders are received, packed, and staged for shipping",
             badge: "Warehousing & Order Consolidation",
             title: "Where Every Order Comes Together",
