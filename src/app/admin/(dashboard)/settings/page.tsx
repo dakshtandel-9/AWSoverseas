@@ -2,6 +2,7 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { SettingsForm } from "@/components/admin/settings-form";
+import { MaintenanceToggle } from "@/components/admin/maintenance-toggle";
 
 export default async function AdminSettingsPage() {
   const settings = await getSiteSettings();
@@ -9,7 +10,7 @@ export default async function AdminSettingsPage() {
   return (
     <div>
       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Site Settings</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Contact details &amp; brand colors</h1>
+      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Site controls, contact details &amp; brand colors</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
         Contact details appear across the live site — in the footer, the Contact page, and every WhatsApp link.
         Button and text colors apply everywhere those colors are used, site-wide. Changes here go live immediately.
@@ -20,6 +21,8 @@ export default async function AdminSettingsPage() {
           <SetupNotice />
         </div>
       )}
+
+      <MaintenanceToggle enabled={settings.maintenanceMode} />
 
       <SettingsForm settings={settings} />
     </div>

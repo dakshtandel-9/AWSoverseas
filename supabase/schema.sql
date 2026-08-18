@@ -26,6 +26,8 @@ create table if not exists site_settings (
   btn_maroon_hover text not null default '#861b28',
   -- Admin-editable maroon text color (headline gradients, icons, links).
   text_maroon text not null default '#9e4953',
+  -- When true, every public route serves the maintenance page; /admin stays open.
+  maintenance_mode boolean not null default false,
   updated_at timestamptz not null default now()
 );
 
@@ -48,6 +50,9 @@ alter table site_settings add column if not exists email_2 text not null default
 alter table site_settings add column if not exists email_3 text not null default '';
 alter table site_settings add column if not exists email_4 text not null default '';
 alter table site_settings add column if not exists email_5 text not null default '';
+
+-- Maintenance mode switch (added later than the table).
+alter table site_settings add column if not exists maintenance_mode boolean not null default false;
 
 alter table site_settings drop column if exists contact_label;
 alter table site_settings drop column if exists footer_contacts;

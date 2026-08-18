@@ -15,6 +15,8 @@ export type SiteSettings = {
   btnMaroon: string;
   btnMaroonHover: string;
   textMaroon: string;
+  /** When true, every public route serves the maintenance page. /admin is exempt. */
+  maintenanceMode: boolean;
 };
 
 /** Defaults matching the values the site shipped with, used until Supabase is configured or a row exists. */
@@ -45,6 +47,7 @@ function fallbackSettings(): SiteSettings {
     whatsappNumber: "",
     address,
     ...BUTTON_COLOR_DEFAULTS,
+    maintenanceMode: false,
   };
 }
 
@@ -67,6 +70,7 @@ const getCachedSettings = unstable_cache(
       btnMaroon: sanitizeHex(data.btn_maroon, BUTTON_COLOR_DEFAULTS.btnMaroon),
       btnMaroonHover: sanitizeHex(data.btn_maroon_hover, BUTTON_COLOR_DEFAULTS.btnMaroonHover),
       textMaroon: sanitizeHex(data.text_maroon, BUTTON_COLOR_DEFAULTS.textMaroon),
+      maintenanceMode: data.maintenance_mode === true,
     };
   },
   ["site-settings"],

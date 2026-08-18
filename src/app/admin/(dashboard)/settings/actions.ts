@@ -68,3 +68,23 @@ export async function updateSettingsAction(
   updateTag("site-settings");
   return { success: true };
 }
+
+/**
+ * Maintenance mode is its own action rather than a field on the settings form:
+ * it's a one-click switch that must not require the rest of the form to be
+ * valid, and it isn't something you want folded into an unrelated save.
+ */
+export async function setMaintenanceModeAction(enabled: boolean): Promise<SettingsState> {
+  const db = supabaseAdmin();
+  const { error } = await db
+    .from("site_settings")
+    .update({ maintenance_mode: enabled })
+    .eq("id", 1);
+
+  if (error) {
+    return { error: "Couldn't change maintenance mode. Please try again." };
+  }
+
+  updateTag("site-settings");
+  return { success: true };
+}

@@ -3,6 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth/session";
 import { REF_CODE_COOKIE } from "@/lib/referral-cookie";
+import { MAINTENANCE_HEADER } from "@/lib/maintenance";
 
 const REF_CODE_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days — long enough to sign in later and finish setup
 
@@ -82,10 +83,114 @@ async function refreshSupabaseSession(request: NextRequest) {
   return response;
 }
 
+/**
+ * Paths that stay reachable while maintenance mode is on: the admin panel
+ * (handled separately below, so the switch can be turned back off), the
+ * maintenance page itself, and the small API routes it depends on.
+ */
+function isMaintenanceExempt(pathname: string): boolean {
+  return pathname === "/maintenance" || pathname.startsWith("/api/");
+}
+
+/**
+ * Routes that need the Supabase session cookie refreshed. This list used to be
+ * the proxy's whole matcher; the matcher now covers every route (maintenance
+ * mode has to gate all of them), so the refresh is scoped here instead.
+ */
+const SESSION_REFRESH_PATHS = new Set([
+  "/login",
+  "/auth",
+  "/profile",
+  "/quote",
+  "/products",
+  "/forgot-password",
+  "/reset-password",
+]);
+
+function needsSessionRefresh(pathname: string): boolean {
+  return (
+    SESSION_REFRESH_PATHS.has(pathname) ||
+    pathname.startsWith("/auth/") ||
+    pathname.startsWith("/profile/")
+  );
+}
+
+const MAINTENANCE_TTL_MS = 10_000;
+let maintenanceFlag = { value: false, checkedAt: 0 };
+
+/**
+ * Reads the maintenance switch from `site_settings`. The proxy runs before the
+ * React cache exists, so `updateTag("site-settings")` can't reach it — hence a
+ * short in-memory TTL instead: flipping the switch in the admin panel takes
+ * effect on the public site within {@link MAINTENANCE_TTL_MS}.
+ *
+ * Any failure keeps the last known value (false on a cold start), so a Supabase
+ * blip can never be what takes the site down.
+ */
+async function isMaintenanceOn(): Promise<boolean> {
+  const now = Date.now();
+  if (now - maintenanceFlag.checkedAt < MAINTENANCE_TTL_MS) return maintenanceFlag.value;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return false;
+
+  try {
+    // Raw REST rather than supabase-js: one row, one column, no client to boot.
+    const res = await fetch(`${url}/rest/v1/site_settings?id=eq.1&select=maintenance_mode`, {
+      headers: { apikey: key, authorization: `Bearer ${key}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return maintenanceFlag.value;
+    const rows = (await res.json()) as { maintenance_mode?: boolean }[];
+    maintenanceFlag = { value: rows?.[0]?.maintenance_mode === true, checkedAt: now };
+  } catch {
+    // Keep serving whatever the last successful read said.
+  }
+  return maintenanceFlag.value;
+}
+
 export async function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
-  if (!pathname.startsWith("/admin")) {
+  // Admin first, and never gated by maintenance mode — this is where the
+  // switch lives, so locking it behind the maintenance page would be a trap.
+  if (pathname.startsWith("/admin")) {
+    if (pathname === "/admin/login") {
+      return NextResponse.next();
+    }
+
+    const token = request.cookies.get(SESSION_COOKIE)?.value;
+    const valid = await verifySessionToken(token);
+
+    if (!valid) {
+      const loginUrl = new URL("/admin/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    return NextResponse.next();
+  }
+
+  // Maintenance mode: serve the maintenance page for every public URL. A
+  // rewrite rather than a redirect, so the visitor keeps the address they
+  // asked for and lands on the real page once the switch goes off.
+  if (!isMaintenanceExempt(pathname) && (await isMaintenanceOn())) {
+    const maintenanceUrl = request.nextUrl.clone();
+    maintenanceUrl.pathname = "/maintenance";
+    maintenanceUrl.search = "";
+
+    // The page redirects home when the switch is off, which would ping-pong
+    // against this rewrite while the TTL cache above is still stale. This
+    // header tells the page the rewrite sent it, so it renders instead.
+    const headers = new Headers(request.headers);
+    headers.set(MAINTENANCE_HEADER, "1");
+
+    const response = NextResponse.rewrite(maintenanceUrl, { request: { headers } });
+    response.headers.set("Retry-After", "3600");
+    return response;
+  }
+
+  if (needsSessionRefresh(pathname)) {
     const response = await refreshSupabaseSession(request);
 
     // A shared referral link (/login?...&ref=CODE) drops the code in a cookie
@@ -106,31 +211,14 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  if (pathname === "/admin/login") {
-    return NextResponse.next();
-  }
-
-  const token = request.cookies.get(SESSION_COOKIE)?.value;
-  const valid = await verifySessionToken(token);
-
-  if (!valid) {
-    const loginUrl = new URL("/admin/login", request.url);
-    return NextResponse.redirect(loginUrl);
-  }
-
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/admin/:path*",
-    // Customer-auth routes: keep the Supabase session cookie fresh.
-    "/login",
-    "/auth/:path*",
-    "/profile/:path*",
-    "/quote",
-    "/products",
-    "/forgot-password",
-    "/reset-password",
-  ],
+  // Every route, so maintenance mode can gate the whole public site. Build
+  // output and anything with a file extension (/favicon.ico, /brand/*.png,
+  // /robots.txt) are excluded — they cost a proxy hop and gate nothing.
+  // Which routes get the admin check, the maintenance gate, or a Supabase
+  // session refresh is decided in `proxy()` above.
+  matcher: ["/((?!_next/|__nextjs|.*\\.[^/]+$).*)"],
 };

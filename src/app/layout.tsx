@@ -102,14 +102,20 @@ export default async function RootLayout({
         <LanguageProvider>
           <PageLoader />
           <LanguageLoader />
-          <TranslatePrompt />
+          {/* Positioned to sit below the navbar, which maintenance mode removes —
+              so it would land on top of the maintenance page's own header. */}
+          {!settings.maintenanceMode && <TranslatePrompt />}
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-white"
           >
             Skip to content
           </a>
-          <ChromeGate navbar={<Navbar categoryTree={categoryTree} />} footer={<Footer />}>
+          <ChromeGate
+            navbar={<Navbar categoryTree={categoryTree} />}
+            footer={<Footer />}
+            maintenance={settings.maintenanceMode}
+          >
             <main id="main">{children}</main>
           </ChromeGate>
         </LanguageProvider>
