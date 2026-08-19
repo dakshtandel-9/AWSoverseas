@@ -11,8 +11,6 @@ const CACHE_CONTROL = "31536000";
 
 /** Decorative photos (products, categories, city agents, enquiry references): shown only as small thumbnails, safe to compress hard. */
 const PHOTO_PROFILE = { maxDimension: 1600, quality: 80 } as const;
-/** Government ID photos: must stay legible, so resize and compress conservatively. */
-const DOCUMENT_PROFILE = { maxDimension: 2000, quality: 90 } as const;
 
 export function isStorageConfigured(): boolean {
   return isSupabaseConfigured();
@@ -73,11 +71,6 @@ async function uploadToStorage(
 
   const { data } = db.storage.from(BUCKET).getPublicUrl(path);
   return data.publicUrl;
-}
-
-/** Uploads a government ID photo (passport/Aadhaar/PAN, front/back) for account verification and returns its HTTPS URL. Server-only. */
-export async function uploadIdDocumentImage(file: File): Promise<string> {
-  return uploadToStorage(file, "id-documents", DOCUMENT_PROFILE);
 }
 
 /** Uploads a product image and returns its public HTTPS URL. Server-only. */

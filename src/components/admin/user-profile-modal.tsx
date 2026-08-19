@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Gift, UserRound, X } from "lucide-react";
 
@@ -15,10 +14,8 @@ export type AdminUserProfile = {
   phone: string;
   company_name: string;
   country: string;
-  id_type: "passport" | "aadhaar" | "pan";
+  id_type: "passport" | "aadhaar" | "national_id";
   id_number: string;
-  id_front_url: string;
-  id_back_url: string;
   referral_code: string;
   status: "incomplete" | "unverified" | "pending" | "approved" | "rejected";
   created_at: string;
@@ -27,7 +24,7 @@ export type AdminUserProfile = {
 const ID_TYPE_LABEL: Record<AdminUserProfile["id_type"], string> = {
   passport: "Passport",
   aadhaar: "Aadhaar",
-  pan: "PAN",
+  national_id: "National ID",
 };
 
 const STATUS_BADGE: Record<AdminUserProfile["status"], { label: string; classes: string }> = {
@@ -37,24 +34,6 @@ const STATUS_BADGE: Record<AdminUserProfile["status"], { label: string; classes:
   approved: { label: "Approved", classes: "bg-emerald-100 text-emerald-700" },
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },
 };
-
-function IdDocumentImage({ label, url }: { label: string; url: string }) {
-  if (!url) {
-    return (
-      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-[#e4e9f2] text-xs text-[#94a3b8]">
-        {label}: not uploaded
-      </div>
-    );
-  }
-  return (
-    <a href={url} target="_blank" rel="noreferrer" className="group block" title={`Open ${label} full size`}>
-      <div className="relative h-40 overflow-hidden rounded-xl border border-[#e4e9f2]">
-        <Image src={url} alt={label} fill sizes="320px" className="object-cover transition-transform group-hover:scale-105" />
-      </div>
-      <p className="mt-1.5 text-xs font-medium text-[#5b6b82]">{label} — click to open</p>
-    </a>
-  );
-}
 
 function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose: () => void }) {
   useEffect(() => {
@@ -155,11 +134,6 @@ function ProfileModal({ profile, onClose }: { profile: AdminUserProfile; onClose
                 <span className="font-semibold">Referral code:</span>{" "}
                 <span className="font-mono">{profile.referral_code}</span>
               </p>
-            </div>
-
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <IdDocumentImage label={`${ID_TYPE_LABEL[profile.id_type]} front`} url={profile.id_front_url} />
-              <IdDocumentImage label={`${ID_TYPE_LABEL[profile.id_type]} back`} url={profile.id_back_url} />
             </div>
           </div>
         </motion.div>

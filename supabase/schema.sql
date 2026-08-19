@@ -378,15 +378,12 @@ alter table user_profiles add constraint user_profiles_status_check
   check (status in ('incomplete', 'unverified', 'pending', 'approved', 'rejected'));
 
 -- Identity verification generalized beyond passport: Indian customers verify
--- with Aadhaar or PAN instead (no passport in daily use for domestic trade).
--- id_type picks the document; id_number/id_front_url/id_back_url replace the
--- old passport-only columns and hold whichever document applies. Existing
--- rows backfill as id_type 'passport' from their passport_* data so no
--- verification history is lost.
+-- with Aadhaar or passport, everyone else with passport or national ID.
+-- id_type picks the document; id_number holds whichever document applies.
+-- Existing rows backfill as id_type 'passport' from their passport_* data so
+-- no verification history is lost.
 alter table user_profiles add column if not exists id_type text not null default 'passport';
 alter table user_profiles add column if not exists id_number text not null default '';
-alter table user_profiles add column if not exists id_front_url text not null default '';
-alter table user_profiles add column if not exists id_back_url text not null default '';
 
 do $$
 begin
@@ -396,20 +393,27 @@ begin
   ) then
     update user_profiles
     set id_type = 'passport',
-        id_number = passport_number,
-        id_front_url = passport_front_url,
-        id_back_url = passport_back_url
+        id_number = passport_number
     where id_number = '' and passport_number <> '';
   end if;
 end $$;
 
+-- 'pan' (dropped in favor of 'national_id' for non-Indian customers) may
+-- still be on rows saved before this change.
+update user_profiles set id_type = 'national_id' where id_type = 'pan';
+
 alter table user_profiles drop constraint if exists user_profiles_id_type_check;
 alter table user_profiles add constraint user_profiles_id_type_check
-  check (id_type in ('passport', 'aadhaar', 'pan'));
+  check (id_type in ('passport', 'aadhaar', 'national_id'));
 
 alter table user_profiles drop column if exists passport_number;
 alter table user_profiles drop column if exists passport_front_url;
 alter table user_profiles drop column if exists passport_back_url;
+
+-- ID verification photos (front/back) were dropped — only the ID number is
+-- collected and required now, no document images.
+alter table user_profiles drop column if exists id_front_url;
+alter table user_profiles drop column if exists id_back_url;
 
 create index if not exists user_profiles_status_idx on user_profiles (status, created_at desc);
 create index if not exists user_profiles_referred_by_idx on user_profiles (referred_by);

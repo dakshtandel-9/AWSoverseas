@@ -11,7 +11,6 @@ import {
   suggestUsernameAction,
   type ProfileFormState,
 } from "@/app/actions/account";
-import { IdDocumentUploadField } from "@/components/account/id-document-upload-field";
 import { PhoneInput } from "@/components/account/phone-input";
 import { CountrySelect } from "@/components/quote/country-select";
 import { SignOutButton } from "@/components/account/sign-out-button";
@@ -22,46 +21,28 @@ const inputClasses =
 
 type UsernameStatus = "idle" | "checking" | "available" | "taken" | "invalid";
 
-/** `numberNoun` is `numberLabel` as it reads mid-sentence — only "Passport" loses its capital. */
-const idCopy: Record<
-  IdType,
-  { label: string; lowerLabel: string; numberLabel: string; numberNoun: string; numberPlaceholder: string }
-> = {
-  passport: {
-    label: "Passport",
-    lowerLabel: "passport",
-    numberLabel: "Passport number",
-    numberNoun: "passport number",
-    numberPlaceholder: "e.g. A1234567",
-  },
-  aadhaar: {
-    label: "Aadhaar",
-    lowerLabel: "Aadhaar",
-    numberLabel: "Aadhaar number",
-    numberNoun: "Aadhaar number",
-    numberPlaceholder: "e.g. 1234 5678 9012",
-  },
-  pan: {
-    label: "PAN card",
-    lowerLabel: "PAN card",
-    numberLabel: "PAN number",
-    numberNoun: "PAN number",
-    numberPlaceholder: "e.g. ABCDE1234F",
+const idCopy: Record<IdType, { toggleLabel: string; numberLabel: string; numberPlaceholder: string }> = {
+  passport: { toggleLabel: "Passport", numberLabel: "Passport number", numberPlaceholder: "e.g. A1234567" },
+  aadhaar: { toggleLabel: "Aadhaar", numberLabel: "Aadhaar number", numberPlaceholder: "e.g. 1234 5678 9012" },
+  national_id: {
+    toggleLabel: "National ID",
+    numberLabel: "National ID number",
+    numberPlaceholder: "e.g. N1234567",
   },
 };
 
+/** Each country picks between two document types: India between Aadhaar and passport, everyone else between passport and national ID. */
+const idOptionsFor = (isIndia: boolean): readonly IdType[] => (isIndia ? ["aadhaar", "passport"] : ["passport", "national_id"]);
+
 const initialState: ProfileFormState = {};
 
-/** Danger confirmation shown before an ID document change is submitted on an approved account. */
+/** Danger confirmation shown before an ID number change is submitted on an approved account. */
 function ConfirmIdChangeModal({
   open,
-  clearing,
   onCancel,
   onConfirm,
 }: {
   open: boolean;
-  /** The change empties the ID section rather than replacing it — a different outcome, and a worse one. */
-  clearing: boolean;
   onCancel: () => void;
   onConfirm: () => void;
 }) {
@@ -108,22 +89,12 @@ function ConfirmIdChangeModal({
             </span>
             <div>
               <p id="passport-change-title" className="text-base font-bold text-[#1A0A53]">
-                {clearing ? "Your account will lose its verified status" : "Your account will go back for review"}
+                Your account will go back for review
               </p>
               <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-[#5b6b82]">
-                {clearing ? (
-                  <>
-                    You&rsquo;ve removed your ID verification details. Your account goes back to unverified
-                    until you upload them again and our team reviews them — you won&rsquo;t be able to
-                    request quotes or send enquiries/inquiries until then.
-                  </>
-                ) : (
-                  <>
-                    You&rsquo;ve changed your ID verification details. Since these are what we verify your
-                    identity against, your account moves back to pending until our team reviews the change —
-                    you won&rsquo;t be able to request quotes or send enquiries/inquiries until then.
-                  </>
-                )}
+                You&rsquo;ve changed your ID verification details. Since these are what we verify your
+                identity against, your account moves back to pending until our team reviews the change —
+                you won&rsquo;t be able to request quotes or send enquiries/inquiries until then.
               </p>
             </div>
             <div className="mt-2 flex w-full items-center gap-3">
@@ -172,44 +143,21 @@ export function ProfileSetupForm({
   const [usernameStatus, setUsernameStatus] = useState<UsernameStatus>("idle");
   const [country, setCountry] = useState(profile.country);
   const isIndia = country === "India";
-  const [indianIdType, setIndianIdType] = useState<Extract<IdType, "aadhaar" | "pan">>(
-    profile.id_type === "pan" ? "pan" : "aadhaar",
+  const [idType, setIdType] = useState<IdType>(
+    idOptionsFor(profile.country === "India").includes(profile.id_type) ? profile.id_type : "passport",
   );
-  const idType: IdType = isIndia ? indianIdType : "passport";
-  const [frontUrl, setFrontUrl] = useState(profile.id_front_url);
-  const [backUrl, setBackUrl] = useState(profile.id_back_url);
   const [idNumber, setIdNumber] = useState(profile.id_number);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const confirmedRef = useRef(false);
 
-  const idChanged =
-    idType !== profile.id_type ||
-    idNumber !== profile.id_number ||
-    frontUrl !== profile.id_front_url ||
-    backUrl !== profile.id_back_url;
+  const idChanged = idType !== profile.id_type || idNumber !== profile.id_number;
 
-  // Verification is all-or-nothing: a number with no photos is nothing the
-  // team can review, so the form only accepts the full set or an empty one.
-  const idComplete = Boolean(idNumber && frontUrl && backUrl);
-  const idStarted = Boolean(idNumber || frontUrl || backUrl);
-  const idPartial = idStarted && !idComplete;
-  const missingIdParts = [
-    !idNumber && `the ${idCopy[idType].numberNoun}`,
-    !frontUrl && "a photo of the front",
-    !backUrl && "a photo of the back",
-  ].filter(Boolean) as string[];
-
-  // Saving only reaches the review queue when the full document set is there
-  // and it's actually new — otherwise this is a plain details save.
-  const entersReview = idComplete && (profile.status !== "approved" || idChanged);
-  const submitLabel = pending
-    ? "Saving…"
-    : entersReview
-      ? "Submit for verification"
-      : firstTime
-        ? "Save and verify later"
-        : "Save changes";
+  // Saving only reaches the review queue when the number is actually new —
+  // otherwise (an approved account re-saving the same number) this is a
+  // plain details save.
+  const entersReview = profile.status !== "approved" || idChanged;
+  const submitLabel = pending ? "Saving…" : entersReview ? "Submit for verification" : "Save changes";
 
   function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     if (profile.status === "approved" && idChanged && !confirmedRef.current) {
@@ -218,17 +166,17 @@ export function ProfileSetupForm({
     }
   }
 
-  // Switching to/from India clears the document fields — a passport number
-  // and an Aadhaar number aren't interchangeable, and carrying one over as
-  // the other's value would submit garbage silently.
+  // Switching to/from India changes which document pair applies and clears
+  // the ID number — a passport number and an Aadhaar number aren't
+  // interchangeable, and carrying one over as the other's value would submit
+  // garbage silently.
   function onCountryChanged(nextCountry: string) {
     const wasIndia = country === "India";
     const nextIsIndia = nextCountry === "India";
     setCountry(nextCountry);
     if (wasIndia !== nextIsIndia) {
+      setIdType("passport");
       setIdNumber("");
-      setFrontUrl("");
-      setBackUrl("");
     }
   }
 
@@ -410,54 +358,42 @@ export function ProfileSetupForm({
       <div className="border-b border-[#e4e9f2] px-7 py-8 sm:px-10">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
           <span className="font-mono text-xs font-bold text-[#94a3b8]">02</span>
-          <h2 className="text-lg font-bold text-[#1A0A53]">
-            {isIndia ? "ID verification" : "Passport verification"}
-          </h2>
-          <span className="rounded-full bg-[#eef3fb] px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[#5b6b82]">
-            Optional for now
-          </span>
+          <h2 className="text-lg font-bold text-[#1A0A53]">ID verification</h2>
         </div>
         <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">
           {isIndia
-            ? "Verify your identity with Aadhaar or PAN."
-            : "International shipping requires identity verification."}{" "}
-          Upload it now, or leave this blank and add it from your profile later — quotes and
-          enquiries/inquiries unlock once our team approves it.
+            ? "Verify your identity with your Aadhaar or passport number."
+            : "Verify your identity with your passport or national ID number."}{" "}
+          Our team reviews it once you submit — quotes and enquiries/inquiries unlock once your
+          account is approved.
         </p>
 
-        {profile.status === "unverified" && (
-          <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800 sm:ml-7">
-            <ShieldAlert className="mt-0.5 size-4 shrink-0" />
-            Your account isn&rsquo;t verified yet. Add your {idCopy[idType].lowerLabel} here and our team
-            reviews it after you save.
-          </div>
-        )}
-
-        {isIndia && (
-          <div className="mt-6 inline-flex rounded-full border border-[#e4e9f2] bg-[#f6f8fc] p-1">
-            {(["aadhaar", "pan"] as const).map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setIndianIdType(option)}
-                className={cn(
-                  "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
-                  indianIdType === option ? "bg-white text-maroon-admin shadow-sm" : "text-[#5b6b82]",
-                )}
-              >
-                {option === "aadhaar" ? "Aadhaar" : "PAN card"}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="mt-6 inline-flex rounded-full border border-[#e4e9f2] bg-[#f6f8fc] p-1">
+          {idOptionsFor(isIndia).map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setIdType(option)}
+              className={cn(
+                "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
+                idType === option ? "bg-white text-maroon-admin shadow-sm" : "text-[#5b6b82]",
+              )}
+            >
+              {idCopy[option].toggleLabel}
+            </button>
+          ))}
+        </div>
 
         <input type="hidden" name="id-type" value={idType} />
 
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <div className="flex flex-col gap-2 sm:col-span-2">
-            <label className="text-sm font-semibold text-[#1A0A53]">{idCopy[idType].numberLabel}</label>
+        <div className="mt-6 max-w-sm">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-[#1A0A53]">
+              {idCopy[idType].numberLabel} <span className="text-maroon-admin">*</span>
+            </label>
             <input
               name="id-number"
+              required
               value={idNumber}
               onChange={(e) => setIdNumber(e.target.value)}
               placeholder={idCopy[idType].numberPlaceholder}
@@ -465,32 +401,7 @@ export function ProfileSetupForm({
               className={inputClasses}
             />
           </div>
-
-          <IdDocumentUploadField
-            label={`${idCopy[idType].label} front`}
-            value={frontUrl}
-            onUploaded={setFrontUrl}
-            optional
-          />
-          <IdDocumentUploadField
-            label={`${idCopy[idType].label} back`}
-            value={backUrl}
-            onUploaded={setBackUrl}
-            optional
-          />
-          <input type="hidden" name="id-front-url" value={frontUrl} />
-          <input type="hidden" name="id-back-url" value={backUrl} />
         </div>
-
-        {idPartial && (
-          <p className="mt-4 flex items-start gap-2 text-sm font-medium text-[#5b6b82]">
-            <AlertCircle className="mt-0.5 size-4 shrink-0 text-[#94a3b8]" />
-            <span>
-              Still needed to send this for review: {missingIdParts.join(", ")}. Clear the section to save
-              your details and verify later instead.
-            </span>
-          </p>
-        )}
       </div>
 
       {/* 03 — Referral code (locked after first submission) */}
@@ -536,9 +447,8 @@ export function ProfileSetupForm({
             role="alert"
           >
             <ShieldAlert className="mt-0.5 size-4 shrink-0" />
-            {idComplete
-              ? "You've changed your ID verification details — saving will send your account back for review."
-              : "You've removed your ID verification details — saving will make your account unverified again."}
+            You&rsquo;ve changed your ID verification details — saving will send your account back for
+            review.
           </div>
         )}
 
@@ -561,18 +471,16 @@ export function ProfileSetupForm({
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </button>
 
-        {(firstTime || !idComplete) && (
+        {firstTime && (
           <p className="mt-4 text-xs leading-relaxed text-[#94a3b8]">
-            {idComplete
-              ? "After you submit, our team reviews your details — you'll be able to request quotes and send product enquiries/inquiries once your account is approved."
-              : "Your details save right away — your ID can wait. Add it from your profile any time; requesting quotes and sending product enquiries/inquiries unlocks once our team approves it."}
+            After you submit, our team reviews your details — you&rsquo;ll be able to request quotes and
+            send product enquiries/inquiries once your account is approved.
           </p>
         )}
       </div>
 
       <ConfirmIdChangeModal
         open={confirmOpen}
-        clearing={!idComplete}
         onCancel={() => setConfirmOpen(false)}
         onConfirm={() => {
           confirmedRef.current = true;

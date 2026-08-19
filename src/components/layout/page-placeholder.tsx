@@ -33,7 +33,7 @@ export function PagePlaceholder({
         <div className="mt-8 flex justify-center gap-3">
           <Button href="/">Back to Home</Button>
           <Button href="/quote" variant="outline">
-            Enquire now
+            Enquiry now
           </Button>
         </div>
       </div>

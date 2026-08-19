@@ -165,12 +165,10 @@ export function welcomeEmail(): Omit<EmailMessage, "to"> {
   const html = shell(`
     <tr><td style="padding:32px 32px 16px 32px;">
       <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">Your ${escapeHtml(SITE.name)} account is ready.</p>
-      ${paragraph(
-        "One step is left: add your details so our team can verify you. Verification is what unlocks quote requests and product orders.",
-      )}
+      ${paragraph("One step is left: add your details so you can start requesting quotes and sending enquiries.")}
       ${button(setupUrl, "Complete your profile")}
       ${paragraph(
-        "You can upload your ID documents while you're there, or skip them and add them from your profile whenever you're ready.",
+        "Include your ID number while you're there — if we need a copy of the document itself, we'll email you to request it.",
       )}
       <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
       <p style="margin:2px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;font-weight:700;color:${INK};">Team ${SITE.name}</p>
@@ -179,14 +177,14 @@ export function welcomeEmail(): Omit<EmailMessage, "to"> {
 
   const text = `Your ${SITE.name} account is ready.
 
-One step is left: add your details so our team can verify you. Verification is
-what unlocks quote requests and product orders.
+One step is left: add your details so you can start requesting quotes and
+sending enquiries.
 
 Complete your profile:
 ${setupUrl}
 
-You can upload your ID documents while you're there, or skip them and add them
-from your profile whenever you're ready.
+Include your ID number while you're there — if we need a copy of the document
+itself, we'll email you to request it.
 
 Warm regards,
 Team ${SITE.name}

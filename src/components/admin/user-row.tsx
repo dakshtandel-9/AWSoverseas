@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import Image from "next/image";
 import { BadgeCheck, ChevronDown, Gift, ShieldX, Trash2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { approveUserAction, rejectUserAction, deleteUserAction } from "@/app/admin/(dashboard)/users/actions";
@@ -15,10 +14,8 @@ export type AdminUser = {
   phone: string;
   company_name: string;
   country: string;
-  id_type: "passport" | "aadhaar" | "pan";
+  id_type: "passport" | "aadhaar" | "national_id";
   id_number: string;
-  id_front_url: string;
-  id_back_url: string;
   referral_code: string;
   status: "incomplete" | "unverified" | "pending" | "approved" | "rejected";
   created_at: string;
@@ -28,7 +25,7 @@ export type AdminUser = {
 const ID_TYPE_LABEL: Record<AdminUser["id_type"], string> = {
   passport: "Passport",
   aadhaar: "Aadhaar",
-  pan: "PAN",
+  national_id: "National ID",
 };
 
 const STATUS_BADGE: Record<AdminUser["status"], { label: string; classes: string }> = {
@@ -38,24 +35,6 @@ const STATUS_BADGE: Record<AdminUser["status"], { label: string; classes: string
   approved: { label: "Approved", classes: "bg-emerald-100 text-emerald-700" },
   rejected: { label: "Rejected", classes: "bg-red-100 text-red-700" },
 };
-
-function IdDocumentImage({ label, url }: { label: string; url: string }) {
-  if (!url) {
-    return (
-      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-[#e4e9f2] text-xs text-[#94a3b8]">
-        {label}: not uploaded
-      </div>
-    );
-  }
-  return (
-    <a href={url} target="_blank" rel="noreferrer" className="group block" title={`Open ${label} full size`}>
-      <div className="relative h-40 overflow-hidden rounded-xl border border-[#e4e9f2]">
-        <Image src={url} alt={label} fill sizes="320px" className="object-cover transition-transform group-hover:scale-105" />
-      </div>
-      <p className="mt-1.5 text-xs font-medium text-[#5b6b82]">{label} — click to open</p>
-    </a>
-  );
-}
 
 export function UserRow({ user }: { user: AdminUser }) {
   const [open, setOpen] = useState(false);
@@ -127,11 +106,6 @@ export function UserRow({ user }: { user: AdminUser }) {
                 {user.referrer.username ? ` (@${user.referrer.username})` : ""}
               </p>
             )}
-          </div>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 sm:max-w-xl">
-            <IdDocumentImage label={`${ID_TYPE_LABEL[user.id_type]} front`} url={user.id_front_url} />
-            <IdDocumentImage label={`${ID_TYPE_LABEL[user.id_type]} back`} url={user.id_back_url} />
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-2">

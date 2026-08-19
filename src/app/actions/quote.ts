@@ -15,16 +15,14 @@ export async function submitQuoteAction(
   _prevState: QuoteFormState,
   formData: FormData,
 ): Promise<QuoteFormState> {
-  // The page already gates this form, but never trust the client.
+  // Quoting is open to any signed-in account, verified or not — only a
+  // profile needs to exist so we have contact details to quote against.
   const account = await getAccount();
   if (!account) {
     return { error: "Please sign in to request a quote." };
   }
-  if (account.profile.status === "unverified" || account.profile.status === "incomplete") {
-    return { error: "Upload your ID from your profile to unlock quoting — it takes a minute." };
-  }
-  if (account.profile.status !== "approved") {
-    return { error: "Your account is still being verified — quoting unlocks once it's approved." };
+  if (account.profile.status === "incomplete") {
+    return { error: "Finish your profile details to unlock quoting — it takes a minute." };
   }
 
   const serviceType = String(formData.get("service-type") ?? "").trim();

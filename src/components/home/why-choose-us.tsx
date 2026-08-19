@@ -119,7 +119,7 @@ export function WhyChooseUs({ data }: { data: Data; eyebrow?: string }) {
             href="/quote"
             className="group inline-flex items-center gap-2 rounded-full btn-navy px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144, 45, 57,0.18),0_8px_24px_rgba(3,62,141,0.35)]"
           >
-            Enquire now
+            Enquiry now
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </div>

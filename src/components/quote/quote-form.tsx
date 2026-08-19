@@ -306,29 +306,27 @@ function FormSection({
 
 const initialState: QuoteFormState = {};
 
-/** Where an unapproved submitter should land, per auth state. */
+/**
+ * Where a submitter without a usable profile should land, per auth state.
+ * Verification status (unverified/pending/rejected) no longer blocks
+ * submitting — only a missing account or an unfinished profile does, since
+ * those are the states with no contact details to quote against.
+ */
 function gateHrefFor(auth: EnquiryAuth, next: string): string | null {
   switch (auth.state) {
     case "guest":
       return `/login?next=${encodeURIComponent(next)}`;
     case "setup":
-    case "unverified":
       return "/profile/setup";
-    case "pending":
-    case "rejected":
-      return "/profile";
     default:
       return null;
   }
 }
 
-/** Submit-button copy for an unapproved submitter, per auth state. */
-const GATE_BUTTON_TEXT: Record<Exclude<EnquiryAuth["state"], "approved">, string> = {
+/** Submit-button copy for a submitter without a usable profile, per auth state. */
+const GATE_BUTTON_TEXT: Record<"guest" | "setup", string> = {
   guest: "Sign in to submit",
   setup: "Complete your profile to submit",
-  unverified: "Verify your ID to submit",
-  pending: "Verification pending",
-  rejected: "Update details to submit",
 };
 
 /**
@@ -489,12 +487,6 @@ export function QuoteForm({
                     "Fill in your shipment details — we'll ask you to sign in before submitting."}
                   {auth.state === "setup" &&
                     "Almost there — finish your profile details before submitting."}
-                  {auth.state === "unverified" &&
-                    "Upload your ID from your profile to unlock submitting — you can prepare this request now."}
-                  {auth.state === "pending" &&
-                    "Our team is reviewing your account. You can prepare this request now; submitting unlocks once you're approved."}
-                  {auth.state === "rejected" &&
-                    "We couldn't verify your account. Update your passport details before submitting."}
                 </div>
               )}
 
@@ -518,7 +510,7 @@ export function QuoteForm({
                   : pending
                     ? "Submitting…"
                     : gateHref
-                      ? GATE_BUTTON_TEXT[auth.state as Exclude<EnquiryAuth["state"], "approved">]
+                      ? GATE_BUTTON_TEXT[auth.state as "guest" | "setup"]
                       : submit.buttonText}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </button>

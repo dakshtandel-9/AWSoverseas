@@ -123,7 +123,7 @@ export default function AdminDocsPage() {
                 },
                 {
                   title: "Open the row to review their details",
-                  detail: "Name, email, phone, company, country, and the passport front/back images they uploaded during profile setup.",
+                  detail: "Name, email, phone, company, country, and the ID number (passport, Aadhaar, or national ID) they entered during profile setup.",
                 },
                 {
                   title: "Approve or reject",
@@ -433,7 +433,7 @@ export default function AdminDocsPage() {
                 <ImageIcon className="size-4" />
               </span>
               <p className="text-sm leading-relaxed text-[#5b6b82]">
-                Product photos and customer passport uploads are all stored with the same image
+                Product, category, and city agent photos are all stored with the same image
                 hosting service, separate from the main database — which is why an image upload always finishes
                 (and shows a thumbnail) as its own step before the rest of a form can be saved.
               </p>

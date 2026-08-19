@@ -133,7 +133,7 @@ export default async function CategoryDetailPage({
           products={catalog}
           auth={auth}
           title={category.name}
-          subtitle="Tap Enquire now on anything you're interested in — we'll follow up with availability and a quote."
+          subtitle="Tap Enquiry now on anything you're interested in — we'll follow up with availability and a quote."
         />
       )}
 

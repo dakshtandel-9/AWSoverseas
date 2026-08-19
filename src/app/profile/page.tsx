@@ -37,13 +37,13 @@ const STATUS_BANNER: Record<
     icon: IdCard,
     classes: "border-[#c7d7ee] bg-[#eef3fb] text-[#1A0A53]",
     title: "One step left — verify your identity",
-    body: "Upload your ID documents and our team takes it from there. Requesting quotes and sending product enquiries/inquiries unlocks once you're approved.",
+    body: "Please mail a photo of your ID document to admin@awsoverseas.com so our team can verify it.",
   },
   pending: {
     icon: Clock3,
     classes: "border-amber-200 bg-amber-50 text-amber-800",
-    title: "Verification pending",
-    body: "Our team is reviewing your details. You'll be able to request quotes and send product enquiries/inquiries once your account is approved.",
+    title: "Verify pending",
+    body: "Our team will be reviewing your details.",
   },
   approved: {
     icon: BadgeCheck,
@@ -93,7 +93,7 @@ export default async function ProfilePage() {
 
   const quoteItems: ActivityItem[] = (quotes ?? []).map((q) => ({
     id: q.id,
-    title: q.service_type || "Shipping quote",
+    title: q.service_type || "Shipping enquiry",
     subtitle:
       q.origin_country && q.destination_country ? `${q.origin_country} → ${q.destination_country}` : undefined,
     createdAt: formatDate(q.created_at),
@@ -137,7 +137,9 @@ export default async function ProfilePage() {
     };
   });
 
-  const idTypeLabel = { passport: "Passport number", aadhaar: "Aadhaar number", pan: "PAN number" }[profile.id_type];
+  const idTypeLabel = { passport: "Passport number", aadhaar: "Aadhaar number", national_id: "National ID number" }[
+    profile.id_type
+  ];
 
   const details = [
     { icon: Mail, label: "Email", value: profile.email },
@@ -167,33 +169,20 @@ export default async function ProfilePage() {
               </div>
             </div>
 
-            {profile.status === "unverified" && (
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/profile/setup"
-                  className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
-                >
-                  <IdCard className="size-4" /> Verify your identity
-                </Link>
-              </div>
-            )}
-
-            {profile.status === "approved" && (
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/quote"
-                  className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
-                >
-                  <FileText className="size-4" /> Enquire now
-                </Link>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:border-[#9e4953]"
-                >
-                  <MessageSquareText className="size-4" /> View products
-                </Link>
-              </div>
-            )}
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/quote"
+                className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+              >
+                <FileText className="size-4" /> Enquiry now
+              </Link>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 rounded-full border border-[#e4e9f2] bg-white px-5 py-2.5 text-sm font-semibold text-[#1A0A53] transition-colors hover:border-[#9e4953]"
+              >
+                <MessageSquareText className="size-4" /> View products
+              </Link>
+            </div>
 
             <div className="rounded-3xl border border-[#e4e9f2] bg-white p-7">
               <div className="flex items-center justify-between">
@@ -223,9 +212,9 @@ export default async function ProfilePage() {
 
             <ActivityList
               icon={FileText}
-              title="Your quote requests"
-              description="Shipping quotes you've requested."
-              emptyLabel="No quote requests yet."
+              title="Your enquiries"
+              description="Shipping enquiries you've sent."
+              emptyLabel="No enquiries yet."
               items={quoteItems}
             />
 

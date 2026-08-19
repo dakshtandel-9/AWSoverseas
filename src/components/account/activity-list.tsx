@@ -15,7 +15,7 @@ const BADGE_TONE: Record<NonNullable<ActivityItem["badgeTone"]>, string> = {
   negative: "bg-red-50 text-red-600",
 };
 
-/** Shared card shell for "Your quote requests" / "Your product enquiries" on the profile page. */
+/** Shared card shell for "Your enquiries" / "Your product orders" on the profile page. */
 export function ActivityList({
   icon: Icon,
   title,

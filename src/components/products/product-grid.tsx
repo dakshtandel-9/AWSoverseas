@@ -9,7 +9,7 @@ export function ProductGrid({
   auth,
   eyebrow = "Catalog",
   title = "Our Products",
-  subtitle = "Tap Enquire now on anything you're interested in — we'll follow up with availability and a quote.",
+  subtitle = "Tap Enquiry now on anything you're interested in — we'll follow up with availability and a quote.",
   tone = "soft",
 }: {
   products: PublicProduct[];
