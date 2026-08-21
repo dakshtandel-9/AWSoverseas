@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { ReferralGroup, type ReferralUser } from "@/components/admin/referral-group";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
 const PROFILE_COLUMNS = "id, first_name, last_name, username, email, referral_code, referred_by, status, created_at";
 
@@ -34,15 +35,19 @@ export default async function AdminReferralsPage() {
 
   return (
     <div>
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Customers</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Referrals</h1>
-      <p className="mt-2 text-sm text-[#5b6b82]">
-        Every sign-up that used someone else&apos;s referral code, grouped by who sent them. Pay out a reward from{" "}
-        <Link href="/admin/wallets" className="font-semibold text-maroon-admin hover:underline">
-          Wallets
-        </Link>
-        .
-      </p>
+      <AdminPageHeader
+        href="/admin/referrals"
+        description={
+          <>
+            Every sign-up that used someone else&apos;s referral code, grouped by who sent them. Pay out a
+            reward from{" "}
+            <Link href="/admin/wallets" className="font-semibold text-maroon-admin hover:underline">
+              Wallets
+            </Link>
+            .
+          </>
+        }
+      />
 
       {!configured && (
         <div className="mt-6">

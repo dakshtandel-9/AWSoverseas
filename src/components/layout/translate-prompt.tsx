@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Languages, X } from "lucide-react";
 import { useLanguage } from "@/lib/language/language-context";
 import { LANGUAGE_MAP } from "@/lib/language/languages";
@@ -22,6 +23,7 @@ function matchBrowserLanguage(raw: string): string | null {
 }
 
 export function TranslatePrompt() {
+  const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
   const [suggested, setSuggested] = useState<string | null>(null);
 
@@ -67,7 +69,9 @@ export function TranslatePrompt() {
     };
   }, [language]);
 
-  if (!suggested) return null;
+  // Never over the admin panel: its labels are the thing being read, and a
+  // machine translation of them would defeat the point.
+  if (!suggested || pathname?.startsWith("/admin")) return null;
 
   const info = LANGUAGE_MAP[suggested];
 

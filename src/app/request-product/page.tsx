@@ -25,9 +25,7 @@ export default async function Page() {
     <>
       <RequestProductHero data={requestProduct.hero} />
       <Section spacing="lg" tone="soft">
-        <div className="mx-auto max-w-2xl">
-          <RequestProductForm data={requestProduct.form} contactDefaults={contactDefaults} />
-        </div>
+        <RequestProductForm data={requestProduct.form} contactDefaults={contactDefaults} />
       </Section>
     </>
   );

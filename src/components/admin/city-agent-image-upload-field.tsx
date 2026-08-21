@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ImagePlus, Loader2, X } from "lucide-react";
-import { uploadCityAgentImageAction, type ImageUploadState } from "@/app/admin/(dashboard)/city-agents/actions";
+import { uploadCityAgentImageAction, type ImageUploadState } from "@/app/admin/(dashboard)/associates/actions";
 
 const initialState: ImageUploadState = {};
 

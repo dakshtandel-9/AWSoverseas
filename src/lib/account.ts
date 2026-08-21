@@ -39,19 +39,27 @@ export type UserProfile = {
 
 export type Account = { user: User; profile: UserProfile };
 
-/** Derives the product-enquiry gate state shown to the Enquiry modal from an account (or guest). */
+/**
+ * Derives the product-enquiry gate state shown to the Enquiry modal from an
+ * account (or guest).
+ *
+ * The contact details ride along with every signed-in state, not just
+ * "approved". Nothing that reads them gates on them — the enquiry and
+ * warehouse forms only ever use them as field defaults — so a customer who is
+ * still waiting on approval gets their own name, email and phone filled in
+ * exactly like the quote form already fills them in.
+ */
 export function enquiryAuthFor(account: Account | null): EnquiryAuth {
   if (!account) return { state: "guest" };
-  // "unverified" falls through to the generic gate below — the form stays
-  // reachable, and the notice points at /profile/setup to upload the ID.
-  if (account.profile.status === "incomplete") return { state: "setup" };
-  if (account.profile.status !== "approved") return { state: account.profile.status };
+  const { profile } = account;
   return {
-    state: "approved",
-    firstName: account.profile.first_name,
-    lastName: account.profile.last_name,
-    email: account.profile.email,
-    phone: account.profile.phone,
+    // "incomplete" is the one status the forms name differently: it sends the
+    // customer to /profile/setup, so it reads as "setup" on this side.
+    state: profile.status === "incomplete" ? "setup" : profile.status,
+    firstName: profile.first_name,
+    lastName: profile.last_name,
+    email: profile.email,
+    phone: profile.phone,
   };
 }
 

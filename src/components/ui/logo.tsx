@@ -13,10 +13,16 @@ export function Logo({
   className,
   tone = "dark",
   priority,
+  imageClassName,
 }: {
   className?: string;
   tone?: "dark" | "light";
   priority?: boolean;
+  /**
+   * Replaces the default height. Needed because the height lives on the <img>,
+   * so a class on the wrapper alone can't shrink the mark.
+   */
+  imageClassName?: string;
 }) {
   const src = tone === "light" ? logoLight : logoDark;
   return (
@@ -30,7 +36,7 @@ export function Logo({
         alt="AWS OVERSEAS impex — Global Trade Solutions"
         priority={priority}
         sizes="(max-width: 768px) 120px, 140px"
-        className="h-[72px] w-auto sm:h-[84px]"
+        className={cn(imageClassName ?? "h-[72px] sm:h-[84px]", "w-auto")}
       />
     </Link>
   );

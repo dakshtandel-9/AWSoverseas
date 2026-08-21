@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export function PageLoader() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
@@ -28,7 +30,8 @@ export function PageLoader() {
     }
   }, []);
 
-  if (!visible) return null;
+  // The admin panel is a tool, not a landing page — no branded splash in front of it.
+  if (!visible || pathname?.startsWith("/admin")) return null;
 
   return (
     <div

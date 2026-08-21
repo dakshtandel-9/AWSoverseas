@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { Check, CircleDashed, BadgeCheck } from "lucide-react";
-import { updateIntegrationsAction, type IntegrationsState } from "@/app/admin/(dashboard)/integrations/actions";
+import { updateIntegrationsAction, type IntegrationsState } from "@/app/admin/(dashboard)/seo/actions";
 import type { MarketingIntegrations } from "@/lib/marketing-integrations";
 
 const initialState: IntegrationsState = {};
@@ -120,7 +120,7 @@ export function IntegrationsForm({ integrations }: { integrations: MarketingInte
     {
       guideId: "guide-ads",
       title: "Google Ads conversion tracking",
-      purpose: "Tells Google Ads when a visitor becomes a lead — every quote request, enquiry, order and contact message counts as a conversion.",
+      purpose: "Tells Google Ads when a visitor becomes a lead — every quote enquiry, product enquiry, order and contact message counts as a conversion.",
       fields: [
         {
           name: "google_ads_id",

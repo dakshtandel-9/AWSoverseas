@@ -217,7 +217,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
         <div className="flex shrink-0 items-center justify-between border-b border-[#e4e9f2] bg-[#f6f8fc] px-6 py-5">
           <div>
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-              New Quote Request
+              New quote enquiry
             </p>
             <h2 id="create-quote-title" className="mt-1 text-base font-bold text-[#1A0A53]">
               For a customer
@@ -384,7 +384,7 @@ function CreateQuoteModal({ users, onClose }: { users: QuoteUserOption[]; onClos
               disabled={pending}
               className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white transition-colors disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {pending ? "Creating…" : "Create quote"}
+              {pending ? "Creating…" : "Create quote enquiry"}
             </button>
           </form>
         )}
@@ -405,7 +405,7 @@ export function CreateQuoteButton({ users }: { users: QuoteUserOption[] }) {
         className="inline-flex items-center gap-2 rounded-full btn-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors"
       >
         <Plus className="size-4" />
-        New quote
+        New quote enquiry
       </button>
 
       <AnimatePresence>

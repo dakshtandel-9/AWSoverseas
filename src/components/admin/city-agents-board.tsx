@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { Pencil, Plus, Trash2, Phone, Mail, ImageOff } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { CityAgent } from "@/lib/city-agents";
-import { deleteCityAgentAction, toggleCityAgentActiveAction } from "@/app/admin/(dashboard)/city-agents/actions";
+import { deleteCityAgentAction, toggleCityAgentActiveAction } from "@/app/admin/(dashboard)/associates/actions";
 
 /** Every city tile, plus the control to add another. */
 export function CityAgentsBoard({ agents }: { agents: CityAgent[] }) {

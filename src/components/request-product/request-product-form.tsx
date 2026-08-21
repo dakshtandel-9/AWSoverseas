@@ -1,16 +1,30 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ImagePlus } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitProductEnquiryAction, type EnquiryFormState } from "@/app/actions/product-enquiry";
 import { trackLead } from "@/lib/track-lead";
 
+type Field = { label: string; placeholder: string; selectedLabel?: string };
+
 type Data = {
-  title: string;
-  description: string;
-  submitButton: string;
+  docket: string;
+  sectionCount: string;
+  optionalLabel: string;
+  product: { index: string; title: string; description: string };
+  contact: { index: string; title: string; description: string; prefillNote: string };
+  fields: {
+    productName: Field;
+    message: Field;
+    quantity: Field;
+    photo: Field;
+    name: Field;
+    email: Field;
+    phone: Field;
+  };
+  submit: { title: string; description: string; buttonText: string; privacyText: string };
   successTitle: string;
   successMessage: string;
 };
@@ -22,12 +36,68 @@ const initialState: EnquiryFormState = {};
 
 type ContactDefaults = { name: string; email: string; phone: string };
 
+/** One numbered block of the docket — same construction as the quote form's sections. */
+function FormSection({
+  index,
+  title,
+  description,
+  children,
+}: {
+  index: string;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="border-b border-[#e4e9f2] px-7 py-8 last:border-b-0 sm:px-10">
+      <div className="flex items-baseline gap-3">
+        <span className="font-mono text-xs font-bold text-[#94a3b8]">{index}</span>
+        <h2 className="text-lg font-bold text-[#1A0A53]">{title}</h2>
+      </div>
+      <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#5b6b82]">{description}</p>
+
+      <div className="mt-6 grid gap-5 sm:grid-cols-2">{children}</div>
+    </div>
+  );
+}
+
+function Labelled({
+  label,
+  required,
+  optionalLabel,
+  full,
+  htmlFor,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  /** Printed after the label when the field can be left empty. */
+  optionalLabel?: string;
+  full?: boolean;
+  htmlFor?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={cn("flex flex-col gap-2", full && "sm:col-span-2")}>
+      <label htmlFor={htmlFor} className="text-sm font-semibold text-[#1A0A53]">
+        {label}
+        {required && <span className="ml-1 text-maroon-admin">*</span>}
+        {optionalLabel && <span className="ml-1 font-normal text-[#94a3b8]">{optionalLabel}</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
 /**
- * Standalone product-request form — reuses submitProductEnquiryAction with
- * no product-id, so it lands in product_enquiries as an enquiry row with
- * product_id null (same as a catalog enquiry whose product was later
- * deleted). Only product name + one contact method are required;
- * description, image, and quantity are all optional.
+ * Standalone product-enquiry form — reuses submitProductEnquiryAction with no
+ * product-id, so it lands in product_enquiries as an enquiry row with
+ * product_id null, which the admin lists as "Not in catalog".
+ *
+ * Built as the same two-part docket as the quote form on /quote: what you want
+ * on top, how to reach you underneath, one submit for both. Only the product
+ * name, your name, and one contact method are required — description, photo
+ * and quantity are all optional, and the labels say so.
  */
 export function RequestProductForm({
   data,
@@ -37,9 +107,9 @@ export function RequestProductForm({
   contactDefaults?: ContactDefaults;
 }) {
   const [state, formAction, pending] = useActionState(submitProductEnquiryAction, initialState);
-  const formRef = useRef<HTMLFormElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const done = Boolean(state.success);
+  const prefilled = Boolean(contactDefaults?.name || contactDefaults?.email || contactDefaults?.phone);
 
   useEffect(() => {
     if (state.success) trackLead();
@@ -60,13 +130,16 @@ export function RequestProductForm({
   return (
     <div
       id="request-form"
-      className="rounded-3xl border border-[#e4e9f2] bg-white p-7 shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)] sm:p-10"
+      className="mx-auto max-w-3xl scroll-mt-28 rounded-3xl border border-[#e4e9f2] bg-white shadow-[0_1px_2px_rgba(4,22,47,0.04),0_18px_40px_-16px_rgba(4,22,47,0.14)]"
     >
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-        Product Request
-      </p>
-      <h2 className="mt-3 text-2xl font-bold text-[#1A0A53] sm:text-3xl">{data.title}</h2>
-      <p className="mt-3 text-[15px] leading-relaxed text-[#5b6b82]">{data.description}</p>
+      <div className="flex items-center justify-between rounded-t-3xl border-b border-[#e4e9f2] bg-[#f6f8fc] px-7 py-5 sm:px-10">
+        <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
+          {data.docket}
+        </p>
+        <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#94a3b8] sm:block">
+          {data.sectionCount}
+        </span>
+      </div>
 
       <AnimatePresence mode="wait">
         {done ? (
@@ -74,145 +147,161 @@ export function RequestProductForm({
             key="success"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-8 flex items-start gap-3 rounded-2xl bg-[#f8f1f2] px-5 py-5 ring-1 ring-[#9e4953]/25"
+            className="flex flex-col items-center gap-4 px-8 py-16 text-center"
           >
-            <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
-              <Check className="size-4" />
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#9e4953] text-white">
+              <Check className="size-6" />
             </span>
-            <div>
-              <p className="text-sm font-bold text-maroon-admin">{data.successTitle}</p>
-              <p className="mt-1 text-sm leading-relaxed text-maroon-admin">{data.successMessage}</p>
-            </div>
+            <p className="text-base font-bold text-maroon-admin">{data.successTitle}</p>
+            <p className="max-w-sm text-sm leading-relaxed text-maroon-admin">{data.successMessage}</p>
           </motion.div>
         ) : (
           <motion.form
             key="form"
-            ref={formRef}
             action={formAction}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="mt-8 grid gap-5 sm:grid-cols-2"
           >
-            <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">
-                Product name <span className="ml-1 text-maroon-admin">*</span>
-              </label>
-              <input
-                name="product-name"
-                required
-                placeholder="e.g. Stainless steel pipe fittings"
-                className={inputClasses}
-              />
-            </div>
+            <FormSection
+              index={data.product.index}
+              title={data.product.title}
+              description={data.product.description}
+            >
+              <Labelled label={data.fields.productName.label} required full htmlFor="product-name">
+                <input
+                  id="product-name"
+                  name="product-name"
+                  required
+                  placeholder={data.fields.productName.placeholder}
+                  className={inputClasses}
+                />
+              </Labelled>
 
-            <div className="flex flex-col gap-2 sm:col-span-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">
-                Description or message{" "}
-                <span className="font-normal text-[#94a3b8]">(optional)</span>
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="Specs, materials, intended use — anything that helps us source the right thing"
-                className={cn(inputClasses, "resize-none")}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">
-                Quantity or quality needed{" "}
-                <span className="font-normal text-[#94a3b8]">(optional)</span>
-              </label>
-              <input
-                name="requested-quantity"
-                placeholder="e.g. 500 units, food-grade"
-                className={inputClasses}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">
-                Photo <span className="font-normal text-[#94a3b8]">(optional)</span>
-              </label>
-              <label
-                htmlFor="attachment"
-                className="flex h-[46px] cursor-pointer items-center gap-2.5 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 text-sm text-[#5b6b82] transition-colors hover:border-[#9e4953]"
+              <Labelled
+                label={data.fields.message.label}
+                optionalLabel={data.optionalLabel}
+                full
+                htmlFor="message"
               >
-                {imagePreview ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={imagePreview} alt="" className="size-7 shrink-0 rounded-md object-cover" />
-                ) : (
-                  <ImagePlus className="size-4 shrink-0 text-[#94a3b8]" />
-                )}
-                <span className="truncate">{imagePreview ? "Photo selected" : "Upload a photo…"}</span>
-              </label>
-              <input
-                id="attachment"
-                type="file"
-                name="attachment"
-                accept="image/*"
-                className="hidden"
-                onChange={onImageChange}
-              />
-            </div>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  placeholder={data.fields.message.placeholder}
+                  className={cn(inputClasses, "resize-none")}
+                />
+              </Labelled>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">Your name</label>
-              <input
-                name="name"
-                placeholder="Your name"
-                defaultValue={contactDefaults?.name}
-                className={inputClasses}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="you@company.com"
-                defaultValue={contactDefaults?.email}
-                className={inputClasses}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#1A0A53]">Phone number</label>
-              <input
-                type="tel"
-                name="phone"
-                placeholder="+91 98765 43210"
-                defaultValue={contactDefaults?.phone}
-                className={inputClasses}
-              />
-            </div>
-
-            <p className="text-xs leading-relaxed text-[#94a3b8] sm:col-span-2">
-              Product name is required. We also need at least an email or a phone number so we can get
-              back to you — everything else on this form is optional.
-            </p>
-
-            {state.error && (
-              <div
-                className="flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600 sm:col-span-2"
-                role="alert"
+              <Labelled
+                label={data.fields.quantity.label}
+                optionalLabel={data.optionalLabel}
+                htmlFor="requested-quantity"
               >
-                <AlertCircle className="mt-0.5 size-4 shrink-0" />
-                {state.error}
-              </div>
-            )}
+                <input
+                  id="requested-quantity"
+                  name="requested-quantity"
+                  placeholder={data.fields.quantity.placeholder}
+                  className={inputClasses}
+                />
+              </Labelled>
 
-            <div className="sm:col-span-2">
+              <Labelled label={data.fields.photo.label} optionalLabel={data.optionalLabel}>
+                <label
+                  htmlFor="attachment"
+                  className="flex h-[46px] cursor-pointer items-center gap-2.5 rounded-xl border border-dashed border-[#e4e9f2] bg-[#f6f8fc] px-4 text-sm text-[#5b6b82] transition-colors hover:border-[#9e4953]"
+                >
+                  {imagePreview ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={imagePreview} alt="" className="size-7 shrink-0 rounded-md object-cover" />
+                  ) : (
+                    <ImagePlus className="size-4 shrink-0 text-[#94a3b8]" />
+                  )}
+                  <span className="truncate">
+                    {imagePreview ? data.fields.photo.selectedLabel : data.fields.photo.placeholder}
+                  </span>
+                </label>
+                <input
+                  id="attachment"
+                  type="file"
+                  name="attachment"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={onImageChange}
+                />
+              </Labelled>
+            </FormSection>
+
+            <FormSection
+              index={data.contact.index}
+              title={data.contact.title}
+              description={data.contact.description}
+            >
+              {prefilled && (
+                <p className="-mt-1 flex items-start gap-2 text-xs leading-relaxed text-[#5b6b82] sm:col-span-2">
+                  <Check className="mt-0.5 size-3.5 shrink-0 text-[#9e4953]" />
+                  {data.contact.prefillNote}
+                </p>
+              )}
+
+              <Labelled label={data.fields.name.label} required full htmlFor="name">
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  placeholder={data.fields.name.placeholder}
+                  defaultValue={contactDefaults?.name}
+                  className={inputClasses}
+                />
+              </Labelled>
+
+              <Labelled label={data.fields.email.label} htmlFor="email">
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder={data.fields.email.placeholder}
+                  defaultValue={contactDefaults?.email}
+                  className={inputClasses}
+                />
+              </Labelled>
+
+              <Labelled label={data.fields.phone.label} htmlFor="phone">
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  placeholder={data.fields.phone.placeholder}
+                  defaultValue={contactDefaults?.phone}
+                  className={inputClasses}
+                />
+              </Labelled>
+            </FormSection>
+
+            <div className="px-7 py-8 sm:px-10">
+              <h2 className="text-base font-bold text-[#1A0A53]">{data.submit.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-[#5b6b82]">{data.submit.description}</p>
+
+              {state.error && (
+                <div
+                  className="mt-5 flex items-start gap-2.5 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+                  role="alert"
+                >
+                  <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                  {state.error}
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={pending}
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full btn-navy px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144,45,57,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full btn-navy px-8 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(144,45,57,0.18),0_8px_24px_rgba(3,62,141,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
               >
-                {pending ? "Sending…" : data.submitButton}
+                {pending ? "Sending…" : data.submit.buttonText}
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </button>
+
+              <p className="mt-4 text-xs leading-relaxed text-[#94a3b8]">{data.submit.privacyText}</p>
             </div>
           </motion.form>
         )}

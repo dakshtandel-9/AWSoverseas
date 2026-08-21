@@ -298,7 +298,7 @@ const GUIDES: Guide[] = [
     ],
     after: (
       <Callout>
-        Every quote request, product enquiry, order, and contact message automatically fires a{" "}
+        Every quote enquiry, product enquiry, order, and contact message automatically fires a{" "}
         <strong>Lead</strong> event — in Ads Manager, optimize campaigns for Leads to make Meta find
         more buyers like the ones who actually enquire. Confirm it works under{" "}
         <strong>Events Manager → Test events</strong>.
@@ -343,7 +343,7 @@ const GUIDES: Guide[] = [
       {
         title: "Paste both above and save",
         detail:
-          "Ignore Google's install instructions — the site already loads the tag and reports a conversion on every successful quote request, enquiry, order, and contact message.",
+          "Ignore Google's install instructions — the site already loads the tag and reports a conversion on every successful quote enquiry, product enquiry, order, and contact message.",
       },
     ],
     after: (

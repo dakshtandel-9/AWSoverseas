@@ -445,7 +445,7 @@ export function enquiryNotificationEmail({
   quantity,
   message,
 }: EnquiryNotificationInput): Omit<EmailMessage, "to"> {
-  const adminUrl = absoluteUrl("/admin/enquiries-open");
+  const adminUrl = absoluteUrl("/admin/enquiries");
 
   const html = shell(
     `

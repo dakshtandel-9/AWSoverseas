@@ -10,8 +10,8 @@ import {
   getOrderContextAction,
   type CreateOrderState,
   type OrderContext,
-} from "@/app/admin/(dashboard)/enquiries/actions";
-import { OrderDecisionSection } from "@/components/admin/enquiry-row";
+} from "@/app/admin/(dashboard)/orders/actions";
+import { OrderDecisionSection } from "@/components/admin/order-row";
 
 export type OrderUserOption = {
   id: string;

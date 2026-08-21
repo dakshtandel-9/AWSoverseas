@@ -79,13 +79,13 @@ export async function createOrderForUserAction(
     return { error: "Something went wrong creating the order. Please try again." };
   }
 
-  revalidatePath("/admin/enquiries");
+  revalidatePath("/admin/orders");
   revalidatePath("/profile");
   return { success: true, orderId: inserted.id };
 }
 
 export type OrderContext = {
-  item: import("@/components/admin/enquiry-row").AdminOrder;
+  item: import("@/components/admin/order-row").AdminOrder;
   referrerName: string | null;
   alreadyCredited: { amount: number; count: number } | null;
   profile: import("@/components/admin/user-profile-modal").AdminUserProfile | null;
@@ -155,23 +155,23 @@ export async function moveEnquiryToOrderAction(id: string) {
     })
     .eq("id", id);
 
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
   revalidatePath("/profile");
 }
 
 export async function markEnquiryReadAction(id: string, isRead: boolean) {
   const db = supabaseAdmin();
   await db.from("product_enquiries").update({ is_read: isRead }).eq("id", id);
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
 }
 
 export async function deleteEnquiryAction(id: string) {
   const db = supabaseAdmin();
   await db.from("product_enquiries").delete().eq("id", id);
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
 }
 
 /** Admin approves and prices out an enquiry — the customer then sees this on their profile. */
@@ -194,8 +194,8 @@ export async function setEnquiryQuoteAction(
       rejection_reason: "",
     })
     .eq("id", id);
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
 }
 
 /** Admin declines an enquiry — the customer sees the decision (and reason) on their profile. */
@@ -205,8 +205,8 @@ export async function rejectEnquiryAction(id: string, reason: string) {
     .from("product_enquiries")
     .update({ quote_status: "rejected", rejection_reason: reason })
     .eq("id", id);
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
 }
 
 /** Reverts an enquiry back to awaiting review — undoes an accidental approve/reject. */
@@ -216,13 +216,13 @@ export async function resetEnquiryStatusAction(id: string) {
     .from("product_enquiries")
     .update({ quote_status: "awaiting_quote", rejection_reason: "" })
     .eq("id", id);
+  revalidatePath("/admin/orders");
   revalidatePath("/admin/enquiries");
-  revalidatePath("/admin/enquiries-open");
 }
 
 /** Grants the referrer of this enquiry's submitter a wallet credit. */
 export async function creditEnquiryReferrerAction(enquiryId: string, amount: number, reason: string) {
   const result = await creditReferrerForSource("enquiry", enquiryId, amount, reason);
-  revalidatePath("/admin/enquiries");
+  revalidatePath("/admin/orders");
   return result;
 }

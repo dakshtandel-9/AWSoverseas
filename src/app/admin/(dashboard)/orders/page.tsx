@@ -2,48 +2,49 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { getReferrerInfoForUsers, getWalletCreditsForSources, getProfilesForUsers } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
-import { QuoteRow } from "@/components/admin/quote-row";
-import { CreateQuoteButton, type QuoteUserOption } from "@/components/admin/create-quote-form";
+import { OrderRow } from "@/components/admin/order-row";
 import { AdminPageHeader } from "@/components/admin/page-header";
+import {
+  CreateOrderButton,
+  type OrderUserOption,
+  type OrderProductOption,
+} from "@/components/admin/create-order-form";
 
-export default async function AdminQuotesPage() {
+export default async function AdminOrdersPage() {
   const configured = isSupabaseConfigured();
   const db = supabaseAdmin();
 
-  const [itemsRes, usersRes] = configured
+  const [itemsRes, usersRes, productsRes] = configured
     ? await Promise.all([
-        db.from("quote_submissions").select("*").order("created_at", { ascending: false }),
+        db
+          .from("product_enquiries")
+          .select("*")
+          .eq("request_type", "order")
+          .order("created_at", { ascending: false }),
         db
           .from("user_profiles")
           .select("id, first_name, last_name, username, email, status")
           .neq("status", "incomplete")
           .order("first_name", { ascending: true }),
+        db
+          .from("products")
+          .select("id, name, category_id, categories(name)")
+          .eq("is_active", true)
+          .order("name", { ascending: true }),
       ])
-    : [{ data: [] }, { data: [] }];
+    : [{ data: [] }, { data: [] }, { data: [] }];
 
   const items = itemsRes.data ?? [];
-  const users = (usersRes.data as QuoteUserOption[] | null) ?? [];
-
-  const milestonesByQuote: Record<string, { id: string; status: string; location: string; note: string; created_at: string }[]> = {};
-  if (configured && items.length > 0) {
-    const { data: milestones } = await db
-      .from("shipment_milestones")
-      .select("id, quote_id, status, location, note, created_at")
-      .in(
-        "quote_id",
-        items.map((i) => i.id),
-      )
-      .order("created_at", { ascending: true });
-    for (const m of milestones ?? []) {
-      (milestonesByQuote[m.quote_id] ??= []).push(m);
-    }
-  }
+  const users = (usersRes.data as OrderUserOption[] | null) ?? [];
+  const products = (
+    (productsRes.data as { id: string; name: string; categories: { name: string } | null }[] | null) ?? []
+  ).map((p) => ({ id: p.id, name: p.name, category: p.categories?.name ?? null }));
 
   const userIds = items.map((i) => i.user_id).filter((id): id is string => Boolean(id));
   const [referrerByUserId, creditBySourceId, profileByUserId] = await Promise.all([
     getReferrerInfoForUsers(userIds),
     getWalletCreditsForSources(
-      "quote",
+      "enquiry",
       items.map((i) => i.id),
     ),
     getProfilesForUsers(userIds),
@@ -51,7 +52,7 @@ export default async function AdminQuotesPage() {
 
   return (
     <div>
-      <AdminPageHeader href="/admin/quotes" action={configured && <CreateQuoteButton users={users} />} />
+      <AdminPageHeader href="/admin/orders" action={configured && <CreateOrderButton users={users} products={products} />} />
 
       {!configured && (
         <div className="mt-6">
@@ -62,14 +63,13 @@ export default async function AdminQuotesPage() {
       <div className="mt-8 flex flex-col gap-3">
         {items.length === 0 && configured && (
           <p className="rounded-2xl border border-dashed border-[#e4e9f2] px-5 py-10 text-center text-sm text-[#94a3b8]">
-            No quote enquiries yet.
+            No orders yet.
           </p>
         )}
         {items.map((item) => (
-          <QuoteRow
+          <OrderRow
             key={item.id}
             item={item}
-            milestones={milestonesByQuote[item.id] ?? []}
             referrerName={item.user_id ? referrerByUserId[item.user_id] ?? null : null}
             alreadyCredited={creditBySourceId[item.id] ?? null}
             profile={item.user_id ? profileByUserId[item.user_id] ?? null : null}

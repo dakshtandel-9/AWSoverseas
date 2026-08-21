@@ -8,7 +8,7 @@ import { createTrackingNumber, type ShipmentStatus } from "@/lib/tracking";
 export type CreateQuoteState = { success?: boolean; error?: string; trackingNumber?: string };
 
 /**
- * Admin creates a quote request on behalf of a specific customer. Contact
+ * Admin creates a quote enquiry on behalf of a specific customer. Contact
  * details are snapshotted from the user's profile (like a self-submitted
  * quote), a tracking number is generated, and it shows up in that user's
  * profile dashboard (queried by user_id).

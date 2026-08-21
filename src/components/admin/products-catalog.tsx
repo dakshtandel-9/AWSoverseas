@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { Plus, Trash2, TriangleAlert, X } from "lucide-react";
 import { ProductListGrid } from "@/components/admin/product-list-grid";
 import { deleteProductsAction } from "@/app/admin/(dashboard)/products/actions";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
 type Product = {
   id: string;
@@ -53,17 +54,10 @@ export function ProductsCatalog({ unfiled, filed }: { unfiled: Product[]; filed:
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Catalog</p>
-          <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Products</h1>
-          <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
-            Every item across every category. Each one shows on its category&apos;s page, where visitors
-            send an enquiry — no pricing is displayed.
-          </p>
-        </div>
-
-        {selectMode ? (
+      <AdminPageHeader
+        href="/admin/products"
+        action={
+          selectMode ? (
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm font-semibold text-[#1A0A53]">
               {selected.size} selected
@@ -112,8 +106,9 @@ export function ProductsCatalog({ unfiled, filed }: { unfiled: Product[]; filed:
               New product
             </Link>
           </div>
-        )}
-      </div>
+          )
+        }
+      />
 
       {unfiled.length > 0 && (
         <section className="mt-8">

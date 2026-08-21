@@ -2,6 +2,7 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { MessageRow } from "@/components/admin/message-row";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
 export default async function AdminMessagesPage() {
   const configured = isSupabaseConfigured();
@@ -11,9 +12,7 @@ export default async function AdminMessagesPage() {
 
   return (
     <div>
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Inbox</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Contact messages</h1>
-      <p className="mt-2 text-sm text-[#5b6b82]">Submissions from the site&apos;s contact form.</p>
+      <AdminPageHeader href="/admin/messages" />
 
       {!configured && (
         <div className="mt-6">

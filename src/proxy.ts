@@ -96,22 +96,28 @@ function isMaintenanceExempt(pathname: string): boolean {
  * Routes that need the Supabase session cookie refreshed. This list used to be
  * the proxy's whole matcher; the matcher now covers every route (maintenance
  * mode has to gate all of them), so the refresh is scoped here instead.
+ *
+ * **Every page that reads the signed-in customer belongs on this list**, and
+ * each entry covers everything nested under it. A page left off still renders,
+ * but the moment the access token expires it renders as if the visitor were a
+ * guest — a Server Component can't write the refreshed cookie itself — so
+ * their name, email and phone quietly stop prefilling.
  */
-const SESSION_REFRESH_PATHS = new Set([
+const SESSION_REFRESH_PATHS = [
+  "/", // Home — the referral popup only appears for signed-in customers.
   "/login",
   "/auth",
   "/profile",
   "/quote",
-  "/products",
+  "/products", // The catalog page and every category page under it.
+  "/request-product",
   "/forgot-password",
   "/reset-password",
-]);
+];
 
 function needsSessionRefresh(pathname: string): boolean {
-  return (
-    SESSION_REFRESH_PATHS.has(pathname) ||
-    pathname.startsWith("/auth/") ||
-    pathname.startsWith("/profile/")
+  return SESSION_REFRESH_PATHS.some(
+    (path) => pathname === path || (path !== "/" && pathname.startsWith(`${path}/`)),
   );
 }
 

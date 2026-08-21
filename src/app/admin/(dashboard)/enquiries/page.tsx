@@ -1,68 +1,70 @@
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
-import { getReferrerInfoForUsers, getWalletCreditsForSources, getProfilesForUsers } from "@/lib/wallet-admin";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { EnquiryRow } from "@/components/admin/enquiry-row";
-import {
-  CreateOrderButton,
-  type OrderUserOption,
-  type OrderProductOption,
-} from "@/components/admin/create-order-form";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
-export default async function AdminOrdersPage() {
-  const configured = isSupabaseConfigured();
+type Lead = { id: string; email: string; user_id: string | null };
+
+/**
+ * Names the customer account each enquiry would attach to if moved to Orders,
+ * mirroring moveEnquiryToOrderAction: the account that submitted it, else one
+ * with a matching email. Guests match nothing and are absent from the map.
+ */
+async function getLinkedCustomers(leads: Lead[]): Promise<Record<string, string>> {
+  const userIds = [...new Set(leads.map((l) => l.user_id).filter((id): id is string => Boolean(id)))];
+  const emails = [...new Set(leads.filter((l) => !l.user_id).map((l) => l.email.trim().toLowerCase()).filter(Boolean))];
+  if (userIds.length === 0 && emails.length === 0) return {};
+
   const db = supabaseAdmin();
+  const [byId, byEmail] = await Promise.all([
+    userIds.length
+      ? db.from("user_profiles").select("id, first_name, last_name").in("id", userIds)
+      : { data: [] },
+    emails.length
+      ? db
+          .from("user_profiles")
+          .select("id, first_name, last_name, email")
+          .in("email", emails)
+          .neq("status", "incomplete")
+      : { data: [] },
+  ]);
 
-  const [itemsRes, usersRes, productsRes] = configured
-    ? await Promise.all([
-        db
+  const nameById: Record<string, string> = {};
+  for (const p of byId.data ?? []) nameById[p.id] = `${p.first_name} ${p.last_name}`.trim();
+
+  const nameByEmail: Record<string, string> = {};
+  for (const p of (byEmail.data as { first_name: string; last_name: string; email: string }[] | null) ?? []) {
+    nameByEmail[p.email.toLowerCase()] = `${p.first_name} ${p.last_name}`.trim();
+  }
+
+  const result: Record<string, string> = {};
+  for (const lead of leads) {
+    const name = lead.user_id
+      ? nameById[lead.user_id]
+      : nameByEmail[lead.email.trim().toLowerCase()];
+    if (name) result[lead.id] = name;
+  }
+  return result;
+}
+
+export default async function AdminEnquiriesPage() {
+  const configured = isSupabaseConfigured();
+  const items = configured
+    ? (
+        await supabaseAdmin()
           .from("product_enquiries")
           .select("*")
-          .eq("request_type", "order")
-          .order("created_at", { ascending: false }),
-        db
-          .from("user_profiles")
-          .select("id, first_name, last_name, username, email, status")
-          .neq("status", "incomplete")
-          .order("first_name", { ascending: true }),
-        db
-          .from("products")
-          .select("id, name, category_id, categories(name)")
-          .eq("is_active", true)
-          .order("name", { ascending: true }),
-      ])
-    : [{ data: [] }, { data: [] }, { data: [] }];
+          .eq("request_type", "enquiry")
+          .order("created_at", { ascending: false })
+      ).data ?? []
+    : [];
 
-  const items = itemsRes.data ?? [];
-  const users = (usersRes.data as OrderUserOption[] | null) ?? [];
-  const products = (
-    (productsRes.data as { id: string; name: string; categories: { name: string } | null }[] | null) ?? []
-  ).map((p) => ({ id: p.id, name: p.name, category: p.categories?.name ?? null }));
-
-  const userIds = items.map((i) => i.user_id).filter((id): id is string => Boolean(id));
-  const [referrerByUserId, creditBySourceId, profileByUserId] = await Promise.all([
-    getReferrerInfoForUsers(userIds),
-    getWalletCreditsForSources(
-      "enquiry",
-      items.map((i) => i.id),
-    ),
-    getProfilesForUsers(userIds),
-  ]);
+  const linkedCustomers = await getLinkedCustomers(items as Lead[]);
 
   return (
     <div>
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Requests</p>
-          <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Orders</h1>
-          <p className="mt-2 max-w-2xl text-sm text-[#5b6b82]">
-            Orders you created — either moved over from an enquiry or placed here for a customer. Customers
-            can&rsquo;t create orders themselves. Price them out or reject; the customer sees the decision on
-            their profile.
-          </p>
-        </div>
-        {configured && <CreateOrderButton users={users} products={products} />}
-      </div>
+      <AdminPageHeader href="/admin/enquiries" />
 
       {!configured && (
         <div className="mt-6">
@@ -73,16 +75,14 @@ export default async function AdminOrdersPage() {
       <div className="mt-8 flex flex-col gap-3">
         {items.length === 0 && configured && (
           <p className="rounded-2xl border border-dashed border-[#e4e9f2] px-5 py-10 text-center text-sm text-[#94a3b8]">
-            No orders yet.
+            No product enquiries yet.
           </p>
         )}
         {items.map((item) => (
           <EnquiryRow
             key={item.id}
             item={item}
-            referrerName={item.user_id ? referrerByUserId[item.user_id] ?? null : null}
-            alreadyCredited={creditBySourceId[item.id] ?? null}
-            profile={item.user_id ? profileByUserId[item.user_id] ?? null : null}
+            linkedCustomer={linkedCustomers[item.id] ?? null}
           />
         ))}
       </div>

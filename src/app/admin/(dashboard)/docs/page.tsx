@@ -14,36 +14,39 @@ import {
 } from "lucide-react";
 import { DocsToc, type DocSection } from "@/components/admin/docs-toc";
 import { DocSection as Section, Callout, StepList, FieldTable, Badge, Kbd } from "@/components/admin/docs-kit";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
 export const metadata: Metadata = { title: "Documentation | Admin | AWS OVERSEAS impex", robots: { index: false, follow: false } };
 
 const SECTIONS: DocSection[] = [
-  { id: "overview", label: "Overview" },
-  { id: "dashboard", label: "Dashboard" },
-  { id: "users", label: "Users" },
-  { id: "products", label: "Products" },
-  { id: "orders", label: "Orders" },
-  { id: "enquiries", label: "Enquiries" },
-  { id: "quotes", label: "Quote requests & tracking" },
-  { id: "wallet", label: "Referral wallet" },
-  { id: "messages", label: "Messages" },
-  { id: "offices", label: "Offices" },
-  { id: "settings", label: "Site settings" },
-  { id: "integrations", label: "SEO & Analytics" },
-  { id: "accounts", label: "Accounts & access" },
-  { id: "data-model", label: "How data flows" },
-  { id: "glossary", label: "Status glossary" },
+  { group: "Start here", id: "overview", label: "What this panel is for" },
+  { group: "Start here", id: "finding-your-way", label: "Finding your way around" },
+  { group: "Start here", id: "dashboard", label: "Dashboard" },
+  { group: "Inbox", id: "orders", label: "Orders" },
+  { group: "Inbox", id: "enquiries", label: "Product enquiries" },
+  { group: "Inbox", id: "quotes", label: "Quote enquiries" },
+  { group: "Inbox", id: "warehouse-bookings", label: "Warehouse bookings" },
+  { group: "Inbox", id: "messages", label: "Contact messages" },
+  { group: "Customers", id: "users", label: "Users" },
+  { group: "Customers", id: "referrals", label: "Referrals" },
+  { group: "Customers", id: "wallets", label: "Wallets" },
+  { group: "Customers", id: "newsletter", label: "Subscribers" },
+  { group: "Catalog", id: "categories", label: "Categories" },
+  { group: "Catalog", id: "products", label: "Products" },
+  { group: "Website content", id: "offices", label: "Offices" },
+  { group: "Website content", id: "associates", label: "Associates" },
+  { group: "Website content", id: "footer-contacts", label: "Footer contacts" },
+  { group: "Setup", id: "settings", label: "Site settings" },
+  { group: "Setup", id: "seo", label: "SEO & analytics" },
+  { group: "Setup", id: "accounts", label: "Accounts & access" },
+  { group: "Reference", id: "data-model", label: "How data flows" },
+  { group: "Reference", id: "glossary", label: "Status glossary" },
 ];
 
 export default function AdminDocsPage() {
   return (
     <div>
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Reference</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Documentation</h1>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#5b6b82]">
-        Everything this admin panel does and how to run it day to day — written for whoever is operating
-        AWS OVERSEAS impex, not for a developer. Every page in the sidebar has a matching section below.
-      </p>
+      <AdminPageHeader href="/admin/docs" />
 
       <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
         <aside className="top-24 shrink-0 lg:sticky lg:w-56">
@@ -60,7 +63,7 @@ export default function AdminDocsPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 { icon: Boxes, title: "Catalog & content", detail: "Products shown on the public site are created and edited here." },
-                { icon: MessageSquareText, title: "Customer requests", detail: "Orders, enquiries, quote requests and contact messages all land in an inbox here to action." },
+                { icon: MessageSquareText, title: "Customer enquiries", detail: "Orders, product enquiries, quote enquiries and contact messages all land in an inbox here to action." },
                 { icon: Users, title: "Customer accounts", detail: "New sign-ups wait for approval before they can place an order or request a quote." },
                 { icon: Wallet, title: "Referral wallet", detail: "Customers earn wallet credit for referrals; you grant and adjust that credit here." },
               ].map(({ icon: Icon, title, detail }) => (
@@ -88,24 +91,147 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
+            id="finding-your-way"
+            eyebrow="Start here"
+            title="Finding your way around"
+            intro="The sidebar is grouped by the job you came to do, and every page is titled with the exact words on the link you clicked. The eyebrow above each page title names the group it belongs to, so you always know where you are."
+          >
+            <FieldTable
+              columns={["Sidebar group", "What lives there"]}
+              rows={[
+                ["Inbox", "Everything a customer sent you: orders, product enquiries, quote enquiries, warehouse bookings and contact messages. These are the pages that carry a number badge when something is waiting."],
+                ["Customers", "The people behind those enquiries — accounts to approve, who referred whom, wallet balances, and newsletter subscribers."],
+                ["Catalog", "The categories and products shown on the public site."],
+                ["Website content", "Blocks of the public site you edit directly: offices and associates on the Contact page, and the footer's contact columns."],
+                ["Setup", "Configuration rather than day-to-day work: site settings, tracking IDs, and this documentation."],
+              ]}
+            />
+            <Callout>
+              A red number beside a sidebar link is the count of items on that page you haven&rsquo;t opened yet.
+              The count clears as you read each item, so an empty sidebar means an empty desk.
+            </Callout>
+          </Section>
+
+          <Section
             id="dashboard"
             eyebrow="/admin"
             title="Dashboard"
-            intro="The landing page after login. Each tile is a live count pulled straight from the database — nothing here is cached or delayed."
+            intro="The landing page after login, and the fastest way to see what needs doing. Every count is live from the database — nothing here is cached or delayed."
           >
             <FieldTable
-              columns={["Tile", "What it counts"]}
+              columns={["Section", "What it shows"]}
               rows={[
-                ["Users awaiting approval", "Sign-ups with status pending — see Users."],
-                ["Unread orders", "Order requests not yet opened — see Orders."],
-                ["Unread enquiries", "Open enquiries not yet opened — see Enquiries."],
-                ["Unread messages", "Contact form submissions not yet opened — see Messages."],
-                ["Unread quote requests", "Quote form submissions not yet opened — see Quote requests."],
+                ["Needs you now", "One card per queue that has unopened items. Queues with nothing in them are left out entirely, so a clear desk looks clear instead of showing six zeros."],
+                ["Latest arrivals", "The eight most recent unopened items across every queue, newest first, with who sent it and what it was about. Click a row to open that queue."],
+                ["All clear", "The queues with nothing waiting, kept as small links so you can still reach them."],
               ]}
             />
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              Click any tile (or its <strong>View</strong> link) to jump straight to that inbox. A good habit is to
-              start every session here — it tells you exactly what&rsquo;s waiting without opening every page.
+              A good habit is to start every session here — it tells you exactly what&rsquo;s waiting without
+              opening every page.
+            </p>
+          </Section>
+
+          <Section
+            id="orders"
+            eyebrow="/admin/orders"
+            title="Orders"
+            intro="Submitted from the Order button on a product card, which only signed-in, approved customers can use. This is the pricing workflow — an order isn't final until you quote it."
+          >
+            <StepList
+              steps={[
+                { title: "A new order lands unread", detail: "Contains the customer's contact details, the product, and any message they left." },
+                {
+                  title: "Price it out",
+                  detail: "Enter a quoted price, quantity, weight, and an expected delivery date, then mark it Quoted. The customer sees this quote reflected on their own profile.",
+                },
+                {
+                  title: "Or reject it",
+                  detail: "Add a rejection reason — it's shown back to the customer so they understand why.",
+                },
+                {
+                  title: "“New order” button",
+                  detail: "Lets you log an order on a customer's behalf — useful for phone or WhatsApp orders that didn't come through the website. Pick the customer and product from the dropdowns.",
+                },
+              ]}
+            />
+            <FieldTable
+              rows={[
+                ["Referred by", "If the ordering customer was referred by someone, that referrer's name shows here — relevant when deciding whether to credit a referral reward."],
+                ["Quote status", "awaiting_quote → quoted or rejected. Drives what the customer sees on their profile."],
+              ]}
+            />
+          </Section>
+
+          <Section
+            id="enquiries"
+            eyebrow="/admin/enquiries"
+            title="Product enquiries"
+            intro="Submitted from the Enquiry button on a product card — open to anyone, no account required. This is a lightweight lead inbox, not a pricing workflow: no quote/approve/reject panel, just contact details and a message."
+          >
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              Follow up directly by email or phone using the contact details on the row. Since guests can submit
+              these, some rows may have no linked customer account at all.
+            </p>
+          </Section>
+
+          <Section
+            id="quotes"
+            eyebrow="/admin/quotes"
+            title="Quote enquiries"
+            intro="Shipping enquiries sent from the public Enquiry now page (requires an approved account, same gate as Orders). Every quote enquiry is also the seed record for the public shipment tracker."
+          >
+            <StepList
+              steps={[
+                { title: "Review the enquiry", detail: "Service type, shipment type, origin/destination country, and contact details." },
+                {
+                  title: "“New quote enquiry” button",
+                  detail: "Logs a quote enquiry on behalf of an existing customer, same idea as Orders' manual-entry button.",
+                },
+                {
+                  title: "Tracking number",
+                  detail: "Every quote enquiry is issued a tracking number automatically at submission. The customer (or anyone with the number) can look up progress at the public /tracking page — no login needed there.",
+                },
+                {
+                  title: "Update shipment status",
+                  detail: "Move the shipment through its stages — Pending → Collected → Customs cleared → In transit → Delivered — and add milestones (a location + note) that build up the timeline the customer sees on the tracker.",
+                },
+              ]}
+            />
+            <Callout>
+              Updating the shipment status here is what customers see when they check their tracking number on the
+              public site — treat it as the source of truth for &ldquo;where is my shipment right now.&rdquo;
+            </Callout>
+          </Section>
+
+          <Section
+            id="warehouse-bookings"
+            eyebrow="/admin/warehouse-bookings"
+            title="Warehouse bookings"
+            intro="Storage requests from the “Book a Warehouse” popup on the Enquiry now page. This is a separate ask from a shipping enquiry — someone wants space, not freight."
+          >
+            <FieldTable
+              rows={[
+                ["Warehouse type", "The kind of storage the customer picked in the popup."],
+                ["Address", "Where the goods are coming from or going to."],
+                ["Notes", "Anything else they typed. Often the size or duration they need."],
+              ]}
+            />
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              There&rsquo;s no status workflow here beyond read/unread — confirm availability by email or phone,
+              then mark the request read so it drops off the dashboard.
+            </p>
+          </Section>
+
+          <Section
+            id="messages"
+            eyebrow="/admin/messages"
+            title="Contact messages"
+            intro="Submissions from the general Contact page form — name, company, email, phone, the service they're asking about, and their message. No account or approval needed to send one."
+          >
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              This is the simplest inbox in the panel — read, then follow up by email or phone directly. There&rsquo;s
+              no status workflow beyond read/unread.
             </p>
           </Section>
 
@@ -129,7 +255,7 @@ export default function AdminDocsPage() {
                   title: "Approve or reject",
                   detail: (
                     <>
-                      Approving unlocks <strong>Order</strong> and <strong>Request a Quote</strong> for that customer —
+                      Approving unlocks <strong>Order</strong> and <strong>Enquiry now</strong> for that customer —
                       both require an approved account. Rejecting blocks them from those two actions but does not
                       delete the account.
                     </>
@@ -151,118 +277,28 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
-            id="products"
-            eyebrow="/admin/products"
-            title="Products"
-            intro="The catalog shown on the public /products page, displayed as an image grid. No prices are shown anywhere on the site by design — visitors send an Enquiry or Order instead of seeing a price."
-          >
-            <StepList
-              steps={[
-                { title: "Click “Add product”", detail: "Opens a form for name, category, description, and an image." },
-                {
-                  title: "Upload the product image first",
-                  detail: "The image field uploads to Cloudinary on its own — wait until the thumbnail appears before saving the rest of the form, otherwise the product saves with no image.",
-                },
-                { title: "Save", detail: "The product appears on the public catalog immediately — no rebuild or redeploy needed." },
-                {
-                  title: "Active vs. inactive",
-                  detail: "Turning a product inactive hides it from the public catalog without deleting it, so historical orders/enquiries that reference it still show correctly.",
-                },
-                {
-                  title: "Sort order",
-                  detail: "Controls the display order on the public grid — lower numbers show first.",
-                },
-              ]}
-            />
-            <Callout kind="warning">
-              Deleting a product does not delete past orders or enquiries for it — those keep a snapshot of the
-              product&rsquo;s name so the history stays readable even after the product is gone.
-            </Callout>
-          </Section>
-
-          <Section
-            id="orders"
-            eyebrow="/admin/enquiries — labeled Orders"
-            title="Orders"
-            intro="Submitted from the Order button on a product card, which only signed-in, approved customers can use. This is the pricing workflow — an order isn't final until you quote it."
-          >
-            <StepList
-              steps={[
-                { title: "A new order lands unread", detail: "Contains the customer's contact details, the product, and any message they left." },
-                {
-                  title: "Price it out",
-                  detail: "Enter a quoted price, quantity, weight, and an expected delivery date, then mark it Quoted. The customer sees this quote reflected on their own profile.",
-                },
-                {
-                  title: "Or reject it",
-                  detail: "Add a rejection reason — it's shown back to the customer so they understand why.",
-                },
-                {
-                  title: "“Create order” button",
-                  detail: "Lets you log an order on a customer's behalf — useful for phone or WhatsApp orders that didn't come through the website. Pick the customer and product from the dropdowns.",
-                },
-              ]}
-            />
-            <FieldTable
-              rows={[
-                ["Referred by", "If the ordering customer was referred by someone, that referrer's name shows here — relevant when deciding whether to credit a referral reward."],
-                ["Quote status", "awaiting_quote → quoted or rejected. Drives what the customer sees on their profile."],
-              ]}
-            />
-          </Section>
-
-          <Section
-            id="enquiries"
-            eyebrow="/admin/enquiries-open — labeled Enquiries"
-            title="Enquiries"
-            intro="Submitted from the Enquiry button on a product card — open to anyone, no account required. This is a lightweight lead inbox, not a pricing workflow: no quote/approve/reject panel, just contact details and a message."
+            id="referrals"
+            eyebrow="/admin/referrals"
+            title="Referrals"
+            intro="Every sign-up that used someone else's referral code, grouped under the customer who sent them. Read-only: this page shows you who earned what, and you pay it out from Wallets."
           >
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              Follow up directly by email or phone using the contact details on the row. Since guests can submit
-              these, some rows may have no linked customer account at all.
+              Each customer gets a referral code at sign-up. When a new customer enters that code, they appear
+              under the referrer here. Use it to check a claim before crediting anyone.
             </p>
           </Section>
 
           <Section
-            id="quotes"
-            eyebrow="/admin/quotes"
-            title="Quote requests & shipment tracking"
-            intro="Submitted from the public Request a Quote form (requires an approved account, same gate as Orders). Every quote request is also the seed record for the public shipment tracker."
-          >
-            <StepList
-              steps={[
-                { title: "Review the request", detail: "Service type, shipment type, origin/destination country, and contact details." },
-                {
-                  title: "“Create quote” button",
-                  detail: "Logs a quote request on behalf of an existing customer, same idea as Orders' manual-entry button.",
-                },
-                {
-                  title: "Tracking number",
-                  detail: "Every quote request is issued a tracking number automatically at submission. The customer (or anyone with the number) can look up progress at the public /tracking page — no login needed there.",
-                },
-                {
-                  title: "Update shipment status",
-                  detail: "Move the shipment through its stages — Pending → Collected → Customs cleared → In transit → Delivered — and add milestones (a location + note) that build up the timeline the customer sees on the tracker.",
-                },
-              ]}
-            />
-            <Callout>
-              Updating the shipment status here is what customers see when they check their tracking number on the
-              public site — treat it as the source of truth for &ldquo;where is my shipment right now.&rdquo;
-            </Callout>
-          </Section>
-
-          <Section
-            id="wallet"
+            id="wallets"
             eyebrow="/admin/wallets"
-            title="Referral wallet"
+            title="Wallets"
             intro="Customers get a personal referral code and link at sign-up. When someone they referred gets an order or quote approved, you can credit the referrer's wallet. Customers see that balance on their own wallet page."
           >
             <StepList
               steps={[
                 {
                   title: "Crediting a referral",
-                  detail: "From an approved Order or Quote request row, if the customer was referred, you'll see who referred them and can grant a wallet credit tied to that specific order/quote — this ties the credit to a source so it's traceable and can't be double-counted by accident.",
+                  detail: "From an approved Order or Quote enquiry row, if the customer was referred, you'll see who referred them and can grant a wallet credit tied to that specific order/quote — this ties the credit to a source so it's traceable and can't be double-counted by accident.",
                 },
                 {
                   title: "Adjusting a balance by hand",
@@ -283,15 +319,64 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
-            id="messages"
-            eyebrow="/admin/messages"
-            title="Messages"
-            intro="Submissions from the general Contact page form — name, company, email, phone, the service they're asking about, and their message. No account or approval needed to send one."
+            id="newsletter"
+            eyebrow="/admin/newsletter"
+            title="Subscribers"
+            intro="Everyone who entered their email in the newsletter form in the site footer. Listed newest first, with the date they signed up."
           >
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              This is the simplest inbox in the panel — read, then follow up by email or phone directly. There&rsquo;s
-              no status workflow beyond read/unread.
+              This panel doesn&rsquo;t send newsletters — it collects the list. Export or copy the addresses into
+              whichever mailing tool you use.
             </p>
+          </Section>
+
+          <Section
+            id="categories"
+            eyebrow="/admin/categories"
+            title="Categories"
+            intro="The category tree customers browse. Categories are the grid on the public Products page and the Products dropdown in the site header, and every product must sit in one."
+          >
+            <StepList
+              steps={[
+                { title: "Create a category", detail: "Give it a name and an image. The image is what visitors see in the grid, so use something representative." },
+                { title: "Nest as deep as you need", detail: "Open a category and add a subcategory inside it. A subcategory behaves exactly like a category — it can hold products or more subcategories." },
+                { title: "Add products to it", detail: "Open the category and add products from there, or set the category on the product itself." },
+              ]}
+            />
+            <Callout kind="warning">
+              Deleting a category does not delete the products inside it — they become unfiled, which means they
+              show nowhere on the public site. Check <strong>Products</strong> after deleting a category.
+            </Callout>
+          </Section>
+
+          <Section
+            id="products"
+            eyebrow="/admin/products"
+            title="Products"
+            intro="The catalog shown on the public /products page, displayed as an image grid. No prices are shown anywhere on the site by design — visitors send an Enquiry or Order instead of seeing a price."
+          >
+            <StepList
+              steps={[
+                { title: "Click “Add product”", detail: "Opens a form for name, category, description, and an image." },
+                {
+                  title: "Upload the product image first",
+                  detail: "The image field uploads to Cloudinary on its own — wait until the thumbnail appears before saving the rest of the form, otherwise the product saves with no image.",
+                },
+                { title: "Save", detail: "The product appears on the public catalog immediately — no rebuild or redeploy needed." },
+                {
+                  title: "Active vs. inactive",
+                  detail: "Turning a product inactive hides it from the public catalog without deleting it, so historical orders and product enquiries that reference it still show correctly.",
+                },
+                {
+                  title: "Sort order",
+                  detail: "Controls the display order on the public grid — lower numbers show first.",
+                },
+              ]}
+            />
+            <Callout kind="warning">
+              Deleting a product does not delete past orders or enquiries for it — those keep a snapshot of the
+              product&rsquo;s name so the history stays readable even after the product is gone.
+            </Callout>
           </Section>
 
           <Section
@@ -337,6 +422,45 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
+            id="associates"
+            eyebrow="/admin/associates"
+            title="Associates"
+            intro="The photo tiles below the enquiry form on the Contact page. Each tile is a city, and opens a card with the local associate's name, address, phone and email."
+          >
+            <FieldTable
+              rows={[
+                ["City", "The name shown across the bottom of the photo tile."],
+                ["Photo", "The tile image. Portrait or square images sit best in the grid."],
+                ["Associate name, address, phone, email", "The details inside the card that opens when a visitor taps the tile."],
+                ["Visible", "Hides the tile from the Contact page without deleting the record."],
+              ]}
+            />
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              Every card has its own shareable link, so a visitor can send one associate&rsquo;s details straight to
+              someone else.
+            </p>
+          </Section>
+
+          <Section
+            id="footer-contacts"
+            eyebrow="/admin/footer-contacts"
+            title="Footer contacts"
+            intro="The contact columns in the site footer, sitting below the nav links and above the copyright line on every page."
+          >
+            <FieldTable
+              rows={[
+                ["Headline", "The column's heading, e.g. a city or department name."],
+                ["Address, phone, email", "The lines under the heading. Leave any of them blank to omit that line."],
+                ["Visible", "Hides the column from the footer without deleting it."],
+              ]}
+            />
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              Add as many columns as you like — the footer lays out four per row on desktop and wraps the rest
+              onto a new row.
+            </p>
+          </Section>
+
+          <Section
             id="settings"
             eyebrow="/admin/settings"
             title="Site settings"
@@ -357,16 +481,16 @@ export default function AdminDocsPage() {
           </Section>
 
           <Section
-            id="integrations"
-            eyebrow="/admin/integrations"
-            title="SEO & Analytics"
+            id="seo"
+            eyebrow="/admin/seo"
+            title="SEO & analytics"
             intro="Connects the website to Google Analytics 4, Google Tag Manager, Google Search Console, Bing Webmaster Tools, Microsoft Clarity, Meta Pixel, and Google Ads conversion tracking. Each service needs exactly one ID pasted in — the site injects the right tracking code automatically, and saving takes effect on the next page load."
           >
             <FieldTable
               rows={[
                 ["Analytics & recordings", "GA4 (visitor stats), Microsoft Clarity (session recordings and heatmaps)."],
                 ["Search engines", "Search Console and Bing verification codes, so both engines report how the site ranks. The sitemap to submit is /sitemap.xml."],
-                ["Advertising", "Meta Pixel and Google Ads conversion ID + label. Every quote request, enquiry, order, and contact message is reported as a lead/conversion automatically."],
+                ["Advertising", "Meta Pixel and Google Ads conversion ID + label. Every quote enquiry, product enquiry, order, and contact message is reported as a lead/conversion automatically."],
                 ["Tag Manager", "A container for adding any future marketing tag without code changes."],
               ]}
             />
@@ -414,8 +538,8 @@ export default function AdminDocsPage() {
               {[
                 { icon: Boxes, text: "A product created in Products appears on the public catalog instantly." },
                 { icon: ShoppingBag, text: "Order button on a product (signed-in, approved customers only) → Orders inbox, priced or rejected there." },
-                { icon: MessageSquareText, text: "Enquiry button on a product (anyone) → Enquiries inbox, a simple lead." },
-                { icon: FileText, text: "Request a Quote form (approved customers only) → Quote requests, which also issues a public tracking number." },
+                { icon: MessageSquareText, text: "Enquiry button on a product (anyone) → Product enquiries inbox, a simple lead." },
+                { icon: FileText, text: "Enquiry now page (approved customers only) → Quote enquiries, which also issues a public tracking number." },
                 { icon: Mail, text: "Contact page form (anyone) → Messages inbox." },
                 { icon: Users, text: "Public sign-up + profile → Users, gated pending → approved before Orders/Quotes unlock." },
                 { icon: Wallet, text: "Approved Order/Quote from a referred customer → credit the referrer's wallet → they see the balance on their wallet page." },

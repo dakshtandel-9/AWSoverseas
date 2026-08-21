@@ -2,11 +2,10 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
 import { SetupNotice } from "@/components/admin/setup-notice";
 import { WalletRow, type AdminWalletCustomer, type AdminWalletEntry } from "@/components/admin/wallet-row";
+import { AdminPageHeader } from "@/components/admin/page-header";
 
 // Balances change from other admin screens (crediting a referral on a quote
 // or order row), so this list must never be served stale.
-export const dynamic = "force-dynamic";
-
 const money = (value: number) => `$${value.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
 
 /**
@@ -72,12 +71,7 @@ export default async function AdminWalletsPage() {
 
   return (
     <div>
-      <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">Customers</p>
-      <h1 className="mt-2 text-2xl font-bold text-[#1A0A53] sm:text-3xl">Wallets</h1>
-      <p className="mt-2 text-sm text-[#5b6b82]">
-        Every customer&apos;s referral balance. Open a customer to add credit or deduct it — each adjustment is
-        recorded as its own line in the wallet activity they see.
-      </p>
+      <AdminPageHeader href="/admin/wallets" />
 
       {!configured && (
         <div className="mt-6">

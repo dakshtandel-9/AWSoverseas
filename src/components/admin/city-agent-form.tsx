@@ -8,7 +8,7 @@ import {
   createCityAgentAction,
   updateCityAgentAction,
   type CityAgentFormState,
-} from "@/app/admin/(dashboard)/city-agents/actions";
+} from "@/app/admin/(dashboard)/associates/actions";
 
 const initialState: CityAgentFormState = {};
 

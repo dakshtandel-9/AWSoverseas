@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 
 type Data = {
   badge: string;
+  desk: string;
   title: string;
   subtitle: string;
   note: string;
@@ -42,8 +43,8 @@ export function RequestProductHero({ data }: { data: Data }) {
             <span className="size-1.5 animate-pulse rounded-full bg-[#9e4953]" />
             {data.badge}
           </span>
-          <span className="ml-auto hidden font-mono text-[11px] tracking-[0.18em] text-[#1A0A53]/40 sm:block">
-            NO&nbsp;ACCOUNT&nbsp;NEEDED
+          <span className="ml-auto hidden font-mono text-[11px] uppercase tracking-[0.18em] text-[#1A0A53]/40 sm:block">
+            {data.desk}
           </span>
         </motion.div>
 

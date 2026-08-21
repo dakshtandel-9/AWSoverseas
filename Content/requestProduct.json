@@ -5,16 +5,65 @@
     "description": "Can't find what you're sourcing in our catalog? Tell us the product you need — name, a short description, a photo, and how much you need — and our sourcing team will get back to you."
   },
   "hero": {
-    "badge": "Product Request",
+    "badge": "Product Enquiry",
+    "desk": "Sourcing Desk",
     "title": "Looking for something we don't list yet?",
     "subtitle": "Tell us what you need — a name and a way to reach you is enough. A description, a photo, and quantity all help, but none of it is required.",
-    "note": "No account needed — anyone can submit a request."
+    "note": "No account needed — anyone can send one."
   },
   "form": {
-    "title": "Tell us what you're after",
-    "description": "The more you tell us, the faster we can quote it — but only the product name and one way to reach you are required.",
-    "submitButton": "Send request",
-    "successTitle": "Request received",
-    "successMessage": "Thanks — we've got your request and will get back to you by email or phone shortly."
+    "docket": "Product Enquiry — Not In Catalog",
+    "sectionCount": "2 sections",
+    "optionalLabel": "(optional)",
+    "product": {
+      "index": "01",
+      "title": "The product",
+      "description": "Name it, then tell us anything that pins it down — specs, materials, how much you need. A photo helps most of all."
+    },
+    "contact": {
+      "index": "02",
+      "title": "How we reach you",
+      "description": "We answer by email or phone, so leave us at least one of them.",
+      "prefillNote": "Filled in from your account — change anything you'd rather we used instead."
+    },
+    "fields": {
+      "productName": {
+        "label": "Product name",
+        "placeholder": "e.g. Stainless steel pipe fittings"
+      },
+      "message": {
+        "label": "Description or message",
+        "placeholder": "Specs, materials, intended use — anything that helps us source the right thing"
+      },
+      "quantity": {
+        "label": "Quantity or quality needed",
+        "placeholder": "e.g. 500 units, food-grade"
+      },
+      "photo": {
+        "label": "Photo",
+        "placeholder": "Upload a photo…",
+        "selectedLabel": "Photo selected"
+      },
+      "name": {
+        "label": "Your name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@company.com"
+      },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "+91 98765 43210"
+      }
+    },
+    "submit": {
+      "title": "Send it over",
+      "description": "Our sourcing desk reads every enquiry. If we can move it, you'll hear back with availability and a price — pricing is never published online.",
+      "buttonText": "Send enquiry",
+      "privacyText": "Your details are used to answer this enquiry and nothing else."
+    },
+    "successTitle": "Enquiry received",
+    "successMessage": "Thanks — we've got it. Our sourcing desk will come back to you by email or phone shortly."
   }
 }
