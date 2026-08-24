@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/ui/logo";
 import { AdminNav, AdminMobileNav } from "@/components/admin/admin-nav";
+import { WebmailButton } from "@/components/admin/webmail-button";
 import { getAdminCounts } from "@/lib/admin-counts";
 
 // The panel is a live control room, and the sidebar badges are counts — a
@@ -33,6 +34,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-[#e4e9f2] bg-white px-4 py-3 lg:hidden">
           <AdminMobileNav counts={counts} />
           <Logo imageClassName="h-10" />
+        </header>
+        <header className="sticky top-0 z-30 hidden items-center justify-end border-b border-[#e4e9f2] bg-white px-5 py-3 lg:flex lg:px-10">
+          <WebmailButton />
         </header>
         <main className="flex-1 px-5 py-8 sm:px-8 lg:px-10 lg:py-10">{children}</main>
       </div>

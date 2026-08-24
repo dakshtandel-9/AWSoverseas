@@ -36,7 +36,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
       />
 
-      <ReferralPopup loggedIn={Boolean(account)} referralCode={account?.profile.referral_code ?? null} />
+      <ReferralPopup loggedIn={Boolean(account)} />
 
       {/* <HeroSlider hero={home.hero} exportHero={home.exportHero} /> */}
       <ImageHeroSlider

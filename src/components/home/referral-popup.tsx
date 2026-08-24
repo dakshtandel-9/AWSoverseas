@@ -5,27 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, Copy, Gift, Wallet, X } from "lucide-react";
+import { ArrowRight, Gift, Wallet, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const OPEN_DELAY_MS = 10000;
 
-/** Auto-opens on every home page load. */
-export function ReferralPopup({
-  loggedIn,
-  referralCode,
-}: {
-  loggedIn: boolean;
-  referralCode: string | null;
-}) {
+/** Auto-opens on every home page load, for signed-out visitors only. */
+export function ReferralPopup({ loggedIn }: { loggedIn: boolean }) {
   const [open, setOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (loggedIn) return;
     const t = setTimeout(() => setOpen(true), OPEN_DELAY_MS);
     return () => clearTimeout(t);
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     if (!open) return;
@@ -39,27 +33,11 @@ export function ReferralPopup({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  useEffect(() => {
-    if (!copied) return;
-    const t = setTimeout(() => setCopied(false), 2000);
-    return () => clearTimeout(t);
-  }, [copied]);
-
   function close() {
     setOpen(false);
   }
 
-  async function copyCode() {
-    if (!referralCode) return;
-    try {
-      await navigator.clipboard.writeText(referralCode);
-      setCopied(true);
-    } catch {
-      // Clipboard unavailable — the code is still visible to copy by hand.
-    }
-  }
-
-  if (typeof document === "undefined") return null;
+  if (loggedIn || typeof document === "undefined") return null;
 
   return (
     <>
@@ -141,43 +119,22 @@ export function ReferralPopup({
                       </div>
                     </div>
 
-                    {loggedIn && referralCode ? (
-                      <div className="mt-auto flex flex-col gap-3">
-                        <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#e4e9f2] bg-[#f6f8fc] px-5 py-3.5">
-                          <span className="font-mono text-lg font-bold tracking-[0.12em] text-[#1A0A53]">
-                            {referralCode}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={copyCode}
-                            aria-label={copied ? "Copied" : "Copy referral code"}
-                            className="grid size-9 shrink-0 place-items-center rounded-full border border-[#e4e9f2] text-[#5b6b82] transition-colors hover:border-[#9e4953] hover:text-[#1A0A53]"
-                          >
-                            {copied ? <Check className="size-4 text-maroon-admin" /> : <Copy className="size-4" />}
-                          </button>
-                        </div>
-                        <Button href="/profile/referrals" variant="secondary" size="lg" className="w-full">
-                          View my referrals <ArrowRight className="size-4" />
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="mt-auto flex flex-col gap-3">
-                        <Button
-                          href="/login?mode=sign-up&next=/profile/referrals"
-                          variant="secondary"
-                          size="lg"
-                          className="w-full"
-                        >
-                          Create free account — get $25 <ArrowRight className="size-4" />
-                        </Button>
-                        <Link
-                          href="/login?next=/profile/referrals"
-                          className="text-center text-sm font-medium text-[#5b6b82] hover:text-[#1A0A53]"
-                        >
-                          Already have an account? Sign in
-                        </Link>
-                      </div>
-                    )}
+                    <div className="mt-auto flex flex-col gap-3">
+                      <Button
+                        href="/login?mode=sign-up&next=/profile/referrals"
+                        variant="secondary"
+                        size="lg"
+                        className="w-full"
+                      >
+                        Create free account — get $25 <ArrowRight className="size-4" />
+                      </Button>
+                      <Link
+                        href="/login?next=/profile/referrals"
+                        className="text-center text-sm font-medium text-[#5b6b82] hover:text-[#1A0A53]"
+                      >
+                        Already have an account? Sign in
+                      </Link>
+                    </div>
 
                     <p className="text-xs leading-relaxed text-[#94a3b8]">
                       Credits aren&rsquo;t transferable and may be changed or withdrawn at any time, at AWS
