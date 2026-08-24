@@ -76,7 +76,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/services",
           },
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/flight-hero.mp4",
+            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/flight-hero-v2.mp4",
             imageAlt: "Air freight aircraft on final approach with landing gear down",
             badge: "END-TO-END IMPORT & EXPORT MANAGEMENT",
             title: "One Partner for Import & Export",
