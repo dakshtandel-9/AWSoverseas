@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
+    // Catalog media already arrives compressed from R2. Serving it directly
+    // keeps the site independent of Vercel's per-transformation quota while
+    // preserving the browser-native lazy loading emitted by next/image.
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },

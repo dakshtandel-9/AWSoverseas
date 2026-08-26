@@ -41,6 +41,8 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
   const slideCount = slides.length;
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [mediaActive, setMediaActive] = useState(true);
 
   const pauseAutoplay = useCallback(() => {
     setPaused(true);
@@ -73,6 +75,33 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
     };
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let inViewport = true;
+    let pageVisible = document.visibilityState === "visible";
+    const sync = () => setMediaActive(inViewport && pageVisible);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry.isIntersecting;
+        sync();
+      },
+      { rootMargin: "160px 0px" },
+    );
+    const onVisibilityChange = () => {
+      pageVisible = document.visibilityState === "visible";
+      sync();
+    };
+
+    observer.observe(section);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, []);
+
   function onKeyDown(e: React.KeyboardEvent) {
     if (e.key === "ArrowLeft") goTo(index - 1);
     if (e.key === "ArrowRight") goTo(index + 1);
@@ -100,6 +129,7 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full overflow-hidden bg-[#1e3a5f]"
       aria-roledescription="carousel"
       aria-label="Highlights"
@@ -126,12 +156,13 @@ export function ImageHeroSlider({ slides }: { slides: ImageSlide[] }) {
             <video
               key={slide.video}
               className="absolute inset-0 size-full object-cover"
-              src={slide.video}
+              src={mediaActive ? slide.video : undefined}
               poster={slide.image}
-              autoPlay
+              autoPlay={mediaActive}
               loop
               muted
               playsInline
+              preload="metadata"
               aria-hidden
             />
           ) : slide.image ? (
