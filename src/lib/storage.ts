@@ -2,6 +2,7 @@ import "server-only";
 import sharp from "sharp";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { isR2Configured, r2Put } from "@/lib/r2";
 
 /** Single public bucket for every upload below, folder-namespaced per feature (mirrors the old Cloudinary folder layout). */
 const BUCKET = "uploads";
@@ -13,7 +14,7 @@ const CACHE_CONTROL = "31536000";
 const PHOTO_PROFILE = { maxDimension: 1600, quality: 80 } as const;
 
 export function isStorageConfigured(): boolean {
-  return isSupabaseConfigured();
+  return isR2Configured() || isSupabaseConfigured();
 }
 
 /**
@@ -50,17 +51,33 @@ function extensionFor(file: File): string {
   return (file.type.split("/")[1] || "bin").toLowerCase();
 }
 
+/**
+ * Writes to R2 when it's configured, otherwise falls back to the original
+ * Supabase bucket. The fallback matters during rollout: the deploy can go out
+ * before the R2 credentials are set in the hosting environment without
+ * breaking admin uploads, and it's the escape hatch if R2 ever needs backing
+ * out. Both paths use the same `<folder>/<uuid>.<ext>` key, so an object's
+ * location is decided purely by which URL got stored on the row.
+ */
 async function uploadToStorage(
   file: File,
   folder: string,
   profile: { maxDimension: number; quality: number } = PHOTO_PROFILE
 ): Promise<string> {
   if (!isStorageConfigured()) {
-    throw new Error("Storage is not configured — set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env");
+    throw new Error(
+      "Storage is not configured — set the R2_* variables (or NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY) in .env"
+    );
   }
 
   const { bytes, contentType, extension } = await compressImage(file, profile);
   const path = `${folder}/${crypto.randomUUID()}.${extension}`;
+
+  if (isR2Configured()) {
+    const body = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
+    return r2Put(path, body, contentType);
+  }
+
   const db = supabaseAdmin();
   const { error } = await db.storage.from(BUCKET).upload(path, bytes, {
     contentType,

@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
+      // Media lives in Cloudflare R2. Wildcarded because the development
+      // origin is `pub-<bucket hash>.r2.dev` — the hash isn't known until the
+      // bucket exists, and it changes if the bucket is recreated. When the
+      // domain moves to Cloudflare DNS and R2 gets a custom domain, add that
+      // hostname here too.
+      { protocol: "https", hostname: "*.r2.dev" },
+      // Kept so images uploaded before the R2 migration keep rendering, and
+      // so the Supabase fallback path in src/lib/storage.ts still works.
       { protocol: "https", hostname: "trjwefkdnublzryekmes.supabase.co" },
     ],
   },
