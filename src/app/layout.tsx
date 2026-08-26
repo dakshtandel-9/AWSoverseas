@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope, Cairo } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -119,6 +120,7 @@ export default async function RootLayout({
             <main id="main">{children}</main>
           </ChromeGate>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
