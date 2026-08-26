@@ -42,7 +42,7 @@ export default async function HomePage() {
       <ImageHeroSlider
         slides={[
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/ship-hero-v2.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/ship-hero-v2.mp4",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,
@@ -53,7 +53,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/mobile-app",
           },
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/manufacturing.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/manufacturing.mp4",
             imageAlt: "Warehouse aisle stacked with export-ready goods",
             badge: home.exportHero.badge,
             title: home.exportHero.title,
@@ -64,7 +64,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/products",
           },
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/cargo.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/cargo.mp4",
             imageAlt: "Aerial view of a container port with cranes and cargo ships",
             badge: "GLOBAL FREIGHT & LOGISTICS SOLUTIONS",
             title: "Move Cargo Anywhere in the World",
@@ -76,7 +76,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/services",
           },
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/flight-hero-v2.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/flight-hero-v2.mp4",
             imageAlt: "Air freight aircraft on final approach with landing gear down",
             badge: "END-TO-END IMPORT & EXPORT MANAGEMENT",
             title: "One Partner for Import & Export",
@@ -88,7 +88,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/contact",
           },
           {
-            video: "https://trjwefkdnublzryekmes.supabase.co/storage/v1/object/public/uploads/hero-slider/warehouse.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/warehouse.mp4",
             imageAlt: "Warehouse floor where export orders are received, packed, and staged for shipping",
             badge: "Warehousing & Order Consolidation",
             title: "Where Every Order Comes Together",

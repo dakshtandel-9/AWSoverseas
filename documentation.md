@@ -22,7 +22,7 @@ Keep this file safe — it contains your admin password and other sensitive setu
 12. [Shipment Tracking](#12-shipment-tracking)
 13. [Site Settings (Contact Info)](#13-site-settings-contact-info)
 14. [Where Website Text/Content Comes From](#14-where-website-textcontent-comes-from)
-15. [Images & File Uploads (Cloudinary)](#15-images--file-uploads-cloudinary)
+15. [Images & File Uploads (Cloudflare R2)](#15-images--file-uploads-cloudflare-r2)
 16. [Passwords, Secrets & Environment Variables](#16-passwords-secrets--environment-variables)
 17. [Hosting & Deployment](#17-hosting--deployment)
 18. [Security Notes — Please Read](#18-security-notes--please-read)
@@ -53,7 +53,7 @@ Everything the public sees is either:
 | **Tailwind CSS** (version 4) | A styling toolkit — instead of writing separate CSS files, styles are written as utility classes directly in the code. | Used for all visual styling (colors, spacing, layout, responsiveness). |
 | **Framer Motion** | An animation library. | Powers page-load animations, scroll reveals, and hover effects. |
 | **Supabase** | A hosted database + authentication service (built on PostgreSQL, a widely-used professional database system). | Stores all your live data: products, blog posts, customer accounts, orders, messages, wallet transactions. Also handles customer sign-up/login. |
-| **Cloudinary** | A cloud image-hosting service. | Every image uploaded through the admin panel (product photos, blog images, customer passport photos) is stored here, not on your web server. |
+| **Cloudflare R2** | Cloud object storage with public delivery and no egress charge. | Stores product/category photos, enquiry attachments, and hero media outside the web server. |
 | **Vercel** (typical hosting choice for Next.js, or any Node.js-capable host) | The server that runs your website and makes it publicly accessible. | Where the live site is deployed. |
 
 ### How these fit together (in order, when someone visits your site)
@@ -62,7 +62,7 @@ Everything the public sees is either:
 2. Next.js runs on the server, fetches whatever data that page needs (e.g. the product list from Supabase), and builds the HTML.
 3. The finished page is sent to the visitor's browser, styled with Tailwind CSS, and comes alive with React/Framer Motion for interactivity and animation.
 4. If the visitor submits a form (quote request, contact form, product enquiry), that data is saved straight into Supabase.
-5. If they upload a file (rare for public visitors — mainly customer passport photos), it's sent to Cloudinary, and only the resulting image link is saved into Supabase.
+5. If they upload an attachment, it is sent to Cloudflare R2, and only the resulting public link is saved into Supabase.
 
 You do not need to understand any of this code to run the website day-to-day — everything you need to change routinely is available through the **Admin Panel** described below.
 
@@ -157,7 +157,7 @@ The company name **"AWS OVERSEAS Impex"** is not stored in the database — it's
    - **Name** — the product's display name.
    - **Description** — shown on the product's page.
    - **Category** — used for grouping/labeling.
-   - **Image** — click the upload field, choose a photo from your computer. It uploads to Cloudinary automatically and shows a preview once done. Wait for the preview to appear before saving — the image needs a moment to finish uploading.
+   - **Image** — click the upload field, choose a photo from your computer. It uploads to Cloudflare R2 automatically and shows a preview once done. Wait for the preview to appear before saving — the image needs a moment to finish uploading.
    - **Active** — toggle this on to make the product visible on the public `/products` page. Turn it off to hide it without deleting it.
    - **Sort order** — a number controlling the display order on the catalog page (lower numbers show first).
 4. Click **Save** / **Create product**.
@@ -224,7 +224,7 @@ This is the main "Request a Quote" flow used for shipping quotes (separate from 
 
 1. Go to `/admin/blog`.
 2. Click **New post**.
-3. Fill in: title, category, excerpt (short summary), read time, featured image (uploads to Cloudinary the same way as product images), author name, tags, and the article body (organized into sections with headings).
+3. Fill in: title, category, excerpt (short summary), read time, featured image (uploads to Cloudflare R2 the same way as product images), author name, tags, and the article body (organized into sections with headings).
 4. Toggle **Published** on to make it live at `/blog` and its own `/blog/[slug]` page immediately, or leave it off to save as a draft.
 5. Optionally mark one post as **Featured** — only one post can be featured at a time (setting a new one automatically un-features the previous one).
 6. Edit or unpublish any post any time from the same list.
@@ -266,14 +266,14 @@ The parts of the site that **are** editable directly by you without a developer 
 
 ---
 
-## 15. Images & File Uploads (Cloudinary)
+## 15. Images & File Uploads (Cloudflare R2)
 
-Every image uploaded through the admin panel — product photos, blog featured images, and customer passport photos — is sent to **Cloudinary**, a cloud image hosting service, rather than stored on the web server itself. This keeps the website fast and avoids server storage limits.
+Every image uploaded through the admin panel, plus public enquiry attachments, is sent to **Cloudflare R2** rather than stored on the web server. This keeps the website fast and avoids server-storage and bandwidth limits.
 
-- When you upload an image in the admin panel, it goes to Cloudinary automatically; you'll see a live preview once the upload finishes.
-- Only the resulting image **link** (a `res.cloudinary.com` URL) is saved in the database — the actual image file lives on Cloudinary's servers.
-- Images are organized into folders: `awsoversea/products`, `awsoversea/blog`, `awsoversea/passports`.
-- To view, manage, or delete raw uploaded files directly (rarely needed), you'd log in to the Cloudinary account tied to the credentials in `.env` (see next section) at cloudinary.com.
+- When you upload an image in the admin panel, it goes to R2 automatically; you'll see a live preview once the upload finishes.
+- Only the resulting public R2 **link** is saved in the database; the actual object lives in the `awsoverseas-media` bucket.
+- Objects are organized by feature under paths such as `products/`, `categories/`, `city-agents/`, `enquiries/`, and `hero-slider/`.
+- The previous Supabase Storage copies have deliberately been retained as a backup.
 
 ---
 
@@ -288,7 +288,8 @@ The website depends on a private configuration file named **`.env`**, which live
 | `NEXT_PUBLIC_SUPABASE_URL` | The address of your Supabase database project. | `https://trjwefkdnublzryekmes.supabase.co` |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | A public, limited-permission key used by the website to talk to Supabase for public-facing reads. Safe to be visible in the browser. | (long token, see `.env`) |
 | `SUPABASE_SERVICE_ROLE_KEY` | A **full-access, all-powerful** key used only on the server (never sent to browsers) for admin operations — creating products, approving users, etc. | (kept secret in `.env` — **never share this key with anyone**) |
-| `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | Credentials for the Cloudinary image-hosting account used for all uploads. | (see `.env`) |
+| `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | Server-only credentials used to write media to the R2 bucket. | (kept secret in `.env`) |
+| `R2_BUCKET` / `R2_PUBLIC_URL` | The R2 bucket name and public delivery origin used for saved media links. | (see `.env`) |
 
 ### How to change the admin password
 
@@ -303,9 +304,9 @@ The website depends on a private configuration file named **`.env`**, which live
 ### Who to contact for these accounts
 
 - **Supabase** (database): log in at supabase.com with the account that created this project to see raw data, backups, or user authentication records.
-- **Cloudinary** (images): log in at cloudinary.com with the account tied to the API keys above to manage uploaded media directly.
+- **Cloudflare R2** (media): open the `awsoverseas-media` bucket in the Cloudflare dashboard to inspect stored objects.
 
-Keep both of those account logins (email + password used to sign up for Supabase/Cloudinary) recorded somewhere secure — they are separate from the website's own admin password.
+Keep both account logins (Supabase and Cloudflare) recorded somewhere secure — they are separate from the website's own admin password.
 
 ---
 
@@ -321,7 +322,7 @@ Keep both of those account logins (email + password used to sign up for Supabase
 ## 18. Security Notes — Please Read
 
 1. **Change `ADMIN_PASSWORD` immediately** before real customer/business use — `123456789` is a default placeholder, not a secure password.
-2. **Never share `SUPABASE_SERVICE_ROLE_KEY` or `CLOUDINARY_API_SECRET`** with anyone outside your development team — these keys bypass all restrictions and give full read/write access to your database and media storage.
+2. **Never share `SUPABASE_SERVICE_ROLE_KEY` or `R2_SECRET_ACCESS_KEY`** with anyone outside your development team — these keys bypass normal restrictions and give privileged access to your database or media storage.
 3. There is currently **one single shared admin password** for the whole admin panel — there's no way to tell which staff member made a change, and no way to give one staff member limited access (e.g. "can manage blog but not withdrawals"). If you need multiple admin users with individual logins and permissions, that's a feature to discuss building.
 4. Customer passport photos and personal data are sensitive — they are stored in Supabase without public read access (only accessible via the server-side admin tools), which is the correct, secure setup. Do not change this without understanding the implications.
 5. Keep the `.env` file (or your host's equivalent environment-variable settings) private at all times — treat it like a bunch of master keys.
@@ -331,7 +332,7 @@ Keep both of those account logins (email + password used to sign up for Supabase
 ## 19. Glossary
 
 - **Admin panel** — the private `/admin` section only you can log into, where you manage the live site's data.
-- **API key / secret** — a password-like credential that lets software (not a human) securely talk to another service (like Supabase or Cloudinary).
+- **API key / secret** — a password-like credential that lets software (not a human) securely talk to another service such as Supabase or Cloudflare R2.
 - **Database** — where all your live, changeable data (products, orders, users, etc.) is stored — here, that's Supabase.
 - **Deploy / deployment** — the process of publishing updated code so it appears on the live website.
 - **Environment variable / `.env` file** — a private settings file holding passwords and keys, kept off the public website.

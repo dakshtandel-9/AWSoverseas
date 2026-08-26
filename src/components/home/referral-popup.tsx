@@ -79,7 +79,7 @@ export function ReferralPopup({ loggedIn }: { loggedIn: boolean }) {
                   {/* Left: the pitch, over a real cargo photo */}
                   <div className="relative flex overflow-hidden p-7 sm:w-[300px] sm:shrink-0 sm:justify-center sm:p-8">
                     <Image
-                      src="https://res.cloudinary.com/dwethh3fq/image/upload/v1785242164/awsoversea/referral/cargo-vs-shipment.jpg"
+                      src="/referral/cargo-vs-shipment.webp"
                       alt=""
                       fill
                       priority

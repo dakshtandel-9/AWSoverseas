@@ -29,7 +29,7 @@ export async function uploadCityAgentImageAction(
     const url = await uploadCityAgentImage(file);
     return { url };
   } catch (err) {
-    console.error("[uploadCityAgentImageAction] Cloudinary upload failed:", err);
+    console.error("[uploadCityAgentImageAction] storage upload failed:", err);
     return { error: "Upload failed. Please try again." };
   }
 }

@@ -26,7 +26,7 @@ Nothing about this project is a template or a boilerplate starter — every page
 | Animation | **Framer Motion 12** | Page-load sequences, scroll-triggered reveals (`whileInView`), hover micro-interactions. |
 | Icons | **lucide-react v1** | Note: v1 dropped all brand/social icons (Facebook, Twitter, etc.) — those are hand-built inline SVGs in `src/components/ui/social-icon.tsx`. |
 | Database / Backend | **Supabase** (managed PostgreSQL + Auth) | All live data (products, orders, users, wallets, tracking) lives here. Row Level Security (RLS) enforced on every table. |
-| File/image hosting | **Cloudinary** | Every uploaded image (products, categories, ID documents, hero media) is stored here — never committed to the git repo. |
+| File/image hosting | **Cloudflare R2** | Product/category images, city-agent photos, enquiry attachments, and hero media live in the `awsoverseas-media` bucket; Supabase Storage copies from the migration remain as backup. |
 | Auth | **@supabase/ssr** for customers, custom HMAC-signed cookie for the admin panel | Two entirely separate auth systems (see §7). |
 | Deployment | **AWS**, source pushed to **GitHub** | Repo: `github.com/dakshtandel-9/AWSoverseas`. Next.js is Node-server-based — hosting runs it as a Node/SSR service on AWS (not a static export); no AWS-specific IaC files (no Amplify config, no Dockerfile, no buildspec) are checked into this repo, so the AWS build/deploy step lives in the hosting configuration outside the codebase. |
 | Package manager | npm (`package-lock.json` committed) | |
@@ -34,7 +34,7 @@ Nothing about this project is a template or a boilerplate starter — every page
 ### Why these choices
 - **Next.js App Router + Server Actions** — lets every admin form (`create product`, `approve user`, `update shipment status`) run as server-side logic colocated with its page, with no separate REST/GraphQL API layer to maintain.
 - **Supabase over a hand-rolled backend** — got a production Postgres database, row-level security, and (initially) auth in one hosted service, reachable from Server Components via a service-role key for admin writes and an anon key for public reads.
-- **Cloudinary over Supabase Storage** — a deliberate choice (documented in memory) to keep all media off the git repo and off the app server, and to get automatic image transformation URLs (e.g. thumbnail generation for a video poster frame via `so_1`).
+- **Cloudflare R2 for public media** — keeps media off the app server and removes the old Supabase download-egress constraint; the original Supabase objects remain as a rollback backup.
 - **Tailwind v4's CSS-first `@theme`** — the whole brand palette (navy/maroon/ink) is defined as CSS variables once, rather than a JS config object, and is consumed identically by every component.
 
 ---
@@ -160,8 +160,8 @@ Accessed at `/admin/login`, then everything below lives inside the `(dashboard)`
 | **Dashboard** | `/admin` | Overview cards: pending user approvals, unread orders, unread enquiries, unread messages, unread quote requests — each card deep-links to its section. |
 | **Users** | `/admin/users` | Review customer sign-ups; **Approve** or **Reject**. Only approved customers can place Orders or submit shipping quotes. Shows full profile including uploaded ID document. |
 | **Wallets** | `/admin/wallets` | View every customer's derived wallet balance and transaction history; manually **credit** a referrer's wallet when a referred customer's order/enquiry is approved; issue manual **adjustments** (including negative corrections, which are the only transaction type allowed to be negative). |
-| **Categories** | `/admin/categories` (+ `/new`, `/[id]/edit`) | Full CRUD on the category tree — name, slug (auto-generated), description, image (Cloudinary), parent, active flag, sort order, and the `child_layout` toggle (cards vs. inline) with a miniature preview of each option. |
-| **Products** | `/admin/products` (+ `/new`, `/[id]/edit`) | Full CRUD on the flat product list across every category — this is the only place an "unfiled" product (filed in no category, invisible on the live site) can be found and fixed. Image upload via a standalone Cloudinary uploader kept structurally separate from the main save form (to avoid a Next.js form-action collision bug — see §9). |
+| **Categories** | `/admin/categories` (+ `/new`, `/[id]/edit`) | Full CRUD on the category tree — name, slug (auto-generated), description, R2-hosted image, parent, active flag, sort order, and the `child_layout` toggle (cards vs. inline) with a miniature preview of each option. |
+| **Products** | `/admin/products` (+ `/new`, `/[id]/edit`) | Full CRUD on the flat product list across every category — this is the only place an "unfiled" product (filed in no category, invisible on the live site) can be found and fixed. Image upload to R2 uses a standalone uploader kept structurally separate from the main save form (to avoid a Next.js form-action collision bug — see §9). |
 | **Orders** | `/admin/enquiries` | Product "Order" requests from signed-in, approved customers. Admin enters price, quantity, weight, and delivery date, then **Approves** (customer sees the quote on their profile) or **Rejects** with a reason. |
 | **Enquiries** | `/admin/enquiries-open` | Open "Enquiry" leads from anyone, no account required — lightweight inbox: contact info + message, mark read / delete. |
 | **Messages** | `/admin/messages` | Contact-page form submissions inbox. |
@@ -220,7 +220,7 @@ The catalog pages (`/products`, `/products/[slug]`) — and only those pages —
 - **Category tree branch/leaf invariant** is enforced by two Postgres triggers, not just app code, so it can never be violated regardless of which code path writes to the tables.
 - **Wallet balance is always derived**, never stored, eliminating an entire class of balance-drift bugs.
 - **Runtime i18n** (see §10) walks and rewrites the live DOM rather than maintaining translated content files, so the single-source-of-truth `Content/*.json` files stay English-only.
-- **Cloudinary, never the repo, for media** — any dropped-in video/image asset gets uploaded to Cloudinary and the local file deleted; the git repo never carries multi-MB media.
+- **R2 for public media, with backups retained** — new admin uploads go to R2; migrated Supabase objects and existing local source media were deliberately not deleted.
 - **`raw` JSONB catch-alls** on submission tables (with an explicit filter dropping Next's internal `$ACTION_*` Server-Action binding metadata, a real bug that was found and fixed) protect against silent data loss when a form's field set drifts from its promoted DB columns.
 
 ---
@@ -267,7 +267,8 @@ Configuration lives in a `.env` file (never committed — see `.env.example` for
 | `SUPABASE_SERVICE_ROLE_KEY` | Full-access server-only key for admin operations — never sent to the browser. |
 | `ADMIN_PASSWORD` | The single shared password for `/admin/login`. |
 | `SESSION_SECRET` | Random secret signing the admin session cookie (HMAC). |
-| `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | Cloudinary account credentials for all image/video uploads. |
+| `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | Server-only S3-compatible credentials for writing media to Cloudflare R2. |
+| `R2_BUCKET` / `R2_PUBLIC_URL` | R2 bucket name and public media origin. |
 
 One-time Supabase dashboard setup also required: Authentication → URL Configuration must list `/auth/callback` (both localhost and production) as a redirect URL for the email auth flow to work.
 

@@ -360,7 +360,7 @@ export default function AdminDocsPage() {
                 { title: "Click “Add product”", detail: "Opens a form for name, category, description, and an image." },
                 {
                   title: "Upload the product image first",
-                  detail: "The image field uploads to Cloudinary on its own — wait until the thumbnail appears before saving the rest of the form, otherwise the product saves with no image.",
+                  detail: "The image field uploads to Cloudflare R2 on its own — wait until the thumbnail appears before saving the rest of the form, otherwise the product saves with no image.",
                 },
                 { title: "Save", detail: "The product appears on the public catalog immediately — no rebuild or redeploy needed." },
                 {

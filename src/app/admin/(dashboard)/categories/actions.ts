@@ -29,7 +29,7 @@ export async function uploadCategoryImageAction(
     const url = await uploadCategoryImage(file);
     return { url };
   } catch (err) {
-    console.error("[uploadCategoryImageAction] Cloudinary upload failed:", err);
+    console.error("[uploadCategoryImageAction] storage upload failed:", err);
     return { error: "Upload failed. Please try again." };
   }
 }

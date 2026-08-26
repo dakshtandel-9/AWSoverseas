@@ -165,36 +165,45 @@ async function copyObjects() {
   let already = 0;
   let failed = 0;
 
-  for (const [i, file] of files.entries()) {
-    const label = `[${i + 1}/${files.length}] ${file.key}`;
-    if (await existsInR2(file.key)) {
-      already++;
-      continue;
-    }
-    if (DRY_RUN) {
-      console.log(`${label}  would copy (${mb(file.size)} MB)`);
-      copied++;
-      continue;
-    }
-    try {
-      const { data, error } = await db.storage.from(SUPABASE_BUCKET).download(file.key);
-      if (error) throw new Error(error.message);
-      const bytes = Buffer.from(await data.arrayBuffer());
-      await r2.send(
-        new PutObjectCommand({
-          Bucket: R2_BUCKET,
-          Key: file.key,
-          Body: bytes,
-          ContentType: contentTypeFor(file.key, file.type),
-          CacheControl: "public, max-age=31536000, immutable",
-        })
-      );
-      copied++;
-      console.log(`${label}  ok (${mb(file.size)} MB)`);
-    } catch (err) {
-      failed++;
-      console.error(`${label}  FAILED: ${err.message}`);
-    }
+  // Keep a small amount of parallelism: this is much faster for hundreds of
+  // thumbnails while still bounding memory when a batch contains videos.
+  const CONCURRENCY = 8;
+  for (let start = 0; start < files.length; start += CONCURRENCY) {
+    const batch = files.slice(start, start + CONCURRENCY);
+    await Promise.all(
+      batch.map(async (file, offset) => {
+        const i = start + offset;
+        const label = `[${i + 1}/${files.length}] ${file.key}`;
+        if (await existsInR2(file.key)) {
+          already++;
+          return;
+        }
+        if (DRY_RUN) {
+          console.log(`${label}  would copy (${mb(file.size)} MB)`);
+          copied++;
+          return;
+        }
+        try {
+          const { data, error } = await db.storage.from(SUPABASE_BUCKET).download(file.key);
+          if (error) throw new Error(error.message);
+          const bytes = Buffer.from(await data.arrayBuffer());
+          await r2.send(
+            new PutObjectCommand({
+              Bucket: R2_BUCKET,
+              Key: file.key,
+              Body: bytes,
+              ContentType: contentTypeFor(file.key, file.type),
+              CacheControl: "public, max-age=31536000, immutable",
+            })
+          );
+          copied++;
+          console.log(`${label}  ok (${mb(file.size)} MB)`);
+        } catch (err) {
+          failed++;
+          console.error(`${label}  FAILED: ${err.message}`);
+        }
+      })
+    );
   }
 
   console.log(`\nObjects: ${copied} copied, ${already} already in R2, ${failed} failed.`);
