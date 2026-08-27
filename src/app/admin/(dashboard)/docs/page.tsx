@@ -27,6 +27,7 @@ const SECTIONS: DocSection[] = [
   { group: "Inbox", id: "quotes", label: "Quote enquiries" },
   { group: "Inbox", id: "warehouse-bookings", label: "Warehouse bookings" },
   { group: "Inbox", id: "messages", label: "Contact messages" },
+  { group: "Outbox", id: "send-email", label: "Send email" },
   { group: "Customers", id: "users", label: "Users" },
   { group: "Customers", id: "referrals", label: "Referrals" },
   { group: "Customers", id: "wallets", label: "Wallets" },
@@ -170,8 +171,9 @@ export default function AdminDocsPage() {
             intro="Submitted from the Enquiry button on a product card — open to anyone, no account required. This is a lightweight lead inbox, not a pricing workflow: no quote/approve/reject panel, just contact details and a message."
           >
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              Follow up directly by email or phone using the contact details on the row. Since guests can submit
-              these, some rows may have no linked customer account at all.
+              Open a row and press <strong>Reply by email</strong> to answer from the panel — the draft arrives
+              addressed to them, naming the product they asked about. The phone number is on the row too. Since
+              guests can submit these, some rows may have no linked customer account at all.
             </p>
           </Section>
 
@@ -184,6 +186,15 @@ export default function AdminDocsPage() {
             <StepList
               steps={[
                 { title: "Review the enquiry", detail: "Service type, shipment type, origin/destination country, and contact details." },
+                {
+                  title: "Reply by email",
+                  detail: (
+                    <>
+                      Opens the compose page with the quote half-written — addressed to the customer, subject naming
+                      the route, and the enquiry quoted underneath. Fill in the rate and transit time, then send.
+                    </>
+                  ),
+                },
                 {
                   title: "“New quote enquiry” button",
                   detail: "Logs a quote enquiry on behalf of an existing customer, same idea as Orders' manual-entry button.",
@@ -218,8 +229,8 @@ export default function AdminDocsPage() {
               ]}
             />
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              There&rsquo;s no status workflow here beyond read/unread — confirm availability by email or phone,
-              then mark the request read so it drops off the dashboard.
+              There&rsquo;s no status workflow here beyond read/unread — confirm availability with{" "}
+              <strong>Reply by email</strong> or by phone, then mark the request read so it drops off the dashboard.
             </p>
           </Section>
 
@@ -230,8 +241,106 @@ export default function AdminDocsPage() {
             intro="Submissions from the general Contact page form — name, company, email, phone, the service they're asking about, and their message. No account or approval needed to send one."
           >
             <p className="text-sm leading-relaxed text-[#5b6b82]">
-              This is the simplest inbox in the panel — read, then follow up by email or phone directly. There&rsquo;s
-              no status workflow beyond read/unread.
+              This is the simplest inbox in the panel — read, then answer. Open a message and press{" "}
+              <strong>Reply by email</strong> to write back from the panel with the reply already drafted, or use the
+              phone number to call. There&rsquo;s no status workflow beyond read/unread.
+            </p>
+          </Section>
+
+          <Section
+            id="send-email"
+            eyebrow="/admin/email"
+            title="Send email"
+            intro="A compose box that sends from the company's own addresses. The email leaves as admin@awsoverseas.com or sales@awsoverseas.com — not from a personal account — and the recipient's Reply goes back to that mailbox in Hostinger webmail."
+          >
+            <StepList
+              steps={[
+                {
+                  title: "Start from an enquiry, or from a blank page",
+                  detail: (
+                    <>
+                      Open a row in Contact messages, Product enquiries, Quote enquiries or Warehouse bookings and
+                      press <strong>Reply by email</strong>. It brings you here with the reply already addressed and
+                      written — a subject, an opening, and a quote of what they sent, so you don&rsquo;t need their
+                      enquiry open in another tab. Nothing is sent by pressing it. Everything is editable, and the
+                      email only goes when you press Send here.
+                    </>
+                  ),
+                },
+                {
+                  title: "Pick who it comes from",
+                  detail: (
+                    <>
+                      The <strong>From</strong> strip at the top of the form lists every mailbox the panel may send as.
+                      Choose the one that fits the message — a quote goes out from sales@, an account or billing
+                      matter from admin@. Whichever you pick is the address the customer replies to.
+                    </>
+                  ),
+                },
+                {
+                  title: "Address it",
+                  detail: (
+                    <>
+                      Several addresses in <strong>To</strong> are fine — separate them with commas, and everyone sees
+                      everyone. Use <strong>BCC</strong> when the recipients shouldn&rsquo;t see each other, which is
+                      what an announcement to a list needs. One email can carry 50 addresses in total.
+                    </>
+                  ),
+                },
+                {
+                  title: "Sign it",
+                  detail: (
+                    <>
+                      <strong>Signed by</strong> puts your name and job title above the company name in the
+                      signature. Fill it in once — the panel remembers it on this computer for the next email. Leave
+                      both blank and the signature leads with AWS OVERSEAS impex, which is what an announcement to a
+                      list wants. The logo, office address and phone number are added for you; the address and phone
+                      come from Site settings, so correcting them there fixes every email sent afterwards.
+                    </>
+                  ),
+                },
+                {
+                  title: "Choose branded or plain",
+                  detail: (
+                    <>
+                      <strong>Branded</strong> wraps the message in the masthead, route strip and banner — the same
+                      shell as the automatic account emails, right for announcements. <strong>Plain</strong> sends the
+                      words with the same details set as small text and no logo, which is what a reply to one
+                      customer should look like: a masthead and a logo card over two sentences reads as marketing,
+                      and marketing is what gets filtered.
+                    </>
+                  ),
+                },
+                {
+                  title: "Send, then check the list below",
+                  detail: (
+                    <>
+                      Every send is recorded under <strong>Sent from here</strong> with the full message. A send the
+                      provider refused is recorded too, marked <Badge tone="red">Not sent</Badge> with the reason —
+                      open it, fix what it names, and send again.
+                    </>
+                  ),
+                },
+              ]}
+            />
+
+            <Callout kind="warning">
+              Sending is not the same as arriving. The panel reports that the email provider accepted the message; the
+              recipient&rsquo;s mail server can still bounce it afterwards or drop it in spam. Delivery itself is
+              visible in the Resend dashboard, not here.
+            </Callout>
+
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              Replies don&rsquo;t come back to this panel — they land in the Hostinger inbox for whichever address
+              sent the message. This page sends; webmail receives.
+            </p>
+
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              To add another address to the From list, a developer sets{" "}
+              <code className="rounded bg-[#eef3fb] px-1.5 py-0.5 font-mono text-xs text-[#1A0A53]">
+                EMAIL_FROM_EXTRA
+              </code>{" "}
+              in the site&rsquo;s environment. The mailbox has to exist in Hostinger first, or replies to it bounce.
             </p>
           </Section>
 
@@ -474,6 +583,10 @@ export default function AdminDocsPage() {
                 ["Address", "Shown on the Contact page."],
               ]}
             />
+            <p className="text-sm leading-relaxed text-[#5b6b82]">
+              The first phone number and the address are also the ones printed in the signature of every email sent
+              from <strong>Send email</strong>. Correcting them here corrects every email sent afterwards.
+            </p>
             <Callout kind="warning">
               Changes here go live immediately on the public site — there&rsquo;s no draft/preview step, so double-check
               a phone number or the WhatsApp digit format before saving.

@@ -9,6 +9,7 @@ import {
   moveEnquiryToOrderAction,
 } from "@/app/admin/(dashboard)/orders/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { ReplyByEmailButton } from "@/components/admin/reply-by-email-button";
 
 type EnquiryLead = {
   id: string;
@@ -100,7 +101,12 @@ export function EnquiryRow({
       createdAt={formatDate(item.created_at)}
       onToggleRead={() => markEnquiryReadAction(item.id, !item.is_read)}
       onDelete={() => deleteEnquiryAction(item.id)}
-      actions={<MoveToOrderButton id={item.id} linkedCustomer={linkedCustomer} />}
+      actions={
+        <>
+          <ReplyByEmailButton source="enquiry" id={item.id} email={item.email} />
+          <MoveToOrderButton id={item.id} linkedCustomer={linkedCustomer} />
+        </>
+      }
       detail={
         <div className="grid gap-2">
           <p>

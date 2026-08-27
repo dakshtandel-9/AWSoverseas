@@ -88,7 +88,7 @@ export function EnquiryModal({
             <div className="flex shrink-0 items-center justify-between border-b border-[#e4e9f2] bg-[#f6f8fc] px-6 py-5">
               <div className="min-w-0">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#5b6b82]">
-                  Product Enquiry/Inquiry
+                  Product Enquiry
                 </p>
                 <h2 id="enquiry-modal-title" className="mt-1 truncate text-base font-bold text-[#1A0A53]">
                   {productName}
@@ -116,7 +116,7 @@ export function EnquiryModal({
                     <Check className="size-6" />
                   </span>
                   <p className="max-w-xs text-sm font-medium leading-relaxed text-maroon-admin">
-                    Thanks — we&rsquo;ve received your enquiry/inquiry about {productName} and will get back to
+                    Thanks — we&rsquo;ve received your enquiry about {productName} and will get back to
                     you shortly.
                   </p>
                   <button
@@ -229,7 +229,7 @@ export function EnquiryModal({
                     disabled={pending}
                     className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full btn-navy px-6 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(3,62,141,0.25)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                   >
-                    {pending ? "Sending…" : "Send enquiry/inquiry"}
+                    {pending ? "Sending…" : "Send enquiry"}
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
 

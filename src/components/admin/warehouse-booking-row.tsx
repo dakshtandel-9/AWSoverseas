@@ -5,6 +5,7 @@ import {
   deleteWarehouseBookingAction,
 } from "@/app/admin/(dashboard)/warehouse-bookings/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { ReplyByEmailButton } from "@/components/admin/reply-by-email-button";
 
 type WarehouseBooking = {
   id: string;
@@ -33,6 +34,7 @@ export function WarehouseBookingRow({ item }: { item: WarehouseBooking }) {
       createdAt={formatDate(item.created_at)}
       onToggleRead={() => markWarehouseBookingReadAction(item.id, !item.is_read)}
       onDelete={() => deleteWarehouseBookingAction(item.id)}
+      actions={<ReplyByEmailButton source="warehouse" id={item.id} email={item.email} />}
       detail={
         <div className="grid gap-2">
           <p>

@@ -4,7 +4,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Mail, Copy, Check, TriangleAlert } from "lucide-react";
 import { motion } from "framer-motion";
-import { composeEmailTemplateHtml, composeEmailTemplateText } from "@/lib/email-compose-template";
+import {
+  composeEmailTemplateHtml,
+  composeEmailTemplateText,
+  type ComposeTemplateDetails,
+} from "@/lib/email-compose-template";
 
 type CopyState = "idle" | "copied" | "failed";
 
@@ -15,9 +19,9 @@ type CopyState = "idle" | "copied" | "failed";
  * formatting — while a plain-text-only field still gets readable copy
  * instead of raw tags.
  */
-async function copyEmailTemplate(): Promise<boolean> {
-  const html = composeEmailTemplateHtml();
-  const text = composeEmailTemplateText();
+async function copyEmailTemplate(details: ComposeTemplateDetails): Promise<boolean> {
+  const html = composeEmailTemplateHtml(details);
+  const text = composeEmailTemplateText(details);
   try {
     await navigator.clipboard.write([
       new ClipboardItem({
@@ -42,7 +46,14 @@ async function copyEmailTemplate(): Promise<boolean> {
  * transactional sender uses. Paste it into any compose box and the
  * hand-written email still looks like it came from AWS OVERSEAS impex.
  */
-export function EmailTemplateButton({ compact = false }: { compact?: boolean }) {
+export function EmailTemplateButton({
+  details,
+  compact = false,
+}: {
+  /** Company contact details for the signature card, read from Site settings. */
+  details: ComposeTemplateDetails;
+  compact?: boolean;
+}) {
   const [state, setState] = useState<CopyState>("idle");
   const timer = useRef<number | null>(null);
 
@@ -51,7 +62,7 @@ export function EmailTemplateButton({ compact = false }: { compact?: boolean }) 
   }, []);
 
   async function handleCopy() {
-    const ok = await copyEmailTemplate();
+    const ok = await copyEmailTemplate(details);
     setState(ok ? "copied" : "failed");
     if (timer.current) window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setState("idle"), ok ? 2400 : 4000);
@@ -104,7 +115,7 @@ export function EmailTemplateButton({ compact = false }: { compact?: boolean }) 
             <span className="size-2 rounded-full bg-[#e4636a]" />
             <span className="size-2 rounded-full bg-[#e8c766]" />
             <span className="size-2 rounded-full bg-[#7fbf7f]" />
-            <span className="ml-2 truncate font-mono text-[10px] text-[#94a3b8]">admin@awsoverseas.com</span>
+            <span className="ml-2 truncate font-mono text-[10px] text-[#94a3b8]">{details.email}</span>
           </div>
           <div className="bg-[#1A0A53] px-3 py-2.5">
             <p className="text-[11px] font-bold tracking-[0.02em] text-white">AWS OVERSEAS impex</p>

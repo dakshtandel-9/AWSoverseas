@@ -12,6 +12,7 @@ import {
   MessageSquareText,
   Package,
   Send,
+  SendHorizontal,
   Settings,
   ShoppingBag,
   Users,
@@ -111,6 +112,18 @@ export const ADMIN_NAV: AdminNavGroup[] = [
         description: "Everything sent through the contact form on the public site.",
         inbox: "messages",
         waitingLabel: "contact messages not yet opened",
+      },
+    ],
+  },
+  {
+    title: "Outbox",
+    items: [
+      {
+        href: "/admin/email",
+        label: "Send email",
+        icon: SendHorizontal,
+        description:
+          "Write an email and send it from any of the company's own addresses — admin@, sales@, or another mailbox on awsoverseas.com. Replies go back to whichever address you picked, so they land in that Hostinger inbox. Everything sent from here is listed below the form.",
       },
     ],
   },

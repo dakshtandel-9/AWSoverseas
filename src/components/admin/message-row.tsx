@@ -2,6 +2,7 @@
 
 import { markMessageReadAction, deleteMessageAction } from "@/app/admin/(dashboard)/messages/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { ReplyByEmailButton } from "@/components/admin/reply-by-email-button";
 
 type Message = {
   id: string;
@@ -31,6 +32,7 @@ export function MessageRow({ item }: { item: Message }) {
       createdAt={createdAt}
       onToggleRead={() => markMessageReadAction(item.id, !item.is_read)}
       onDelete={() => deleteMessageAction(item.id)}
+      actions={<ReplyByEmailButton source="message" id={item.id} email={item.email} />}
       detail={
         <div className="grid gap-2">
           {item.company_name && (

@@ -532,3 +532,232 @@ You received this because an account was registered with this address at ${SITE.
 
   return { subject: `Your account has been approved — ${SITE.name}`, html, text };
 }
+
+/**
+ * Turns bare typed text into HTML: blank lines become paragraphs, single
+ * newlines become line breaks, and pasted links become clickable. Everything
+ * is escaped first, because this text comes out of a textarea — the operator
+ * writing `<3` must not open a tag, and the panel must not become a way to
+ * inject markup into mail sent under the company's name.
+ */
+function typedTextToHtml(body: string, linkColor: string, paragraphStyle: string): string {
+  const linkify = (escaped: string) =>
+    escaped.replace(/\bhttps?:\/\/[^\s<]+/g, (match) => {
+      // Sentences end in punctuation and URLs usually don't, so trailing
+      // punctuation is left outside the link rather than broken into it.
+      const href = match.replace(/[.,;:!?)\]]+$/, "");
+      return `<a href="${href}" style="color:${linkColor};text-decoration:underline;">${href}</a>${match.slice(href.length)}`;
+    });
+
+  return body
+    .replace(/\r\n/g, "\n")
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean)
+    .map((block) => `<p style="${paragraphStyle}">${linkify(escapeHtml(block)).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+
+export type ComposedEmailInput = {
+  subject: string;
+  /** Exactly what was typed in the compose box at /admin/email. */
+  body: string;
+  /** The mailbox this is going out from, named in the sign-off so a reply has an obvious home. */
+  fromAddress: string;
+  /** False sends the words on their own, with no masthead, banner or brand colors. */
+  branded: boolean;
+  /** Who to sign as, and how to reach them. */
+  signature: SignatureDetails;
+};
+
+/**
+ * An email written by hand in the admin panel rather than triggered by
+ * something a customer did.
+ *
+ * Two shapes, because the same panel sends both kinds of mail. Branded wraps
+ * the text in the masthead/banner shell every transactional email uses and
+ * closes with the full signature card, for a newsletter or an announcement.
+ * Plain sends the words with a small typed sign-off, which is what a one-line
+ * reply to a customer should look like — a masthead and a logo over "Yes, we
+ * can ship that on Tuesday" reads as marketing, and marketing is what gets
+ * filtered.
+ *
+ * Both name the sending mailbox. Replies go to whichever address sent the
+ * message, and that address is a real Hostinger mailbox.
+ */
+export function composedEmail({
+  subject,
+  body,
+  fromAddress,
+  branded,
+  signature,
+}: ComposedEmailInput): Omit<EmailMessage, "to"> {
+  const html = branded
+    ? shell(
+        `<tr><td style="padding:32px 32px 8px 32px;">
+          ${typedTextToHtml(body, INK, `margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};`)}
+        </td></tr>
+        ${signatureRowHtml(signature)}`,
+        `Sent by ${escapeHtml(fromAddress)} &middot;
+          <a href="${absoluteUrl("/")}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>`,
+      )
+    : `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#ffffff;">
+  <div style="max-width:600px;margin:0 auto;padding:24px;">
+    ${typedTextToHtml(body, INK, `margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};`)}
+    ${plainSignatureHtml(signature)}
+  </div>
+</body>
+</html>`;
+
+  const text = `${body.replace(/\r\n/g, "\n").trim()}
+
+--
+${signatureText(signature)}`;
+
+  return { subject, html, text };
+}
+
+/**
+ * Served from R2, not from this app's /public.
+ *
+ * A sent email keeps fetching this URL for as long as anyone still has the
+ * message, and mail goes out from a laptop as often as from production. A
+ * /public file only exists once the site is deployed, so every email sent
+ * before that deploy lands with a broken image that can never heal — which is
+ * exactly what happened on 2026-08-28. R2 is live the moment the build script
+ * uploads, and it already serves every other public media file here.
+ *
+ * Rebuild and republish with scripts/build-email-signature-assets.mjs. The
+ * object is immutable with a one-year cache, so new artwork means a new -v2
+ * name and this constant updated — never an overwrite.
+ */
+const SIGNATURE_LOGO = "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/email/signature-logo-v1.png";
+
+/** Rendered width; the file is 300px so it stays sharp on a phone. */
+const SIGNATURE_LOGO_WIDTH = 120;
+
+export type SignatureDetails = {
+  /** The person sending. Blank signs as the company alone, which is right for an announcement. */
+  name: string;
+  /** Job title under the name. Ignored without a name. */
+  role: string;
+  /** The mailbox this is going out from — the address a reply reaches. */
+  email: string;
+  /** Main company line, from Site settings. */
+  phone: string;
+  /** Office address, from Site settings. */
+  address: string;
+};
+
+/**
+ * One `label + value` line in the signature's contact list.
+ *
+ * The label is set in type rather than drawn as an icon on purpose. Most
+ * clients block remote images until the reader allows them, and a blocked
+ * 16px icon renders as a broken-image box beside every phone number — worse
+ * than no icon at all. Tracked uppercase echoes the masthead's tagline, so it
+ * reads as part of the same design rather than as a fallback.
+ */
+function contactLine(label: string, href: string, value: string): string {
+  return `<tr>
+    <td width="46" valign="top" style="width:46px;padding:0 10px 6px 0;font-family:${FONT};font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;line-height:1.9;color:#94a3b8;">${label}</td>
+    <td valign="top" style="padding:0 0 6px 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">
+      <a href="${href}" style="color:${MUTED};text-decoration:none;">${escapeHtml(value)}</a>
+    </td>
+  </tr>`;
+}
+
+/**
+ * The signature block that closes a branded email: the wordmark, a rule, then
+ * who sent it and how to reach them.
+ *
+ * Built as a two-column table because that's the only layout email clients all
+ * agree on — no flexbox, no grid. The logo column is fixed and narrow so the
+ * details still have room to wrap on a phone, where nothing collapses the
+ * columns for us.
+ *
+ * Phone and email stack rather than sitting side by side. A single row of both
+ * fits a desktop preview pane and overflows a 320px screen, and a signature
+ * that scrolls sideways looks broken in a way a stacked one never does.
+ */
+export function signatureRowHtml(details: SignatureDetails): string {
+  const person = details.name
+    ? `<p style="margin:0;font-family:${FONT};font-size:15px;line-height:1.4;font-weight:700;color:${INK};">${escapeHtml(details.name)}</p>
+       ${details.role ? `<p style="margin:2px 0 0 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">${escapeHtml(details.role)}</p>` : ""}
+       <p style="margin:0;font-size:0;line-height:14px;">&nbsp;</p>`
+    : "";
+
+  const contacts = [
+    details.phone ? contactLine("Phone", `tel:${details.phone.replace(/[^\d+]/g, "")}`, details.phone) : "",
+    details.email ? contactLine("Email", `mailto:${details.email}`, details.email) : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
+  return `<tr><td style="padding:0 32px 28px 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid ${LINE};">
+      <tr>
+        <td width="${SIGNATURE_LOGO_WIDTH}" valign="top" style="width:${SIGNATURE_LOGO_WIDTH}px;padding:24px 18px 0 0;">
+          <a href="${absoluteUrl("/")}" style="display:block;">
+            <img src="${SIGNATURE_LOGO}" width="${SIGNATURE_LOGO_WIDTH}" alt="${escapeHtml(SITE.name)}" style="display:block;width:${SIGNATURE_LOGO_WIDTH}px;max-width:${SIGNATURE_LOGO_WIDTH}px;height:auto;border:0;">
+          </a>
+        </td>
+        <td valign="top" style="border-left:2px solid ${LINE};padding:24px 0 0 18px;">
+          ${person}
+          <p style="margin:0;font-family:${FONT};font-size:14px;line-height:1.4;font-weight:700;color:${INK};">${escapeHtml(SITE.name)}</p>
+          ${details.address ? `<p style="margin:4px 0 0 0;font-family:${FONT};font-size:13px;line-height:1.6;color:${MUTED};">${escapeHtml(details.address)}</p>` : ""}
+          ${contacts ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:12px;">${contacts}</table>` : ""}
+          <p style="margin:6px 0 0 0;font-family:${FONT};font-size:13px;line-height:1.5;">
+            <a href="${absoluteUrl("/")}" style="color:${ACCENT};text-decoration:none;font-weight:600;">awsoverseas.com</a>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </td></tr>`;
+}
+
+/** The same details for the plain-text alternative, where there's no logo to show. */
+export function signatureText(details: SignatureDetails): string {
+  return [
+    details.name,
+    details.name ? details.role : "",
+    SITE.name,
+    details.address,
+    details.phone,
+    details.email,
+    SITE.url,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+/**
+ * The sign-off on a plain email: the same facts as the signature card, set as
+ * small text with no logo, icons or rules. A plain email's whole promise is
+ * that it looks like a person wrote it, and a logo card at the bottom breaks
+ * that in one glance.
+ */
+export function plainSignatureHtml(details: SignatureDetails): string {
+  const lines = [
+    details.name
+      ? `<span style="font-weight:700;color:${INK};">${escapeHtml(details.name)}</span>`
+      : "",
+    details.name && details.role ? escapeHtml(details.role) : "",
+    `<span style="font-weight:700;color:${INK};">${escapeHtml(SITE.name)}</span>`,
+    escapeHtml(details.address),
+    details.phone
+      ? `<a href="tel:${details.phone.replace(/[^\d+]/g, "")}" style="color:${MUTED};text-decoration:none;">${escapeHtml(details.phone)}</a>`
+      : "",
+    details.email
+      ? `<a href="mailto:${details.email}" style="color:${MUTED};text-decoration:none;">${escapeHtml(details.email)}</a>`
+      : "",
+    `<a href="${absoluteUrl("/")}" style="color:${ACCENT};text-decoration:none;font-weight:600;">awsoverseas.com</a>`,
+  ].filter(Boolean);
+
+  return `<p style="margin:28px 0 0 0;padding-top:16px;border-top:1px solid ${LINE};font-family:${FONT};font-size:13px;line-height:1.6;color:${MUTED};">
+    ${lines.join("<br>")}
+  </p>`;
+}

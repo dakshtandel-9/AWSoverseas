@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { markQuoteReadAction, deleteQuoteAction, creditQuoteReferrerAction } from "@/app/admin/(dashboard)/quotes/actions";
 import { SubmissionRow } from "@/components/admin/submission-row";
+import { ReplyByEmailButton } from "@/components/admin/reply-by-email-button";
 import { ShipmentStatusPanel } from "@/components/admin/shipment-status-panel";
 import { CreditWalletForm, ReferralCreditBadge } from "@/components/admin/credit-wallet-form";
 import { ViewProfileButton, type AdminUserProfile } from "@/components/admin/user-profile-modal";
@@ -84,6 +85,7 @@ export function QuoteRow({
       createdAt={createdAt}
       onToggleRead={() => markQuoteReadAction(item.id, !item.is_read)}
       onDelete={() => deleteQuoteAction(item.id)}
+      actions={<ReplyByEmailButton source="quote" id={item.id} email={item.email} />}
       detail={
         <div className="grid gap-2">
           {profile && (

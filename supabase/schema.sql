@@ -677,9 +677,35 @@ before update on city_agents
 for each row execute function set_updated_at();
 
 -- ============================================================
+-- sent_emails — the record of every email written by hand at /admin/email.
+-- Transactional mail (welcome, approval, enquiry receipts) is not logged
+-- here: it's sent by the code, not by a person. Failures are rows too, with
+-- status 'failed' and the reason in `error`. See the
+-- 2026-08-27-sent-emails migration.
+-- ============================================================
+create table if not exists sent_emails (
+  id uuid primary key default gen_random_uuid(),
+  from_address text not null default '', -- the From address as picked in the panel
+  to_addresses text[] not null default '{}',
+  cc_addresses text[] not null default '{}',
+  bcc_addresses text[] not null default '{}',
+  reply_to text not null default '',
+  subject text not null default '',
+  body text not null default '', -- exactly what was typed, so it can be reread or resent
+  branded boolean not null default true, -- sent in the masthead/banner shell
+  status text not null default 'sent' check (status in ('sent', 'failed')),
+  provider_id text not null default '', -- Resend's id, for finding it in their dashboard
+  error text not null default '',
+  created_at timestamptz not null default now()
+);
+
+create index if not exists sent_emails_created_idx on sent_emails (created_at desc);
+
+-- ============================================================
 -- Row Level Security
 -- ============================================================
 alter table site_settings enable row level security;
+alter table sent_emails enable row level security;
 alter table contact_submissions enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table quote_submissions enable row level security;
@@ -756,6 +782,9 @@ create policy "public read marketing_integrations" on marketing_integrations
 -- the anon key gets zero access. The tracking lookup is safe to expose
 -- without RLS because it's scoped to an exact tracking_number match, not a
 -- broad select.
+
+-- sent_emails: no public policies — it holds BCC lists and message bodies, and
+-- only the admin panel (service-role client) ever reads or writes it.
 
 -- wallet_transactions: no public policies — admin grants or adjusts credit,
 -- and the customer's own balance/history is read via the service-role client
