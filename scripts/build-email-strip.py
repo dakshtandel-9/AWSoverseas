@@ -20,7 +20,7 @@ from pathlib import Path
 OUT = Path(__file__).parent
 W, H = 1120, 104          # 2x of 560x52 display size
 TOTAL = 66
-FRAME_MS = 90             # 66 x 90ms -> a touch under 6s per lap
+FRAME_MS = 180            # 66 x 180ms -> a touch under 12s per lap
 
 # Watercolour light blue, replacing the original brand maroon. The wash is what
 # makes it read as paint rather than a flat icon: each vehicle is filled with a
