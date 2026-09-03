@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, forwardRef, useImperativeHandle, useCallback } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle, useCallback, useId } from "react";
 import { RefreshCw, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -13,8 +13,17 @@ export type CaptchaHandle = {
   verify: () => Promise<boolean>;
 };
 
-export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswerChange: (value: string) => void }>(
-  function CaptchaField({ answer, onAnswerChange }, ref) {
+type CaptchaFieldProps = {
+  answer: string;
+  onAnswerChange: (value: string) => void;
+  answerName?: string;
+  tokenName?: string;
+  label?: string;
+};
+
+export const CaptchaField = forwardRef<CaptchaHandle, CaptchaFieldProps>(
+  function CaptchaField({ answer, onAnswerChange, answerName, tokenName, label = "Verification code" }, ref) {
+    const inputId = useId();
     const [svg, setSvg] = useState("");
     const [token, setToken] = useState("");
     const [loading, setLoading] = useState(true);
@@ -51,7 +60,8 @@ export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswer
 
     return (
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-semibold text-[#1A0A53]">Verification code</label>
+        <label htmlFor={inputId} className="text-sm font-semibold text-[#1A0A53]">{label}</label>
+        {tokenName && <input type="hidden" name={tokenName} value={token} />}
         <div className="flex items-center gap-2">
           <div className="flex h-14 w-[160px] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#e4e9f2] bg-[#eef3fb]">
             {loading ? (
@@ -71,7 +81,9 @@ export const CaptchaField = forwardRef<CaptchaHandle, { answer: string; onAnswer
           </button>
         </div>
         <input
+          id={inputId}
           type="text"
+          name={answerName}
           required
           autoComplete="off"
           autoCapitalize="characters"

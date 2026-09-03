@@ -1,11 +1,13 @@
 /**
  * Stateless image captcha, signed with the same HMAC pattern as the admin
- * session cookie (see `session.ts`) so no server-side store is needed — the
- * code itself travels inside a signed, short-lived token that the client
- * echoes back on submit.
+ * session cookie (see `session.ts`) so no server-side store is needed — a
+ * hash of the code travels inside a signed, short-lived token that the
+ * client echoes back on submit. The answer itself is never exposed in the
+ * token, otherwise a bot could simply decode it without reading the image.
  *
  * Token shape: `${payloadB64Url}.${signatureHex}`, payload =
- * `{ code: string, exp: number }`, signature = HMAC-SHA256(payload, SESSION_SECRET).
+ * `{ codeHash: string, salt: string, exp: number }`, signature =
+ * HMAC-SHA256(payload, SESSION_SECRET).
  */
 
 export const CAPTCHA_TTL_MS = 5 * 60 * 1000; // 5 minutes
@@ -35,6 +37,11 @@ function toHex(bytes: ArrayBuffer): string {
   return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+async function sha256Hex(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return toHex(digest);
+}
+
 async function hmacKey(): Promise<CryptoKey> {
   return crypto.subtle.importKey(
     "raw",
@@ -52,7 +59,9 @@ function randomCode(): string {
 
 export async function createCaptchaToken(): Promise<{ code: string; token: string }> {
   const code = randomCode();
-  const payload = JSON.stringify({ code, exp: Date.now() + CAPTCHA_TTL_MS });
+  const salt = toBase64Url(crypto.getRandomValues(new Uint8Array(16)));
+  const codeHash = await sha256Hex(`${salt}:${code}`);
+  const payload = JSON.stringify({ codeHash, salt, exp: Date.now() + CAPTCHA_TTL_MS });
   const payloadB64 = toBase64Url(new TextEncoder().encode(payload));
   const key = await hmacKey();
   const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payloadB64));
@@ -77,12 +86,21 @@ export async function verifyCaptchaToken(token: string | undefined, answer: stri
     if (diff !== 0) return false;
 
     const payload = JSON.parse(new TextDecoder().decode(fromBase64Url(payloadB64))) as {
-      code: string;
+      codeHash: string;
+      salt: string;
       exp: number;
     };
     if (typeof payload.exp !== "number" || payload.exp < Date.now()) return false;
 
-    return payload.code.trim().toUpperCase() === answer.trim().toUpperCase();
+    if (typeof payload.codeHash !== "string" || typeof payload.salt !== "string") return false;
+    const answerHash = await sha256Hex(`${payload.salt}:${answer.trim().toUpperCase()}`);
+    if (answerHash.length !== payload.codeHash.length) return false;
+
+    let answerDiff = 0;
+    for (let i = 0; i < answerHash.length; i++) {
+      answerDiff |= answerHash.charCodeAt(i) ^ payload.codeHash.charCodeAt(i);
+    }
+    return answerDiff === 0;
   } catch {
     return false;
   }

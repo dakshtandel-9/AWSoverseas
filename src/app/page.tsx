@@ -42,7 +42,7 @@ export default async function HomePage() {
       <ImageHeroSlider
         slides={[
           {
-            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/ship-hero-v2.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/ship-hero-v3.mp4",
             imageAlt: "Container ship loaded with cargo at sea",
             badge: home.hero.badge,
             title: home.hero.title,
@@ -76,7 +76,7 @@ export default async function HomePage() {
             secondaryButtonHref: "/services",
           },
           {
-            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/flight-hero-v2.mp4",
+            video: "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/flight-hero-v3.mp4",
             imageAlt: "Air freight aircraft on final approach with landing gear down",
             badge: "END-TO-END IMPORT & EXPORT MANAGEMENT",
             title: "One Partner for Import & Export",

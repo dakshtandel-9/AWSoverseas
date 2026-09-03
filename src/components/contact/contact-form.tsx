@@ -1,11 +1,12 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef } from "react";
+import { useActionState, useCallback, useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { submitContactAction, type ContactFormState } from "@/app/actions/contact";
 import { trackLead } from "@/lib/track-lead";
+import { CaptchaField } from "@/components/auth/captcha-field";
 
 type Field = {
   label: string;
@@ -90,6 +91,8 @@ export function ContactForm({ data }: { data: Data }) {
   const [state, formAction, pending] = useActionState(submitContactAction, initialState);
   const done = Boolean(state.success);
   const formRef = useRef<HTMLFormElement>(null);
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const handleCaptchaAnswerChange = useCallback((value: string) => setCaptchaAnswer(value), []);
 
   useEffect(() => {
     if (state.success) {
@@ -131,6 +134,11 @@ export function ContactForm({ data }: { data: Data }) {
             exit={{ opacity: 0 }}
             className="mt-8 grid gap-5 sm:grid-cols-2"
           >
+            <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="contact-website">Website</label>
+              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
             {data.fields.map((field) => (
               <div
                 key={field.label}
@@ -146,6 +154,16 @@ export function ContactForm({ data }: { data: Data }) {
                 <FieldControl field={field} />
               </div>
             ))}
+
+            <div className="rounded-2xl border border-[#e4e9f2] bg-[#f8faff] p-4 sm:col-span-2">
+              <CaptchaField
+                answer={captchaAnswer}
+                onAnswerChange={handleCaptchaAnswerChange}
+                answerName="contact-captcha-answer"
+                tokenName="contact-captcha-token"
+                label="Confirm you're not a robot"
+              />
+            </div>
 
             {state.error && (
               <div

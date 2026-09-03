@@ -2,6 +2,7 @@
 
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/status";
+import { verifyCaptchaToken } from "@/lib/auth/captcha";
 
 export type ContactFormState = { success?: boolean; error?: string };
 
@@ -15,9 +16,22 @@ export async function submitContactAction(
   const phone = String(formData.get("phone-number") ?? "").trim();
   const serviceRequired = String(formData.get("service-required") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
+  const website = String(formData.get("website") ?? "").trim();
+  const captchaToken = String(formData.get("contact-captcha-token") ?? "");
+  const captchaAnswer = String(formData.get("contact-captcha-answer") ?? "");
+
+  // Bots commonly fill every input they find. Return a convincing success but
+  // discard submissions that touch this visually hidden honeypot.
+  if (website) {
+    return { success: true };
+  }
 
   if (!fullName || !email || !phone || !message) {
     return { error: "Please fill in all required fields." };
+  }
+
+  if (!(await verifyCaptchaToken(captchaToken, captchaAnswer))) {
+    return { error: "Please enter the verification code correctly to confirm you're not a robot." };
   }
 
   if (!isSupabaseConfigured()) {
