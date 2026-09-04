@@ -14,7 +14,7 @@ const LINE = "#e4e9f2";
 const SURFACE_SOFT = "#f6f8fc";
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 const SITE_NAME = "AWS OVERSEAS impex";
-const SITE_TAGLINE = "Global Shipping Beyond Borders";
+const SITE_TAGLINE = "Global Trade Trusted Partners";
 
 const ACCENT = "#861B28";
 const ROUTE_STRIP = absoluteUrl("/email/route-strip.gif");

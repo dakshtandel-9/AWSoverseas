@@ -120,7 +120,7 @@ export function EmailTemplateButton({
           <div className="bg-[#1A0A53] px-3 py-2.5">
             <p className="text-[11px] font-bold tracking-[0.02em] text-white">AWS OVERSEAS impex</p>
             <p className="pt-1 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#90c0fe]">
-              Global Shipping Beyond Borders
+              Global Trade Trusted Partners
             </p>
           </div>
           <div className="relative aspect-[1120/630] w-full">

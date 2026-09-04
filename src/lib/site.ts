@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site-url";
 
 export const SITE = {
   name: "AWS OVERSEAS impex",
-  tagline: "Global Shipping Beyond Borders",
+  tagline: "Global Trade Trusted Partners",
   url: SITE_URL,
 };
 
