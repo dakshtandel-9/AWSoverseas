@@ -58,11 +58,11 @@ function escapeHtml(value: string): string {
 /**
  * Wraps body markup in the shared masthead/footer shell.
  *
- * The brand banner sits *below* the message rather than above it: it's a 2:1
- * image, so at the 560px body width it's 280px tall, and leading with it would
+ * The brand banner sits *below* the message rather than above it: it's a 16:9
+ * image, so at the 560px body width it's 315px tall, and leading with it would
  * push "your account has been approved" off the first screen on a phone. After
- * the sign-off it reads as a signature instead of an obstacle. The bytes are
- * loaded from Cloudinary — see EMAIL_BANNER.
+ * the sign-off it reads as a signature instead of an obstacle. See
+ * EMAIL_BANNER for where the bytes come from.
  */
 function shell(bodyHtml: string, footerNote?: string): string {
   const footer =
@@ -92,7 +92,7 @@ function shell(bodyHtml: string, footerNote?: string): string {
 
         <tr><td style="font-size:0;line-height:0;border-top:1px solid ${LINE};">
           <a href="${absoluteUrl("/")}" style="display:block;">
-            <img src="${EMAIL_BANNER.url}" width="560" height="280" alt="${EMAIL_BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
+            <img src="${EMAIL_BANNER.url}" width="560" height="315" alt="${EMAIL_BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
           </a>
         </td></tr>
 

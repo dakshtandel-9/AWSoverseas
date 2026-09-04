@@ -18,7 +18,7 @@ const SITE_TAGLINE = "Global Shipping Beyond Borders";
 
 const ACCENT = "#861B28";
 const ROUTE_STRIP = absoluteUrl("/email/route-strip.gif");
-const BANNER = { url: absoluteUrl("/email/banner.jpg"), alt: `${SITE_NAME} — your trusted global trade partner` };
+const BANNER = { url: absoluteUrl("/email/banner-v2.jpg"), alt: `${SITE_NAME} — import, export and shipping: supplier verification, customs clearance, warehousing and door-to-door delivery worldwide.` };
 /** Same R2 object the sender uses — see the note on SIGNATURE_LOGO in email-templates.ts. */
 const SIGNATURE_LOGO = "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/email/signature-logo-v1.png";
 const SIGNATURE_LOGO_WIDTH = 120;
@@ -99,7 +99,7 @@ export function composeEmailTemplateHtml(details: ComposeTemplateDetails): strin
 
   <tr><td style="font-size:0;line-height:0;border-top:1px solid ${LINE};">
     <a href="${absoluteUrl("/")}" style="display:block;">
-      <img src="${BANNER.url}" width="560" height="280" alt="${BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
+      <img src="${BANNER.url}" width="560" height="315" alt="${BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
     </a>
   </td></tr>
 

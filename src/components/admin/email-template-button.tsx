@@ -123,10 +123,10 @@ export function EmailTemplateButton({
               Global Shipping Beyond Borders
             </p>
           </div>
-          <div className="relative aspect-[1120/400] w-full">
+          <div className="relative aspect-[1120/630] w-full">
             <Image
-              src="/email/banner.jpg"
-              alt="AWS OVERSEAS impex — your trusted global trade partner"
+              src="/email/banner-v2.jpg"
+              alt="AWS OVERSEAS impex — import, export and shipping: supplier verification, customs clearance, warehousing and door-to-door delivery worldwide."
               fill
               sizes="288px"
               className="object-cover"
