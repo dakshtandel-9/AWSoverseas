@@ -72,8 +72,8 @@
         "eyebrow": "Warehousing & Distribution",
         "title": "Many factories in. One shipment out.",
         "description": "When your order comes from more than one supplier, we hold and manage the inventory in India \u2014 consolidating shipments from multiple factories into one packed, labeled, ready-to-ship load instead of several.",
-        "video": "https://res.cloudinary.com/dwethh3fq/video/upload/v1785242161/awsoversea/hero-slider/warehouse.mp4",
-        "poster": "https://res.cloudinary.com/dwethh3fq/video/upload/so_1/awsoversea/hero-slider/warehouse.jpg",
+        "video": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/warehouse.mp4",
+        "poster": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/hero-slider/warehouse.jpg",
         "videoAlt": "Warehouse floor where export orders are received, packed, and staged for shipping",
         "points": [
             "Inventory received and held in India, order by order",
@@ -107,73 +107,73 @@
                 "name": "Udyog Aadhaar",
                 "issuer": "Ministry of MSME, Government of India",
                 "code": "UDYOG-AADHAAR",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927236/awsoversea/certifications/udyogaadhaar-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/udyog-aadhaar.webp"
             },
             {
                 "name": "APEDA",
                 "issuer": "Agricultural & Processed Food Products Export Development Authority",
                 "code": "APEDA",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927232/awsoversea/certifications/logo5-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/apeda.webp"
             },
             {
                 "name": "FDA Registered",
                 "issuer": "U.S. Food and Drug Administration",
                 "code": "FDA",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927224/awsoversea/certifications/fda-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/fda.webp"
             },
             {
                 "name": "DGFT / IEC",
                 "issuer": "Director General of Foreign Trade",
                 "code": "DGFT",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927223/awsoversea/certifications/dgft-jpg.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/dgft.webp"
             },
             {
                 "name": "Spices Board India",
                 "issuer": "Ministry of Commerce & Industry",
                 "code": "SPICES-BOARD",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927234/awsoversea/certifications/spice-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/spices-board.webp"
             },
             {
                 "name": "FICCI Member",
                 "issuer": "Federation of Indian Chambers of Commerce & Industry",
                 "code": "FICCI",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927225/awsoversea/certifications/ficci-jpg.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/ficci.webp"
             },
             {
                 "name": "FIEO Member",
                 "issuer": "Federation of Indian Export Organisations",
                 "code": "FIEO",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927227/awsoversea/certifications/fieo-jpg.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/fieo.webp"
             },
             {
                 "name": "GCCI Member",
                 "issuer": "Gujarat Chamber of Commerce & Industry",
                 "code": "GCCI",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927229/awsoversea/certifications/gcci-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/gcci.webp"
             },
             {
                 "name": "GMP Certified",
                 "issuer": "Good Manufacturing Practice",
                 "code": "GMP",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927230/awsoversea/certifications/gmp-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/gmp.webp"
             },
             {
                 "name": "GSTC Registered",
                 "issuer": "Goods and Services Tax Council",
                 "code": "GSTC",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927231/awsoversea/certifications/logo3-jpg.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/gstc.webp"
             },
             {
                 "name": "MSME Registered",
                 "issuer": "Ministry of Micro, Small & Medium Enterprises",
                 "code": "MSME",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927233/awsoversea/certifications/msme-png.webp"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/msme.webp"
             },
             {
                 "name": "FSSAI Registered",
                 "issuer": "Food Safety and Standards Authority of India",
                 "code": "FSSAI",
-                "logo": "https://res.cloudinary.com/dwethh3fq/image/upload/v1784927228/awsoversea/certifications/fssi.png"
+                "logo": "https://pub-fa1ef292bcde465ba3398848ee354c68.r2.dev/certifications/fssai.png"
             }
         ]
     },
