@@ -11,7 +11,6 @@ import { ProductsTeaser } from "@/components/home/products-teaser";
 import { GlobalCoverage } from "@/components/home/global-coverage";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
-import { AppFeatures } from "@/components/home/app-features";
 import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata: Metadata = metaFrom(home.meta, "/");
@@ -102,7 +101,6 @@ export default async function HomePage() {
       <GlobalCoverage data={home.coverage} />
       <HowItWorks data={home.howItWorks} eyebrow="Process" />
       <Testimonials data={home.testimonials} eyebrow="Testimonials" />
-      <AppFeatures data={home.mobileApp} eyebrow="Mobile App" />
       <FaqSection data={home.faq} items={faq.accordion.items} eyebrow="FAQ" />
       <Certifications data={home.certifications} />
     </>

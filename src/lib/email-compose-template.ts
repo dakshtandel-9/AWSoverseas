@@ -31,7 +31,7 @@ const SIGNATURE_LOGO_WIDTH = 120;
 export type ComposeTemplateDetails = { phone: string; address: string; email: string };
 
 /** Mirrors signatureRowHtml in email-templates.ts, with placeholders where a real send has answers. */
-function signatureRow(details: ComposeTemplateDetails): string {
+function signatureBlock(details: ComposeTemplateDetails): string {
   const line = (label: string, href: string, value: string) => `<tr>
     <td width="46" valign="top" style="width:46px;padding:0 10px 6px 0;font-family:${FONT};font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;line-height:1.9;color:#94a3b8;">${label}</td>
     <td valign="top" style="padding:0 0 6px 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">
@@ -46,7 +46,7 @@ function signatureRow(details: ComposeTemplateDetails): string {
     .filter(Boolean)
     .join("");
 
-  return `<tr><td style="padding:0 32px 28px 32px;">
+  return `<div style="display:block;clear:both;padding:0 32px 28px 32px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid ${LINE};">
       <tr>
         <td width="${SIGNATURE_LOGO_WIDTH}" valign="top" style="width:${SIGNATURE_LOGO_WIDTH}px;padding:24px 18px 0 0;">
@@ -65,53 +65,51 @@ function signatureRow(details: ComposeTemplateDetails): string {
         </td>
       </tr>
     </table>
-  </td></tr>`;
+  </div>`;
 }
 
 /**
  * Rich HTML for the clipboard. Most webmail compose boxes (Hostinger's
  * included) are contentEditable surfaces that accept a pasted `text/html`
  * clipboard item and keep the formatting, the same way pasting from Word
- * does — so this is written as the same inline-styled table markup the
- * transactional sender uses, not a fragment meant for a <style> block.
+ * does. Separate block containers keep the message, signature and banner
+ * vertically ordered while editing; the signature retains its two-column table.
  */
 export function composeEmailTemplateHtml(details: ComposeTemplateDetails): string {
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${SURFACE_SOFT};padding:32px 16px;">
-<tr><td align="center">
-<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;background:#ffffff;border:1px solid ${LINE};border-radius:14px;overflow:hidden;">
+  return `<div style="display:block;background:${SURFACE_SOFT};padding:32px 16px;">
+<div style="display:block;width:100%;max-width:560px;margin:0 auto;background:#ffffff;border:1px solid ${LINE};border-radius:14px;overflow:hidden;">
 
-  <tr><td style="background:${INK};padding:24px 32px;">
+  <div style="display:block;clear:both;background:${INK};padding:24px 32px;">
     <div style="font-family:${FONT};font-size:17px;font-weight:700;letter-spacing:0.02em;color:#ffffff;">${SITE_NAME}</div>
     <div style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#90c0fe;padding-top:6px;">${SITE_TAGLINE}</div>
-  </td></tr>
+  </div>
 
-  <tr><td style="font-size:0;line-height:0;">
+  <div style="display:block;clear:both;font-size:0;line-height:0;">
     <img src="${ROUTE_STRIP}" width="560" alt="" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
-  </td></tr>
+  </div>
 
-  <tr><td style="padding:32px 32px 8px 32px;">
+  <div style="display:block;clear:both;padding:32px 32px 8px 32px;">
     <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${INK};">Dear [Name],</p>
     <p style="margin:0 0 16px 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">[Write your message here.]</p>
     <p style="margin:24px 0 0 0;font-family:${FONT};font-size:15px;line-height:1.7;color:${MUTED};">Warm regards,</p>
-  </td></tr>
+  </div>
 
-  ${signatureRow(details)}
+  ${signatureBlock(details)}
 
-  <tr><td style="font-size:0;line-height:0;border-top:1px solid ${LINE};">
+  <div style="display:block;clear:both;font-size:0;line-height:0;border-top:1px solid ${LINE};">
     <a href="${absoluteUrl("/")}" style="display:block;">
       <img src="${BANNER.url}" width="560" height="315" alt="${BANNER.alt}" style="display:block;width:100%;max-width:560px;height:auto;border:0;">
     </a>
-  </td></tr>
+  </div>
 
-  <tr><td style="background:${SURFACE_SOFT};border-top:1px solid ${LINE};padding:20px 32px;">
+  <div style="display:block;clear:both;background:${SURFACE_SOFT};border-top:1px solid ${LINE};padding:20px 32px;">
     <div style="font-family:${FONT};font-size:12px;line-height:1.6;color:${MUTED};">
       ${SITE_NAME} &middot; <a href="${SITE_URL}" style="color:${INK};text-decoration:underline;">awsoverseas.com</a>
     </div>
-  </td></tr>
+  </div>
 
-</table>
-</td></tr>
-</table>`;
+</div>
+</div>`;
 }
 
 /** Plain-text fallback for clipboards/editors that only accept text/plain. */
